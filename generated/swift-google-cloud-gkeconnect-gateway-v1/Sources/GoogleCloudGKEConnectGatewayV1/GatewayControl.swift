@@ -53,11 +53,7 @@ extension Clients {
   /// To mock `GatewayControlClient` change your functions to receive
   /// `some GatewayControlProtocol` or `any GatewayControlProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol GatewayControlProtocol {
-    /// See `GatewayControlClient.generateCredentials`.
-    func generateCredentials(request: GenerateCredentialsRequest) async throws
-      -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse
-
+  public protocol GatewayControlProtocol: Sendable {
     /// See `GatewayControlClient.generateCredentials`.
     func generateCredentials(
       request: GenerateCredentialsRequest, options: GoogleGax.RequestOptions

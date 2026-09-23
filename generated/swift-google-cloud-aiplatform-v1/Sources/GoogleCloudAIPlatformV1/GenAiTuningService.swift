@@ -73,21 +73,6 @@
       try await self.inner.listTuningJobs(request: request, options: options)
     }
 
-    /// Lists TuningJobs in a Location.
-    ///
-    /// @Snippet(path: "GenAiTuningService_ListTuningJobs")
-    public func listTuningJobs(
-      byItem: ListTuningJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TuningJob, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTuningJobsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTuningJobs(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Cancels a TuningJob.
     /// Starts asynchronous cancellation on the TuningJob. The server makes a best
     /// effort to cancel the job, but success is not guaranteed. Clients can use
@@ -157,21 +142,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "GenAiTuningService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "GenAiTuningService_GetLocation")
@@ -234,23 +204,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "GenAiTuningService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "GenAiTuningService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -298,52 +251,7 @@
     /// To mock `GenAiTuningServiceClient` change your functions to receive
     /// `some GenAiTuningServiceProtocol` or `any GenAiTuningServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol GenAiTuningServiceProtocol {
-      /// See `GenAiTuningServiceClient.createTuningJob`.
-      func createTuningJob(request: CreateTuningJobRequest) async throws
-        -> GoogleCloudAIPlatformV1.TuningJob
-
-      /// See `GenAiTuningServiceClient.createTuningJob`.
-      func createTuningJob(
-        parent: Swift.String,
-        tuningJob: TuningJob?,
-      ) async throws -> GoogleCloudAIPlatformV1.TuningJob
-
-      /// See `GenAiTuningServiceClient.getTuningJob`.
-      func getTuningJob(request: GetTuningJobRequest) async throws
-        -> GoogleCloudAIPlatformV1.TuningJob
-
-      /// See `GenAiTuningServiceClient.getTuningJob`.
-      func getTuningJob(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TuningJob
-
-      /// See `GenAiTuningServiceClient.listTuningJobs`.
-      func listTuningJobs(request: ListTuningJobsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTuningJobsResponse
-
-      /// See `GenAiTuningServiceClient.listTuningJobs`.
-      func listTuningJobs(
-        byItem: ListTuningJobsRequest
-      ) -> any AsyncSequence<TuningJob, Swift.Error>
-
-      /// See `GenAiTuningServiceClient.listTuningJobs`.
-      func listTuningJobs(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TuningJob, Swift.Error>
-
-      /// See `GenAiTuningServiceClient.cancelTuningJob`.
-      func cancelTuningJob(request: CancelTuningJobRequest) async throws
-
-      /// See `GenAiTuningServiceClient.cancelTuningJob`.
-      func cancelTuningJob(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GenAiTuningServiceClient.rebaseTunedModel`.
-      func rebaseTunedModel(request: RebaseTunedModelRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol GenAiTuningServiceProtocol: Sendable {
       /// See `GenAiTuningServiceClient.rebaseTunedModel`.
       func rebaseTunedModel(withPolling: RebaseTunedModelRequest) async throws -> any GoogleGax
         .PollableOperation<TuningJob>
@@ -353,64 +261,6 @@
         parent: Swift.String,
         tunedModelRef: TunedModelRef?,
       ) async throws -> any GoogleGax.PollableOperation<TuningJob>
-
-      /// See `GenAiTuningServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `GenAiTuningServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `GenAiTuningServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `GenAiTuningServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `GenAiTuningServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `GenAiTuningServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `GenAiTuningServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `GenAiTuningServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `GenAiTuningServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `GenAiTuningServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `GenAiTuningServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GenAiTuningServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `GenAiTuningServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GenAiTuningServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `GenAiTuningServiceClient.createTuningJob`.
       func createTuningJob(
@@ -426,11 +276,6 @@
       func listTuningJobs(
         request: ListTuningJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTuningJobsResponse
-
-      /// See `GenAiTuningServiceClient.listTuningJobs`.
-      func listTuningJobs(
-        byItem: ListTuningJobsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TuningJob, Swift.Error>
 
       /// See `GenAiTuningServiceClient.cancelTuningJob`.
       func cancelTuningJob(
@@ -451,11 +296,6 @@
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `GenAiTuningServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GenAiTuningServiceClient.getLocation`.
       func getLocation(
@@ -481,11 +321,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `GenAiTuningServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiTuningServiceClient.deleteOperation`.
       func deleteOperation(
@@ -568,12 +403,17 @@
       self.listTuningJobs(byItem: byItem, options: .init())
     }
 
+    /// Lists TuningJobs in a Location.
+    ///
+    /// @Snippet(path: "GenAiTuningService_ListTuningJobs")
     public func listTuningJobs(
       byItem: ListTuningJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TuningJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTuningJobsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTuningJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -663,12 +503,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "GenAiTuningService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -739,12 +584,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiTuningService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

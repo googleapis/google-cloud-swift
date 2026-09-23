@@ -57,21 +57,6 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
     try await self.inner.listGroups(request: request, options: options)
   }
 
-  /// Lists the existing groups.
-  ///
-  /// @Snippet(path: "GroupService_ListGroups")
-  public func listGroups(
-    byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Group, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a single group.
   ///
   /// @Snippet(path: "GroupService_GetGroup")
@@ -117,21 +102,6 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   ) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse {
     try await self.inner.listGroupMembers(request: request, options: options)
   }
-
-  /// Lists the monitored resources that are members of a group.
-  ///
-  /// @Snippet(path: "GroupService_ListGroupMembers")
-  public func listGroupMembers(
-    byItem: ListGroupMembersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGroupMembers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -140,77 +110,11 @@ extension Clients {
   /// To mock `GroupServiceClient` change your functions to receive
   /// `some GroupServiceProtocol` or `any GroupServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol GroupServiceProtocol {
-    /// See `GroupServiceClient.listGroups`.
-    func listGroups(request: ListGroupsRequest) async throws
-      -> GoogleCloudMonitoringV3.ListGroupsResponse
-
-    /// See `GroupServiceClient.listGroups`.
-    func listGroups(
-      byItem: ListGroupsRequest
-    ) -> any AsyncSequence<Group, Swift.Error>
-
-    /// See `GroupServiceClient.listGroups`.
-    func listGroups(
-      name: Swift.String,
-    ) -> any AsyncSequence<Group, Swift.Error>
-
-    /// See `GroupServiceClient.getGroup`.
-    func getGroup(request: GetGroupRequest) async throws -> GoogleCloudMonitoringV3.Group
-
-    /// See `GroupServiceClient.getGroup`.
-    func getGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMonitoringV3.Group
-
-    /// See `GroupServiceClient.createGroup`.
-    func createGroup(request: CreateGroupRequest) async throws -> GoogleCloudMonitoringV3.Group
-
-    /// See `GroupServiceClient.createGroup`.
-    func createGroup(
-      name: Swift.String,
-      group: Group?,
-    ) async throws -> GoogleCloudMonitoringV3.Group
-
-    /// See `GroupServiceClient.updateGroup`.
-    func updateGroup(request: UpdateGroupRequest) async throws -> GoogleCloudMonitoringV3.Group
-
-    /// See `GroupServiceClient.updateGroup`.
-    func updateGroup(
-      group: Group?,
-    ) async throws -> GoogleCloudMonitoringV3.Group
-
-    /// See `GroupServiceClient.deleteGroup`.
-    func deleteGroup(request: DeleteGroupRequest) async throws
-
-    /// See `GroupServiceClient.deleteGroup`.
-    func deleteGroup(
-      name: Swift.String,
-    ) async throws
-
-    /// See `GroupServiceClient.listGroupMembers`.
-    func listGroupMembers(request: ListGroupMembersRequest) async throws
-      -> GoogleCloudMonitoringV3.ListGroupMembersResponse
-
-    /// See `GroupServiceClient.listGroupMembers`.
-    func listGroupMembers(
-      byItem: ListGroupMembersRequest
-    ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error>
-
-    /// See `GroupServiceClient.listGroupMembers`.
-    func listGroupMembers(
-      name: Swift.String,
-    ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error>
-
+  public protocol GroupServiceProtocol: Sendable {
     /// See `GroupServiceClient.listGroups`.
     func listGroups(
       request: ListGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse
-
-    /// See `GroupServiceClient.listGroups`.
-    func listGroups(
-      byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Group, Swift.Error>
 
     /// See `GroupServiceClient.getGroup`.
     func getGroup(
@@ -236,11 +140,6 @@ extension Clients {
     func listGroupMembers(
       request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse
-
-    /// See `GroupServiceClient.listGroupMembers`.
-    func listGroupMembers(
-      byItem: ListGroupMembersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error>
   }
 }
 
@@ -264,12 +163,17 @@ extension Clients.GroupServiceProtocol {
     self.listGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists the existing groups.
+  ///
+  /// @Snippet(path: "GroupService_ListGroups")
   public func listGroups(
     byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Group, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -381,12 +285,17 @@ extension Clients.GroupServiceProtocol {
     self.listGroupMembers(byItem: byItem, options: .init())
   }
 
+  /// Lists the monitored resources that are members of a group.
+  ///
+  /// @Snippet(path: "GroupService_ListGroupMembers")
   public func listGroupMembers(
     byItem: ListGroupMembersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGroupMembers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

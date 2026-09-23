@@ -57,23 +57,6 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
     try await self.inner.listEkmConnections(request: request, options: options)
   }
 
-  /// Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
-  ///
-  /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
-  ///
-  /// @Snippet(path: "EkmService_ListEkmConnections")
-  public func listEkmConnections(
-    byItem: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EkmConnection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEkmConnections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns metadata for a given
   /// [EkmConnection][google.cloud.kms.v1.EkmConnection].
   ///
@@ -174,38 +157,6 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "EkmService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "EkmService_GetLocation")
@@ -271,109 +222,11 @@ extension Clients {
   /// To mock `EkmServiceClient` change your functions to receive
   /// `some EkmServiceProtocol` or `any EkmServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol EkmServiceProtocol {
-    /// See `EkmServiceClient.listEkmConnections`.
-    func listEkmConnections(request: ListEkmConnectionsRequest) async throws
-      -> GoogleCloudKMSV1.ListEkmConnectionsResponse
-
-    /// See `EkmServiceClient.listEkmConnections`.
-    func listEkmConnections(
-      byItem: ListEkmConnectionsRequest
-    ) -> any AsyncSequence<EkmConnection, Swift.Error>
-
-    /// See `EkmServiceClient.listEkmConnections`.
-    func listEkmConnections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EkmConnection, Swift.Error>
-
-    /// See `EkmServiceClient.getEkmConnection`.
-    func getEkmConnection(request: GetEkmConnectionRequest) async throws
-      -> GoogleCloudKMSV1.EkmConnection
-
-    /// See `EkmServiceClient.getEkmConnection`.
-    func getEkmConnection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.EkmConnection
-
-    /// See `EkmServiceClient.createEkmConnection`.
-    func createEkmConnection(request: CreateEkmConnectionRequest) async throws
-      -> GoogleCloudKMSV1.EkmConnection
-
-    /// See `EkmServiceClient.createEkmConnection`.
-    func createEkmConnection(
-      parent: Swift.String,
-      ekmConnectionId: Swift.String,
-      ekmConnection: EkmConnection?,
-    ) async throws -> GoogleCloudKMSV1.EkmConnection
-
-    /// See `EkmServiceClient.updateEkmConnection`.
-    func updateEkmConnection(request: UpdateEkmConnectionRequest) async throws
-      -> GoogleCloudKMSV1.EkmConnection
-
-    /// See `EkmServiceClient.updateEkmConnection`.
-    func updateEkmConnection(
-      ekmConnection: EkmConnection?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudKMSV1.EkmConnection
-
-    /// See `EkmServiceClient.getEkmConfig`.
-    func getEkmConfig(request: GetEkmConfigRequest) async throws -> GoogleCloudKMSV1.EkmConfig
-
-    /// See `EkmServiceClient.getEkmConfig`.
-    func getEkmConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.EkmConfig
-
-    /// See `EkmServiceClient.updateEkmConfig`.
-    func updateEkmConfig(request: UpdateEkmConfigRequest) async throws -> GoogleCloudKMSV1.EkmConfig
-
-    /// See `EkmServiceClient.updateEkmConfig`.
-    func updateEkmConfig(
-      ekmConfig: EkmConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudKMSV1.EkmConfig
-
-    /// See `EkmServiceClient.verifyConnectivity`.
-    func verifyConnectivity(request: VerifyConnectivityRequest) async throws
-      -> GoogleCloudKMSV1.VerifyConnectivityResponse
-
-    /// See `EkmServiceClient.verifyConnectivity`.
-    func verifyConnectivity(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.VerifyConnectivityResponse
-
-    /// See `EkmServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `EkmServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `EkmServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `EkmServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `EkmServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `EkmServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol EkmServiceProtocol: Sendable {
     /// See `EkmServiceClient.listEkmConnections`.
     func listEkmConnections(
       request: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse
-
-    /// See `EkmServiceClient.listEkmConnections`.
-    func listEkmConnections(
-      byItem: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EkmConnection, Swift.Error>
 
     /// See `EkmServiceClient.getEkmConnection`.
     func getEkmConnection(
@@ -409,11 +262,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `EkmServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `EkmServiceClient.getLocation`.
     func getLocation(
@@ -457,12 +305,19 @@ extension Clients.EkmServiceProtocol {
     self.listEkmConnections(byItem: byItem, options: .init())
   }
 
+  /// Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
+  ///
+  /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
+  ///
+  /// @Snippet(path: "EkmService_ListEkmConnections")
   public func listEkmConnections(
     byItem: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EkmConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEkmConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -627,12 +482,34 @@ extension Clients.EkmServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "EkmService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

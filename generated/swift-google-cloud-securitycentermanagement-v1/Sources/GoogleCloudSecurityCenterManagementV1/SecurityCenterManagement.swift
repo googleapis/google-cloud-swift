@@ -61,31 +61,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
       request: request, options: options)
   }
 
-  /// Returns a list of all
-  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]
-  /// resources for the given parent. This includes resident modules defined at
-  /// the scope of the parent, and inherited modules, inherited from ancestor
-  /// organizations, folders, and projects (no descendants).
-  ///
-  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
-  public func listEffectiveSecurityHealthAnalyticsCustomModules(
-    byItem: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
-    options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1
-        .ListEffectiveSecurityHealthAnalyticsCustomModulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEffectiveSecurityHealthAnalyticsCustomModules(
-        request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single
   /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule].
   ///
@@ -120,29 +95,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
       request: request, options: options)
   }
 
-  /// Returns a list of all
-  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
-  /// resources for the given parent. This includes resident modules defined at
-  /// the scope of the parent, and inherited modules, inherited from ancestor
-  /// organizations, folders, and projects (no descendants).
-  ///
-  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
-  public func listSecurityHealthAnalyticsCustomModules(
-    byItem: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSecurityHealthAnalyticsCustomModules(
-        request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns a list of all resident
   /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
   /// resources under the given organization, folder, or project and all of its
@@ -160,30 +112,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   {
     try await self.inner.listDescendantSecurityHealthAnalyticsCustomModules(
       request: request, options: options)
-  }
-
-  /// Returns a list of all resident
-  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
-  /// resources under the given organization, folder, or project and all of its
-  /// descendants.
-  ///
-  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
-  public func listDescendantSecurityHealthAnalyticsCustomModules(
-    byItem: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
-    options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1
-        .ListDescendantSecurityHealthAnalyticsCustomModulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDescendantSecurityHealthAnalyticsCustomModules(
-        request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Retrieves a
@@ -279,26 +207,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
       request: request, options: options)
   }
 
-  /// Lists all effective Event Threat Detection custom modules for the
-  /// given parent. This includes resident modules defined at the scope of the
-  /// parent along with modules inherited from its ancestors.
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
-  public func listEffectiveEventThreatDetectionCustomModules(
-    byItem: ListEffectiveEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1
-        .ListEffectiveEventThreatDetectionCustomModulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEffectiveEventThreatDetectionCustomModules(
-        request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the effective Event Threat Detection custom module at the given level.
   ///
   /// The difference between an
@@ -337,25 +245,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
     try await self.inner.listEventThreatDetectionCustomModules(request: request, options: options)
   }
 
-  /// Lists all Event Threat Detection custom modules for the given organization,
-  /// folder, or project. This includes resident modules defined at the scope of
-  /// the parent along with modules inherited from ancestors.
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
-  public func listEventThreatDetectionCustomModules(
-    byItem: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEventThreatDetectionCustomModules(
-        request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists all resident Event Threat Detection custom modules for the given
   /// organization, folder, or project and its descendants.
   ///
@@ -368,26 +257,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   {
     try await self.inner.listDescendantEventThreatDetectionCustomModules(
       request: request, options: options)
-  }
-
-  /// Lists all resident Event Threat Detection custom modules for the given
-  /// organization, folder, or project and its descendants.
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
-  public func listDescendantEventThreatDetectionCustomModules(
-    byItem: ListDescendantEventThreatDetectionCustomModulesRequest,
-    options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1
-        .ListDescendantEventThreatDetectionCustomModulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDescendantEventThreatDetectionCustomModules(
-        request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets an Event Threat Detection custom module.
@@ -467,23 +336,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
     try await self.inner.listSecurityCenterServices(request: request, options: options)
   }
 
-  /// Returns a list of all Security Command Center services for the given
-  /// parent.
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
-  public func listSecurityCenterServices(
-    byItem: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SecurityCenterService, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSecurityCenterServices(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a Security Command Center service using the given update mask.
   ///
   /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityCenterService")
@@ -502,21 +354,6 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "SecurityCenterManagement_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetLocation")
@@ -533,278 +370,7 @@ extension Clients {
   /// To mock `SecurityCenterManagementClient` change your functions to receive
   /// `some SecurityCenterManagementProtocol` or `any SecurityCenterManagementProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol SecurityCenterManagementProtocol {
-    /// See `SecurityCenterManagementClient.listEffectiveSecurityHealthAnalyticsCustomModules`.
-    func listEffectiveSecurityHealthAnalyticsCustomModules(
-      request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1
-      .ListEffectiveSecurityHealthAnalyticsCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listEffectiveSecurityHealthAnalyticsCustomModules`.
-    func listEffectiveSecurityHealthAnalyticsCustomModules(
-      byItem: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
-    ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listEffectiveSecurityHealthAnalyticsCustomModules`.
-    func listEffectiveSecurityHealthAnalyticsCustomModules(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.getEffectiveSecurityHealthAnalyticsCustomModule`.
-    func getEffectiveSecurityHealthAnalyticsCustomModule(
-      request: GetEffectiveSecurityHealthAnalyticsCustomModuleRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.EffectiveSecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.getEffectiveSecurityHealthAnalyticsCustomModule`.
-    func getEffectiveSecurityHealthAnalyticsCustomModule(
-      name: Swift.String,
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.EffectiveSecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.listSecurityHealthAnalyticsCustomModules`.
-    func listSecurityHealthAnalyticsCustomModules(
-      request: ListSecurityHealthAnalyticsCustomModulesRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listSecurityHealthAnalyticsCustomModules`.
-    func listSecurityHealthAnalyticsCustomModules(
-      byItem: ListSecurityHealthAnalyticsCustomModulesRequest
-    ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listSecurityHealthAnalyticsCustomModules`.
-    func listSecurityHealthAnalyticsCustomModules(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listDescendantSecurityHealthAnalyticsCustomModules`.
-    func listDescendantSecurityHealthAnalyticsCustomModules(
-      request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1
-      .ListDescendantSecurityHealthAnalyticsCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listDescendantSecurityHealthAnalyticsCustomModules`.
-    func listDescendantSecurityHealthAnalyticsCustomModules(
-      byItem: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
-    ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listDescendantSecurityHealthAnalyticsCustomModules`.
-    func listDescendantSecurityHealthAnalyticsCustomModules(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.getSecurityHealthAnalyticsCustomModule`.
-    func getSecurityHealthAnalyticsCustomModule(
-      request: GetSecurityHealthAnalyticsCustomModuleRequest
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.getSecurityHealthAnalyticsCustomModule`.
-    func getSecurityHealthAnalyticsCustomModule(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.createSecurityHealthAnalyticsCustomModule`.
-    func createSecurityHealthAnalyticsCustomModule(
-      request: CreateSecurityHealthAnalyticsCustomModuleRequest
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.createSecurityHealthAnalyticsCustomModule`.
-    func createSecurityHealthAnalyticsCustomModule(
-      parent: Swift.String,
-      securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.updateSecurityHealthAnalyticsCustomModule`.
-    func updateSecurityHealthAnalyticsCustomModule(
-      request: UpdateSecurityHealthAnalyticsCustomModuleRequest
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.updateSecurityHealthAnalyticsCustomModule`.
-    func updateSecurityHealthAnalyticsCustomModule(
-      securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
-
-    /// See `SecurityCenterManagementClient.deleteSecurityHealthAnalyticsCustomModule`.
-    func deleteSecurityHealthAnalyticsCustomModule(
-      request: DeleteSecurityHealthAnalyticsCustomModuleRequest) async throws
-
-    /// See `SecurityCenterManagementClient.deleteSecurityHealthAnalyticsCustomModule`.
-    func deleteSecurityHealthAnalyticsCustomModule(
-      name: Swift.String,
-    ) async throws
-
-    /// See `SecurityCenterManagementClient.simulateSecurityHealthAnalyticsCustomModule`.
-    func simulateSecurityHealthAnalyticsCustomModule(
-      request: SimulateSecurityHealthAnalyticsCustomModuleRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.SimulateSecurityHealthAnalyticsCustomModuleResponse
-
-    /// See `SecurityCenterManagementClient.simulateSecurityHealthAnalyticsCustomModule`.
-    func simulateSecurityHealthAnalyticsCustomModule(
-      parent: Swift.String,
-      customConfig: CustomConfig?,
-      resource: SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource?,
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.SimulateSecurityHealthAnalyticsCustomModuleResponse
-
-    /// See `SecurityCenterManagementClient.listEffectiveEventThreatDetectionCustomModules`.
-    func listEffectiveEventThreatDetectionCustomModules(
-      request: ListEffectiveEventThreatDetectionCustomModulesRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1
-      .ListEffectiveEventThreatDetectionCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listEffectiveEventThreatDetectionCustomModules`.
-    func listEffectiveEventThreatDetectionCustomModules(
-      byItem: ListEffectiveEventThreatDetectionCustomModulesRequest
-    ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listEffectiveEventThreatDetectionCustomModules`.
-    func listEffectiveEventThreatDetectionCustomModules(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.getEffectiveEventThreatDetectionCustomModule`.
-    func getEffectiveEventThreatDetectionCustomModule(
-      request: GetEffectiveEventThreatDetectionCustomModuleRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.getEffectiveEventThreatDetectionCustomModule`.
-    func getEffectiveEventThreatDetectionCustomModule(
-      name: Swift.String,
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.listEventThreatDetectionCustomModules`.
-    func listEventThreatDetectionCustomModules(
-      request: ListEventThreatDetectionCustomModulesRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listEventThreatDetectionCustomModules`.
-    func listEventThreatDetectionCustomModules(
-      byItem: ListEventThreatDetectionCustomModulesRequest
-    ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listEventThreatDetectionCustomModules`.
-    func listEventThreatDetectionCustomModules(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listDescendantEventThreatDetectionCustomModules`.
-    func listDescendantEventThreatDetectionCustomModules(
-      request: ListDescendantEventThreatDetectionCustomModulesRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1
-      .ListDescendantEventThreatDetectionCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listDescendantEventThreatDetectionCustomModules`.
-    func listDescendantEventThreatDetectionCustomModules(
-      byItem: ListDescendantEventThreatDetectionCustomModulesRequest
-    ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listDescendantEventThreatDetectionCustomModules`.
-    func listDescendantEventThreatDetectionCustomModules(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.getEventThreatDetectionCustomModule`.
-    func getEventThreatDetectionCustomModule(request: GetEventThreatDetectionCustomModuleRequest)
-      async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.getEventThreatDetectionCustomModule`.
-    func getEventThreatDetectionCustomModule(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.createEventThreatDetectionCustomModule`.
-    func createEventThreatDetectionCustomModule(
-      request: CreateEventThreatDetectionCustomModuleRequest
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.createEventThreatDetectionCustomModule`.
-    func createEventThreatDetectionCustomModule(
-      parent: Swift.String,
-      eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.updateEventThreatDetectionCustomModule`.
-    func updateEventThreatDetectionCustomModule(
-      request: UpdateEventThreatDetectionCustomModuleRequest
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.updateEventThreatDetectionCustomModule`.
-    func updateEventThreatDetectionCustomModule(
-      eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
-
-    /// See `SecurityCenterManagementClient.deleteEventThreatDetectionCustomModule`.
-    func deleteEventThreatDetectionCustomModule(
-      request: DeleteEventThreatDetectionCustomModuleRequest) async throws
-
-    /// See `SecurityCenterManagementClient.deleteEventThreatDetectionCustomModule`.
-    func deleteEventThreatDetectionCustomModule(
-      name: Swift.String,
-    ) async throws
-
-    /// See `SecurityCenterManagementClient.validateEventThreatDetectionCustomModule`.
-    func validateEventThreatDetectionCustomModule(
-      request: ValidateEventThreatDetectionCustomModuleRequest
-    ) async throws
-      -> GoogleCloudSecurityCenterManagementV1.ValidateEventThreatDetectionCustomModuleResponse
-
-    /// See `SecurityCenterManagementClient.getSecurityCenterService`.
-    func getSecurityCenterService(request: GetSecurityCenterServiceRequest) async throws
-      -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
-
-    /// See `SecurityCenterManagementClient.getSecurityCenterService`.
-    func getSecurityCenterService(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
-
-    /// See `SecurityCenterManagementClient.listSecurityCenterServices`.
-    func listSecurityCenterServices(request: ListSecurityCenterServicesRequest) async throws
-      -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse
-
-    /// See `SecurityCenterManagementClient.listSecurityCenterServices`.
-    func listSecurityCenterServices(
-      byItem: ListSecurityCenterServicesRequest
-    ) -> any AsyncSequence<SecurityCenterService, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.listSecurityCenterServices`.
-    func listSecurityCenterServices(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SecurityCenterService, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.updateSecurityCenterService`.
-    func updateSecurityCenterService(request: UpdateSecurityCenterServiceRequest) async throws
-      -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
-
-    /// See `SecurityCenterManagementClient.updateSecurityCenterService`.
-    func updateSecurityCenterService(
-      securityCenterService: SecurityCenterService?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
-
-    /// See `SecurityCenterManagementClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `SecurityCenterManagementClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `SecurityCenterManagementClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol SecurityCenterManagementProtocol: Sendable {
     /// See `SecurityCenterManagementClient.listEffectiveSecurityHealthAnalyticsCustomModules`.
     func listEffectiveSecurityHealthAnalyticsCustomModules(
       request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
@@ -812,12 +378,6 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1
       .ListEffectiveSecurityHealthAnalyticsCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listEffectiveSecurityHealthAnalyticsCustomModules`.
-    func listEffectiveSecurityHealthAnalyticsCustomModules(
-      byItem: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error>
 
     /// See `SecurityCenterManagementClient.getEffectiveSecurityHealthAnalyticsCustomModule`.
     func getEffectiveSecurityHealthAnalyticsCustomModule(
@@ -832,11 +392,6 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse
 
-    /// See `SecurityCenterManagementClient.listSecurityHealthAnalyticsCustomModules`.
-    func listSecurityHealthAnalyticsCustomModules(
-      byItem: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error>
-
     /// See `SecurityCenterManagementClient.listDescendantSecurityHealthAnalyticsCustomModules`.
     func listDescendantSecurityHealthAnalyticsCustomModules(
       request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
@@ -844,12 +399,6 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1
       .ListDescendantSecurityHealthAnalyticsCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listDescendantSecurityHealthAnalyticsCustomModules`.
-    func listDescendantSecurityHealthAnalyticsCustomModules(
-      byItem: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error>
 
     /// See `SecurityCenterManagementClient.getSecurityHealthAnalyticsCustomModule`.
     func getSecurityHealthAnalyticsCustomModule(
@@ -885,12 +434,6 @@ extension Clients {
       -> GoogleCloudSecurityCenterManagementV1
       .ListEffectiveEventThreatDetectionCustomModulesResponse
 
-    /// See `SecurityCenterManagementClient.listEffectiveEventThreatDetectionCustomModules`.
-    func listEffectiveEventThreatDetectionCustomModules(
-      byItem: ListEffectiveEventThreatDetectionCustomModulesRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error>
-
     /// See `SecurityCenterManagementClient.getEffectiveEventThreatDetectionCustomModule`.
     func getEffectiveEventThreatDetectionCustomModule(
       request: GetEffectiveEventThreatDetectionCustomModuleRequest,
@@ -904,11 +447,6 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse
 
-    /// See `SecurityCenterManagementClient.listEventThreatDetectionCustomModules`.
-    func listEventThreatDetectionCustomModules(
-      byItem: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error>
-
     /// See `SecurityCenterManagementClient.listDescendantEventThreatDetectionCustomModules`.
     func listDescendantEventThreatDetectionCustomModules(
       request: ListDescendantEventThreatDetectionCustomModulesRequest,
@@ -916,12 +454,6 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1
       .ListDescendantEventThreatDetectionCustomModulesResponse
-
-    /// See `SecurityCenterManagementClient.listDescendantEventThreatDetectionCustomModules`.
-    func listDescendantEventThreatDetectionCustomModules(
-      byItem: ListDescendantEventThreatDetectionCustomModulesRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error>
 
     /// See `SecurityCenterManagementClient.getEventThreatDetectionCustomModule`.
     func getEventThreatDetectionCustomModule(
@@ -959,11 +491,6 @@ extension Clients {
       request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse
 
-    /// See `SecurityCenterManagementClient.listSecurityCenterServices`.
-    func listSecurityCenterServices(
-      byItem: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecurityCenterService, Swift.Error>
-
     /// See `SecurityCenterManagementClient.updateSecurityCenterService`.
     func updateSecurityCenterService(
       request: UpdateSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
@@ -973,11 +500,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `SecurityCenterManagementClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `SecurityCenterManagementClient.getLocation`.
     func getLocation(
@@ -1014,6 +536,15 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listEffectiveSecurityHealthAnalyticsCustomModules(byItem: byItem, options: .init())
   }
 
+  /// Returns a list of all
+  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
   public func listEffectiveSecurityHealthAnalyticsCustomModules(
     byItem: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -1022,7 +553,10 @@ extension Clients.SecurityCenterManagementProtocol {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListEffectiveSecurityHealthAnalyticsCustomModulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEffectiveSecurityHealthAnalyticsCustomModules(
+        request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1087,13 +621,25 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listSecurityHealthAnalyticsCustomModules(byItem: byItem, options: .init())
   }
 
+  /// Returns a list of all
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
   public func listSecurityHealthAnalyticsCustomModules(
     byItem: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSecurityHealthAnalyticsCustomModules(
+        request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1133,6 +679,14 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listDescendantSecurityHealthAnalyticsCustomModules(byItem: byItem, options: .init())
   }
 
+  /// Returns a list of all resident
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources under the given organization, folder, or project and all of its
+  /// descendants.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
   public func listDescendantSecurityHealthAnalyticsCustomModules(
     byItem: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -1141,7 +695,10 @@ extension Clients.SecurityCenterManagementProtocol {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListDescendantSecurityHealthAnalyticsCustomModulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDescendantSecurityHealthAnalyticsCustomModules(
+        request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1298,6 +855,11 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listEffectiveEventThreatDetectionCustomModules(byItem: byItem, options: .init())
   }
 
+  /// Lists all effective Event Threat Detection custom modules for the
+  /// given parent. This includes resident modules defined at the scope of the
+  /// parent along with modules inherited from its ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
   public func listEffectiveEventThreatDetectionCustomModules(
     byItem: ListEffectiveEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> {
@@ -1305,7 +867,10 @@ extension Clients.SecurityCenterManagementProtocol {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListEffectiveEventThreatDetectionCustomModulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEffectiveEventThreatDetectionCustomModules(
+        request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1365,13 +930,21 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listEventThreatDetectionCustomModules(byItem: byItem, options: .init())
   }
 
+  /// Lists all Event Threat Detection custom modules for the given organization,
+  /// folder, or project. This includes resident modules defined at the scope of
+  /// the parent along with modules inherited from ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
   public func listEventThreatDetectionCustomModules(
     byItem: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEventThreatDetectionCustomModules(
+        request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1409,6 +982,10 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listDescendantEventThreatDetectionCustomModules(byItem: byItem, options: .init())
   }
 
+  /// Lists all resident Event Threat Detection custom modules for the given
+  /// organization, folder, or project and its descendants.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
   public func listDescendantEventThreatDetectionCustomModules(
     byItem: ListDescendantEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -1417,7 +994,10 @@ extension Clients.SecurityCenterManagementProtocol {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListDescendantEventThreatDetectionCustomModulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDescendantEventThreatDetectionCustomModules(
+        request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1574,13 +1154,19 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listSecurityCenterServices(byItem: byItem, options: .init())
   }
 
+  /// Returns a list of all Security Command Center services for the given
+  /// parent.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
   public func listSecurityCenterServices(
     byItem: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SecurityCenterService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSecurityCenterServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1635,12 +1221,17 @@ extension Clients.SecurityCenterManagementProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

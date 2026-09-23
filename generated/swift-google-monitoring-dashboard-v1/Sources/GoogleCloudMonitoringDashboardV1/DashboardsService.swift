@@ -64,26 +64,6 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
     try await self.inner.listDashboards(request: request, options: options)
   }
 
-  /// Lists the existing dashboards.
-  ///
-  /// This method requires the `monitoring.dashboards.list` permission
-  /// on the specified project. For more information, see
-  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
-  ///
-  /// @Snippet(path: "DashboardsService_ListDashboards")
-  public func listDashboards(
-    byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Dashboard, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDashboards(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Fetches a specific dashboard.
   ///
   /// This method requires the `monitoring.dashboards.get` permission
@@ -130,52 +110,7 @@ extension Clients {
   /// To mock `DashboardsServiceClient` change your functions to receive
   /// `some DashboardsServiceProtocol` or `any DashboardsServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DashboardsServiceProtocol {
-    /// See `DashboardsServiceClient.createDashboard`.
-    func createDashboard(request: CreateDashboardRequest) async throws
-      -> GoogleCloudMonitoringDashboardV1.Dashboard
-
-    /// See `DashboardsServiceClient.createDashboard`.
-    func createDashboard(
-      parent: Swift.String,
-      dashboard: Dashboard?,
-    ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard
-
-    /// See `DashboardsServiceClient.listDashboards`.
-    func listDashboards(request: ListDashboardsRequest) async throws
-      -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
-
-    /// See `DashboardsServiceClient.listDashboards`.
-    func listDashboards(
-      byItem: ListDashboardsRequest
-    ) -> any AsyncSequence<Dashboard, Swift.Error>
-
-    /// See `DashboardsServiceClient.listDashboards`.
-    func listDashboards(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Dashboard, Swift.Error>
-
-    /// See `DashboardsServiceClient.getDashboard`.
-    func getDashboard(request: GetDashboardRequest) async throws
-      -> GoogleCloudMonitoringDashboardV1.Dashboard
-
-    /// See `DashboardsServiceClient.getDashboard`.
-    func getDashboard(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard
-
-    /// See `DashboardsServiceClient.deleteDashboard`.
-    func deleteDashboard(request: DeleteDashboardRequest) async throws
-
-    /// See `DashboardsServiceClient.deleteDashboard`.
-    func deleteDashboard(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DashboardsServiceClient.updateDashboard`.
-    func updateDashboard(request: UpdateDashboardRequest) async throws
-      -> GoogleCloudMonitoringDashboardV1.Dashboard
-
+  public protocol DashboardsServiceProtocol: Sendable {
     /// See `DashboardsServiceClient.createDashboard`.
     func createDashboard(
       request: CreateDashboardRequest, options: GoogleGax.RequestOptions
@@ -185,11 +120,6 @@ extension Clients {
     func listDashboards(
       request: ListDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
-
-    /// See `DashboardsServiceClient.listDashboards`.
-    func listDashboards(
-      byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Dashboard, Swift.Error>
 
     /// See `DashboardsServiceClient.getDashboard`.
     func getDashboard(
@@ -251,13 +181,22 @@ extension Clients.DashboardsServiceProtocol {
     self.listDashboards(byItem: byItem, options: .init())
   }
 
+  /// Lists the existing dashboards.
+  ///
+  /// This method requires the `monitoring.dashboards.list` permission
+  /// on the specified project. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_ListDashboards")
   public func listDashboards(
     byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Dashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDashboards(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

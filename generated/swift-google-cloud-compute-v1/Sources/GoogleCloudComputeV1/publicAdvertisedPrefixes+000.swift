@@ -208,21 +208,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the PublicAdvertisedPrefixes for a project.
-    ///
-    /// @Snippet(path: "publicAdvertisedPrefixes_list")
-    public func list(
-      byItem: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefixList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified Router resource with the data included in the
     /// request. This method supportsPATCH
     /// semantics and usesJSON merge
@@ -341,51 +326,7 @@
     /// To mock `PublicAdvertisedPrefixesClient` change your functions to receive
     /// `some PublicAdvertisedPrefixesProtocol` or `any PublicAdvertisedPrefixesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol PublicAdvertisedPrefixesProtocol {
-      /// See `PublicAdvertisedPrefixesClient.announce`.
-      func announce(request: PublicAdvertisedPrefixesClient.AnnounceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicAdvertisedPrefixesClient.delete`.
-      func delete(request: PublicAdvertisedPrefixesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicAdvertisedPrefixesClient.`get``.
-      func `get`(request: PublicAdvertisedPrefixesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.PublicAdvertisedPrefix
-
-      /// See `PublicAdvertisedPrefixesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        publicAdvertisedPrefix: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefix
-
-      /// See `PublicAdvertisedPrefixesClient.insert`.
-      func insert(request: PublicAdvertisedPrefixesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicAdvertisedPrefixesClient.list`.
-      func list(request: PublicAdvertisedPrefixesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.PublicAdvertisedPrefixList
-
-      /// See `PublicAdvertisedPrefixesClient.list`.
-      func list(
-        byItem: PublicAdvertisedPrefixesClient.ListRequest
-      ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
-
-      /// See `PublicAdvertisedPrefixesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
-
-      /// See `PublicAdvertisedPrefixesClient.patch`.
-      func patch(request: PublicAdvertisedPrefixesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicAdvertisedPrefixesClient.withdraw`.
-      func withdraw(request: PublicAdvertisedPrefixesClient.WithdrawRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol PublicAdvertisedPrefixesProtocol: Sendable {
       /// See `PublicAdvertisedPrefixesClient.announce`.
       func announce(
         request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
@@ -410,11 +351,6 @@
       func list(
         request: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefixList
-
-      /// See `PublicAdvertisedPrefixesClient.list`.
-      func list(
-        byItem: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error>
 
       /// See `PublicAdvertisedPrefixesClient.patch`.
       func patch(
@@ -591,12 +527,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the PublicAdvertisedPrefixes for a project.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_list")
     public func list(
       byItem: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<PublicAdvertisedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefixList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

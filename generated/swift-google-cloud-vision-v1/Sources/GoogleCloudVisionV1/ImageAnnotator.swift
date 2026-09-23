@@ -183,29 +183,7 @@ extension Clients {
   /// To mock `ImageAnnotatorClient` change your functions to receive
   /// `some ImageAnnotatorProtocol` or `any ImageAnnotatorProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ImageAnnotatorProtocol {
-    /// See `ImageAnnotatorClient.batchAnnotateImages`.
-    func batchAnnotateImages(request: BatchAnnotateImagesRequest) async throws
-      -> GoogleCloudVisionV1.BatchAnnotateImagesResponse
-
-    /// See `ImageAnnotatorClient.batchAnnotateImages`.
-    func batchAnnotateImages(
-      requests: [AnnotateImageRequest],
-    ) async throws -> GoogleCloudVisionV1.BatchAnnotateImagesResponse
-
-    /// See `ImageAnnotatorClient.batchAnnotateFiles`.
-    func batchAnnotateFiles(request: BatchAnnotateFilesRequest) async throws
-      -> GoogleCloudVisionV1.BatchAnnotateFilesResponse
-
-    /// See `ImageAnnotatorClient.batchAnnotateFiles`.
-    func batchAnnotateFiles(
-      requests: [AnnotateFileRequest],
-    ) async throws -> GoogleCloudVisionV1.BatchAnnotateFilesResponse
-
-    /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
-    func asyncBatchAnnotateImages(request: AsyncBatchAnnotateImagesRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol ImageAnnotatorProtocol: Sendable {
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
     func asyncBatchAnnotateImages(withPolling: AsyncBatchAnnotateImagesRequest) async throws
       -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
@@ -215,10 +193,6 @@ extension Clients {
       requests: [AnnotateImageRequest],
       outputConfig: OutputConfig?,
     ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
-
-    /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
-    func asyncBatchAnnotateFiles(request: AsyncBatchAnnotateFilesRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
     func asyncBatchAnnotateFiles(withPolling: AsyncBatchAnnotateFilesRequest) async throws

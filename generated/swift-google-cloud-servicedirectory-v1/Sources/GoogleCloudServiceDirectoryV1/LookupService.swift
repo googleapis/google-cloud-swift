@@ -59,21 +59,6 @@ public final class LookupServiceClient: Clients.LookupServiceProtocol, Sendable 
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "LookupService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "LookupService_GetLocation")
@@ -90,24 +75,7 @@ extension Clients {
   /// To mock `LookupServiceClient` change your functions to receive
   /// `some LookupServiceProtocol` or `any LookupServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol LookupServiceProtocol {
-    /// See `LookupServiceClient.resolveService`.
-    func resolveService(request: ResolveServiceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.ResolveServiceResponse
-
-    /// See `LookupServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `LookupServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `LookupServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol LookupServiceProtocol: Sendable {
     /// See `LookupServiceClient.resolveService`.
     func resolveService(
       request: ResolveServiceRequest, options: GoogleGax.RequestOptions
@@ -117,11 +85,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `LookupServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `LookupServiceClient.getLocation`.
     func getLocation(
@@ -162,12 +125,17 @@ extension Clients.LookupServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LookupService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

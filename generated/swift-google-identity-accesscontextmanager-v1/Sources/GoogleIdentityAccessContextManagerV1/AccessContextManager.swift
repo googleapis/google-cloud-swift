@@ -65,24 +65,6 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     try await self.inner.listAccessPolicies(request: request, options: options)
   }
 
-  /// Lists all [access policies]
-  /// [google.identity.accesscontextmanager.v1.AccessPolicy] in an
-  /// organization.
-  ///
-  /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
-  public func listAccessPolicies(
-    byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAccessPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns an [access policy]
   /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
   ///
@@ -233,24 +215,6 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse {
     try await self.inner.listAccessLevels(request: request, options: options)
-  }
-
-  /// Lists all [access levels]
-  /// [google.identity.accesscontextmanager.v1.AccessLevel] for an access
-  /// policy.
-  ///
-  /// @Snippet(path: "AccessContextManager_ListAccessLevels")
-  public func listAccessLevels(
-    byItem: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccessLevel, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAccessLevels(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets an [access level]
@@ -482,24 +446,6 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse {
     try await self.inner.listServicePerimeters(request: request, options: options)
-  }
-
-  /// Lists all [service perimeters]
-  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
-  /// access policy.
-  ///
-  /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
-  public func listServicePerimeters(
-    byItem: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServicePerimeter, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServicePerimeters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a [service perimeter]
@@ -795,24 +741,6 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     try await self.inner.listGcpUserAccessBindings(request: request, options: options)
   }
 
-  /// Lists all [GcpUserAccessBindings]
-  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
-  /// Google Cloud organization.
-  ///
-  /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
-  public func listGcpUserAccessBindings(
-    byItem: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGcpUserAccessBindings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the [GcpUserAccessBinding]
   /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] with
   /// the given name.
@@ -1026,35 +954,10 @@ extension Clients {
   /// To mock `AccessContextManagerClient` change your functions to receive
   /// `some AccessContextManagerProtocol` or `any AccessContextManagerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AccessContextManagerProtocol {
-    /// See `AccessContextManagerClient.listAccessPolicies`.
-    func listAccessPolicies(request: ListAccessPoliciesRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse
-
-    /// See `AccessContextManagerClient.listAccessPolicies`.
-    func listAccessPolicies(
-      byItem: ListAccessPoliciesRequest
-    ) -> any AsyncSequence<AccessPolicy, Swift.Error>
-
-    /// See `AccessContextManagerClient.getAccessPolicy`.
-    func getAccessPolicy(request: GetAccessPolicyRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.AccessPolicy
-
-    /// See `AccessContextManagerClient.getAccessPolicy`.
-    func getAccessPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleIdentityAccessContextManagerV1.AccessPolicy
-
-    /// See `AccessContextManagerClient.createAccessPolicy`.
-    func createAccessPolicy(request: AccessPolicy) async throws -> GoogleLongRunning.Operation
-
+  public protocol AccessContextManagerProtocol: Sendable {
     /// See `AccessContextManagerClient.createAccessPolicy`.
     func createAccessPolicy(withPolling: AccessPolicy) async throws -> any GoogleGax
       .PollableOperation<AccessPolicy>
-
-    /// See `AccessContextManagerClient.updateAccessPolicy`.
-    func updateAccessPolicy(request: UpdateAccessPolicyRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessContextManagerClient.updateAccessPolicy`.
     func updateAccessPolicy(withPolling: UpdateAccessPolicyRequest) async throws -> any GoogleGax
@@ -1067,10 +970,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AccessPolicy>
 
     /// See `AccessContextManagerClient.deleteAccessPolicy`.
-    func deleteAccessPolicy(request: DeleteAccessPolicyRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.deleteAccessPolicy`.
     func deleteAccessPolicy(withPolling: DeleteAccessPolicyRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1078,33 +977,6 @@ extension Clients {
     func deleteAccessPolicy(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AccessContextManagerClient.listAccessLevels`.
-    func listAccessLevels(request: ListAccessLevelsRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse
-
-    /// See `AccessContextManagerClient.listAccessLevels`.
-    func listAccessLevels(
-      byItem: ListAccessLevelsRequest
-    ) -> any AsyncSequence<AccessLevel, Swift.Error>
-
-    /// See `AccessContextManagerClient.listAccessLevels`.
-    func listAccessLevels(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AccessLevel, Swift.Error>
-
-    /// See `AccessContextManagerClient.getAccessLevel`.
-    func getAccessLevel(request: GetAccessLevelRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.AccessLevel
-
-    /// See `AccessContextManagerClient.getAccessLevel`.
-    func getAccessLevel(
-      name: Swift.String,
-    ) async throws -> GoogleIdentityAccessContextManagerV1.AccessLevel
-
-    /// See `AccessContextManagerClient.createAccessLevel`.
-    func createAccessLevel(request: CreateAccessLevelRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessContextManagerClient.createAccessLevel`.
     func createAccessLevel(withPolling: CreateAccessLevelRequest) async throws -> any GoogleGax
@@ -1117,10 +989,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AccessLevel>
 
     /// See `AccessContextManagerClient.updateAccessLevel`.
-    func updateAccessLevel(request: UpdateAccessLevelRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.updateAccessLevel`.
     func updateAccessLevel(withPolling: UpdateAccessLevelRequest) async throws -> any GoogleGax
       .PollableOperation<AccessLevel>
 
@@ -1129,10 +997,6 @@ extension Clients {
       accessLevel: AccessLevel?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AccessLevel>
-
-    /// See `AccessContextManagerClient.deleteAccessLevel`.
-    func deleteAccessLevel(request: DeleteAccessLevelRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessContextManagerClient.deleteAccessLevel`.
     func deleteAccessLevel(withPolling: DeleteAccessLevelRequest) async throws -> any GoogleGax
@@ -1144,39 +1008,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AccessContextManagerClient.replaceAccessLevels`.
-    func replaceAccessLevels(request: ReplaceAccessLevelsRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.replaceAccessLevels`.
     func replaceAccessLevels(withPolling: ReplaceAccessLevelsRequest) async throws -> any GoogleGax
       .PollableOperation<ReplaceAccessLevelsResponse>
-
-    /// See `AccessContextManagerClient.listServicePerimeters`.
-    func listServicePerimeters(request: ListServicePerimetersRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse
-
-    /// See `AccessContextManagerClient.listServicePerimeters`.
-    func listServicePerimeters(
-      byItem: ListServicePerimetersRequest
-    ) -> any AsyncSequence<ServicePerimeter, Swift.Error>
-
-    /// See `AccessContextManagerClient.listServicePerimeters`.
-    func listServicePerimeters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ServicePerimeter, Swift.Error>
-
-    /// See `AccessContextManagerClient.getServicePerimeter`.
-    func getServicePerimeter(request: GetServicePerimeterRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.ServicePerimeter
-
-    /// See `AccessContextManagerClient.getServicePerimeter`.
-    func getServicePerimeter(
-      name: Swift.String,
-    ) async throws -> GoogleIdentityAccessContextManagerV1.ServicePerimeter
-
-    /// See `AccessContextManagerClient.createServicePerimeter`.
-    func createServicePerimeter(request: CreateServicePerimeterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessContextManagerClient.createServicePerimeter`.
     func createServicePerimeter(withPolling: CreateServicePerimeterRequest) async throws
@@ -1189,10 +1022,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ServicePerimeter>
 
     /// See `AccessContextManagerClient.updateServicePerimeter`.
-    func updateServicePerimeter(request: UpdateServicePerimeterRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.updateServicePerimeter`.
     func updateServicePerimeter(withPolling: UpdateServicePerimeterRequest) async throws
       -> any GoogleGax.PollableOperation<ServicePerimeter>
 
@@ -1201,10 +1030,6 @@ extension Clients {
       servicePerimeter: ServicePerimeter?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServicePerimeter>
-
-    /// See `AccessContextManagerClient.deleteServicePerimeter`.
-    func deleteServicePerimeter(request: DeleteServicePerimeterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessContextManagerClient.deleteServicePerimeter`.
     func deleteServicePerimeter(withPolling: DeleteServicePerimeterRequest) async throws
@@ -1216,47 +1041,12 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AccessContextManagerClient.replaceServicePerimeters`.
-    func replaceServicePerimeters(request: ReplaceServicePerimetersRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.replaceServicePerimeters`.
     func replaceServicePerimeters(withPolling: ReplaceServicePerimetersRequest) async throws
       -> any GoogleGax.PollableOperation<ReplaceServicePerimetersResponse>
 
     /// See `AccessContextManagerClient.commitServicePerimeters`.
-    func commitServicePerimeters(request: CommitServicePerimetersRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.commitServicePerimeters`.
     func commitServicePerimeters(withPolling: CommitServicePerimetersRequest) async throws
       -> any GoogleGax.PollableOperation<CommitServicePerimetersResponse>
-
-    /// See `AccessContextManagerClient.listGcpUserAccessBindings`.
-    func listGcpUserAccessBindings(request: ListGcpUserAccessBindingsRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse
-
-    /// See `AccessContextManagerClient.listGcpUserAccessBindings`.
-    func listGcpUserAccessBindings(
-      byItem: ListGcpUserAccessBindingsRequest
-    ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error>
-
-    /// See `AccessContextManagerClient.listGcpUserAccessBindings`.
-    func listGcpUserAccessBindings(
-      parent: Swift.String,
-    ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error>
-
-    /// See `AccessContextManagerClient.getGcpUserAccessBinding`.
-    func getGcpUserAccessBinding(request: GetGcpUserAccessBindingRequest) async throws
-      -> GoogleIdentityAccessContextManagerV1.GcpUserAccessBinding
-
-    /// See `AccessContextManagerClient.getGcpUserAccessBinding`.
-    func getGcpUserAccessBinding(
-      name: Swift.String,
-    ) async throws -> GoogleIdentityAccessContextManagerV1.GcpUserAccessBinding
-
-    /// See `AccessContextManagerClient.createGcpUserAccessBinding`.
-    func createGcpUserAccessBinding(request: CreateGcpUserAccessBindingRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessContextManagerClient.createGcpUserAccessBinding`.
     func createGcpUserAccessBinding(withPolling: CreateGcpUserAccessBindingRequest) async throws
@@ -1269,10 +1059,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<GcpUserAccessBinding>
 
     /// See `AccessContextManagerClient.updateGcpUserAccessBinding`.
-    func updateGcpUserAccessBinding(request: UpdateGcpUserAccessBindingRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.updateGcpUserAccessBinding`.
     func updateGcpUserAccessBinding(withPolling: UpdateGcpUserAccessBindingRequest) async throws
       -> any GoogleGax.PollableOperation<GcpUserAccessBinding>
 
@@ -1283,10 +1069,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<GcpUserAccessBinding>
 
     /// See `AccessContextManagerClient.deleteGcpUserAccessBinding`.
-    func deleteGcpUserAccessBinding(request: DeleteGcpUserAccessBindingRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AccessContextManagerClient.deleteGcpUserAccessBinding`.
     func deleteGcpUserAccessBinding(withPolling: DeleteGcpUserAccessBindingRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1295,25 +1077,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `AccessContextManagerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AccessContextManagerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AccessContextManagerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
     /// See `AccessContextManagerClient.listAccessPolicies`.
     func listAccessPolicies(
       request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse
-
-    /// See `AccessContextManagerClient.listAccessPolicies`.
-    func listAccessPolicies(
-      byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AccessPolicy, Swift.Error>
 
     /// See `AccessContextManagerClient.getAccessPolicy`.
     func getAccessPolicy(
@@ -1354,11 +1121,6 @@ extension Clients {
     func listAccessLevels(
       request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse
-
-    /// See `AccessContextManagerClient.listAccessLevels`.
-    func listAccessLevels(
-      byItem: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AccessLevel, Swift.Error>
 
     /// See `AccessContextManagerClient.getAccessLevel`.
     func getAccessLevel(
@@ -1409,11 +1171,6 @@ extension Clients {
     func listServicePerimeters(
       request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse
-
-    /// See `AccessContextManagerClient.listServicePerimeters`.
-    func listServicePerimeters(
-      byItem: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ServicePerimeter, Swift.Error>
 
     /// See `AccessContextManagerClient.getServicePerimeter`.
     func getServicePerimeter(
@@ -1474,11 +1231,6 @@ extension Clients {
     func listGcpUserAccessBindings(
       request: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse
-
-    /// See `AccessContextManagerClient.listGcpUserAccessBindings`.
-    func listGcpUserAccessBindings(
-      byItem: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error>
 
     /// See `AccessContextManagerClient.getGcpUserAccessBinding`.
     func getGcpUserAccessBinding(
@@ -1552,13 +1304,20 @@ extension Clients.AccessContextManagerProtocol {
     self.listAccessPolicies(byItem: byItem, options: .init())
   }
 
+  /// Lists all [access policies]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] in an
+  /// organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
   public func listAccessPolicies(
     byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAccessPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1705,13 +1464,20 @@ extension Clients.AccessContextManagerProtocol {
     self.listAccessLevels(byItem: byItem, options: .init())
   }
 
+  /// Lists all [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] for an access
+  /// policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessLevels")
   public func listAccessLevels(
     byItem: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccessLevel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAccessLevels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1908,13 +1674,20 @@ extension Clients.AccessContextManagerProtocol {
     self.listServicePerimeters(byItem: byItem, options: .init())
   }
 
+  /// Lists all [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
+  /// access policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
   public func listServicePerimeters(
     byItem: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServicePerimeter, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServicePerimeters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2140,13 +1913,20 @@ extension Clients.AccessContextManagerProtocol {
     self.listGcpUserAccessBindings(byItem: byItem, options: .init())
   }
 
+  /// Lists all [GcpUserAccessBindings]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
+  /// Google Cloud organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
   public func listGcpUserAccessBindings(
     byItem: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGcpUserAccessBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

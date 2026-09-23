@@ -127,4 +127,66 @@ import Testing
     #expect(options.retryPolicy != nil)
     _ = try StorageControlClient(options)
   }
+
+  @Test func protocolIsSendable() {
+    Self.assertSendable((any StorageControlProtocol).self)
+  }
+
+  final class MockStorageControl: StorageControlProtocol, @unchecked Sendable {
+    var listBucketsHandler:
+      ((ListBucketsRequest, GoogleGax.RequestOptions) async throws -> ListBucketsResponse)?
+
+    func listBuckets(
+      request: ListBucketsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> ListBucketsResponse {
+      if let handler = listBucketsHandler {
+        return try await handler(request, options)
+      }
+      throw GoogleGax.RequestError.unimplemented
+    }
+  }
+
+  @Test func mockPaginationDelegation() async throws {
+    let mock = MockStorageControl()
+    mock.listBucketsHandler = { req, opts in
+      var response = ListBucketsResponse()
+      if req.pageToken.isEmpty {
+        var b = Bucket()
+        b.name = "bucket-1"
+        response.buckets = [b]
+        response.nextPageToken = "token-page-2"
+      } else if req.pageToken == "token-page-2" {
+        var b = Bucket()
+        b.name = "bucket-2"
+        response.buckets = [b]
+        response.nextPageToken = ""
+      }
+      return response
+    }
+
+    let client: any StorageControlProtocol = mock
+    let sequence = client.listBuckets(byItem: .init())
+    var names: [String] = []
+    for try await bucket in sequence {
+      names.append(bucket.name)
+    }
+    #expect(names == ["bucket-1", "bucket-2"])
+  }
+
+  @Test func mockConvenienceOverloadDelegation() async throws {
+    let mock = MockStorageControl()
+    mock.listBucketsHandler = { req, opts in
+      #expect(req.parent == "projects/test-project")
+      var response = ListBucketsResponse()
+      var b = Bucket()
+      b.name = "bucket-1"
+      response.buckets = [b]
+      return response
+    }
+
+    let client: any StorageControlProtocol = mock
+    let response = try await client.listBuckets(
+      request: .init().with { $0.parent = "projects/test-project" })
+    #expect(response.buckets.count == 1)
+  }
 }

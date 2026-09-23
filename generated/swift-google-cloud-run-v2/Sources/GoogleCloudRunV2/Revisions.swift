@@ -60,21 +60,6 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
     try await self.inner.listRevisions(request: request, options: options)
   }
 
-  /// Lists Revisions from a given Service, or from a given location.  Results
-  /// are sorted by creation time, descending.
-  ///
-  /// @Snippet(path: "Revisions_ListRevisions")
-  public func listRevisions(
-    byItem: ListRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Revision, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a Revision.
   ///
   /// @Snippet(path: "Revisions_DeleteRevision")
@@ -125,23 +110,6 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Revisions_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Revisions_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -178,32 +146,7 @@ extension Clients {
   /// To mock `RevisionsClient` change your functions to receive
   /// `some RevisionsProtocol` or `any RevisionsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol RevisionsProtocol {
-    /// See `RevisionsClient.getRevision`.
-    func getRevision(request: GetRevisionRequest) async throws -> GoogleCloudRunV2.Revision
-
-    /// See `RevisionsClient.getRevision`.
-    func getRevision(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRunV2.Revision
-
-    /// See `RevisionsClient.listRevisions`.
-    func listRevisions(request: ListRevisionsRequest) async throws
-      -> GoogleCloudRunV2.ListRevisionsResponse
-
-    /// See `RevisionsClient.listRevisions`.
-    func listRevisions(
-      byItem: ListRevisionsRequest
-    ) -> any AsyncSequence<Revision, Swift.Error>
-
-    /// See `RevisionsClient.listRevisions`.
-    func listRevisions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Revision, Swift.Error>
-
-    /// See `RevisionsClient.deleteRevision`.
-    func deleteRevision(request: DeleteRevisionRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol RevisionsProtocol: Sendable {
     /// See `RevisionsClient.deleteRevision`.
     func deleteRevision(withPolling: DeleteRevisionRequest) async throws -> any GoogleGax
       .PollableOperation<Revision>
@@ -212,33 +155,6 @@ extension Clients {
     func deleteRevision(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Revision>
-
-    /// See `RevisionsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `RevisionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `RevisionsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `RevisionsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `RevisionsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `RevisionsClient.waitOperation`.
-    func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `RevisionsClient.getRevision`.
     func getRevision(
@@ -249,11 +165,6 @@ extension Clients {
     func listRevisions(
       request: ListRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.ListRevisionsResponse
-
-    /// See `RevisionsClient.listRevisions`.
-    func listRevisions(
-      byItem: ListRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Revision, Swift.Error>
 
     /// See `RevisionsClient.deleteRevision`.
     func deleteRevision(
@@ -269,11 +180,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `RevisionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `RevisionsClient.deleteOperation`.
     func deleteOperation(
@@ -326,11 +232,17 @@ extension Clients.RevisionsProtocol {
     self.listRevisions(byItem: byItem, options: .init())
   }
 
+  /// Lists Revisions from a given Service, or from a given location.  Results
+  /// are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Revisions_ListRevisions")
   public func listRevisions(
     byItem: ListRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Revision, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -399,12 +311,19 @@ extension Clients.RevisionsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Revisions_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -71,26 +71,6 @@ public final class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol,
   ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse {
     try await self.inner.searchProtectedResources(request: request, options: options)
   }
-
-  /// Returns metadata about the resources protected by the given Cloud KMS
-  /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
-  /// organization/project.
-  ///
-  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
-  ///
-  /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
-  public func searchProtectedResources(
-    byItem: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProtectedResource, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchProtectedResources(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -99,31 +79,7 @@ extension Clients {
   /// To mock `KeyTrackingServiceClient` change your functions to receive
   /// `some KeyTrackingServiceProtocol` or `any KeyTrackingServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol KeyTrackingServiceProtocol {
-    /// See `KeyTrackingServiceClient.getProtectedResourcesSummary`.
-    func getProtectedResourcesSummary(request: GetProtectedResourcesSummaryRequest) async throws
-      -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary
-
-    /// See `KeyTrackingServiceClient.getProtectedResourcesSummary`.
-    func getProtectedResourcesSummary(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary
-
-    /// See `KeyTrackingServiceClient.searchProtectedResources`.
-    func searchProtectedResources(request: SearchProtectedResourcesRequest) async throws
-      -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse
-
-    /// See `KeyTrackingServiceClient.searchProtectedResources`.
-    func searchProtectedResources(
-      byItem: SearchProtectedResourcesRequest
-    ) -> any AsyncSequence<ProtectedResource, Swift.Error>
-
-    /// See `KeyTrackingServiceClient.searchProtectedResources`.
-    func searchProtectedResources(
-      scope: Swift.String,
-      cryptoKey: Swift.String,
-    ) -> any AsyncSequence<ProtectedResource, Swift.Error>
-
+  public protocol KeyTrackingServiceProtocol: Sendable {
     /// See `KeyTrackingServiceClient.getProtectedResourcesSummary`.
     func getProtectedResourcesSummary(
       request: GetProtectedResourcesSummaryRequest, options: GoogleGax.RequestOptions
@@ -133,11 +89,6 @@ extension Clients {
     func searchProtectedResources(
       request: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse
-
-    /// See `KeyTrackingServiceClient.searchProtectedResources`.
-    func searchProtectedResources(
-      byItem: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ProtectedResource, Swift.Error>
   }
 }
 
@@ -182,13 +133,22 @@ extension Clients.KeyTrackingServiceProtocol {
     self.searchProtectedResources(byItem: byItem, options: .init())
   }
 
+  /// Returns metadata about the resources protected by the given Cloud KMS
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
+  /// organization/project.
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
+  ///
+  /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
   public func searchProtectedResources(
     byItem: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ProtectedResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchProtectedResources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

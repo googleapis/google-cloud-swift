@@ -169,22 +169,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// retrieves the list of InstantSnapshotGroup resources contained within
-    /// the specified zone.
-    ///
-    /// @Snippet(path: "instantSnapshotGroups_list")
-    public func list(
-      byItem: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///
@@ -221,76 +205,7 @@
     /// To mock `InstantSnapshotGroupsClient` change your functions to receive
     /// `some InstantSnapshotGroupsProtocol` or `any InstantSnapshotGroupsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InstantSnapshotGroupsProtocol {
-      /// See `InstantSnapshotGroupsClient.delete`.
-      func delete(request: InstantSnapshotGroupsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstantSnapshotGroupsClient.`get``.
-      func `get`(request: InstantSnapshotGroupsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InstantSnapshotGroup
-
-      /// See `InstantSnapshotGroupsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        instantSnapshotGroup: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstantSnapshotGroup
-
-      /// See `InstantSnapshotGroupsClient.getIamPolicy`.
-      func getIamPolicy(request: InstantSnapshotGroupsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InstantSnapshotGroupsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InstantSnapshotGroupsClient.insert`.
-      func insert(request: InstantSnapshotGroupsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstantSnapshotGroupsClient.list`.
-      func list(request: InstantSnapshotGroupsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.ListInstantSnapshotGroups
-
-      /// See `InstantSnapshotGroupsClient.list`.
-      func list(
-        byItem: InstantSnapshotGroupsClient.ListRequest
-      ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error>
-
-      /// See `InstantSnapshotGroupsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error>
-
-      /// See `InstantSnapshotGroupsClient.setIamPolicy`.
-      func setIamPolicy(request: InstantSnapshotGroupsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InstantSnapshotGroupsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: ZoneSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InstantSnapshotGroupsClient.testIamPermissions`.
-      func testIamPermissions(request: InstantSnapshotGroupsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `InstantSnapshotGroupsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol InstantSnapshotGroupsProtocol: Sendable {
       /// See `InstantSnapshotGroupsClient.delete`.
       func delete(
         request: InstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -315,11 +230,6 @@
       func list(
         request: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups
-
-      /// See `InstantSnapshotGroupsClient.list`.
-      func list(
-        byItem: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error>
 
       /// See `InstantSnapshotGroupsClient.setIamPolicy`.
       func setIamPolicy(
@@ -488,12 +398,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// retrieves the list of InstantSnapshotGroup resources contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "instantSnapshotGroups_list")
     public func list(
       byItem: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

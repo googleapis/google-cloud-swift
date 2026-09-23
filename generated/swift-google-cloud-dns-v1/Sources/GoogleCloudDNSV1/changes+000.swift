@@ -62,20 +62,6 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   ) async throws -> ChangesListResponse {
     try await self.inner.list(request: request, options: options)
   }
-
-  /// Enumerates Changes to a ResourceRecordSet collection.
-  ///
-  /// @Snippet(path: "changes_list")
-  public func list(
-    byItem: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Change, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ChangesListResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.list(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -84,41 +70,7 @@ extension Clients {
   /// To mock `ChangesClient` change your functions to receive
   /// `some ChangesProtocol` or `any ChangesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ChangesProtocol {
-    /// See `ChangesClient.create`.
-    func create(request: ChangesClient.CreateRequest) async throws -> Change
-
-    /// See `ChangesClient.create`.
-    func create(
-      project: Swift.String,
-      managedZone: Swift.String,
-      body: Change?,
-    ) async throws -> Change
-
-    /// See `ChangesClient.`get``.
-    func `get`(request: ChangesClient.GetRequest) async throws -> Change
-
-    /// See `ChangesClient.`get``.
-    func `get`(
-      project: Swift.String,
-      managedZone: Swift.String,
-      changeId: Swift.String,
-    ) async throws -> Change
-
-    /// See `ChangesClient.list`.
-    func list(request: ChangesClient.ListRequest) async throws -> ChangesListResponse
-
-    /// See `ChangesClient.list`.
-    func list(
-      byItem: ChangesClient.ListRequest
-    ) -> any AsyncSequence<Change, Swift.Error>
-
-    /// See `ChangesClient.list`.
-    func list(
-      project: Swift.String,
-      managedZone: Swift.String,
-    ) -> any AsyncSequence<Change, Swift.Error>
-
+  public protocol ChangesProtocol: Sendable {
     /// See `ChangesClient.create`.
     func create(
       request: ChangesClient.CreateRequest, options: GoogleGax.RequestOptions
@@ -133,11 +85,6 @@ extension Clients {
     func list(
       request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ChangesListResponse
-
-    /// See `ChangesClient.list`.
-    func list(
-      byItem: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Change, Swift.Error>
   }
 }
 
@@ -205,11 +152,16 @@ extension Clients.ChangesProtocol {
     self.list(byItem: byItem, options: .init())
   }
 
+  /// Enumerates Changes to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "changes_list")
   public func list(
     byItem: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Change, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ChangesListResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.list(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

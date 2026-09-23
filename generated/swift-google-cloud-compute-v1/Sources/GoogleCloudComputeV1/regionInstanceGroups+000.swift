@@ -61,22 +61,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of instance group resources contained within
-    /// the specified region.
-    ///
-    /// @Snippet(path: "regionInstanceGroups_list")
-    public func list(
-      byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists the instances in the specified instance group and displays
     /// information about the named ports. Depending on the specified options, this
     /// method can list all instances or only the instances that are running.
@@ -87,25 +71,6 @@
       request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances {
       try await self.inner.listInstances(request: request, options: options)
-    }
-
-    /// Lists the instances in the specified instance group and displays
-    /// information about the named ports. Depending on the specified options, this
-    /// method can list all instances or only the instances that are running.
-    /// The orderBy query parameter is not supported.
-    ///
-    /// @Snippet(path: "regionInstanceGroups_listInstances")
-    public func listInstances(
-      byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listInstances(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Sets the named ports for the specified regional instance group.
@@ -184,66 +149,7 @@
     /// To mock `RegionInstanceGroupsClient` change your functions to receive
     /// `some RegionInstanceGroupsProtocol` or `any RegionInstanceGroupsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionInstanceGroupsProtocol {
-      /// See `RegionInstanceGroupsClient.`get``.
-      func `get`(request: RegionInstanceGroupsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InstanceGroup
-
-      /// See `RegionInstanceGroupsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        instanceGroup: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstanceGroup
-
-      /// See `RegionInstanceGroupsClient.list`.
-      func list(request: RegionInstanceGroupsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.RegionInstanceGroupList
-
-      /// See `RegionInstanceGroupsClient.list`.
-      func list(
-        byItem: RegionInstanceGroupsClient.ListRequest
-      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
-
-      /// See `RegionInstanceGroupsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
-
-      /// See `RegionInstanceGroupsClient.listInstances`.
-      func listInstances(request: RegionInstanceGroupsClient.ListInstancesRequest) async throws
-        -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
-
-      /// See `RegionInstanceGroupsClient.listInstances`.
-      func listInstances(
-        byItem: RegionInstanceGroupsClient.ListInstancesRequest
-      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
-
-      /// See `RegionInstanceGroupsClient.listInstances`.
-      func listInstances(
-        project: Swift.String,
-        region: Swift.String,
-        instanceGroup: Swift.String,
-        body: RegionInstanceGroupsListInstancesRequest?,
-      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
-
-      /// See `RegionInstanceGroupsClient.setNamedPorts`.
-      func setNamedPorts(request: RegionInstanceGroupsClient.SetNamedPortsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionInstanceGroupsClient.testIamPermissions`.
-      func testIamPermissions(request: RegionInstanceGroupsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionInstanceGroupsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol RegionInstanceGroupsProtocol: Sendable {
       /// See `RegionInstanceGroupsClient.`get``.
       func `get`(
         request: RegionInstanceGroupsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -254,20 +160,10 @@
         request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList
 
-      /// See `RegionInstanceGroupsClient.list`.
-      func list(
-        byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InstanceGroup, Swift.Error>
-
       /// See `RegionInstanceGroupsClient.listInstances`.
       func listInstances(
         request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
-
-      /// See `RegionInstanceGroupsClient.listInstances`.
-      func listInstances(
-        byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error>
 
       /// See `RegionInstanceGroupsClient.setNamedPorts`.
       func setNamedPorts(
@@ -327,12 +223,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of instance group resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_list")
     public func list(
       byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -366,13 +268,21 @@
       self.listInstances(byItem: byItem, options: .init())
     }
 
+    /// Lists the instances in the specified instance group and displays
+    /// information about the named ports. Depending on the specified options, this
+    /// method can list all instances or only the instances that are running.
+    /// The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_listInstances")
     public func listInstances(
       byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listInstances(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

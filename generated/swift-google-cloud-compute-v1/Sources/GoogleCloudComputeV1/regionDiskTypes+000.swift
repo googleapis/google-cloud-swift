@@ -54,21 +54,6 @@
     ) async throws -> GoogleCloudComputeV1.RegionDiskTypeList {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Retrieves a list of regional disk types available to the specified project.
-    ///
-    /// @Snippet(path: "regionDiskTypes_list")
-    public func list(
-      byItem: RegionDiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DiskType, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionDiskTypeList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -77,33 +62,7 @@
     /// To mock `RegionDiskTypesClient` change your functions to receive
     /// `some RegionDiskTypesProtocol` or `any RegionDiskTypesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionDiskTypesProtocol {
-      /// See `RegionDiskTypesClient.`get``.
-      func `get`(request: RegionDiskTypesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.DiskType
-
-      /// See `RegionDiskTypesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        diskType: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.DiskType
-
-      /// See `RegionDiskTypesClient.list`.
-      func list(request: RegionDiskTypesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.RegionDiskTypeList
-
-      /// See `RegionDiskTypesClient.list`.
-      func list(
-        byItem: RegionDiskTypesClient.ListRequest
-      ) -> any AsyncSequence<DiskType, Swift.Error>
-
-      /// See `RegionDiskTypesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<DiskType, Swift.Error>
-
+    public protocol RegionDiskTypesProtocol: Sendable {
       /// See `RegionDiskTypesClient.`get``.
       func `get`(
         request: RegionDiskTypesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -113,11 +72,6 @@
       func list(
         request: RegionDiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RegionDiskTypeList
-
-      /// See `RegionDiskTypesClient.list`.
-      func list(
-        byItem: RegionDiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<DiskType, Swift.Error>
     }
   }
 
@@ -166,12 +120,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of regional disk types available to the specified project.
+    ///
+    /// @Snippet(path: "regionDiskTypes_list")
     public func list(
       byItem: RegionDiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<DiskType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionDiskTypeList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

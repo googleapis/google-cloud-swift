@@ -47,7 +47,7 @@
     /// To mock `SqlFeatureEligibilityServiceClient` change your functions to receive
     /// `some SqlFeatureEligibilityServiceProtocol` or `any SqlFeatureEligibilityServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlFeatureEligibilityServiceProtocol {
+    public protocol SqlFeatureEligibilityServiceProtocol: Sendable {
     }
   }
 

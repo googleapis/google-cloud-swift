@@ -136,22 +136,6 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     try await self.inner.listCollectors(request: request, options: options)
   }
 
-  /// Lists Collectors in a given project and location.
-  ///
-  /// @Snippet(path: "RapidMigrationAssessment_ListCollectors")
-  public func listCollectors(
-    byItem: ListCollectorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Collector, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCollectors(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Collector.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_GetCollector")
@@ -347,21 +331,6 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "RapidMigrationAssessment_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_GetLocation")
@@ -380,23 +349,6 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "RapidMigrationAssessment_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -439,11 +391,7 @@ extension Clients {
   /// To mock `RapidMigrationAssessmentClient` change your functions to receive
   /// `some RapidMigrationAssessmentProtocol` or `any RapidMigrationAssessmentProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol RapidMigrationAssessmentProtocol {
-    /// See `RapidMigrationAssessmentClient.createCollector`.
-    func createCollector(request: CreateCollectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol RapidMigrationAssessmentProtocol: Sendable {
     /// See `RapidMigrationAssessmentClient.createCollector`.
     func createCollector(withPolling: CreateCollectorRequest) async throws -> any GoogleGax
       .PollableOperation<Collector>
@@ -456,10 +404,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.createAnnotation`.
-    func createAnnotation(request: CreateAnnotationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `RapidMigrationAssessmentClient.createAnnotation`.
     func createAnnotation(withPolling: CreateAnnotationRequest) async throws -> any GoogleGax
       .PollableOperation<Annotation>
 
@@ -468,42 +412,6 @@ extension Clients {
       parent: Swift.String,
       annotation: Annotation?,
     ) async throws -> any GoogleGax.PollableOperation<Annotation>
-
-    /// See `RapidMigrationAssessmentClient.getAnnotation`.
-    func getAnnotation(request: GetAnnotationRequest) async throws
-      -> GoogleCloudRapidMigrationAssessmentV1.Annotation
-
-    /// See `RapidMigrationAssessmentClient.getAnnotation`.
-    func getAnnotation(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation
-
-    /// See `RapidMigrationAssessmentClient.listCollectors`.
-    func listCollectors(request: ListCollectorsRequest) async throws
-      -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse
-
-    /// See `RapidMigrationAssessmentClient.listCollectors`.
-    func listCollectors(
-      byItem: ListCollectorsRequest
-    ) -> any AsyncSequence<Collector, Swift.Error>
-
-    /// See `RapidMigrationAssessmentClient.listCollectors`.
-    func listCollectors(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Collector, Swift.Error>
-
-    /// See `RapidMigrationAssessmentClient.getCollector`.
-    func getCollector(request: GetCollectorRequest) async throws
-      -> GoogleCloudRapidMigrationAssessmentV1.Collector
-
-    /// See `RapidMigrationAssessmentClient.getCollector`.
-    func getCollector(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Collector
-
-    /// See `RapidMigrationAssessmentClient.updateCollector`.
-    func updateCollector(request: UpdateCollectorRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.updateCollector`.
     func updateCollector(withPolling: UpdateCollectorRequest) async throws -> any GoogleGax
@@ -516,10 +424,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
-    func deleteCollector(request: DeleteCollectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `RapidMigrationAssessmentClient.deleteCollector`.
     func deleteCollector(withPolling: DeleteCollectorRequest) async throws -> any GoogleGax
       .PollableOperation<Collector>
 
@@ -527,10 +431,6 @@ extension Clients {
     func deleteCollector(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
-
-    /// See `RapidMigrationAssessmentClient.resumeCollector`.
-    func resumeCollector(request: ResumeCollectorRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.resumeCollector`.
     func resumeCollector(withPolling: ResumeCollectorRequest) async throws -> any GoogleGax
@@ -542,10 +442,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.registerCollector`.
-    func registerCollector(request: RegisterCollectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `RapidMigrationAssessmentClient.registerCollector`.
     func registerCollector(withPolling: RegisterCollectorRequest) async throws -> any GoogleGax
       .PollableOperation<Collector>
 
@@ -555,9 +451,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.pauseCollector`.
-    func pauseCollector(request: PauseCollectorRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `RapidMigrationAssessmentClient.pauseCollector`.
     func pauseCollector(withPolling: PauseCollectorRequest) async throws -> any GoogleGax
       .PollableOperation<Collector>
 
@@ -565,50 +458,6 @@ extension Clients {
     func pauseCollector(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
-
-    /// See `RapidMigrationAssessmentClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `RapidMigrationAssessmentClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `RapidMigrationAssessmentClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `RapidMigrationAssessmentClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `RapidMigrationAssessmentClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `RapidMigrationAssessmentClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `RapidMigrationAssessmentClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `RapidMigrationAssessmentClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `RapidMigrationAssessmentClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `RapidMigrationAssessmentClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `RapidMigrationAssessmentClient.createCollector`.
     func createCollector(
@@ -639,11 +488,6 @@ extension Clients {
     func listCollectors(
       request: ListCollectorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse
-
-    /// See `RapidMigrationAssessmentClient.listCollectors`.
-    func listCollectors(
-      byItem: ListCollectorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Collector, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.getCollector`.
     func getCollector(
@@ -705,11 +549,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `RapidMigrationAssessmentClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `RapidMigrationAssessmentClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -719,11 +558,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `RapidMigrationAssessmentClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `RapidMigrationAssessmentClient.deleteOperation`.
     func deleteOperation(
@@ -858,13 +692,18 @@ extension Clients.RapidMigrationAssessmentProtocol {
     self.listCollectors(byItem: byItem, options: .init())
   }
 
+  /// Lists Collectors in a given project and location.
+  ///
+  /// @Snippet(path: "RapidMigrationAssessment_ListCollectors")
   public func listCollectors(
     byItem: ListCollectorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Collector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCollectors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1104,12 +943,17 @@ extension Clients.RapidMigrationAssessmentProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "RapidMigrationAssessment_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1144,12 +988,19 @@ extension Clients.RapidMigrationAssessmentProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RapidMigrationAssessment_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

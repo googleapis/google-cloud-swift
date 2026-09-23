@@ -98,19 +98,7 @@ extension Clients {
   /// To mock `PublisherClient` change your functions to receive
   /// `some PublisherProtocol` or `any PublisherProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PublisherProtocol {
-    /// See `PublisherClient.publishChannelConnectionEvents`.
-    func publishChannelConnectionEvents(request: PublishChannelConnectionEventsRequest) async throws
-      -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse
-
-    /// See `PublisherClient.publishEvents`.
-    func publishEvents(request: PublishEventsRequest) async throws
-      -> GoogleCloudEventarcPublishingV1.PublishEventsResponse
-
-    /// See `PublisherClient.publish`.
-    func publish(request: PublishRequest) async throws
-      -> GoogleCloudEventarcPublishingV1.PublishResponse
-
+  public protocol PublisherProtocol: Sendable {
     /// See `PublisherClient.publishChannelConnectionEvents`.
     func publishChannelConnectionEvents(
       request: PublishChannelConnectionEventsRequest, options: GoogleGax.RequestOptions

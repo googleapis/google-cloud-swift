@@ -78,23 +78,6 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     try await self.inner.listProducts(request: request, options: options)
   }
 
-  /// Gets a list of [Product][google.cloud.retail.v2.Product]s.
-  ///
-  /// [google.cloud.retail.v2.Product]: <doc:Product>
-  ///
-  /// @Snippet(path: "ProductService_ListProducts")
-  public func listProducts(
-    byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Product, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRetailV2.ListProductsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProducts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a [Product][google.cloud.retail.v2.Product].
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
@@ -850,23 +833,6 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ProductService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ProductService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -881,72 +847,14 @@ extension Clients {
   /// To mock `ProductServiceClient` change your functions to receive
   /// `some ProductServiceProtocol` or `any ProductServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ProductServiceProtocol {
-    /// See `ProductServiceClient.createProduct`.
-    func createProduct(request: CreateProductRequest) async throws -> GoogleCloudRetailV2.Product
-
-    /// See `ProductServiceClient.createProduct`.
-    func createProduct(
-      parent: Swift.String,
-      product: Product?,
-      productId: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.Product
-
-    /// See `ProductServiceClient.getProduct`.
-    func getProduct(request: GetProductRequest) async throws -> GoogleCloudRetailV2.Product
-
-    /// See `ProductServiceClient.getProduct`.
-    func getProduct(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.Product
-
-    /// See `ProductServiceClient.listProducts`.
-    func listProducts(request: ListProductsRequest) async throws
-      -> GoogleCloudRetailV2.ListProductsResponse
-
-    /// See `ProductServiceClient.listProducts`.
-    func listProducts(
-      byItem: ListProductsRequest
-    ) -> any AsyncSequence<Product, Swift.Error>
-
-    /// See `ProductServiceClient.listProducts`.
-    func listProducts(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Product, Swift.Error>
-
-    /// See `ProductServiceClient.updateProduct`.
-    func updateProduct(request: UpdateProductRequest) async throws -> GoogleCloudRetailV2.Product
-
-    /// See `ProductServiceClient.updateProduct`.
-    func updateProduct(
-      product: Product?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudRetailV2.Product
-
-    /// See `ProductServiceClient.deleteProduct`.
-    func deleteProduct(request: DeleteProductRequest) async throws
-
-    /// See `ProductServiceClient.deleteProduct`.
-    func deleteProduct(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ProductServiceClient.purgeProducts`.
-    func purgeProducts(request: PurgeProductsRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ProductServiceProtocol: Sendable {
     /// See `ProductServiceClient.purgeProducts`.
     func purgeProducts(withPolling: PurgeProductsRequest) async throws -> any GoogleGax
       .PollableOperation<PurgeProductsResponse>
 
     /// See `ProductServiceClient.importProducts`.
-    func importProducts(request: ImportProductsRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ProductServiceClient.importProducts`.
     func importProducts(withPolling: ImportProductsRequest) async throws -> any GoogleGax
       .PollableOperation<ImportProductsResponse>
-
-    /// See `ProductServiceClient.setInventory`.
-    func setInventory(request: SetInventoryRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProductServiceClient.setInventory`.
     func setInventory(withPolling: SetInventoryRequest) async throws -> any GoogleGax
@@ -959,10 +867,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<SetInventoryResponse>
 
     /// See `ProductServiceClient.addFulfillmentPlaces`.
-    func addFulfillmentPlaces(request: AddFulfillmentPlacesRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ProductServiceClient.addFulfillmentPlaces`.
     func addFulfillmentPlaces(withPolling: AddFulfillmentPlacesRequest) async throws
       -> any GoogleGax.PollableOperation<AddFulfillmentPlacesResponse>
 
@@ -970,10 +874,6 @@ extension Clients {
     func addFulfillmentPlaces(
       product: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AddFulfillmentPlacesResponse>
-
-    /// See `ProductServiceClient.removeFulfillmentPlaces`.
-    func removeFulfillmentPlaces(request: RemoveFulfillmentPlacesRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ProductServiceClient.removeFulfillmentPlaces`.
     func removeFulfillmentPlaces(withPolling: RemoveFulfillmentPlacesRequest) async throws
@@ -985,10 +885,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<RemoveFulfillmentPlacesResponse>
 
     /// See `ProductServiceClient.addLocalInventories`.
-    func addLocalInventories(request: AddLocalInventoriesRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ProductServiceClient.addLocalInventories`.
     func addLocalInventories(withPolling: AddLocalInventoriesRequest) async throws -> any GoogleGax
       .PollableOperation<AddLocalInventoriesResponse>
 
@@ -998,10 +894,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AddLocalInventoriesResponse>
 
     /// See `ProductServiceClient.removeLocalInventories`.
-    func removeLocalInventories(request: RemoveLocalInventoriesRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ProductServiceClient.removeLocalInventories`.
     func removeLocalInventories(withPolling: RemoveLocalInventoriesRequest) async throws
       -> any GoogleGax.PollableOperation<RemoveLocalInventoriesResponse>
 
@@ -1009,21 +901,6 @@ extension Clients {
     func removeLocalInventories(
       product: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RemoveLocalInventoriesResponse>
-
-    /// See `ProductServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ProductServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ProductServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ProductServiceClient.createProduct`.
     func createProduct(
@@ -1039,11 +916,6 @@ extension Clients {
     func listProducts(
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListProductsResponse
-
-    /// See `ProductServiceClient.listProducts`.
-    func listProducts(
-      byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Product, Swift.Error>
 
     /// See `ProductServiceClient.updateProduct`.
     func updateProduct(
@@ -1129,11 +1001,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ProductServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -1201,12 +1068,19 @@ extension Clients.ProductServiceProtocol {
     self.listProducts(byItem: byItem, options: .init())
   }
 
+  /// Gets a list of [Product][google.cloud.retail.v2.Product]s.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_ListProducts")
   public func listProducts(
     byItem: ListProductsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRetailV2.ListProductsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProducts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1527,12 +1401,19 @@ extension Clients.ProductServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ProductService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

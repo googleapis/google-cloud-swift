@@ -61,23 +61,6 @@ public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Senda
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "InstanceService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "InstanceService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -114,46 +97,7 @@ extension Clients {
   /// To mock `InstanceServiceClient` change your functions to receive
   /// `some InstanceServiceProtocol` or `any InstanceServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol InstanceServiceProtocol {
-    /// See `InstanceServiceClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudChronicleV1.Instance
-
-    /// See `InstanceServiceClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.Instance
-
-    /// See `InstanceServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `InstanceServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `InstanceServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `InstanceServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `InstanceServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `InstanceServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `InstanceServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol InstanceServiceProtocol: Sendable {
     /// See `InstanceServiceClient.getInstance`.
     func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
@@ -163,11 +107,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `InstanceServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `InstanceServiceClient.deleteOperation`.
     func deleteOperation(
@@ -222,12 +161,19 @@ extension Clients.InstanceServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

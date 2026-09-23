@@ -162,23 +162,6 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   ///
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
-  /// @Snippet(path: "Compliance_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
-  ///
-  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
-  ///
   /// @Snippet(path: "Compliance_GetLocation")
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -234,23 +217,6 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Compliance_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Compliance_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -287,98 +253,7 @@ extension Clients {
   /// To mock `ComplianceClient` change your functions to receive
   /// `some ComplianceProtocol` or `any ComplianceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ComplianceProtocol {
-    /// See `ComplianceClient.repeatDataBody`.
-    func repeatDataBody(request: RepeatRequest) async throws -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataBodyInfo`.
-    func repeatDataBodyInfo(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataQuery`.
-    func repeatDataQuery(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataSimplePath`.
-    func repeatDataSimplePath(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataPathResource`.
-    func repeatDataPathResource(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataPathTrailingResource`.
-    func repeatDataPathTrailingResource(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataBodyPut`.
-    func repeatDataBodyPut(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.repeatDataBodyPatch`.
-    func repeatDataBodyPatch(request: RepeatRequest) async throws
-      -> GoogleShowcaseV1Beta1.RepeatResponse
-
-    /// See `ComplianceClient.getEnum`.
-    func getEnum(request: EnumRequest) async throws -> GoogleShowcaseV1Beta1.EnumResponse
-
-    /// See `ComplianceClient.verifyEnum`.
-    func verifyEnum(request: EnumResponse) async throws -> GoogleShowcaseV1Beta1.EnumResponse
-
-    /// See `ComplianceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ComplianceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ComplianceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ComplianceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ComplianceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ComplianceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ComplianceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ComplianceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ComplianceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ComplianceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ComplianceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ComplianceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ComplianceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol ComplianceProtocol: Sendable {
     /// See `ComplianceClient.repeatDataBody`.
     func repeatDataBody(
       request: RepeatRequest, options: GoogleGax.RequestOptions
@@ -434,11 +309,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ComplianceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ComplianceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -463,11 +333,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ComplianceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ComplianceClient.deleteOperation`.
     func deleteOperation(
@@ -617,12 +482,19 @@ extension Clients.ComplianceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -693,12 +565,19 @@ extension Clients.ComplianceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

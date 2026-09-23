@@ -54,27 +54,6 @@ public final class CloudControlsPartnerMonitoringClient: Clients
     try await self.inner.listViolations(request: request, options: options)
   }
 
-  /// Lists Violations for a workload
-  /// Callers may also choose to read across multiple Customers or for a single
-  /// customer as per
-  /// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
-  /// character) as a wildcard character instead of {customer} & {workload}.
-  /// Format:
-  /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
-  ///
-  /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
-  public func listViolations(
-    byItem: ListViolationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Violation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listViolations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Violation.
   ///
   /// @Snippet(path: "CloudControlsPartnerMonitoring_GetViolation")
@@ -91,39 +70,11 @@ extension Clients {
   /// To mock `CloudControlsPartnerMonitoringClient` change your functions to receive
   /// `some CloudControlsPartnerMonitoringProtocol` or `any CloudControlsPartnerMonitoringProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudControlsPartnerMonitoringProtocol {
-    /// See `CloudControlsPartnerMonitoringClient.listViolations`.
-    func listViolations(request: ListViolationsRequest) async throws
-      -> GoogleCloudControlsPartnerV1.ListViolationsResponse
-
-    /// See `CloudControlsPartnerMonitoringClient.listViolations`.
-    func listViolations(
-      byItem: ListViolationsRequest
-    ) -> any AsyncSequence<Violation, Swift.Error>
-
-    /// See `CloudControlsPartnerMonitoringClient.listViolations`.
-    func listViolations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Violation, Swift.Error>
-
-    /// See `CloudControlsPartnerMonitoringClient.getViolation`.
-    func getViolation(request: GetViolationRequest) async throws
-      -> GoogleCloudControlsPartnerV1.Violation
-
-    /// See `CloudControlsPartnerMonitoringClient.getViolation`.
-    func getViolation(
-      name: Swift.String,
-    ) async throws -> GoogleCloudControlsPartnerV1.Violation
-
+  public protocol CloudControlsPartnerMonitoringProtocol: Sendable {
     /// See `CloudControlsPartnerMonitoringClient.listViolations`.
     func listViolations(
       request: ListViolationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse
-
-    /// See `CloudControlsPartnerMonitoringClient.listViolations`.
-    func listViolations(
-      byItem: ListViolationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Violation, Swift.Error>
 
     /// See `CloudControlsPartnerMonitoringClient.getViolation`.
     func getViolation(
@@ -152,12 +103,23 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
     self.listViolations(byItem: byItem, options: .init())
   }
 
+  /// Lists Violations for a workload
+  /// Callers may also choose to read across multiple Customers or for a single
+  /// customer as per
+  /// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
+  /// character) as a wildcard character instead of {customer} & {workload}.
+  /// Format:
+  /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
+  ///
+  /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
   public func listViolations(
     byItem: ListViolationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Violation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listViolations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

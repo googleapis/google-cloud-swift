@@ -52,25 +52,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listFrameworks(request: request, options: options)
   }
 
-  /// Lists the frameworks (both built-in and custom) that are available within
-  /// the parent resource. The latest major version of each framework is
-  /// returned.
-  /// This method supports pagination.
-  ///
-  /// @Snippet(path: "Config_ListFrameworks")
-  public func listFrameworks(
-    byItem: ListFrameworksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Framework, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listFrameworks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details about a framework.
   /// This method retrieves the latest major version of the framework.
   ///
@@ -140,25 +121,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse {
     try await self.inner.listCloudControls(request: request, options: options)
-  }
-
-  /// Lists the cloud controls (both built-in and custom) that are available
-  /// in a given parent resource. The latest major version of each cloud control
-  /// is returned.
-  /// This method supports pagination.
-  ///
-  /// @Snippet(path: "Config_ListCloudControls")
-  public func listCloudControls(
-    byItem: ListCloudControlsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudControl, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCloudControls(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details about a cloud control.
@@ -250,38 +212,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "Config_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Config_GetLocation")
@@ -300,23 +230,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Config_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -359,164 +272,11 @@ extension Clients {
   /// To mock `ConfigClient` change your functions to receive
   /// `some ConfigProtocol` or `any ConfigProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConfigProtocol {
-    /// See `ConfigClient.listFrameworks`.
-    func listFrameworks(request: ListFrameworksRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse
-
-    /// See `ConfigClient.listFrameworks`.
-    func listFrameworks(
-      byItem: ListFrameworksRequest
-    ) -> any AsyncSequence<Framework, Swift.Error>
-
-    /// See `ConfigClient.listFrameworks`.
-    func listFrameworks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Framework, Swift.Error>
-
-    /// See `ConfigClient.getFramework`.
-    func getFramework(request: GetFrameworkRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.Framework
-
-    /// See `ConfigClient.getFramework`.
-    func getFramework(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecurityComplianceV1.Framework
-
-    /// See `ConfigClient.createFramework`.
-    func createFramework(request: CreateFrameworkRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.Framework
-
-    /// See `ConfigClient.createFramework`.
-    func createFramework(
-      parent: Swift.String,
-      framework: Framework?,
-      frameworkId: Swift.String,
-    ) async throws -> GoogleCloudSecurityComplianceV1.Framework
-
-    /// See `ConfigClient.updateFramework`.
-    func updateFramework(request: UpdateFrameworkRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.Framework
-
-    /// See `ConfigClient.updateFramework`.
-    func updateFramework(
-      framework: Framework?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSecurityComplianceV1.Framework
-
-    /// See `ConfigClient.deleteFramework`.
-    func deleteFramework(request: DeleteFrameworkRequest) async throws
-
-    /// See `ConfigClient.deleteFramework`.
-    func deleteFramework(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigClient.listCloudControls`.
-    func listCloudControls(request: ListCloudControlsRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse
-
-    /// See `ConfigClient.listCloudControls`.
-    func listCloudControls(
-      byItem: ListCloudControlsRequest
-    ) -> any AsyncSequence<CloudControl, Swift.Error>
-
-    /// See `ConfigClient.listCloudControls`.
-    func listCloudControls(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CloudControl, Swift.Error>
-
-    /// See `ConfigClient.getCloudControl`.
-    func getCloudControl(request: GetCloudControlRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.CloudControl
-
-    /// See `ConfigClient.getCloudControl`.
-    func getCloudControl(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl
-
-    /// See `ConfigClient.createCloudControl`.
-    func createCloudControl(request: CreateCloudControlRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.CloudControl
-
-    /// See `ConfigClient.createCloudControl`.
-    func createCloudControl(
-      parent: Swift.String,
-      cloudControl: CloudControl?,
-      cloudControlId: Swift.String,
-    ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl
-
-    /// See `ConfigClient.updateCloudControl`.
-    func updateCloudControl(request: UpdateCloudControlRequest) async throws
-      -> GoogleCloudSecurityComplianceV1.CloudControl
-
-    /// See `ConfigClient.updateCloudControl`.
-    func updateCloudControl(
-      cloudControl: CloudControl?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl
-
-    /// See `ConfigClient.deleteCloudControl`.
-    func deleteCloudControl(request: DeleteCloudControlRequest) async throws
-
-    /// See `ConfigClient.deleteCloudControl`.
-    func deleteCloudControl(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ConfigClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ConfigClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ConfigClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ConfigClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol ConfigProtocol: Sendable {
     /// See `ConfigClient.listFrameworks`.
     func listFrameworks(
       request: ListFrameworksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse
-
-    /// See `ConfigClient.listFrameworks`.
-    func listFrameworks(
-      byItem: ListFrameworksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Framework, Swift.Error>
 
     /// See `ConfigClient.getFramework`.
     func getFramework(
@@ -543,11 +303,6 @@ extension Clients {
       request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse
 
-    /// See `ConfigClient.listCloudControls`.
-    func listCloudControls(
-      byItem: ListCloudControlsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CloudControl, Swift.Error>
-
     /// See `ConfigClient.getCloudControl`.
     func getCloudControl(
       request: GetCloudControlRequest, options: GoogleGax.RequestOptions
@@ -573,11 +328,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ConfigClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ConfigClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -587,11 +337,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ConfigClient.deleteOperation`.
     func deleteOperation(
@@ -625,13 +370,21 @@ extension Clients.ConfigProtocol {
     self.listFrameworks(byItem: byItem, options: .init())
   }
 
+  /// Lists the frameworks (both built-in and custom) that are available within
+  /// the parent resource. The latest major version of each framework is
+  /// returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListFrameworks")
   public func listFrameworks(
     byItem: ListFrameworksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Framework, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listFrameworks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -751,13 +504,21 @@ extension Clients.ConfigProtocol {
     self.listCloudControls(byItem: byItem, options: .init())
   }
 
+  /// Lists the cloud controls (both built-in and custom) that are available
+  /// in a given parent resource. The latest major version of each cloud control
+  /// is returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListCloudControls")
   public func listCloudControls(
     byItem: ListCloudControlsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CloudControl, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCloudControls(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -877,12 +638,34 @@ extension Clients.ConfigProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Config_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -917,12 +700,19 @@ extension Clients.ConfigProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -56,22 +56,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.listOrchestrationClusters(request: request, options: options)
   }
 
-  /// Lists OrchestrationClusters in a given project and location.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListOrchestrationClusters")
-  public func listOrchestrationClusters(
-    byItem: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOrchestrationClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single OrchestrationCluster.
   ///
   /// @Snippet(path: "TelcoAutomation_GetOrchestrationCluster")
@@ -158,21 +142,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse {
     try await self.inner.listEdgeSlms(request: request, options: options)
-  }
-
-  /// Lists EdgeSlms in a given project and location.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListEdgeSlms")
-  public func listEdgeSlms(
-    byItem: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEdgeSlms(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single EdgeSlm.
@@ -298,21 +267,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.listBlueprints(request: request, options: options)
   }
 
-  /// List all blueprints.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListBlueprints")
-  public func listBlueprints(
-    byItem: ListBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBlueprints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Approves a blueprint and commits a new revision.
   ///
   /// @Snippet(path: "TelcoAutomation_ApproveBlueprint")
@@ -349,22 +303,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.listBlueprintRevisions(request: request, options: options)
   }
 
-  /// List blueprint revisions of a given blueprint.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListBlueprintRevisions")
-  public func listBlueprintRevisions(
-    byItem: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBlueprintRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Searches across blueprint revisions.
   ///
   /// @Snippet(path: "TelcoAutomation_SearchBlueprintRevisions")
@@ -374,22 +312,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.searchBlueprintRevisions(request: request, options: options)
   }
 
-  /// Searches across blueprint revisions.
-  ///
-  /// @Snippet(path: "TelcoAutomation_SearchBlueprintRevisions")
-  public func searchBlueprintRevisions(
-    byItem: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchBlueprintRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Searches across deployment revisions.
   ///
   /// @Snippet(path: "TelcoAutomation_SearchDeploymentRevisions")
@@ -397,22 +319,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse {
     try await self.inner.searchDeploymentRevisions(request: request, options: options)
-  }
-
-  /// Searches across deployment revisions.
-  ///
-  /// @Snippet(path: "TelcoAutomation_SearchDeploymentRevisions")
-  public func searchDeploymentRevisions(
-    byItem: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchDeploymentRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Discards the changes in a blueprint and reverts the blueprint to the last
@@ -434,23 +340,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse {
     try await self.inner.listPublicBlueprints(request: request, options: options)
-  }
-
-  /// Lists the blueprints in TNA's public catalog. Default page size = 20,
-  /// Max Page Size = 100.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListPublicBlueprints")
-  public func listPublicBlueprints(
-    byItem: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPublicBlueprints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Returns the requested public blueprint.
@@ -508,21 +397,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.listDeployments(request: request, options: options)
   }
 
-  /// List all deployments.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListDeployments")
-  public func listDeployments(
-    byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeployments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// List deployment revisions of a given deployment.
   ///
   /// @Snippet(path: "TelcoAutomation_ListDeploymentRevisions")
@@ -530,22 +404,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse {
     try await self.inner.listDeploymentRevisions(request: request, options: options)
-  }
-
-  /// List deployment revisions of a given deployment.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListDeploymentRevisions")
-  public func listDeploymentRevisions(
-    byItem: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeploymentRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Discards the changes in a deployment and reverts the deployment to the last
@@ -605,22 +463,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.listHydratedDeployments(request: request, options: options)
   }
 
-  /// List all hydrated deployments present under a deployment.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListHydratedDeployments")
-  public func listHydratedDeployments(
-    byItem: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listHydratedDeployments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a hydrated deployment.
   ///
   /// @Snippet(path: "TelcoAutomation_UpdateHydratedDeployment")
@@ -648,21 +490,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "TelcoAutomation_GetLocation")
@@ -681,23 +508,6 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "TelcoAutomation_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -740,34 +550,7 @@ extension Clients {
   /// To mock `TelcoAutomationClient` change your functions to receive
   /// `some TelcoAutomationProtocol` or `any TelcoAutomationProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TelcoAutomationProtocol {
-    /// See `TelcoAutomationClient.listOrchestrationClusters`.
-    func listOrchestrationClusters(request: ListOrchestrationClustersRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse
-
-    /// See `TelcoAutomationClient.listOrchestrationClusters`.
-    func listOrchestrationClusters(
-      byItem: ListOrchestrationClustersRequest
-    ) -> any AsyncSequence<OrchestrationCluster, Swift.Error>
-
-    /// See `TelcoAutomationClient.listOrchestrationClusters`.
-    func listOrchestrationClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<OrchestrationCluster, Swift.Error>
-
-    /// See `TelcoAutomationClient.getOrchestrationCluster`.
-    func getOrchestrationCluster(request: GetOrchestrationClusterRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.OrchestrationCluster
-
-    /// See `TelcoAutomationClient.getOrchestrationCluster`.
-    func getOrchestrationCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.OrchestrationCluster
-
-    /// See `TelcoAutomationClient.createOrchestrationCluster`.
-    func createOrchestrationCluster(request: CreateOrchestrationClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol TelcoAutomationProtocol: Sendable {
     /// See `TelcoAutomationClient.createOrchestrationCluster`.
     func createOrchestrationCluster(withPolling: CreateOrchestrationClusterRequest) async throws
       -> any GoogleGax.PollableOperation<OrchestrationCluster>
@@ -780,10 +563,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster>
 
     /// See `TelcoAutomationClient.deleteOrchestrationCluster`.
-    func deleteOrchestrationCluster(request: DeleteOrchestrationClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `TelcoAutomationClient.deleteOrchestrationCluster`.
     func deleteOrchestrationCluster(withPolling: DeleteOrchestrationClusterRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -791,31 +570,6 @@ extension Clients {
     func deleteOrchestrationCluster(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `TelcoAutomationClient.listEdgeSlms`.
-    func listEdgeSlms(request: ListEdgeSlmsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse
-
-    /// See `TelcoAutomationClient.listEdgeSlms`.
-    func listEdgeSlms(
-      byItem: ListEdgeSlmsRequest
-    ) -> any AsyncSequence<EdgeSlm, Swift.Error>
-
-    /// See `TelcoAutomationClient.listEdgeSlms`.
-    func listEdgeSlms(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EdgeSlm, Swift.Error>
-
-    /// See `TelcoAutomationClient.getEdgeSlm`.
-    func getEdgeSlm(request: GetEdgeSlmRequest) async throws -> GoogleCloudTelcoAutomationV1.EdgeSlm
-
-    /// See `TelcoAutomationClient.getEdgeSlm`.
-    func getEdgeSlm(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.EdgeSlm
-
-    /// See `TelcoAutomationClient.createEdgeSlm`.
-    func createEdgeSlm(request: CreateEdgeSlmRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TelcoAutomationClient.createEdgeSlm`.
     func createEdgeSlm(withPolling: CreateEdgeSlmRequest) async throws -> any GoogleGax
@@ -829,9 +583,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<EdgeSlm>
 
     /// See `TelcoAutomationClient.deleteEdgeSlm`.
-    func deleteEdgeSlm(request: DeleteEdgeSlmRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `TelcoAutomationClient.deleteEdgeSlm`.
     func deleteEdgeSlm(withPolling: DeleteEdgeSlmRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -840,359 +591,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `TelcoAutomationClient.createBlueprint`.
-    func createBlueprint(request: CreateBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.createBlueprint`.
-    func createBlueprint(
-      parent: Swift.String,
-      blueprint: Blueprint?,
-      blueprintId: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.updateBlueprint`.
-    func updateBlueprint(request: UpdateBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.updateBlueprint`.
-    func updateBlueprint(
-      blueprint: Blueprint?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.getBlueprint`.
-    func getBlueprint(request: GetBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.getBlueprint`.
-    func getBlueprint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.deleteBlueprint`.
-    func deleteBlueprint(request: DeleteBlueprintRequest) async throws
-
-    /// See `TelcoAutomationClient.deleteBlueprint`.
-    func deleteBlueprint(
-      name: Swift.String,
-    ) async throws
-
-    /// See `TelcoAutomationClient.listBlueprints`.
-    func listBlueprints(request: ListBlueprintsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse
-
-    /// See `TelcoAutomationClient.listBlueprints`.
-    func listBlueprints(
-      byItem: ListBlueprintsRequest
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.listBlueprints`.
-    func listBlueprints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.approveBlueprint`.
-    func approveBlueprint(request: ApproveBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.approveBlueprint`.
-    func approveBlueprint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.proposeBlueprint`.
-    func proposeBlueprint(request: ProposeBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.proposeBlueprint`.
-    func proposeBlueprint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.rejectBlueprint`.
-    func rejectBlueprint(request: RejectBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.rejectBlueprint`.
-    func rejectBlueprint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
-
-    /// See `TelcoAutomationClient.listBlueprintRevisions`.
-    func listBlueprintRevisions(request: ListBlueprintRevisionsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse
-
-    /// See `TelcoAutomationClient.listBlueprintRevisions`.
-    func listBlueprintRevisions(
-      byItem: ListBlueprintRevisionsRequest
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.listBlueprintRevisions`.
-    func listBlueprintRevisions(
-      name: Swift.String,
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.searchBlueprintRevisions`.
-    func searchBlueprintRevisions(request: SearchBlueprintRevisionsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse
-
-    /// See `TelcoAutomationClient.searchBlueprintRevisions`.
-    func searchBlueprintRevisions(
-      byItem: SearchBlueprintRevisionsRequest
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.searchBlueprintRevisions`.
-    func searchBlueprintRevisions(
-      parent: Swift.String,
-      query: Swift.String,
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.searchDeploymentRevisions`.
-    func searchDeploymentRevisions(request: SearchDeploymentRevisionsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse
-
-    /// See `TelcoAutomationClient.searchDeploymentRevisions`.
-    func searchDeploymentRevisions(
-      byItem: SearchDeploymentRevisionsRequest
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.searchDeploymentRevisions`.
-    func searchDeploymentRevisions(
-      parent: Swift.String,
-      query: Swift.String,
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.discardBlueprintChanges`.
-    func discardBlueprintChanges(request: DiscardBlueprintChangesRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.DiscardBlueprintChangesResponse
-
-    /// See `TelcoAutomationClient.discardBlueprintChanges`.
-    func discardBlueprintChanges(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.DiscardBlueprintChangesResponse
-
-    /// See `TelcoAutomationClient.listPublicBlueprints`.
-    func listPublicBlueprints(request: ListPublicBlueprintsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse
-
-    /// See `TelcoAutomationClient.listPublicBlueprints`.
-    func listPublicBlueprints(
-      byItem: ListPublicBlueprintsRequest
-    ) -> any AsyncSequence<PublicBlueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.listPublicBlueprints`.
-    func listPublicBlueprints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PublicBlueprint, Swift.Error>
-
-    /// See `TelcoAutomationClient.getPublicBlueprint`.
-    func getPublicBlueprint(request: GetPublicBlueprintRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.PublicBlueprint
-
-    /// See `TelcoAutomationClient.getPublicBlueprint`.
-    func getPublicBlueprint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.PublicBlueprint
-
-    /// See `TelcoAutomationClient.createDeployment`.
-    func createDeployment(request: CreateDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.createDeployment`.
-    func createDeployment(
-      parent: Swift.String,
-      deployment: Deployment?,
-      deploymentId: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.updateDeployment`.
-    func updateDeployment(request: UpdateDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.updateDeployment`.
-    func updateDeployment(
-      deployment: Deployment?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.getDeployment`.
-    func getDeployment(request: GetDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.getDeployment`.
-    func getDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.removeDeployment`.
-    func removeDeployment(request: RemoveDeploymentRequest) async throws
-
-    /// See `TelcoAutomationClient.removeDeployment`.
-    func removeDeployment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `TelcoAutomationClient.listDeployments`.
-    func listDeployments(request: ListDeploymentsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse
-
-    /// See `TelcoAutomationClient.listDeployments`.
-    func listDeployments(
-      byItem: ListDeploymentsRequest
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.listDeployments`.
-    func listDeployments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.listDeploymentRevisions`.
-    func listDeploymentRevisions(request: ListDeploymentRevisionsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse
-
-    /// See `TelcoAutomationClient.listDeploymentRevisions`.
-    func listDeploymentRevisions(
-      byItem: ListDeploymentRevisionsRequest
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.listDeploymentRevisions`.
-    func listDeploymentRevisions(
-      name: Swift.String,
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.discardDeploymentChanges`.
-    func discardDeploymentChanges(request: DiscardDeploymentChangesRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.DiscardDeploymentChangesResponse
-
-    /// See `TelcoAutomationClient.discardDeploymentChanges`.
-    func discardDeploymentChanges(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.DiscardDeploymentChangesResponse
-
-    /// See `TelcoAutomationClient.applyDeployment`.
-    func applyDeployment(request: ApplyDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.applyDeployment`.
-    func applyDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.computeDeploymentStatus`.
-    func computeDeploymentStatus(request: ComputeDeploymentStatusRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ComputeDeploymentStatusResponse
-
-    /// See `TelcoAutomationClient.computeDeploymentStatus`.
-    func computeDeploymentStatus(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.ComputeDeploymentStatusResponse
-
-    /// See `TelcoAutomationClient.rollbackDeployment`.
-    func rollbackDeployment(request: RollbackDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.rollbackDeployment`.
-    func rollbackDeployment(
-      name: Swift.String,
-      revisionId: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.Deployment
-
-    /// See `TelcoAutomationClient.getHydratedDeployment`.
-    func getHydratedDeployment(request: GetHydratedDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.HydratedDeployment
-
-    /// See `TelcoAutomationClient.getHydratedDeployment`.
-    func getHydratedDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment
-
-    /// See `TelcoAutomationClient.listHydratedDeployments`.
-    func listHydratedDeployments(request: ListHydratedDeploymentsRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse
-
-    /// See `TelcoAutomationClient.listHydratedDeployments`.
-    func listHydratedDeployments(
-      byItem: ListHydratedDeploymentsRequest
-    ) -> any AsyncSequence<HydratedDeployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.listHydratedDeployments`.
-    func listHydratedDeployments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<HydratedDeployment, Swift.Error>
-
-    /// See `TelcoAutomationClient.updateHydratedDeployment`.
-    func updateHydratedDeployment(request: UpdateHydratedDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.HydratedDeployment
-
-    /// See `TelcoAutomationClient.updateHydratedDeployment`.
-    func updateHydratedDeployment(
-      hydratedDeployment: HydratedDeployment?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment
-
-    /// See `TelcoAutomationClient.applyHydratedDeployment`.
-    func applyHydratedDeployment(request: ApplyHydratedDeploymentRequest) async throws
-      -> GoogleCloudTelcoAutomationV1.HydratedDeployment
-
-    /// See `TelcoAutomationClient.applyHydratedDeployment`.
-    func applyHydratedDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment
-
-    /// See `TelcoAutomationClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `TelcoAutomationClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `TelcoAutomationClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `TelcoAutomationClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `TelcoAutomationClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `TelcoAutomationClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `TelcoAutomationClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `TelcoAutomationClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `TelcoAutomationClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `TelcoAutomationClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `TelcoAutomationClient.listOrchestrationClusters`.
     func listOrchestrationClusters(
       request: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse
-
-    /// See `TelcoAutomationClient.listOrchestrationClusters`.
-    func listOrchestrationClusters(
-      byItem: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<OrchestrationCluster, Swift.Error>
 
     /// See `TelcoAutomationClient.getOrchestrationCluster`.
     func getOrchestrationCluster(
@@ -1223,11 +625,6 @@ extension Clients {
     func listEdgeSlms(
       request: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse
-
-    /// See `TelcoAutomationClient.listEdgeSlms`.
-    func listEdgeSlms(
-      byItem: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EdgeSlm, Swift.Error>
 
     /// See `TelcoAutomationClient.getEdgeSlm`.
     func getEdgeSlm(
@@ -1279,11 +676,6 @@ extension Clients {
       request: ListBlueprintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse
 
-    /// See `TelcoAutomationClient.listBlueprints`.
-    func listBlueprints(
-      byItem: ListBlueprintsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
     /// See `TelcoAutomationClient.approveBlueprint`.
     func approveBlueprint(
       request: ApproveBlueprintRequest, options: GoogleGax.RequestOptions
@@ -1304,30 +696,15 @@ extension Clients {
       request: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse
 
-    /// See `TelcoAutomationClient.listBlueprintRevisions`.
-    func listBlueprintRevisions(
-      byItem: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
     /// See `TelcoAutomationClient.searchBlueprintRevisions`.
     func searchBlueprintRevisions(
       request: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse
 
-    /// See `TelcoAutomationClient.searchBlueprintRevisions`.
-    func searchBlueprintRevisions(
-      byItem: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Blueprint, Swift.Error>
-
     /// See `TelcoAutomationClient.searchDeploymentRevisions`.
     func searchDeploymentRevisions(
       request: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse
-
-    /// See `TelcoAutomationClient.searchDeploymentRevisions`.
-    func searchDeploymentRevisions(
-      byItem: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.discardBlueprintChanges`.
     func discardBlueprintChanges(
@@ -1338,11 +715,6 @@ extension Clients {
     func listPublicBlueprints(
       request: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse
-
-    /// See `TelcoAutomationClient.listPublicBlueprints`.
-    func listPublicBlueprints(
-      byItem: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PublicBlueprint, Swift.Error>
 
     /// See `TelcoAutomationClient.getPublicBlueprint`.
     func getPublicBlueprint(
@@ -1374,20 +746,10 @@ extension Clients {
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse
 
-    /// See `TelcoAutomationClient.listDeployments`.
-    func listDeployments(
-      byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
     /// See `TelcoAutomationClient.listDeploymentRevisions`.
     func listDeploymentRevisions(
       request: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse
-
-    /// See `TelcoAutomationClient.listDeploymentRevisions`.
-    func listDeploymentRevisions(
-      byItem: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `TelcoAutomationClient.discardDeploymentChanges`.
     func discardDeploymentChanges(
@@ -1419,11 +781,6 @@ extension Clients {
       request: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse
 
-    /// See `TelcoAutomationClient.listHydratedDeployments`.
-    func listHydratedDeployments(
-      byItem: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HydratedDeployment, Swift.Error>
-
     /// See `TelcoAutomationClient.updateHydratedDeployment`.
     func updateHydratedDeployment(
       request: UpdateHydratedDeploymentRequest, options: GoogleGax.RequestOptions
@@ -1439,11 +796,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `TelcoAutomationClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `TelcoAutomationClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1453,11 +805,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `TelcoAutomationClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TelcoAutomationClient.deleteOperation`.
     func deleteOperation(
@@ -1491,13 +838,18 @@ extension Clients.TelcoAutomationProtocol {
     self.listOrchestrationClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists OrchestrationClusters in a given project and location.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListOrchestrationClusters")
   public func listOrchestrationClusters(
     byItem: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOrchestrationClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1628,12 +980,17 @@ extension Clients.TelcoAutomationProtocol {
     self.listEdgeSlms(byItem: byItem, options: .init())
   }
 
+  /// Lists EdgeSlms in a given project and location.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListEdgeSlms")
   public func listEdgeSlms(
     byItem: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEdgeSlms(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1852,12 +1209,17 @@ extension Clients.TelcoAutomationProtocol {
     self.listBlueprints(byItem: byItem, options: .init())
   }
 
+  /// List all blueprints.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListBlueprints")
   public func listBlueprints(
     byItem: ListBlueprintsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBlueprints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1952,13 +1314,18 @@ extension Clients.TelcoAutomationProtocol {
     self.listBlueprintRevisions(byItem: byItem, options: .init())
   }
 
+  /// List blueprint revisions of a given blueprint.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListBlueprintRevisions")
   public func listBlueprintRevisions(
     byItem: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBlueprintRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1990,13 +1357,18 @@ extension Clients.TelcoAutomationProtocol {
     self.searchBlueprintRevisions(byItem: byItem, options: .init())
   }
 
+  /// Searches across blueprint revisions.
+  ///
+  /// @Snippet(path: "TelcoAutomation_SearchBlueprintRevisions")
   public func searchBlueprintRevisions(
     byItem: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Blueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchBlueprintRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2030,13 +1402,18 @@ extension Clients.TelcoAutomationProtocol {
     self.searchDeploymentRevisions(byItem: byItem, options: .init())
   }
 
+  /// Searches across deployment revisions.
+  ///
+  /// @Snippet(path: "TelcoAutomation_SearchDeploymentRevisions")
   public func searchDeploymentRevisions(
     byItem: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchDeploymentRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2091,13 +1468,19 @@ extension Clients.TelcoAutomationProtocol {
     self.listPublicBlueprints(byItem: byItem, options: .init())
   }
 
+  /// Lists the blueprints in TNA's public catalog. Default page size = 20,
+  /// Max Page Size = 100.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListPublicBlueprints")
   public func listPublicBlueprints(
     byItem: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPublicBlueprints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2238,12 +1621,17 @@ extension Clients.TelcoAutomationProtocol {
     self.listDeployments(byItem: byItem, options: .init())
   }
 
+  /// List all deployments.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2275,13 +1663,18 @@ extension Clients.TelcoAutomationProtocol {
     self.listDeploymentRevisions(byItem: byItem, options: .init())
   }
 
+  /// List deployment revisions of a given deployment.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListDeploymentRevisions")
   public func listDeploymentRevisions(
     byItem: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeploymentRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2420,13 +1813,18 @@ extension Clients.TelcoAutomationProtocol {
     self.listHydratedDeployments(byItem: byItem, options: .init())
   }
 
+  /// List all hydrated deployments present under a deployment.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListHydratedDeployments")
   public func listHydratedDeployments(
     byItem: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listHydratedDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2502,12 +1900,17 @@ extension Clients.TelcoAutomationProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2542,12 +1945,19 @@ extension Clients.TelcoAutomationProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TelcoAutomation_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

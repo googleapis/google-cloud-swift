@@ -163,22 +163,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of TargetHttpsProxy resources available
-    /// to the specified project in the specified region.
-    ///
-    /// @Snippet(path: "regionTargetHttpsProxies_list")
-    public func list(
-      byItem: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified regional TargetHttpsProxy resource with the data
     /// included in the request. This method supports PATCH
     /// semantics and usesJSON merge
@@ -351,53 +335,7 @@
     /// To mock `RegionTargetHttpsProxiesClient` change your functions to receive
     /// `some RegionTargetHttpsProxiesProtocol` or `any RegionTargetHttpsProxiesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionTargetHttpsProxiesProtocol {
-      /// See `RegionTargetHttpsProxiesClient.delete`.
-      func delete(request: RegionTargetHttpsProxiesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetHttpsProxiesClient.`get``.
-      func `get`(request: RegionTargetHttpsProxiesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.TargetHttpsProxy
-
-      /// See `RegionTargetHttpsProxiesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        targetHttpsProxy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.TargetHttpsProxy
-
-      /// See `RegionTargetHttpsProxiesClient.insert`.
-      func insert(request: RegionTargetHttpsProxiesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetHttpsProxiesClient.list`.
-      func list(request: RegionTargetHttpsProxiesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.TargetHttpsProxyList
-
-      /// See `RegionTargetHttpsProxiesClient.list`.
-      func list(
-        byItem: RegionTargetHttpsProxiesClient.ListRequest
-      ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
-
-      /// See `RegionTargetHttpsProxiesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
-
-      /// See `RegionTargetHttpsProxiesClient.patch`.
-      func patch(request: RegionTargetHttpsProxiesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetHttpsProxiesClient.setSslCertificates`.
-      func setSslCertificates(request: RegionTargetHttpsProxiesClient.SetSslCertificatesRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetHttpsProxiesClient.setUrlMap`.
-      func setUrlMap(request: RegionTargetHttpsProxiesClient.SetUrlMapRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionTargetHttpsProxiesProtocol: Sendable {
       /// See `RegionTargetHttpsProxiesClient.delete`.
       func delete(
         request: RegionTargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -417,11 +355,6 @@
       func list(
         request: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList
-
-      /// See `RegionTargetHttpsProxiesClient.list`.
-      func list(
-        byItem: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error>
 
       /// See `RegionTargetHttpsProxiesClient.patch`.
       func patch(
@@ -570,12 +503,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of TargetHttpsProxy resources available
+    /// to the specified project in the specified region.
+    ///
+    /// @Snippet(path: "regionTargetHttpsProxies_list")
     public func list(
       byItem: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

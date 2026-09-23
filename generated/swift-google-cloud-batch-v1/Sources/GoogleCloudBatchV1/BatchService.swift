@@ -141,20 +141,6 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
     try await self.inner.listJobs(request: request, options: options)
   }
 
-  /// List all Jobs for a project within a region.
-  ///
-  /// @Snippet(path: "BatchService_ListJobs")
-  public func listJobs(
-    byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudBatchV1.ListJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Return a single Task.
   ///
   /// @Snippet(path: "BatchService_GetTask")
@@ -171,20 +157,6 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.ListTasksResponse {
     try await self.inner.listTasks(request: request, options: options)
-  }
-
-  /// List Tasks associated with a job.
-  ///
-  /// @Snippet(path: "BatchService_ListTasks")
-  public func listTasks(
-    byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Task, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudBatchV1.ListTasksResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTasks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Lists information about the supported locations for this service.
@@ -213,38 +185,6 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "BatchService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "BatchService_GetLocation")
@@ -263,23 +203,6 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "BatchService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -322,28 +245,7 @@ extension Clients {
   /// To mock `BatchServiceClient` change your functions to receive
   /// `some BatchServiceProtocol` or `any BatchServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol BatchServiceProtocol {
-    /// See `BatchServiceClient.createJob`.
-    func createJob(request: CreateJobRequest) async throws -> GoogleCloudBatchV1.Job
-
-    /// See `BatchServiceClient.createJob`.
-    func createJob(
-      parent: Swift.String,
-      job: Job?,
-      jobId: Swift.String,
-    ) async throws -> GoogleCloudBatchV1.Job
-
-    /// See `BatchServiceClient.getJob`.
-    func getJob(request: GetJobRequest) async throws -> GoogleCloudBatchV1.Job
-
-    /// See `BatchServiceClient.getJob`.
-    func getJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBatchV1.Job
-
-    /// See `BatchServiceClient.deleteJob`.
-    func deleteJob(request: DeleteJobRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol BatchServiceProtocol: Sendable {
     /// See `BatchServiceClient.deleteJob`.
     func deleteJob(withPolling: DeleteJobRequest) async throws -> any GoogleGax.PollableOperation<
       Swift.Void
@@ -355,9 +257,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `BatchServiceClient.cancelJob`.
-    func cancelJob(request: CancelJobRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `BatchServiceClient.cancelJob`.
     func cancelJob(withPolling: CancelJobRequest) async throws -> any GoogleGax.PollableOperation<
       CancelJobResponse
     >
@@ -366,84 +265,6 @@ extension Clients {
     func cancelJob(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<CancelJobResponse>
-
-    /// See `BatchServiceClient.listJobs`.
-    func listJobs(request: ListJobsRequest) async throws -> GoogleCloudBatchV1.ListJobsResponse
-
-    /// See `BatchServiceClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `BatchServiceClient.listJobs`.
-    func listJobs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `BatchServiceClient.getTask`.
-    func getTask(request: GetTaskRequest) async throws -> GoogleCloudBatchV1.Task
-
-    /// See `BatchServiceClient.getTask`.
-    func getTask(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBatchV1.Task
-
-    /// See `BatchServiceClient.listTasks`.
-    func listTasks(request: ListTasksRequest) async throws -> GoogleCloudBatchV1.ListTasksResponse
-
-    /// See `BatchServiceClient.listTasks`.
-    func listTasks(
-      byItem: ListTasksRequest
-    ) -> any AsyncSequence<Task, Swift.Error>
-
-    /// See `BatchServiceClient.listTasks`.
-    func listTasks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Task, Swift.Error>
-
-    /// See `BatchServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `BatchServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `BatchServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `BatchServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BatchServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BatchServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BatchServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `BatchServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BatchServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `BatchServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `BatchServiceClient.createJob`.
     func createJob(
@@ -480,11 +301,6 @@ extension Clients {
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBatchV1.ListJobsResponse
 
-    /// See `BatchServiceClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Job, Swift.Error>
-
     /// See `BatchServiceClient.getTask`.
     func getTask(
       request: GetTaskRequest, options: GoogleGax.RequestOptions
@@ -495,20 +311,10 @@ extension Clients {
       request: ListTasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBatchV1.ListTasksResponse
 
-    /// See `BatchServiceClient.listTasks`.
-    func listTasks(
-      byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Task, Swift.Error>
-
     /// See `BatchServiceClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `BatchServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `BatchServiceClient.getLocation`.
     func getLocation(
@@ -519,11 +325,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BatchServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BatchServiceClient.deleteOperation`.
     func deleteOperation(
@@ -668,11 +469,16 @@ extension Clients.BatchServiceProtocol {
     self.listJobs(byItem: byItem, options: .init())
   }
 
+  /// List all Jobs for a project within a region.
+  ///
+  /// @Snippet(path: "BatchService_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBatchV1.ListJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -723,11 +529,16 @@ extension Clients.BatchServiceProtocol {
     self.listTasks(byItem: byItem, options: .init())
   }
 
+  /// List Tasks associated with a job.
+  ///
+  /// @Snippet(path: "BatchService_ListTasks")
   public func listTasks(
     byItem: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Task, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBatchV1.ListTasksResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTasks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -759,12 +570,34 @@ extension Clients.BatchServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "BatchService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -799,12 +632,19 @@ extension Clients.BatchServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

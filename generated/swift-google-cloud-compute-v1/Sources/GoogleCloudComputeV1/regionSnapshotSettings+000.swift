@@ -117,21 +117,7 @@
     /// To mock `RegionSnapshotSettingsClient` change your functions to receive
     /// `some RegionSnapshotSettingsProtocol` or `any RegionSnapshotSettingsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionSnapshotSettingsProtocol {
-      /// See `RegionSnapshotSettingsClient.`get``.
-      func `get`(request: RegionSnapshotSettingsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.SnapshotSettings
-
-      /// See `RegionSnapshotSettingsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SnapshotSettings
-
-      /// See `RegionSnapshotSettingsClient.patch`.
-      func patch(request: RegionSnapshotSettingsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionSnapshotSettingsProtocol: Sendable {
       /// See `RegionSnapshotSettingsClient.`get``.
       func `get`(
         request: RegionSnapshotSettingsClient.GetRequest, options: GoogleGax.RequestOptions

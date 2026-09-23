@@ -57,24 +57,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listDeployments(request: request, options: options)
   }
 
-  /// Lists [Deployment][google.cloud.config.v1.Deployment]s in a given project
-  /// and location.
-  ///
-  /// [google.cloud.config.v1.Deployment]: <doc:Deployment>
-  ///
-  /// @Snippet(path: "Config_ListDeployments")
-  public func listDeployments(
-    byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListDeploymentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeployments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details about a [Deployment][google.cloud.config.v1.Deployment].
   ///
   /// [google.cloud.config.v1.Deployment]: <doc:Deployment>
@@ -214,23 +196,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listRevisions(request: request, options: options)
   }
 
-  /// Lists [Revision][google.cloud.config.v1.Revision]s of a deployment.
-  ///
-  /// [google.cloud.config.v1.Revision]: <doc:Revision>
-  ///
-  /// @Snippet(path: "Config_ListRevisions")
-  public func listRevisions(
-    byItem: ListRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Revision, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details about a [Revision][google.cloud.config.v1.Revision].
   ///
   /// [google.cloud.config.v1.Revision]: <doc:Revision>
@@ -263,23 +228,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     request: ListResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListResourcesResponse {
     try await self.inner.listResources(request: request, options: options)
-  }
-
-  /// Lists [Resources][google.cloud.config.v1.Resource] in a given revision.
-  ///
-  /// [google.cloud.config.v1.Resource]: <doc:Resource>
-  ///
-  /// @Snippet(path: "Config_ListResources")
-  public func listResources(
-    byItem: ListResourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Resource, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListResourcesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listResources(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Exports Terraform state file from a given deployment.
@@ -459,24 +407,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listPreviews(request: request, options: options)
   }
 
-  /// Lists [Preview][google.cloud.config.v1.Preview]s in a given project and
-  /// location.
-  ///
-  /// [google.cloud.config.v1.Preview]: <doc:Preview>
-  ///
-  /// @Snippet(path: "Config_ListPreviews")
-  public func listPreviews(
-    byItem: ListPreviewsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Preview, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListPreviewsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPreviews(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a [Preview][google.cloud.config.v1.Preview].
   ///
   /// [google.cloud.config.v1.Preview]: <doc:Preview>
@@ -538,24 +468,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listTerraformVersions(request: request, options: options)
   }
 
-  /// Lists [TerraformVersion][google.cloud.config.v1.TerraformVersion]s in a
-  /// given project and location.
-  ///
-  /// [google.cloud.config.v1.TerraformVersion]: <doc:TerraformVersion>
-  ///
-  /// @Snippet(path: "Config_ListTerraformVersions")
-  public func listTerraformVersions(
-    byItem: ListTerraformVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TerraformVersion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListTerraformVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTerraformVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details about a
   /// [TerraformVersion][google.cloud.config.v1.TerraformVersion].
   ///
@@ -577,21 +489,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listResourceChanges(request: request, options: options)
   }
 
-  /// Lists ResourceChanges for a given preview.
-  ///
-  /// @Snippet(path: "Config_ListResourceChanges")
-  public func listResourceChanges(
-    byItem: ListResourceChangesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceChange, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListResourceChangesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listResourceChanges(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get a ResourceChange for a given preview.
   ///
   /// @Snippet(path: "Config_GetResourceChange")
@@ -608,21 +505,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     request: ListResourceDriftsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListResourceDriftsResponse {
     try await self.inner.listResourceDrifts(request: request, options: options)
-  }
-
-  /// List ResourceDrifts for a given preview.
-  ///
-  /// @Snippet(path: "Config_ListResourceDrifts")
-  public func listResourceDrifts(
-    byItem: ListResourceDriftsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceDrift, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListResourceDriftsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listResourceDrifts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Get a ResourceDrift for a given preview.
@@ -817,21 +699,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listDeploymentGroups(request: request, options: options)
   }
 
-  /// List DeploymentGroups for a given project and location.
-  ///
-  /// @Snippet(path: "Config_ListDeploymentGroups")
-  public func listDeploymentGroups(
-    byItem: ListDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeploymentGroup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListDeploymentGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeploymentGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provisions a deployment group.
   ///
   /// NOTE: As a first step of this operation, Infra Manager will
@@ -976,27 +843,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     try await self.inner.listDeploymentGroupRevisions(request: request, options: options)
   }
 
-  /// Lists
-  /// [DeploymentGroupRevision][google.cloud.config.v1.DeploymentGroupRevision]s
-  /// in a given [DeploymentGroup][google.cloud.config.v1.DeploymentGroup].
-  ///
-  /// [google.cloud.config.v1.DeploymentGroup]: <doc:DeploymentGroup>
-  /// [google.cloud.config.v1.DeploymentGroupRevision]: <doc:DeploymentGroupRevision>
-  ///
-  /// @Snippet(path: "Config_ListDeploymentGroupRevisions")
-  public func listDeploymentGroupRevisions(
-    byItem: ListDeploymentGroupRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeploymentGroupRevision, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigV1.ListDeploymentGroupRevisionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeploymentGroupRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// This method lists locations based on the resource scope provided in
@@ -1021,38 +867,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "Config_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -1117,23 +931,6 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Config_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Config_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -1170,33 +967,7 @@ extension Clients {
   /// To mock `ConfigClient` change your functions to receive
   /// `some ConfigProtocol` or `any ConfigProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConfigProtocol {
-    /// See `ConfigClient.listDeployments`.
-    func listDeployments(request: ListDeploymentsRequest) async throws
-      -> GoogleCloudConfigV1.ListDeploymentsResponse
-
-    /// See `ConfigClient.listDeployments`.
-    func listDeployments(
-      byItem: ListDeploymentsRequest
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `ConfigClient.listDeployments`.
-    func listDeployments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `ConfigClient.getDeployment`.
-    func getDeployment(request: GetDeploymentRequest) async throws -> GoogleCloudConfigV1.Deployment
-
-    /// See `ConfigClient.getDeployment`.
-    func getDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.Deployment
-
-    /// See `ConfigClient.createDeployment`.
-    func createDeployment(request: CreateDeploymentRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol ConfigProtocol: Sendable {
     /// See `ConfigClient.createDeployment`.
     func createDeployment(withPolling: CreateDeploymentRequest) async throws -> any GoogleGax
       .PollableOperation<Deployment>
@@ -1209,10 +980,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Deployment>
 
     /// See `ConfigClient.updateDeployment`.
-    func updateDeployment(request: UpdateDeploymentRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigClient.updateDeployment`.
     func updateDeployment(withPolling: UpdateDeploymentRequest) async throws -> any GoogleGax
       .PollableOperation<Deployment>
 
@@ -1223,10 +990,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Deployment>
 
     /// See `ConfigClient.deleteDeployment`.
-    func deleteDeployment(request: DeleteDeploymentRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigClient.deleteDeployment`.
     func deleteDeployment(withPolling: DeleteDeploymentRequest) async throws -> any GoogleGax
       .PollableOperation<Deployment>
 
@@ -1234,79 +997,6 @@ extension Clients {
     func deleteDeployment(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Deployment>
-
-    /// See `ConfigClient.listRevisions`.
-    func listRevisions(request: ListRevisionsRequest) async throws
-      -> GoogleCloudConfigV1.ListRevisionsResponse
-
-    /// See `ConfigClient.listRevisions`.
-    func listRevisions(
-      byItem: ListRevisionsRequest
-    ) -> any AsyncSequence<Revision, Swift.Error>
-
-    /// See `ConfigClient.listRevisions`.
-    func listRevisions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Revision, Swift.Error>
-
-    /// See `ConfigClient.getRevision`.
-    func getRevision(request: GetRevisionRequest) async throws -> GoogleCloudConfigV1.Revision
-
-    /// See `ConfigClient.getRevision`.
-    func getRevision(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.Revision
-
-    /// See `ConfigClient.getResource`.
-    func getResource(request: GetResourceRequest) async throws -> GoogleCloudConfigV1.Resource
-
-    /// See `ConfigClient.getResource`.
-    func getResource(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.Resource
-
-    /// See `ConfigClient.listResources`.
-    func listResources(request: ListResourcesRequest) async throws
-      -> GoogleCloudConfigV1.ListResourcesResponse
-
-    /// See `ConfigClient.listResources`.
-    func listResources(
-      byItem: ListResourcesRequest
-    ) -> any AsyncSequence<Resource, Swift.Error>
-
-    /// See `ConfigClient.listResources`.
-    func listResources(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Resource, Swift.Error>
-
-    /// See `ConfigClient.exportDeploymentStatefile`.
-    func exportDeploymentStatefile(request: ExportDeploymentStatefileRequest) async throws
-      -> GoogleCloudConfigV1.Statefile
-
-    /// See `ConfigClient.exportRevisionStatefile`.
-    func exportRevisionStatefile(request: ExportRevisionStatefileRequest) async throws
-      -> GoogleCloudConfigV1.Statefile
-
-    /// See `ConfigClient.importStatefile`.
-    func importStatefile(request: ImportStatefileRequest) async throws
-      -> GoogleCloudConfigV1.Statefile
-
-    /// See `ConfigClient.importStatefile`.
-    func importStatefile(
-      parent: Swift.String,
-      lockId: Swift.Int64,
-    ) async throws -> GoogleCloudConfigV1.Statefile
-
-    /// See `ConfigClient.deleteStatefile`.
-    func deleteStatefile(request: DeleteStatefileRequest) async throws
-
-    /// See `ConfigClient.deleteStatefile`.
-    func deleteStatefile(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigClient.lockDeployment`.
-    func lockDeployment(request: LockDeploymentRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigClient.lockDeployment`.
     func lockDeployment(withPolling: LockDeploymentRequest) async throws -> any GoogleGax
@@ -1318,10 +1008,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Deployment>
 
     /// See `ConfigClient.unlockDeployment`.
-    func unlockDeployment(request: UnlockDeploymentRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigClient.unlockDeployment`.
     func unlockDeployment(withPolling: UnlockDeploymentRequest) async throws -> any GoogleGax
       .PollableOperation<Deployment>
 
@@ -1330,17 +1016,6 @@ extension Clients {
       name: Swift.String,
       lockId: Swift.Int64,
     ) async throws -> any GoogleGax.PollableOperation<Deployment>
-
-    /// See `ConfigClient.exportLockInfo`.
-    func exportLockInfo(request: ExportLockInfoRequest) async throws -> GoogleCloudConfigV1.LockInfo
-
-    /// See `ConfigClient.exportLockInfo`.
-    func exportLockInfo(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.LockInfo
-
-    /// See `ConfigClient.createPreview`.
-    func createPreview(request: CreatePreviewRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigClient.createPreview`.
     func createPreview(withPolling: CreatePreviewRequest) async throws -> any GoogleGax
@@ -1352,31 +1027,6 @@ extension Clients {
       preview: Preview?,
     ) async throws -> any GoogleGax.PollableOperation<Preview>
 
-    /// See `ConfigClient.getPreview`.
-    func getPreview(request: GetPreviewRequest) async throws -> GoogleCloudConfigV1.Preview
-
-    /// See `ConfigClient.getPreview`.
-    func getPreview(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.Preview
-
-    /// See `ConfigClient.listPreviews`.
-    func listPreviews(request: ListPreviewsRequest) async throws
-      -> GoogleCloudConfigV1.ListPreviewsResponse
-
-    /// See `ConfigClient.listPreviews`.
-    func listPreviews(
-      byItem: ListPreviewsRequest
-    ) -> any AsyncSequence<Preview, Swift.Error>
-
-    /// See `ConfigClient.listPreviews`.
-    func listPreviews(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Preview, Swift.Error>
-
-    /// See `ConfigClient.deletePreview`.
-    func deletePreview(request: DeletePreviewRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `ConfigClient.deletePreview`.
     func deletePreview(withPolling: DeletePreviewRequest) async throws -> any GoogleGax
       .PollableOperation<Preview>
@@ -1385,92 +1035,6 @@ extension Clients {
     func deletePreview(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Preview>
-
-    /// See `ConfigClient.exportPreviewResult`.
-    func exportPreviewResult(request: ExportPreviewResultRequest) async throws
-      -> GoogleCloudConfigV1.ExportPreviewResultResponse
-
-    /// See `ConfigClient.listTerraformVersions`.
-    func listTerraformVersions(request: ListTerraformVersionsRequest) async throws
-      -> GoogleCloudConfigV1.ListTerraformVersionsResponse
-
-    /// See `ConfigClient.listTerraformVersions`.
-    func listTerraformVersions(
-      byItem: ListTerraformVersionsRequest
-    ) -> any AsyncSequence<TerraformVersion, Swift.Error>
-
-    /// See `ConfigClient.listTerraformVersions`.
-    func listTerraformVersions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<TerraformVersion, Swift.Error>
-
-    /// See `ConfigClient.getTerraformVersion`.
-    func getTerraformVersion(request: GetTerraformVersionRequest) async throws
-      -> GoogleCloudConfigV1.TerraformVersion
-
-    /// See `ConfigClient.getTerraformVersion`.
-    func getTerraformVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.TerraformVersion
-
-    /// See `ConfigClient.listResourceChanges`.
-    func listResourceChanges(request: ListResourceChangesRequest) async throws
-      -> GoogleCloudConfigV1.ListResourceChangesResponse
-
-    /// See `ConfigClient.listResourceChanges`.
-    func listResourceChanges(
-      byItem: ListResourceChangesRequest
-    ) -> any AsyncSequence<ResourceChange, Swift.Error>
-
-    /// See `ConfigClient.listResourceChanges`.
-    func listResourceChanges(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ResourceChange, Swift.Error>
-
-    /// See `ConfigClient.getResourceChange`.
-    func getResourceChange(request: GetResourceChangeRequest) async throws
-      -> GoogleCloudConfigV1.ResourceChange
-
-    /// See `ConfigClient.getResourceChange`.
-    func getResourceChange(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.ResourceChange
-
-    /// See `ConfigClient.listResourceDrifts`.
-    func listResourceDrifts(request: ListResourceDriftsRequest) async throws
-      -> GoogleCloudConfigV1.ListResourceDriftsResponse
-
-    /// See `ConfigClient.listResourceDrifts`.
-    func listResourceDrifts(
-      byItem: ListResourceDriftsRequest
-    ) -> any AsyncSequence<ResourceDrift, Swift.Error>
-
-    /// See `ConfigClient.listResourceDrifts`.
-    func listResourceDrifts(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ResourceDrift, Swift.Error>
-
-    /// See `ConfigClient.getResourceDrift`.
-    func getResourceDrift(request: GetResourceDriftRequest) async throws
-      -> GoogleCloudConfigV1.ResourceDrift
-
-    /// See `ConfigClient.getResourceDrift`.
-    func getResourceDrift(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.ResourceDrift
-
-    /// See `ConfigClient.getAutoMigrationConfig`.
-    func getAutoMigrationConfig(request: GetAutoMigrationConfigRequest) async throws
-      -> GoogleCloudConfigV1.AutoMigrationConfig
-
-    /// See `ConfigClient.getAutoMigrationConfig`.
-    func getAutoMigrationConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.AutoMigrationConfig
-
-    /// See `ConfigClient.updateAutoMigrationConfig`.
-    func updateAutoMigrationConfig(request: UpdateAutoMigrationConfigRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ConfigClient.updateAutoMigrationConfig`.
     func updateAutoMigrationConfig(withPolling: UpdateAutoMigrationConfigRequest) async throws
@@ -1481,19 +1045,6 @@ extension Clients {
       autoMigrationConfig: AutoMigrationConfig?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AutoMigrationConfig>
-
-    /// See `ConfigClient.getDeploymentGroup`.
-    func getDeploymentGroup(request: GetDeploymentGroupRequest) async throws
-      -> GoogleCloudConfigV1.DeploymentGroup
-
-    /// See `ConfigClient.getDeploymentGroup`.
-    func getDeploymentGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.DeploymentGroup
-
-    /// See `ConfigClient.createDeploymentGroup`.
-    func createDeploymentGroup(request: CreateDeploymentGroupRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ConfigClient.createDeploymentGroup`.
     func createDeploymentGroup(withPolling: CreateDeploymentGroupRequest) async throws
@@ -1507,10 +1058,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup>
 
     /// See `ConfigClient.updateDeploymentGroup`.
-    func updateDeploymentGroup(request: UpdateDeploymentGroupRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigClient.updateDeploymentGroup`.
     func updateDeploymentGroup(withPolling: UpdateDeploymentGroupRequest) async throws
       -> any GoogleGax.PollableOperation<DeploymentGroup>
 
@@ -1521,10 +1068,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup>
 
     /// See `ConfigClient.deleteDeploymentGroup`.
-    func deleteDeploymentGroup(request: DeleteDeploymentGroupRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigClient.deleteDeploymentGroup`.
     func deleteDeploymentGroup(withPolling: DeleteDeploymentGroupRequest) async throws
       -> any GoogleGax.PollableOperation<DeploymentGroup>
 
@@ -1532,24 +1075,6 @@ extension Clients {
     func deleteDeploymentGroup(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup>
-
-    /// See `ConfigClient.listDeploymentGroups`.
-    func listDeploymentGroups(request: ListDeploymentGroupsRequest) async throws
-      -> GoogleCloudConfigV1.ListDeploymentGroupsResponse
-
-    /// See `ConfigClient.listDeploymentGroups`.
-    func listDeploymentGroups(
-      byItem: ListDeploymentGroupsRequest
-    ) -> any AsyncSequence<DeploymentGroup, Swift.Error>
-
-    /// See `ConfigClient.listDeploymentGroups`.
-    func listDeploymentGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DeploymentGroup, Swift.Error>
-
-    /// See `ConfigClient.provisionDeploymentGroup`.
-    func provisionDeploymentGroup(request: ProvisionDeploymentGroupRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ConfigClient.provisionDeploymentGroup`.
     func provisionDeploymentGroup(withPolling: ProvisionDeploymentGroupRequest) async throws
@@ -1561,10 +1086,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup>
 
     /// See `ConfigClient.deprovisionDeploymentGroup`.
-    func deprovisionDeploymentGroup(request: DeprovisionDeploymentGroupRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigClient.deprovisionDeploymentGroup`.
     func deprovisionDeploymentGroup(withPolling: DeprovisionDeploymentGroupRequest) async throws
       -> any GoogleGax.PollableOperation<DeploymentGroup>
 
@@ -1573,92 +1094,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup>
 
-    /// See `ConfigClient.getDeploymentGroupRevision`.
-    func getDeploymentGroupRevision(request: GetDeploymentGroupRevisionRequest) async throws
-      -> GoogleCloudConfigV1.DeploymentGroupRevision
-
-    /// See `ConfigClient.getDeploymentGroupRevision`.
-    func getDeploymentGroupRevision(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigV1.DeploymentGroupRevision
-
-    /// See `ConfigClient.listDeploymentGroupRevisions`.
-    func listDeploymentGroupRevisions(request: ListDeploymentGroupRevisionsRequest) async throws
-      -> GoogleCloudConfigV1.ListDeploymentGroupRevisionsResponse
-
-    /// See `ConfigClient.listDeploymentGroupRevisions`.
-    func listDeploymentGroupRevisions(
-      byItem: ListDeploymentGroupRevisionsRequest
-    ) -> any AsyncSequence<DeploymentGroupRevision, Swift.Error>
-
-    /// See `ConfigClient.listDeploymentGroupRevisions`.
-    func listDeploymentGroupRevisions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DeploymentGroupRevision, Swift.Error>
-
-    /// See `ConfigClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ConfigClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ConfigClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ConfigClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ConfigClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ConfigClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ConfigClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ConfigClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `ConfigClient.listDeployments`.
     func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListDeploymentsResponse
-
-    /// See `ConfigClient.listDeployments`.
-    func listDeployments(
-      byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `ConfigClient.getDeployment`.
     func getDeployment(
@@ -1700,11 +1139,6 @@ extension Clients {
       request: ListRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListRevisionsResponse
 
-    /// See `ConfigClient.listRevisions`.
-    func listRevisions(
-      byItem: ListRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Revision, Swift.Error>
-
     /// See `ConfigClient.getRevision`.
     func getRevision(
       request: GetRevisionRequest, options: GoogleGax.RequestOptions
@@ -1719,11 +1153,6 @@ extension Clients {
     func listResources(
       request: ListResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListResourcesResponse
-
-    /// See `ConfigClient.listResources`.
-    func listResources(
-      byItem: ListResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Resource, Swift.Error>
 
     /// See `ConfigClient.exportDeploymentStatefile`.
     func exportDeploymentStatefile(
@@ -1790,11 +1219,6 @@ extension Clients {
       request: ListPreviewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListPreviewsResponse
 
-    /// See `ConfigClient.listPreviews`.
-    func listPreviews(
-      byItem: ListPreviewsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Preview, Swift.Error>
-
     /// See `ConfigClient.deletePreview`.
     func deletePreview(
       request: DeletePreviewRequest, options: GoogleGax.RequestOptions
@@ -1815,11 +1239,6 @@ extension Clients {
       request: ListTerraformVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListTerraformVersionsResponse
 
-    /// See `ConfigClient.listTerraformVersions`.
-    func listTerraformVersions(
-      byItem: ListTerraformVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TerraformVersion, Swift.Error>
-
     /// See `ConfigClient.getTerraformVersion`.
     func getTerraformVersion(
       request: GetTerraformVersionRequest, options: GoogleGax.RequestOptions
@@ -1830,11 +1249,6 @@ extension Clients {
       request: ListResourceChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListResourceChangesResponse
 
-    /// See `ConfigClient.listResourceChanges`.
-    func listResourceChanges(
-      byItem: ListResourceChangesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ResourceChange, Swift.Error>
-
     /// See `ConfigClient.getResourceChange`.
     func getResourceChange(
       request: GetResourceChangeRequest, options: GoogleGax.RequestOptions
@@ -1844,11 +1258,6 @@ extension Clients {
     func listResourceDrifts(
       request: ListResourceDriftsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListResourceDriftsResponse
-
-    /// See `ConfigClient.listResourceDrifts`.
-    func listResourceDrifts(
-      byItem: ListResourceDriftsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ResourceDrift, Swift.Error>
 
     /// See `ConfigClient.getResourceDrift`.
     func getResourceDrift(
@@ -1910,11 +1319,6 @@ extension Clients {
       request: ListDeploymentGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListDeploymentGroupsResponse
 
-    /// See `ConfigClient.listDeploymentGroups`.
-    func listDeploymentGroups(
-      byItem: ListDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DeploymentGroup, Swift.Error>
-
     /// See `ConfigClient.provisionDeploymentGroup`.
     func provisionDeploymentGroup(
       request: ProvisionDeploymentGroupRequest, options: GoogleGax.RequestOptions
@@ -1945,20 +1349,10 @@ extension Clients {
       request: ListDeploymentGroupRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigV1.ListDeploymentGroupRevisionsResponse
 
-    /// See `ConfigClient.listDeploymentGroupRevisions`.
-    func listDeploymentGroupRevisions(
-      byItem: ListDeploymentGroupRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DeploymentGroupRevision, Swift.Error>
-
     /// See `ConfigClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ConfigClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ConfigClient.getLocation`.
     func getLocation(
@@ -1984,11 +1378,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ConfigClient.deleteOperation`.
     func deleteOperation(
@@ -2022,12 +1411,20 @@ extension Clients.ConfigProtocol {
     self.listDeployments(byItem: byItem, options: .init())
   }
 
+  /// Lists [Deployment][google.cloud.config.v1.Deployment]s in a given project
+  /// and location.
+  ///
+  /// [google.cloud.config.v1.Deployment]: <doc:Deployment>
+  ///
+  /// @Snippet(path: "Config_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListDeploymentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2197,12 +1594,19 @@ extension Clients.ConfigProtocol {
     self.listRevisions(byItem: byItem, options: .init())
   }
 
+  /// Lists [Revision][google.cloud.config.v1.Revision]s of a deployment.
+  ///
+  /// [google.cloud.config.v1.Revision]: <doc:Revision>
+  ///
+  /// @Snippet(path: "Config_ListRevisions")
   public func listRevisions(
     byItem: ListRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Revision, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2274,12 +1678,19 @@ extension Clients.ConfigProtocol {
     self.listResources(byItem: byItem, options: .init())
   }
 
+  /// Lists [Resources][google.cloud.config.v1.Resource] in a given revision.
+  ///
+  /// [google.cloud.config.v1.Resource]: <doc:Resource>
+  ///
+  /// @Snippet(path: "Config_ListResources")
   public func listResources(
     byItem: ListResourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Resource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListResourcesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listResources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2532,12 +1943,20 @@ extension Clients.ConfigProtocol {
     self.listPreviews(byItem: byItem, options: .init())
   }
 
+  /// Lists [Preview][google.cloud.config.v1.Preview]s in a given project and
+  /// location.
+  ///
+  /// [google.cloud.config.v1.Preview]: <doc:Preview>
+  ///
+  /// @Snippet(path: "Config_ListPreviews")
   public func listPreviews(
     byItem: ListPreviewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Preview, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListPreviewsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPreviews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2618,12 +2037,20 @@ extension Clients.ConfigProtocol {
     self.listTerraformVersions(byItem: byItem, options: .init())
   }
 
+  /// Lists [TerraformVersion][google.cloud.config.v1.TerraformVersion]s in a
+  /// given project and location.
+  ///
+  /// [google.cloud.config.v1.TerraformVersion]: <doc:TerraformVersion>
+  ///
+  /// @Snippet(path: "Config_ListTerraformVersions")
   public func listTerraformVersions(
     byItem: ListTerraformVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TerraformVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListTerraformVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTerraformVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2676,12 +2103,17 @@ extension Clients.ConfigProtocol {
     self.listResourceChanges(byItem: byItem, options: .init())
   }
 
+  /// Lists ResourceChanges for a given preview.
+  ///
+  /// @Snippet(path: "Config_ListResourceChanges")
   public func listResourceChanges(
     byItem: ListResourceChangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ResourceChange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListResourceChangesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listResourceChanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2734,12 +2166,17 @@ extension Clients.ConfigProtocol {
     self.listResourceDrifts(byItem: byItem, options: .init())
   }
 
+  /// List ResourceDrifts for a given preview.
+  ///
+  /// @Snippet(path: "Config_ListResourceDrifts")
   public func listResourceDrifts(
     byItem: ListResourceDriftsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ResourceDrift, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListResourceDriftsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listResourceDrifts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2990,12 +2427,17 @@ extension Clients.ConfigProtocol {
     self.listDeploymentGroups(byItem: byItem, options: .init())
   }
 
+  /// List DeploymentGroups for a given project and location.
+  ///
+  /// @Snippet(path: "Config_ListDeploymentGroups")
   public func listDeploymentGroups(
     byItem: ListDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DeploymentGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListDeploymentGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeploymentGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3122,13 +2564,23 @@ extension Clients.ConfigProtocol {
     self.listDeploymentGroupRevisions(byItem: byItem, options: .init())
   }
 
+  /// Lists
+  /// [DeploymentGroupRevision][google.cloud.config.v1.DeploymentGroupRevision]s
+  /// in a given [DeploymentGroup][google.cloud.config.v1.DeploymentGroup].
+  ///
+  /// [google.cloud.config.v1.DeploymentGroup]: <doc:DeploymentGroup>
+  /// [google.cloud.config.v1.DeploymentGroupRevision]: <doc:DeploymentGroupRevision>
+  ///
+  /// @Snippet(path: "Config_ListDeploymentGroupRevisions")
   public func listDeploymentGroupRevisions(
     byItem: ListDeploymentGroupRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DeploymentGroupRevision, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigV1.ListDeploymentGroupRevisionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeploymentGroupRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3160,12 +2612,34 @@ extension Clients.ConfigProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Config_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3236,12 +2710,19 @@ extension Clients.ConfigProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

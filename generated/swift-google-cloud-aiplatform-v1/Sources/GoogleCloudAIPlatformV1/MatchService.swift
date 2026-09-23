@@ -69,21 +69,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "MatchService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "MatchService_GetLocation")
@@ -146,23 +131,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "MatchService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "MatchService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -210,73 +178,7 @@
     /// To mock `MatchServiceClient` change your functions to receive
     /// `some MatchServiceProtocol` or `any MatchServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol MatchServiceProtocol {
-      /// See `MatchServiceClient.findNeighbors`.
-      func findNeighbors(request: FindNeighborsRequest) async throws
-        -> GoogleCloudAIPlatformV1.FindNeighborsResponse
-
-      /// See `MatchServiceClient.readIndexDatapoints`.
-      func readIndexDatapoints(request: ReadIndexDatapointsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ReadIndexDatapointsResponse
-
-      /// See `MatchServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `MatchServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `MatchServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `MatchServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `MatchServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `MatchServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `MatchServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `MatchServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `MatchServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `MatchServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `MatchServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `MatchServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `MatchServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `MatchServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol MatchServiceProtocol: Sendable {
       /// See `MatchServiceClient.findNeighbors`.
       func findNeighbors(
         request: FindNeighborsRequest, options: GoogleGax.RequestOptions
@@ -291,11 +193,6 @@
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `MatchServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `MatchServiceClient.getLocation`.
       func getLocation(
@@ -321,11 +218,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `MatchServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `MatchServiceClient.deleteOperation`.
       func deleteOperation(
@@ -388,12 +280,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "MatchService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -464,12 +361,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MatchService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -297,22 +297,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of regional network endpoint groups available to the
-    /// specified project in the given region.
-    ///
-    /// @Snippet(path: "regionNetworkEndpointGroups_list")
-    public func list(
-      byItem: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists the network endpoints in the specified network endpoint group.
     ///
     /// @Snippet(path: "regionNetworkEndpointGroups_listNetworkEndpoints")
@@ -321,23 +305,6 @@
       options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints {
       try await self.inner.listNetworkEndpoints(request: request, options: options)
-    }
-
-    /// Lists the network endpoints in the specified network endpoint group.
-    ///
-    /// @Snippet(path: "regionNetworkEndpointGroups_listNetworkEndpoints")
-    public func listNetworkEndpoints(
-      byItem: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listNetworkEndpoints(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Retrieves the specified region-specific Operations resource.
@@ -356,68 +323,7 @@
     /// To mock `RegionNetworkEndpointGroupsClient` change your functions to receive
     /// `some RegionNetworkEndpointGroupsProtocol` or `any RegionNetworkEndpointGroupsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionNetworkEndpointGroupsProtocol {
-      /// See `RegionNetworkEndpointGroupsClient.attachNetworkEndpoints`.
-      func attachNetworkEndpoints(
-        request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest
-      ) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionNetworkEndpointGroupsClient.delete`.
-      func delete(request: RegionNetworkEndpointGroupsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionNetworkEndpointGroupsClient.detachNetworkEndpoints`.
-      func detachNetworkEndpoints(
-        request: RegionNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest
-      ) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionNetworkEndpointGroupsClient.`get``.
-      func `get`(request: RegionNetworkEndpointGroupsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.NetworkEndpointGroup
-
-      /// See `RegionNetworkEndpointGroupsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        networkEndpointGroup: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroup
-
-      /// See `RegionNetworkEndpointGroupsClient.insert`.
-      func insert(request: RegionNetworkEndpointGroupsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionNetworkEndpointGroupsClient.list`.
-      func list(request: RegionNetworkEndpointGroupsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.NetworkEndpointGroupList
-
-      /// See `RegionNetworkEndpointGroupsClient.list`.
-      func list(
-        byItem: RegionNetworkEndpointGroupsClient.ListRequest
-      ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error>
-
-      /// See `RegionNetworkEndpointGroupsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error>
-
-      /// See `RegionNetworkEndpointGroupsClient.listNetworkEndpoints`.
-      func listNetworkEndpoints(
-        request: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest
-      ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints
-
-      /// See `RegionNetworkEndpointGroupsClient.listNetworkEndpoints`.
-      func listNetworkEndpoints(
-        byItem: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest
-      ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error>
-
-      /// See `RegionNetworkEndpointGroupsClient.listNetworkEndpoints`.
-      func listNetworkEndpoints(
-        project: Swift.String,
-        region: Swift.String,
-        networkEndpointGroup: Swift.String,
-      ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error>
-
+    public protocol RegionNetworkEndpointGroupsProtocol: Sendable {
       /// See `RegionNetworkEndpointGroupsClient.attachNetworkEndpoints`.
       func attachNetworkEndpoints(
         request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
@@ -450,22 +356,11 @@
         request: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList
 
-      /// See `RegionNetworkEndpointGroupsClient.list`.
-      func list(
-        byItem: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error>
-
       /// See `RegionNetworkEndpointGroupsClient.listNetworkEndpoints`.
       func listNetworkEndpoints(
         request: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints
-
-      /// See `RegionNetworkEndpointGroupsClient.listNetworkEndpoints`.
-      func listNetworkEndpoints(
-        byItem: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
-        options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error>
     }
   }
 
@@ -692,12 +587,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of regional network endpoint groups available to the
+    /// specified project in the given region.
+    ///
+    /// @Snippet(path: "regionNetworkEndpointGroups_list")
     public func list(
       byItem: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -732,6 +633,9 @@
       self.listNetworkEndpoints(byItem: byItem, options: .init())
     }
 
+    /// Lists the network endpoints in the specified network endpoint group.
+    ///
+    /// @Snippet(path: "regionNetworkEndpointGroups_listNetworkEndpoints")
     public func listNetworkEndpoints(
       byItem: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -739,7 +643,9 @@
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listNetworkEndpoints(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

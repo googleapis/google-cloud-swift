@@ -140,25 +140,6 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
     try await self.inner.listAttestors(request: request, options: options)
   }
 
-  /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
-  /// Returns `INVALID_ARGUMENT` if the project does not exist.
-  ///
-  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
-  ///
-  /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
-  public func listAttestors(
-    byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Attestor, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAttestors(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor].
   /// Returns `NOT_FOUND` if the
   /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
@@ -217,86 +198,7 @@ extension Clients {
   /// To mock `BinauthzManagementServiceV1Client` change your functions to receive
   /// `some BinauthzManagementServiceV1Protocol` or `any BinauthzManagementServiceV1Protocol`
   /// and pass a mock implementation in your tests.
-  public protocol BinauthzManagementServiceV1Protocol {
-    /// See `BinauthzManagementServiceV1Client.getPolicy`.
-    func getPolicy(request: GetPolicyRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.Policy
-
-    /// See `BinauthzManagementServiceV1Client.getPolicy`.
-    func getPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy
-
-    /// See `BinauthzManagementServiceV1Client.updatePolicy`.
-    func updatePolicy(request: UpdatePolicyRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.Policy
-
-    /// See `BinauthzManagementServiceV1Client.updatePolicy`.
-    func updatePolicy(
-      policy: Policy?,
-    ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy
-
-    /// See `BinauthzManagementServiceV1Client.createAttestor`.
-    func createAttestor(request: CreateAttestorRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.Attestor
-
-    /// See `BinauthzManagementServiceV1Client.createAttestor`.
-    func createAttestor(
-      parent: Swift.String,
-      attestorId: Swift.String,
-      attestor: Attestor?,
-    ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor
-
-    /// See `BinauthzManagementServiceV1Client.getAttestor`.
-    func getAttestor(request: GetAttestorRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.Attestor
-
-    /// See `BinauthzManagementServiceV1Client.getAttestor`.
-    func getAttestor(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor
-
-    /// See `BinauthzManagementServiceV1Client.updateAttestor`.
-    func updateAttestor(request: UpdateAttestorRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.Attestor
-
-    /// See `BinauthzManagementServiceV1Client.updateAttestor`.
-    func updateAttestor(
-      attestor: Attestor?,
-    ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor
-
-    /// See `BinauthzManagementServiceV1Client.listAttestors`.
-    func listAttestors(request: ListAttestorsRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
-
-    /// See `BinauthzManagementServiceV1Client.listAttestors`.
-    func listAttestors(
-      byItem: ListAttestorsRequest
-    ) -> any AsyncSequence<Attestor, Swift.Error>
-
-    /// See `BinauthzManagementServiceV1Client.listAttestors`.
-    func listAttestors(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Attestor, Swift.Error>
-
-    /// See `BinauthzManagementServiceV1Client.deleteAttestor`.
-    func deleteAttestor(request: DeleteAttestorRequest) async throws
-
-    /// See `BinauthzManagementServiceV1Client.deleteAttestor`.
-    func deleteAttestor(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BinauthzManagementServiceV1Client.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BinauthzManagementServiceV1Client.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BinauthzManagementServiceV1Client.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol BinauthzManagementServiceV1Protocol: Sendable {
     /// See `BinauthzManagementServiceV1Client.getPolicy`.
     func getPolicy(
       request: GetPolicyRequest, options: GoogleGax.RequestOptions
@@ -326,11 +228,6 @@ extension Clients {
     func listAttestors(
       request: ListAttestorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
-
-    /// See `BinauthzManagementServiceV1Client.listAttestors`.
-    func listAttestors(
-      byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Attestor, Swift.Error>
 
     /// See `BinauthzManagementServiceV1Client.deleteAttestor`.
     func deleteAttestor(
@@ -483,13 +380,21 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     self.listAttestors(byItem: byItem, options: .init())
   }
 
+  /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `INVALID_ARGUMENT` if the project does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
   public func listAttestors(
     byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Attestor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAttestors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

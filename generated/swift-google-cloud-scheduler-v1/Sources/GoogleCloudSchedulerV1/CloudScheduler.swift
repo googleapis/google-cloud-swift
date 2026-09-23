@@ -48,20 +48,6 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
     try await self.inner.listJobs(request: request, options: options)
   }
 
-  /// Lists jobs.
-  ///
-  /// @Snippet(path: "CloudScheduler_ListJobs")
-  public func listJobs(
-    byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudSchedulerV1.ListJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a job.
   ///
   /// @Snippet(path: "CloudScheduler_GetJob")
@@ -175,21 +161,6 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "CloudScheduler_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudScheduler_GetLocation")
@@ -206,100 +177,11 @@ extension Clients {
   /// To mock `CloudSchedulerClient` change your functions to receive
   /// `some CloudSchedulerProtocol` or `any CloudSchedulerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudSchedulerProtocol {
-    /// See `CloudSchedulerClient.listJobs`.
-    func listJobs(request: ListJobsRequest) async throws -> GoogleCloudSchedulerV1.ListJobsResponse
-
-    /// See `CloudSchedulerClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `CloudSchedulerClient.listJobs`.
-    func listJobs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `CloudSchedulerClient.getJob`.
-    func getJob(request: GetJobRequest) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.getJob`.
-    func getJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.createJob`.
-    func createJob(request: CreateJobRequest) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.createJob`.
-    func createJob(
-      parent: Swift.String,
-      job: Job?,
-    ) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.updateJob`.
-    func updateJob(request: UpdateJobRequest) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.updateJob`.
-    func updateJob(
-      job: Job?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.deleteJob`.
-    func deleteJob(request: DeleteJobRequest) async throws
-
-    /// See `CloudSchedulerClient.deleteJob`.
-    func deleteJob(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudSchedulerClient.pauseJob`.
-    func pauseJob(request: PauseJobRequest) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.pauseJob`.
-    func pauseJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.resumeJob`.
-    func resumeJob(request: ResumeJobRequest) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.resumeJob`.
-    func resumeJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.runJob`.
-    func runJob(request: RunJobRequest) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.runJob`.
-    func runJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSchedulerV1.Job
-
-    /// See `CloudSchedulerClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudSchedulerClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `CloudSchedulerClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol CloudSchedulerProtocol: Sendable {
     /// See `CloudSchedulerClient.listJobs`.
     func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.ListJobsResponse
-
-    /// See `CloudSchedulerClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `CloudSchedulerClient.getJob`.
     func getJob(
@@ -341,11 +223,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `CloudSchedulerClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `CloudSchedulerClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -373,11 +250,16 @@ extension Clients.CloudSchedulerProtocol {
     self.listJobs(byItem: byItem, options: .init())
   }
 
+  /// Lists jobs.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudSchedulerV1.ListJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -546,12 +428,17 @@ extension Clients.CloudSchedulerProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

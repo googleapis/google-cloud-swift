@@ -191,29 +191,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of licenses
-    /// available in the specified project. This method does not
-    /// get any licenses that belong to other projects, including licenses attached
-    /// to publicly-available images, like Debian 9. If you want to get a list of
-    /// publicly-available licenses, use this method to make a request to the
-    /// respective image project, such as debian-cloud orwindows-cloud.
-    ///  *Caution* This resource is intended
-    /// for use only by third-party partners who are creatingCloud Marketplace
-    /// images.
-    ///
-    /// @Snippet(path: "licenses_list")
-    public func list(
-      byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<License, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///  *Caution* This resource is intended
@@ -309,74 +286,7 @@
     /// To mock `LicensesClient` change your functions to receive
     /// `some LicensesProtocol` or `any LicensesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol LicensesProtocol {
-      /// See `LicensesClient.delete`.
-      func delete(request: LicensesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `LicensesClient.`get``.
-      func `get`(request: LicensesClient.GetRequest) async throws -> GoogleCloudComputeV1.License
-
-      /// See `LicensesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        license: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.License
-
-      /// See `LicensesClient.getIamPolicy`.
-      func getIamPolicy(request: LicensesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `LicensesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `LicensesClient.insert`.
-      func insert(request: LicensesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `LicensesClient.list`.
-      func list(request: LicensesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.LicensesListResponse
-
-      /// See `LicensesClient.list`.
-      func list(
-        byItem: LicensesClient.ListRequest
-      ) -> any AsyncSequence<License, Swift.Error>
-
-      /// See `LicensesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<License, Swift.Error>
-
-      /// See `LicensesClient.setIamPolicy`.
-      func setIamPolicy(request: LicensesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `LicensesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `LicensesClient.testIamPermissions`.
-      func testIamPermissions(request: LicensesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `LicensesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `LicensesClient.update`.
-      func update(request: LicensesClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol LicensesProtocol: Sendable {
       /// See `LicensesClient.delete`.
       func delete(
         request: LicensesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -401,11 +311,6 @@
       func list(
         request: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.LicensesListResponse
-
-      /// See `LicensesClient.list`.
-      func list(
-        byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<License, Swift.Error>
 
       /// See `LicensesClient.setIamPolicy`.
       func setIamPolicy(
@@ -570,12 +475,25 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of licenses
+    /// available in the specified project. This method does not
+    /// get any licenses that belong to other projects, including licenses attached
+    /// to publicly-available images, like Debian 9. If you want to get a list of
+    /// publicly-available licenses, use this method to make a request to the
+    /// respective image project, such as debian-cloud orwindows-cloud.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_list")
     public func list(
       byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<License, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

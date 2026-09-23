@@ -57,21 +57,6 @@
       try await self.inner.listTestCases(request: request, options: options)
     }
 
-    /// Fetches a list of test cases for a given agent.
-    ///
-    /// @Snippet(path: "TestCases_ListTestCases")
-    public func listTestCases(
-      byItem: ListTestCasesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TestCase, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListTestCasesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTestCases(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Batch deletes test cases.
     ///
     /// @Snippet(path: "TestCases_BatchDeleteTestCases")
@@ -372,23 +357,6 @@
       try await self.inner.listTestCaseResults(request: request, options: options)
     }
 
-    /// Fetches the list of run results for the given test case. A maximum of 100
-    /// results are kept for each test case.
-    ///
-    /// @Snippet(path: "TestCases_ListTestCaseResults")
-    public func listTestCaseResults(
-      byItem: ListTestCaseResultsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TestCaseResult, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListTestCaseResultsResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTestCaseResults(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets a test case result.
     ///
     /// @Snippet(path: "TestCases_GetTestCaseResult")
@@ -424,38 +392,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "TestCases_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "TestCases_GetLocation")
@@ -474,23 +410,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "TestCases_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -522,161 +441,27 @@
     /// To mock `TestCasesClient` change your functions to receive
     /// `some TestCasesProtocol` or `any TestCasesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol TestCasesProtocol {
-      /// See `TestCasesClient.listTestCases`.
-      func listTestCases(request: ListTestCasesRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListTestCasesResponse
-
-      /// See `TestCasesClient.listTestCases`.
-      func listTestCases(
-        byItem: ListTestCasesRequest
-      ) -> any AsyncSequence<TestCase, Swift.Error>
-
-      /// See `TestCasesClient.listTestCases`.
-      func listTestCases(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TestCase, Swift.Error>
-
-      /// See `TestCasesClient.batchDeleteTestCases`.
-      func batchDeleteTestCases(request: BatchDeleteTestCasesRequest) async throws
-
-      /// See `TestCasesClient.batchDeleteTestCases`.
-      func batchDeleteTestCases(
-        parent: Swift.String,
-      ) async throws
-
-      /// See `TestCasesClient.getTestCase`.
-      func getTestCase(request: GetTestCaseRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TestCase
-
-      /// See `TestCasesClient.getTestCase`.
-      func getTestCase(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.TestCase
-
-      /// See `TestCasesClient.createTestCase`.
-      func createTestCase(request: CreateTestCaseRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TestCase
-
-      /// See `TestCasesClient.createTestCase`.
-      func createTestCase(
-        parent: Swift.String,
-        testCase: TestCase?,
-      ) async throws -> GoogleCloudDialogflowCXV3.TestCase
-
-      /// See `TestCasesClient.updateTestCase`.
-      func updateTestCase(request: UpdateTestCaseRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TestCase
-
-      /// See `TestCasesClient.updateTestCase`.
-      func updateTestCase(
-        testCase: TestCase?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.TestCase
-
-      /// See `TestCasesClient.runTestCase`.
-      func runTestCase(request: RunTestCaseRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol TestCasesProtocol: Sendable {
       /// See `TestCasesClient.runTestCase`.
       func runTestCase(withPolling: RunTestCaseRequest) async throws -> any GoogleGax
         .PollableOperation<RunTestCaseResponse>
 
       /// See `TestCasesClient.batchRunTestCases`.
-      func batchRunTestCases(request: BatchRunTestCasesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `TestCasesClient.batchRunTestCases`.
       func batchRunTestCases(withPolling: BatchRunTestCasesRequest) async throws -> any GoogleGax
         .PollableOperation<BatchRunTestCasesResponse>
-
-      /// See `TestCasesClient.calculateCoverage`.
-      func calculateCoverage(request: CalculateCoverageRequest) async throws
-        -> GoogleCloudDialogflowCXV3.CalculateCoverageResponse
-
-      /// See `TestCasesClient.importTestCases`.
-      func importTestCases(request: ImportTestCasesRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `TestCasesClient.importTestCases`.
       func importTestCases(withPolling: ImportTestCasesRequest) async throws -> any GoogleGax
         .PollableOperation<ImportTestCasesResponse>
 
       /// See `TestCasesClient.exportTestCases`.
-      func exportTestCases(request: ExportTestCasesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `TestCasesClient.exportTestCases`.
       func exportTestCases(withPolling: ExportTestCasesRequest) async throws -> any GoogleGax
         .PollableOperation<ExportTestCasesResponse>
-
-      /// See `TestCasesClient.listTestCaseResults`.
-      func listTestCaseResults(request: ListTestCaseResultsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListTestCaseResultsResponse
-
-      /// See `TestCasesClient.listTestCaseResults`.
-      func listTestCaseResults(
-        byItem: ListTestCaseResultsRequest
-      ) -> any AsyncSequence<TestCaseResult, Swift.Error>
-
-      /// See `TestCasesClient.listTestCaseResults`.
-      func listTestCaseResults(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TestCaseResult, Swift.Error>
-
-      /// See `TestCasesClient.getTestCaseResult`.
-      func getTestCaseResult(request: GetTestCaseResultRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TestCaseResult
-
-      /// See `TestCasesClient.getTestCaseResult`.
-      func getTestCaseResult(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.TestCaseResult
-
-      /// See `TestCasesClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `TestCasesClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `TestCasesClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `TestCasesClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `TestCasesClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `TestCasesClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `TestCasesClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `TestCasesClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `TestCasesClient.listTestCases`.
       func listTestCases(
         request: ListTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTestCasesResponse
-
-      /// See `TestCasesClient.listTestCases`.
-      func listTestCases(
-        byItem: ListTestCasesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TestCase, Swift.Error>
 
       /// See `TestCasesClient.batchDeleteTestCases`.
       func batchDeleteTestCases(
@@ -748,11 +533,6 @@
         request: ListTestCaseResultsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTestCaseResultsResponse
 
-      /// See `TestCasesClient.listTestCaseResults`.
-      func listTestCaseResults(
-        byItem: ListTestCaseResultsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TestCaseResult, Swift.Error>
-
       /// See `TestCasesClient.getTestCaseResult`.
       func getTestCaseResult(
         request: GetTestCaseResultRequest, options: GoogleGax.RequestOptions
@@ -763,11 +543,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `TestCasesClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `TestCasesClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -777,11 +552,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `TestCasesClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TestCasesClient.cancelOperation`.
       func cancelOperation(
@@ -810,12 +580,17 @@
       self.listTestCases(byItem: byItem, options: .init())
     }
 
+    /// Fetches a list of test cases for a given agent.
+    ///
+    /// @Snippet(path: "TestCases_ListTestCases")
     public func listTestCases(
       byItem: ListTestCasesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TestCase, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListTestCasesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTestCases(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1059,13 +834,19 @@
       self.listTestCaseResults(byItem: byItem, options: .init())
     }
 
+    /// Fetches the list of run results for the given test case. A maximum of 100
+    /// results are kept for each test case.
+    ///
+    /// @Snippet(path: "TestCases_ListTestCaseResults")
     public func listTestCaseResults(
       byItem: ListTestCaseResultsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TestCaseResult, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListTestCaseResultsResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTestCaseResults(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1118,12 +899,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "TestCases_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1158,12 +961,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TestCases_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

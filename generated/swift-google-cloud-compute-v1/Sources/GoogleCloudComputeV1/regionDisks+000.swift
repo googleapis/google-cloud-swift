@@ -335,21 +335,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of persistent disks contained within
-    /// the specified region.
-    ///
-    /// @Snippet(path: "regionDisks_list")
-    public func list(
-      byItem: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Disk, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Removes resource policies from a regional disk.
     ///
     /// @Snippet(path: "regionDisks_removeResourcePolicies")
@@ -789,119 +774,7 @@
     /// To mock `RegionDisksClient` change your functions to receive
     /// `some RegionDisksProtocol` or `any RegionDisksProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionDisksProtocol {
-      /// See `RegionDisksClient.addResourcePolicies`.
-      func addResourcePolicies(request: RegionDisksClient.AddResourcePoliciesRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.bulkInsert`.
-      func bulkInsert(request: RegionDisksClient.BulkInsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.createSnapshot`.
-      func createSnapshot(request: RegionDisksClient.CreateSnapshotRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.delete`.
-      func delete(request: RegionDisksClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.`get``.
-      func `get`(request: RegionDisksClient.GetRequest) async throws -> GoogleCloudComputeV1.Disk
-
-      /// See `RegionDisksClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        disk: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Disk
-
-      /// See `RegionDisksClient.getIamPolicy`.
-      func getIamPolicy(request: RegionDisksClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionDisksClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionDisksClient.insert`.
-      func insert(request: RegionDisksClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.list`.
-      func list(request: RegionDisksClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.DiskList
-
-      /// See `RegionDisksClient.list`.
-      func list(
-        byItem: RegionDisksClient.ListRequest
-      ) -> any AsyncSequence<Disk, Swift.Error>
-
-      /// See `RegionDisksClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<Disk, Swift.Error>
-
-      /// See `RegionDisksClient.removeResourcePolicies`.
-      func removeResourcePolicies(request: RegionDisksClient.RemoveResourcePoliciesRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.resize`.
-      func resize(request: RegionDisksClient.ResizeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.setIamPolicy`.
-      func setIamPolicy(request: RegionDisksClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionDisksClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionDisksClient.setLabels`.
-      func setLabels(request: RegionDisksClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.startAsyncReplication`.
-      func startAsyncReplication(request: RegionDisksClient.StartAsyncReplicationRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.stopAsyncReplication`.
-      func stopAsyncReplication(request: RegionDisksClient.StopAsyncReplicationRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.stopGroupAsyncReplication`.
-      func stopGroupAsyncReplication(request: RegionDisksClient.StopGroupAsyncReplicationRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.testIamPermissions`.
-      func testIamPermissions(request: RegionDisksClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionDisksClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionDisksClient.update`.
-      func update(request: RegionDisksClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionDisksClient.updateKmsKey`.
-      func updateKmsKey(request: RegionDisksClient.UpdateKmsKeyRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionDisksProtocol: Sendable {
       /// See `RegionDisksClient.addResourcePolicies`.
       func addResourcePolicies(
         request: RegionDisksClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
@@ -941,11 +814,6 @@
       func list(
         request: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskList
-
-      /// See `RegionDisksClient.list`.
-      func list(
-        byItem: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Disk, Swift.Error>
 
       /// See `RegionDisksClient.removeResourcePolicies`.
       func removeResourcePolicies(
@@ -1284,11 +1152,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of persistent disks contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionDisks_list")
     public func list(
       byItem: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Disk, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

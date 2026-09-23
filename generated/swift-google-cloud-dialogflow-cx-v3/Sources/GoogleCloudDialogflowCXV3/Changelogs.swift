@@ -50,21 +50,6 @@
       try await self.inner.listChangelogs(request: request, options: options)
     }
 
-    /// Returns the list of Changelogs.
-    ///
-    /// @Snippet(path: "Changelogs_ListChangelogs")
-    public func listChangelogs(
-      byItem: ListChangelogsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Changelog, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListChangelogsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listChangelogs(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified Changelog.
     ///
     /// @Snippet(path: "Changelogs_GetChangelog")
@@ -100,38 +85,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Changelogs_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Changelogs_GetLocation")
@@ -150,23 +103,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Changelogs_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -198,75 +134,11 @@
     /// To mock `ChangelogsClient` change your functions to receive
     /// `some ChangelogsProtocol` or `any ChangelogsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ChangelogsProtocol {
-      /// See `ChangelogsClient.listChangelogs`.
-      func listChangelogs(request: ListChangelogsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListChangelogsResponse
-
-      /// See `ChangelogsClient.listChangelogs`.
-      func listChangelogs(
-        byItem: ListChangelogsRequest
-      ) -> any AsyncSequence<Changelog, Swift.Error>
-
-      /// See `ChangelogsClient.listChangelogs`.
-      func listChangelogs(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Changelog, Swift.Error>
-
-      /// See `ChangelogsClient.getChangelog`.
-      func getChangelog(request: GetChangelogRequest) async throws
-        -> GoogleCloudDialogflowCXV3.Changelog
-
-      /// See `ChangelogsClient.getChangelog`.
-      func getChangelog(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.Changelog
-
-      /// See `ChangelogsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `ChangelogsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `ChangelogsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `ChangelogsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ChangelogsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ChangelogsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ChangelogsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `ChangelogsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol ChangelogsProtocol: Sendable {
       /// See `ChangelogsClient.listChangelogs`.
       func listChangelogs(
         request: ListChangelogsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListChangelogsResponse
-
-      /// See `ChangelogsClient.listChangelogs`.
-      func listChangelogs(
-        byItem: ListChangelogsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Changelog, Swift.Error>
 
       /// See `ChangelogsClient.getChangelog`.
       func getChangelog(
@@ -278,11 +150,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `ChangelogsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `ChangelogsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -292,11 +159,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ChangelogsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ChangelogsClient.cancelOperation`.
       func cancelOperation(
@@ -325,12 +187,17 @@
       self.listChangelogs(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of Changelogs.
+    ///
+    /// @Snippet(path: "Changelogs_ListChangelogs")
     public func listChangelogs(
       byItem: ListChangelogsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Changelog, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListChangelogsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listChangelogs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -383,12 +250,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Changelogs_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -423,12 +312,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Changelogs_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

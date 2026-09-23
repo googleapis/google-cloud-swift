@@ -99,21 +99,6 @@
       try await self.inner.listFeaturestores(request: request, options: options)
     }
 
-    /// Lists Featurestores in a given project and location.
-    ///
-    /// @Snippet(path: "FeaturestoreService_ListFeaturestores")
-    public func listFeaturestores(
-      byItem: ListFeaturestoresRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Featurestore, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturestoresResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listFeaturestores(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the parameters of a single Featurestore.
     ///
     /// @Snippet(path: "FeaturestoreService_UpdateFeaturestore")
@@ -237,21 +222,6 @@
       request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListEntityTypesResponse {
       try await self.inner.listEntityTypes(request: request, options: options)
-    }
-
-    /// Lists EntityTypes in a given Featurestore.
-    ///
-    /// @Snippet(path: "FeaturestoreService_ListEntityTypes")
-    public func listEntityTypes(
-      byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EntityType, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListEntityTypesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listEntityTypes(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates the parameters of a single EntityType.
@@ -387,21 +357,6 @@
       request: ListFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse {
       try await self.inner.listFeatures(request: request, options: options)
-    }
-
-    /// Lists Features in a given EntityType.
-    ///
-    /// @Snippet(path: "FeaturestoreService_ListFeatures")
-    public func listFeatures(
-      byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Feature, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listFeatures(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates the parameters of a single Feature.
@@ -667,21 +622,6 @@
       try await self.inner.searchFeatures(request: request, options: options)
     }
 
-    /// Searches Features matching a query in a given project.
-    ///
-    /// @Snippet(path: "FeaturestoreService_SearchFeatures")
-    public func searchFeatures(
-      byItem: SearchFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Feature, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.SearchFeaturesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.searchFeatures(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "FeaturestoreService_ListLocations")
@@ -689,21 +629,6 @@
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
       try await self.inner.listLocations(request: request, options: options)
-    }
-
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "FeaturestoreService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Gets information about a location.
@@ -768,23 +693,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "FeaturestoreService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "FeaturestoreService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -832,11 +740,7 @@
     /// To mock `FeaturestoreServiceClient` change your functions to receive
     /// `some FeaturestoreServiceProtocol` or `any FeaturestoreServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol FeaturestoreServiceProtocol {
-      /// See `FeaturestoreServiceClient.createFeaturestore`.
-      func createFeaturestore(request: CreateFeaturestoreRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol FeaturestoreServiceProtocol: Sendable {
       /// See `FeaturestoreServiceClient.createFeaturestore`.
       func createFeaturestore(withPolling: CreateFeaturestoreRequest) async throws -> any GoogleGax
         .PollableOperation<Featurestore>
@@ -854,33 +758,6 @@
         featurestoreId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
-      /// See `FeaturestoreServiceClient.getFeaturestore`.
-      func getFeaturestore(request: GetFeaturestoreRequest) async throws
-        -> GoogleCloudAIPlatformV1.Featurestore
-
-      /// See `FeaturestoreServiceClient.getFeaturestore`.
-      func getFeaturestore(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Featurestore
-
-      /// See `FeaturestoreServiceClient.listFeaturestores`.
-      func listFeaturestores(request: ListFeaturestoresRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListFeaturestoresResponse
-
-      /// See `FeaturestoreServiceClient.listFeaturestores`.
-      func listFeaturestores(
-        byItem: ListFeaturestoresRequest
-      ) -> any AsyncSequence<Featurestore, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.listFeaturestores`.
-      func listFeaturestores(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Featurestore, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.updateFeaturestore`.
-      func updateFeaturestore(request: UpdateFeaturestoreRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(withPolling: UpdateFeaturestoreRequest) async throws -> any GoogleGax
         .PollableOperation<Featurestore>
@@ -890,10 +767,6 @@
         featurestore: Featurestore?,
         updateMask: GoogleWKT.FieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
-
-      /// See `FeaturestoreServiceClient.deleteFeaturestore`.
-      func deleteFeaturestore(request: DeleteFeaturestoreRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
       func deleteFeaturestore(withPolling: DeleteFeaturestoreRequest) async throws -> any GoogleGax
@@ -909,10 +782,6 @@
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `FeaturestoreServiceClient.createEntityType`.
-      func createEntityType(request: CreateEntityTypeRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createEntityType`.
       func createEntityType(withPolling: CreateEntityTypeRequest) async throws -> any GoogleGax
@@ -931,43 +800,6 @@
         entityTypeId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<EntityType>
 
-      /// See `FeaturestoreServiceClient.getEntityType`.
-      func getEntityType(request: GetEntityTypeRequest) async throws
-        -> GoogleCloudAIPlatformV1.EntityType
-
-      /// See `FeaturestoreServiceClient.getEntityType`.
-      func getEntityType(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.EntityType
-
-      /// See `FeaturestoreServiceClient.listEntityTypes`.
-      func listEntityTypes(request: ListEntityTypesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListEntityTypesResponse
-
-      /// See `FeaturestoreServiceClient.listEntityTypes`.
-      func listEntityTypes(
-        byItem: ListEntityTypesRequest
-      ) -> any AsyncSequence<EntityType, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.listEntityTypes`.
-      func listEntityTypes(
-        parent: Swift.String,
-      ) -> any AsyncSequence<EntityType, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.updateEntityType`.
-      func updateEntityType(request: UpdateEntityTypeRequest) async throws
-        -> GoogleCloudAIPlatformV1.EntityType
-
-      /// See `FeaturestoreServiceClient.updateEntityType`.
-      func updateEntityType(
-        entityType: EntityType?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.EntityType
-
-      /// See `FeaturestoreServiceClient.deleteEntityType`.
-      func deleteEntityType(request: DeleteEntityTypeRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `FeaturestoreServiceClient.deleteEntityType`.
       func deleteEntityType(withPolling: DeleteEntityTypeRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
@@ -982,9 +814,6 @@
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `FeaturestoreServiceClient.createFeature`.
-      func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeature`.
       func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
@@ -1004,10 +833,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(request: BatchCreateFeaturesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `FeaturestoreServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
@@ -1016,41 +841,6 @@
         parent: Swift.String,
         requests: [CreateFeatureRequest],
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
-
-      /// See `FeaturestoreServiceClient.getFeature`.
-      func getFeature(request: GetFeatureRequest) async throws -> GoogleCloudAIPlatformV1.Feature
-
-      /// See `FeaturestoreServiceClient.getFeature`.
-      func getFeature(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Feature
-
-      /// See `FeaturestoreServiceClient.listFeatures`.
-      func listFeatures(request: ListFeaturesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListFeaturesResponse
-
-      /// See `FeaturestoreServiceClient.listFeatures`.
-      func listFeatures(
-        byItem: ListFeaturesRequest
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.listFeatures`.
-      func listFeatures(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.updateFeature`.
-      func updateFeature(request: UpdateFeatureRequest) async throws
-        -> GoogleCloudAIPlatformV1.Feature
-
-      /// See `FeaturestoreServiceClient.updateFeature`.
-      func updateFeature(
-        feature: Feature?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.Feature
-
-      /// See `FeaturestoreServiceClient.deleteFeature`.
-      func deleteFeature(request: DeleteFeatureRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
       func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
@@ -1062,10 +852,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
-      func importFeatureValues(request: ImportFeatureValuesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `FeaturestoreServiceClient.importFeatureValues`.
       func importFeatureValues(withPolling: ImportFeatureValuesRequest) async throws
         -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
 
@@ -1073,10 +859,6 @@
       func importFeatureValues(
         entityType: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
-
-      /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
-      func batchReadFeatureValues(request: BatchReadFeatureValuesRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
       func batchReadFeatureValues(withPolling: BatchReadFeatureValuesRequest) async throws
@@ -1088,10 +870,6 @@
       ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
-      func exportFeatureValues(request: ExportFeatureValuesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `FeaturestoreServiceClient.exportFeatureValues`.
       func exportFeatureValues(withPolling: ExportFeatureValuesRequest) async throws
         -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
 
@@ -1101,10 +879,6 @@
       ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
-      func deleteFeatureValues(request: DeleteFeatureValuesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `FeaturestoreServiceClient.deleteFeatureValues`.
       func deleteFeatureValues(withPolling: DeleteFeatureValuesRequest) async throws
         -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
 
@@ -1112,84 +886,6 @@
       func deleteFeatureValues(
         entityType: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
-
-      /// See `FeaturestoreServiceClient.searchFeatures`.
-      func searchFeatures(request: SearchFeaturesRequest) async throws
-        -> GoogleCloudAIPlatformV1.SearchFeaturesResponse
-
-      /// See `FeaturestoreServiceClient.searchFeatures`.
-      func searchFeatures(
-        byItem: SearchFeaturesRequest
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.searchFeatures`.
-      func searchFeatures(
-        location: Swift.String,
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.searchFeatures`.
-      func searchFeatures(
-        location: Swift.String,
-        query: Swift.String,
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `FeaturestoreServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `FeaturestoreServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `FeaturestoreServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `FeaturestoreServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `FeaturestoreServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `FeaturestoreServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `FeaturestoreServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `FeaturestoreServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `FeaturestoreServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `FeaturestoreServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `FeaturestoreServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
       func createFeaturestore(
@@ -1210,11 +906,6 @@
       func listFeaturestores(
         request: ListFeaturestoresRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeaturestoresResponse
-
-      /// See `FeaturestoreServiceClient.listFeaturestores`.
-      func listFeaturestores(
-        byItem: ListFeaturestoresRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Featurestore, Swift.Error>
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(
@@ -1255,11 +946,6 @@
       func listEntityTypes(
         request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListEntityTypesResponse
-
-      /// See `FeaturestoreServiceClient.listEntityTypes`.
-      func listEntityTypes(
-        byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<EntityType, Swift.Error>
 
       /// See `FeaturestoreServiceClient.updateEntityType`.
       func updateEntityType(
@@ -1305,11 +991,6 @@
       func listFeatures(
         request: ListFeaturesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse
-
-      /// See `FeaturestoreServiceClient.listFeatures`.
-      func listFeatures(
-        byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Feature, Swift.Error>
 
       /// See `FeaturestoreServiceClient.updateFeature`.
       func updateFeature(
@@ -1371,20 +1052,10 @@
         request: SearchFeaturesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SearchFeaturesResponse
 
-      /// See `FeaturestoreServiceClient.searchFeatures`.
-      func searchFeatures(
-        byItem: SearchFeaturesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
       /// See `FeaturestoreServiceClient.listLocations`.
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `FeaturestoreServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `FeaturestoreServiceClient.getLocation`.
       func getLocation(
@@ -1410,11 +1081,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `FeaturestoreServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeaturestoreServiceClient.deleteOperation`.
       func deleteOperation(
@@ -1526,12 +1192,17 @@
       self.listFeaturestores(byItem: byItem, options: .init())
     }
 
+    /// Lists Featurestores in a given project and location.
+    ///
+    /// @Snippet(path: "FeaturestoreService_ListFeaturestores")
     public func listFeaturestores(
       byItem: ListFeaturestoresRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Featurestore, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturestoresResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listFeaturestores(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1723,12 +1394,17 @@
       self.listEntityTypes(byItem: byItem, options: .init())
     }
 
+    /// Lists EntityTypes in a given Featurestore.
+    ///
+    /// @Snippet(path: "FeaturestoreService_ListEntityTypes")
     public func listEntityTypes(
       byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<EntityType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListEntityTypesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listEntityTypes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1944,12 +1620,17 @@
       self.listFeatures(byItem: byItem, options: .init())
     }
 
+    /// Lists Features in a given EntityType.
+    ///
+    /// @Snippet(path: "FeaturestoreService_ListFeatures")
     public func listFeatures(
       byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Feature, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listFeatures(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2193,12 +1874,17 @@
       self.searchFeatures(byItem: byItem, options: .init())
     }
 
+    /// Searches Features matching a query in a given project.
+    ///
+    /// @Snippet(path: "FeaturestoreService_SearchFeatures")
     public func searchFeatures(
       byItem: SearchFeaturesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Feature, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.SearchFeaturesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.searchFeatures(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2241,12 +1927,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "FeaturestoreService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2317,12 +2008,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeaturestoreService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

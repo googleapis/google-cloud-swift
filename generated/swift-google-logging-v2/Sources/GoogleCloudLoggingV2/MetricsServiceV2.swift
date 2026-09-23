@@ -46,21 +46,6 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
     try await self.inner.listLogMetrics(request: request, options: options)
   }
 
-  /// Lists logs-based metrics.
-  ///
-  /// @Snippet(path: "MetricsServiceV2_ListLogMetrics")
-  public func listLogMetrics(
-    byItem: ListLogMetricsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogMetric, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLogMetrics(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a logs-based metric.
   ///
   /// @Snippet(path: "MetricsServiceV2_GetLogMetric")
@@ -112,23 +97,6 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "MetricsServiceV2_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "MetricsServiceV2_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -154,89 +122,11 @@ extension Clients {
   /// To mock `MetricsServiceV2Client` change your functions to receive
   /// `some MetricsServiceV2Protocol` or `any MetricsServiceV2Protocol`
   /// and pass a mock implementation in your tests.
-  public protocol MetricsServiceV2Protocol {
-    /// See `MetricsServiceV2Client.listLogMetrics`.
-    func listLogMetrics(request: ListLogMetricsRequest) async throws
-      -> GoogleCloudLoggingV2.ListLogMetricsResponse
-
-    /// See `MetricsServiceV2Client.listLogMetrics`.
-    func listLogMetrics(
-      byItem: ListLogMetricsRequest
-    ) -> any AsyncSequence<LogMetric, Swift.Error>
-
-    /// See `MetricsServiceV2Client.listLogMetrics`.
-    func listLogMetrics(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LogMetric, Swift.Error>
-
-    /// See `MetricsServiceV2Client.getLogMetric`.
-    func getLogMetric(request: GetLogMetricRequest) async throws -> GoogleCloudLoggingV2.LogMetric
-
-    /// See `MetricsServiceV2Client.getLogMetric`.
-    func getLogMetric(
-      metricName: Swift.String,
-    ) async throws -> GoogleCloudLoggingV2.LogMetric
-
-    /// See `MetricsServiceV2Client.createLogMetric`.
-    func createLogMetric(request: CreateLogMetricRequest) async throws
-      -> GoogleCloudLoggingV2.LogMetric
-
-    /// See `MetricsServiceV2Client.createLogMetric`.
-    func createLogMetric(
-      parent: Swift.String,
-      metric: LogMetric?,
-    ) async throws -> GoogleCloudLoggingV2.LogMetric
-
-    /// See `MetricsServiceV2Client.updateLogMetric`.
-    func updateLogMetric(request: UpdateLogMetricRequest) async throws
-      -> GoogleCloudLoggingV2.LogMetric
-
-    /// See `MetricsServiceV2Client.updateLogMetric`.
-    func updateLogMetric(
-      metricName: Swift.String,
-      metric: LogMetric?,
-    ) async throws -> GoogleCloudLoggingV2.LogMetric
-
-    /// See `MetricsServiceV2Client.deleteLogMetric`.
-    func deleteLogMetric(request: DeleteLogMetricRequest) async throws
-
-    /// See `MetricsServiceV2Client.deleteLogMetric`.
-    func deleteLogMetric(
-      metricName: Swift.String,
-    ) async throws
-
-    /// See `MetricsServiceV2Client.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `MetricsServiceV2Client.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `MetricsServiceV2Client.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `MetricsServiceV2Client.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `MetricsServiceV2Client.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol MetricsServiceV2Protocol: Sendable {
     /// See `MetricsServiceV2Client.listLogMetrics`.
     func listLogMetrics(
       request: ListLogMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse
-
-    /// See `MetricsServiceV2Client.listLogMetrics`.
-    func listLogMetrics(
-      byItem: ListLogMetricsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LogMetric, Swift.Error>
 
     /// See `MetricsServiceV2Client.getLogMetric`.
     func getLogMetric(
@@ -262,11 +152,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `MetricsServiceV2Client.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MetricsServiceV2Client.cancelOperation`.
     func cancelOperation(
@@ -295,12 +180,17 @@ extension Clients.MetricsServiceV2Protocol {
     self.listLogMetrics(byItem: byItem, options: .init())
   }
 
+  /// Lists logs-based metrics.
+  ///
+  /// @Snippet(path: "MetricsServiceV2_ListLogMetrics")
   public func listLogMetrics(
     byItem: ListLogMetricsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogMetric, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLogMetrics(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -418,12 +308,19 @@ extension Clients.MetricsServiceV2Protocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MetricsServiceV2_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

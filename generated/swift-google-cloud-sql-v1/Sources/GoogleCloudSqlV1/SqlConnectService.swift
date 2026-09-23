@@ -75,19 +75,7 @@
     /// To mock `SqlConnectServiceClient` change your functions to receive
     /// `some SqlConnectServiceProtocol` or `any SqlConnectServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlConnectServiceProtocol {
-      /// See `SqlConnectServiceClient.getConnectSettings`.
-      func getConnectSettings(request: GetConnectSettingsRequest) async throws
-        -> GoogleCloudSqlV1.ConnectSettings
-
-      /// See `SqlConnectServiceClient.resolveConnectSettings`.
-      func resolveConnectSettings(request: ResolveConnectSettingsRequest) async throws
-        -> GoogleCloudSqlV1.ConnectSettings
-
-      /// See `SqlConnectServiceClient.generateEphemeralCert`.
-      func generateEphemeralCert(request: GenerateEphemeralCertRequest) async throws
-        -> GoogleCloudSqlV1.GenerateEphemeralCertResponse
-
+    public protocol SqlConnectServiceProtocol: Sendable {
       /// See `SqlConnectServiceClient.getConnectSettings`.
       func getConnectSettings(
         request: GetConnectSettingsRequest, options: GoogleGax.RequestOptions

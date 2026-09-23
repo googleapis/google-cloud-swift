@@ -101,22 +101,6 @@
       try await self.inner.listPersistentResources(request: request, options: options)
     }
 
-    /// Lists PersistentResources in a Location.
-    ///
-    /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
-    public func listPersistentResources(
-      byItem: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PersistentResource, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listPersistentResources(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
@@ -231,21 +215,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "PersistentResourceService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "PersistentResourceService_GetLocation")
@@ -308,23 +277,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "PersistentResourceService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "PersistentResourceService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -372,11 +324,7 @@
     /// To mock `PersistentResourceServiceClient` change your functions to receive
     /// `some PersistentResourceServiceProtocol` or `any PersistentResourceServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol PersistentResourceServiceProtocol {
-      /// See `PersistentResourceServiceClient.createPersistentResource`.
-      func createPersistentResource(request: CreatePersistentResourceRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol PersistentResourceServiceProtocol: Sendable {
       /// See `PersistentResourceServiceClient.createPersistentResource`.
       func createPersistentResource(withPolling: CreatePersistentResourceRequest) async throws
         -> any GoogleGax.PollableOperation<PersistentResource>
@@ -388,33 +336,6 @@
         persistentResourceId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
-      /// See `PersistentResourceServiceClient.getPersistentResource`.
-      func getPersistentResource(request: GetPersistentResourceRequest) async throws
-        -> GoogleCloudAIPlatformV1.PersistentResource
-
-      /// See `PersistentResourceServiceClient.getPersistentResource`.
-      func getPersistentResource(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.PersistentResource
-
-      /// See `PersistentResourceServiceClient.listPersistentResources`.
-      func listPersistentResources(request: ListPersistentResourcesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse
-
-      /// See `PersistentResourceServiceClient.listPersistentResources`.
-      func listPersistentResources(
-        byItem: ListPersistentResourcesRequest
-      ) -> any AsyncSequence<PersistentResource, Swift.Error>
-
-      /// See `PersistentResourceServiceClient.listPersistentResources`.
-      func listPersistentResources(
-        parent: Swift.String,
-      ) -> any AsyncSequence<PersistentResource, Swift.Error>
-
-      /// See `PersistentResourceServiceClient.deletePersistentResource`.
-      func deletePersistentResource(request: DeletePersistentResourceRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `PersistentResourceServiceClient.deletePersistentResource`.
       func deletePersistentResource(withPolling: DeletePersistentResourceRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
@@ -423,10 +344,6 @@
       func deletePersistentResource(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PersistentResourceServiceClient.updatePersistentResource`.
-      func updatePersistentResource(request: UpdatePersistentResourceRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
       func updatePersistentResource(withPolling: UpdatePersistentResourceRequest) async throws
@@ -439,10 +356,6 @@
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
-      func rebootPersistentResource(request: RebootPersistentResourceRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `PersistentResourceServiceClient.rebootPersistentResource`.
       func rebootPersistentResource(withPolling: RebootPersistentResourceRequest) async throws
         -> any GoogleGax.PollableOperation<PersistentResource>
 
@@ -450,64 +363,6 @@
       func rebootPersistentResource(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `PersistentResourceServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `PersistentResourceServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `PersistentResourceServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `PersistentResourceServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `PersistentResourceServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `PersistentResourceServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `PersistentResourceServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `PersistentResourceServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `PersistentResourceServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `PersistentResourceServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PersistentResourceServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `PersistentResourceServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PersistentResourceServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `PersistentResourceServiceClient.createPersistentResource`.
       func createPersistentResource(
@@ -528,11 +383,6 @@
       func listPersistentResources(
         request: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse
-
-      /// See `PersistentResourceServiceClient.listPersistentResources`.
-      func listPersistentResources(
-        byItem: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<PersistentResource, Swift.Error>
 
       /// See `PersistentResourceServiceClient.deletePersistentResource`.
       func deletePersistentResource(
@@ -569,11 +419,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `PersistentResourceServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `PersistentResourceServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -598,11 +443,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `PersistentResourceServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PersistentResourceServiceClient.deleteOperation`.
       func deleteOperation(
@@ -703,13 +543,18 @@
       self.listPersistentResources(byItem: byItem, options: .init())
     }
 
+    /// Lists PersistentResources in a Location.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
     public func listPersistentResources(
       byItem: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<PersistentResource, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listPersistentResources(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -854,12 +699,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -930,12 +780,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

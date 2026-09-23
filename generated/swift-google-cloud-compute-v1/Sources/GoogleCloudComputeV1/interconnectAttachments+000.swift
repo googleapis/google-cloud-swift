@@ -57,25 +57,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of interconnect attachments.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "interconnectAttachments_aggregatedList")
-    public func aggregatedList(
-      byItem: InterconnectAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified interconnect attachment.
     ///
     /// @Snippet(path: "interconnectAttachments_delete")
@@ -193,22 +174,6 @@
       request: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList {
       try await self.inner.list(request: request, options: options)
-    }
-
-    /// Retrieves the list of interconnect attachments contained within
-    /// the specified region.
-    ///
-    /// @Snippet(path: "interconnectAttachments_list")
-    public func list(
-      byItem: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates the specified interconnect attachment with the data included in the
@@ -335,74 +300,12 @@
     /// To mock `InterconnectAttachmentsClient` change your functions to receive
     /// `some InterconnectAttachmentsProtocol` or `any InterconnectAttachmentsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InterconnectAttachmentsProtocol {
-      /// See `InterconnectAttachmentsClient.aggregatedList`.
-      func aggregatedList(request: InterconnectAttachmentsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList
-
-      /// See `InterconnectAttachmentsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: InterconnectAttachmentsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
-
-      /// See `InterconnectAttachmentsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
-
-      /// See `InterconnectAttachmentsClient.delete`.
-      func delete(request: InterconnectAttachmentsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectAttachmentsClient.`get``.
-      func `get`(request: InterconnectAttachmentsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachment
-
-      /// See `InterconnectAttachmentsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        interconnectAttachment: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectAttachment
-
-      /// See `InterconnectAttachmentsClient.insert`.
-      func insert(request: InterconnectAttachmentsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectAttachmentsClient.list`.
-      func list(request: InterconnectAttachmentsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachmentList
-
-      /// See `InterconnectAttachmentsClient.list`.
-      func list(
-        byItem: InterconnectAttachmentsClient.ListRequest
-      ) -> any AsyncSequence<InterconnectAttachment, Swift.Error>
-
-      /// See `InterconnectAttachmentsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<InterconnectAttachment, Swift.Error>
-
-      /// See `InterconnectAttachmentsClient.patch`.
-      func patch(request: InterconnectAttachmentsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectAttachmentsClient.setLabels`.
-      func setLabels(request: InterconnectAttachmentsClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol InterconnectAttachmentsProtocol: Sendable {
       /// See `InterconnectAttachmentsClient.aggregatedList`.
       func aggregatedList(
         request: InterconnectAttachmentsClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList
-
-      /// See `InterconnectAttachmentsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: InterconnectAttachmentsClient.AggregatedListRequest,
-        options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
 
       /// See `InterconnectAttachmentsClient.delete`.
       func delete(
@@ -423,11 +326,6 @@
       func list(
         request: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList
-
-      /// See `InterconnectAttachmentsClient.list`.
-      func list(
-        byItem: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InterconnectAttachment, Swift.Error>
 
       /// See `InterconnectAttachmentsClient.patch`.
       func patch(
@@ -462,13 +360,21 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of interconnect attachments.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "interconnectAttachments_aggregatedList")
     public func aggregatedList(
       byItem: InterconnectAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -609,12 +515,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of interconnect attachments contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "interconnectAttachments_list")
     public func list(
       byItem: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

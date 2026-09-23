@@ -56,22 +56,6 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
     try await self.inner.listOperations(request: request, options: options)
   }
 
-  /// Lists operations that match the specified filter in the request. If the
-  /// server doesn't support this method, it returns `UNIMPLEMENTED`.
-  ///
-  /// @Snippet(path: "Operations_ListOperations")
-  public func listOperations(
-    byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the latest state of a long-running operation.  Clients can use this
   /// method to poll the operation result at intervals as recommended by the API
   /// service.
@@ -125,55 +109,11 @@ extension Clients {
   /// To mock `OperationsClient` change your functions to receive
   /// `some OperationsProtocol` or `any OperationsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol OperationsProtocol {
-    /// See `OperationsClient.listOperations`.
-    func listOperations(request: ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `OperationsClient.listOperations`.
-    func listOperations(
-      byItem: ListOperationsRequest
-    ) -> any AsyncSequence<Operation, Swift.Error>
-
-    /// See `OperationsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Operation, Swift.Error>
-
-    /// See `OperationsClient.getOperation`.
-    func getOperation(request: GetOperationRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `OperationsClient.getOperation`.
-    func getOperation(
-      name: Swift.String,
-    ) async throws -> GoogleLongRunning.Operation
-
-    /// See `OperationsClient.deleteOperation`.
-    func deleteOperation(request: DeleteOperationRequest) async throws
-
-    /// See `OperationsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `OperationsClient.cancelOperation`.
-    func cancelOperation(request: CancelOperationRequest) async throws
-
-    /// See `OperationsClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol OperationsProtocol: Sendable {
     /// See `OperationsClient.listOperations`.
     func listOperations(
       request: ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `OperationsClient.listOperations`.
-    func listOperations(
-      byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error>
 
     /// See `OperationsClient.getOperation`.
     func getOperation(
@@ -212,12 +152,18 @@ extension Clients.OperationsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Lists operations that match the specified filter in the request. If the
+  /// server doesn't support this method, it returns `UNIMPLEMENTED`.
+  ///
+  /// @Snippet(path: "Operations_ListOperations")
   public func listOperations(
     byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

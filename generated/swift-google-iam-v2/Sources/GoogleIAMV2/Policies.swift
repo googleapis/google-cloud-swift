@@ -54,24 +54,6 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
     try await self.inner.listPolicies(request: request, options: options)
   }
 
-  /// Retrieves the policies of the specified kind that are attached to a
-  /// resource.
-  ///
-  /// The response lists only policy metadata. In particular, policy rules are
-  /// omitted.
-  ///
-  /// @Snippet(path: "Policies_ListPolicies")
-  public func listPolicies(
-    byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Policy, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a policy.
   ///
   /// @Snippet(path: "Policies_GetPolicy")
@@ -225,31 +207,7 @@ extension Clients {
   /// To mock `PoliciesClient` change your functions to receive
   /// `some PoliciesProtocol` or `any PoliciesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PoliciesProtocol {
-    /// See `PoliciesClient.listPolicies`.
-    func listPolicies(request: ListPoliciesRequest) async throws -> GoogleIAMV2.ListPoliciesResponse
-
-    /// See `PoliciesClient.listPolicies`.
-    func listPolicies(
-      byItem: ListPoliciesRequest
-    ) -> any AsyncSequence<Policy, Swift.Error>
-
-    /// See `PoliciesClient.listPolicies`.
-    func listPolicies(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Policy, Swift.Error>
-
-    /// See `PoliciesClient.getPolicy`.
-    func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy
-
-    /// See `PoliciesClient.getPolicy`.
-    func getPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleIAMV2.Policy
-
-    /// See `PoliciesClient.createPolicy`.
-    func createPolicy(request: CreatePolicyRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol PoliciesProtocol: Sendable {
     /// See `PoliciesClient.createPolicy`.
     func createPolicy(withPolling: CreatePolicyRequest) async throws -> any GoogleGax
       .PollableOperation<Policy>
@@ -262,14 +220,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Policy>
 
     /// See `PoliciesClient.updatePolicy`.
-    func updatePolicy(request: UpdatePolicyRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `PoliciesClient.updatePolicy`.
     func updatePolicy(withPolling: UpdatePolicyRequest) async throws -> any GoogleGax
       .PollableOperation<Policy>
-
-    /// See `PoliciesClient.deletePolicy`.
-    func deletePolicy(request: DeletePolicyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `PoliciesClient.deletePolicy`.
     func deletePolicy(withPolling: DeletePolicyRequest) async throws -> any GoogleGax
@@ -284,11 +236,6 @@ extension Clients {
     func listPolicies(
       request: ListPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV2.ListPoliciesResponse
-
-    /// See `PoliciesClient.listPolicies`.
-    func listPolicies(
-      byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.getPolicy`.
     func getPolicy(
@@ -347,11 +294,20 @@ extension Clients.PoliciesProtocol {
     self.listPolicies(byItem: byItem, options: .init())
   }
 
+  /// Retrieves the policies of the specified kind that are attached to a
+  /// resource.
+  ///
+  /// The response lists only policy metadata. In particular, policy rules are
+  /// omitted.
+  ///
+  /// @Snippet(path: "Policies_ListPolicies")
   public func listPolicies(
     byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

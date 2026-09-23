@@ -52,21 +52,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
-  /// Lists Instances in a given project and location.
-  ///
-  /// @Snippet(path: "Memorystore_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "Memorystore_GetInstance")
@@ -248,26 +233,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     try await self.inner.listBackupCollections(request: request, options: options)
   }
 
-  /// Lists all backup collections owned by a consumer project in either the
-  /// specified location (region) or all locations.
-  ///
-  /// If `location_id` is specified as `-` (wildcard), then all regions
-  /// available to the project are queried, and the results are aggregated.
-  ///
-  /// @Snippet(path: "Memorystore_ListBackupCollections")
-  public func listBackupCollections(
-    byItem: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupCollection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBackupCollections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get a backup collection.
   ///
   /// @Snippet(path: "Memorystore_GetBackupCollection")
@@ -284,21 +249,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
     try await self.inner.listBackups(request: request, options: options)
-  }
-
-  /// Lists all backups owned by a backup collection.
-  ///
-  /// @Snippet(path: "Memorystore_ListBackups")
-  public func listBackups(
-    byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBackups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the details of a specific backup.
@@ -539,21 +489,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     try await self.inner.listTokenAuthUsers(request: request, options: options)
   }
 
-  /// Lists all the token auth users for a token based auth enabled instance.
-  ///
-  /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
-  public func listTokenAuthUsers(
-    byItem: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TokenAuthUser, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTokenAuthUsers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a specific token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_GetTokenAuthUser")
@@ -570,21 +505,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
     try await self.inner.listAuthTokens(request: request, options: options)
-  }
-
-  /// Lists all the auth tokens for a specific token auth user.
-  ///
-  /// @Snippet(path: "Memorystore_ListAuthTokens")
-  public func listAuthTokens(
-    byItem: ListAuthTokensRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AuthToken, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAuthTokens(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a token based auth enabled instance's auth token for a given user.
@@ -762,38 +682,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "Memorystore_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Memorystore_GetLocation")
@@ -812,23 +700,6 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Memorystore_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -871,32 +742,7 @@ extension Clients {
   /// To mock `MemorystoreClient` change your functions to receive
   /// `some MemorystoreProtocol` or `any MemorystoreProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol MemorystoreProtocol {
-    /// See `MemorystoreClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudMemoryStoreV1.ListInstancesResponse
-
-    /// See `MemorystoreClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `MemorystoreClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `MemorystoreClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudMemoryStoreV1.Instance
-
-    /// See `MemorystoreClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.Instance
-
-    /// See `MemorystoreClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol MemorystoreProtocol: Sendable {
     /// See `MemorystoreClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
@@ -909,9 +755,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `MemorystoreClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -922,9 +765,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `MemorystoreClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -932,29 +772,6 @@ extension Clients {
     func deleteInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `MemorystoreClient.getCertificateAuthority`.
-    func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
-      -> GoogleCloudMemoryStoreV1.CertificateAuthority
-
-    /// See `MemorystoreClient.getCertificateAuthority`.
-    func getCertificateAuthority(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority
-
-    /// See `MemorystoreClient.getSharedRegionalCertificateAuthority`.
-    func getSharedRegionalCertificateAuthority(
-      request: GetSharedRegionalCertificateAuthorityRequest
-    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
-
-    /// See `MemorystoreClient.getSharedRegionalCertificateAuthority`.
-    func getSharedRegionalCertificateAuthority(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
-
-    /// See `MemorystoreClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.rescheduleMaintenance`.
     func rescheduleMaintenance(withPolling: RescheduleMaintenanceRequest) async throws
@@ -967,54 +784,6 @@ extension Clients {
       scheduleTime: GoogleWKT.Timestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
-    /// See `MemorystoreClient.listBackupCollections`.
-    func listBackupCollections(request: ListBackupCollectionsRequest) async throws
-      -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
-
-    /// See `MemorystoreClient.listBackupCollections`.
-    func listBackupCollections(
-      byItem: ListBackupCollectionsRequest
-    ) -> any AsyncSequence<BackupCollection, Swift.Error>
-
-    /// See `MemorystoreClient.listBackupCollections`.
-    func listBackupCollections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<BackupCollection, Swift.Error>
-
-    /// See `MemorystoreClient.getBackupCollection`.
-    func getBackupCollection(request: GetBackupCollectionRequest) async throws
-      -> GoogleCloudMemoryStoreV1.BackupCollection
-
-    /// See `MemorystoreClient.getBackupCollection`.
-    func getBackupCollection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection
-
-    /// See `MemorystoreClient.listBackups`.
-    func listBackups(request: ListBackupsRequest) async throws
-      -> GoogleCloudMemoryStoreV1.ListBackupsResponse
-
-    /// See `MemorystoreClient.listBackups`.
-    func listBackups(
-      byItem: ListBackupsRequest
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
-    /// See `MemorystoreClient.listBackups`.
-    func listBackups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
-    /// See `MemorystoreClient.getBackup`.
-    func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMemoryStoreV1.Backup
-
-    /// See `MemorystoreClient.getBackup`.
-    func getBackup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.Backup
-
-    /// See `MemorystoreClient.deleteBackup`.
-    func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `MemorystoreClient.deleteBackup`.
     func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
@@ -1025,14 +794,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.exportBackup`.
-    func exportBackup(request: ExportBackupRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `MemorystoreClient.exportBackup`.
     func exportBackup(withPolling: ExportBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Backup>
-
-    /// See `MemorystoreClient.backupInstance`.
-    func backupInstance(request: BackupInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.backupInstance`.
     func backupInstance(withPolling: BackupInstanceRequest) async throws -> any GoogleGax
@@ -1044,15 +807,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.startMigration`.
-    func startMigration(request: StartMigrationRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `MemorystoreClient.startMigration`.
     func startMigration(withPolling: StartMigrationRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
-
-    /// See `MemorystoreClient.finishMigration`.
-    func finishMigration(request: FinishMigrationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.finishMigration`.
     func finishMigration(withPolling: FinishMigrationRequest) async throws -> any GoogleGax
@@ -1063,56 +819,6 @@ extension Clients {
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `MemorystoreClient.listTokenAuthUsers`.
-    func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
-      -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
-
-    /// See `MemorystoreClient.listTokenAuthUsers`.
-    func listTokenAuthUsers(
-      byItem: ListTokenAuthUsersRequest
-    ) -> any AsyncSequence<TokenAuthUser, Swift.Error>
-
-    /// See `MemorystoreClient.listTokenAuthUsers`.
-    func listTokenAuthUsers(
-      parent: Swift.String,
-    ) -> any AsyncSequence<TokenAuthUser, Swift.Error>
-
-    /// See `MemorystoreClient.getTokenAuthUser`.
-    func getTokenAuthUser(request: GetTokenAuthUserRequest) async throws
-      -> GoogleCloudMemoryStoreV1.TokenAuthUser
-
-    /// See `MemorystoreClient.getTokenAuthUser`.
-    func getTokenAuthUser(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser
-
-    /// See `MemorystoreClient.listAuthTokens`.
-    func listAuthTokens(request: ListAuthTokensRequest) async throws
-      -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
-
-    /// See `MemorystoreClient.listAuthTokens`.
-    func listAuthTokens(
-      byItem: ListAuthTokensRequest
-    ) -> any AsyncSequence<AuthToken, Swift.Error>
-
-    /// See `MemorystoreClient.listAuthTokens`.
-    func listAuthTokens(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AuthToken, Swift.Error>
-
-    /// See `MemorystoreClient.getAuthToken`.
-    func getAuthToken(request: GetAuthTokenRequest) async throws
-      -> GoogleCloudMemoryStoreV1.AuthToken
-
-    /// See `MemorystoreClient.getAuthToken`.
-    func getAuthToken(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMemoryStoreV1.AuthToken
-
-    /// See `MemorystoreClient.addTokenAuthUser`.
-    func addTokenAuthUser(request: AddTokenAuthUserRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.addTokenAuthUser`.
     func addTokenAuthUser(withPolling: AddTokenAuthUserRequest) async throws -> any GoogleGax
@@ -1125,10 +831,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteTokenAuthUser`.
-    func deleteTokenAuthUser(request: DeleteTokenAuthUserRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `MemorystoreClient.deleteTokenAuthUser`.
     func deleteTokenAuthUser(withPolling: DeleteTokenAuthUserRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1136,9 +838,6 @@ extension Clients {
     func deleteTokenAuthUser(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `MemorystoreClient.addAuthToken`.
-    func addAuthToken(request: AddAuthTokenRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.addAuthToken`.
     func addAuthToken(withPolling: AddAuthTokenRequest) async throws -> any GoogleGax
@@ -1151,10 +850,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<TokenAuthUser>
 
     /// See `MemorystoreClient.deleteAuthToken`.
-    func deleteAuthToken(request: DeleteAuthTokenRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `MemorystoreClient.deleteAuthToken`.
     func deleteAuthToken(withPolling: DeleteAuthTokenRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1163,59 +858,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `MemorystoreClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `MemorystoreClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `MemorystoreClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `MemorystoreClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `MemorystoreClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `MemorystoreClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `MemorystoreClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `MemorystoreClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `MemorystoreClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `MemorystoreClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `MemorystoreClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse
-
-    /// See `MemorystoreClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `MemorystoreClient.getInstance`.
     func getInstance(
@@ -1277,11 +923,6 @@ extension Clients {
       request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
 
-    /// See `MemorystoreClient.listBackupCollections`.
-    func listBackupCollections(
-      byItem: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackupCollection, Swift.Error>
-
     /// See `MemorystoreClient.getBackupCollection`.
     func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleGax.RequestOptions
@@ -1291,11 +932,6 @@ extension Clients {
     func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse
-
-    /// See `MemorystoreClient.listBackups`.
-    func listBackups(
-      byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `MemorystoreClient.getBackup`.
     func getBackup(
@@ -1357,11 +993,6 @@ extension Clients {
       request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
 
-    /// See `MemorystoreClient.listTokenAuthUsers`.
-    func listTokenAuthUsers(
-      byItem: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TokenAuthUser, Swift.Error>
-
     /// See `MemorystoreClient.getTokenAuthUser`.
     func getTokenAuthUser(
       request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
@@ -1371,11 +1002,6 @@ extension Clients {
     func listAuthTokens(
       request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
-
-    /// See `MemorystoreClient.listAuthTokens`.
-    func listAuthTokens(
-      byItem: ListAuthTokensRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AuthToken, Swift.Error>
 
     /// See `MemorystoreClient.getAuthToken`.
     func getAuthToken(
@@ -1427,11 +1053,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `MemorystoreClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `MemorystoreClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1441,11 +1062,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `MemorystoreClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `MemorystoreClient.deleteOperation`.
     func deleteOperation(
@@ -1479,12 +1095,17 @@ extension Clients.MemorystoreProtocol {
     self.listInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1737,13 +1358,22 @@ extension Clients.MemorystoreProtocol {
     self.listBackupCollections(byItem: byItem, options: .init())
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackupCollections")
   public func listBackupCollections(
     byItem: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BackupCollection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBackupCollections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1796,12 +1426,17 @@ extension Clients.MemorystoreProtocol {
     self.listBackups(byItem: byItem, options: .init())
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBackups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2019,12 +1654,17 @@ extension Clients.MemorystoreProtocol {
     self.listTokenAuthUsers(byItem: byItem, options: .init())
   }
 
+  /// Lists all the token auth users for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
   public func listTokenAuthUsers(
     byItem: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TokenAuthUser, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTokenAuthUsers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2077,12 +1717,17 @@ extension Clients.MemorystoreProtocol {
     self.listAuthTokens(byItem: byItem, options: .init())
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "Memorystore_ListAuthTokens")
   public func listAuthTokens(
     byItem: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AuthToken, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAuthTokens(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2286,12 +1931,34 @@ extension Clients.MemorystoreProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Memorystore_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2326,12 +1993,19 @@ extension Clients.MemorystoreProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

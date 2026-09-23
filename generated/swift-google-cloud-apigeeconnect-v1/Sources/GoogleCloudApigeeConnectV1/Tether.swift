@@ -45,7 +45,7 @@ extension Clients {
   /// To mock `TetherClient` change your functions to receive
   /// `some TetherProtocol` or `any TetherProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TetherProtocol {
+  public protocol TetherProtocol: Sendable {
   }
 }
 

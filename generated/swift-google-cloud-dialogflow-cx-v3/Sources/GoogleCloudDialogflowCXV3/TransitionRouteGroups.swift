@@ -53,22 +53,6 @@
       try await self.inner.listTransitionRouteGroups(request: request, options: options)
     }
 
-    /// Returns the list of all transition route groups in the specified flow.
-    ///
-    /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
-    public func listTransitionRouteGroups(
-      byItem: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTransitionRouteGroups(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified
     /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
     ///
@@ -156,38 +140,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "TransitionRouteGroups_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "TransitionRouteGroups_GetLocation")
@@ -206,23 +158,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "TransitionRouteGroups_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -254,103 +189,11 @@
     /// To mock `TransitionRouteGroupsClient` change your functions to receive
     /// `some TransitionRouteGroupsProtocol` or `any TransitionRouteGroupsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol TransitionRouteGroupsProtocol {
-      /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
-      func listTransitionRouteGroups(request: ListTransitionRouteGroupsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse
-
-      /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
-      func listTransitionRouteGroups(
-        byItem: ListTransitionRouteGroupsRequest
-      ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
-
-      /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
-      func listTransitionRouteGroups(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
-
-      /// See `TransitionRouteGroupsClient.getTransitionRouteGroup`.
-      func getTransitionRouteGroup(request: GetTransitionRouteGroupRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
-
-      /// See `TransitionRouteGroupsClient.getTransitionRouteGroup`.
-      func getTransitionRouteGroup(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
-
-      /// See `TransitionRouteGroupsClient.createTransitionRouteGroup`.
-      func createTransitionRouteGroup(request: CreateTransitionRouteGroupRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
-
-      /// See `TransitionRouteGroupsClient.createTransitionRouteGroup`.
-      func createTransitionRouteGroup(
-        parent: Swift.String,
-        transitionRouteGroup: TransitionRouteGroup?,
-      ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
-
-      /// See `TransitionRouteGroupsClient.updateTransitionRouteGroup`.
-      func updateTransitionRouteGroup(request: UpdateTransitionRouteGroupRequest) async throws
-        -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
-
-      /// See `TransitionRouteGroupsClient.updateTransitionRouteGroup`.
-      func updateTransitionRouteGroup(
-        transitionRouteGroup: TransitionRouteGroup?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
-
-      /// See `TransitionRouteGroupsClient.deleteTransitionRouteGroup`.
-      func deleteTransitionRouteGroup(request: DeleteTransitionRouteGroupRequest) async throws
-
-      /// See `TransitionRouteGroupsClient.deleteTransitionRouteGroup`.
-      func deleteTransitionRouteGroup(
-        name: Swift.String,
-      ) async throws
-
-      /// See `TransitionRouteGroupsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `TransitionRouteGroupsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `TransitionRouteGroupsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `TransitionRouteGroupsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `TransitionRouteGroupsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `TransitionRouteGroupsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `TransitionRouteGroupsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `TransitionRouteGroupsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol TransitionRouteGroupsProtocol: Sendable {
       /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
       func listTransitionRouteGroups(
         request: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse
-
-      /// See `TransitionRouteGroupsClient.listTransitionRouteGroups`.
-      func listTransitionRouteGroups(
-        byItem: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.getTransitionRouteGroup`.
       func getTransitionRouteGroup(
@@ -377,11 +220,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `TransitionRouteGroupsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `TransitionRouteGroupsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -391,11 +229,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `TransitionRouteGroupsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TransitionRouteGroupsClient.cancelOperation`.
       func cancelOperation(
@@ -424,13 +257,18 @@
       self.listTransitionRouteGroups(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all transition route groups in the specified flow.
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
     public func listTransitionRouteGroups(
       byItem: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TransitionRouteGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTransitionRouteGroups(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -549,12 +387,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -589,12 +449,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

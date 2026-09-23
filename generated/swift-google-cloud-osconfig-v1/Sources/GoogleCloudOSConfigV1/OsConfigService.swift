@@ -79,21 +79,6 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
     try await self.inner.listPatchJobs(request: request, options: options)
   }
 
-  /// Get a list of patch jobs.
-  ///
-  /// @Snippet(path: "OsConfigService_ListPatchJobs")
-  public func listPatchJobs(
-    byItem: ListPatchJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PatchJob, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPatchJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get a list of instance details for a given patch job.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
@@ -101,22 +86,6 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
     request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse {
     try await self.inner.listPatchJobInstanceDetails(request: request, options: options)
-  }
-
-  /// Get a list of instance details for a given patch job.
-  ///
-  /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
-  public func listPatchJobInstanceDetails(
-    byItem: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPatchJobInstanceDetails(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Create an OS Config patch deployment.
@@ -144,21 +113,6 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
     request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse {
     try await self.inner.listPatchDeployments(request: request, options: options)
-  }
-
-  /// Get a page of OS Config patch deployments.
-  ///
-  /// @Snippet(path: "OsConfigService_ListPatchDeployments")
-  public func listPatchDeployments(
-    byItem: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PatchDeployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPatchDeployments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Delete an OS Config patch deployment.
@@ -228,129 +182,7 @@ extension Clients {
   /// To mock `OsConfigServiceClient` change your functions to receive
   /// `some OsConfigServiceProtocol` or `any OsConfigServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol OsConfigServiceProtocol {
-    /// See `OsConfigServiceClient.executePatchJob`.
-    func executePatchJob(request: ExecutePatchJobRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchJob
-
-    /// See `OsConfigServiceClient.getPatchJob`.
-    func getPatchJob(request: GetPatchJobRequest) async throws -> GoogleCloudOSConfigV1.PatchJob
-
-    /// See `OsConfigServiceClient.getPatchJob`.
-    func getPatchJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOSConfigV1.PatchJob
-
-    /// See `OsConfigServiceClient.cancelPatchJob`.
-    func cancelPatchJob(request: CancelPatchJobRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchJob
-
-    /// See `OsConfigServiceClient.listPatchJobs`.
-    func listPatchJobs(request: ListPatchJobsRequest) async throws
-      -> GoogleCloudOSConfigV1.ListPatchJobsResponse
-
-    /// See `OsConfigServiceClient.listPatchJobs`.
-    func listPatchJobs(
-      byItem: ListPatchJobsRequest
-    ) -> any AsyncSequence<PatchJob, Swift.Error>
-
-    /// See `OsConfigServiceClient.listPatchJobs`.
-    func listPatchJobs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PatchJob, Swift.Error>
-
-    /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
-    func listPatchJobInstanceDetails(request: ListPatchJobInstanceDetailsRequest) async throws
-      -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse
-
-    /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
-    func listPatchJobInstanceDetails(
-      byItem: ListPatchJobInstanceDetailsRequest
-    ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
-
-    /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
-    func listPatchJobInstanceDetails(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
-
-    /// See `OsConfigServiceClient.createPatchDeployment`.
-    func createPatchDeployment(request: CreatePatchDeploymentRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.createPatchDeployment`.
-    func createPatchDeployment(
-      parent: Swift.String,
-      patchDeployment: PatchDeployment?,
-      patchDeploymentId: Swift.String,
-    ) async throws -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.getPatchDeployment`.
-    func getPatchDeployment(request: GetPatchDeploymentRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.getPatchDeployment`.
-    func getPatchDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.listPatchDeployments`.
-    func listPatchDeployments(request: ListPatchDeploymentsRequest) async throws
-      -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse
-
-    /// See `OsConfigServiceClient.listPatchDeployments`.
-    func listPatchDeployments(
-      byItem: ListPatchDeploymentsRequest
-    ) -> any AsyncSequence<PatchDeployment, Swift.Error>
-
-    /// See `OsConfigServiceClient.listPatchDeployments`.
-    func listPatchDeployments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PatchDeployment, Swift.Error>
-
-    /// See `OsConfigServiceClient.deletePatchDeployment`.
-    func deletePatchDeployment(request: DeletePatchDeploymentRequest) async throws
-
-    /// See `OsConfigServiceClient.deletePatchDeployment`.
-    func deletePatchDeployment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `OsConfigServiceClient.updatePatchDeployment`.
-    func updatePatchDeployment(request: UpdatePatchDeploymentRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.updatePatchDeployment`.
-    func updatePatchDeployment(
-      patchDeployment: PatchDeployment?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.pausePatchDeployment`.
-    func pausePatchDeployment(request: PausePatchDeploymentRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.pausePatchDeployment`.
-    func pausePatchDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.resumePatchDeployment`.
-    func resumePatchDeployment(request: ResumePatchDeploymentRequest) async throws
-      -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.resumePatchDeployment`.
-    func resumePatchDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOSConfigV1.PatchDeployment
-
-    /// See `OsConfigServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `OsConfigServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol OsConfigServiceProtocol: Sendable {
     /// See `OsConfigServiceClient.executePatchJob`.
     func executePatchJob(
       request: ExecutePatchJobRequest, options: GoogleGax.RequestOptions
@@ -371,20 +203,10 @@ extension Clients {
       request: ListPatchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse
 
-    /// See `OsConfigServiceClient.listPatchJobs`.
-    func listPatchJobs(
-      byItem: ListPatchJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PatchJob, Swift.Error>
-
     /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
     func listPatchJobInstanceDetails(
       request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse
-
-    /// See `OsConfigServiceClient.listPatchJobInstanceDetails`.
-    func listPatchJobInstanceDetails(
-      byItem: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error>
 
     /// See `OsConfigServiceClient.createPatchDeployment`.
     func createPatchDeployment(
@@ -400,11 +222,6 @@ extension Clients {
     func listPatchDeployments(
       request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse
-
-    /// See `OsConfigServiceClient.listPatchDeployments`.
-    func listPatchDeployments(
-      byItem: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PatchDeployment, Swift.Error>
 
     /// See `OsConfigServiceClient.deletePatchDeployment`.
     func deletePatchDeployment(
@@ -498,12 +315,17 @@ extension Clients.OsConfigServiceProtocol {
     self.listPatchJobs(byItem: byItem, options: .init())
   }
 
+  /// Get a list of patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobs")
   public func listPatchJobs(
     byItem: ListPatchJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PatchJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPatchJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -535,13 +357,18 @@ extension Clients.OsConfigServiceProtocol {
     self.listPatchJobInstanceDetails(byItem: byItem, options: .init())
   }
 
+  /// Get a list of instance details for a given patch job.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
   public func listPatchJobInstanceDetails(
     byItem: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PatchJobInstanceDetails, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPatchJobInstanceDetails(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -619,12 +446,17 @@ extension Clients.OsConfigServiceProtocol {
     self.listPatchDeployments(byItem: byItem, options: .init())
   }
 
+  /// Get a page of OS Config patch deployments.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchDeployments")
   public func listPatchDeployments(
     byItem: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PatchDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPatchDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

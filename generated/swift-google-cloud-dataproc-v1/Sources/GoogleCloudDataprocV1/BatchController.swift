@@ -94,21 +94,6 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
     try await self.inner.listBatches(request: request, options: options)
   }
 
-  /// Lists batch workloads.
-  ///
-  /// @Snippet(path: "BatchController_ListBatches")
-  public func listBatches(
-    byItem: ListBatchesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Batch, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListBatchesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBatches(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes the batch workload resource. If the batch is not in a
   /// `CANCELLED`, `SUCCEEDED` or `FAILED`
   /// [`State`][google.cloud.dataproc.v1.Batch.State], the delete operation fails
@@ -176,23 +161,6 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "BatchController_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "BatchController_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -229,10 +197,7 @@ extension Clients {
   /// To mock `BatchControllerClient` change your functions to receive
   /// `some BatchControllerProtocol` or `any BatchControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol BatchControllerProtocol {
-    /// See `BatchControllerClient.createBatch`.
-    func createBatch(request: CreateBatchRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol BatchControllerProtocol: Sendable {
     /// See `BatchControllerClient.createBatch`.
     func createBatch(withPolling: CreateBatchRequest) async throws -> any GoogleGax
       .PollableOperation<Batch>
@@ -243,77 +208,6 @@ extension Clients {
       batch: Batch?,
       batchId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Batch>
-
-    /// See `BatchControllerClient.getBatch`.
-    func getBatch(request: GetBatchRequest) async throws -> GoogleCloudDataprocV1.Batch
-
-    /// See `BatchControllerClient.getBatch`.
-    func getBatch(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataprocV1.Batch
-
-    /// See `BatchControllerClient.listBatches`.
-    func listBatches(request: ListBatchesRequest) async throws
-      -> GoogleCloudDataprocV1.ListBatchesResponse
-
-    /// See `BatchControllerClient.listBatches`.
-    func listBatches(
-      byItem: ListBatchesRequest
-    ) -> any AsyncSequence<Batch, Swift.Error>
-
-    /// See `BatchControllerClient.listBatches`.
-    func listBatches(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Batch, Swift.Error>
-
-    /// See `BatchControllerClient.deleteBatch`.
-    func deleteBatch(request: DeleteBatchRequest) async throws
-
-    /// See `BatchControllerClient.deleteBatch`.
-    func deleteBatch(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BatchControllerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BatchControllerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BatchControllerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `BatchControllerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BatchControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BatchControllerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BatchControllerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `BatchControllerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BatchControllerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `BatchControllerClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `BatchControllerClient.createBatch`.
     func createBatch(
@@ -334,11 +228,6 @@ extension Clients {
     func listBatches(
       request: ListBatchesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.ListBatchesResponse
-
-    /// See `BatchControllerClient.listBatches`.
-    func listBatches(
-      byItem: ListBatchesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Batch, Swift.Error>
 
     /// See `BatchControllerClient.deleteBatch`.
     func deleteBatch(
@@ -364,11 +253,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BatchControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BatchControllerClient.deleteOperation`.
     func deleteOperation(
@@ -460,12 +344,17 @@ extension Clients.BatchControllerProtocol {
     self.listBatches(byItem: byItem, options: .init())
   }
 
+  /// Lists batch workloads.
+  ///
+  /// @Snippet(path: "BatchController_ListBatches")
   public func listBatches(
     byItem: ListBatchesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Batch, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListBatchesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBatches(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -552,12 +441,19 @@ extension Clients.BatchControllerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

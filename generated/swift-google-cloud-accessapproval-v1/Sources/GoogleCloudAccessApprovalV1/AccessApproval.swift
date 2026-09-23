@@ -82,24 +82,6 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
     try await self.inner.listApprovalRequests(request: request, options: options)
   }
 
-  /// Lists approval requests associated with a project, folder, or organization.
-  /// Approval requests can be filtered by state (pending, active, dismissed).
-  /// The order is reverse chronological.
-  ///
-  /// @Snippet(path: "AccessApproval_ListApprovalRequests")
-  public func listApprovalRequests(
-    byItem: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listApprovalRequests(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets an approval request. Returns NOT_FOUND if the request does not exist.
   ///
   /// @Snippet(path: "AccessApproval_GetApprovalRequest")
@@ -205,87 +187,11 @@ extension Clients {
   /// To mock `AccessApprovalClient` change your functions to receive
   /// `some AccessApprovalProtocol` or `any AccessApprovalProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AccessApprovalProtocol {
-    /// See `AccessApprovalClient.listApprovalRequests`.
-    func listApprovalRequests(request: ListApprovalRequestsMessage) async throws
-      -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
-
-    /// See `AccessApprovalClient.listApprovalRequests`.
-    func listApprovalRequests(
-      byItem: ListApprovalRequestsMessage
-    ) -> any AsyncSequence<ApprovalRequest, Swift.Error>
-
-    /// See `AccessApprovalClient.listApprovalRequests`.
-    func listApprovalRequests(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ApprovalRequest, Swift.Error>
-
-    /// See `AccessApprovalClient.getApprovalRequest`.
-    func getApprovalRequest(request: GetApprovalRequestMessage) async throws
-      -> GoogleCloudAccessApprovalV1.ApprovalRequest
-
-    /// See `AccessApprovalClient.getApprovalRequest`.
-    func getApprovalRequest(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest
-
-    /// See `AccessApprovalClient.approveApprovalRequest`.
-    func approveApprovalRequest(request: ApproveApprovalRequestMessage) async throws
-      -> GoogleCloudAccessApprovalV1.ApprovalRequest
-
-    /// See `AccessApprovalClient.dismissApprovalRequest`.
-    func dismissApprovalRequest(request: DismissApprovalRequestMessage) async throws
-      -> GoogleCloudAccessApprovalV1.ApprovalRequest
-
-    /// See `AccessApprovalClient.invalidateApprovalRequest`.
-    func invalidateApprovalRequest(request: InvalidateApprovalRequestMessage) async throws
-      -> GoogleCloudAccessApprovalV1.ApprovalRequest
-
-    /// See `AccessApprovalClient.getAccessApprovalSettings`.
-    func getAccessApprovalSettings(request: GetAccessApprovalSettingsMessage) async throws
-      -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
-
-    /// See `AccessApprovalClient.getAccessApprovalSettings`.
-    func getAccessApprovalSettings(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
-
-    /// See `AccessApprovalClient.updateAccessApprovalSettings`.
-    func updateAccessApprovalSettings(request: UpdateAccessApprovalSettingsMessage) async throws
-      -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
-
-    /// See `AccessApprovalClient.updateAccessApprovalSettings`.
-    func updateAccessApprovalSettings(
-      settings: AccessApprovalSettings?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
-
-    /// See `AccessApprovalClient.deleteAccessApprovalSettings`.
-    func deleteAccessApprovalSettings(request: DeleteAccessApprovalSettingsMessage) async throws
-
-    /// See `AccessApprovalClient.deleteAccessApprovalSettings`.
-    func deleteAccessApprovalSettings(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AccessApprovalClient.getAccessApprovalServiceAccount`.
-    func getAccessApprovalServiceAccount(request: GetAccessApprovalServiceAccountMessage)
-      async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount
-
-    /// See `AccessApprovalClient.getAccessApprovalServiceAccount`.
-    func getAccessApprovalServiceAccount(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount
-
+  public protocol AccessApprovalProtocol: Sendable {
     /// See `AccessApprovalClient.listApprovalRequests`.
     func listApprovalRequests(
       request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
-
-    /// See `AccessApprovalClient.listApprovalRequests`.
-    func listApprovalRequests(
-      byItem: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ApprovalRequest, Swift.Error>
 
     /// See `AccessApprovalClient.getApprovalRequest`.
     func getApprovalRequest(
@@ -349,13 +255,20 @@ extension Clients.AccessApprovalProtocol {
     self.listApprovalRequests(byItem: byItem, options: .init())
   }
 
+  /// Lists approval requests associated with a project, folder, or organization.
+  /// Approval requests can be filtered by state (pending, active, dismissed).
+  /// The order is reverse chronological.
+  ///
+  /// @Snippet(path: "AccessApproval_ListApprovalRequests")
   public func listApprovalRequests(
     byItem: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listApprovalRequests(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

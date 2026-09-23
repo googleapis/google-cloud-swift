@@ -47,7 +47,7 @@
     /// To mock `SqlInstanceNamesServiceClient` change your functions to receive
     /// `some SqlInstanceNamesServiceProtocol` or `any SqlInstanceNamesServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlInstanceNamesServiceProtocol {
+    public protocol SqlInstanceNamesServiceProtocol: Sendable {
     }
   }
 

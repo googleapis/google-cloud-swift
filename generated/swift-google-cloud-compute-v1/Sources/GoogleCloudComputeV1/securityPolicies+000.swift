@@ -102,25 +102,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all SecurityPolicy resources, regional and global,
-    /// available to the specified project.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "securityPolicies_aggregatedList")
-    public func aggregatedList(
-      byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified policy.
     ///
     /// @Snippet(path: "securityPolicies_delete")
@@ -244,21 +225,6 @@
       request: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyList {
       try await self.inner.list(request: request, options: options)
-    }
-
-    /// List all the policies that have been configured for the specified project.
-    ///
-    /// @Snippet(path: "securityPolicies_list")
-    public func list(
-      byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Gets the current list of preconfigured Web Application Firewall (WAF)
@@ -494,93 +460,7 @@
     /// To mock `SecurityPoliciesClient` change your functions to receive
     /// `some SecurityPoliciesProtocol` or `any SecurityPoliciesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SecurityPoliciesProtocol {
-      /// See `SecurityPoliciesClient.addRule`.
-      func addRule(request: SecurityPoliciesClient.AddRuleRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SecurityPoliciesClient.aggregatedList`.
-      func aggregatedList(request: SecurityPoliciesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList
-
-      /// See `SecurityPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: SecurityPoliciesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
-
-      /// See `SecurityPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
-
-      /// See `SecurityPoliciesClient.delete`.
-      func delete(request: SecurityPoliciesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SecurityPoliciesClient.`get``.
-      func `get`(request: SecurityPoliciesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPolicy
-
-      /// See `SecurityPoliciesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        securityPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SecurityPolicy
-
-      /// See `SecurityPoliciesClient.getRule`.
-      func getRule(request: SecurityPoliciesClient.GetRuleRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPolicyRule
-
-      /// See `SecurityPoliciesClient.getRule`.
-      func getRule(
-        project: Swift.String,
-        securityPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule
-
-      /// See `SecurityPoliciesClient.insert`.
-      func insert(request: SecurityPoliciesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SecurityPoliciesClient.list`.
-      func list(request: SecurityPoliciesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPolicyList
-
-      /// See `SecurityPoliciesClient.list`.
-      func list(
-        byItem: SecurityPoliciesClient.ListRequest
-      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
-
-      /// See `SecurityPoliciesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
-
-      /// See `SecurityPoliciesClient.listPreconfiguredExpressionSets`.
-      func listPreconfiguredExpressionSets(
-        request: SecurityPoliciesClient.ListPreconfiguredExpressionSetsRequest
-      ) async throws -> GoogleCloudComputeV1.SecurityPoliciesListPreconfiguredExpressionSetsResponse
-
-      /// See `SecurityPoliciesClient.listPreconfiguredExpressionSets`.
-      func listPreconfiguredExpressionSets(
-        project: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SecurityPoliciesListPreconfiguredExpressionSetsResponse
-
-      /// See `SecurityPoliciesClient.patch`.
-      func patch(request: SecurityPoliciesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SecurityPoliciesClient.patchRule`.
-      func patchRule(request: SecurityPoliciesClient.PatchRuleRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SecurityPoliciesClient.removeRule`.
-      func removeRule(request: SecurityPoliciesClient.RemoveRuleRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SecurityPoliciesClient.setLabels`.
-      func setLabels(request: SecurityPoliciesClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol SecurityPoliciesProtocol: Sendable {
       /// See `SecurityPoliciesClient.addRule`.
       func addRule(
         request: SecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
@@ -590,11 +470,6 @@
       func aggregatedList(
         request: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList
-
-      /// See `SecurityPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error>
 
       /// See `SecurityPoliciesClient.delete`.
       func delete(
@@ -620,11 +495,6 @@
       func list(
         request: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPolicyList
-
-      /// See `SecurityPoliciesClient.list`.
-      func list(
-        byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `SecurityPoliciesClient.listPreconfiguredExpressionSets`.
       func listPreconfiguredExpressionSets(
@@ -716,12 +586,21 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all SecurityPolicy resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "securityPolicies_aggregatedList")
     public func aggregatedList(
       byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -879,12 +758,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// List all the policies that have been configured for the specified project.
+    ///
+    /// @Snippet(path: "securityPolicies_list")
     public func list(
       byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

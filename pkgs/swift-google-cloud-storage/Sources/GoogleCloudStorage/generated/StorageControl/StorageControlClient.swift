@@ -152,28 +152,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.storage.listBuckets(request: request, options: options)
   }
 
-  /// Retrieves a list of buckets for a given project, ordered
-  /// lexicographically by name.
-  ///
-  /// **IAM Permissions**:
-  ///
-  /// Requires `storage.buckets.list` IAM permission on the bucket.
-  /// Additionally, to enable specific bucket features, the authenticated
-  /// user must have the following permissions:
-  ///
-  /// - To list the IAM policies: `storage.buckets.getIamPolicy`
-  /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
-  public func listBuckets(
-    byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Bucket, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListBucketsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBuckets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Permanently locks the retention
   /// policy that is
   /// currently applied to the specified bucket.
@@ -343,25 +321,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.storage.listObjects(request: request, options: options)
   }
 
-  /// Retrieves a list of objects matching the criteria.
-  ///
-  /// **IAM Permissions**:
-  ///
-  /// The authenticated user requires `storage.objects.list`
-  /// IAM permission to use this method. To return object ACLs, the
-  /// authenticated user must also
-  /// have the `storage.objects.getIamPolicy` permission.
-  public func listObjects(
-    byItem: ListObjectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Object, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListObjectsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listObjects(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Rewrites a source object to a destination object. Optionally overrides
   /// metadata.
   public func rewriteObject(
@@ -420,19 +379,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListFoldersResponse {
     try await self.control.listFolders(request: request, options: options)
-  }
-
-  /// Retrieves a list of folders. This operation is only applicable to a
-  /// hierarchical namespace enabled bucket.
-  public func listFolders(
-    byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Folder, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listFolders(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Renames a source folder to a destination folder. This operation is only
@@ -537,18 +483,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListManagedFoldersResponse {
     try await self.control.listManagedFolders(request: request, options: options)
-  }
-
-  /// Retrieves a list of managed folders for a given bucket.
-  public func listManagedFolders(
-    byItem: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ManagedFolder, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListManagedFoldersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listManagedFolders(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates a managed folder. Currently, this RPC only supports updating the
@@ -661,18 +595,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.listAnywhereCaches(request: request, options: options)
   }
 
-  /// Lists Anywhere Cache instances for a given bucket.
-  public func listAnywhereCaches(
-    byItem: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnywhereCache, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListAnywhereCachesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAnywhereCaches(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a Rapid Cache instance.
   public func createRapidCache(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
@@ -780,18 +702,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.listRapidCaches(request: request, options: options)
   }
 
-  /// Lists Rapid Cache instances for a given bucket.
-  public func listRapidCaches(
-    byItem: ListRapidCachesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RapidCache, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListRapidCachesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRapidCaches(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns the Project scoped singleton IntelligenceConfig resource.
   public func getProjectIntelligenceConfig(
     request: GetProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
@@ -883,37 +793,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.listIntelligenceFindings(request: request, options: options)
   }
 
-  /// Lists the `IntelligenceFinding` resources for the specified the project.
-  public func listIntelligenceFindings(
-    byItem: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ListIntelligenceFindingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIntelligenceFindings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Summarizes the intelligence findings for the specified scope (organization,
   /// folder or project).
   public func summarizeIntelligenceFindings(
     request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> SummarizeIntelligenceFindingsResponse {
     try await self.control.summarizeIntelligenceFindings(request: request, options: options)
-  }
-
-  /// Summarizes the intelligence findings for the specified scope (organization,
-  /// folder or project).
-  public func summarizeIntelligenceFindings(
-    byItem: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> SummarizeIntelligenceFindingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.summarizeIntelligenceFindings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the `IntelligenceFindingRevision` resource.
@@ -928,19 +813,6 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListIntelligenceFindingRevisionsResponse {
     try await self.control.listIntelligenceFindingRevisions(request: request, options: options)
-  }
-
-  /// Lists all the revisions of an `IntelligenceFinding` resource.
-  public func listIntelligenceFindingRevisions(
-    byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> ListIntelligenceFindingRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIntelligenceFindingRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Retrieves the full content of an object context, including its key, value,

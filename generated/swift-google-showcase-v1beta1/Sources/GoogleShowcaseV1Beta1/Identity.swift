@@ -84,20 +84,6 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
     try await self.inner.listUsers(request: request, options: options)
   }
 
-  /// Lists all users.
-  ///
-  /// @Snippet(path: "Identity_ListUsers")
-  public func listUsers(
-    byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<User, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listUsers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
   ///
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
@@ -107,23 +93,6 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
-  ///
-  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
-  ///
-  /// @Snippet(path: "Identity_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
@@ -185,23 +154,6 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Identity_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Identity_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -238,92 +190,7 @@ extension Clients {
   /// To mock `IdentityClient` change your functions to receive
   /// `some IdentityProtocol` or `any IdentityProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IdentityProtocol {
-    /// See `IdentityClient.createUser`.
-    func createUser(request: CreateUserRequest) async throws -> GoogleShowcaseV1Beta1.User
-
-    /// See `IdentityClient.getUser`.
-    func getUser(request: GetUserRequest) async throws -> GoogleShowcaseV1Beta1.User
-
-    /// See `IdentityClient.getUser`.
-    func getUser(
-      name: Swift.String,
-    ) async throws -> GoogleShowcaseV1Beta1.User
-
-    /// See `IdentityClient.updateUser`.
-    func updateUser(request: UpdateUserRequest) async throws -> GoogleShowcaseV1Beta1.User
-
-    /// See `IdentityClient.deleteUser`.
-    func deleteUser(request: DeleteUserRequest) async throws
-
-    /// See `IdentityClient.deleteUser`.
-    func deleteUser(
-      name: Swift.String,
-    ) async throws
-
-    /// See `IdentityClient.listUsers`.
-    func listUsers(request: ListUsersRequest) async throws
-      -> GoogleShowcaseV1Beta1.ListUsersResponse
-
-    /// See `IdentityClient.listUsers`.
-    func listUsers(
-      byItem: ListUsersRequest
-    ) -> any AsyncSequence<User, Swift.Error>
-
-    /// See `IdentityClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `IdentityClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `IdentityClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `IdentityClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `IdentityClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `IdentityClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `IdentityClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `IdentityClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `IdentityClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `IdentityClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `IdentityClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `IdentityClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `IdentityClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol IdentityProtocol: Sendable {
     /// See `IdentityClient.createUser`.
     func createUser(
       request: CreateUserRequest, options: GoogleGax.RequestOptions
@@ -349,20 +216,10 @@ extension Clients {
       request: ListUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse
 
-    /// See `IdentityClient.listUsers`.
-    func listUsers(
-      byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<User, Swift.Error>
-
     /// See `IdentityClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `IdentityClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `IdentityClient.getLocation`.
     func getLocation(
@@ -388,11 +245,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `IdentityClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `IdentityClient.deleteOperation`.
     func deleteOperation(
@@ -484,11 +336,16 @@ extension Clients.IdentityProtocol {
     self.listUsers(byItem: byItem, options: .init())
   }
 
+  /// Lists all users.
+  ///
+  /// @Snippet(path: "Identity_ListUsers")
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listUsers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -511,12 +368,19 @@ extension Clients.IdentityProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Identity_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -587,12 +451,19 @@ extension Clients.IdentityProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

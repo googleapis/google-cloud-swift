@@ -133,21 +133,6 @@
       try await self.inner.listRagCorpora(request: request, options: options)
     }
 
-    /// Lists RagCorpora in a Location.
-    ///
-    /// @Snippet(path: "VertexRagDataService_ListRagCorpora")
-    public func listRagCorpora(
-      byItem: ListRagCorporaRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RagCorpus, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListRagCorporaResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listRagCorpora(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a RagCorpus.
     ///
     /// @Snippet(path: "VertexRagDataService_DeleteRagCorpus")
@@ -246,21 +231,6 @@
       try await self.inner.listRagFiles(request: request, options: options)
     }
 
-    /// Lists RagFiles in a RagCorpus.
-    ///
-    /// @Snippet(path: "VertexRagDataService_ListRagFiles")
-    public func listRagFiles(
-      byItem: ListRagFilesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RagFile, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListRagFilesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listRagFiles(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a RagFile.
     ///
     /// @Snippet(path: "VertexRagDataService_DeleteRagFile")
@@ -349,21 +319,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "VertexRagDataService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "VertexRagDataService_GetLocation")
@@ -426,23 +381,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "VertexRagDataService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "VertexRagDataService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -490,11 +428,7 @@
     /// To mock `VertexRagDataServiceClient` change your functions to receive
     /// `some VertexRagDataServiceProtocol` or `any VertexRagDataServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol VertexRagDataServiceProtocol {
-      /// See `VertexRagDataServiceClient.createRagCorpus`.
-      func createRagCorpus(request: CreateRagCorpusRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol VertexRagDataServiceProtocol: Sendable {
       /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(withPolling: CreateRagCorpusRequest) async throws -> any GoogleGax
         .PollableOperation<RagCorpus>
@@ -506,10 +440,6 @@
       ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
-      func updateRagCorpus(request: UpdateRagCorpusRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `VertexRagDataServiceClient.updateRagCorpus`.
       func updateRagCorpus(withPolling: UpdateRagCorpusRequest) async throws -> any GoogleGax
         .PollableOperation<RagCorpus>
 
@@ -517,33 +447,6 @@
       func updateRagCorpus(
         ragCorpus: RagCorpus?,
       ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
-
-      /// See `VertexRagDataServiceClient.getRagCorpus`.
-      func getRagCorpus(request: GetRagCorpusRequest) async throws
-        -> GoogleCloudAIPlatformV1.RagCorpus
-
-      /// See `VertexRagDataServiceClient.getRagCorpus`.
-      func getRagCorpus(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.RagCorpus
-
-      /// See `VertexRagDataServiceClient.listRagCorpora`.
-      func listRagCorpora(request: ListRagCorporaRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListRagCorporaResponse
-
-      /// See `VertexRagDataServiceClient.listRagCorpora`.
-      func listRagCorpora(
-        byItem: ListRagCorporaRequest
-      ) -> any AsyncSequence<RagCorpus, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.listRagCorpora`.
-      func listRagCorpora(
-        parent: Swift.String,
-      ) -> any AsyncSequence<RagCorpus, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.deleteRagCorpus`.
-      func deleteRagCorpus(request: DeleteRagCorpusRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
       func deleteRagCorpus(withPolling: DeleteRagCorpusRequest) async throws -> any GoogleGax
@@ -553,21 +456,6 @@
       func deleteRagCorpus(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `VertexRagDataServiceClient.uploadRagFile`.
-      func uploadRagFile(request: UploadRagFileRequest) async throws
-        -> GoogleCloudAIPlatformV1.UploadRagFileResponse
-
-      /// See `VertexRagDataServiceClient.uploadRagFile`.
-      func uploadRagFile(
-        parent: Swift.String,
-        ragFile: RagFile?,
-        uploadRagFileConfig: UploadRagFileConfig?,
-      ) async throws -> GoogleCloudAIPlatformV1.UploadRagFileResponse
-
-      /// See `VertexRagDataServiceClient.importRagFiles`.
-      func importRagFiles(request: ImportRagFilesRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
       func importRagFiles(withPolling: ImportRagFilesRequest) async throws -> any GoogleGax
@@ -579,31 +467,6 @@
         importRagFilesConfig: ImportRagFilesConfig?,
       ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
 
-      /// See `VertexRagDataServiceClient.getRagFile`.
-      func getRagFile(request: GetRagFileRequest) async throws -> GoogleCloudAIPlatformV1.RagFile
-
-      /// See `VertexRagDataServiceClient.getRagFile`.
-      func getRagFile(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.RagFile
-
-      /// See `VertexRagDataServiceClient.listRagFiles`.
-      func listRagFiles(request: ListRagFilesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListRagFilesResponse
-
-      /// See `VertexRagDataServiceClient.listRagFiles`.
-      func listRagFiles(
-        byItem: ListRagFilesRequest
-      ) -> any AsyncSequence<RagFile, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.listRagFiles`.
-      func listRagFiles(
-        parent: Swift.String,
-      ) -> any AsyncSequence<RagFile, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFile(request: DeleteRagFileRequest) async throws -> GoogleLongRunning.Operation
-
       /// See `VertexRagDataServiceClient.deleteRagFile`.
       func deleteRagFile(withPolling: DeleteRagFileRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
@@ -614,10 +477,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
-      func updateRagEngineConfig(request: UpdateRagEngineConfigRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
       func updateRagEngineConfig(withPolling: UpdateRagEngineConfigRequest) async throws
         -> any GoogleGax.PollableOperation<RagEngineConfig>
 
@@ -625,73 +484,6 @@
       func updateRagEngineConfig(
         ragEngineConfig: RagEngineConfig?,
       ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig>
-
-      /// See `VertexRagDataServiceClient.getRagEngineConfig`.
-      func getRagEngineConfig(request: GetRagEngineConfigRequest) async throws
-        -> GoogleCloudAIPlatformV1.RagEngineConfig
-
-      /// See `VertexRagDataServiceClient.getRagEngineConfig`.
-      func getRagEngineConfig(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.RagEngineConfig
-
-      /// See `VertexRagDataServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `VertexRagDataServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `VertexRagDataServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `VertexRagDataServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `VertexRagDataServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `VertexRagDataServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VertexRagDataServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VertexRagDataServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `VertexRagDataServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VertexRagDataServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `VertexRagDataServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VertexRagDataServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(
@@ -722,11 +514,6 @@
       func listRagCorpora(
         request: ListRagCorporaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListRagCorporaResponse
-
-      /// See `VertexRagDataServiceClient.listRagCorpora`.
-      func listRagCorpora(
-        byItem: ListRagCorporaRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<RagCorpus, Swift.Error>
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
       func deleteRagCorpus(
@@ -763,11 +550,6 @@
         request: ListRagFilesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListRagFilesResponse
 
-      /// See `VertexRagDataServiceClient.listRagFiles`.
-      func listRagFiles(
-        byItem: ListRagFilesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<RagFile, Swift.Error>
-
       /// See `VertexRagDataServiceClient.deleteRagFile`.
       func deleteRagFile(
         request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
@@ -798,11 +580,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `VertexRagDataServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `VertexRagDataServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -827,11 +604,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VertexRagDataServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VertexRagDataServiceClient.deleteOperation`.
       func deleteOperation(
@@ -967,12 +739,17 @@
       self.listRagCorpora(byItem: byItem, options: .init())
     }
 
+    /// Lists RagCorpora in a Location.
+    ///
+    /// @Snippet(path: "VertexRagDataService_ListRagCorpora")
     public func listRagCorpora(
       byItem: ListRagCorporaRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<RagCorpus, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListRagCorporaResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listRagCorpora(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1127,12 +904,17 @@
       self.listRagFiles(byItem: byItem, options: .init())
     }
 
+    /// Lists RagFiles in a RagCorpus.
+    ///
+    /// @Snippet(path: "VertexRagDataService_ListRagFiles")
     public func listRagFiles(
       byItem: ListRagFilesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<RagFile, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListRagFilesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listRagFiles(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1259,12 +1041,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "VertexRagDataService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1335,12 +1122,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VertexRagDataService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

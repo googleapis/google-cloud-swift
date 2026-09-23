@@ -131,25 +131,6 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
     try await self.inner.listAzureClients(request: request, options: options)
   }
 
-  /// Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-  /// resources on a given Google Cloud project and region.
-  ///
-  /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
-  ///
-  /// @Snippet(path: "AzureClusters_ListAzureClients")
-  @available(*, deprecated)
-  public func listAzureClients(
-    byItem: ListAzureClientsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AzureClient, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClientsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAzureClients(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
   /// resource.
   ///
@@ -327,25 +308,6 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
     request: ListAzureClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClustersResponse {
     try await self.inner.listAzureClusters(request: request, options: options)
-  }
-
-  /// Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-  /// resources on a given Google Cloud project and region.
-  ///
-  /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
-  ///
-  /// @Snippet(path: "AzureClusters_ListAzureClusters")
-  @available(*, deprecated)
-  public func listAzureClusters(
-    byItem: ListAzureClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AzureCluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAzureClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Deletes a specific
@@ -558,27 +520,6 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
     try await self.inner.listAzureNodePools(request: request, options: options)
   }
 
-  /// Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-  /// resources on a given
-  /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
-  ///
-  /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
-  /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  ///
-  /// @Snippet(path: "AzureClusters_ListAzureNodePools")
-  @available(*, deprecated)
-  public func listAzureNodePools(
-    byItem: ListAzureNodePoolsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AzureNodePool, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureNodePoolsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAzureNodePools(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a specific
   /// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
   ///
@@ -683,23 +624,6 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "AzureClusters_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "AzureClusters_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -737,12 +661,7 @@ extension Clients {
   /// `some AzureClustersProtocol` or `any AzureClustersProtocol`
   /// and pass a mock implementation in your tests.
   @available(*, deprecated)
-  public protocol AzureClustersProtocol {
-    /// See `AzureClustersClient.createAzureClient`.
-    @available(*, deprecated)
-    func createAzureClient(request: CreateAzureClientRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AzureClustersProtocol: Sendable {
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
     func createAzureClient(withPolling: CreateAzureClientRequest) async throws -> any GoogleGax
@@ -756,39 +675,6 @@ extension Clients {
       azureClientId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AzureClient>
 
-    /// See `AzureClustersClient.getAzureClient`.
-    @available(*, deprecated)
-    func getAzureClient(request: GetAzureClientRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AzureClient
-
-    /// See `AzureClustersClient.getAzureClient`.
-    @available(*, deprecated)
-    func getAzureClient(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AzureClient
-
-    /// See `AzureClustersClient.listAzureClients`.
-    @available(*, deprecated)
-    func listAzureClients(request: ListAzureClientsRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.ListAzureClientsResponse
-
-    /// See `AzureClustersClient.listAzureClients`.
-    @available(*, deprecated)
-    func listAzureClients(
-      byItem: ListAzureClientsRequest
-    ) -> any AsyncSequence<AzureClient, Swift.Error>
-
-    /// See `AzureClustersClient.listAzureClients`.
-    @available(*, deprecated)
-    func listAzureClients(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AzureClient, Swift.Error>
-
-    /// See `AzureClustersClient.deleteAzureClient`.
-    @available(*, deprecated)
-    func deleteAzureClient(request: DeleteAzureClientRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
     func deleteAzureClient(withPolling: DeleteAzureClientRequest) async throws -> any GoogleGax
@@ -799,11 +685,6 @@ extension Clients {
     func deleteAzureClient(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AzureClustersClient.createAzureCluster`.
-    @available(*, deprecated)
-    func createAzureCluster(request: CreateAzureClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
@@ -820,11 +701,6 @@ extension Clients {
 
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
-    func updateAzureCluster(request: UpdateAzureClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AzureClustersClient.updateAzureCluster`.
-    @available(*, deprecated)
     func updateAzureCluster(withPolling: UpdateAzureClusterRequest) async throws -> any GoogleGax
       .PollableOperation<AzureCluster>
 
@@ -834,39 +710,6 @@ extension Clients {
       azureCluster: AzureCluster?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AzureCluster>
-
-    /// See `AzureClustersClient.getAzureCluster`.
-    @available(*, deprecated)
-    func getAzureCluster(request: GetAzureClusterRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AzureCluster
-
-    /// See `AzureClustersClient.getAzureCluster`.
-    @available(*, deprecated)
-    func getAzureCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AzureCluster
-
-    /// See `AzureClustersClient.listAzureClusters`.
-    @available(*, deprecated)
-    func listAzureClusters(request: ListAzureClustersRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.ListAzureClustersResponse
-
-    /// See `AzureClustersClient.listAzureClusters`.
-    @available(*, deprecated)
-    func listAzureClusters(
-      byItem: ListAzureClustersRequest
-    ) -> any AsyncSequence<AzureCluster, Swift.Error>
-
-    /// See `AzureClustersClient.listAzureClusters`.
-    @available(*, deprecated)
-    func listAzureClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AzureCluster, Swift.Error>
-
-    /// See `AzureClustersClient.deleteAzureCluster`.
-    @available(*, deprecated)
-    func deleteAzureCluster(request: DeleteAzureClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
@@ -878,21 +721,6 @@ extension Clients {
     func deleteAzureCluster(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AzureClustersClient.generateAzureClusterAgentToken`.
-    @available(*, deprecated)
-    func generateAzureClusterAgentToken(request: GenerateAzureClusterAgentTokenRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.GenerateAzureClusterAgentTokenResponse
-
-    /// See `AzureClustersClient.generateAzureAccessToken`.
-    @available(*, deprecated)
-    func generateAzureAccessToken(request: GenerateAzureAccessTokenRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.GenerateAzureAccessTokenResponse
-
-    /// See `AzureClustersClient.createAzureNodePool`.
-    @available(*, deprecated)
-    func createAzureNodePool(request: CreateAzureNodePoolRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
@@ -909,11 +737,6 @@ extension Clients {
 
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
-    func updateAzureNodePool(request: UpdateAzureNodePoolRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AzureClustersClient.updateAzureNodePool`.
-    @available(*, deprecated)
     func updateAzureNodePool(withPolling: UpdateAzureNodePoolRequest) async throws -> any GoogleGax
       .PollableOperation<AzureNodePool>
 
@@ -923,39 +746,6 @@ extension Clients {
       azureNodePool: AzureNodePool?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AzureNodePool>
-
-    /// See `AzureClustersClient.getAzureNodePool`.
-    @available(*, deprecated)
-    func getAzureNodePool(request: GetAzureNodePoolRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AzureNodePool
-
-    /// See `AzureClustersClient.getAzureNodePool`.
-    @available(*, deprecated)
-    func getAzureNodePool(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AzureNodePool
-
-    /// See `AzureClustersClient.listAzureNodePools`.
-    @available(*, deprecated)
-    func listAzureNodePools(request: ListAzureNodePoolsRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.ListAzureNodePoolsResponse
-
-    /// See `AzureClustersClient.listAzureNodePools`.
-    @available(*, deprecated)
-    func listAzureNodePools(
-      byItem: ListAzureNodePoolsRequest
-    ) -> any AsyncSequence<AzureNodePool, Swift.Error>
-
-    /// See `AzureClustersClient.listAzureNodePools`.
-    @available(*, deprecated)
-    func listAzureNodePools(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AzureNodePool, Swift.Error>
-
-    /// See `AzureClustersClient.deleteAzureNodePool`.
-    @available(*, deprecated)
-    func deleteAzureNodePool(request: DeleteAzureNodePoolRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
@@ -967,70 +757,6 @@ extension Clients {
     func deleteAzureNodePool(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AzureClustersClient.getAzureOpenIdConfig`.
-    @available(*, deprecated)
-    func getAzureOpenIdConfig(request: GetAzureOpenIdConfigRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AzureOpenIdConfig
-
-    /// See `AzureClustersClient.getAzureOpenIdConfig`.
-    @available(*, deprecated)
-    func getAzureOpenIdConfig(
-      azureCluster: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AzureOpenIdConfig
-
-    /// See `AzureClustersClient.getAzureJsonWebKeys`.
-    @available(*, deprecated)
-    func getAzureJsonWebKeys(request: GetAzureJsonWebKeysRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AzureJsonWebKeys
-
-    /// See `AzureClustersClient.getAzureJsonWebKeys`.
-    @available(*, deprecated)
-    func getAzureJsonWebKeys(
-      azureCluster: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AzureJsonWebKeys
-
-    /// See `AzureClustersClient.getAzureServerConfig`.
-    @available(*, deprecated)
-    func getAzureServerConfig(request: GetAzureServerConfigRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AzureServerConfig
-
-    /// See `AzureClustersClient.getAzureServerConfig`.
-    @available(*, deprecated)
-    func getAzureServerConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AzureServerConfig
-
-    /// See `AzureClustersClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AzureClustersClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AzureClustersClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AzureClustersClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AzureClustersClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AzureClustersClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AzureClustersClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
@@ -1055,12 +781,6 @@ extension Clients {
     func listAzureClients(
       request: ListAzureClientsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClientsResponse
-
-    /// See `AzureClustersClient.listAzureClients`.
-    @available(*, deprecated)
-    func listAzureClients(
-      byItem: ListAzureClientsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AzureClient, Swift.Error>
 
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
@@ -1109,12 +829,6 @@ extension Clients {
     func listAzureClusters(
       request: ListAzureClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClustersResponse
-
-    /// See `AzureClustersClient.listAzureClusters`.
-    @available(*, deprecated)
-    func listAzureClusters(
-      byItem: ListAzureClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AzureCluster, Swift.Error>
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
@@ -1176,12 +890,6 @@ extension Clients {
       request: ListAzureNodePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureNodePoolsResponse
 
-    /// See `AzureClustersClient.listAzureNodePools`.
-    @available(*, deprecated)
-    func listAzureNodePools(
-      byItem: ListAzureNodePoolsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AzureNodePool, Swift.Error>
-
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
     func deleteAzureNodePool(
@@ -1216,11 +924,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AzureClustersClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AzureClustersClient.deleteOperation`.
     func deleteOperation(
@@ -1328,13 +1031,21 @@ extension Clients.AzureClustersProtocol {
     self.listAzureClients(byItem: byItem, options: .init())
   }
 
+  /// Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+  /// resources on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
+  ///
+  /// @Snippet(path: "AzureClusters_ListAzureClients")
   @available(*, deprecated)
   public func listAzureClients(
     byItem: ListAzureClientsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AzureClient, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClientsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAzureClients(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1526,13 +1237,21 @@ extension Clients.AzureClustersProtocol {
     self.listAzureClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+  /// resources on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
+  ///
+  /// @Snippet(path: "AzureClusters_ListAzureClusters")
   @available(*, deprecated)
   public func listAzureClusters(
     byItem: ListAzureClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AzureCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAzureClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1752,13 +1471,23 @@ extension Clients.AzureClustersProtocol {
     self.listAzureNodePools(byItem: byItem, options: .init())
   }
 
+  /// Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+  /// resources on a given
+  /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
+  /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
+  ///
+  /// @Snippet(path: "AzureClusters_ListAzureNodePools")
   @available(*, deprecated)
   public func listAzureNodePools(
     byItem: ListAzureNodePoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AzureNodePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAzureNodePoolsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAzureNodePools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1905,12 +1634,19 @@ extension Clients.AzureClustersProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AzureClusters_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

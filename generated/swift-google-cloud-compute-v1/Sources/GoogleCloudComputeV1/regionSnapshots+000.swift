@@ -184,21 +184,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of Snapshot resources contained within
-    /// the specified region.
-    ///
-    /// @Snippet(path: "regionSnapshots_list")
-    public func list(
-      byItem: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Snapshot, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///
@@ -338,84 +323,7 @@
     /// To mock `RegionSnapshotsClient` change your functions to receive
     /// `some RegionSnapshotsProtocol` or `any RegionSnapshotsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionSnapshotsProtocol {
-      /// See `RegionSnapshotsClient.delete`.
-      func delete(request: RegionSnapshotsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionSnapshotsClient.`get``.
-      func `get`(request: RegionSnapshotsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Snapshot
-
-      /// See `RegionSnapshotsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        snapshot: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Snapshot
-
-      /// See `RegionSnapshotsClient.getIamPolicy`.
-      func getIamPolicy(request: RegionSnapshotsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionSnapshotsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionSnapshotsClient.insert`.
-      func insert(request: RegionSnapshotsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionSnapshotsClient.list`.
-      func list(request: RegionSnapshotsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SnapshotList
-
-      /// See `RegionSnapshotsClient.list`.
-      func list(
-        byItem: RegionSnapshotsClient.ListRequest
-      ) -> any AsyncSequence<Snapshot, Swift.Error>
-
-      /// See `RegionSnapshotsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<Snapshot, Swift.Error>
-
-      /// See `RegionSnapshotsClient.setIamPolicy`.
-      func setIamPolicy(request: RegionSnapshotsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionSnapshotsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionSnapshotsClient.setLabels`.
-      func setLabels(request: RegionSnapshotsClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionSnapshotsClient.testIamPermissions`.
-      func testIamPermissions(request: RegionSnapshotsClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionSnapshotsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionSnapshotsClient.updateKmsKey`.
-      func updateKmsKey(request: RegionSnapshotsClient.UpdateKmsKeyRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionSnapshotsProtocol: Sendable {
       /// See `RegionSnapshotsClient.delete`.
       func delete(
         request: RegionSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -440,11 +348,6 @@
       func list(
         request: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SnapshotList
-
-      /// See `RegionSnapshotsClient.list`.
-      func list(
-        byItem: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `RegionSnapshotsClient.setIamPolicy`.
       func setIamPolicy(
@@ -622,11 +525,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of Snapshot resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionSnapshots_list")
     public func list(
       byItem: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

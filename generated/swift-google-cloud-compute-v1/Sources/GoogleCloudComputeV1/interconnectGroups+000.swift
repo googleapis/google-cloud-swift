@@ -229,21 +229,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the InterconnectGroups for a project in the given scope.
-    ///
-    /// @Snippet(path: "interconnectGroups_list")
-    public func list(
-      byItem: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectGroupsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified InterconnectGroup resource with the data included in
     /// the request. This method supports PATCH
     /// semantics and usesJSON merge
@@ -333,89 +318,7 @@
     /// To mock `InterconnectGroupsClient` change your functions to receive
     /// `some InterconnectGroupsProtocol` or `any InterconnectGroupsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InterconnectGroupsProtocol {
-      /// See `InterconnectGroupsClient.createMembers`.
-      func createMembers(request: InterconnectGroupsClient.CreateMembersRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectGroupsClient.delete`.
-      func delete(request: InterconnectGroupsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectGroupsClient.`get``.
-      func `get`(request: InterconnectGroupsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectGroup
-
-      /// See `InterconnectGroupsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        interconnectGroup: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectGroup
-
-      /// See `InterconnectGroupsClient.getIamPolicy`.
-      func getIamPolicy(request: InterconnectGroupsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectGroupsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectGroupsClient.getOperationalStatus`.
-      func getOperationalStatus(request: InterconnectGroupsClient.GetOperationalStatusRequest)
-        async throws -> GoogleCloudComputeV1.InterconnectGroupsGetOperationalStatusResponse
-
-      /// See `InterconnectGroupsClient.getOperationalStatus`.
-      func getOperationalStatus(
-        project: Swift.String,
-        interconnectGroup: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectGroupsGetOperationalStatusResponse
-
-      /// See `InterconnectGroupsClient.insert`.
-      func insert(request: InterconnectGroupsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectGroupsClient.list`.
-      func list(request: InterconnectGroupsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectGroupsListResponse
-
-      /// See `InterconnectGroupsClient.list`.
-      func list(
-        byItem: InterconnectGroupsClient.ListRequest
-      ) -> any AsyncSequence<InterconnectGroup, Swift.Error>
-
-      /// See `InterconnectGroupsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<InterconnectGroup, Swift.Error>
-
-      /// See `InterconnectGroupsClient.patch`.
-      func patch(request: InterconnectGroupsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectGroupsClient.setIamPolicy`.
-      func setIamPolicy(request: InterconnectGroupsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectGroupsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectGroupsClient.testIamPermissions`.
-      func testIamPermissions(request: InterconnectGroupsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `InterconnectGroupsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol InterconnectGroupsProtocol: Sendable {
       /// See `InterconnectGroupsClient.createMembers`.
       func createMembers(
         request: InterconnectGroupsClient.CreateMembersRequest, options: GoogleGax.RequestOptions
@@ -451,11 +354,6 @@
       func list(
         request: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectGroupsListResponse
-
-      /// See `InterconnectGroupsClient.list`.
-      func list(
-        byItem: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InterconnectGroup, Swift.Error>
 
       /// See `InterconnectGroupsClient.patch`.
       func patch(
@@ -687,12 +585,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the InterconnectGroups for a project in the given scope.
+    ///
+    /// @Snippet(path: "interconnectGroups_list")
     public func list(
       byItem: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InterconnectGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectGroupsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

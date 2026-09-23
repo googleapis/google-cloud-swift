@@ -395,26 +395,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// List all the policies that have been configured for the specified
-    /// organization.
-    ///
-    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
-    /// versions of this API were used to read firewall policies. This usage is now
-    /// disabled for most organizations. Use firewallPolicies.list instead.
-    ///
-    /// @Snippet(path: "organizationSecurityPolicies_list")
-    public func list(
-      byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists associations of a specified target, i.e., organization or folder.
     ///
     /// Use this API to read Cloud Armor policies. Previously, alpha and beta
@@ -746,92 +726,7 @@
     /// To mock `OrganizationSecurityPoliciesClient` change your functions to receive
     /// `some OrganizationSecurityPoliciesProtocol` or `any OrganizationSecurityPoliciesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol OrganizationSecurityPoliciesProtocol {
-      /// See `OrganizationSecurityPoliciesClient.addAssociation`.
-      func addAssociation(request: OrganizationSecurityPoliciesClient.AddAssociationRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.addRule`.
-      func addRule(request: OrganizationSecurityPoliciesClient.AddRuleRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.copyRules`.
-      func copyRules(request: OrganizationSecurityPoliciesClient.CopyRulesRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.delete`.
-      func delete(request: OrganizationSecurityPoliciesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.`get``.
-      func `get`(request: OrganizationSecurityPoliciesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPolicy
-
-      /// See `OrganizationSecurityPoliciesClient.`get``.
-      func `get`(
-        securityPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SecurityPolicy
-
-      /// See `OrganizationSecurityPoliciesClient.getAssociation`.
-      func getAssociation(request: OrganizationSecurityPoliciesClient.GetAssociationRequest)
-        async throws -> GoogleCloudComputeV1.SecurityPolicyAssociation
-
-      /// See `OrganizationSecurityPoliciesClient.getAssociation`.
-      func getAssociation(
-        securityPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SecurityPolicyAssociation
-
-      /// See `OrganizationSecurityPoliciesClient.getRule`.
-      func getRule(request: OrganizationSecurityPoliciesClient.GetRuleRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPolicyRule
-
-      /// See `OrganizationSecurityPoliciesClient.getRule`.
-      func getRule(
-        securityPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule
-
-      /// See `OrganizationSecurityPoliciesClient.insert`.
-      func insert(request: OrganizationSecurityPoliciesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.list`.
-      func list(request: OrganizationSecurityPoliciesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SecurityPolicyList
-
-      /// See `OrganizationSecurityPoliciesClient.list`.
-      func list(
-        byItem: OrganizationSecurityPoliciesClient.ListRequest
-      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
-
-      /// See `OrganizationSecurityPoliciesClient.listAssociations`.
-      func listAssociations(request: OrganizationSecurityPoliciesClient.ListAssociationsRequest)
-        async throws -> GoogleCloudComputeV1.OrganizationSecurityPoliciesListAssociationsResponse
-
-      /// See `OrganizationSecurityPoliciesClient.listPreconfiguredExpressionSets`.
-      func listPreconfiguredExpressionSets(
-        request: OrganizationSecurityPoliciesClient.ListPreconfiguredExpressionSetsRequest
-      ) async throws -> GoogleCloudComputeV1.SecurityPoliciesListPreconfiguredExpressionSetsResponse
-
-      /// See `OrganizationSecurityPoliciesClient.move`.
-      func move(request: OrganizationSecurityPoliciesClient.MoveRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.patch`.
-      func patch(request: OrganizationSecurityPoliciesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.patchRule`.
-      func patchRule(request: OrganizationSecurityPoliciesClient.PatchRuleRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.removeAssociation`.
-      func removeAssociation(request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `OrganizationSecurityPoliciesClient.removeRule`.
-      func removeRule(request: OrganizationSecurityPoliciesClient.RemoveRuleRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol OrganizationSecurityPoliciesProtocol: Sendable {
       /// See `OrganizationSecurityPoliciesClient.addAssociation`.
       func addAssociation(
         request: OrganizationSecurityPoliciesClient.AddAssociationRequest,
@@ -881,11 +776,6 @@
       func list(
         request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPolicyList
-
-      /// See `OrganizationSecurityPoliciesClient.list`.
-      func list(
-        byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SecurityPolicy, Swift.Error>
 
       /// See `OrganizationSecurityPoliciesClient.listAssociations`.
       func listAssociations(
@@ -1205,12 +1095,22 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// List all the policies that have been configured for the specified
+    /// organization.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.list instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_list")
     public func list(
       byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

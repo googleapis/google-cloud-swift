@@ -89,21 +89,6 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
     try await self.inner.listSynonymSets(request: request, options: options)
   }
 
-  /// Returns all SynonymSets (for all contexts) for the specified location.
-  ///
-  /// @Snippet(path: "SynonymSetService_ListSynonymSets")
-  public func listSynonymSets(
-    byItem: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SynonymSet, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSynonymSets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -122,58 +107,7 @@ extension Clients {
   /// To mock `SynonymSetServiceClient` change your functions to receive
   /// `some SynonymSetServiceProtocol` or `any SynonymSetServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol SynonymSetServiceProtocol {
-    /// See `SynonymSetServiceClient.createSynonymSet`.
-    func createSynonymSet(request: CreateSynonymSetRequest) async throws
-      -> GoogleCloudContentWarehouseV1.SynonymSet
-
-    /// See `SynonymSetServiceClient.createSynonymSet`.
-    func createSynonymSet(
-      parent: Swift.String,
-      synonymSet: SynonymSet?,
-    ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet
-
-    /// See `SynonymSetServiceClient.getSynonymSet`.
-    func getSynonymSet(request: GetSynonymSetRequest) async throws
-      -> GoogleCloudContentWarehouseV1.SynonymSet
-
-    /// See `SynonymSetServiceClient.getSynonymSet`.
-    func getSynonymSet(
-      name: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet
-
-    /// See `SynonymSetServiceClient.updateSynonymSet`.
-    func updateSynonymSet(request: UpdateSynonymSetRequest) async throws
-      -> GoogleCloudContentWarehouseV1.SynonymSet
-
-    /// See `SynonymSetServiceClient.updateSynonymSet`.
-    func updateSynonymSet(
-      name: Swift.String,
-      synonymSet: SynonymSet?,
-    ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet
-
-    /// See `SynonymSetServiceClient.deleteSynonymSet`.
-    func deleteSynonymSet(request: DeleteSynonymSetRequest) async throws
-
-    /// See `SynonymSetServiceClient.deleteSynonymSet`.
-    func deleteSynonymSet(
-      name: Swift.String,
-    ) async throws
-
-    /// See `SynonymSetServiceClient.listSynonymSets`.
-    func listSynonymSets(request: ListSynonymSetsRequest) async throws
-      -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse
-
-    /// See `SynonymSetServiceClient.listSynonymSets`.
-    func listSynonymSets(
-      byItem: ListSynonymSetsRequest
-    ) -> any AsyncSequence<SynonymSet, Swift.Error>
-
-    /// See `SynonymSetServiceClient.listSynonymSets`.
-    func listSynonymSets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SynonymSet, Swift.Error>
-
+  public protocol SynonymSetServiceProtocol: Sendable {
     /// See `SynonymSetServiceClient.createSynonymSet`.
     func createSynonymSet(
       request: CreateSynonymSetRequest, options: GoogleGax.RequestOptions
@@ -198,11 +132,6 @@ extension Clients {
     func listSynonymSets(
       request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse
-
-    /// See `SynonymSetServiceClient.listSynonymSets`.
-    func listSynonymSets(
-      byItem: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SynonymSet, Swift.Error>
   }
 }
 
@@ -312,12 +241,17 @@ extension Clients.SynonymSetServiceProtocol {
     self.listSynonymSets(byItem: byItem, options: .init())
   }
 
+  /// Returns all SynonymSets (for all contexts) for the specified location.
+  ///
+  /// @Snippet(path: "SynonymSetService_ListSynonymSets")
   public func listSynonymSets(
     byItem: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SynonymSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSynonymSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -68,21 +68,6 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
     try await self.inner.listFederations(request: request, options: options)
   }
 
-  /// Lists federations in a project and location.
-  ///
-  /// @Snippet(path: "DataprocMetastoreFederation_ListFederations")
-  public func listFederations(
-    byItem: ListFederationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Federation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listFederations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the details of a single federation.
   ///
   /// @Snippet(path: "DataprocMetastoreFederation_GetFederation")
@@ -206,21 +191,6 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "DataprocMetastoreFederation_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataprocMetastoreFederation_GetLocation")
@@ -283,23 +253,6 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "DataprocMetastoreFederation_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "DataprocMetastoreFederation_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -336,34 +289,7 @@ extension Clients {
   /// To mock `DataprocMetastoreFederationClient` change your functions to receive
   /// `some DataprocMetastoreFederationProtocol` or `any DataprocMetastoreFederationProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DataprocMetastoreFederationProtocol {
-    /// See `DataprocMetastoreFederationClient.listFederations`.
-    func listFederations(request: ListFederationsRequest) async throws
-      -> GoogleCloudMetastoreV1.ListFederationsResponse
-
-    /// See `DataprocMetastoreFederationClient.listFederations`.
-    func listFederations(
-      byItem: ListFederationsRequest
-    ) -> any AsyncSequence<Federation, Swift.Error>
-
-    /// See `DataprocMetastoreFederationClient.listFederations`.
-    func listFederations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Federation, Swift.Error>
-
-    /// See `DataprocMetastoreFederationClient.getFederation`.
-    func getFederation(request: GetFederationRequest) async throws
-      -> GoogleCloudMetastoreV1.Federation
-
-    /// See `DataprocMetastoreFederationClient.getFederation`.
-    func getFederation(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMetastoreV1.Federation
-
-    /// See `DataprocMetastoreFederationClient.createFederation`.
-    func createFederation(request: CreateFederationRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol DataprocMetastoreFederationProtocol: Sendable {
     /// See `DataprocMetastoreFederationClient.createFederation`.
     func createFederation(withPolling: CreateFederationRequest) async throws -> any GoogleGax
       .PollableOperation<Federation>
@@ -376,10 +302,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.updateFederation`.
-    func updateFederation(request: UpdateFederationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DataprocMetastoreFederationClient.updateFederation`.
     func updateFederation(withPolling: UpdateFederationRequest) async throws -> any GoogleGax
       .PollableOperation<Federation>
 
@@ -390,10 +312,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
-    func deleteFederation(request: DeleteFederationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DataprocMetastoreFederationClient.deleteFederation`.
     func deleteFederation(withPolling: DeleteFederationRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -402,69 +320,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `DataprocMetastoreFederationClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `DataprocMetastoreFederationClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `DataprocMetastoreFederationClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `DataprocMetastoreFederationClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataprocMetastoreFederationClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataprocMetastoreFederationClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `DataprocMetastoreFederationClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataprocMetastoreFederationClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataprocMetastoreFederationClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataprocMetastoreFederationClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `DataprocMetastoreFederationClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataprocMetastoreFederationClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DataprocMetastoreFederationClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `DataprocMetastoreFederationClient.listFederations`.
     func listFederations(
       request: ListFederationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse
-
-    /// See `DataprocMetastoreFederationClient.listFederations`.
-    func listFederations(
-      byItem: ListFederationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Federation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.getFederation`.
     func getFederation(
@@ -506,11 +365,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `DataprocMetastoreFederationClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `DataprocMetastoreFederationClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -535,11 +389,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataprocMetastoreFederationClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataprocMetastoreFederationClient.deleteOperation`.
     func deleteOperation(
@@ -573,12 +422,17 @@ extension Clients.DataprocMetastoreFederationProtocol {
     self.listFederations(byItem: byItem, options: .init())
   }
 
+  /// Lists federations in a project and location.
+  ///
+  /// @Snippet(path: "DataprocMetastoreFederation_ListFederations")
   public func listFederations(
     byItem: ListFederationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Federation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listFederations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -748,12 +602,17 @@ extension Clients.DataprocMetastoreFederationProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "DataprocMetastoreFederation_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -824,12 +683,19 @@ extension Clients.DataprocMetastoreFederationProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataprocMetastoreFederation_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

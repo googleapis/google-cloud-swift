@@ -158,21 +158,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of firewall rules available to the specified
-    /// project.
-    ///
-    /// @Snippet(path: "firewalls_list")
-    public func list(
-      byItem: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Firewall, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the specified firewall rule with the data included in the
     /// request. This method supportsPATCH
     /// semantics and uses theJSON merge
@@ -306,57 +291,7 @@
     /// To mock `FirewallsClient` change your functions to receive
     /// `some FirewallsProtocol` or `any FirewallsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol FirewallsProtocol {
-      /// See `FirewallsClient.delete`.
-      func delete(request: FirewallsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `FirewallsClient.`get``.
-      func `get`(request: FirewallsClient.GetRequest) async throws -> GoogleCloudComputeV1.Firewall
-
-      /// See `FirewallsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        firewall: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Firewall
-
-      /// See `FirewallsClient.insert`.
-      func insert(request: FirewallsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `FirewallsClient.list`.
-      func list(request: FirewallsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.FirewallList
-
-      /// See `FirewallsClient.list`.
-      func list(
-        byItem: FirewallsClient.ListRequest
-      ) -> any AsyncSequence<Firewall, Swift.Error>
-
-      /// See `FirewallsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Firewall, Swift.Error>
-
-      /// See `FirewallsClient.patch`.
-      func patch(request: FirewallsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `FirewallsClient.testIamPermissions`.
-      func testIamPermissions(request: FirewallsClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `FirewallsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `FirewallsClient.update`.
-      func update(request: FirewallsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol FirewallsProtocol: Sendable {
       /// See `FirewallsClient.delete`.
       func delete(
         request: FirewallsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -376,11 +311,6 @@
       func list(
         request: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallList
-
-      /// See `FirewallsClient.list`.
-      func list(
-        byItem: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Firewall, Swift.Error>
 
       /// See `FirewallsClient.patch`.
       func patch(
@@ -522,11 +452,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of firewall rules available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "firewalls_list")
     public func list(
       byItem: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Firewall, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of packetMirrorings.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "packetMirrorings_aggregatedList")
-    public func aggregatedList(
-      byItem: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified PacketMirroring resource.
     ///
     /// @Snippet(path: "packetMirrorings_delete")
@@ -190,22 +172,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of PacketMirroring resources available to the specified
-    /// project and region.
-    ///
-    /// @Snippet(path: "packetMirrorings_list")
-    public func list(
-      byItem: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PacketMirroring, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified PacketMirroring resource with the data included in
     /// the request. This method supportsPATCH
     /// semantics and usesJSON merge
@@ -286,80 +252,11 @@
     /// To mock `PacketMirroringsClient` change your functions to receive
     /// `some PacketMirroringsProtocol` or `any PacketMirroringsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol PacketMirroringsProtocol {
-      /// See `PacketMirroringsClient.aggregatedList`.
-      func aggregatedList(request: PacketMirroringsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.PacketMirroringAggregatedList
-
-      /// See `PacketMirroringsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: PacketMirroringsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
-
-      /// See `PacketMirroringsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
-
-      /// See `PacketMirroringsClient.delete`.
-      func delete(request: PacketMirroringsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PacketMirroringsClient.`get``.
-      func `get`(request: PacketMirroringsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.PacketMirroring
-
-      /// See `PacketMirroringsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        packetMirroring: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.PacketMirroring
-
-      /// See `PacketMirroringsClient.insert`.
-      func insert(request: PacketMirroringsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PacketMirroringsClient.list`.
-      func list(request: PacketMirroringsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.PacketMirroringList
-
-      /// See `PacketMirroringsClient.list`.
-      func list(
-        byItem: PacketMirroringsClient.ListRequest
-      ) -> any AsyncSequence<PacketMirroring, Swift.Error>
-
-      /// See `PacketMirroringsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<PacketMirroring, Swift.Error>
-
-      /// See `PacketMirroringsClient.patch`.
-      func patch(request: PacketMirroringsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PacketMirroringsClient.testIamPermissions`.
-      func testIamPermissions(request: PacketMirroringsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `PacketMirroringsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol PacketMirroringsProtocol: Sendable {
       /// See `PacketMirroringsClient.aggregatedList`.
       func aggregatedList(
         request: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PacketMirroringAggregatedList
-
-      /// See `PacketMirroringsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error>
 
       /// See `PacketMirroringsClient.delete`.
       func delete(
@@ -380,11 +277,6 @@
       func list(
         request: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PacketMirroringList
-
-      /// See `PacketMirroringsClient.list`.
-      func list(
-        byItem: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<PacketMirroring, Swift.Error>
 
       /// See `PacketMirroringsClient.patch`.
       func patch(
@@ -418,12 +310,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of packetMirrorings.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "packetMirrorings_aggregatedList")
     public func aggregatedList(
       byItem: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -564,12 +464,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of PacketMirroring resources available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "packetMirrorings_list")
     public func list(
       byItem: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<PacketMirroring, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

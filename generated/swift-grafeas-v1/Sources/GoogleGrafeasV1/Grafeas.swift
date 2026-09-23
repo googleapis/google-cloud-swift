@@ -68,20 +68,6 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
     try await self.inner.listOccurrences(request: request, options: options)
   }
 
-  /// Lists occurrences for the specified project.
-  ///
-  /// @Snippet(path: "Grafeas_ListOccurrences")
-  public func listOccurrences(
-    byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOccurrences(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes the specified occurrence. For example, use this method to delete an
   /// occurrence when the occurrence is no longer applicable for the given
   /// resource.
@@ -148,20 +134,6 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
     try await self.inner.listNotes(request: request, options: options)
   }
 
-  /// Lists notes for the specified project.
-  ///
-  /// @Snippet(path: "Grafeas_ListNotes")
-  public func listNotes(
-    byItem: ListNotesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Note, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listNotes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes the specified note.
   ///
   /// @Snippet(path: "Grafeas_DeleteNote")
@@ -208,23 +180,6 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse {
     try await self.inner.listNoteOccurrences(request: request, options: options)
   }
-
-  /// Lists occurrences referencing the specified note. Provider projects can use
-  /// this method to get all occurrences across consumer projects referencing the
-  /// specified note.
-  ///
-  /// @Snippet(path: "Grafeas_ListNoteOccurrences")
-  public func listNoteOccurrences(
-    byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listNoteOccurrences(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -233,152 +188,7 @@ extension Clients {
   /// To mock `GrafeasClient` change your functions to receive
   /// `some GrafeasProtocol` or `any GrafeasProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol GrafeasProtocol {
-    /// See `GrafeasClient.getOccurrence`.
-    func getOccurrence(request: GetOccurrenceRequest) async throws -> GoogleGrafeasV1.Occurrence
-
-    /// See `GrafeasClient.getOccurrence`.
-    func getOccurrence(
-      name: Swift.String,
-    ) async throws -> GoogleGrafeasV1.Occurrence
-
-    /// See `GrafeasClient.listOccurrences`.
-    func listOccurrences(request: ListOccurrencesRequest) async throws
-      -> GoogleGrafeasV1.ListOccurrencesResponse
-
-    /// See `GrafeasClient.listOccurrences`.
-    func listOccurrences(
-      byItem: ListOccurrencesRequest
-    ) -> any AsyncSequence<Occurrence, Swift.Error>
-
-    /// See `GrafeasClient.listOccurrences`.
-    func listOccurrences(
-      parent: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Occurrence, Swift.Error>
-
-    /// See `GrafeasClient.deleteOccurrence`.
-    func deleteOccurrence(request: DeleteOccurrenceRequest) async throws
-
-    /// See `GrafeasClient.deleteOccurrence`.
-    func deleteOccurrence(
-      name: Swift.String,
-    ) async throws
-
-    /// See `GrafeasClient.createOccurrence`.
-    func createOccurrence(request: CreateOccurrenceRequest) async throws
-      -> GoogleGrafeasV1.Occurrence
-
-    /// See `GrafeasClient.createOccurrence`.
-    func createOccurrence(
-      parent: Swift.String,
-      occurrence: Occurrence?,
-    ) async throws -> GoogleGrafeasV1.Occurrence
-
-    /// See `GrafeasClient.batchCreateOccurrences`.
-    func batchCreateOccurrences(request: BatchCreateOccurrencesRequest) async throws
-      -> GoogleGrafeasV1.BatchCreateOccurrencesResponse
-
-    /// See `GrafeasClient.batchCreateOccurrences`.
-    func batchCreateOccurrences(
-      parent: Swift.String,
-      occurrences: [Occurrence],
-    ) async throws -> GoogleGrafeasV1.BatchCreateOccurrencesResponse
-
-    /// See `GrafeasClient.updateOccurrence`.
-    func updateOccurrence(request: UpdateOccurrenceRequest) async throws
-      -> GoogleGrafeasV1.Occurrence
-
-    /// See `GrafeasClient.updateOccurrence`.
-    func updateOccurrence(
-      name: Swift.String,
-      occurrence: Occurrence?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleGrafeasV1.Occurrence
-
-    /// See `GrafeasClient.getOccurrenceNote`.
-    func getOccurrenceNote(request: GetOccurrenceNoteRequest) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.getOccurrenceNote`.
-    func getOccurrenceNote(
-      name: Swift.String,
-    ) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.getNote`.
-    func getNote(request: GetNoteRequest) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.getNote`.
-    func getNote(
-      name: Swift.String,
-    ) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.listNotes`.
-    func listNotes(request: ListNotesRequest) async throws -> GoogleGrafeasV1.ListNotesResponse
-
-    /// See `GrafeasClient.listNotes`.
-    func listNotes(
-      byItem: ListNotesRequest
-    ) -> any AsyncSequence<Note, Swift.Error>
-
-    /// See `GrafeasClient.listNotes`.
-    func listNotes(
-      parent: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Note, Swift.Error>
-
-    /// See `GrafeasClient.deleteNote`.
-    func deleteNote(request: DeleteNoteRequest) async throws
-
-    /// See `GrafeasClient.deleteNote`.
-    func deleteNote(
-      name: Swift.String,
-    ) async throws
-
-    /// See `GrafeasClient.createNote`.
-    func createNote(request: CreateNoteRequest) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.createNote`.
-    func createNote(
-      parent: Swift.String,
-      noteId: Swift.String,
-      note: Note?,
-    ) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.batchCreateNotes`.
-    func batchCreateNotes(request: BatchCreateNotesRequest) async throws
-      -> GoogleGrafeasV1.BatchCreateNotesResponse
-
-    /// See `GrafeasClient.batchCreateNotes`.
-    func batchCreateNotes(
-      parent: Swift.String,
-      notes: [Swift.String: Note],
-    ) async throws -> GoogleGrafeasV1.BatchCreateNotesResponse
-
-    /// See `GrafeasClient.updateNote`.
-    func updateNote(request: UpdateNoteRequest) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.updateNote`.
-    func updateNote(
-      name: Swift.String,
-      note: Note?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleGrafeasV1.Note
-
-    /// See `GrafeasClient.listNoteOccurrences`.
-    func listNoteOccurrences(request: ListNoteOccurrencesRequest) async throws
-      -> GoogleGrafeasV1.ListNoteOccurrencesResponse
-
-    /// See `GrafeasClient.listNoteOccurrences`.
-    func listNoteOccurrences(
-      byItem: ListNoteOccurrencesRequest
-    ) -> any AsyncSequence<Occurrence, Swift.Error>
-
-    /// See `GrafeasClient.listNoteOccurrences`.
-    func listNoteOccurrences(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Occurrence, Swift.Error>
-
+  public protocol GrafeasProtocol: Sendable {
     /// See `GrafeasClient.getOccurrence`.
     func getOccurrence(
       request: GetOccurrenceRequest, options: GoogleGax.RequestOptions
@@ -388,11 +198,6 @@ extension Clients {
     func listOccurrences(
       request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListOccurrencesResponse
-
-    /// See `GrafeasClient.listOccurrences`.
-    func listOccurrences(
-      byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Occurrence, Swift.Error>
 
     /// See `GrafeasClient.deleteOccurrence`.
     func deleteOccurrence(
@@ -429,11 +234,6 @@ extension Clients {
       request: ListNotesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListNotesResponse
 
-    /// See `GrafeasClient.listNotes`.
-    func listNotes(
-      byItem: ListNotesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Note, Swift.Error>
-
     /// See `GrafeasClient.deleteNote`.
     func deleteNote(
       request: DeleteNoteRequest, options: GoogleGax.RequestOptions
@@ -458,11 +258,6 @@ extension Clients {
     func listNoteOccurrences(
       request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse
-
-    /// See `GrafeasClient.listNoteOccurrences`.
-    func listNoteOccurrences(
-      byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Occurrence, Swift.Error>
   }
 }
 
@@ -507,11 +302,16 @@ extension Clients.GrafeasProtocol {
     self.listOccurrences(byItem: byItem, options: .init())
   }
 
+  /// Lists occurrences for the specified project.
+  ///
+  /// @Snippet(path: "Grafeas_ListOccurrences")
   public func listOccurrences(
     byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOccurrences(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -674,11 +474,16 @@ extension Clients.GrafeasProtocol {
     self.listNotes(byItem: byItem, options: .init())
   }
 
+  /// Lists notes for the specified project.
+  ///
+  /// @Snippet(path: "Grafeas_ListNotes")
   public func listNotes(
     byItem: ListNotesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Note, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listNotes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -800,12 +605,19 @@ extension Clients.GrafeasProtocol {
     self.listNoteOccurrences(byItem: byItem, options: .init())
   }
 
+  /// Lists occurrences referencing the specified note. Provider projects can use
+  /// this method to get all occurrences across consumer projects referencing the
+  /// specified note.
+  ///
+  /// @Snippet(path: "Grafeas_ListNoteOccurrences")
   public func listNoteOccurrences(
     byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listNoteOccurrences(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

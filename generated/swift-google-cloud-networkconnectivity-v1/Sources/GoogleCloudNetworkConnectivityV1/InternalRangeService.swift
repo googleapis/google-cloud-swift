@@ -55,22 +55,6 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
     try await self.inner.listInternalRanges(request: request, options: options)
   }
 
-  /// Lists internal ranges in a given project and location.
-  ///
-  /// @Snippet(path: "InternalRangeService_ListInternalRanges")
-  public func listInternalRanges(
-    byItem: ListInternalRangesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InternalRange, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInternalRanges(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single internal range.
   ///
   /// @Snippet(path: "InternalRangeService_GetInternalRange")
@@ -194,21 +178,6 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "InternalRangeService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "InternalRangeService_GetLocation")
@@ -271,23 +240,6 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "InternalRangeService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "InternalRangeService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -324,34 +276,7 @@ extension Clients {
   /// To mock `InternalRangeServiceClient` change your functions to receive
   /// `some InternalRangeServiceProtocol` or `any InternalRangeServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol InternalRangeServiceProtocol {
-    /// See `InternalRangeServiceClient.listInternalRanges`.
-    func listInternalRanges(request: ListInternalRangesRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse
-
-    /// See `InternalRangeServiceClient.listInternalRanges`.
-    func listInternalRanges(
-      byItem: ListInternalRangesRequest
-    ) -> any AsyncSequence<InternalRange, Swift.Error>
-
-    /// See `InternalRangeServiceClient.listInternalRanges`.
-    func listInternalRanges(
-      parent: Swift.String,
-    ) -> any AsyncSequence<InternalRange, Swift.Error>
-
-    /// See `InternalRangeServiceClient.getInternalRange`.
-    func getInternalRange(request: GetInternalRangeRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.InternalRange
-
-    /// See `InternalRangeServiceClient.getInternalRange`.
-    func getInternalRange(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkConnectivityV1.InternalRange
-
-    /// See `InternalRangeServiceClient.createInternalRange`.
-    func createInternalRange(request: CreateInternalRangeRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol InternalRangeServiceProtocol: Sendable {
     /// See `InternalRangeServiceClient.createInternalRange`.
     func createInternalRange(withPolling: CreateInternalRangeRequest) async throws -> any GoogleGax
       .PollableOperation<InternalRange>
@@ -364,10 +289,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<InternalRange>
 
     /// See `InternalRangeServiceClient.updateInternalRange`.
-    func updateInternalRange(request: UpdateInternalRangeRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `InternalRangeServiceClient.updateInternalRange`.
     func updateInternalRange(withPolling: UpdateInternalRangeRequest) async throws -> any GoogleGax
       .PollableOperation<InternalRange>
 
@@ -378,10 +299,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<InternalRange>
 
     /// See `InternalRangeServiceClient.deleteInternalRange`.
-    func deleteInternalRange(request: DeleteInternalRangeRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `InternalRangeServiceClient.deleteInternalRange`.
     func deleteInternalRange(withPolling: DeleteInternalRangeRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -390,69 +307,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `InternalRangeServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `InternalRangeServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `InternalRangeServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `InternalRangeServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `InternalRangeServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `InternalRangeServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `InternalRangeServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `InternalRangeServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `InternalRangeServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `InternalRangeServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `InternalRangeServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `InternalRangeServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `InternalRangeServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `InternalRangeServiceClient.listInternalRanges`.
     func listInternalRanges(
       request: ListInternalRangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse
-
-    /// See `InternalRangeServiceClient.listInternalRanges`.
-    func listInternalRanges(
-      byItem: ListInternalRangesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InternalRange, Swift.Error>
 
     /// See `InternalRangeServiceClient.getInternalRange`.
     func getInternalRange(
@@ -494,11 +352,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `InternalRangeServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `InternalRangeServiceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -523,11 +376,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `InternalRangeServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `InternalRangeServiceClient.deleteOperation`.
     func deleteOperation(
@@ -561,13 +409,18 @@ extension Clients.InternalRangeServiceProtocol {
     self.listInternalRanges(byItem: byItem, options: .init())
   }
 
+  /// Lists internal ranges in a given project and location.
+  ///
+  /// @Snippet(path: "InternalRangeService_ListInternalRanges")
   public func listInternalRanges(
     byItem: ListInternalRangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InternalRange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInternalRanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -737,12 +590,17 @@ extension Clients.InternalRangeServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "InternalRangeService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -813,12 +671,19 @@ extension Clients.InternalRangeServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InternalRangeService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

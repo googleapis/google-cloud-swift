@@ -116,23 +116,6 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
     try await self.inner.listTunnelDestGroups(request: request, options: options)
   }
 
-  /// Lists the existing TunnelDestGroups. To group across all locations, use a
-  /// `-` as the location ID. For example:
-  /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
-  ///
-  /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
-  public func listTunnelDestGroups(
-    byItem: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TunnelDestGroup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTunnelDestGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a new TunnelDestGroup.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_CreateTunnelDestGroup")
@@ -176,80 +159,7 @@ extension Clients {
   /// To mock `IdentityAwareProxyAdminServiceClient` change your functions to receive
   /// `some IdentityAwareProxyAdminServiceProtocol` or `any IdentityAwareProxyAdminServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IdentityAwareProxyAdminServiceProtocol {
-    /// See `IdentityAwareProxyAdminServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `IdentityAwareProxyAdminServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `IdentityAwareProxyAdminServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `IdentityAwareProxyAdminServiceClient.getIapSettings`.
-    func getIapSettings(request: GetIapSettingsRequest) async throws -> GoogleCloudIAPV1.IapSettings
-
-    /// See `IdentityAwareProxyAdminServiceClient.updateIapSettings`.
-    func updateIapSettings(request: UpdateIapSettingsRequest) async throws
-      -> GoogleCloudIAPV1.IapSettings
-
-    /// See `IdentityAwareProxyAdminServiceClient.validateIapAttributeExpression`.
-    func validateIapAttributeExpression(request: ValidateIapAttributeExpressionRequest) async throws
-      -> GoogleCloudIAPV1.ValidateIapAttributeExpressionResponse
-
-    /// See `IdentityAwareProxyAdminServiceClient.listTunnelDestGroups`.
-    func listTunnelDestGroups(request: ListTunnelDestGroupsRequest) async throws
-      -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse
-
-    /// See `IdentityAwareProxyAdminServiceClient.listTunnelDestGroups`.
-    func listTunnelDestGroups(
-      byItem: ListTunnelDestGroupsRequest
-    ) -> any AsyncSequence<TunnelDestGroup, Swift.Error>
-
-    /// See `IdentityAwareProxyAdminServiceClient.listTunnelDestGroups`.
-    func listTunnelDestGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<TunnelDestGroup, Swift.Error>
-
-    /// See `IdentityAwareProxyAdminServiceClient.createTunnelDestGroup`.
-    func createTunnelDestGroup(request: CreateTunnelDestGroupRequest) async throws
-      -> GoogleCloudIAPV1.TunnelDestGroup
-
-    /// See `IdentityAwareProxyAdminServiceClient.createTunnelDestGroup`.
-    func createTunnelDestGroup(
-      parent: Swift.String,
-      tunnelDestGroup: TunnelDestGroup?,
-      tunnelDestGroupId: Swift.String,
-    ) async throws -> GoogleCloudIAPV1.TunnelDestGroup
-
-    /// See `IdentityAwareProxyAdminServiceClient.getTunnelDestGroup`.
-    func getTunnelDestGroup(request: GetTunnelDestGroupRequest) async throws
-      -> GoogleCloudIAPV1.TunnelDestGroup
-
-    /// See `IdentityAwareProxyAdminServiceClient.getTunnelDestGroup`.
-    func getTunnelDestGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudIAPV1.TunnelDestGroup
-
-    /// See `IdentityAwareProxyAdminServiceClient.deleteTunnelDestGroup`.
-    func deleteTunnelDestGroup(request: DeleteTunnelDestGroupRequest) async throws
-
-    /// See `IdentityAwareProxyAdminServiceClient.deleteTunnelDestGroup`.
-    func deleteTunnelDestGroup(
-      name: Swift.String,
-    ) async throws
-
-    /// See `IdentityAwareProxyAdminServiceClient.updateTunnelDestGroup`.
-    func updateTunnelDestGroup(request: UpdateTunnelDestGroupRequest) async throws
-      -> GoogleCloudIAPV1.TunnelDestGroup
-
-    /// See `IdentityAwareProxyAdminServiceClient.updateTunnelDestGroup`.
-    func updateTunnelDestGroup(
-      tunnelDestGroup: TunnelDestGroup?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudIAPV1.TunnelDestGroup
-
+  public protocol IdentityAwareProxyAdminServiceProtocol: Sendable {
     /// See `IdentityAwareProxyAdminServiceClient.setIamPolicy`.
     func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
@@ -284,11 +194,6 @@ extension Clients {
     func listTunnelDestGroups(
       request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse
-
-    /// See `IdentityAwareProxyAdminServiceClient.listTunnelDestGroups`.
-    func listTunnelDestGroups(
-      byItem: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TunnelDestGroup, Swift.Error>
 
     /// See `IdentityAwareProxyAdminServiceClient.createTunnelDestGroup`.
     func createTunnelDestGroup(
@@ -404,12 +309,19 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     self.listTunnelDestGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists the existing TunnelDestGroups. To group across all locations, use a
+  /// `-` as the location ID. For example:
+  /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
   public func listTunnelDestGroups(
     byItem: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TunnelDestGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTunnelDestGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

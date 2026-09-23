@@ -110,21 +110,6 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
     try await self.inner.listDataPolicies(request: request, options: options)
   }
 
-  /// List all of the data policies in the specified parent project.
-  ///
-  /// @Snippet(path: "DataPolicyService_ListDataPolicies")
-  public func listDataPolicies(
-    byItem: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataPolicy, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDataPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the IAM policy for the specified data policy.
   ///
   /// @Snippet(path: "DataPolicyService_GetIamPolicy")
@@ -159,89 +144,7 @@ extension Clients {
   /// To mock `DataPolicyServiceClient` change your functions to receive
   /// `some DataPolicyServiceProtocol` or `any DataPolicyServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DataPolicyServiceProtocol {
-    /// See `DataPolicyServiceClient.createDataPolicy`.
-    func createDataPolicy(request: CreateDataPolicyRequest) async throws
-      -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.createDataPolicy`.
-    func createDataPolicy(
-      parent: Swift.String,
-      dataPolicy: DataPolicy?,
-      dataPolicyId: Swift.String,
-    ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.addGrantees`.
-    func addGrantees(request: AddGranteesRequest) async throws
-      -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.addGrantees`.
-    func addGrantees(
-      dataPolicy: Swift.String,
-      grantees: [Swift.String],
-    ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.removeGrantees`.
-    func removeGrantees(request: RemoveGranteesRequest) async throws
-      -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.removeGrantees`.
-    func removeGrantees(
-      dataPolicy: Swift.String,
-      grantees: [Swift.String],
-    ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.updateDataPolicy`.
-    func updateDataPolicy(request: UpdateDataPolicyRequest) async throws
-      -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.updateDataPolicy`.
-    func updateDataPolicy(
-      dataPolicy: DataPolicy?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.deleteDataPolicy`.
-    func deleteDataPolicy(request: DeleteDataPolicyRequest) async throws
-
-    /// See `DataPolicyServiceClient.deleteDataPolicy`.
-    func deleteDataPolicy(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataPolicyServiceClient.getDataPolicy`.
-    func getDataPolicy(request: GetDataPolicyRequest) async throws
-      -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.getDataPolicy`.
-    func getDataPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy
-
-    /// See `DataPolicyServiceClient.listDataPolicies`.
-    func listDataPolicies(request: ListDataPoliciesRequest) async throws
-      -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse
-
-    /// See `DataPolicyServiceClient.listDataPolicies`.
-    func listDataPolicies(
-      byItem: ListDataPoliciesRequest
-    ) -> any AsyncSequence<DataPolicy, Swift.Error>
-
-    /// See `DataPolicyServiceClient.listDataPolicies`.
-    func listDataPolicies(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DataPolicy, Swift.Error>
-
-    /// See `DataPolicyServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataPolicyServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataPolicyServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol DataPolicyServiceProtocol: Sendable {
     /// See `DataPolicyServiceClient.createDataPolicy`.
     func createDataPolicy(
       request: CreateDataPolicyRequest, options: GoogleGax.RequestOptions
@@ -276,11 +179,6 @@ extension Clients {
     func listDataPolicies(
       request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse
-
-    /// See `DataPolicyServiceClient.listDataPolicies`.
-    func listDataPolicies(
-      byItem: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataPolicy, Swift.Error>
 
     /// See `DataPolicyServiceClient.getIamPolicy`.
     func getIamPolicy(
@@ -453,12 +351,17 @@ extension Clients.DataPolicyServiceProtocol {
     self.listDataPolicies(byItem: byItem, options: .init())
   }
 
+  /// List all of the data policies in the specified parent project.
+  ///
+  /// @Snippet(path: "DataPolicyService_ListDataPolicies")
   public func listDataPolicies(
     byItem: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDataPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

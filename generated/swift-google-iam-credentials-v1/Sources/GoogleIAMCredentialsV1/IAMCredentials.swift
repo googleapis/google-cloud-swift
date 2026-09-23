@@ -88,51 +88,7 @@ extension Clients {
   /// To mock `IAMCredentialsClient` change your functions to receive
   /// `some IAMCredentialsProtocol` or `any IAMCredentialsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IAMCredentialsProtocol {
-    /// See `IAMCredentialsClient.generateAccessToken`.
-    func generateAccessToken(request: GenerateAccessTokenRequest) async throws
-      -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse
-
-    /// See `IAMCredentialsClient.generateAccessToken`.
-    func generateAccessToken(
-      name: Swift.String,
-      delegates: [Swift.String],
-      scope: [Swift.String],
-      lifetime: GoogleWKT.Duration?,
-    ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse
-
-    /// See `IAMCredentialsClient.generateIdToken`.
-    func generateIdToken(request: GenerateIdTokenRequest) async throws
-      -> GoogleIAMCredentialsV1.GenerateIdTokenResponse
-
-    /// See `IAMCredentialsClient.generateIdToken`.
-    func generateIdToken(
-      name: Swift.String,
-      delegates: [Swift.String],
-      audience: Swift.String,
-      includeEmail: Swift.Bool,
-    ) async throws -> GoogleIAMCredentialsV1.GenerateIdTokenResponse
-
-    /// See `IAMCredentialsClient.signBlob`.
-    func signBlob(request: SignBlobRequest) async throws -> GoogleIAMCredentialsV1.SignBlobResponse
-
-    /// See `IAMCredentialsClient.signBlob`.
-    func signBlob(
-      name: Swift.String,
-      delegates: [Swift.String],
-      payload: Foundation.Data,
-    ) async throws -> GoogleIAMCredentialsV1.SignBlobResponse
-
-    /// See `IAMCredentialsClient.signJwt`.
-    func signJwt(request: SignJwtRequest) async throws -> GoogleIAMCredentialsV1.SignJwtResponse
-
-    /// See `IAMCredentialsClient.signJwt`.
-    func signJwt(
-      name: Swift.String,
-      delegates: [Swift.String],
-      payload: Swift.String,
-    ) async throws -> GoogleIAMCredentialsV1.SignJwtResponse
-
+  public protocol IAMCredentialsProtocol: Sendable {
     /// See `IAMCredentialsClient.generateAccessToken`.
     func generateAccessToken(
       request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions

@@ -70,26 +70,6 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
     try await self.inner.listProjects(request: request, options: options)
   }
 
-  /// Lists projects that are direct children of the specified folder or
-  /// organization resource. `list()` provides a strongly consistent view of the
-  /// projects underneath the specified parent resource. `list()` returns
-  /// projects sorted based upon the (ascending) lexical ordering of their
-  /// `display_name`. The caller must have `resourcemanager.projects.list`
-  /// permission on the identified parent.
-  ///
-  /// @Snippet(path: "Projects_ListProjects")
-  public func listProjects(
-    byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Project, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProjects(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Search for projects that the caller has both `resourcemanager.projects.get`
   /// permission on, and also satisfy the specified query.
   ///
@@ -108,32 +88,6 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
     request: SearchProjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse {
     try await self.inner.searchProjects(request: request, options: options)
-  }
-
-  /// Search for projects that the caller has both `resourcemanager.projects.get`
-  /// permission on, and also satisfy the specified query.
-  ///
-  /// This method returns projects in an unspecified order.
-  ///
-  /// This method is eventually consistent with project mutations; this means
-  /// that a newly created project may not appear in the results or recent
-  /// updates to an existing project may not be reflected in the results. To
-  /// retrieve the latest state of a project, use the
-  /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
-  ///
-  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:options:)>
-  ///
-  /// @Snippet(path: "Projects_SearchProjects")
-  public func searchProjects(
-    byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Project, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchProjects(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Request that a new project be created. The result is an `Operation` which
@@ -530,46 +484,7 @@ extension Clients {
   /// To mock `ProjectsClient` change your functions to receive
   /// `some ProjectsProtocol` or `any ProjectsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ProjectsProtocol {
-    /// See `ProjectsClient.getProject`.
-    func getProject(request: GetProjectRequest) async throws -> GoogleCloudResourceManagerV3.Project
-
-    /// See `ProjectsClient.getProject`.
-    func getProject(
-      name: Swift.String,
-    ) async throws -> GoogleCloudResourceManagerV3.Project
-
-    /// See `ProjectsClient.listProjects`.
-    func listProjects(request: ListProjectsRequest) async throws
-      -> GoogleCloudResourceManagerV3.ListProjectsResponse
-
-    /// See `ProjectsClient.listProjects`.
-    func listProjects(
-      byItem: ListProjectsRequest
-    ) -> any AsyncSequence<Project, Swift.Error>
-
-    /// See `ProjectsClient.listProjects`.
-    func listProjects(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Project, Swift.Error>
-
-    /// See `ProjectsClient.searchProjects`.
-    func searchProjects(request: SearchProjectsRequest) async throws
-      -> GoogleCloudResourceManagerV3.SearchProjectsResponse
-
-    /// See `ProjectsClient.searchProjects`.
-    func searchProjects(
-      byItem: SearchProjectsRequest
-    ) -> any AsyncSequence<Project, Swift.Error>
-
-    /// See `ProjectsClient.searchProjects`.
-    func searchProjects(
-      query: Swift.String,
-    ) -> any AsyncSequence<Project, Swift.Error>
-
-    /// See `ProjectsClient.createProject`.
-    func createProject(request: CreateProjectRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ProjectsProtocol: Sendable {
     /// See `ProjectsClient.createProject`.
     func createProject(withPolling: CreateProjectRequest) async throws -> any GoogleGax
       .PollableOperation<Project>
@@ -578,9 +493,6 @@ extension Clients {
     func createProject(
       project: Project?,
     ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.updateProject`.
-    func updateProject(request: UpdateProjectRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.updateProject`.
     func updateProject(withPolling: UpdateProjectRequest) async throws -> any GoogleGax
@@ -593,9 +505,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Project>
 
     /// See `ProjectsClient.moveProject`.
-    func moveProject(request: MoveProjectRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ProjectsClient.moveProject`.
     func moveProject(withPolling: MoveProjectRequest) async throws -> any GoogleGax
       .PollableOperation<Project>
 
@@ -604,9 +513,6 @@ extension Clients {
       name: Swift.String,
       destinationParent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.deleteProject`.
-    func deleteProject(request: DeleteProjectRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.deleteProject`.
     func deleteProject(withPolling: DeleteProjectRequest) async throws -> any GoogleGax
@@ -618,10 +524,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Project>
 
     /// See `ProjectsClient.undeleteProject`.
-    func undeleteProject(request: UndeleteProjectRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ProjectsClient.undeleteProject`.
     func undeleteProject(withPolling: UndeleteProjectRequest) async throws -> any GoogleGax
       .PollableOperation<Project>
 
@@ -629,33 +531,6 @@ extension Clients {
     func undeleteProject(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ProjectsClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ProjectsClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ProjectsClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ProjectsClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ProjectsClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `ProjectsClient.getProject`.
     func getProject(
@@ -667,20 +542,10 @@ extension Clients {
       request: ListProjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse
 
-    /// See `ProjectsClient.listProjects`.
-    func listProjects(
-      byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Project, Swift.Error>
-
     /// See `ProjectsClient.searchProjects`.
     func searchProjects(
       request: SearchProjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse
-
-    /// See `ProjectsClient.searchProjects`.
-    func searchProjects(
-      byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.createProject`.
     func createProject(
@@ -790,12 +655,22 @@ extension Clients.ProjectsProtocol {
     self.listProjects(byItem: byItem, options: .init())
   }
 
+  /// Lists projects that are direct children of the specified folder or
+  /// organization resource. `list()` provides a strongly consistent view of the
+  /// projects underneath the specified parent resource. `list()` returns
+  /// projects sorted based upon the (ascending) lexical ordering of their
+  /// `display_name`. The caller must have `resourcemanager.projects.list`
+  /// permission on the identified parent.
+  ///
+  /// @Snippet(path: "Projects_ListProjects")
   public func listProjects(
     byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProjects(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -827,12 +702,28 @@ extension Clients.ProjectsProtocol {
     self.searchProjects(byItem: byItem, options: .init())
   }
 
+  /// Search for projects that the caller has both `resourcemanager.projects.get`
+  /// permission on, and also satisfy the specified query.
+  ///
+  /// This method returns projects in an unspecified order.
+  ///
+  /// This method is eventually consistent with project mutations; this means
+  /// that a newly created project may not appear in the results or recent
+  /// updates to an existing project may not be reflected in the results. To
+  /// retrieve the latest state of a project, use the
+  /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
+  ///
+  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:options:)>
+  ///
+  /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjects(
     byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchProjects(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

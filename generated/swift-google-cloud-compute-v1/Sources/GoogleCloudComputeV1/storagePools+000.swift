@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of storage pools.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "storagePools_aggregatedList")
-    public func aggregatedList(
-      byItem: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified storage pool. Deleting a storagePool
     /// removes its data permanently and is irreversible. However, deleting a
     /// storagePool does not delete any snapshots previously
@@ -209,21 +191,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of storage pools contained within
-    /// the specified zone.
-    ///
-    /// @Snippet(path: "storagePools_list")
-    public func list(
-      byItem: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<StoragePool, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists the disks in a specified storage pool.
     ///
     /// @Snippet(path: "storagePools_listDisks")
@@ -231,21 +198,6 @@
       request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolListDisks {
       try await self.inner.listDisks(request: request, options: options)
-    }
-
-    /// Lists the disks in a specified storage pool.
-    ///
-    /// @Snippet(path: "storagePools_listDisks")
-    public func listDisks(
-      byItem: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolListDisks in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listDisks(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Sets the access control policy on the specified resource.
@@ -340,119 +292,11 @@
     /// To mock `StoragePoolsClient` change your functions to receive
     /// `some StoragePoolsProtocol` or `any StoragePoolsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol StoragePoolsProtocol {
-      /// See `StoragePoolsClient.aggregatedList`.
-      func aggregatedList(request: StoragePoolsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.StoragePoolAggregatedList
-
-      /// See `StoragePoolsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: StoragePoolsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
-
-      /// See `StoragePoolsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
-
-      /// See `StoragePoolsClient.delete`.
-      func delete(request: StoragePoolsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `StoragePoolsClient.`get``.
-      func `get`(request: StoragePoolsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.StoragePool
-
-      /// See `StoragePoolsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        storagePool: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.StoragePool
-
-      /// See `StoragePoolsClient.getIamPolicy`.
-      func getIamPolicy(request: StoragePoolsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `StoragePoolsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `StoragePoolsClient.insert`.
-      func insert(request: StoragePoolsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `StoragePoolsClient.list`.
-      func list(request: StoragePoolsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.StoragePoolList
-
-      /// See `StoragePoolsClient.list`.
-      func list(
-        byItem: StoragePoolsClient.ListRequest
-      ) -> any AsyncSequence<StoragePool, Swift.Error>
-
-      /// See `StoragePoolsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<StoragePool, Swift.Error>
-
-      /// See `StoragePoolsClient.listDisks`.
-      func listDisks(request: StoragePoolsClient.ListDisksRequest) async throws
-        -> GoogleCloudComputeV1.StoragePoolListDisks
-
-      /// See `StoragePoolsClient.listDisks`.
-      func listDisks(
-        byItem: StoragePoolsClient.ListDisksRequest
-      ) -> any AsyncSequence<StoragePoolDisk, Swift.Error>
-
-      /// See `StoragePoolsClient.listDisks`.
-      func listDisks(
-        project: Swift.String,
-        zone: Swift.String,
-        storagePool: Swift.String,
-      ) -> any AsyncSequence<StoragePoolDisk, Swift.Error>
-
-      /// See `StoragePoolsClient.setIamPolicy`.
-      func setIamPolicy(request: StoragePoolsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `StoragePoolsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: ZoneSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `StoragePoolsClient.testIamPermissions`.
-      func testIamPermissions(request: StoragePoolsClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `StoragePoolsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `StoragePoolsClient.update`.
-      func update(request: StoragePoolsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol StoragePoolsProtocol: Sendable {
       /// See `StoragePoolsClient.aggregatedList`.
       func aggregatedList(
         request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList
-
-      /// See `StoragePoolsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error>
 
       /// See `StoragePoolsClient.delete`.
       func delete(
@@ -479,20 +323,10 @@
         request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePoolList
 
-      /// See `StoragePoolsClient.list`.
-      func list(
-        byItem: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<StoragePool, Swift.Error>
-
       /// See `StoragePoolsClient.listDisks`.
       func listDisks(
         request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePoolListDisks
-
-      /// See `StoragePoolsClient.listDisks`.
-      func listDisks(
-        byItem: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<StoragePoolDisk, Swift.Error>
 
       /// See `StoragePoolsClient.setIamPolicy`.
       func setIamPolicy(
@@ -531,12 +365,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of storage pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "storagePools_aggregatedList")
     public func aggregatedList(
       byItem: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -702,11 +544,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of storage pools contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "storagePools_list")
     public func list(
       byItem: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<StoragePool, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -740,12 +588,17 @@
       self.listDisks(byItem: byItem, options: .init())
     }
 
+    /// Lists the disks in a specified storage pool.
+    ///
+    /// @Snippet(path: "storagePools_listDisks")
     public func listDisks(
       byItem: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolListDisks in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listDisks(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

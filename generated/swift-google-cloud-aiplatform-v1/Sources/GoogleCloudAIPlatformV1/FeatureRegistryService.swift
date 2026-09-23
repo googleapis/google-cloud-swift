@@ -101,21 +101,6 @@
       try await self.inner.listFeatureGroups(request: request, options: options)
     }
 
-    /// Lists FeatureGroups in a given project and location.
-    ///
-    /// @Snippet(path: "FeatureRegistryService_ListFeatureGroups")
-    public func listFeatureGroups(
-      byItem: ListFeatureGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FeatureGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeatureGroupsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listFeatureGroups(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the parameters of a single FeatureGroup.
     ///
     /// @Snippet(path: "FeatureRegistryService_UpdateFeatureGroup")
@@ -275,21 +260,6 @@
       try await self.inner.listFeatures(request: request, options: options)
     }
 
-    /// Lists Features in a given FeatureGroup.
-    ///
-    /// @Snippet(path: "FeatureRegistryService_ListFeatures")
-    public func listFeatures(
-      byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Feature, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listFeatures(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the parameters of a single Feature.
     ///
     /// @Snippet(path: "FeatureRegistryService_UpdateFeature")
@@ -369,21 +339,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "FeatureRegistryService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "FeatureRegistryService_GetLocation")
@@ -446,23 +401,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "FeatureRegistryService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "FeatureRegistryService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -510,11 +448,7 @@
     /// To mock `FeatureRegistryServiceClient` change your functions to receive
     /// `some FeatureRegistryServiceProtocol` or `any FeatureRegistryServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol FeatureRegistryServiceProtocol {
-      /// See `FeatureRegistryServiceClient.createFeatureGroup`.
-      func createFeatureGroup(request: CreateFeatureGroupRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol FeatureRegistryServiceProtocol: Sendable {
       /// See `FeatureRegistryServiceClient.createFeatureGroup`.
       func createFeatureGroup(withPolling: CreateFeatureGroupRequest) async throws -> any GoogleGax
         .PollableOperation<FeatureGroup>
@@ -525,33 +459,6 @@
         featureGroup: FeatureGroup?,
         featureGroupId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
-
-      /// See `FeatureRegistryServiceClient.getFeatureGroup`.
-      func getFeatureGroup(request: GetFeatureGroupRequest) async throws
-        -> GoogleCloudAIPlatformV1.FeatureGroup
-
-      /// See `FeatureRegistryServiceClient.getFeatureGroup`.
-      func getFeatureGroup(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.FeatureGroup
-
-      /// See `FeatureRegistryServiceClient.listFeatureGroups`.
-      func listFeatureGroups(request: ListFeatureGroupsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListFeatureGroupsResponse
-
-      /// See `FeatureRegistryServiceClient.listFeatureGroups`.
-      func listFeatureGroups(
-        byItem: ListFeatureGroupsRequest
-      ) -> any AsyncSequence<FeatureGroup, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.listFeatureGroups`.
-      func listFeatureGroups(
-        parent: Swift.String,
-      ) -> any AsyncSequence<FeatureGroup, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
-      func updateFeatureGroup(request: UpdateFeatureGroupRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
       func updateFeatureGroup(withPolling: UpdateFeatureGroupRequest) async throws -> any GoogleGax
@@ -564,10 +471,6 @@
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
-      func deleteFeatureGroup(request: DeleteFeatureGroupRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
       func deleteFeatureGroup(withPolling: DeleteFeatureGroupRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
@@ -576,9 +479,6 @@
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `FeatureRegistryServiceClient.createFeature`.
-      func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.createFeature`.
       func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
@@ -592,10 +492,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(request: BatchCreateFeaturesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `FeatureRegistryServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
@@ -604,31 +500,6 @@
         parent: Swift.String,
         requests: [CreateFeatureRequest],
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
-
-      /// See `FeatureRegistryServiceClient.getFeature`.
-      func getFeature(request: GetFeatureRequest) async throws -> GoogleCloudAIPlatformV1.Feature
-
-      /// See `FeatureRegistryServiceClient.getFeature`.
-      func getFeature(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Feature
-
-      /// See `FeatureRegistryServiceClient.listFeatures`.
-      func listFeatures(request: ListFeaturesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListFeaturesResponse
-
-      /// See `FeatureRegistryServiceClient.listFeatures`.
-      func listFeatures(
-        byItem: ListFeaturesRequest
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.listFeatures`.
-      func listFeatures(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.updateFeature`.
-      func updateFeature(request: UpdateFeatureRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.updateFeature`.
       func updateFeature(withPolling: UpdateFeatureRequest) async throws -> any GoogleGax
@@ -641,9 +512,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
-      func deleteFeature(request: DeleteFeatureRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `FeatureRegistryServiceClient.deleteFeature`.
       func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
@@ -651,64 +519,6 @@
       func deleteFeature(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `FeatureRegistryServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `FeatureRegistryServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `FeatureRegistryServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `FeatureRegistryServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `FeatureRegistryServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `FeatureRegistryServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `FeatureRegistryServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `FeatureRegistryServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `FeatureRegistryServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `FeatureRegistryServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `FeatureRegistryServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `FeatureRegistryServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.createFeatureGroup`.
       func createFeatureGroup(
@@ -729,11 +539,6 @@
       func listFeatureGroups(
         request: ListFeatureGroupsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeatureGroupsResponse
-
-      /// See `FeatureRegistryServiceClient.listFeatureGroups`.
-      func listFeatureGroups(
-        byItem: ListFeatureGroupsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<FeatureGroup, Swift.Error>
 
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
       func updateFeatureGroup(
@@ -785,11 +590,6 @@
         request: ListFeaturesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse
 
-      /// See `FeatureRegistryServiceClient.listFeatures`.
-      func listFeatures(
-        byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Feature, Swift.Error>
-
       /// See `FeatureRegistryServiceClient.updateFeature`.
       func updateFeature(
         request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
@@ -815,11 +615,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `FeatureRegistryServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `FeatureRegistryServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -844,11 +639,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `FeatureRegistryServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeatureRegistryServiceClient.deleteOperation`.
       func deleteOperation(
@@ -949,12 +739,17 @@
       self.listFeatureGroups(byItem: byItem, options: .init())
     }
 
+    /// Lists FeatureGroups in a given project and location.
+    ///
+    /// @Snippet(path: "FeatureRegistryService_ListFeatureGroups")
     public func listFeatureGroups(
       byItem: ListFeatureGroupsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<FeatureGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeatureGroupsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listFeatureGroups(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1166,12 +961,17 @@
       self.listFeatures(byItem: byItem, options: .init())
     }
 
+    /// Lists Features in a given FeatureGroup.
+    ///
+    /// @Snippet(path: "FeatureRegistryService_ListFeatures")
     public func listFeatures(
       byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Feature, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listFeatures(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1279,12 +1079,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "FeatureRegistryService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1355,12 +1160,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureRegistryService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -58,26 +58,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Lists all PublicDelegatedPrefix resources owned by the specific project
-    /// across all scopes.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "publicDelegatedPrefixes_aggregatedList")
-    public func aggregatedList(
-      byItem: PublicDelegatedPrefixesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.PublicDelegatedPrefixAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Announces the specified PublicDelegatedPrefix in the given region.
     ///
     /// @Snippet(path: "publicDelegatedPrefixes_announce")
@@ -245,21 +225,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the PublicDelegatedPrefixes for a project in the given region.
-    ///
-    /// @Snippet(path: "publicDelegatedPrefixes_list")
-    public func list(
-      byItem: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified PublicDelegatedPrefix resource with the data included
     /// in the request. This method supportsPATCH
     /// semantics and usesJSON merge
@@ -380,78 +345,12 @@
     /// To mock `PublicDelegatedPrefixesClient` change your functions to receive
     /// `some PublicDelegatedPrefixesProtocol` or `any PublicDelegatedPrefixesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol PublicDelegatedPrefixesProtocol {
-      /// See `PublicDelegatedPrefixesClient.aggregatedList`.
-      func aggregatedList(request: PublicDelegatedPrefixesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.PublicDelegatedPrefixAggregatedList
-
-      /// See `PublicDelegatedPrefixesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: PublicDelegatedPrefixesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
-
-      /// See `PublicDelegatedPrefixesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
-
-      /// See `PublicDelegatedPrefixesClient.announce`.
-      func announce(request: PublicDelegatedPrefixesClient.AnnounceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicDelegatedPrefixesClient.delete`.
-      func delete(request: PublicDelegatedPrefixesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicDelegatedPrefixesClient.`get``.
-      func `get`(request: PublicDelegatedPrefixesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.PublicDelegatedPrefix
-
-      /// See `PublicDelegatedPrefixesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        publicDelegatedPrefix: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefix
-
-      /// See `PublicDelegatedPrefixesClient.insert`.
-      func insert(request: PublicDelegatedPrefixesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicDelegatedPrefixesClient.list`.
-      func list(request: PublicDelegatedPrefixesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.PublicDelegatedPrefixList
-
-      /// See `PublicDelegatedPrefixesClient.list`.
-      func list(
-        byItem: PublicDelegatedPrefixesClient.ListRequest
-      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
-
-      /// See `PublicDelegatedPrefixesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
-
-      /// See `PublicDelegatedPrefixesClient.patch`.
-      func patch(request: PublicDelegatedPrefixesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `PublicDelegatedPrefixesClient.withdraw`.
-      func withdraw(request: PublicDelegatedPrefixesClient.WithdrawRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol PublicDelegatedPrefixesProtocol: Sendable {
       /// See `PublicDelegatedPrefixesClient.aggregatedList`.
       func aggregatedList(
         request: PublicDelegatedPrefixesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixAggregatedList
-
-      /// See `PublicDelegatedPrefixesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: PublicDelegatedPrefixesClient.AggregatedListRequest,
-        options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.announce`.
       func announce(
@@ -477,11 +376,6 @@
       func list(
         request: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList
-
-      /// See `PublicDelegatedPrefixesClient.list`.
-      func list(
-        byItem: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error>
 
       /// See `PublicDelegatedPrefixesClient.patch`.
       func patch(
@@ -516,13 +410,22 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Lists all PublicDelegatedPrefix resources owned by the specific project
+    /// across all scopes.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "publicDelegatedPrefixes_aggregatedList")
     public func aggregatedList(
       byItem: PublicDelegatedPrefixesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -705,12 +608,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the PublicDelegatedPrefixes for a project in the given region.
+    ///
+    /// @Snippet(path: "publicDelegatedPrefixes_list")
     public func list(
       byItem: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

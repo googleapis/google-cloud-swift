@@ -92,21 +92,7 @@ extension Clients {
   /// To mock `ValidationHelperV1Client` change your functions to receive
   /// `some ValidationHelperV1Protocol` or `any ValidationHelperV1Protocol`
   /// and pass a mock implementation in your tests.
-  public protocol ValidationHelperV1Protocol {
-    /// See `ValidationHelperV1Client.validateAttestationOccurrence`.
-    func validateAttestationOccurrence(request: ValidateAttestationOccurrenceRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.ValidateAttestationOccurrenceResponse
-
-    /// See `ValidationHelperV1Client.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ValidationHelperV1Client.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ValidationHelperV1Client.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol ValidationHelperV1Protocol: Sendable {
     /// See `ValidationHelperV1Client.validateAttestationOccurrence`.
     func validateAttestationOccurrence(
       request: ValidateAttestationOccurrenceRequest, options: GoogleGax.RequestOptions

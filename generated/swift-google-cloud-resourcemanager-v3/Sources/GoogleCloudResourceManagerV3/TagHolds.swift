@@ -125,21 +125,6 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
     try await self.inner.listTagHolds(request: request, options: options)
   }
 
-  /// Lists TagHolds under a TagValue.
-  ///
-  /// @Snippet(path: "TagHolds_ListTagHolds")
-  public func listTagHolds(
-    byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TagHold, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTagHolds(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -158,10 +143,7 @@ extension Clients {
   /// To mock `TagHoldsClient` change your functions to receive
   /// `some TagHoldsProtocol` or `any TagHoldsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TagHoldsProtocol {
-    /// See `TagHoldsClient.createTagHold`.
-    func createTagHold(request: CreateTagHoldRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol TagHoldsProtocol: Sendable {
     /// See `TagHoldsClient.createTagHold`.
     func createTagHold(withPolling: CreateTagHoldRequest) async throws -> any GoogleGax
       .PollableOperation<TagHold>
@@ -173,9 +155,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<TagHold>
 
     /// See `TagHoldsClient.deleteTagHold`.
-    func deleteTagHold(request: DeleteTagHoldRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `TagHoldsClient.deleteTagHold`.
     func deleteTagHold(withPolling: DeleteTagHoldRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -183,20 +162,6 @@ extension Clients {
     func deleteTagHold(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `TagHoldsClient.listTagHolds`.
-    func listTagHolds(request: ListTagHoldsRequest) async throws
-      -> GoogleCloudResourceManagerV3.ListTagHoldsResponse
-
-    /// See `TagHoldsClient.listTagHolds`.
-    func listTagHolds(
-      byItem: ListTagHoldsRequest
-    ) -> any AsyncSequence<TagHold, Swift.Error>
-
-    /// See `TagHoldsClient.listTagHolds`.
-    func listTagHolds(
-      parent: Swift.String,
-    ) -> any AsyncSequence<TagHold, Swift.Error>
 
     /// See `TagHoldsClient.createTagHold`.
     func createTagHold(
@@ -222,11 +187,6 @@ extension Clients {
     func listTagHolds(
       request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse
-
-    /// See `TagHoldsClient.listTagHolds`.
-    func listTagHolds(
-      byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TagHold, Swift.Error>
   }
 }
 
@@ -326,12 +286,17 @@ extension Clients.TagHoldsProtocol {
     self.listTagHolds(byItem: byItem, options: .init())
   }
 
+  /// Lists TagHolds under a TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_ListTagHolds")
   public func listTagHolds(
     byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TagHold, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTagHolds(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

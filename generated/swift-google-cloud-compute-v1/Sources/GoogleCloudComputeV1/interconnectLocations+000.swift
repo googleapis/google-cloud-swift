@@ -57,22 +57,6 @@
     ) async throws -> GoogleCloudComputeV1.InterconnectLocationList {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Retrieves the list of interconnect locations available to the specified
-    /// project.
-    ///
-    /// @Snippet(path: "interconnectLocations_list")
-    public func list(
-      byItem: InterconnectLocationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectLocationList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -81,31 +65,7 @@
     /// To mock `InterconnectLocationsClient` change your functions to receive
     /// `some InterconnectLocationsProtocol` or `any InterconnectLocationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InterconnectLocationsProtocol {
-      /// See `InterconnectLocationsClient.`get``.
-      func `get`(request: InterconnectLocationsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectLocation
-
-      /// See `InterconnectLocationsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        interconnectLocation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectLocation
-
-      /// See `InterconnectLocationsClient.list`.
-      func list(request: InterconnectLocationsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectLocationList
-
-      /// See `InterconnectLocationsClient.list`.
-      func list(
-        byItem: InterconnectLocationsClient.ListRequest
-      ) -> any AsyncSequence<InterconnectLocation, Swift.Error>
-
-      /// See `InterconnectLocationsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<InterconnectLocation, Swift.Error>
-
+    public protocol InterconnectLocationsProtocol: Sendable {
       /// See `InterconnectLocationsClient.`get``.
       func `get`(
         request: InterconnectLocationsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -115,11 +75,6 @@
       func list(
         request: InterconnectLocationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectLocationList
-
-      /// See `InterconnectLocationsClient.list`.
-      func list(
-        byItem: InterconnectLocationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InterconnectLocation, Swift.Error>
     }
   }
 
@@ -166,12 +121,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of interconnect locations available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "interconnectLocations_list")
     public func list(
       byItem: InterconnectLocationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InterconnectLocation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectLocationList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

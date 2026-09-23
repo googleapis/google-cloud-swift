@@ -56,21 +56,6 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
     try await self.inner.listDataTables(request: request, options: options)
   }
 
-  /// List data tables.
-  ///
-  /// @Snippet(path: "DataTableService_ListDataTables")
-  public func listDataTables(
-    byItem: ListDataTablesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataTable, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDataTables(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get data table info.
   ///
   /// @Snippet(path: "DataTableService_GetDataTable")
@@ -123,21 +108,6 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
     request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse {
     try await self.inner.listDataTableRows(request: request, options: options)
-  }
-
-  /// List data table rows.
-  ///
-  /// @Snippet(path: "DataTableService_ListDataTableRows")
-  public func listDataTableRows(
-    byItem: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataTableRow, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDataTableRows(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Get data table row
@@ -218,23 +188,6 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "DataTableService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "DataTableService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -271,190 +224,7 @@ extension Clients {
   /// To mock `DataTableServiceClient` change your functions to receive
   /// `some DataTableServiceProtocol` or `any DataTableServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DataTableServiceProtocol {
-    /// See `DataTableServiceClient.createDataTable`.
-    func createDataTable(request: CreateDataTableRequest) async throws
-      -> GoogleCloudChronicleV1.DataTable
-
-    /// See `DataTableServiceClient.createDataTable`.
-    func createDataTable(
-      parent: Swift.String,
-      dataTable: DataTable?,
-      dataTableId: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.DataTable
-
-    /// See `DataTableServiceClient.listDataTables`.
-    func listDataTables(request: ListDataTablesRequest) async throws
-      -> GoogleCloudChronicleV1.ListDataTablesResponse
-
-    /// See `DataTableServiceClient.listDataTables`.
-    func listDataTables(
-      byItem: ListDataTablesRequest
-    ) -> any AsyncSequence<DataTable, Swift.Error>
-
-    /// See `DataTableServiceClient.listDataTables`.
-    func listDataTables(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DataTable, Swift.Error>
-
-    /// See `DataTableServiceClient.getDataTable`.
-    func getDataTable(request: GetDataTableRequest) async throws -> GoogleCloudChronicleV1.DataTable
-
-    /// See `DataTableServiceClient.getDataTable`.
-    func getDataTable(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.DataTable
-
-    /// See `DataTableServiceClient.updateDataTable`.
-    func updateDataTable(request: UpdateDataTableRequest) async throws
-      -> GoogleCloudChronicleV1.DataTable
-
-    /// See `DataTableServiceClient.updateDataTable`.
-    func updateDataTable(
-      dataTable: DataTable?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudChronicleV1.DataTable
-
-    /// See `DataTableServiceClient.deleteDataTable`.
-    func deleteDataTable(request: DeleteDataTableRequest) async throws
-
-    /// See `DataTableServiceClient.deleteDataTable`.
-    func deleteDataTable(
-      name: Swift.String,
-      force: Swift.Bool,
-    ) async throws
-
-    /// See `DataTableServiceClient.createDataTableRow`.
-    func createDataTableRow(request: CreateDataTableRowRequest) async throws
-      -> GoogleCloudChronicleV1.DataTableRow
-
-    /// See `DataTableServiceClient.createDataTableRow`.
-    func createDataTableRow(
-      parent: Swift.String,
-      dataTableRow: DataTableRow?,
-    ) async throws -> GoogleCloudChronicleV1.DataTableRow
-
-    /// See `DataTableServiceClient.updateDataTableRow`.
-    func updateDataTableRow(request: UpdateDataTableRowRequest) async throws
-      -> GoogleCloudChronicleV1.DataTableRow
-
-    /// See `DataTableServiceClient.updateDataTableRow`.
-    func updateDataTableRow(
-      dataTableRow: DataTableRow?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudChronicleV1.DataTableRow
-
-    /// See `DataTableServiceClient.listDataTableRows`.
-    func listDataTableRows(request: ListDataTableRowsRequest) async throws
-      -> GoogleCloudChronicleV1.ListDataTableRowsResponse
-
-    /// See `DataTableServiceClient.listDataTableRows`.
-    func listDataTableRows(
-      byItem: ListDataTableRowsRequest
-    ) -> any AsyncSequence<DataTableRow, Swift.Error>
-
-    /// See `DataTableServiceClient.listDataTableRows`.
-    func listDataTableRows(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DataTableRow, Swift.Error>
-
-    /// See `DataTableServiceClient.getDataTableRow`.
-    func getDataTableRow(request: GetDataTableRowRequest) async throws
-      -> GoogleCloudChronicleV1.DataTableRow
-
-    /// See `DataTableServiceClient.getDataTableRow`.
-    func getDataTableRow(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.DataTableRow
-
-    /// See `DataTableServiceClient.deleteDataTableRow`.
-    func deleteDataTableRow(request: DeleteDataTableRowRequest) async throws
-
-    /// See `DataTableServiceClient.deleteDataTableRow`.
-    func deleteDataTableRow(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataTableServiceClient.bulkCreateDataTableRows`.
-    func bulkCreateDataTableRows(request: BulkCreateDataTableRowsRequest) async throws
-      -> GoogleCloudChronicleV1.BulkCreateDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkCreateDataTableRows`.
-    func bulkCreateDataTableRows(
-      parent: Swift.String,
-      requests: [CreateDataTableRowRequest],
-    ) async throws -> GoogleCloudChronicleV1.BulkCreateDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkGetDataTableRows`.
-    func bulkGetDataTableRows(request: BulkGetDataTableRowsRequest) async throws
-      -> GoogleCloudChronicleV1.BulkGetDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkGetDataTableRows`.
-    func bulkGetDataTableRows(
-      parent: Swift.String,
-      requests: [GetDataTableRowRequest],
-    ) async throws -> GoogleCloudChronicleV1.BulkGetDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkReplaceDataTableRows`.
-    func bulkReplaceDataTableRows(request: BulkReplaceDataTableRowsRequest) async throws
-      -> GoogleCloudChronicleV1.BulkReplaceDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkReplaceDataTableRows`.
-    func bulkReplaceDataTableRows(
-      parent: Swift.String,
-      requests: [CreateDataTableRowRequest],
-    ) async throws -> GoogleCloudChronicleV1.BulkReplaceDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkUpdateDataTableRows`.
-    func bulkUpdateDataTableRows(request: BulkUpdateDataTableRowsRequest) async throws
-      -> GoogleCloudChronicleV1.BulkUpdateDataTableRowsResponse
-
-    /// See `DataTableServiceClient.bulkUpdateDataTableRows`.
-    func bulkUpdateDataTableRows(
-      parent: Swift.String,
-      requests: [UpdateDataTableRowRequest],
-    ) async throws -> GoogleCloudChronicleV1.BulkUpdateDataTableRowsResponse
-
-    /// See `DataTableServiceClient.getDataTableOperationErrors`.
-    func getDataTableOperationErrors(request: GetDataTableOperationErrorsRequest) async throws
-      -> GoogleCloudChronicleV1.DataTableOperationErrors
-
-    /// See `DataTableServiceClient.getDataTableOperationErrors`.
-    func getDataTableOperationErrors(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.DataTableOperationErrors
-
-    /// See `DataTableServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataTableServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataTableServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataTableServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `DataTableServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataTableServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DataTableServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol DataTableServiceProtocol: Sendable {
     /// See `DataTableServiceClient.createDataTable`.
     func createDataTable(
       request: CreateDataTableRequest, options: GoogleGax.RequestOptions
@@ -464,11 +234,6 @@ extension Clients {
     func listDataTables(
       request: ListDataTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse
-
-    /// See `DataTableServiceClient.listDataTables`.
-    func listDataTables(
-      byItem: ListDataTablesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataTable, Swift.Error>
 
     /// See `DataTableServiceClient.getDataTable`.
     func getDataTable(
@@ -499,11 +264,6 @@ extension Clients {
     func listDataTableRows(
       request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse
-
-    /// See `DataTableServiceClient.listDataTableRows`.
-    func listDataTableRows(
-      byItem: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataTableRow, Swift.Error>
 
     /// See `DataTableServiceClient.getDataTableRow`.
     func getDataTableRow(
@@ -544,11 +304,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataTableServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTableServiceClient.deleteOperation`.
     func deleteOperation(
@@ -607,12 +362,17 @@ extension Clients.DataTableServiceProtocol {
     self.listDataTables(byItem: byItem, options: .init())
   }
 
+  /// List data tables.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTables")
   public func listDataTables(
     byItem: ListDataTablesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataTable, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDataTables(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -755,12 +515,17 @@ extension Clients.DataTableServiceProtocol {
     self.listDataTableRows(byItem: byItem, options: .init())
   }
 
+  /// List data table rows.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTableRows")
   public func listDataTableRows(
     byItem: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataTableRow, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDataTableRows(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -945,12 +710,19 @@ extension Clients.DataTableServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

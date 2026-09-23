@@ -91,72 +91,7 @@ extension Clients {
   /// To mock `LanguageServiceClient` change your functions to receive
   /// `some LanguageServiceProtocol` or `any LanguageServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol LanguageServiceProtocol {
-    /// See `LanguageServiceClient.analyzeSentiment`.
-    func analyzeSentiment(request: AnalyzeSentimentRequest) async throws
-      -> GoogleCloudLanguageV2.AnalyzeSentimentResponse
-
-    /// See `LanguageServiceClient.analyzeSentiment`.
-    func analyzeSentiment(
-      document: Document?,
-      encodingType: EncodingType,
-    ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse
-
-    /// See `LanguageServiceClient.analyzeSentiment`.
-    func analyzeSentiment(
-      document: Document?,
-    ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse
-
-    /// See `LanguageServiceClient.analyzeEntities`.
-    func analyzeEntities(request: AnalyzeEntitiesRequest) async throws
-      -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse
-
-    /// See `LanguageServiceClient.analyzeEntities`.
-    func analyzeEntities(
-      document: Document?,
-      encodingType: EncodingType,
-    ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse
-
-    /// See `LanguageServiceClient.analyzeEntities`.
-    func analyzeEntities(
-      document: Document?,
-    ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse
-
-    /// See `LanguageServiceClient.classifyText`.
-    func classifyText(request: ClassifyTextRequest) async throws
-      -> GoogleCloudLanguageV2.ClassifyTextResponse
-
-    /// See `LanguageServiceClient.classifyText`.
-    func classifyText(
-      document: Document?,
-    ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse
-
-    /// See `LanguageServiceClient.moderateText`.
-    func moderateText(request: ModerateTextRequest) async throws
-      -> GoogleCloudLanguageV2.ModerateTextResponse
-
-    /// See `LanguageServiceClient.moderateText`.
-    func moderateText(
-      document: Document?,
-    ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse
-
-    /// See `LanguageServiceClient.annotateText`.
-    func annotateText(request: AnnotateTextRequest) async throws
-      -> GoogleCloudLanguageV2.AnnotateTextResponse
-
-    /// See `LanguageServiceClient.annotateText`.
-    func annotateText(
-      document: Document?,
-      features: AnnotateTextRequest.Features?,
-      encodingType: EncodingType,
-    ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse
-
-    /// See `LanguageServiceClient.annotateText`.
-    func annotateText(
-      document: Document?,
-      features: AnnotateTextRequest.Features?,
-    ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse
-
+  public protocol LanguageServiceProtocol: Sendable {
     /// See `LanguageServiceClient.analyzeSentiment`.
     func analyzeSentiment(
       request: AnalyzeSentimentRequest, options: GoogleGax.RequestOptions

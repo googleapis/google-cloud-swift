@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of node templates.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "nodeTemplates_aggregatedList")
-    public func aggregatedList(
-      byItem: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTemplateAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified NodeTemplate resource.
     ///
     /// @Snippet(path: "nodeTemplates_delete")
@@ -200,21 +182,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of node templates available to the specified
-    /// project.
-    ///
-    /// @Snippet(path: "nodeTemplates_list")
-    public func list(
-      byItem: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NodeTemplate, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTemplateList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///
@@ -250,99 +217,11 @@
     /// To mock `NodeTemplatesClient` change your functions to receive
     /// `some NodeTemplatesProtocol` or `any NodeTemplatesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol NodeTemplatesProtocol {
-      /// See `NodeTemplatesClient.aggregatedList`.
-      func aggregatedList(request: NodeTemplatesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.NodeTemplateAggregatedList
-
-      /// See `NodeTemplatesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: NodeTemplatesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error>
-
-      /// See `NodeTemplatesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error>
-
-      /// See `NodeTemplatesClient.delete`.
-      func delete(request: NodeTemplatesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NodeTemplatesClient.`get``.
-      func `get`(request: NodeTemplatesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.NodeTemplate
-
-      /// See `NodeTemplatesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        nodeTemplate: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.NodeTemplate
-
-      /// See `NodeTemplatesClient.getIamPolicy`.
-      func getIamPolicy(request: NodeTemplatesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `NodeTemplatesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `NodeTemplatesClient.insert`.
-      func insert(request: NodeTemplatesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NodeTemplatesClient.list`.
-      func list(request: NodeTemplatesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.NodeTemplateList
-
-      /// See `NodeTemplatesClient.list`.
-      func list(
-        byItem: NodeTemplatesClient.ListRequest
-      ) -> any AsyncSequence<NodeTemplate, Swift.Error>
-
-      /// See `NodeTemplatesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<NodeTemplate, Swift.Error>
-
-      /// See `NodeTemplatesClient.setIamPolicy`.
-      func setIamPolicy(request: NodeTemplatesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `NodeTemplatesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `NodeTemplatesClient.testIamPermissions`.
-      func testIamPermissions(request: NodeTemplatesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `NodeTemplatesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol NodeTemplatesProtocol: Sendable {
       /// See `NodeTemplatesClient.aggregatedList`.
       func aggregatedList(
         request: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeTemplateAggregatedList
-
-      /// See `NodeTemplatesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error>
 
       /// See `NodeTemplatesClient.delete`.
       func delete(
@@ -368,11 +247,6 @@
       func list(
         request: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeTemplateList
-
-      /// See `NodeTemplatesClient.list`.
-      func list(
-        byItem: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<NodeTemplate, Swift.Error>
 
       /// See `NodeTemplatesClient.setIamPolicy`.
       func setIamPolicy(
@@ -406,12 +280,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of node templates.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTemplates_aggregatedList")
     public func aggregatedList(
       byItem: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTemplateAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -577,11 +459,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of node templates available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTemplates_list")
     public func list(
       byItem: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NodeTemplate, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTemplateList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

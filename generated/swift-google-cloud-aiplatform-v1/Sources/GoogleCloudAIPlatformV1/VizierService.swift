@@ -76,21 +76,6 @@
       try await self.inner.listStudies(request: request, options: options)
     }
 
-    /// Lists all the studies in a region for an associated project.
-    ///
-    /// @Snippet(path: "VizierService_ListStudies")
-    public func listStudies(
-      byItem: ListStudiesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Study, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listStudies(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a Study.
     ///
     /// @Snippet(path: "VizierService_DeleteStudy")
@@ -185,21 +170,6 @@
       request: ListTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse {
       try await self.inner.listTrials(request: request, options: options)
-    }
-
-    /// Lists the Trials associated with a Study.
-    ///
-    /// @Snippet(path: "VizierService_ListTrials")
-    public func listTrials(
-      byItem: ListTrialsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Trial, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTrials(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Adds a measurement of the objective metrics to a Trial. This measurement
@@ -308,21 +278,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "VizierService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "VizierService_GetLocation")
@@ -385,23 +340,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "VizierService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "VizierService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -449,185 +387,14 @@
     /// To mock `VizierServiceClient` change your functions to receive
     /// `some VizierServiceProtocol` or `any VizierServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol VizierServiceProtocol {
-      /// See `VizierServiceClient.createStudy`.
-      func createStudy(request: CreateStudyRequest) async throws -> GoogleCloudAIPlatformV1.Study
-
-      /// See `VizierServiceClient.createStudy`.
-      func createStudy(
-        parent: Swift.String,
-        study: Study?,
-      ) async throws -> GoogleCloudAIPlatformV1.Study
-
-      /// See `VizierServiceClient.getStudy`.
-      func getStudy(request: GetStudyRequest) async throws -> GoogleCloudAIPlatformV1.Study
-
-      /// See `VizierServiceClient.getStudy`.
-      func getStudy(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Study
-
-      /// See `VizierServiceClient.listStudies`.
-      func listStudies(request: ListStudiesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListStudiesResponse
-
-      /// See `VizierServiceClient.listStudies`.
-      func listStudies(
-        byItem: ListStudiesRequest
-      ) -> any AsyncSequence<Study, Swift.Error>
-
-      /// See `VizierServiceClient.listStudies`.
-      func listStudies(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Study, Swift.Error>
-
-      /// See `VizierServiceClient.deleteStudy`.
-      func deleteStudy(request: DeleteStudyRequest) async throws
-
-      /// See `VizierServiceClient.deleteStudy`.
-      func deleteStudy(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VizierServiceClient.lookupStudy`.
-      func lookupStudy(request: LookupStudyRequest) async throws -> GoogleCloudAIPlatformV1.Study
-
-      /// See `VizierServiceClient.lookupStudy`.
-      func lookupStudy(
-        parent: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Study
-
-      /// See `VizierServiceClient.suggestTrials`.
-      func suggestTrials(request: SuggestTrialsRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol VizierServiceProtocol: Sendable {
       /// See `VizierServiceClient.suggestTrials`.
       func suggestTrials(withPolling: SuggestTrialsRequest) async throws -> any GoogleGax
         .PollableOperation<SuggestTrialsResponse>
 
-      /// See `VizierServiceClient.createTrial`.
-      func createTrial(request: CreateTrialRequest) async throws -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.createTrial`.
-      func createTrial(
-        parent: Swift.String,
-        trial: Trial?,
-      ) async throws -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.getTrial`.
-      func getTrial(request: GetTrialRequest) async throws -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.getTrial`.
-      func getTrial(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.listTrials`.
-      func listTrials(request: ListTrialsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTrialsResponse
-
-      /// See `VizierServiceClient.listTrials`.
-      func listTrials(
-        byItem: ListTrialsRequest
-      ) -> any AsyncSequence<Trial, Swift.Error>
-
-      /// See `VizierServiceClient.listTrials`.
-      func listTrials(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Trial, Swift.Error>
-
-      /// See `VizierServiceClient.addTrialMeasurement`.
-      func addTrialMeasurement(request: AddTrialMeasurementRequest) async throws
-        -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.completeTrial`.
-      func completeTrial(request: CompleteTrialRequest) async throws
-        -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.deleteTrial`.
-      func deleteTrial(request: DeleteTrialRequest) async throws
-
-      /// See `VizierServiceClient.deleteTrial`.
-      func deleteTrial(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VizierServiceClient.checkTrialEarlyStoppingState`.
-      func checkTrialEarlyStoppingState(request: CheckTrialEarlyStoppingStateRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `VizierServiceClient.checkTrialEarlyStoppingState`.
       func checkTrialEarlyStoppingState(withPolling: CheckTrialEarlyStoppingStateRequest)
         async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
-
-      /// See `VizierServiceClient.stopTrial`.
-      func stopTrial(request: StopTrialRequest) async throws -> GoogleCloudAIPlatformV1.Trial
-
-      /// See `VizierServiceClient.listOptimalTrials`.
-      func listOptimalTrials(request: ListOptimalTrialsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListOptimalTrialsResponse
-
-      /// See `VizierServiceClient.listOptimalTrials`.
-      func listOptimalTrials(
-        parent: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ListOptimalTrialsResponse
-
-      /// See `VizierServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `VizierServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `VizierServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `VizierServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `VizierServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `VizierServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `VizierServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VizierServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VizierServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VizierServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `VizierServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VizierServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `VizierServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VizierServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `VizierServiceClient.createStudy`.
       func createStudy(
@@ -643,11 +410,6 @@
       func listStudies(
         request: ListStudiesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse
-
-      /// See `VizierServiceClient.listStudies`.
-      func listStudies(
-        byItem: ListStudiesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Study, Swift.Error>
 
       /// See `VizierServiceClient.deleteStudy`.
       func deleteStudy(
@@ -683,11 +445,6 @@
       func listTrials(
         request: ListTrialsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse
-
-      /// See `VizierServiceClient.listTrials`.
-      func listTrials(
-        byItem: ListTrialsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Trial, Swift.Error>
 
       /// See `VizierServiceClient.addTrialMeasurement`.
       func addTrialMeasurement(
@@ -729,11 +486,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `VizierServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `VizierServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -758,11 +510,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VizierServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VizierServiceClient.deleteOperation`.
       func deleteOperation(
@@ -843,12 +590,17 @@
       self.listStudies(byItem: byItem, options: .init())
     }
 
+    /// Lists all the studies in a region for an associated project.
+    ///
+    /// @Snippet(path: "VizierService_ListStudies")
     public func listStudies(
       byItem: ListStudiesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Study, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listStudies(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -991,12 +743,17 @@
       self.listTrials(byItem: byItem, options: .init())
     }
 
+    /// Lists the Trials associated with a Study.
+    ///
+    /// @Snippet(path: "VizierService_ListTrials")
     public func listTrials(
       byItem: ListTrialsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Trial, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTrials(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1132,12 +889,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "VizierService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1208,12 +970,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

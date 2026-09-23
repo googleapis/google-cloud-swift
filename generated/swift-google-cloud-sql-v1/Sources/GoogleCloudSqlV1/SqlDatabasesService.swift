@@ -105,26 +105,7 @@
     /// To mock `SqlDatabasesServiceClient` change your functions to receive
     /// `some SqlDatabasesServiceProtocol` or `any SqlDatabasesServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlDatabasesServiceProtocol {
-      /// See `SqlDatabasesServiceClient.delete`.
-      func delete(request: SqlDatabasesDeleteRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlDatabasesServiceClient.`get``.
-      func `get`(request: SqlDatabasesGetRequest) async throws -> GoogleCloudSqlV1.Database
-
-      /// See `SqlDatabasesServiceClient.insert`.
-      func insert(request: SqlDatabasesInsertRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlDatabasesServiceClient.list`.
-      func list(request: SqlDatabasesListRequest) async throws
-        -> GoogleCloudSqlV1.DatabasesListResponse
-
-      /// See `SqlDatabasesServiceClient.patch`.
-      func patch(request: SqlDatabasesUpdateRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlDatabasesServiceClient.update`.
-      func update(request: SqlDatabasesUpdateRequest) async throws -> GoogleCloudSqlV1.Operation
-
+    public protocol SqlDatabasesServiceProtocol: Sendable {
       /// See `SqlDatabasesServiceClient.delete`.
       func delete(
         request: SqlDatabasesDeleteRequest, options: GoogleGax.RequestOptions

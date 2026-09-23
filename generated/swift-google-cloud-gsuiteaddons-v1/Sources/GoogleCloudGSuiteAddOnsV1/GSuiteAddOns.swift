@@ -108,21 +108,6 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
     try await self.inner.listDeployments(request: request, options: options)
   }
 
-  /// Lists all deployments in a particular project.
-  ///
-  /// @Snippet(path: "GSuiteAddOns_ListDeployments")
-  public func listDeployments(
-    byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeployments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes the deployment with the given name.
   ///
   /// @Snippet(path: "GSuiteAddOns_DeleteDeployment")
@@ -170,92 +155,7 @@ extension Clients {
   /// To mock `GSuiteAddOnsClient` change your functions to receive
   /// `some GSuiteAddOnsProtocol` or `any GSuiteAddOnsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol GSuiteAddOnsProtocol {
-    /// See `GSuiteAddOnsClient.getAuthorization`.
-    func getAuthorization(request: GetAuthorizationRequest) async throws
-      -> GoogleCloudGSuiteAddOnsV1.Authorization
-
-    /// See `GSuiteAddOnsClient.getAuthorization`.
-    func getAuthorization(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization
-
-    /// See `GSuiteAddOnsClient.createDeployment`.
-    func createDeployment(request: CreateDeploymentRequest) async throws
-      -> GoogleCloudGSuiteAddOnsV1.Deployment
-
-    /// See `GSuiteAddOnsClient.createDeployment`.
-    func createDeployment(
-      parent: Swift.String,
-      deployment: Deployment?,
-      deploymentId: Swift.String,
-    ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment
-
-    /// See `GSuiteAddOnsClient.replaceDeployment`.
-    func replaceDeployment(request: ReplaceDeploymentRequest) async throws
-      -> GoogleCloudGSuiteAddOnsV1.Deployment
-
-    /// See `GSuiteAddOnsClient.replaceDeployment`.
-    func replaceDeployment(
-      deployment: Deployment?,
-    ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment
-
-    /// See `GSuiteAddOnsClient.getDeployment`.
-    func getDeployment(request: GetDeploymentRequest) async throws
-      -> GoogleCloudGSuiteAddOnsV1.Deployment
-
-    /// See `GSuiteAddOnsClient.getDeployment`.
-    func getDeployment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment
-
-    /// See `GSuiteAddOnsClient.listDeployments`.
-    func listDeployments(request: ListDeploymentsRequest) async throws
-      -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse
-
-    /// See `GSuiteAddOnsClient.listDeployments`.
-    func listDeployments(
-      byItem: ListDeploymentsRequest
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `GSuiteAddOnsClient.listDeployments`.
-    func listDeployments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Deployment, Swift.Error>
-
-    /// See `GSuiteAddOnsClient.deleteDeployment`.
-    func deleteDeployment(request: DeleteDeploymentRequest) async throws
-
-    /// See `GSuiteAddOnsClient.deleteDeployment`.
-    func deleteDeployment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `GSuiteAddOnsClient.installDeployment`.
-    func installDeployment(request: InstallDeploymentRequest) async throws
-
-    /// See `GSuiteAddOnsClient.installDeployment`.
-    func installDeployment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `GSuiteAddOnsClient.uninstallDeployment`.
-    func uninstallDeployment(request: UninstallDeploymentRequest) async throws
-
-    /// See `GSuiteAddOnsClient.uninstallDeployment`.
-    func uninstallDeployment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `GSuiteAddOnsClient.getInstallStatus`.
-    func getInstallStatus(request: GetInstallStatusRequest) async throws
-      -> GoogleCloudGSuiteAddOnsV1.InstallStatus
-
-    /// See `GSuiteAddOnsClient.getInstallStatus`.
-    func getInstallStatus(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGSuiteAddOnsV1.InstallStatus
-
+  public protocol GSuiteAddOnsProtocol: Sendable {
     /// See `GSuiteAddOnsClient.getAuthorization`.
     func getAuthorization(
       request: GetAuthorizationRequest, options: GoogleGax.RequestOptions
@@ -280,11 +180,6 @@ extension Clients {
     func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse
-
-    /// See `GSuiteAddOnsClient.listDeployments`.
-    func listDeployments(
-      byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Deployment, Swift.Error>
 
     /// See `GSuiteAddOnsClient.deleteDeployment`.
     func deleteDeployment(
@@ -416,12 +311,17 @@ extension Clients.GSuiteAddOnsProtocol {
     self.listDeployments(byItem: byItem, options: .init())
   }
 
+  /// Lists all deployments in a particular project.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_ListDeployments")
   public func listDeployments(
     byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -83,21 +83,6 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
     try await self.inner.listRuleSets(request: request, options: options)
   }
 
-  /// Lists rulesets.
-  ///
-  /// @Snippet(path: "RuleSetService_ListRuleSets")
-  public func listRuleSets(
-    byItem: ListRuleSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RuleSet, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRuleSets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -116,58 +101,7 @@ extension Clients {
   /// To mock `RuleSetServiceClient` change your functions to receive
   /// `some RuleSetServiceProtocol` or `any RuleSetServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol RuleSetServiceProtocol {
-    /// See `RuleSetServiceClient.createRuleSet`.
-    func createRuleSet(request: CreateRuleSetRequest) async throws
-      -> GoogleCloudContentWarehouseV1.RuleSet
-
-    /// See `RuleSetServiceClient.createRuleSet`.
-    func createRuleSet(
-      parent: Swift.String,
-      ruleSet: RuleSet?,
-    ) async throws -> GoogleCloudContentWarehouseV1.RuleSet
-
-    /// See `RuleSetServiceClient.getRuleSet`.
-    func getRuleSet(request: GetRuleSetRequest) async throws
-      -> GoogleCloudContentWarehouseV1.RuleSet
-
-    /// See `RuleSetServiceClient.getRuleSet`.
-    func getRuleSet(
-      name: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.RuleSet
-
-    /// See `RuleSetServiceClient.updateRuleSet`.
-    func updateRuleSet(request: UpdateRuleSetRequest) async throws
-      -> GoogleCloudContentWarehouseV1.RuleSet
-
-    /// See `RuleSetServiceClient.updateRuleSet`.
-    func updateRuleSet(
-      name: Swift.String,
-      ruleSet: RuleSet?,
-    ) async throws -> GoogleCloudContentWarehouseV1.RuleSet
-
-    /// See `RuleSetServiceClient.deleteRuleSet`.
-    func deleteRuleSet(request: DeleteRuleSetRequest) async throws
-
-    /// See `RuleSetServiceClient.deleteRuleSet`.
-    func deleteRuleSet(
-      name: Swift.String,
-    ) async throws
-
-    /// See `RuleSetServiceClient.listRuleSets`.
-    func listRuleSets(request: ListRuleSetsRequest) async throws
-      -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse
-
-    /// See `RuleSetServiceClient.listRuleSets`.
-    func listRuleSets(
-      byItem: ListRuleSetsRequest
-    ) -> any AsyncSequence<RuleSet, Swift.Error>
-
-    /// See `RuleSetServiceClient.listRuleSets`.
-    func listRuleSets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<RuleSet, Swift.Error>
-
+  public protocol RuleSetServiceProtocol: Sendable {
     /// See `RuleSetServiceClient.createRuleSet`.
     func createRuleSet(
       request: CreateRuleSetRequest, options: GoogleGax.RequestOptions
@@ -192,11 +126,6 @@ extension Clients {
     func listRuleSets(
       request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse
-
-    /// See `RuleSetServiceClient.listRuleSets`.
-    func listRuleSets(
-      byItem: ListRuleSetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RuleSet, Swift.Error>
   }
 }
 
@@ -306,12 +235,17 @@ extension Clients.RuleSetServiceProtocol {
     self.listRuleSets(byItem: byItem, options: .init())
   }
 
+  /// Lists rulesets.
+  ///
+  /// @Snippet(path: "RuleSetService_ListRuleSets")
   public func listRuleSets(
     byItem: ListRuleSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RuleSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRuleSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

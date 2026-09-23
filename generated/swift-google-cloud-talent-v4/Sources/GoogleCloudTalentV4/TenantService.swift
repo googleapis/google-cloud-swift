@@ -83,20 +83,6 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
     try await self.inner.listTenants(request: request, options: options)
   }
 
-  /// Lists all tenants associated with the project.
-  ///
-  /// @Snippet(path: "TenantService_ListTenants")
-  public func listTenants(
-    byItem: ListTenantsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Tenant, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListTenantsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTenants(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -115,55 +101,7 @@ extension Clients {
   /// To mock `TenantServiceClient` change your functions to receive
   /// `some TenantServiceProtocol` or `any TenantServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TenantServiceProtocol {
-    /// See `TenantServiceClient.createTenant`.
-    func createTenant(request: CreateTenantRequest) async throws -> GoogleCloudTalentV4.Tenant
-
-    /// See `TenantServiceClient.createTenant`.
-    func createTenant(
-      parent: Swift.String,
-      tenant: Tenant?,
-    ) async throws -> GoogleCloudTalentV4.Tenant
-
-    /// See `TenantServiceClient.getTenant`.
-    func getTenant(request: GetTenantRequest) async throws -> GoogleCloudTalentV4.Tenant
-
-    /// See `TenantServiceClient.getTenant`.
-    func getTenant(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTalentV4.Tenant
-
-    /// See `TenantServiceClient.updateTenant`.
-    func updateTenant(request: UpdateTenantRequest) async throws -> GoogleCloudTalentV4.Tenant
-
-    /// See `TenantServiceClient.updateTenant`.
-    func updateTenant(
-      tenant: Tenant?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTalentV4.Tenant
-
-    /// See `TenantServiceClient.deleteTenant`.
-    func deleteTenant(request: DeleteTenantRequest) async throws
-
-    /// See `TenantServiceClient.deleteTenant`.
-    func deleteTenant(
-      name: Swift.String,
-    ) async throws
-
-    /// See `TenantServiceClient.listTenants`.
-    func listTenants(request: ListTenantsRequest) async throws
-      -> GoogleCloudTalentV4.ListTenantsResponse
-
-    /// See `TenantServiceClient.listTenants`.
-    func listTenants(
-      byItem: ListTenantsRequest
-    ) -> any AsyncSequence<Tenant, Swift.Error>
-
-    /// See `TenantServiceClient.listTenants`.
-    func listTenants(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Tenant, Swift.Error>
-
+  public protocol TenantServiceProtocol: Sendable {
     /// See `TenantServiceClient.createTenant`.
     func createTenant(
       request: CreateTenantRequest, options: GoogleGax.RequestOptions
@@ -188,11 +126,6 @@ extension Clients {
     func listTenants(
       request: ListTenantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListTenantsResponse
-
-    /// See `TenantServiceClient.listTenants`.
-    func listTenants(
-      byItem: ListTenantsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Tenant, Swift.Error>
   }
 }
 
@@ -298,11 +231,16 @@ extension Clients.TenantServiceProtocol {
     self.listTenants(byItem: byItem, options: .init())
   }
 
+  /// Lists all tenants associated with the project.
+  ///
+  /// @Snippet(path: "TenantService_ListTenants")
   public func listTenants(
     byItem: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Tenant, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListTenantsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTenants(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

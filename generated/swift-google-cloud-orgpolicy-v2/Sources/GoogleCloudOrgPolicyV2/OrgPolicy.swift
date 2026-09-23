@@ -64,21 +64,6 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
     try await self.inner.listConstraints(request: request, options: options)
   }
 
-  /// Lists constraints that could be applied on the specified resource.
-  ///
-  /// @Snippet(path: "OrgPolicy_ListConstraints")
-  public func listConstraints(
-    byItem: ListConstraintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Constraint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConstraints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves all of the policies that exist on a particular resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListPolicies")
@@ -86,21 +71,6 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse {
     try await self.inner.listPolicies(request: request, options: options)
-  }
-
-  /// Retrieves all of the policies that exist on a particular resource.
-  ///
-  /// @Snippet(path: "OrgPolicy_ListPolicies")
-  public func listPolicies(
-    byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Policy, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a policy on a resource.
@@ -224,22 +194,6 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
     try await self.inner.listCustomConstraints(request: request, options: options)
   }
 
-  /// Retrieves all of the custom constraints that exist on a particular
-  /// organization resource.
-  ///
-  /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
-  public func listCustomConstraints(
-    byItem: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CustomConstraint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCustomConstraints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a custom constraint.
   ///
   /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
@@ -259,146 +213,16 @@ extension Clients {
   /// To mock `OrgPolicyClient` change your functions to receive
   /// `some OrgPolicyProtocol` or `any OrgPolicyProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol OrgPolicyProtocol {
-    /// See `OrgPolicyClient.listConstraints`.
-    func listConstraints(request: ListConstraintsRequest) async throws
-      -> GoogleCloudOrgPolicyV2.ListConstraintsResponse
-
-    /// See `OrgPolicyClient.listConstraints`.
-    func listConstraints(
-      byItem: ListConstraintsRequest
-    ) -> any AsyncSequence<Constraint, Swift.Error>
-
-    /// See `OrgPolicyClient.listConstraints`.
-    func listConstraints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Constraint, Swift.Error>
-
-    /// See `OrgPolicyClient.listPolicies`.
-    func listPolicies(request: ListPoliciesRequest) async throws
-      -> GoogleCloudOrgPolicyV2.ListPoliciesResponse
-
-    /// See `OrgPolicyClient.listPolicies`.
-    func listPolicies(
-      byItem: ListPoliciesRequest
-    ) -> any AsyncSequence<Policy, Swift.Error>
-
-    /// See `OrgPolicyClient.listPolicies`.
-    func listPolicies(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Policy, Swift.Error>
-
-    /// See `OrgPolicyClient.getPolicy`.
-    func getPolicy(request: GetPolicyRequest) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.getPolicy`.
-    func getPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.getEffectivePolicy`.
-    func getEffectivePolicy(request: GetEffectivePolicyRequest) async throws
-      -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.getEffectivePolicy`.
-    func getEffectivePolicy(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.createPolicy`.
-    func createPolicy(request: CreatePolicyRequest) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.createPolicy`.
-    func createPolicy(
-      parent: Swift.String,
-      policy: Policy?,
-    ) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.updatePolicy`.
-    func updatePolicy(request: UpdatePolicyRequest) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.updatePolicy`.
-    func updatePolicy(
-      policy: Policy?,
-    ) async throws -> GoogleCloudOrgPolicyV2.Policy
-
-    /// See `OrgPolicyClient.deletePolicy`.
-    func deletePolicy(request: DeletePolicyRequest) async throws
-
-    /// See `OrgPolicyClient.deletePolicy`.
-    func deletePolicy(
-      name: Swift.String,
-    ) async throws
-
-    /// See `OrgPolicyClient.createCustomConstraint`.
-    func createCustomConstraint(request: CreateCustomConstraintRequest) async throws
-      -> GoogleCloudOrgPolicyV2.CustomConstraint
-
-    /// See `OrgPolicyClient.createCustomConstraint`.
-    func createCustomConstraint(
-      parent: Swift.String,
-      customConstraint: CustomConstraint?,
-    ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint
-
-    /// See `OrgPolicyClient.updateCustomConstraint`.
-    func updateCustomConstraint(request: UpdateCustomConstraintRequest) async throws
-      -> GoogleCloudOrgPolicyV2.CustomConstraint
-
-    /// See `OrgPolicyClient.updateCustomConstraint`.
-    func updateCustomConstraint(
-      customConstraint: CustomConstraint?,
-    ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint
-
-    /// See `OrgPolicyClient.getCustomConstraint`.
-    func getCustomConstraint(request: GetCustomConstraintRequest) async throws
-      -> GoogleCloudOrgPolicyV2.CustomConstraint
-
-    /// See `OrgPolicyClient.getCustomConstraint`.
-    func getCustomConstraint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint
-
-    /// See `OrgPolicyClient.listCustomConstraints`.
-    func listCustomConstraints(request: ListCustomConstraintsRequest) async throws
-      -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse
-
-    /// See `OrgPolicyClient.listCustomConstraints`.
-    func listCustomConstraints(
-      byItem: ListCustomConstraintsRequest
-    ) -> any AsyncSequence<CustomConstraint, Swift.Error>
-
-    /// See `OrgPolicyClient.listCustomConstraints`.
-    func listCustomConstraints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CustomConstraint, Swift.Error>
-
-    /// See `OrgPolicyClient.deleteCustomConstraint`.
-    func deleteCustomConstraint(request: DeleteCustomConstraintRequest) async throws
-
-    /// See `OrgPolicyClient.deleteCustomConstraint`.
-    func deleteCustomConstraint(
-      name: Swift.String,
-    ) async throws
-
+  public protocol OrgPolicyProtocol: Sendable {
     /// See `OrgPolicyClient.listConstraints`.
     func listConstraints(
       request: ListConstraintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse
 
-    /// See `OrgPolicyClient.listConstraints`.
-    func listConstraints(
-      byItem: ListConstraintsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Constraint, Swift.Error>
-
     /// See `OrgPolicyClient.listPolicies`.
     func listPolicies(
       request: ListPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse
-
-    /// See `OrgPolicyClient.listPolicies`.
-    func listPolicies(
-      byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `OrgPolicyClient.getPolicy`.
     func getPolicy(
@@ -445,11 +269,6 @@ extension Clients {
       request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse
 
-    /// See `OrgPolicyClient.listCustomConstraints`.
-    func listCustomConstraints(
-      byItem: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CustomConstraint, Swift.Error>
-
     /// See `OrgPolicyClient.deleteCustomConstraint`.
     func deleteCustomConstraint(
       request: DeleteCustomConstraintRequest, options: GoogleGax.RequestOptions
@@ -477,12 +296,17 @@ extension Clients.OrgPolicyProtocol {
     self.listConstraints(byItem: byItem, options: .init())
   }
 
+  /// Lists constraints that could be applied on the specified resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListConstraints")
   public func listConstraints(
     byItem: ListConstraintsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Constraint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConstraints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -514,12 +338,17 @@ extension Clients.OrgPolicyProtocol {
     self.listPolicies(byItem: byItem, options: .init())
   }
 
+  /// Retrieves all of the policies that exist on a particular resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListPolicies")
   public func listPolicies(
     byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -719,12 +548,18 @@ extension Clients.OrgPolicyProtocol {
     self.listCustomConstraints(byItem: byItem, options: .init())
   }
 
+  /// Retrieves all of the custom constraints that exist on a particular
+  /// organization resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
   public func listCustomConstraints(
     byItem: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CustomConstraint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCustomConstraints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

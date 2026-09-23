@@ -47,21 +47,6 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
     try await self.inner.listTemplates(request: request, options: options)
   }
 
-  /// Lists Templates in a given project and location.
-  ///
-  /// @Snippet(path: "ModelArmor_ListTemplates")
-  public func listTemplates(
-    byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Template, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTemplates(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Template.
   ///
   /// @Snippet(path: "ModelArmor_GetTemplate")
@@ -143,21 +128,6 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "ModelArmor_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ModelArmor_GetLocation")
@@ -174,107 +144,11 @@ extension Clients {
   /// To mock `ModelArmorClient` change your functions to receive
   /// `some ModelArmorProtocol` or `any ModelArmorProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ModelArmorProtocol {
-    /// See `ModelArmorClient.listTemplates`.
-    func listTemplates(request: ListTemplatesRequest) async throws
-      -> GoogleCloudModelArmorV1.ListTemplatesResponse
-
-    /// See `ModelArmorClient.listTemplates`.
-    func listTemplates(
-      byItem: ListTemplatesRequest
-    ) -> any AsyncSequence<Template, Swift.Error>
-
-    /// See `ModelArmorClient.listTemplates`.
-    func listTemplates(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Template, Swift.Error>
-
-    /// See `ModelArmorClient.getTemplate`.
-    func getTemplate(request: GetTemplateRequest) async throws -> GoogleCloudModelArmorV1.Template
-
-    /// See `ModelArmorClient.getTemplate`.
-    func getTemplate(
-      name: Swift.String,
-    ) async throws -> GoogleCloudModelArmorV1.Template
-
-    /// See `ModelArmorClient.createTemplate`.
-    func createTemplate(request: CreateTemplateRequest) async throws
-      -> GoogleCloudModelArmorV1.Template
-
-    /// See `ModelArmorClient.createTemplate`.
-    func createTemplate(
-      parent: Swift.String,
-      template: Template?,
-      templateId: Swift.String,
-    ) async throws -> GoogleCloudModelArmorV1.Template
-
-    /// See `ModelArmorClient.updateTemplate`.
-    func updateTemplate(request: UpdateTemplateRequest) async throws
-      -> GoogleCloudModelArmorV1.Template
-
-    /// See `ModelArmorClient.updateTemplate`.
-    func updateTemplate(
-      template: Template?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudModelArmorV1.Template
-
-    /// See `ModelArmorClient.deleteTemplate`.
-    func deleteTemplate(request: DeleteTemplateRequest) async throws
-
-    /// See `ModelArmorClient.deleteTemplate`.
-    func deleteTemplate(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ModelArmorClient.getFloorSetting`.
-    func getFloorSetting(request: GetFloorSettingRequest) async throws
-      -> GoogleCloudModelArmorV1.FloorSetting
-
-    /// See `ModelArmorClient.getFloorSetting`.
-    func getFloorSetting(
-      name: Swift.String,
-    ) async throws -> GoogleCloudModelArmorV1.FloorSetting
-
-    /// See `ModelArmorClient.updateFloorSetting`.
-    func updateFloorSetting(request: UpdateFloorSettingRequest) async throws
-      -> GoogleCloudModelArmorV1.FloorSetting
-
-    /// See `ModelArmorClient.updateFloorSetting`.
-    func updateFloorSetting(
-      floorSetting: FloorSetting?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudModelArmorV1.FloorSetting
-
-    /// See `ModelArmorClient.sanitizeUserPrompt`.
-    func sanitizeUserPrompt(request: SanitizeUserPromptRequest) async throws
-      -> GoogleCloudModelArmorV1.SanitizeUserPromptResponse
-
-    /// See `ModelArmorClient.sanitizeModelResponse`.
-    func sanitizeModelResponse(request: SanitizeModelResponseRequest) async throws
-      -> GoogleCloudModelArmorV1.SanitizeModelResponseResponse
-
-    /// See `ModelArmorClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ModelArmorClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ModelArmorClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol ModelArmorProtocol: Sendable {
     /// See `ModelArmorClient.listTemplates`.
     func listTemplates(
       request: ListTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse
-
-    /// See `ModelArmorClient.listTemplates`.
-    func listTemplates(
-      byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Template, Swift.Error>
 
     /// See `ModelArmorClient.getTemplate`.
     func getTemplate(
@@ -321,11 +195,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ModelArmorClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ModelArmorClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -353,12 +222,17 @@ extension Clients.ModelArmorProtocol {
     self.listTemplates(byItem: byItem, options: .init())
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ModelArmor_ListTemplates")
   public func listTemplates(
     byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Template, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -546,12 +420,17 @@ extension Clients.ModelArmorProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ModelArmor_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

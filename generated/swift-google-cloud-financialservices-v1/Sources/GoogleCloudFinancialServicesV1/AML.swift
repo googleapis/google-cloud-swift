@@ -53,21 +53,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
-  /// Lists instances.
-  ///
-  /// @Snippet(path: "AML_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets an instance.
   ///
   /// @Snippet(path: "AML_GetInstance")
@@ -275,21 +260,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     try await self.inner.listDatasets(request: request, options: options)
   }
 
-  /// Lists datasets.
-  ///
-  /// @Snippet(path: "AML_ListDatasets")
-  public func listDatasets(
-    byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Dataset, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDatasets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a dataset.
   ///
   /// @Snippet(path: "AML_GetDataset")
@@ -409,21 +379,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ListModelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse {
     try await self.inner.listModels(request: request, options: options)
-  }
-
-  /// Lists models.
-  ///
-  /// @Snippet(path: "AML_ListModels")
-  public func listModels(
-    byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Model, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listModels(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a model.
@@ -587,22 +542,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse {
     try await self.inner.listEngineConfigs(request: request, options: options)
-  }
-
-  /// Lists engine configs.
-  ///
-  /// @Snippet(path: "AML_ListEngineConfigs")
-  public func listEngineConfigs(
-    byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEngineConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets an engine config.
@@ -780,22 +719,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     try await self.inner.listEngineVersions(request: request, options: options)
   }
 
-  /// Lists EngineVersions for given location.
-  ///
-  /// @Snippet(path: "AML_ListEngineVersions")
-  public func listEngineVersions(
-    byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEngineVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// List PredictionResults.
   ///
   /// @Snippet(path: "AML_ListPredictionResults")
@@ -803,22 +726,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse {
     try await self.inner.listPredictionResults(request: request, options: options)
-  }
-
-  /// List PredictionResults.
-  ///
-  /// @Snippet(path: "AML_ListPredictionResults")
-  public func listPredictionResults(
-    byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPredictionResults(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a PredictionResult.
@@ -988,22 +895,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     try await self.inner.listBacktestResults(request: request, options: options)
   }
 
-  /// List BacktestResults.
-  ///
-  /// @Snippet(path: "AML_ListBacktestResults")
-  public func listBacktestResults(
-    byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBacktestResults(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a BacktestResult.
   ///
   /// @Snippet(path: "AML_GetBacktestResult")
@@ -1170,21 +1061,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "AML_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AML_GetLocation")
@@ -1203,23 +1079,6 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "AML_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1262,33 +1121,7 @@ extension Clients {
   /// To mock `AMLClient` change your functions to receive
   /// `some AMLProtocol` or `any AMLProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AMLProtocol {
-    /// See `AMLClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListInstancesResponse
-
-    /// See `AMLClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `AMLClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `AMLClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws
-      -> GoogleCloudFinancialServicesV1.Instance
-
-    /// See `AMLClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.Instance
-
-    /// See `AMLClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol AMLProtocol: Sendable {
     /// See `AMLClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
@@ -1301,9 +1134,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AMLClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -1314,9 +1144,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AMLClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1324,10 +1151,6 @@ extension Clients {
     func deleteInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AMLClient.importRegisteredParties`.
-    func importRegisteredParties(request: ImportRegisteredPartiesRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.importRegisteredParties`.
     func importRegisteredParties(withPolling: ImportRegisteredPartiesRequest) async throws
@@ -1342,10 +1165,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse>
 
     /// See `AMLClient.exportRegisteredParties`.
-    func exportRegisteredParties(request: ExportRegisteredPartiesRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.exportRegisteredParties`.
     func exportRegisteredParties(withPolling: ExportRegisteredPartiesRequest) async throws
       -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse>
 
@@ -1355,32 +1174,6 @@ extension Clients {
       dataset: BigQueryDestination?,
       lineOfBusiness: LineOfBusiness,
     ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse>
-
-    /// See `AMLClient.listDatasets`.
-    func listDatasets(request: ListDatasetsRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListDatasetsResponse
-
-    /// See `AMLClient.listDatasets`.
-    func listDatasets(
-      byItem: ListDatasetsRequest
-    ) -> any AsyncSequence<Dataset, Swift.Error>
-
-    /// See `AMLClient.listDatasets`.
-    func listDatasets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Dataset, Swift.Error>
-
-    /// See `AMLClient.getDataset`.
-    func getDataset(request: GetDatasetRequest) async throws
-      -> GoogleCloudFinancialServicesV1.Dataset
-
-    /// See `AMLClient.getDataset`.
-    func getDataset(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.Dataset
-
-    /// See `AMLClient.createDataset`.
-    func createDataset(request: CreateDatasetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AMLClient.createDataset`.
     func createDataset(withPolling: CreateDatasetRequest) async throws -> any GoogleGax
@@ -1394,9 +1187,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Dataset>
 
     /// See `AMLClient.updateDataset`.
-    func updateDataset(request: UpdateDatasetRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.updateDataset`.
     func updateDataset(withPolling: UpdateDatasetRequest) async throws -> any GoogleGax
       .PollableOperation<Dataset>
 
@@ -1407,9 +1197,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Dataset>
 
     /// See `AMLClient.deleteDataset`.
-    func deleteDataset(request: DeleteDatasetRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.deleteDataset`.
     func deleteDataset(withPolling: DeleteDatasetRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1417,31 +1204,6 @@ extension Clients {
     func deleteDataset(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AMLClient.listModels`.
-    func listModels(request: ListModelsRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListModelsResponse
-
-    /// See `AMLClient.listModels`.
-    func listModels(
-      byItem: ListModelsRequest
-    ) -> any AsyncSequence<Model, Swift.Error>
-
-    /// See `AMLClient.listModels`.
-    func listModels(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Model, Swift.Error>
-
-    /// See `AMLClient.getModel`.
-    func getModel(request: GetModelRequest) async throws -> GoogleCloudFinancialServicesV1.Model
-
-    /// See `AMLClient.getModel`.
-    func getModel(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.Model
-
-    /// See `AMLClient.createModel`.
-    func createModel(request: CreateModelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AMLClient.createModel`.
     func createModel(withPolling: CreateModelRequest) async throws -> any GoogleGax
@@ -1455,9 +1217,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
     /// See `AMLClient.updateModel`.
-    func updateModel(request: UpdateModelRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.updateModel`.
     func updateModel(withPolling: UpdateModelRequest) async throws -> any GoogleGax
       .PollableOperation<Model>
 
@@ -1466,10 +1225,6 @@ extension Clients {
       model: Model?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Model>
-
-    /// See `AMLClient.exportModelMetadata`.
-    func exportModelMetadata(request: ExportModelMetadataRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.exportModelMetadata`.
     func exportModelMetadata(withPolling: ExportModelMetadataRequest) async throws -> any GoogleGax
@@ -1482,9 +1237,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse>
 
     /// See `AMLClient.deleteModel`.
-    func deleteModel(request: DeleteModelRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.deleteModel`.
     func deleteModel(withPolling: DeleteModelRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1492,33 +1244,6 @@ extension Clients {
     func deleteModel(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AMLClient.listEngineConfigs`.
-    func listEngineConfigs(request: ListEngineConfigsRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
-
-    /// See `AMLClient.listEngineConfigs`.
-    func listEngineConfigs(
-      byItem: ListEngineConfigsRequest
-    ) -> any AsyncSequence<EngineConfig, Swift.Error>
-
-    /// See `AMLClient.listEngineConfigs`.
-    func listEngineConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EngineConfig, Swift.Error>
-
-    /// See `AMLClient.getEngineConfig`.
-    func getEngineConfig(request: GetEngineConfigRequest) async throws
-      -> GoogleCloudFinancialServicesV1.EngineConfig
-
-    /// See `AMLClient.getEngineConfig`.
-    func getEngineConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.EngineConfig
-
-    /// See `AMLClient.createEngineConfig`.
-    func createEngineConfig(request: CreateEngineConfigRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.createEngineConfig`.
     func createEngineConfig(withPolling: CreateEngineConfigRequest) async throws -> any GoogleGax
@@ -1532,10 +1257,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<EngineConfig>
 
     /// See `AMLClient.updateEngineConfig`.
-    func updateEngineConfig(request: UpdateEngineConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.updateEngineConfig`.
     func updateEngineConfig(withPolling: UpdateEngineConfigRequest) async throws -> any GoogleGax
       .PollableOperation<EngineConfig>
 
@@ -1544,10 +1265,6 @@ extension Clients {
       engineConfig: EngineConfig?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EngineConfig>
-
-    /// See `AMLClient.exportEngineConfigMetadata`.
-    func exportEngineConfigMetadata(request: ExportEngineConfigMetadataRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.exportEngineConfigMetadata`.
     func exportEngineConfigMetadata(withPolling: ExportEngineConfigMetadataRequest) async throws
@@ -1560,10 +1277,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse>
 
     /// See `AMLClient.deleteEngineConfig`.
-    func deleteEngineConfig(request: DeleteEngineConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.deleteEngineConfig`.
     func deleteEngineConfig(withPolling: DeleteEngineConfigRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1571,56 +1284,6 @@ extension Clients {
     func deleteEngineConfig(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AMLClient.getEngineVersion`.
-    func getEngineVersion(request: GetEngineVersionRequest) async throws
-      -> GoogleCloudFinancialServicesV1.EngineVersion
-
-    /// See `AMLClient.getEngineVersion`.
-    func getEngineVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.EngineVersion
-
-    /// See `AMLClient.listEngineVersions`.
-    func listEngineVersions(request: ListEngineVersionsRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse
-
-    /// See `AMLClient.listEngineVersions`.
-    func listEngineVersions(
-      byItem: ListEngineVersionsRequest
-    ) -> any AsyncSequence<EngineVersion, Swift.Error>
-
-    /// See `AMLClient.listEngineVersions`.
-    func listEngineVersions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EngineVersion, Swift.Error>
-
-    /// See `AMLClient.listPredictionResults`.
-    func listPredictionResults(request: ListPredictionResultsRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse
-
-    /// See `AMLClient.listPredictionResults`.
-    func listPredictionResults(
-      byItem: ListPredictionResultsRequest
-    ) -> any AsyncSequence<PredictionResult, Swift.Error>
-
-    /// See `AMLClient.listPredictionResults`.
-    func listPredictionResults(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PredictionResult, Swift.Error>
-
-    /// See `AMLClient.getPredictionResult`.
-    func getPredictionResult(request: GetPredictionResultRequest) async throws
-      -> GoogleCloudFinancialServicesV1.PredictionResult
-
-    /// See `AMLClient.getPredictionResult`.
-    func getPredictionResult(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.PredictionResult
-
-    /// See `AMLClient.createPredictionResult`.
-    func createPredictionResult(request: CreatePredictionResultRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.createPredictionResult`.
     func createPredictionResult(withPolling: CreatePredictionResultRequest) async throws
@@ -1634,10 +1297,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<PredictionResult>
 
     /// See `AMLClient.updatePredictionResult`.
-    func updatePredictionResult(request: UpdatePredictionResultRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.updatePredictionResult`.
     func updatePredictionResult(withPolling: UpdatePredictionResultRequest) async throws
       -> any GoogleGax.PollableOperation<PredictionResult>
 
@@ -1646,10 +1305,6 @@ extension Clients {
       predictionResult: PredictionResult?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PredictionResult>
-
-    /// See `AMLClient.exportPredictionResultMetadata`.
-    func exportPredictionResultMetadata(request: ExportPredictionResultMetadataRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.exportPredictionResultMetadata`.
     func exportPredictionResultMetadata(withPolling: ExportPredictionResultMetadataRequest)
@@ -1662,10 +1317,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse>
 
     /// See `AMLClient.deletePredictionResult`.
-    func deletePredictionResult(request: DeletePredictionResultRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.deletePredictionResult`.
     func deletePredictionResult(withPolling: DeletePredictionResultRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1673,33 +1324,6 @@ extension Clients {
     func deletePredictionResult(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AMLClient.listBacktestResults`.
-    func listBacktestResults(request: ListBacktestResultsRequest) async throws
-      -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse
-
-    /// See `AMLClient.listBacktestResults`.
-    func listBacktestResults(
-      byItem: ListBacktestResultsRequest
-    ) -> any AsyncSequence<BacktestResult, Swift.Error>
-
-    /// See `AMLClient.listBacktestResults`.
-    func listBacktestResults(
-      parent: Swift.String,
-    ) -> any AsyncSequence<BacktestResult, Swift.Error>
-
-    /// See `AMLClient.getBacktestResult`.
-    func getBacktestResult(request: GetBacktestResultRequest) async throws
-      -> GoogleCloudFinancialServicesV1.BacktestResult
-
-    /// See `AMLClient.getBacktestResult`.
-    func getBacktestResult(
-      name: Swift.String,
-    ) async throws -> GoogleCloudFinancialServicesV1.BacktestResult
-
-    /// See `AMLClient.createBacktestResult`.
-    func createBacktestResult(request: CreateBacktestResultRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.createBacktestResult`.
     func createBacktestResult(withPolling: CreateBacktestResultRequest) async throws
@@ -1713,10 +1337,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<BacktestResult>
 
     /// See `AMLClient.updateBacktestResult`.
-    func updateBacktestResult(request: UpdateBacktestResultRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.updateBacktestResult`.
     func updateBacktestResult(withPolling: UpdateBacktestResultRequest) async throws
       -> any GoogleGax.PollableOperation<BacktestResult>
 
@@ -1725,10 +1345,6 @@ extension Clients {
       backtestResult: BacktestResult?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BacktestResult>
-
-    /// See `AMLClient.exportBacktestResultMetadata`.
-    func exportBacktestResultMetadata(request: ExportBacktestResultMetadataRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AMLClient.exportBacktestResultMetadata`.
     func exportBacktestResultMetadata(withPolling: ExportBacktestResultMetadataRequest) async throws
@@ -1741,10 +1357,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse>
 
     /// See `AMLClient.deleteBacktestResult`.
-    func deleteBacktestResult(request: DeleteBacktestResultRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AMLClient.deleteBacktestResult`.
     func deleteBacktestResult(withPolling: DeleteBacktestResultRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1753,59 +1365,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `AMLClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AMLClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `AMLClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `AMLClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AMLClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AMLClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AMLClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AMLClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AMLClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AMLClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `AMLClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse
-
-    /// See `AMLClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `AMLClient.getInstance`.
     func getInstance(
@@ -1867,11 +1430,6 @@ extension Clients {
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse
 
-    /// See `AMLClient.listDatasets`.
-    func listDatasets(
-      byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Dataset, Swift.Error>
-
     /// See `AMLClient.getDataset`.
     func getDataset(
       request: GetDatasetRequest, options: GoogleGax.RequestOptions
@@ -1911,11 +1469,6 @@ extension Clients {
     func listModels(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse
-
-    /// See `AMLClient.listModels`.
-    func listModels(
-      byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Model, Swift.Error>
 
     /// See `AMLClient.getModel`.
     func getModel(
@@ -1966,11 +1519,6 @@ extension Clients {
     func listEngineConfigs(
       request: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
-
-    /// See `AMLClient.listEngineConfigs`.
-    func listEngineConfigs(
-      byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EngineConfig, Swift.Error>
 
     /// See `AMLClient.getEngineConfig`.
     func getEngineConfig(
@@ -2027,20 +1575,10 @@ extension Clients {
       request: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse
 
-    /// See `AMLClient.listEngineVersions`.
-    func listEngineVersions(
-      byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EngineVersion, Swift.Error>
-
     /// See `AMLClient.listPredictionResults`.
     func listPredictionResults(
       request: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse
-
-    /// See `AMLClient.listPredictionResults`.
-    func listPredictionResults(
-      byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PredictionResult, Swift.Error>
 
     /// See `AMLClient.getPredictionResult`.
     func getPredictionResult(
@@ -2092,11 +1630,6 @@ extension Clients {
       request: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse
 
-    /// See `AMLClient.listBacktestResults`.
-    func listBacktestResults(
-      byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BacktestResult, Swift.Error>
-
     /// See `AMLClient.getBacktestResult`.
     func getBacktestResult(
       request: GetBacktestResultRequest, options: GoogleGax.RequestOptions
@@ -2147,11 +1680,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `AMLClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `AMLClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -2161,11 +1689,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AMLClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AMLClient.deleteOperation`.
     func deleteOperation(
@@ -2199,12 +1722,17 @@ extension Clients.AMLProtocol {
     self.listInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists instances.
+  ///
+  /// @Snippet(path: "AML_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2460,12 +1988,17 @@ extension Clients.AMLProtocol {
     self.listDatasets(byItem: byItem, options: .init())
   }
 
+  /// Lists datasets.
+  ///
+  /// @Snippet(path: "AML_ListDatasets")
   public func listDatasets(
     byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Dataset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDatasets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2635,12 +2168,17 @@ extension Clients.AMLProtocol {
     self.listModels(byItem: byItem, options: .init())
   }
 
+  /// Lists models.
+  ///
+  /// @Snippet(path: "AML_ListModels")
   public func listModels(
     byItem: ListModelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listModels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2844,13 +2382,18 @@ extension Clients.AMLProtocol {
     self.listEngineConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists engine configs.
+  ///
+  /// @Snippet(path: "AML_ListEngineConfigs")
   public func listEngineConfigs(
     byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EngineConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEngineConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3082,13 +2625,18 @@ extension Clients.AMLProtocol {
     self.listEngineVersions(byItem: byItem, options: .init())
   }
 
+  /// Lists EngineVersions for given location.
+  ///
+  /// @Snippet(path: "AML_ListEngineVersions")
   public func listEngineVersions(
     byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EngineVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEngineVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3120,13 +2668,18 @@ extension Clients.AMLProtocol {
     self.listPredictionResults(byItem: byItem, options: .init())
   }
 
+  /// List PredictionResults.
+  ///
+  /// @Snippet(path: "AML_ListPredictionResults")
   public func listPredictionResults(
     byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PredictionResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPredictionResults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3337,13 +2890,18 @@ extension Clients.AMLProtocol {
     self.listBacktestResults(byItem: byItem, options: .init())
   }
 
+  /// List BacktestResults.
+  ///
+  /// @Snippet(path: "AML_ListBacktestResults")
   public func listBacktestResults(
     byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BacktestResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBacktestResults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3554,12 +3112,17 @@ extension Clients.AMLProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AML_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3594,12 +3157,19 @@ extension Clients.AMLProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AML_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

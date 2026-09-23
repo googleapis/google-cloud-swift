@@ -223,21 +223,6 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
     try await self.inner.listRegistrations(request: request, options: options)
   }
 
-  /// Lists the `Registration` resources in a project.
-  ///
-  /// @Snippet(path: "Domains_ListRegistrations")
-  public func listRegistrations(
-    byItem: ListRegistrationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Registration, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRegistrations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the details of a `Registration` resource.
   ///
   /// @Snippet(path: "Domains_GetRegistration")
@@ -561,23 +546,6 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Domains_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Domains_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -592,30 +560,7 @@ extension Clients {
   /// To mock `DomainsClient` change your functions to receive
   /// `some DomainsProtocol` or `any DomainsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DomainsProtocol {
-    /// See `DomainsClient.searchDomains`.
-    func searchDomains(request: SearchDomainsRequest) async throws
-      -> GoogleCloudDomainsV1.SearchDomainsResponse
-
-    /// See `DomainsClient.searchDomains`.
-    func searchDomains(
-      location: Swift.String,
-      query: Swift.String,
-    ) async throws -> GoogleCloudDomainsV1.SearchDomainsResponse
-
-    /// See `DomainsClient.retrieveRegisterParameters`.
-    func retrieveRegisterParameters(request: RetrieveRegisterParametersRequest) async throws
-      -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse
-
-    /// See `DomainsClient.retrieveRegisterParameters`.
-    func retrieveRegisterParameters(
-      location: Swift.String,
-      domainName: Swift.String,
-    ) async throws -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse
-
-    /// See `DomainsClient.registerDomain`.
-    func registerDomain(request: RegisterDomainRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol DomainsProtocol: Sendable {
     /// See `DomainsClient.registerDomain`.
     func registerDomain(withPolling: RegisterDomainRequest) async throws -> any GoogleGax
       .PollableOperation<Registration>
@@ -626,19 +571,6 @@ extension Clients {
       registration: Registration?,
       yearlyPrice: GoogleType.Money?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
-
-    /// See `DomainsClient.retrieveTransferParameters`.
-    func retrieveTransferParameters(request: RetrieveTransferParametersRequest) async throws
-      -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse
-
-    /// See `DomainsClient.retrieveTransferParameters`.
-    func retrieveTransferParameters(
-      location: Swift.String,
-      domainName: Swift.String,
-    ) async throws -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse
-
-    /// See `DomainsClient.transferDomain`.
-    func transferDomain(request: TransferDomainRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.transferDomain`.
     func transferDomain(withPolling: TransferDomainRequest) async throws -> any GoogleGax
@@ -652,33 +584,6 @@ extension Clients {
       authorizationCode: AuthorizationCode?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
-    /// See `DomainsClient.listRegistrations`.
-    func listRegistrations(request: ListRegistrationsRequest) async throws
-      -> GoogleCloudDomainsV1.ListRegistrationsResponse
-
-    /// See `DomainsClient.listRegistrations`.
-    func listRegistrations(
-      byItem: ListRegistrationsRequest
-    ) -> any AsyncSequence<Registration, Swift.Error>
-
-    /// See `DomainsClient.listRegistrations`.
-    func listRegistrations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Registration, Swift.Error>
-
-    /// See `DomainsClient.getRegistration`.
-    func getRegistration(request: GetRegistrationRequest) async throws
-      -> GoogleCloudDomainsV1.Registration
-
-    /// See `DomainsClient.getRegistration`.
-    func getRegistration(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDomainsV1.Registration
-
-    /// See `DomainsClient.updateRegistration`.
-    func updateRegistration(request: UpdateRegistrationRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `DomainsClient.updateRegistration`.
     func updateRegistration(withPolling: UpdateRegistrationRequest) async throws -> any GoogleGax
       .PollableOperation<Registration>
@@ -688,10 +593,6 @@ extension Clients {
       registration: Registration?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
-
-    /// See `DomainsClient.configureManagementSettings`.
-    func configureManagementSettings(request: ConfigureManagementSettingsRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureManagementSettings`.
     func configureManagementSettings(withPolling: ConfigureManagementSettingsRequest) async throws
@@ -705,10 +606,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureDnsSettings`.
-    func configureDnsSettings(request: ConfigureDnsSettingsRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DomainsClient.configureDnsSettings`.
     func configureDnsSettings(withPolling: ConfigureDnsSettingsRequest) async throws
       -> any GoogleGax.PollableOperation<Registration>
 
@@ -718,10 +615,6 @@ extension Clients {
       dnsSettings: DnsSettings?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
-
-    /// See `DomainsClient.configureContactSettings`.
-    func configureContactSettings(request: ConfigureContactSettingsRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureContactSettings`.
     func configureContactSettings(withPolling: ConfigureContactSettingsRequest) async throws
@@ -735,10 +628,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.exportRegistration`.
-    func exportRegistration(request: ExportRegistrationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DomainsClient.exportRegistration`.
     func exportRegistration(withPolling: ExportRegistrationRequest) async throws -> any GoogleGax
       .PollableOperation<Registration>
 
@@ -748,10 +637,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.deleteRegistration`.
-    func deleteRegistration(request: DeleteRegistrationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DomainsClient.deleteRegistration`.
     func deleteRegistration(withPolling: DeleteRegistrationRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -759,39 +644,6 @@ extension Clients {
     func deleteRegistration(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DomainsClient.retrieveAuthorizationCode`.
-    func retrieveAuthorizationCode(request: RetrieveAuthorizationCodeRequest) async throws
-      -> GoogleCloudDomainsV1.AuthorizationCode
-
-    /// See `DomainsClient.retrieveAuthorizationCode`.
-    func retrieveAuthorizationCode(
-      registration: Swift.String,
-    ) async throws -> GoogleCloudDomainsV1.AuthorizationCode
-
-    /// See `DomainsClient.resetAuthorizationCode`.
-    func resetAuthorizationCode(request: ResetAuthorizationCodeRequest) async throws
-      -> GoogleCloudDomainsV1.AuthorizationCode
-
-    /// See `DomainsClient.resetAuthorizationCode`.
-    func resetAuthorizationCode(
-      registration: Swift.String,
-    ) async throws -> GoogleCloudDomainsV1.AuthorizationCode
-
-    /// See `DomainsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DomainsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DomainsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DomainsClient.searchDomains`.
     func searchDomains(
@@ -832,11 +684,6 @@ extension Clients {
     func listRegistrations(
       request: ListRegistrationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse
-
-    /// See `DomainsClient.listRegistrations`.
-    func listRegistrations(
-      byItem: ListRegistrationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Registration, Swift.Error>
 
     /// See `DomainsClient.getRegistration`.
     func getRegistration(
@@ -917,11 +764,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DomainsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -1098,12 +940,17 @@ extension Clients.DomainsProtocol {
     self.listRegistrations(byItem: byItem, options: .init())
   }
 
+  /// Lists the `Registration` resources in a project.
+  ///
+  /// @Snippet(path: "Domains_ListRegistrations")
   public func listRegistrations(
     byItem: ListRegistrationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Registration, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRegistrations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1434,12 +1281,19 @@ extension Clients.DomainsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Domains_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

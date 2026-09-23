@@ -50,21 +50,6 @@
       try await self.inner.listEnvironments(request: request, options: options)
     }
 
-    /// Returns the list of all non-default environments of the specified agent.
-    ///
-    /// @Snippet(path: "Environments_ListEnvironments")
-    public func listEnvironments(
-      byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Environment, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListEnvironmentsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listEnvironments(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified agent environment.
     ///
     /// @Snippet(path: "Environments_GetEnvironment")
@@ -121,21 +106,6 @@
       try await self.inner.getEnvironmentHistory(request: request, options: options)
     }
 
-    /// Gets the history of the specified environment.
-    ///
-    /// @Snippet(path: "Environments_GetEnvironmentHistory")
-    public func getEnvironmentHistory(
-      byItem: GetEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EnvironmentHistory.Entry, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.EnvironmentHistory in
-        var request = byItem
-        request.pageToken = token
-        return try await self.getEnvironmentHistory(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists information about the supported locations for this service.
     ///
     /// This method lists locations based on the resource scope provided in
@@ -162,38 +132,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Environments_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Environments_GetLocation")
@@ -212,23 +150,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Environments_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -260,90 +181,11 @@
     /// To mock `EnvironmentsClient` change your functions to receive
     /// `some EnvironmentsProtocol` or `any EnvironmentsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol EnvironmentsProtocol {
-      /// See `EnvironmentsClient.listEnvironments`.
-      func listEnvironments(request: ListEnvironmentsRequest) async throws
-        -> GoogleCloudDialogflowV2.ListEnvironmentsResponse
-
-      /// See `EnvironmentsClient.listEnvironments`.
-      func listEnvironments(
-        byItem: ListEnvironmentsRequest
-      ) -> any AsyncSequence<Environment, Swift.Error>
-
-      /// See `EnvironmentsClient.listEnvironments`.
-      func listEnvironments(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Environment, Swift.Error>
-
-      /// See `EnvironmentsClient.getEnvironment`.
-      func getEnvironment(request: GetEnvironmentRequest) async throws
-        -> GoogleCloudDialogflowV2.Environment
-
-      /// See `EnvironmentsClient.createEnvironment`.
-      func createEnvironment(request: CreateEnvironmentRequest) async throws
-        -> GoogleCloudDialogflowV2.Environment
-
-      /// See `EnvironmentsClient.updateEnvironment`.
-      func updateEnvironment(request: UpdateEnvironmentRequest) async throws
-        -> GoogleCloudDialogflowV2.Environment
-
-      /// See `EnvironmentsClient.deleteEnvironment`.
-      func deleteEnvironment(request: DeleteEnvironmentRequest) async throws
-
-      /// See `EnvironmentsClient.getEnvironmentHistory`.
-      func getEnvironmentHistory(request: GetEnvironmentHistoryRequest) async throws
-        -> GoogleCloudDialogflowV2.EnvironmentHistory
-
-      /// See `EnvironmentsClient.getEnvironmentHistory`.
-      func getEnvironmentHistory(
-        byItem: GetEnvironmentHistoryRequest
-      ) -> any AsyncSequence<EnvironmentHistory.Entry, Swift.Error>
-
-      /// See `EnvironmentsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `EnvironmentsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `EnvironmentsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `EnvironmentsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `EnvironmentsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `EnvironmentsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `EnvironmentsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `EnvironmentsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol EnvironmentsProtocol: Sendable {
       /// See `EnvironmentsClient.listEnvironments`.
       func listEnvironments(
         request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListEnvironmentsResponse
-
-      /// See `EnvironmentsClient.listEnvironments`.
-      func listEnvironments(
-        byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Environment, Swift.Error>
 
       /// See `EnvironmentsClient.getEnvironment`.
       func getEnvironment(
@@ -370,20 +212,10 @@
         request: GetEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.EnvironmentHistory
 
-      /// See `EnvironmentsClient.getEnvironmentHistory`.
-      func getEnvironmentHistory(
-        byItem: GetEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<EnvironmentHistory.Entry, Swift.Error>
-
       /// See `EnvironmentsClient.listLocations`.
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `EnvironmentsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `EnvironmentsClient.getLocation`.
       func getLocation(
@@ -394,11 +226,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `EnvironmentsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `EnvironmentsClient.cancelOperation`.
       func cancelOperation(
@@ -427,12 +254,17 @@
       self.listEnvironments(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all non-default environments of the specified agent.
+    ///
+    /// @Snippet(path: "Environments_ListEnvironments")
     public func listEnvironments(
       byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Environment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListEnvironmentsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listEnvironments(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -510,12 +342,17 @@
       self.getEnvironmentHistory(byItem: byItem, options: .init())
     }
 
+    /// Gets the history of the specified environment.
+    ///
+    /// @Snippet(path: "Environments_GetEnvironmentHistory")
     public func getEnvironmentHistory(
       byItem: GetEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<EnvironmentHistory.Entry, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.EnvironmentHistory in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.getEnvironmentHistory(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -538,12 +375,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Environments_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -578,12 +437,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Environments_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

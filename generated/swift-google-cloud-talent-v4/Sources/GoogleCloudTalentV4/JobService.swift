@@ -205,20 +205,6 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
     try await self.inner.listJobs(request: request, options: options)
   }
 
-  /// Lists jobs by filter.
-  ///
-  /// @Snippet(path: "JobService_ListJobs")
-  public func listJobs(
-    byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Searches for jobs using the provided
   /// [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
   ///
@@ -278,20 +264,7 @@ extension Clients {
   /// To mock `JobServiceClient` change your functions to receive
   /// `some JobServiceProtocol` or `any JobServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol JobServiceProtocol {
-    /// See `JobServiceClient.createJob`.
-    func createJob(request: CreateJobRequest) async throws -> GoogleCloudTalentV4.Job
-
-    /// See `JobServiceClient.createJob`.
-    func createJob(
-      parent: Swift.String,
-      job: Job?,
-    ) async throws -> GoogleCloudTalentV4.Job
-
-    /// See `JobServiceClient.batchCreateJobs`.
-    func batchCreateJobs(request: BatchCreateJobsRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol JobServiceProtocol: Sendable {
     /// See `JobServiceClient.batchCreateJobs`.
     func batchCreateJobs(withPolling: BatchCreateJobsRequest) async throws -> any GoogleGax
       .PollableOperation<BatchCreateJobsResponse>
@@ -301,27 +274,6 @@ extension Clients {
       parent: Swift.String,
       jobs: [Job],
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateJobsResponse>
-
-    /// See `JobServiceClient.getJob`.
-    func getJob(request: GetJobRequest) async throws -> GoogleCloudTalentV4.Job
-
-    /// See `JobServiceClient.getJob`.
-    func getJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTalentV4.Job
-
-    /// See `JobServiceClient.updateJob`.
-    func updateJob(request: UpdateJobRequest) async throws -> GoogleCloudTalentV4.Job
-
-    /// See `JobServiceClient.updateJob`.
-    func updateJob(
-      job: Job?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTalentV4.Job
-
-    /// See `JobServiceClient.batchUpdateJobs`.
-    func batchUpdateJobs(request: BatchUpdateJobsRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `JobServiceClient.batchUpdateJobs`.
     func batchUpdateJobs(withPolling: BatchUpdateJobsRequest) async throws -> any GoogleGax
@@ -333,18 +285,6 @@ extension Clients {
       jobs: [Job],
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateJobsResponse>
 
-    /// See `JobServiceClient.deleteJob`.
-    func deleteJob(request: DeleteJobRequest) async throws
-
-    /// See `JobServiceClient.deleteJob`.
-    func deleteJob(
-      name: Swift.String,
-    ) async throws
-
-    /// See `JobServiceClient.batchDeleteJobs`.
-    func batchDeleteJobs(request: BatchDeleteJobsRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `JobServiceClient.batchDeleteJobs`.
     func batchDeleteJobs(withPolling: BatchDeleteJobsRequest) async throws -> any GoogleGax
       .PollableOperation<BatchDeleteJobsResponse>
@@ -354,28 +294,6 @@ extension Clients {
       parent: Swift.String,
       names: [Swift.String],
     ) async throws -> any GoogleGax.PollableOperation<BatchDeleteJobsResponse>
-
-    /// See `JobServiceClient.listJobs`.
-    func listJobs(request: ListJobsRequest) async throws -> GoogleCloudTalentV4.ListJobsResponse
-
-    /// See `JobServiceClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `JobServiceClient.listJobs`.
-    func listJobs(
-      parent: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `JobServiceClient.searchJobs`.
-    func searchJobs(request: SearchJobsRequest) async throws
-      -> GoogleCloudTalentV4.SearchJobsResponse
-
-    /// See `JobServiceClient.searchJobsForAlert`.
-    func searchJobsForAlert(request: SearchJobsRequest) async throws
-      -> GoogleCloudTalentV4.SearchJobsResponse
 
     /// See `JobServiceClient.createJob`.
     func createJob(
@@ -431,11 +349,6 @@ extension Clients {
     func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListJobsResponse
-
-    /// See `JobServiceClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `JobServiceClient.searchJobs`.
     func searchJobs(
@@ -669,11 +582,16 @@ extension Clients.JobServiceProtocol {
     self.listJobs(byItem: byItem, options: .init())
   }
 
+  /// Lists jobs by filter.
+  ///
+  /// @Snippet(path: "JobService_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

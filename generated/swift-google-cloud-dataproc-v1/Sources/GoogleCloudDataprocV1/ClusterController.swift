@@ -265,21 +265,6 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
     try await self.inner.listClusters(request: request, options: options)
   }
 
-  /// Lists all regions/{region}/clusters in a project alphabetically.
-  ///
-  /// @Snippet(path: "ClusterController_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets cluster diagnostic information. The returned
   /// [Operation.metadata][google.longrunning.Operation.metadata] will be
   /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
@@ -387,23 +372,6 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ClusterController_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ClusterController_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -440,10 +408,7 @@ extension Clients {
   /// To mock `ClusterControllerClient` change your functions to receive
   /// `some ClusterControllerProtocol` or `any ClusterControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ClusterControllerProtocol {
-    /// See `ClusterControllerClient.createCluster`.
-    func createCluster(request: CreateClusterRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ClusterControllerProtocol: Sendable {
     /// See `ClusterControllerClient.createCluster`.
     func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
@@ -454,9 +419,6 @@ extension Clients {
       region: Swift.String,
       cluster: Cluster?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.updateCluster`.
-    func updateCluster(request: UpdateClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.updateCluster`.
     func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
@@ -472,21 +434,12 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.stopCluster`.
-    func stopCluster(request: StopClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ClusterControllerClient.stopCluster`.
     func stopCluster(withPolling: StopClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.startCluster`.
-    func startCluster(request: StartClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ClusterControllerClient.startCluster`.
     func startCluster(withPolling: StartClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.deleteCluster`.
-    func deleteCluster(request: DeleteClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.deleteCluster`.
     func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
@@ -499,42 +452,6 @@ extension Clients {
       clusterName: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `ClusterControllerClient.getCluster`.
-    func getCluster(request: GetClusterRequest) async throws -> GoogleCloudDataprocV1.Cluster
-
-    /// See `ClusterControllerClient.getCluster`.
-    func getCluster(
-      projectId: Swift.String,
-      region: Swift.String,
-      clusterName: Swift.String,
-    ) async throws -> GoogleCloudDataprocV1.Cluster
-
-    /// See `ClusterControllerClient.listClusters`.
-    func listClusters(request: ListClustersRequest) async throws
-      -> GoogleCloudDataprocV1.ListClustersResponse
-
-    /// See `ClusterControllerClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `ClusterControllerClient.listClusters`.
-    func listClusters(
-      projectId: Swift.String,
-      region: Swift.String,
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `ClusterControllerClient.listClusters`.
-    func listClusters(
-      projectId: Swift.String,
-      region: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `ClusterControllerClient.diagnoseCluster`.
-    func diagnoseCluster(request: DiagnoseClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `ClusterControllerClient.diagnoseCluster`.
     func diagnoseCluster(withPolling: DiagnoseClusterRequest) async throws -> any GoogleGax
       .PollableOperation<DiagnoseClusterResults>
@@ -545,47 +462,6 @@ extension Clients {
       region: Swift.String,
       clusterName: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DiagnoseClusterResults>
-
-    /// See `ClusterControllerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ClusterControllerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ClusterControllerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ClusterControllerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ClusterControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ClusterControllerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ClusterControllerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ClusterControllerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ClusterControllerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ClusterControllerClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `ClusterControllerClient.createCluster`.
     func createCluster(
@@ -647,11 +523,6 @@ extension Clients {
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.ListClustersResponse
 
-    /// See `ClusterControllerClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
     /// See `ClusterControllerClient.diagnoseCluster`.
     func diagnoseCluster(
       request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
@@ -681,11 +552,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ClusterControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ClusterControllerClient.deleteOperation`.
     func deleteOperation(
@@ -922,12 +788,17 @@ extension Clients.ClusterControllerProtocol {
     self.listClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists all regions/{region}/clusters in a project alphabetically.
+  ///
+  /// @Snippet(path: "ClusterController_ListClusters")
   public func listClusters(
     byItem: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1052,12 +923,19 @@ extension Clients.ClusterControllerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

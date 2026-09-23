@@ -165,22 +165,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of instance templates that are contained within the
-    /// specified project and region.
-    ///
-    /// @Snippet(path: "regionInstanceTemplates_list")
-    public func list(
-      byItem: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified region-specific Operations resource.
     ///
     /// @Snippet(path: "regionInstanceTemplates_getOperation")
@@ -197,41 +181,7 @@
     /// To mock `RegionInstanceTemplatesClient` change your functions to receive
     /// `some RegionInstanceTemplatesProtocol` or `any RegionInstanceTemplatesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionInstanceTemplatesProtocol {
-      /// See `RegionInstanceTemplatesClient.delete`.
-      func delete(request: RegionInstanceTemplatesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionInstanceTemplatesClient.`get``.
-      func `get`(request: RegionInstanceTemplatesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InstanceTemplate
-
-      /// See `RegionInstanceTemplatesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        instanceTemplate: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstanceTemplate
-
-      /// See `RegionInstanceTemplatesClient.insert`.
-      func insert(request: RegionInstanceTemplatesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionInstanceTemplatesClient.list`.
-      func list(request: RegionInstanceTemplatesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InstanceTemplateList
-
-      /// See `RegionInstanceTemplatesClient.list`.
-      func list(
-        byItem: RegionInstanceTemplatesClient.ListRequest
-      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
-
-      /// See `RegionInstanceTemplatesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
-
+    public protocol RegionInstanceTemplatesProtocol: Sendable {
       /// See `RegionInstanceTemplatesClient.delete`.
       func delete(
         request: RegionInstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -251,11 +201,6 @@
       func list(
         request: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceTemplateList
-
-      /// See `RegionInstanceTemplatesClient.list`.
-      func list(
-        byItem: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
     }
   }
 
@@ -388,12 +333,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of instance templates that are contained within the
+    /// specified project and region.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_list")
     public func list(
       byItem: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

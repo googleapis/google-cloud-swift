@@ -134,21 +134,6 @@
       try await self.inner.listTensorboards(request: request, options: options)
     }
 
-    /// Lists Tensorboards in a Location.
-    ///
-    /// @Snippet(path: "TensorboardService_ListTensorboards")
-    public func listTensorboards(
-      byItem: ListTensorboardsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Tensorboard, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTensorboards(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboard")
@@ -238,22 +223,6 @@
       try await self.inner.listTensorboardExperiments(request: request, options: options)
     }
 
-    /// Lists TensorboardExperiments in a Location.
-    ///
-    /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
-    public func listTensorboardExperiments(
-      byItem: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTensorboardExperiments(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
@@ -334,21 +303,6 @@
       try await self.inner.listTensorboardRuns(request: request, options: options)
     }
 
-    /// Lists TensorboardRuns in a Location.
-    ///
-    /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
-    public func listTensorboardRuns(
-      byItem: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TensorboardRun, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTensorboardRuns(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
@@ -427,22 +381,6 @@
       request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse {
       try await self.inner.listTensorboardTimeSeries(request: request, options: options)
-    }
-
-    /// Lists TensorboardTimeSeries in a Location.
-    ///
-    /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
-    public func listTensorboardTimeSeries(
-      byItem: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTensorboardTimeSeries(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Deletes a TensorboardTimeSeries.
@@ -548,23 +486,6 @@
       try await self.inner.exportTensorboardTimeSeriesData(request: request, options: options)
     }
 
-    /// Exports a TensorboardTimeSeries' data. Data is returned in paginated
-    /// responses.
-    ///
-    /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
-    public func exportTensorboardTimeSeriesData(
-      byItem: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.exportTensorboardTimeSeriesData(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "TensorboardService_ListLocations")
@@ -572,21 +493,6 @@
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
       try await self.inner.listLocations(request: request, options: options)
-    }
-
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "TensorboardService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Gets information about a location.
@@ -651,23 +557,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "TensorboardService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "TensorboardService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -715,11 +604,7 @@
     /// To mock `TensorboardServiceClient` change your functions to receive
     /// `some TensorboardServiceProtocol` or `any TensorboardServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol TensorboardServiceProtocol {
-      /// See `TensorboardServiceClient.createTensorboard`.
-      func createTensorboard(request: CreateTensorboardRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol TensorboardServiceProtocol: Sendable {
       /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(withPolling: CreateTensorboardRequest) async throws -> any GoogleGax
         .PollableOperation<Tensorboard>
@@ -729,19 +614,6 @@
         parent: Swift.String,
         tensorboard: Tensorboard?,
       ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
-
-      /// See `TensorboardServiceClient.getTensorboard`.
-      func getTensorboard(request: GetTensorboardRequest) async throws
-        -> GoogleCloudAIPlatformV1.Tensorboard
-
-      /// See `TensorboardServiceClient.getTensorboard`.
-      func getTensorboard(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Tensorboard
-
-      /// See `TensorboardServiceClient.updateTensorboard`.
-      func updateTensorboard(request: UpdateTensorboardRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.updateTensorboard`.
       func updateTensorboard(withPolling: UpdateTensorboardRequest) async throws -> any GoogleGax
@@ -753,24 +625,6 @@
         updateMask: GoogleWKT.FieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
 
-      /// See `TensorboardServiceClient.listTensorboards`.
-      func listTensorboards(request: ListTensorboardsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTensorboardsResponse
-
-      /// See `TensorboardServiceClient.listTensorboards`.
-      func listTensorboards(
-        byItem: ListTensorboardsRequest
-      ) -> any AsyncSequence<Tensorboard, Swift.Error>
-
-      /// See `TensorboardServiceClient.listTensorboards`.
-      func listTensorboards(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Tensorboard, Swift.Error>
-
-      /// See `TensorboardServiceClient.deleteTensorboard`.
-      func deleteTensorboard(request: DeleteTensorboardRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `TensorboardServiceClient.deleteTensorboard`.
       func deleteTensorboard(withPolling: DeleteTensorboardRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
@@ -779,72 +633,6 @@
       func deleteTensorboard(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.readTensorboardUsage`.
-      func readTensorboardUsage(request: ReadTensorboardUsageRequest) async throws
-        -> GoogleCloudAIPlatformV1.ReadTensorboardUsageResponse
-
-      /// See `TensorboardServiceClient.readTensorboardUsage`.
-      func readTensorboardUsage(
-        tensorboard: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardUsageResponse
-
-      /// See `TensorboardServiceClient.readTensorboardSize`.
-      func readTensorboardSize(request: ReadTensorboardSizeRequest) async throws
-        -> GoogleCloudAIPlatformV1.ReadTensorboardSizeResponse
-
-      /// See `TensorboardServiceClient.readTensorboardSize`.
-      func readTensorboardSize(
-        tensorboard: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardSizeResponse
-
-      /// See `TensorboardServiceClient.createTensorboardExperiment`.
-      func createTensorboardExperiment(request: CreateTensorboardExperimentRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardExperiment
-
-      /// See `TensorboardServiceClient.createTensorboardExperiment`.
-      func createTensorboardExperiment(
-        parent: Swift.String,
-        tensorboardExperiment: TensorboardExperiment?,
-        tensorboardExperimentId: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment
-
-      /// See `TensorboardServiceClient.getTensorboardExperiment`.
-      func getTensorboardExperiment(request: GetTensorboardExperimentRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardExperiment
-
-      /// See `TensorboardServiceClient.getTensorboardExperiment`.
-      func getTensorboardExperiment(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment
-
-      /// See `TensorboardServiceClient.updateTensorboardExperiment`.
-      func updateTensorboardExperiment(request: UpdateTensorboardExperimentRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardExperiment
-
-      /// See `TensorboardServiceClient.updateTensorboardExperiment`.
-      func updateTensorboardExperiment(
-        tensorboardExperiment: TensorboardExperiment?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment
-
-      /// See `TensorboardServiceClient.listTensorboardExperiments`.
-      func listTensorboardExperiments(request: ListTensorboardExperimentsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse
-
-      /// See `TensorboardServiceClient.listTensorboardExperiments`.
-      func listTensorboardExperiments(
-        byItem: ListTensorboardExperimentsRequest
-      ) -> any AsyncSequence<TensorboardExperiment, Swift.Error>
-
-      /// See `TensorboardServiceClient.listTensorboardExperiments`.
-      func listTensorboardExperiments(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TensorboardExperiment, Swift.Error>
-
-      /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
-      func deleteTensorboardExperiment(request: DeleteTensorboardExperimentRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
       func deleteTensorboardExperiment(withPolling: DeleteTensorboardExperimentRequest) async throws
@@ -855,64 +643,6 @@
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `TensorboardServiceClient.createTensorboardRun`.
-      func createTensorboardRun(request: CreateTensorboardRunRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardRun
-
-      /// See `TensorboardServiceClient.createTensorboardRun`.
-      func createTensorboardRun(
-        parent: Swift.String,
-        tensorboardRun: TensorboardRun?,
-        tensorboardRunId: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun
-
-      /// See `TensorboardServiceClient.batchCreateTensorboardRuns`.
-      func batchCreateTensorboardRuns(request: BatchCreateTensorboardRunsRequest) async throws
-        -> GoogleCloudAIPlatformV1.BatchCreateTensorboardRunsResponse
-
-      /// See `TensorboardServiceClient.batchCreateTensorboardRuns`.
-      func batchCreateTensorboardRuns(
-        parent: Swift.String,
-        requests: [CreateTensorboardRunRequest],
-      ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardRunsResponse
-
-      /// See `TensorboardServiceClient.getTensorboardRun`.
-      func getTensorboardRun(request: GetTensorboardRunRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardRun
-
-      /// See `TensorboardServiceClient.getTensorboardRun`.
-      func getTensorboardRun(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun
-
-      /// See `TensorboardServiceClient.updateTensorboardRun`.
-      func updateTensorboardRun(request: UpdateTensorboardRunRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardRun
-
-      /// See `TensorboardServiceClient.updateTensorboardRun`.
-      func updateTensorboardRun(
-        tensorboardRun: TensorboardRun?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun
-
-      /// See `TensorboardServiceClient.listTensorboardRuns`.
-      func listTensorboardRuns(request: ListTensorboardRunsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse
-
-      /// See `TensorboardServiceClient.listTensorboardRuns`.
-      func listTensorboardRuns(
-        byItem: ListTensorboardRunsRequest
-      ) -> any AsyncSequence<TensorboardRun, Swift.Error>
-
-      /// See `TensorboardServiceClient.listTensorboardRuns`.
-      func listTensorboardRuns(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TensorboardRun, Swift.Error>
-
-      /// See `TensorboardServiceClient.deleteTensorboardRun`.
-      func deleteTensorboardRun(request: DeleteTensorboardRunRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
       func deleteTensorboardRun(withPolling: DeleteTensorboardRunRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
@@ -922,63 +652,6 @@
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `TensorboardServiceClient.batchCreateTensorboardTimeSeries`.
-      func batchCreateTensorboardTimeSeries(request: BatchCreateTensorboardTimeSeriesRequest)
-        async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardTimeSeriesResponse
-
-      /// See `TensorboardServiceClient.batchCreateTensorboardTimeSeries`.
-      func batchCreateTensorboardTimeSeries(
-        parent: Swift.String,
-        requests: [CreateTensorboardTimeSeriesRequest],
-      ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardTimeSeriesResponse
-
-      /// See `TensorboardServiceClient.createTensorboardTimeSeries`.
-      func createTensorboardTimeSeries(request: CreateTensorboardTimeSeriesRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
-
-      /// See `TensorboardServiceClient.createTensorboardTimeSeries`.
-      func createTensorboardTimeSeries(
-        parent: Swift.String,
-        tensorboardTimeSeries: TensorboardTimeSeries?,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
-
-      /// See `TensorboardServiceClient.getTensorboardTimeSeries`.
-      func getTensorboardTimeSeries(request: GetTensorboardTimeSeriesRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
-
-      /// See `TensorboardServiceClient.getTensorboardTimeSeries`.
-      func getTensorboardTimeSeries(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
-
-      /// See `TensorboardServiceClient.updateTensorboardTimeSeries`.
-      func updateTensorboardTimeSeries(request: UpdateTensorboardTimeSeriesRequest) async throws
-        -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
-
-      /// See `TensorboardServiceClient.updateTensorboardTimeSeries`.
-      func updateTensorboardTimeSeries(
-        tensorboardTimeSeries: TensorboardTimeSeries?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
-
-      /// See `TensorboardServiceClient.listTensorboardTimeSeries`.
-      func listTensorboardTimeSeries(request: ListTensorboardTimeSeriesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse
-
-      /// See `TensorboardServiceClient.listTensorboardTimeSeries`.
-      func listTensorboardTimeSeries(
-        byItem: ListTensorboardTimeSeriesRequest
-      ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error>
-
-      /// See `TensorboardServiceClient.listTensorboardTimeSeries`.
-      func listTensorboardTimeSeries(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error>
-
-      /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
-      func deleteTensorboardTimeSeries(request: DeleteTensorboardTimeSeriesRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
       func deleteTensorboardTimeSeries(withPolling: DeleteTensorboardTimeSeriesRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
@@ -987,125 +660,6 @@
       func deleteTensorboardTimeSeries(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.batchReadTensorboardTimeSeriesData`.
-      func batchReadTensorboardTimeSeriesData(request: BatchReadTensorboardTimeSeriesDataRequest)
-        async throws -> GoogleCloudAIPlatformV1.BatchReadTensorboardTimeSeriesDataResponse
-
-      /// See `TensorboardServiceClient.batchReadTensorboardTimeSeriesData`.
-      func batchReadTensorboardTimeSeriesData(
-        tensorboard: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.BatchReadTensorboardTimeSeriesDataResponse
-
-      /// See `TensorboardServiceClient.readTensorboardTimeSeriesData`.
-      func readTensorboardTimeSeriesData(request: ReadTensorboardTimeSeriesDataRequest) async throws
-        -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse
-
-      /// See `TensorboardServiceClient.readTensorboardTimeSeriesData`.
-      func readTensorboardTimeSeriesData(
-        tensorboardTimeSeries: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse
-
-      /// See `TensorboardServiceClient.readTensorboardBlobData`.
-      func readTensorboardBlobData(request: ReadTensorboardBlobDataRequest) async throws
-        -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse
-
-      /// See `TensorboardServiceClient.readTensorboardBlobData`.
-      func readTensorboardBlobData(
-        timeSeries: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse
-
-      /// See `TensorboardServiceClient.writeTensorboardExperimentData`.
-      func writeTensorboardExperimentData(request: WriteTensorboardExperimentDataRequest)
-        async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse
-
-      /// See `TensorboardServiceClient.writeTensorboardExperimentData`.
-      func writeTensorboardExperimentData(
-        tensorboardExperiment: Swift.String,
-        writeRunDataRequests: [WriteTensorboardRunDataRequest],
-      ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse
-
-      /// See `TensorboardServiceClient.writeTensorboardRunData`.
-      func writeTensorboardRunData(request: WriteTensorboardRunDataRequest) async throws
-        -> GoogleCloudAIPlatformV1.WriteTensorboardRunDataResponse
-
-      /// See `TensorboardServiceClient.writeTensorboardRunData`.
-      func writeTensorboardRunData(
-        tensorboardRun: Swift.String,
-        timeSeriesData: [TimeSeriesData],
-      ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardRunDataResponse
-
-      /// See `TensorboardServiceClient.exportTensorboardTimeSeriesData`.
-      func exportTensorboardTimeSeriesData(request: ExportTensorboardTimeSeriesDataRequest)
-        async throws -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse
-
-      /// See `TensorboardServiceClient.exportTensorboardTimeSeriesData`.
-      func exportTensorboardTimeSeriesData(
-        byItem: ExportTensorboardTimeSeriesDataRequest
-      ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error>
-
-      /// See `TensorboardServiceClient.exportTensorboardTimeSeriesData`.
-      func exportTensorboardTimeSeriesData(
-        tensorboardTimeSeries: Swift.String,
-      ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error>
-
-      /// See `TensorboardServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `TensorboardServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `TensorboardServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `TensorboardServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `TensorboardServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `TensorboardServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `TensorboardServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `TensorboardServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `TensorboardServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `TensorboardServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `TensorboardServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `TensorboardServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `TensorboardServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `TensorboardServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(
@@ -1136,11 +690,6 @@
       func listTensorboards(
         request: ListTensorboardsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse
-
-      /// See `TensorboardServiceClient.listTensorboards`.
-      func listTensorboards(
-        byItem: ListTensorboardsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Tensorboard, Swift.Error>
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
       func deleteTensorboard(
@@ -1182,11 +731,6 @@
         request: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse
 
-      /// See `TensorboardServiceClient.listTensorboardExperiments`.
-      func listTensorboardExperiments(
-        byItem: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TensorboardExperiment, Swift.Error>
-
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
       func deleteTensorboardExperiment(
         request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
@@ -1222,11 +766,6 @@
         request: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse
 
-      /// See `TensorboardServiceClient.listTensorboardRuns`.
-      func listTensorboardRuns(
-        byItem: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TensorboardRun, Swift.Error>
-
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
       func deleteTensorboardRun(
         request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
@@ -1261,11 +800,6 @@
       func listTensorboardTimeSeries(
         request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse
-
-      /// See `TensorboardServiceClient.listTensorboardTimeSeries`.
-      func listTensorboardTimeSeries(
-        byItem: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error>
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
       func deleteTensorboardTimeSeries(
@@ -1307,20 +841,10 @@
         request: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse
 
-      /// See `TensorboardServiceClient.exportTensorboardTimeSeriesData`.
-      func exportTensorboardTimeSeriesData(
-        byItem: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error>
-
       /// See `TensorboardServiceClient.listLocations`.
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `TensorboardServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `TensorboardServiceClient.getLocation`.
       func getLocation(
@@ -1346,11 +870,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `TensorboardServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TensorboardServiceClient.deleteOperation`.
       func deleteOperation(
@@ -1488,12 +1007,17 @@
       self.listTensorboards(byItem: byItem, options: .init())
     }
 
+    /// Lists Tensorboards in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboards")
     public func listTensorboards(
       byItem: ListTensorboardsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Tensorboard, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTensorboards(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1673,13 +1197,18 @@
       self.listTensorboardExperiments(byItem: byItem, options: .init())
     }
 
+    /// Lists TensorboardExperiments in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
     public func listTensorboardExperiments(
       byItem: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTensorboardExperiments(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1840,12 +1369,17 @@
       self.listTensorboardRuns(byItem: byItem, options: .init())
     }
 
+    /// Lists TensorboardRuns in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
     public func listTensorboardRuns(
       byItem: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TensorboardRun, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTensorboardRuns(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2004,13 +1538,18 @@
       self.listTensorboardTimeSeries(byItem: byItem, options: .init())
     }
 
+    /// Lists TensorboardTimeSeries in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
     public func listTensorboardTimeSeries(
       byItem: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTensorboardTimeSeries(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2188,13 +1727,19 @@
       self.exportTensorboardTimeSeriesData(byItem: byItem, options: .init())
     }
 
+    /// Exports a TensorboardTimeSeries' data. Data is returned in paginated
+    /// responses.
+    ///
+    /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
     public func exportTensorboardTimeSeriesData(
       byItem: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.exportTensorboardTimeSeriesData(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2226,12 +1771,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "TensorboardService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -2302,12 +1852,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

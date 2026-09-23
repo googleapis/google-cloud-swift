@@ -125,23 +125,6 @@
       try await self.inner.listConversationDatasets(request: request, options: options)
     }
 
-    /// Returns the list of all conversation datasets in the specified
-    /// project and location.
-    ///
-    /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
-    public func listConversationDatasets(
-      byItem: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ConversationDataset, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listConversationDatasets(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified conversation dataset.
     ///
     /// This method is a [long-running
@@ -290,38 +273,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "ConversationDatasets_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "ConversationDatasets_GetLocation")
@@ -340,23 +291,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "ConversationDatasets_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -388,11 +322,7 @@
     /// To mock `ConversationDatasetsClient` change your functions to receive
     /// `some ConversationDatasetsProtocol` or `any ConversationDatasetsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ConversationDatasetsProtocol {
-      /// See `ConversationDatasetsClient.createConversationDataset`.
-      func createConversationDataset(request: CreateConversationDatasetRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol ConversationDatasetsProtocol: Sendable {
       /// See `ConversationDatasetsClient.createConversationDataset`.
       func createConversationDataset(withPolling: CreateConversationDatasetRequest) async throws
         -> any GoogleGax.PollableOperation<ConversationDataset>
@@ -402,33 +332,6 @@
         parent: Swift.String,
         conversationDataset: ConversationDataset?,
       ) async throws -> any GoogleGax.PollableOperation<ConversationDataset>
-
-      /// See `ConversationDatasetsClient.getConversationDataset`.
-      func getConversationDataset(request: GetConversationDatasetRequest) async throws
-        -> GoogleCloudDialogflowV2.ConversationDataset
-
-      /// See `ConversationDatasetsClient.getConversationDataset`.
-      func getConversationDataset(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.ConversationDataset
-
-      /// See `ConversationDatasetsClient.listConversationDatasets`.
-      func listConversationDatasets(request: ListConversationDatasetsRequest) async throws
-        -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse
-
-      /// See `ConversationDatasetsClient.listConversationDatasets`.
-      func listConversationDatasets(
-        byItem: ListConversationDatasetsRequest
-      ) -> any AsyncSequence<ConversationDataset, Swift.Error>
-
-      /// See `ConversationDatasetsClient.listConversationDatasets`.
-      func listConversationDatasets(
-        parent: Swift.String,
-      ) -> any AsyncSequence<ConversationDataset, Swift.Error>
-
-      /// See `ConversationDatasetsClient.deleteConversationDataset`.
-      func deleteConversationDataset(request: DeleteConversationDatasetRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `ConversationDatasetsClient.deleteConversationDataset`.
       func deleteConversationDataset(withPolling: DeleteConversationDatasetRequest) async throws
@@ -440,48 +343,8 @@
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationDatasetsClient.importConversationData`.
-      func importConversationData(request: ImportConversationDataRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `ConversationDatasetsClient.importConversationData`.
       func importConversationData(withPolling: ImportConversationDataRequest) async throws
         -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse>
-
-      /// See `ConversationDatasetsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `ConversationDatasetsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `ConversationDatasetsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `ConversationDatasetsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ConversationDatasetsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ConversationDatasetsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ConversationDatasetsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `ConversationDatasetsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `ConversationDatasetsClient.createConversationDataset`.
       func createConversationDataset(
@@ -502,11 +365,6 @@
       func listConversationDatasets(
         request: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse
-
-      /// See `ConversationDatasetsClient.listConversationDatasets`.
-      func listConversationDatasets(
-        byItem: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ConversationDataset, Swift.Error>
 
       /// See `ConversationDatasetsClient.deleteConversationDataset`.
       func deleteConversationDataset(
@@ -533,11 +391,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `ConversationDatasetsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `ConversationDatasetsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -547,11 +400,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ConversationDatasetsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ConversationDatasetsClient.cancelOperation`.
       func cancelOperation(
@@ -640,13 +488,19 @@
       self.listConversationDatasets(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all conversation datasets in the specified
+    /// project and location.
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
     public func listConversationDatasets(
       byItem: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ConversationDataset, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listConversationDatasets(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -745,12 +599,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -785,12 +661,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

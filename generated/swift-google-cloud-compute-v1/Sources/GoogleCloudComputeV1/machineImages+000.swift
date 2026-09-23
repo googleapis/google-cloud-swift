@@ -176,21 +176,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of machine images that are contained within
-    /// the specified project.
-    ///
-    /// @Snippet(path: "machineImages_list")
-    public func list(
-      byItem: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MachineImage, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.MachineImageList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///
@@ -276,75 +261,7 @@
     /// To mock `MachineImagesClient` change your functions to receive
     /// `some MachineImagesProtocol` or `any MachineImagesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol MachineImagesProtocol {
-      /// See `MachineImagesClient.delete`.
-      func delete(request: MachineImagesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `MachineImagesClient.`get``.
-      func `get`(request: MachineImagesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.MachineImage
-
-      /// See `MachineImagesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        machineImage: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.MachineImage
-
-      /// See `MachineImagesClient.getIamPolicy`.
-      func getIamPolicy(request: MachineImagesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `MachineImagesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `MachineImagesClient.insert`.
-      func insert(request: MachineImagesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `MachineImagesClient.list`.
-      func list(request: MachineImagesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.MachineImageList
-
-      /// See `MachineImagesClient.list`.
-      func list(
-        byItem: MachineImagesClient.ListRequest
-      ) -> any AsyncSequence<MachineImage, Swift.Error>
-
-      /// See `MachineImagesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<MachineImage, Swift.Error>
-
-      /// See `MachineImagesClient.setIamPolicy`.
-      func setIamPolicy(request: MachineImagesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `MachineImagesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `MachineImagesClient.setLabels`.
-      func setLabels(request: MachineImagesClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `MachineImagesClient.testIamPermissions`.
-      func testIamPermissions(request: MachineImagesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `MachineImagesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol MachineImagesProtocol: Sendable {
       /// See `MachineImagesClient.delete`.
       func delete(
         request: MachineImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -369,11 +286,6 @@
       func list(
         request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.MachineImageList
-
-      /// See `MachineImagesClient.list`.
-      func list(
-        byItem: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<MachineImage, Swift.Error>
 
       /// See `MachineImagesClient.setIamPolicy`.
       func setIamPolicy(
@@ -538,11 +450,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of machine images that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "machineImages_list")
     public func list(
       byItem: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<MachineImage, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.MachineImageList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

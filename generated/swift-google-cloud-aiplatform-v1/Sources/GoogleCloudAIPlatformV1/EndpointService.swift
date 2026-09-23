@@ -98,21 +98,6 @@
       try await self.inner.listEndpoints(request: request, options: options)
     }
 
-    /// Lists Endpoints in a Location.
-    ///
-    /// @Snippet(path: "EndpointService_ListEndpoints")
-    public func listEndpoints(
-      byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Endpoint, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListEndpointsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listEndpoints(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_UpdateEndpoint")
@@ -316,21 +301,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "EndpointService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "EndpointService_GetLocation")
@@ -393,23 +363,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "EndpointService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "EndpointService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -457,11 +410,7 @@
     /// To mock `EndpointServiceClient` change your functions to receive
     /// `some EndpointServiceProtocol` or `any EndpointServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol EndpointServiceProtocol {
-      /// See `EndpointServiceClient.createEndpoint`.
-      func createEndpoint(request: CreateEndpointRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol EndpointServiceProtocol: Sendable {
       /// See `EndpointServiceClient.createEndpoint`.
       func createEndpoint(withPolling: CreateEndpointRequest) async throws -> any GoogleGax
         .PollableOperation<Endpoint>
@@ -479,42 +428,6 @@
         endpointId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
-      /// See `EndpointServiceClient.getEndpoint`.
-      func getEndpoint(request: GetEndpointRequest) async throws -> GoogleCloudAIPlatformV1.Endpoint
-
-      /// See `EndpointServiceClient.getEndpoint`.
-      func getEndpoint(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Endpoint
-
-      /// See `EndpointServiceClient.listEndpoints`.
-      func listEndpoints(request: ListEndpointsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListEndpointsResponse
-
-      /// See `EndpointServiceClient.listEndpoints`.
-      func listEndpoints(
-        byItem: ListEndpointsRequest
-      ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-      /// See `EndpointServiceClient.listEndpoints`.
-      func listEndpoints(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-      /// See `EndpointServiceClient.updateEndpoint`.
-      func updateEndpoint(request: UpdateEndpointRequest) async throws
-        -> GoogleCloudAIPlatformV1.Endpoint
-
-      /// See `EndpointServiceClient.updateEndpoint`.
-      func updateEndpoint(
-        endpoint: Endpoint?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.Endpoint
-
-      /// See `EndpointServiceClient.updateEndpointLongRunning`.
-      func updateEndpointLongRunning(request: UpdateEndpointLongRunningRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `EndpointServiceClient.updateEndpointLongRunning`.
       func updateEndpointLongRunning(withPolling: UpdateEndpointLongRunningRequest) async throws
         -> any GoogleGax.PollableOperation<Endpoint>
@@ -525,10 +438,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.deleteEndpoint`.
-      func deleteEndpoint(request: DeleteEndpointRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `EndpointServiceClient.deleteEndpoint`.
       func deleteEndpoint(withPolling: DeleteEndpointRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
@@ -536,9 +445,6 @@
       func deleteEndpoint(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `EndpointServiceClient.deployModel`.
-      func deployModel(request: DeployModelRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.deployModel`.
       func deployModel(withPolling: DeployModelRequest) async throws -> any GoogleGax
@@ -552,9 +458,6 @@
       ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse>
 
       /// See `EndpointServiceClient.undeployModel`.
-      func undeployModel(request: UndeployModelRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `EndpointServiceClient.undeployModel`.
       func undeployModel(withPolling: UndeployModelRequest) async throws -> any GoogleGax
         .PollableOperation<UndeployModelResponse>
 
@@ -566,10 +469,6 @@
       ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse>
 
       /// See `EndpointServiceClient.mutateDeployedModel`.
-      func mutateDeployedModel(request: MutateDeployedModelRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `EndpointServiceClient.mutateDeployedModel`.
       func mutateDeployedModel(withPolling: MutateDeployedModelRequest) async throws
         -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
 
@@ -579,64 +478,6 @@
         deployedModel: DeployedModel?,
         updateMask: GoogleWKT.FieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
-
-      /// See `EndpointServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `EndpointServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `EndpointServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `EndpointServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `EndpointServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `EndpointServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `EndpointServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `EndpointServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `EndpointServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `EndpointServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `EndpointServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `EndpointServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `EndpointServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `EndpointServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.createEndpoint`.
       func createEndpoint(
@@ -657,11 +498,6 @@
       func listEndpoints(
         request: ListEndpointsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListEndpointsResponse
-
-      /// See `EndpointServiceClient.listEndpoints`.
-      func listEndpoints(
-        byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Endpoint, Swift.Error>
 
       /// See `EndpointServiceClient.updateEndpoint`.
       func updateEndpoint(
@@ -723,11 +559,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `EndpointServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `EndpointServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -752,11 +583,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `EndpointServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `EndpointServiceClient.deleteOperation`.
       func deleteOperation(
@@ -868,12 +694,17 @@
       self.listEndpoints(byItem: byItem, options: .init())
     }
 
+    /// Lists Endpoints in a Location.
+    ///
+    /// @Snippet(path: "EndpointService_ListEndpoints")
     public func listEndpoints(
       byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Endpoint, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListEndpointsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listEndpoints(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1126,12 +957,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "EndpointService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1202,12 +1038,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

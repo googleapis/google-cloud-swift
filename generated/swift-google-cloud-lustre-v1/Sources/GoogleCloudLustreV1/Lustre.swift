@@ -52,21 +52,6 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
-  /// Lists instances in a given project and location.
-  ///
-  /// @Snippet(path: "Lustre_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLustreV1.ListInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single instance.
   ///
   /// @Snippet(path: "Lustre_GetInstance")
@@ -260,21 +245,6 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "Lustre_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Lustre_GetLocation")
@@ -293,23 +263,6 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Lustre_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -352,32 +305,7 @@ extension Clients {
   /// To mock `LustreClient` change your functions to receive
   /// `some LustreProtocol` or `any LustreProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol LustreProtocol {
-    /// See `LustreClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudLustreV1.ListInstancesResponse
-
-    /// See `LustreClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `LustreClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `LustreClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudLustreV1.Instance
-
-    /// See `LustreClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudLustreV1.Instance
-
-    /// See `LustreClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol LustreProtocol: Sendable {
     /// See `LustreClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
@@ -390,9 +318,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `LustreClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -403,9 +328,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `LustreClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -413,9 +335,6 @@ extension Clients {
     func deleteInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `LustreClient.importData`.
-    func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `LustreClient.importData`.
     func importData(withPolling: ImportDataRequest) async throws -> any GoogleGax.PollableOperation<
@@ -428,66 +347,14 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse>
 
     /// See `LustreClient.exportData`.
-    func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `LustreClient.exportData`.
     func exportData(withPolling: ExportDataRequest) async throws -> any GoogleGax.PollableOperation<
       ExportDataResponse
     >
-
-    /// See `LustreClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `LustreClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `LustreClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `LustreClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `LustreClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `LustreClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `LustreClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `LustreClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `LustreClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `LustreClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `LustreClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLustreV1.ListInstancesResponse
-
-    /// See `LustreClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `LustreClient.getInstance`.
     func getInstance(
@@ -549,11 +416,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `LustreClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `LustreClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -563,11 +425,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `LustreClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LustreClient.deleteOperation`.
     func deleteOperation(
@@ -601,12 +458,17 @@ extension Clients.LustreProtocol {
     self.listInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists instances in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLustreV1.ListInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -836,12 +698,17 @@ extension Clients.LustreProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Lustre_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -876,12 +743,19 @@ extension Clients.LustreProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

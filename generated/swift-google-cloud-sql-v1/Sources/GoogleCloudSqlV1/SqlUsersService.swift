@@ -89,22 +89,7 @@
     /// To mock `SqlUsersServiceClient` change your functions to receive
     /// `some SqlUsersServiceProtocol` or `any SqlUsersServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlUsersServiceProtocol {
-      /// See `SqlUsersServiceClient.delete`.
-      func delete(request: SqlUsersDeleteRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlUsersServiceClient.`get``.
-      func `get`(request: SqlUsersGetRequest) async throws -> GoogleCloudSqlV1.User
-
-      /// See `SqlUsersServiceClient.insert`.
-      func insert(request: SqlUsersInsertRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlUsersServiceClient.list`.
-      func list(request: SqlUsersListRequest) async throws -> GoogleCloudSqlV1.UsersListResponse
-
-      /// See `SqlUsersServiceClient.update`.
-      func update(request: SqlUsersUpdateRequest) async throws -> GoogleCloudSqlV1.Operation
-
+    public protocol SqlUsersServiceProtocol: Sendable {
       /// See `SqlUsersServiceClient.delete`.
       func delete(
         request: SqlUsersDeleteRequest, options: GoogleGax.RequestOptions

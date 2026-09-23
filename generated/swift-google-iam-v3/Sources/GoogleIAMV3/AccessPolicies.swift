@@ -164,20 +164,6 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
     try await self.inner.listAccessPolicies(request: request, options: options)
   }
 
-  /// Lists access policies.
-  ///
-  /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
-  public func listAccessPolicies(
-    byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIAMV3.ListAccessPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAccessPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns all policy bindings that bind a specific policy if a user has
   /// searchPolicyBindings permission on that policy.
   ///
@@ -186,22 +172,6 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
     request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse {
     try await self.inner.searchAccessPolicyBindings(request: request, options: options)
-  }
-
-  /// Returns all policy bindings that bind a specific policy if a user has
-  /// searchPolicyBindings permission on that policy.
-  ///
-  /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
-  public func searchAccessPolicyBindings(
-    byItem: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchAccessPolicyBindings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -222,11 +192,7 @@ extension Clients {
   /// To mock `AccessPoliciesClient` change your functions to receive
   /// `some AccessPoliciesProtocol` or `any AccessPoliciesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AccessPoliciesProtocol {
-    /// See `AccessPoliciesClient.createAccessPolicy`.
-    func createAccessPolicy(request: CreateAccessPolicyRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AccessPoliciesProtocol: Sendable {
     /// See `AccessPoliciesClient.createAccessPolicy`.
     func createAccessPolicy(withPolling: CreateAccessPolicyRequest) async throws -> any GoogleGax
       .PollableOperation<AccessPolicy>
@@ -238,25 +204,9 @@ extension Clients {
       accessPolicyId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AccessPolicy>
 
-    /// See `AccessPoliciesClient.getAccessPolicy`.
-    func getAccessPolicy(request: GetAccessPolicyRequest) async throws -> GoogleIAMV3.AccessPolicy
-
-    /// See `AccessPoliciesClient.getAccessPolicy`.
-    func getAccessPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleIAMV3.AccessPolicy
-
-    /// See `AccessPoliciesClient.updateAccessPolicy`.
-    func updateAccessPolicy(request: UpdateAccessPolicyRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `AccessPoliciesClient.updateAccessPolicy`.
     func updateAccessPolicy(withPolling: UpdateAccessPolicyRequest) async throws -> any GoogleGax
       .PollableOperation<AccessPolicy>
-
-    /// See `AccessPoliciesClient.deleteAccessPolicy`.
-    func deleteAccessPolicy(request: DeleteAccessPolicyRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AccessPoliciesClient.deleteAccessPolicy`.
     func deleteAccessPolicy(withPolling: DeleteAccessPolicyRequest) async throws -> any GoogleGax
@@ -266,34 +216,6 @@ extension Clients {
     func deleteAccessPolicy(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AccessPoliciesClient.listAccessPolicies`.
-    func listAccessPolicies(request: ListAccessPoliciesRequest) async throws
-      -> GoogleIAMV3.ListAccessPoliciesResponse
-
-    /// See `AccessPoliciesClient.listAccessPolicies`.
-    func listAccessPolicies(
-      byItem: ListAccessPoliciesRequest
-    ) -> any AsyncSequence<AccessPolicy, Swift.Error>
-
-    /// See `AccessPoliciesClient.listAccessPolicies`.
-    func listAccessPolicies(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AccessPolicy, Swift.Error>
-
-    /// See `AccessPoliciesClient.searchAccessPolicyBindings`.
-    func searchAccessPolicyBindings(request: SearchAccessPolicyBindingsRequest) async throws
-      -> GoogleIAMV3.SearchAccessPolicyBindingsResponse
-
-    /// See `AccessPoliciesClient.searchAccessPolicyBindings`.
-    func searchAccessPolicyBindings(
-      byItem: SearchAccessPolicyBindingsRequest
-    ) -> any AsyncSequence<PolicyBinding, Swift.Error>
-
-    /// See `AccessPoliciesClient.searchAccessPolicyBindings`.
-    func searchAccessPolicyBindings(
-      name: Swift.String,
-    ) -> any AsyncSequence<PolicyBinding, Swift.Error>
 
     /// See `AccessPoliciesClient.createAccessPolicy`.
     func createAccessPolicy(
@@ -335,20 +257,10 @@ extension Clients {
       request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.ListAccessPoliciesResponse
 
-    /// See `AccessPoliciesClient.listAccessPolicies`.
-    func listAccessPolicies(
-      byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AccessPolicy, Swift.Error>
-
     /// See `AccessPoliciesClient.searchAccessPolicyBindings`.
     func searchAccessPolicyBindings(
       request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse
-
-    /// See `AccessPoliciesClient.searchAccessPolicyBindings`.
-    func searchAccessPolicyBindings(
-      byItem: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PolicyBinding, Swift.Error>
   }
 }
 
@@ -499,11 +411,16 @@ extension Clients.AccessPoliciesProtocol {
     self.listAccessPolicies(byItem: byItem, options: .init())
   }
 
+  /// Lists access policies.
+  ///
+  /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
   public func listAccessPolicies(
     byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMV3.ListAccessPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAccessPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -535,12 +452,18 @@ extension Clients.AccessPoliciesProtocol {
     self.searchAccessPolicyBindings(byItem: byItem, options: .init())
   }
 
+  /// Returns all policy bindings that bind a specific policy if a user has
+  /// searchPolicyBindings permission on that policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
   public func searchAccessPolicyBindings(
     byItem: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchAccessPolicyBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

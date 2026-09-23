@@ -108,11 +108,7 @@
     /// To mock `RegionInstancesClient` change your functions to receive
     /// `some RegionInstancesProtocol` or `any RegionInstancesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionInstancesProtocol {
-      /// See `RegionInstancesClient.bulkInsert`.
-      func bulkInsert(request: RegionInstancesClient.BulkInsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionInstancesProtocol: Sendable {
       /// See `RegionInstancesClient.bulkInsert`.
       func bulkInsert(
         request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions

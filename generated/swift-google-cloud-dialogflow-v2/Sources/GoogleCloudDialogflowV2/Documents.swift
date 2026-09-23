@@ -56,21 +56,6 @@
       try await self.inner.listDocuments(request: request, options: options)
     }
 
-    /// Returns the list of all documents of the knowledge base.
-    ///
-    /// @Snippet(path: "Documents_ListDocuments")
-    public func listDocuments(
-      byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Document, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListDocumentsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listDocuments(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified document.
     ///
     /// @Snippet(path: "Documents_GetDocument")
@@ -469,38 +454,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Documents_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Documents_GetLocation")
@@ -519,23 +472,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Documents_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -567,33 +503,7 @@
     /// To mock `DocumentsClient` change your functions to receive
     /// `some DocumentsProtocol` or `any DocumentsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol DocumentsProtocol {
-      /// See `DocumentsClient.listDocuments`.
-      func listDocuments(request: ListDocumentsRequest) async throws
-        -> GoogleCloudDialogflowV2.ListDocumentsResponse
-
-      /// See `DocumentsClient.listDocuments`.
-      func listDocuments(
-        byItem: ListDocumentsRequest
-      ) -> any AsyncSequence<Document, Swift.Error>
-
-      /// See `DocumentsClient.listDocuments`.
-      func listDocuments(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Document, Swift.Error>
-
-      /// See `DocumentsClient.getDocument`.
-      func getDocument(request: GetDocumentRequest) async throws -> GoogleCloudDialogflowV2.Document
-
-      /// See `DocumentsClient.getDocument`.
-      func getDocument(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.Document
-
-      /// See `DocumentsClient.createDocument`.
-      func createDocument(request: CreateDocumentRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol DocumentsProtocol: Sendable {
       /// See `DocumentsClient.createDocument`.
       func createDocument(withPolling: CreateDocumentRequest) async throws -> any GoogleGax
         .PollableOperation<Document>
@@ -605,16 +515,8 @@
       ) async throws -> any GoogleGax.PollableOperation<Document>
 
       /// See `DocumentsClient.importDocuments`.
-      func importDocuments(request: ImportDocumentsRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `DocumentsClient.importDocuments`.
       func importDocuments(withPolling: ImportDocumentsRequest) async throws -> any GoogleGax
         .PollableOperation<ImportDocumentsResponse>
-
-      /// See `DocumentsClient.deleteDocument`.
-      func deleteDocument(request: DeleteDocumentRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `DocumentsClient.deleteDocument`.
       func deleteDocument(withPolling: DeleteDocumentRequest) async throws -> any GoogleGax
@@ -624,10 +526,6 @@
       func deleteDocument(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DocumentsClient.updateDocument`.
-      func updateDocument(request: UpdateDocumentRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `DocumentsClient.updateDocument`.
       func updateDocument(withPolling: UpdateDocumentRequest) async throws -> any GoogleGax
@@ -640,10 +538,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Document>
 
       /// See `DocumentsClient.reloadDocument`.
-      func reloadDocument(request: ReloadDocumentRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `DocumentsClient.reloadDocument`.
       func reloadDocument(withPolling: ReloadDocumentRequest) async throws -> any GoogleGax
         .PollableOperation<Document>
 
@@ -654,58 +548,13 @@
       ) async throws -> any GoogleGax.PollableOperation<Document>
 
       /// See `DocumentsClient.exportDocument`.
-      func exportDocument(request: ExportDocumentRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `DocumentsClient.exportDocument`.
       func exportDocument(withPolling: ExportDocumentRequest) async throws -> any GoogleGax
         .PollableOperation<Document>
-
-      /// See `DocumentsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `DocumentsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `DocumentsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `DocumentsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DocumentsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DocumentsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DocumentsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `DocumentsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `DocumentsClient.listDocuments`.
       func listDocuments(
         request: ListDocumentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListDocumentsResponse
-
-      /// See `DocumentsClient.listDocuments`.
-      func listDocuments(
-        byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Document, Swift.Error>
 
       /// See `DocumentsClient.getDocument`.
       func getDocument(
@@ -777,11 +626,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `DocumentsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `DocumentsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -791,11 +635,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DocumentsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentsClient.cancelOperation`.
       func cancelOperation(
@@ -824,12 +663,17 @@
       self.listDocuments(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all documents of the knowledge base.
+    ///
+    /// @Snippet(path: "Documents_ListDocuments")
     public func listDocuments(
       byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Document, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListDocumentsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listDocuments(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1093,12 +937,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Documents_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1133,12 +999,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Documents_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

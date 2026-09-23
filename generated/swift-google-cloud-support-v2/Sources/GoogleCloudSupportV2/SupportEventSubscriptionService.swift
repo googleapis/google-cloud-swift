@@ -67,22 +67,6 @@ public final class SupportEventSubscriptionServiceClient: Clients
     try await self.inner.listSupportEventSubscriptions(request: request, options: options)
   }
 
-  /// Lists support event subscriptions for an organization.
-  ///
-  /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
-  public func listSupportEventSubscriptions(
-    byItem: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SupportEventSubscription, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSupportEventSubscriptions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a support event subscription.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_UpdateSupportEventSubscription")
@@ -156,72 +140,7 @@ extension Clients {
   /// To mock `SupportEventSubscriptionServiceClient` change your functions to receive
   /// `some SupportEventSubscriptionServiceProtocol` or `any SupportEventSubscriptionServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol SupportEventSubscriptionServiceProtocol {
-    /// See `SupportEventSubscriptionServiceClient.createSupportEventSubscription`.
-    func createSupportEventSubscription(request: CreateSupportEventSubscriptionRequest) async throws
-      -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.createSupportEventSubscription`.
-    func createSupportEventSubscription(
-      parent: Swift.String,
-      supportEventSubscription: SupportEventSubscription?,
-    ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.getSupportEventSubscription`.
-    func getSupportEventSubscription(request: GetSupportEventSubscriptionRequest) async throws
-      -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.getSupportEventSubscription`.
-    func getSupportEventSubscription(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.listSupportEventSubscriptions`.
-    func listSupportEventSubscriptions(request: ListSupportEventSubscriptionsRequest) async throws
-      -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse
-
-    /// See `SupportEventSubscriptionServiceClient.listSupportEventSubscriptions`.
-    func listSupportEventSubscriptions(
-      byItem: ListSupportEventSubscriptionsRequest
-    ) -> any AsyncSequence<SupportEventSubscription, Swift.Error>
-
-    /// See `SupportEventSubscriptionServiceClient.listSupportEventSubscriptions`.
-    func listSupportEventSubscriptions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SupportEventSubscription, Swift.Error>
-
-    /// See `SupportEventSubscriptionServiceClient.updateSupportEventSubscription`.
-    func updateSupportEventSubscription(request: UpdateSupportEventSubscriptionRequest) async throws
-      -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.updateSupportEventSubscription`.
-    func updateSupportEventSubscription(
-      supportEventSubscription: SupportEventSubscription?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.deleteSupportEventSubscription`.
-    func deleteSupportEventSubscription(request: DeleteSupportEventSubscriptionRequest) async throws
-      -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.deleteSupportEventSubscription`.
-    func deleteSupportEventSubscription(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.undeleteSupportEventSubscription`.
-    func undeleteSupportEventSubscription(request: UndeleteSupportEventSubscriptionRequest)
-      async throws -> GoogleCloudSupportV2.SupportEventSubscription
-
-    /// See `SupportEventSubscriptionServiceClient.expungeSupportEventSubscription`.
-    func expungeSupportEventSubscription(request: ExpungeSupportEventSubscriptionRequest)
-      async throws
-
-    /// See `SupportEventSubscriptionServiceClient.expungeSupportEventSubscription`.
-    func expungeSupportEventSubscription(
-      name: Swift.String,
-    ) async throws
-
+  public protocol SupportEventSubscriptionServiceProtocol: Sendable {
     /// See `SupportEventSubscriptionServiceClient.createSupportEventSubscription`.
     func createSupportEventSubscription(
       request: CreateSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
@@ -236,11 +155,6 @@ extension Clients {
     func listSupportEventSubscriptions(
       request: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse
-
-    /// See `SupportEventSubscriptionServiceClient.listSupportEventSubscriptions`.
-    func listSupportEventSubscriptions(
-      byItem: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SupportEventSubscription, Swift.Error>
 
     /// See `SupportEventSubscriptionServiceClient.updateSupportEventSubscription`.
     func updateSupportEventSubscription(
@@ -328,13 +242,18 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     self.listSupportEventSubscriptions(byItem: byItem, options: .init())
   }
 
+  /// Lists support event subscriptions for an organization.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
   public func listSupportEventSubscriptions(
     byItem: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SupportEventSubscription, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSupportEventSubscriptions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

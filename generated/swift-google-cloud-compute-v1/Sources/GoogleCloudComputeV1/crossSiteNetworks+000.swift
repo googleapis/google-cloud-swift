@@ -157,21 +157,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the cross-site networks for a project in the given scope.
-    ///
-    /// @Snippet(path: "crossSiteNetworks_list")
-    public func list(
-      byItem: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the specified cross-site network with the data included in
     /// the request. This method supportsPATCH
     /// semantics and uses theJSON merge
@@ -242,43 +227,7 @@
     /// To mock `CrossSiteNetworksClient` change your functions to receive
     /// `some CrossSiteNetworksProtocol` or `any CrossSiteNetworksProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol CrossSiteNetworksProtocol {
-      /// See `CrossSiteNetworksClient.delete`.
-      func delete(request: CrossSiteNetworksClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `CrossSiteNetworksClient.`get``.
-      func `get`(request: CrossSiteNetworksClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.CrossSiteNetwork
-
-      /// See `CrossSiteNetworksClient.`get``.
-      func `get`(
-        project: Swift.String,
-        crossSiteNetwork: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.CrossSiteNetwork
-
-      /// See `CrossSiteNetworksClient.insert`.
-      func insert(request: CrossSiteNetworksClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `CrossSiteNetworksClient.list`.
-      func list(request: CrossSiteNetworksClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.CrossSiteNetworkList
-
-      /// See `CrossSiteNetworksClient.list`.
-      func list(
-        byItem: CrossSiteNetworksClient.ListRequest
-      ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
-
-      /// See `CrossSiteNetworksClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
-
-      /// See `CrossSiteNetworksClient.patch`.
-      func patch(request: CrossSiteNetworksClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol CrossSiteNetworksProtocol: Sendable {
       /// See `CrossSiteNetworksClient.delete`.
       func delete(
         request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -298,11 +247,6 @@
       func list(
         request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList
-
-      /// See `CrossSiteNetworksClient.list`.
-      func list(
-        byItem: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error>
 
       /// See `CrossSiteNetworksClient.patch`.
       func patch(
@@ -434,12 +378,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the cross-site networks for a project in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_list")
     public func list(
       byItem: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

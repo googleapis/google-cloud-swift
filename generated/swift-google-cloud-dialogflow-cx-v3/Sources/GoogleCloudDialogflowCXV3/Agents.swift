@@ -55,21 +55,6 @@
       try await self.inner.listAgents(request: request, options: options)
     }
 
-    /// Returns the list of all agents in the specified location.
-    ///
-    /// @Snippet(path: "Agents_ListAgents")
-    public func listAgents(
-      byItem: ListAgentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Agent, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListAgentsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listAgents(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified agent.
     ///
     /// @Snippet(path: "Agents_GetAgent")
@@ -303,38 +288,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Agents_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Agents_GetLocation")
@@ -353,23 +306,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Agents_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -401,147 +337,19 @@
     /// To mock `AgentsClient` change your functions to receive
     /// `some AgentsProtocol` or `any AgentsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol AgentsProtocol {
-      /// See `AgentsClient.listAgents`.
-      func listAgents(request: ListAgentsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListAgentsResponse
-
-      /// See `AgentsClient.listAgents`.
-      func listAgents(
-        byItem: ListAgentsRequest
-      ) -> any AsyncSequence<Agent, Swift.Error>
-
-      /// See `AgentsClient.listAgents`.
-      func listAgents(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Agent, Swift.Error>
-
-      /// See `AgentsClient.getAgent`.
-      func getAgent(request: GetAgentRequest) async throws -> GoogleCloudDialogflowCXV3.Agent
-
-      /// See `AgentsClient.getAgent`.
-      func getAgent(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.Agent
-
-      /// See `AgentsClient.createAgent`.
-      func createAgent(request: CreateAgentRequest) async throws -> GoogleCloudDialogflowCXV3.Agent
-
-      /// See `AgentsClient.createAgent`.
-      func createAgent(
-        parent: Swift.String,
-        agent: Agent?,
-      ) async throws -> GoogleCloudDialogflowCXV3.Agent
-
-      /// See `AgentsClient.updateAgent`.
-      func updateAgent(request: UpdateAgentRequest) async throws -> GoogleCloudDialogflowCXV3.Agent
-
-      /// See `AgentsClient.updateAgent`.
-      func updateAgent(
-        agent: Agent?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.Agent
-
-      /// See `AgentsClient.deleteAgent`.
-      func deleteAgent(request: DeleteAgentRequest) async throws
-
-      /// See `AgentsClient.deleteAgent`.
-      func deleteAgent(
-        name: Swift.String,
-      ) async throws
-
-      /// See `AgentsClient.exportAgent`.
-      func exportAgent(request: ExportAgentRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol AgentsProtocol: Sendable {
       /// See `AgentsClient.exportAgent`.
       func exportAgent(withPolling: ExportAgentRequest) async throws -> any GoogleGax
         .PollableOperation<ExportAgentResponse>
 
       /// See `AgentsClient.restoreAgent`.
-      func restoreAgent(request: RestoreAgentRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `AgentsClient.restoreAgent`.
       func restoreAgent(withPolling: RestoreAgentRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
-
-      /// See `AgentsClient.validateAgent`.
-      func validateAgent(request: ValidateAgentRequest) async throws
-        -> GoogleCloudDialogflowCXV3.AgentValidationResult
-
-      /// See `AgentsClient.getAgentValidationResult`.
-      func getAgentValidationResult(request: GetAgentValidationResultRequest) async throws
-        -> GoogleCloudDialogflowCXV3.AgentValidationResult
-
-      /// See `AgentsClient.getAgentValidationResult`.
-      func getAgentValidationResult(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.AgentValidationResult
-
-      /// See `AgentsClient.getGenerativeSettings`.
-      func getGenerativeSettings(request: GetGenerativeSettingsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.GenerativeSettings
-
-      /// See `AgentsClient.getGenerativeSettings`.
-      func getGenerativeSettings(
-        name: Swift.String,
-        languageCode: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings
-
-      /// See `AgentsClient.updateGenerativeSettings`.
-      func updateGenerativeSettings(request: UpdateGenerativeSettingsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.GenerativeSettings
-
-      /// See `AgentsClient.updateGenerativeSettings`.
-      func updateGenerativeSettings(
-        generativeSettings: GenerativeSettings?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings
-
-      /// See `AgentsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `AgentsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `AgentsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `AgentsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `AgentsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `AgentsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `AgentsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `AgentsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `AgentsClient.listAgents`.
       func listAgents(
         request: ListAgentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListAgentsResponse
-
-      /// See `AgentsClient.listAgents`.
-      func listAgents(
-        byItem: ListAgentsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Agent, Swift.Error>
 
       /// See `AgentsClient.getAgent`.
       func getAgent(
@@ -608,11 +416,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `AgentsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `AgentsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -622,11 +425,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `AgentsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `AgentsClient.cancelOperation`.
       func cancelOperation(
@@ -655,12 +453,17 @@
       self.listAgents(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all agents in the specified location.
+    ///
+    /// @Snippet(path: "Agents_ListAgents")
     public func listAgents(
       byItem: ListAgentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Agent, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListAgentsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listAgents(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -910,12 +713,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Agents_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -950,12 +775,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Agents_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

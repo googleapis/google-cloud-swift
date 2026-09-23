@@ -58,22 +58,6 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     try await self.inner.listDataExchanges(request: request, options: options)
   }
 
-  /// Lists all data exchanges in a given project and location.
-  ///
-  /// @Snippet(path: "AnalyticsHubService_ListDataExchanges")
-  public func listDataExchanges(
-    byItem: ListDataExchangesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataExchange, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDataExchanges(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists all data exchanges from projects in a given organization and
   /// location.
   ///
@@ -82,23 +66,6 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse {
     try await self.inner.listOrgDataExchanges(request: request, options: options)
-  }
-
-  /// Lists all data exchanges from projects in a given organization and
-  /// location.
-  ///
-  /// @Snippet(path: "AnalyticsHubService_ListOrgDataExchanges")
-  public func listOrgDataExchanges(
-    byItem: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataExchange, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOrgDataExchanges(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the details of a data exchange.
@@ -144,21 +111,6 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     request: ListListingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse {
     try await self.inner.listListings(request: request, options: options)
-  }
-
-  /// Lists all listings in a given project and location.
-  ///
-  /// @Snippet(path: "AnalyticsHubService_ListListings")
-  public func listListings(
-    byItem: ListListingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Listing, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listListings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the details of a listing.
@@ -311,22 +263,6 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     try await self.inner.listSubscriptions(request: request, options: options)
   }
 
-  /// Lists all subscriptions in a given project and location.
-  ///
-  /// @Snippet(path: "AnalyticsHubService_ListSubscriptions")
-  public func listSubscriptions(
-    byItem: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Subscription, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSubscriptions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists all subscriptions on a given Data Exchange or Listing.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListSharedResourceSubscriptions")
@@ -334,22 +270,6 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     request: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse {
     try await self.inner.listSharedResourceSubscriptions(request: request, options: options)
-  }
-
-  /// Lists all subscriptions on a given Data Exchange or Listing.
-  ///
-  /// @Snippet(path: "AnalyticsHubService_ListSharedResourceSubscriptions")
-  public func listSharedResourceSubscriptions(
-    byItem: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Subscription, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSharedResourceSubscriptions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Revokes a given subscription.
@@ -450,22 +370,6 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     try await self.inner.listQueryTemplates(request: request, options: options)
   }
 
-  /// Lists all QueryTemplates in a given project and location.
-  ///
-  /// @Snippet(path: "AnalyticsHubService_ListQueryTemplates")
-  public func listQueryTemplates(
-    byItem: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<QueryTemplate, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listQueryTemplates(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates an existing QueryTemplate
   ///
   /// @Snippet(path: "AnalyticsHubService_UpdateQueryTemplate")
@@ -520,135 +424,7 @@ extension Clients {
   /// To mock `AnalyticsHubServiceClient` change your functions to receive
   /// `some AnalyticsHubServiceProtocol` or `any AnalyticsHubServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AnalyticsHubServiceProtocol {
-    /// See `AnalyticsHubServiceClient.listDataExchanges`.
-    func listDataExchanges(request: ListDataExchangesRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse
-
-    /// See `AnalyticsHubServiceClient.listDataExchanges`.
-    func listDataExchanges(
-      byItem: ListDataExchangesRequest
-    ) -> any AsyncSequence<DataExchange, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listDataExchanges`.
-    func listDataExchanges(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DataExchange, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listOrgDataExchanges`.
-    func listOrgDataExchanges(request: ListOrgDataExchangesRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse
-
-    /// See `AnalyticsHubServiceClient.listOrgDataExchanges`.
-    func listOrgDataExchanges(
-      byItem: ListOrgDataExchangesRequest
-    ) -> any AsyncSequence<DataExchange, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listOrgDataExchanges`.
-    func listOrgDataExchanges(
-      organization: Swift.String,
-    ) -> any AsyncSequence<DataExchange, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.getDataExchange`.
-    func getDataExchange(request: GetDataExchangeRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.DataExchange
-
-    /// See `AnalyticsHubServiceClient.getDataExchange`.
-    func getDataExchange(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
-
-    /// See `AnalyticsHubServiceClient.createDataExchange`.
-    func createDataExchange(request: CreateDataExchangeRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.DataExchange
-
-    /// See `AnalyticsHubServiceClient.createDataExchange`.
-    func createDataExchange(
-      parent: Swift.String,
-      dataExchange: DataExchange?,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
-
-    /// See `AnalyticsHubServiceClient.updateDataExchange`.
-    func updateDataExchange(request: UpdateDataExchangeRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.DataExchange
-
-    /// See `AnalyticsHubServiceClient.updateDataExchange`.
-    func updateDataExchange(
-      dataExchange: DataExchange?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
-
-    /// See `AnalyticsHubServiceClient.deleteDataExchange`.
-    func deleteDataExchange(request: DeleteDataExchangeRequest) async throws
-
-    /// See `AnalyticsHubServiceClient.deleteDataExchange`.
-    func deleteDataExchange(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AnalyticsHubServiceClient.listListings`.
-    func listListings(request: ListListingsRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse
-
-    /// See `AnalyticsHubServiceClient.listListings`.
-    func listListings(
-      byItem: ListListingsRequest
-    ) -> any AsyncSequence<Listing, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listListings`.
-    func listListings(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Listing, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.getListing`.
-    func getListing(request: GetListingRequest) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
-
-    /// See `AnalyticsHubServiceClient.getListing`.
-    func getListing(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
-
-    /// See `AnalyticsHubServiceClient.createListing`.
-    func createListing(request: CreateListingRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.Listing
-
-    /// See `AnalyticsHubServiceClient.createListing`.
-    func createListing(
-      parent: Swift.String,
-      listing: Listing?,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
-
-    /// See `AnalyticsHubServiceClient.updateListing`.
-    func updateListing(request: UpdateListingRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.Listing
-
-    /// See `AnalyticsHubServiceClient.updateListing`.
-    func updateListing(
-      listing: Listing?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
-
-    /// See `AnalyticsHubServiceClient.deleteListing`.
-    func deleteListing(request: DeleteListingRequest) async throws
-
-    /// See `AnalyticsHubServiceClient.deleteListing`.
-    func deleteListing(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AnalyticsHubServiceClient.subscribeListing`.
-    func subscribeListing(request: SubscribeListingRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse
-
-    /// See `AnalyticsHubServiceClient.subscribeListing`.
-    func subscribeListing(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse
-
-    /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
-    func subscribeDataExchange(request: SubscribeDataExchangeRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AnalyticsHubServiceProtocol: Sendable {
     /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
     func subscribeDataExchange(withPolling: SubscribeDataExchangeRequest) async throws
       -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse>
@@ -659,10 +435,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse>
 
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
-    func refreshSubscription(request: RefreshSubscriptionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscription(withPolling: RefreshSubscriptionRequest) async throws -> any GoogleGax
       .PollableOperation<RefreshSubscriptionResponse>
 
@@ -670,56 +442,6 @@ extension Clients {
     func refreshSubscription(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse>
-
-    /// See `AnalyticsHubServiceClient.getSubscription`.
-    func getSubscription(request: GetSubscriptionRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.Subscription
-
-    /// See `AnalyticsHubServiceClient.getSubscription`.
-    func getSubscription(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.Subscription
-
-    /// See `AnalyticsHubServiceClient.listSubscriptions`.
-    func listSubscriptions(request: ListSubscriptionsRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse
-
-    /// See `AnalyticsHubServiceClient.listSubscriptions`.
-    func listSubscriptions(
-      byItem: ListSubscriptionsRequest
-    ) -> any AsyncSequence<Subscription, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listSubscriptions`.
-    func listSubscriptions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Subscription, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listSharedResourceSubscriptions`.
-    func listSharedResourceSubscriptions(request: ListSharedResourceSubscriptionsRequest)
-      async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse
-
-    /// See `AnalyticsHubServiceClient.listSharedResourceSubscriptions`.
-    func listSharedResourceSubscriptions(
-      byItem: ListSharedResourceSubscriptionsRequest
-    ) -> any AsyncSequence<Subscription, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listSharedResourceSubscriptions`.
-    func listSharedResourceSubscriptions(
-      resource: Swift.String,
-    ) -> any AsyncSequence<Subscription, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.revokeSubscription`.
-    func revokeSubscription(request: RevokeSubscriptionRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse
-
-    /// See `AnalyticsHubServiceClient.revokeSubscription`.
-    func revokeSubscription(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse
-
-    /// See `AnalyticsHubServiceClient.deleteSubscription`.
-    func deleteSubscription(request: DeleteSubscriptionRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.deleteSubscription`.
     func deleteSubscription(withPolling: DeleteSubscriptionRequest) async throws -> any GoogleGax
@@ -730,105 +452,15 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `AnalyticsHubServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AnalyticsHubServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AnalyticsHubServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `AnalyticsHubServiceClient.createQueryTemplate`.
-    func createQueryTemplate(request: CreateQueryTemplateRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.createQueryTemplate`.
-    func createQueryTemplate(
-      parent: Swift.String,
-      queryTemplate: QueryTemplate?,
-      queryTemplateId: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.getQueryTemplate`.
-    func getQueryTemplate(request: GetQueryTemplateRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.getQueryTemplate`.
-    func getQueryTemplate(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.listQueryTemplates`.
-    func listQueryTemplates(request: ListQueryTemplatesRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse
-
-    /// See `AnalyticsHubServiceClient.listQueryTemplates`.
-    func listQueryTemplates(
-      byItem: ListQueryTemplatesRequest
-    ) -> any AsyncSequence<QueryTemplate, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.listQueryTemplates`.
-    func listQueryTemplates(
-      parent: Swift.String,
-    ) -> any AsyncSequence<QueryTemplate, Swift.Error>
-
-    /// See `AnalyticsHubServiceClient.updateQueryTemplate`.
-    func updateQueryTemplate(request: UpdateQueryTemplateRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.updateQueryTemplate`.
-    func updateQueryTemplate(
-      queryTemplate: QueryTemplate?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.deleteQueryTemplate`.
-    func deleteQueryTemplate(request: DeleteQueryTemplateRequest) async throws
-
-    /// See `AnalyticsHubServiceClient.deleteQueryTemplate`.
-    func deleteQueryTemplate(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AnalyticsHubServiceClient.submitQueryTemplate`.
-    func submitQueryTemplate(request: SubmitQueryTemplateRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.submitQueryTemplate`.
-    func submitQueryTemplate(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.approveQueryTemplate`.
-    func approveQueryTemplate(request: ApproveQueryTemplateRequest) async throws
-      -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
-    /// See `AnalyticsHubServiceClient.approveQueryTemplate`.
-    func approveQueryTemplate(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
-
     /// See `AnalyticsHubServiceClient.listDataExchanges`.
     func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse
 
-    /// See `AnalyticsHubServiceClient.listDataExchanges`.
-    func listDataExchanges(
-      byItem: ListDataExchangesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataExchange, Swift.Error>
-
     /// See `AnalyticsHubServiceClient.listOrgDataExchanges`.
     func listOrgDataExchanges(
       request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse
-
-    /// See `AnalyticsHubServiceClient.listOrgDataExchanges`.
-    func listOrgDataExchanges(
-      byItem: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataExchange, Swift.Error>
 
     /// See `AnalyticsHubServiceClient.getDataExchange`.
     func getDataExchange(
@@ -854,11 +486,6 @@ extension Clients {
     func listListings(
       request: ListListingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse
-
-    /// See `AnalyticsHubServiceClient.listListings`.
-    func listListings(
-      byItem: ListListingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Listing, Swift.Error>
 
     /// See `AnalyticsHubServiceClient.getListing`.
     func getListing(
@@ -915,20 +542,10 @@ extension Clients {
       request: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse
 
-    /// See `AnalyticsHubServiceClient.listSubscriptions`.
-    func listSubscriptions(
-      byItem: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Subscription, Swift.Error>
-
     /// See `AnalyticsHubServiceClient.listSharedResourceSubscriptions`.
     func listSharedResourceSubscriptions(
       request: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse
-
-    /// See `AnalyticsHubServiceClient.listSharedResourceSubscriptions`.
-    func listSharedResourceSubscriptions(
-      byItem: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Subscription, Swift.Error>
 
     /// See `AnalyticsHubServiceClient.revokeSubscription`.
     func revokeSubscription(
@@ -975,11 +592,6 @@ extension Clients {
       request: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse
 
-    /// See `AnalyticsHubServiceClient.listQueryTemplates`.
-    func listQueryTemplates(
-      byItem: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<QueryTemplate, Swift.Error>
-
     /// See `AnalyticsHubServiceClient.updateQueryTemplate`.
     func updateQueryTemplate(
       request: UpdateQueryTemplateRequest, options: GoogleGax.RequestOptions
@@ -1022,13 +634,18 @@ extension Clients.AnalyticsHubServiceProtocol {
     self.listDataExchanges(byItem: byItem, options: .init())
   }
 
+  /// Lists all data exchanges in a given project and location.
+  ///
+  /// @Snippet(path: "AnalyticsHubService_ListDataExchanges")
   public func listDataExchanges(
     byItem: ListDataExchangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDataExchanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1060,13 +677,19 @@ extension Clients.AnalyticsHubServiceProtocol {
     self.listOrgDataExchanges(byItem: byItem, options: .init())
   }
 
+  /// Lists all data exchanges from projects in a given organization and
+  /// location.
+  ///
+  /// @Snippet(path: "AnalyticsHubService_ListOrgDataExchanges")
   public func listOrgDataExchanges(
     byItem: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOrgDataExchanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1184,12 +807,17 @@ extension Clients.AnalyticsHubServiceProtocol {
     self.listListings(byItem: byItem, options: .init())
   }
 
+  /// Lists all listings in a given project and location.
+  ///
+  /// @Snippet(path: "AnalyticsHubService_ListListings")
   public func listListings(
     byItem: ListListingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Listing, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listListings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1425,13 +1053,18 @@ extension Clients.AnalyticsHubServiceProtocol {
     self.listSubscriptions(byItem: byItem, options: .init())
   }
 
+  /// Lists all subscriptions in a given project and location.
+  ///
+  /// @Snippet(path: "AnalyticsHubService_ListSubscriptions")
   public func listSubscriptions(
     byItem: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Subscription, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSubscriptions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1463,13 +1096,18 @@ extension Clients.AnalyticsHubServiceProtocol {
     self.listSharedResourceSubscriptions(byItem: byItem, options: .init())
   }
 
+  /// Lists all subscriptions on a given Data Exchange or Listing.
+  ///
+  /// @Snippet(path: "AnalyticsHubService_ListSharedResourceSubscriptions")
   public func listSharedResourceSubscriptions(
     byItem: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Subscription, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSharedResourceSubscriptions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1641,13 +1279,18 @@ extension Clients.AnalyticsHubServiceProtocol {
     self.listQueryTemplates(byItem: byItem, options: .init())
   }
 
+  /// Lists all QueryTemplates in a given project and location.
+  ///
+  /// @Snippet(path: "AnalyticsHubService_ListQueryTemplates")
   public func listQueryTemplates(
     byItem: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<QueryTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listQueryTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

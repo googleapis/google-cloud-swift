@@ -99,13 +99,7 @@ extension Clients {
   /// To mock `ServiceControllerClient` change your functions to receive
   /// `some ServiceControllerProtocol` or `any ServiceControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ServiceControllerProtocol {
-    /// See `ServiceControllerClient.check`.
-    func check(request: CheckRequest) async throws -> GoogleApiServiceControlV2.CheckResponse
-
-    /// See `ServiceControllerClient.report`.
-    func report(request: ReportRequest) async throws -> GoogleApiServiceControlV2.ReportResponse
-
+  public protocol ServiceControllerProtocol: Sendable {
     /// See `ServiceControllerClient.check`.
     func check(
       request: CheckRequest, options: GoogleGax.RequestOptions

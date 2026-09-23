@@ -55,21 +55,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     try await self.inner.listHubs(request: request, options: options)
   }
 
-  /// Lists the Network Connectivity Center hubs associated with a given project.
-  ///
-  /// @Snippet(path: "HubService_ListHubs")
-  public func listHubs(
-    byItem: ListHubsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Hub, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListHubsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listHubs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details about a Network Connectivity Center hub.
   ///
   /// @Snippet(path: "HubService_GetHub")
@@ -195,24 +180,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     try await self.inner.listHubSpokes(request: request, options: options)
   }
 
-  /// Lists the Network Connectivity Center spokes associated with a
-  /// specified hub and location. The list includes both spokes that are attached
-  /// to the hub and spokes that have been proposed but not yet accepted.
-  ///
-  /// @Snippet(path: "HubService_ListHubSpokes")
-  public func listHubSpokes(
-    byItem: ListHubSpokesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Spoke, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listHubSpokes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Query the Private Service Connect propagation status of a Network
   /// Connectivity Center hub.
   ///
@@ -223,23 +190,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     try await self.inner.queryHubStatus(request: request, options: options)
   }
 
-  /// Query the Private Service Connect propagation status of a Network
-  /// Connectivity Center hub.
-  ///
-  /// @Snippet(path: "HubService_QueryHubStatus")
-  public func queryHubStatus(
-    byItem: QueryHubStatusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<HubStatusEntry, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.queryHubStatus(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists the Network Connectivity Center spokes in a specified project and
   /// location.
   ///
@@ -248,22 +198,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     request: ListSpokesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse {
     try await self.inner.listSpokes(request: request, options: options)
-  }
-
-  /// Lists the Network Connectivity Center spokes in a specified project and
-  /// location.
-  ///
-  /// @Snippet(path: "HubService_ListSpokes")
-  public func listSpokes(
-    byItem: ListSpokesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Spoke, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSpokes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details about a Network Connectivity Center spoke.
@@ -557,21 +491,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     try await self.inner.listRoutes(request: request, options: options)
   }
 
-  /// Lists routes in a given route table.
-  ///
-  /// @Snippet(path: "HubService_ListRoutes")
-  public func listRoutes(
-    byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Route, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRoutes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists route tables in a given hub.
   ///
   /// @Snippet(path: "HubService_ListRouteTables")
@@ -579,22 +498,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     request: ListRouteTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse {
     try await self.inner.listRouteTables(request: request, options: options)
-  }
-
-  /// Lists route tables in a given hub.
-  ///
-  /// @Snippet(path: "HubService_ListRouteTables")
-  public func listRouteTables(
-    byItem: ListRouteTablesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RouteTable, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRouteTables(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details about a Network Connectivity Center group.
@@ -613,21 +516,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse {
     try await self.inner.listGroups(request: request, options: options)
-  }
-
-  /// Lists groups in a given hub.
-  ///
-  /// @Snippet(path: "HubService_ListGroups")
-  public func listGroups(
-    byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Group, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates the parameters of a Network Connectivity Center group.
@@ -671,21 +559,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "HubService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -750,23 +623,6 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "HubService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "HubService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -803,32 +659,7 @@ extension Clients {
   /// To mock `HubServiceClient` change your functions to receive
   /// `some HubServiceProtocol` or `any HubServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol HubServiceProtocol {
-    /// See `HubServiceClient.listHubs`.
-    func listHubs(request: ListHubsRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListHubsResponse
-
-    /// See `HubServiceClient.listHubs`.
-    func listHubs(
-      byItem: ListHubsRequest
-    ) -> any AsyncSequence<Hub, Swift.Error>
-
-    /// See `HubServiceClient.listHubs`.
-    func listHubs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Hub, Swift.Error>
-
-    /// See `HubServiceClient.getHub`.
-    func getHub(request: GetHubRequest) async throws -> GoogleCloudNetworkConnectivityV1.Hub
-
-    /// See `HubServiceClient.getHub`.
-    func getHub(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkConnectivityV1.Hub
-
-    /// See `HubServiceClient.createHub`.
-    func createHub(request: CreateHubRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol HubServiceProtocol: Sendable {
     /// See `HubServiceClient.createHub`.
     func createHub(withPolling: CreateHubRequest) async throws -> any GoogleGax.PollableOperation<
       Hub
@@ -842,9 +673,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.updateHub`.
-    func updateHub(request: UpdateHubRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `HubServiceClient.updateHub`.
     func updateHub(withPolling: UpdateHubRequest) async throws -> any GoogleGax.PollableOperation<
       Hub
     >
@@ -856,9 +684,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.deleteHub`.
-    func deleteHub(request: DeleteHubRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `HubServiceClient.deleteHub`.
     func deleteHub(withPolling: DeleteHubRequest) async throws -> any GoogleGax.PollableOperation<
       Swift.Void
     >
@@ -867,59 +692,6 @@ extension Clients {
     func deleteHub(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `HubServiceClient.listHubSpokes`.
-    func listHubSpokes(request: ListHubSpokesRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse
-
-    /// See `HubServiceClient.listHubSpokes`.
-    func listHubSpokes(
-      byItem: ListHubSpokesRequest
-    ) -> any AsyncSequence<Spoke, Swift.Error>
-
-    /// See `HubServiceClient.listHubSpokes`.
-    func listHubSpokes(
-      name: Swift.String,
-    ) -> any AsyncSequence<Spoke, Swift.Error>
-
-    /// See `HubServiceClient.queryHubStatus`.
-    func queryHubStatus(request: QueryHubStatusRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse
-
-    /// See `HubServiceClient.queryHubStatus`.
-    func queryHubStatus(
-      byItem: QueryHubStatusRequest
-    ) -> any AsyncSequence<HubStatusEntry, Swift.Error>
-
-    /// See `HubServiceClient.queryHubStatus`.
-    func queryHubStatus(
-      name: Swift.String,
-    ) -> any AsyncSequence<HubStatusEntry, Swift.Error>
-
-    /// See `HubServiceClient.listSpokes`.
-    func listSpokes(request: ListSpokesRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse
-
-    /// See `HubServiceClient.listSpokes`.
-    func listSpokes(
-      byItem: ListSpokesRequest
-    ) -> any AsyncSequence<Spoke, Swift.Error>
-
-    /// See `HubServiceClient.listSpokes`.
-    func listSpokes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Spoke, Swift.Error>
-
-    /// See `HubServiceClient.getSpoke`.
-    func getSpoke(request: GetSpokeRequest) async throws -> GoogleCloudNetworkConnectivityV1.Spoke
-
-    /// See `HubServiceClient.getSpoke`.
-    func getSpoke(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkConnectivityV1.Spoke
-
-    /// See `HubServiceClient.createSpoke`.
-    func createSpoke(request: CreateSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createSpoke`.
     func createSpoke(withPolling: CreateSpokeRequest) async throws -> any GoogleGax
@@ -933,9 +705,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.updateSpoke`.
-    func updateSpoke(request: UpdateSpokeRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `HubServiceClient.updateSpoke`.
     func updateSpoke(withPolling: UpdateSpokeRequest) async throws -> any GoogleGax
       .PollableOperation<Spoke>
 
@@ -944,9 +713,6 @@ extension Clients {
       spoke: Spoke?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
-
-    /// See `HubServiceClient.rejectHubSpoke`.
-    func rejectHubSpoke(request: RejectHubSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectHubSpoke`.
     func rejectHubSpoke(withPolling: RejectHubSpokeRequest) async throws -> any GoogleGax
@@ -959,9 +725,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<RejectHubSpokeResponse>
 
     /// See `HubServiceClient.acceptHubSpoke`.
-    func acceptHubSpoke(request: AcceptHubSpokeRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `HubServiceClient.acceptHubSpoke`.
     func acceptHubSpoke(withPolling: AcceptHubSpokeRequest) async throws -> any GoogleGax
       .PollableOperation<AcceptHubSpokeResponse>
 
@@ -970,10 +733,6 @@ extension Clients {
       name: Swift.String,
       spokeUri: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse>
-
-    /// See `HubServiceClient.acceptSpokeUpdate`.
-    func acceptSpokeUpdate(request: AcceptSpokeUpdateRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
     func acceptSpokeUpdate(withPolling: AcceptSpokeUpdateRequest) async throws -> any GoogleGax
@@ -987,10 +746,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse>
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
-    func rejectSpokeUpdate(request: RejectSpokeUpdateRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `HubServiceClient.rejectSpokeUpdate`.
     func rejectSpokeUpdate(withPolling: RejectSpokeUpdateRequest) async throws -> any GoogleGax
       .PollableOperation<RejectSpokeUpdateResponse>
 
@@ -1002,9 +757,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse>
 
     /// See `HubServiceClient.deleteSpoke`.
-    func deleteSpoke(request: DeleteSpokeRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(withPolling: DeleteSpokeRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1012,76 +764,6 @@ extension Clients {
     func deleteSpoke(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `HubServiceClient.getRouteTable`.
-    func getRouteTable(request: GetRouteTableRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.RouteTable
-
-    /// See `HubServiceClient.getRouteTable`.
-    func getRouteTable(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkConnectivityV1.RouteTable
-
-    /// See `HubServiceClient.getRoute`.
-    func getRoute(request: GetRouteRequest) async throws -> GoogleCloudNetworkConnectivityV1.Route
-
-    /// See `HubServiceClient.getRoute`.
-    func getRoute(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkConnectivityV1.Route
-
-    /// See `HubServiceClient.listRoutes`.
-    func listRoutes(request: ListRoutesRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse
-
-    /// See `HubServiceClient.listRoutes`.
-    func listRoutes(
-      byItem: ListRoutesRequest
-    ) -> any AsyncSequence<Route, Swift.Error>
-
-    /// See `HubServiceClient.listRoutes`.
-    func listRoutes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Route, Swift.Error>
-
-    /// See `HubServiceClient.listRouteTables`.
-    func listRouteTables(request: ListRouteTablesRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse
-
-    /// See `HubServiceClient.listRouteTables`.
-    func listRouteTables(
-      byItem: ListRouteTablesRequest
-    ) -> any AsyncSequence<RouteTable, Swift.Error>
-
-    /// See `HubServiceClient.listRouteTables`.
-    func listRouteTables(
-      parent: Swift.String,
-    ) -> any AsyncSequence<RouteTable, Swift.Error>
-
-    /// See `HubServiceClient.getGroup`.
-    func getGroup(request: GetGroupRequest) async throws -> GoogleCloudNetworkConnectivityV1.Group
-
-    /// See `HubServiceClient.getGroup`.
-    func getGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkConnectivityV1.Group
-
-    /// See `HubServiceClient.listGroups`.
-    func listGroups(request: ListGroupsRequest) async throws
-      -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse
-
-    /// See `HubServiceClient.listGroups`.
-    func listGroups(
-      byItem: ListGroupsRequest
-    ) -> any AsyncSequence<Group, Swift.Error>
-
-    /// See `HubServiceClient.listGroups`.
-    func listGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Group, Swift.Error>
-
-    /// See `HubServiceClient.updateGroup`.
-    func updateGroup(request: UpdateGroupRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(withPolling: UpdateGroupRequest) async throws -> any GoogleGax
@@ -1093,69 +775,10 @@ extension Clients {
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Group>
 
-    /// See `HubServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `HubServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `HubServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `HubServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `HubServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `HubServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `HubServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `HubServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `HubServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `HubServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `HubServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `HubServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `HubServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `HubServiceClient.listHubs`.
     func listHubs(
       request: ListHubsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListHubsResponse
-
-    /// See `HubServiceClient.listHubs`.
-    func listHubs(
-      byItem: ListHubsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Hub, Swift.Error>
 
     /// See `HubServiceClient.getHub`.
     func getHub(
@@ -1197,30 +820,15 @@ extension Clients {
       request: ListHubSpokesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse
 
-    /// See `HubServiceClient.listHubSpokes`.
-    func listHubSpokes(
-      byItem: ListHubSpokesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Spoke, Swift.Error>
-
     /// See `HubServiceClient.queryHubStatus`.
     func queryHubStatus(
       request: QueryHubStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse
 
-    /// See `HubServiceClient.queryHubStatus`.
-    func queryHubStatus(
-      byItem: QueryHubStatusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HubStatusEntry, Swift.Error>
-
     /// See `HubServiceClient.listSpokes`.
     func listSpokes(
       request: ListSpokesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse
-
-    /// See `HubServiceClient.listSpokes`.
-    func listSpokes(
-      byItem: ListSpokesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Spoke, Swift.Error>
 
     /// See `HubServiceClient.getSpoke`.
     func getSpoke(
@@ -1312,20 +920,10 @@ extension Clients {
       request: ListRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse
 
-    /// See `HubServiceClient.listRoutes`.
-    func listRoutes(
-      byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Route, Swift.Error>
-
     /// See `HubServiceClient.listRouteTables`.
     func listRouteTables(
       request: ListRouteTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse
-
-    /// See `HubServiceClient.listRouteTables`.
-    func listRouteTables(
-      byItem: ListRouteTablesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RouteTable, Swift.Error>
 
     /// See `HubServiceClient.getGroup`.
     func getGroup(
@@ -1336,11 +934,6 @@ extension Clients {
     func listGroups(
       request: ListGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse
-
-    /// See `HubServiceClient.listGroups`.
-    func listGroups(
-      byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Group, Swift.Error>
 
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(
@@ -1356,11 +949,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `HubServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `HubServiceClient.getLocation`.
     func getLocation(
@@ -1386,11 +974,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `HubServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `HubServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1424,12 +1007,17 @@ extension Clients.HubServiceProtocol {
     self.listHubs(byItem: byItem, options: .init())
   }
 
+  /// Lists the Network Connectivity Center hubs associated with a given project.
+  ///
+  /// @Snippet(path: "HubService_ListHubs")
   public func listHubs(
     byItem: ListHubsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Hub, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListHubsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listHubs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1591,13 +1179,20 @@ extension Clients.HubServiceProtocol {
     self.listHubSpokes(byItem: byItem, options: .init())
   }
 
+  /// Lists the Network Connectivity Center spokes associated with a
+  /// specified hub and location. The list includes both spokes that are attached
+  /// to the hub and spokes that have been proposed but not yet accepted.
+  ///
+  /// @Snippet(path: "HubService_ListHubSpokes")
   public func listHubSpokes(
     byItem: ListHubSpokesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Spoke, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listHubSpokes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1629,13 +1224,19 @@ extension Clients.HubServiceProtocol {
     self.queryHubStatus(byItem: byItem, options: .init())
   }
 
+  /// Query the Private Service Connect propagation status of a Network
+  /// Connectivity Center hub.
+  ///
+  /// @Snippet(path: "HubService_QueryHubStatus")
   public func queryHubStatus(
     byItem: QueryHubStatusRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<HubStatusEntry, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.queryHubStatus(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1667,12 +1268,18 @@ extension Clients.HubServiceProtocol {
     self.listSpokes(byItem: byItem, options: .init())
   }
 
+  /// Lists the Network Connectivity Center spokes in a specified project and
+  /// location.
+  ///
+  /// @Snippet(path: "HubService_ListSpokes")
   public func listSpokes(
     byItem: ListSpokesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Spoke, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSpokes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2042,12 +1649,17 @@ extension Clients.HubServiceProtocol {
     self.listRoutes(byItem: byItem, options: .init())
   }
 
+  /// Lists routes in a given route table.
+  ///
+  /// @Snippet(path: "HubService_ListRoutes")
   public func listRoutes(
     byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Route, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2079,13 +1691,18 @@ extension Clients.HubServiceProtocol {
     self.listRouteTables(byItem: byItem, options: .init())
   }
 
+  /// Lists route tables in a given hub.
+  ///
+  /// @Snippet(path: "HubService_ListRouteTables")
   public func listRouteTables(
     byItem: ListRouteTablesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RouteTable, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRouteTables(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2138,12 +1755,17 @@ extension Clients.HubServiceProtocol {
     self.listGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists groups in a given hub.
+  ///
+  /// @Snippet(path: "HubService_ListGroups")
   public func listGroups(
     byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Group, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2212,12 +1834,17 @@ extension Clients.HubServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "HubService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2288,12 +1915,19 @@ extension Clients.HubServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HubService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

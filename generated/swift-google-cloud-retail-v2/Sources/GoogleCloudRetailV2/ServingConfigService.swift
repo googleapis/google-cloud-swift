@@ -95,21 +95,6 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
     try await self.inner.listServingConfigs(request: request, options: options)
   }
 
-  /// Lists all ServingConfigs linked to this catalog.
-  ///
-  /// @Snippet(path: "ServingConfigService_ListServingConfigs")
-  public func listServingConfigs(
-    byItem: ListServingConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServingConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServingConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Enables a Control on the specified ServingConfig.
   /// The control is added in the last position of the list of controls
   /// it belongs to (e.g. if it's a facet spec control it will be applied
@@ -152,23 +137,6 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ServingConfigService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ServingConfigService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -183,91 +151,7 @@ extension Clients {
   /// To mock `ServingConfigServiceClient` change your functions to receive
   /// `some ServingConfigServiceProtocol` or `any ServingConfigServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ServingConfigServiceProtocol {
-    /// See `ServingConfigServiceClient.createServingConfig`.
-    func createServingConfig(request: CreateServingConfigRequest) async throws
-      -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.createServingConfig`.
-    func createServingConfig(
-      parent: Swift.String,
-      servingConfig: ServingConfig?,
-      servingConfigId: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.deleteServingConfig`.
-    func deleteServingConfig(request: DeleteServingConfigRequest) async throws
-
-    /// See `ServingConfigServiceClient.deleteServingConfig`.
-    func deleteServingConfig(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ServingConfigServiceClient.updateServingConfig`.
-    func updateServingConfig(request: UpdateServingConfigRequest) async throws
-      -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.updateServingConfig`.
-    func updateServingConfig(
-      servingConfig: ServingConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.getServingConfig`.
-    func getServingConfig(request: GetServingConfigRequest) async throws
-      -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.getServingConfig`.
-    func getServingConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.listServingConfigs`.
-    func listServingConfigs(request: ListServingConfigsRequest) async throws
-      -> GoogleCloudRetailV2.ListServingConfigsResponse
-
-    /// See `ServingConfigServiceClient.listServingConfigs`.
-    func listServingConfigs(
-      byItem: ListServingConfigsRequest
-    ) -> any AsyncSequence<ServingConfig, Swift.Error>
-
-    /// See `ServingConfigServiceClient.listServingConfigs`.
-    func listServingConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ServingConfig, Swift.Error>
-
-    /// See `ServingConfigServiceClient.addControl`.
-    func addControl(request: AddControlRequest) async throws -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.addControl`.
-    func addControl(
-      servingConfig: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.removeControl`.
-    func removeControl(request: RemoveControlRequest) async throws
-      -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.removeControl`.
-    func removeControl(
-      servingConfig: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.ServingConfig
-
-    /// See `ServingConfigServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ServingConfigServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ServingConfigServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
+  public protocol ServingConfigServiceProtocol: Sendable {
     /// See `ServingConfigServiceClient.createServingConfig`.
     func createServingConfig(
       request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
@@ -293,11 +177,6 @@ extension Clients {
       request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse
 
-    /// See `ServingConfigServiceClient.listServingConfigs`.
-    func listServingConfigs(
-      byItem: ListServingConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ServingConfig, Swift.Error>
-
     /// See `ServingConfigServiceClient.addControl`.
     func addControl(
       request: AddControlRequest, options: GoogleGax.RequestOptions
@@ -312,11 +191,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ServingConfigServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -428,12 +302,17 @@ extension Clients.ServingConfigServiceProtocol {
     self.listServingConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists all ServingConfigs linked to this catalog.
+  ///
+  /// @Snippet(path: "ServingConfigService_ListServingConfigs")
   public func listServingConfigs(
     byItem: ListServingConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServingConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -507,12 +386,19 @@ extension Clients.ServingConfigServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServingConfigService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

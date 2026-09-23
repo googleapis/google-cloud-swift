@@ -157,20 +157,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of global addresses.
-    ///
-    /// @Snippet(path: "globalAddresses_list")
-    public func list(
-      byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Address, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Moves the specified address resource from one project to another project.
     ///
     /// @Snippet(path: "globalAddresses_move")
@@ -294,58 +280,7 @@
     /// To mock `GlobalAddressesClient` change your functions to receive
     /// `some GlobalAddressesProtocol` or `any GlobalAddressesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol GlobalAddressesProtocol {
-      /// See `GlobalAddressesClient.delete`.
-      func delete(request: GlobalAddressesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalAddressesClient.`get``.
-      func `get`(request: GlobalAddressesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Address
-
-      /// See `GlobalAddressesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        address: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Address
-
-      /// See `GlobalAddressesClient.insert`.
-      func insert(request: GlobalAddressesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalAddressesClient.list`.
-      func list(request: GlobalAddressesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.AddressList
-
-      /// See `GlobalAddressesClient.list`.
-      func list(
-        byItem: GlobalAddressesClient.ListRequest
-      ) -> any AsyncSequence<Address, Swift.Error>
-
-      /// See `GlobalAddressesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Address, Swift.Error>
-
-      /// See `GlobalAddressesClient.move`.
-      func move(request: GlobalAddressesClient.MoveRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalAddressesClient.setLabels`.
-      func setLabels(request: GlobalAddressesClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalAddressesClient.testIamPermissions`.
-      func testIamPermissions(request: GlobalAddressesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `GlobalAddressesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol GlobalAddressesProtocol: Sendable {
       /// See `GlobalAddressesClient.delete`.
       func delete(
         request: GlobalAddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -365,11 +300,6 @@
       func list(
         request: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.AddressList
-
-      /// See `GlobalAddressesClient.list`.
-      func list(
-        byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Address, Swift.Error>
 
       /// See `GlobalAddressesClient.move`.
       func move(
@@ -511,11 +441,16 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of global addresses.
+    ///
+    /// @Snippet(path: "globalAddresses_list")
     public func list(
       byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Address, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -47,21 +47,6 @@
       try await self.inner.search(request: request, options: options)
     }
 
-    /// Performs a search.
-    ///
-    /// @Snippet(path: "SearchService_Search")
-    public func search(
-      byItem: SearchRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.search(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Performs a search. Similar to the
     /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
     /// method, but a lite version that allows API key for authentication, where
@@ -85,35 +70,6 @@
       try await self.inner.searchLite(request: request, options: options)
     }
 
-    /// Performs a search. Similar to the
-    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
-    /// method, but a lite version that allows API key for authentication, where
-    /// OAuth and IAM checks are not required.
-    ///
-    /// Only public website search is supported by this method. If data stores and
-    /// engines not associated with public website search are specified, a
-    /// `FAILED_PRECONDITION` error is returned.
-    ///
-    /// This method can be used for easy onboarding without having to implement an
-    /// authentication backend. However, it is strongly recommended to use
-    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
-    /// instead with required OAuth and IAM checks to provide better data security.
-    ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
-    ///
-    /// @Snippet(path: "SearchService_SearchLite")
-    public func searchLite(
-      byItem: SearchRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.searchLite(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -123,23 +79,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "SearchService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -171,77 +110,21 @@
     /// To mock `SearchServiceClient` change your functions to receive
     /// `some SearchServiceProtocol` or `any SearchServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SearchServiceProtocol {
-      /// See `SearchServiceClient.search`.
-      func search(request: SearchRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.SearchResponse
-
-      /// See `SearchServiceClient.search`.
-      func search(
-        byItem: SearchRequest
-      ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error>
-
-      /// See `SearchServiceClient.searchLite`.
-      func searchLite(request: SearchRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.SearchResponse
-
-      /// See `SearchServiceClient.searchLite`.
-      func searchLite(
-        byItem: SearchRequest
-      ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error>
-
-      /// See `SearchServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SearchServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SearchServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SearchServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `SearchServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol SearchServiceProtocol: Sendable {
       /// See `SearchServiceClient.search`.
       func search(
         request: SearchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse
 
-      /// See `SearchServiceClient.search`.
-      func search(
-        byItem: SearchRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error>
-
       /// See `SearchServiceClient.searchLite`.
       func searchLite(
         request: SearchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse
-
-      /// See `SearchServiceClient.searchLite`.
-      func searchLite(
-        byItem: SearchRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error>
 
       /// See `SearchServiceClient.listOperations`.
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SearchServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SearchServiceClient.cancelOperation`.
       func cancelOperation(
@@ -270,12 +153,17 @@
       self.search(byItem: byItem, options: .init())
     }
 
+    /// Performs a search.
+    ///
+    /// @Snippet(path: "SearchService_Search")
     public func search(
       byItem: SearchRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.search(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -298,12 +186,31 @@
       self.searchLite(byItem: byItem, options: .init())
     }
 
+    /// Performs a search. Similar to the
+    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+    /// method, but a lite version that allows API key for authentication, where
+    /// OAuth and IAM checks are not required.
+    ///
+    /// Only public website search is supported by this method. If data stores and
+    /// engines not associated with public website search are specified, a
+    /// `FAILED_PRECONDITION` error is returned.
+    ///
+    /// This method can be used for easy onboarding without having to implement an
+    /// authentication backend. However, it is strongly recommended to use
+    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+    /// instead with required OAuth and IAM checks to provide better data security.
+    ///
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
+    ///
+    /// @Snippet(path: "SearchService_SearchLite")
     public func searchLite(
       byItem: SearchRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.searchLite(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -326,12 +233,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

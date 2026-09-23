@@ -85,20 +85,6 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
     try await self.inner.list(request: request, options: options)
   }
 
-  /// Enumerates ManagedZones that have been created but not yet deleted.
-  ///
-  /// @Snippet(path: "managedZones_list")
-  public func list(
-    byItem: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ManagedZone, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ManagedZonesListResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.list(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Applies a partial update to an existing ManagedZone.
   ///
   /// @Snippet(path: "managedZones_patch")
@@ -227,83 +213,7 @@ extension Clients {
   /// To mock `ManagedZonesClient` change your functions to receive
   /// `some ManagedZonesProtocol` or `any ManagedZonesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ManagedZonesProtocol {
-    /// See `ManagedZonesClient.create`.
-    func create(request: ManagedZonesClient.CreateRequest) async throws -> ManagedZone
-
-    /// See `ManagedZonesClient.create`.
-    func create(
-      project: Swift.String,
-      body: ManagedZone?,
-    ) async throws -> ManagedZone
-
-    /// See `ManagedZonesClient.delete`.
-    func delete(request: ManagedZonesClient.DeleteRequest) async throws
-
-    /// See `ManagedZonesClient.delete`.
-    func delete(
-      project: Swift.String,
-      managedZone: Swift.String,
-    ) async throws
-
-    /// See `ManagedZonesClient.`get``.
-    func `get`(request: ManagedZonesClient.GetRequest) async throws -> ManagedZone
-
-    /// See `ManagedZonesClient.`get``.
-    func `get`(
-      project: Swift.String,
-      managedZone: Swift.String,
-    ) async throws -> ManagedZone
-
-    /// See `ManagedZonesClient.getIamPolicy`.
-    func getIamPolicy(request: ManagedZonesClient.GetIamPolicyRequest) async throws
-      -> GoogleIamV1Policy
-
-    /// See `ManagedZonesClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-      body: GoogleIamV1GetIamPolicyRequest?,
-    ) async throws -> GoogleIamV1Policy
-
-    /// See `ManagedZonesClient.list`.
-    func list(request: ManagedZonesClient.ListRequest) async throws -> ManagedZonesListResponse
-
-    /// See `ManagedZonesClient.list`.
-    func list(
-      byItem: ManagedZonesClient.ListRequest
-    ) -> any AsyncSequence<ManagedZone, Swift.Error>
-
-    /// See `ManagedZonesClient.list`.
-    func list(
-      project: Swift.String,
-    ) -> any AsyncSequence<ManagedZone, Swift.Error>
-
-    /// See `ManagedZonesClient.patch`.
-    func patch(request: ManagedZonesClient.PatchRequest) async throws -> Operation
-
-    /// See `ManagedZonesClient.setIamPolicy`.
-    func setIamPolicy(request: ManagedZonesClient.SetIamPolicyRequest) async throws
-      -> GoogleIamV1Policy
-
-    /// See `ManagedZonesClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      body: GoogleIamV1SetIamPolicyRequest?,
-    ) async throws -> GoogleIamV1Policy
-
-    /// See `ManagedZonesClient.testIamPermissions`.
-    func testIamPermissions(request: ManagedZonesClient.TestIamPermissionsRequest) async throws
-      -> GoogleIamV1TestIamPermissionsResponse
-
-    /// See `ManagedZonesClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      body: GoogleIamV1TestIamPermissionsRequest?,
-    ) async throws -> GoogleIamV1TestIamPermissionsResponse
-
-    /// See `ManagedZonesClient.update`.
-    func update(request: ManagedZonesClient.UpdateRequest) async throws -> Operation
-
+  public protocol ManagedZonesProtocol: Sendable {
     /// See `ManagedZonesClient.create`.
     func create(
       request: ManagedZonesClient.CreateRequest, options: GoogleGax.RequestOptions
@@ -328,11 +238,6 @@ extension Clients {
     func list(
       request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZonesListResponse
-
-    /// See `ManagedZonesClient.list`.
-    func list(
-      byItem: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ManagedZone, Swift.Error>
 
     /// See `ManagedZonesClient.patch`.
     func patch(
@@ -461,11 +366,16 @@ extension Clients.ManagedZonesProtocol {
     self.list(byItem: byItem, options: .init())
   }
 
+  /// Enumerates ManagedZones that have been created but not yet deleted.
+  ///
+  /// @Snippet(path: "managedZones_list")
   public func list(
     byItem: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ManagedZone, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ManagedZonesListResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.list(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

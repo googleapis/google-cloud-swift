@@ -117,38 +117,6 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "AutokeyAdmin_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AutokeyAdmin_GetLocation")
@@ -214,58 +182,7 @@ extension Clients {
   /// To mock `AutokeyAdminClient` change your functions to receive
   /// `some AutokeyAdminProtocol` or `any AutokeyAdminProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AutokeyAdminProtocol {
-    /// See `AutokeyAdminClient.updateAutokeyConfig`.
-    func updateAutokeyConfig(request: UpdateAutokeyConfigRequest) async throws
-      -> GoogleCloudKMSV1.AutokeyConfig
-
-    /// See `AutokeyAdminClient.updateAutokeyConfig`.
-    func updateAutokeyConfig(
-      autokeyConfig: AutokeyConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudKMSV1.AutokeyConfig
-
-    /// See `AutokeyAdminClient.getAutokeyConfig`.
-    func getAutokeyConfig(request: GetAutokeyConfigRequest) async throws
-      -> GoogleCloudKMSV1.AutokeyConfig
-
-    /// See `AutokeyAdminClient.getAutokeyConfig`.
-    func getAutokeyConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.AutokeyConfig
-
-    /// See `AutokeyAdminClient.showEffectiveAutokeyConfig`.
-    func showEffectiveAutokeyConfig(request: ShowEffectiveAutokeyConfigRequest) async throws
-      -> GoogleCloudKMSV1.ShowEffectiveAutokeyConfigResponse
-
-    /// See `AutokeyAdminClient.showEffectiveAutokeyConfig`.
-    func showEffectiveAutokeyConfig(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.ShowEffectiveAutokeyConfigResponse
-
-    /// See `AutokeyAdminClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AutokeyAdminClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `AutokeyAdminClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `AutokeyAdminClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AutokeyAdminClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AutokeyAdminClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol AutokeyAdminProtocol: Sendable {
     /// See `AutokeyAdminClient.updateAutokeyConfig`.
     func updateAutokeyConfig(
       request: UpdateAutokeyConfigRequest, options: GoogleGax.RequestOptions
@@ -285,11 +202,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AutokeyAdminClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AutokeyAdminClient.getLocation`.
     func getLocation(
@@ -398,12 +310,34 @@ extension Clients.AutokeyAdminProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AutokeyAdmin_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

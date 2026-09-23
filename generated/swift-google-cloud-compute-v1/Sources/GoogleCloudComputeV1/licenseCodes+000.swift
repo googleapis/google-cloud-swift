@@ -95,49 +95,7 @@
     /// To mock `LicenseCodesClient` change your functions to receive
     /// `some LicenseCodesProtocol` or `any LicenseCodesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol LicenseCodesProtocol {
-      /// See `LicenseCodesClient.`get``.
-      func `get`(request: LicenseCodesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.LicenseCode
-
-      /// See `LicenseCodesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        licenseCode: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.LicenseCode
-
-      /// See `LicenseCodesClient.getIamPolicy`.
-      func getIamPolicy(request: LicenseCodesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `LicenseCodesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `LicenseCodesClient.setIamPolicy`.
-      func setIamPolicy(request: LicenseCodesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `LicenseCodesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `LicenseCodesClient.testIamPermissions`.
-      func testIamPermissions(request: LicenseCodesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `LicenseCodesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol LicenseCodesProtocol: Sendable {
       /// See `LicenseCodesClient.`get``.
       func `get`(
         request: LicenseCodesClient.GetRequest, options: GoogleGax.RequestOptions

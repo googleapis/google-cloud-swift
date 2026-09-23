@@ -58,27 +58,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all NetworkEdgeSecurityService resources available to
-    /// the specified project.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
-    public func aggregatedList(
-      byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified service.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_delete")
@@ -255,55 +234,12 @@
     /// To mock `NetworkEdgeSecurityServicesClient` change your functions to receive
     /// `some NetworkEdgeSecurityServicesProtocol` or `any NetworkEdgeSecurityServicesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol NetworkEdgeSecurityServicesProtocol {
-      /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
-      func aggregatedList(request: NetworkEdgeSecurityServicesClient.AggregatedListRequest)
-        async throws -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList
-
-      /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
-
-      /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
-
-      /// See `NetworkEdgeSecurityServicesClient.delete`.
-      func delete(request: NetworkEdgeSecurityServicesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworkEdgeSecurityServicesClient.`get``.
-      func `get`(request: NetworkEdgeSecurityServicesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.NetworkEdgeSecurityService
-
-      /// See `NetworkEdgeSecurityServicesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        networkEdgeSecurityService: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.NetworkEdgeSecurityService
-
-      /// See `NetworkEdgeSecurityServicesClient.insert`.
-      func insert(request: NetworkEdgeSecurityServicesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworkEdgeSecurityServicesClient.patch`.
-      func patch(request: NetworkEdgeSecurityServicesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol NetworkEdgeSecurityServicesProtocol: Sendable {
       /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
       func aggregatedList(
         request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList
-
-      /// See `NetworkEdgeSecurityServicesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
-        options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
 
       /// See `NetworkEdgeSecurityServicesClient.delete`.
       func delete(
@@ -348,6 +284,13 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all NetworkEdgeSecurityService resources available to
+    /// the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
     public func aggregatedList(
       byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -355,7 +298,9 @@
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

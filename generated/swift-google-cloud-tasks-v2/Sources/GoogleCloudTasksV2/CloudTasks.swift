@@ -51,22 +51,6 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     try await self.inner.listQueues(request: request, options: options)
   }
 
-  /// Lists queues.
-  ///
-  /// Queues are returned in lexicographical order.
-  ///
-  /// @Snippet(path: "CloudTasks_ListQueues")
-  public func listQueues(
-    byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Queue, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListQueuesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listQueues(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a queue.
   ///
   /// @Snippet(path: "CloudTasks_GetQueue")
@@ -279,31 +263,6 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     try await self.inner.listTasks(request: request, options: options)
   }
 
-  /// Lists the tasks in a queue.
-  ///
-  /// By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
-  /// retrieved due to performance considerations;
-  /// [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
-  /// controls the subset of information which is returned.
-  ///
-  /// The tasks may be returned in any order. The ordering may change at any
-  /// time.
-  ///
-  /// [google.cloud.tasks.v2.ListTasksRequest.response_view]: <doc:ListTasksRequest/responseView>
-  /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
-  ///
-  /// @Snippet(path: "CloudTasks_ListTasks")
-  public func listTasks(
-    byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Task, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListTasksResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTasks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a task.
   ///
   /// @Snippet(path: "CloudTasks_GetTask")
@@ -388,21 +347,6 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "CloudTasks_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudTasks_GetLocation")
@@ -419,174 +363,11 @@ extension Clients {
   /// To mock `CloudTasksClient` change your functions to receive
   /// `some CloudTasksProtocol` or `any CloudTasksProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudTasksProtocol {
-    /// See `CloudTasksClient.listQueues`.
-    func listQueues(request: ListQueuesRequest) async throws
-      -> GoogleCloudTasksV2.ListQueuesResponse
-
-    /// See `CloudTasksClient.listQueues`.
-    func listQueues(
-      byItem: ListQueuesRequest
-    ) -> any AsyncSequence<Queue, Swift.Error>
-
-    /// See `CloudTasksClient.listQueues`.
-    func listQueues(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Queue, Swift.Error>
-
-    /// See `CloudTasksClient.getQueue`.
-    func getQueue(request: GetQueueRequest) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.getQueue`.
-    func getQueue(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.createQueue`.
-    func createQueue(request: CreateQueueRequest) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.createQueue`.
-    func createQueue(
-      parent: Swift.String,
-      queue: Queue?,
-    ) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.updateQueue`.
-    func updateQueue(request: UpdateQueueRequest) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.updateQueue`.
-    func updateQueue(
-      queue: Queue?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.deleteQueue`.
-    func deleteQueue(request: DeleteQueueRequest) async throws
-
-    /// See `CloudTasksClient.deleteQueue`.
-    func deleteQueue(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudTasksClient.purgeQueue`.
-    func purgeQueue(request: PurgeQueueRequest) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.purgeQueue`.
-    func purgeQueue(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.pauseQueue`.
-    func pauseQueue(request: PauseQueueRequest) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.pauseQueue`.
-    func pauseQueue(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.resumeQueue`.
-    func resumeQueue(request: ResumeQueueRequest) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.resumeQueue`.
-    func resumeQueue(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTasksV2.Queue
-
-    /// See `CloudTasksClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudTasksClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudTasksClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudTasksClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudTasksClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `CloudTasksClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `CloudTasksClient.listTasks`.
-    func listTasks(request: ListTasksRequest) async throws -> GoogleCloudTasksV2.ListTasksResponse
-
-    /// See `CloudTasksClient.listTasks`.
-    func listTasks(
-      byItem: ListTasksRequest
-    ) -> any AsyncSequence<Task, Swift.Error>
-
-    /// See `CloudTasksClient.listTasks`.
-    func listTasks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Task, Swift.Error>
-
-    /// See `CloudTasksClient.getTask`.
-    func getTask(request: GetTaskRequest) async throws -> GoogleCloudTasksV2.Task
-
-    /// See `CloudTasksClient.getTask`.
-    func getTask(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTasksV2.Task
-
-    /// See `CloudTasksClient.createTask`.
-    func createTask(request: CreateTaskRequest) async throws -> GoogleCloudTasksV2.Task
-
-    /// See `CloudTasksClient.createTask`.
-    func createTask(
-      parent: Swift.String,
-      task: Task?,
-    ) async throws -> GoogleCloudTasksV2.Task
-
-    /// See `CloudTasksClient.deleteTask`.
-    func deleteTask(request: DeleteTaskRequest) async throws
-
-    /// See `CloudTasksClient.deleteTask`.
-    func deleteTask(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudTasksClient.runTask`.
-    func runTask(request: RunTaskRequest) async throws -> GoogleCloudTasksV2.Task
-
-    /// See `CloudTasksClient.runTask`.
-    func runTask(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTasksV2.Task
-
-    /// See `CloudTasksClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudTasksClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `CloudTasksClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol CloudTasksProtocol: Sendable {
     /// See `CloudTasksClient.listQueues`.
     func listQueues(
       request: ListQueuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListQueuesResponse
-
-    /// See `CloudTasksClient.listQueues`.
-    func listQueues(
-      byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Queue, Swift.Error>
 
     /// See `CloudTasksClient.getQueue`.
     func getQueue(
@@ -643,11 +424,6 @@ extension Clients {
       request: ListTasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListTasksResponse
 
-    /// See `CloudTasksClient.listTasks`.
-    func listTasks(
-      byItem: ListTasksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Task, Swift.Error>
-
     /// See `CloudTasksClient.getTask`.
     func getTask(
       request: GetTaskRequest, options: GoogleGax.RequestOptions
@@ -672,11 +448,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudTasksClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudTasksClient.getLocation`.
     func getLocation(
@@ -705,11 +476,18 @@ extension Clients.CloudTasksProtocol {
     self.listQueues(byItem: byItem, options: .init())
   }
 
+  /// Lists queues.
+  ///
+  /// Queues are returned in lexicographical order.
+  ///
+  /// @Snippet(path: "CloudTasks_ListQueues")
   public func listQueues(
     byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Queue, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListQueuesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listQueues(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -945,11 +723,27 @@ extension Clients.CloudTasksProtocol {
     self.listTasks(byItem: byItem, options: .init())
   }
 
+  /// Lists the tasks in a queue.
+  ///
+  /// By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
+  /// retrieved due to performance considerations;
+  /// [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
+  /// controls the subset of information which is returned.
+  ///
+  /// The tasks may be returned in any order. The ordering may change at any
+  /// time.
+  ///
+  /// [google.cloud.tasks.v2.ListTasksRequest.response_view]: <doc:ListTasksRequest/responseView>
+  /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
+  ///
+  /// @Snippet(path: "CloudTasks_ListTasks")
   public func listTasks(
     byItem: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Task, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListTasksResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTasks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1059,12 +853,17 @@ extension Clients.CloudTasksProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudTasks_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

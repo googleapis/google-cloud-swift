@@ -45,7 +45,7 @@
     /// To mock `SqlRegionsServiceClient` change your functions to receive
     /// `some SqlRegionsServiceProtocol` or `any SqlRegionsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlRegionsServiceProtocol {
+    public protocol SqlRegionsServiceProtocol: Sendable {
     }
   }
 

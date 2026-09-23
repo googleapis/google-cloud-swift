@@ -163,22 +163,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of TargetHttpProxy resources available
-    /// to the specified project in the specified region.
-    ///
-    /// @Snippet(path: "regionTargetHttpProxies_list")
-    public func list(
-      byItem: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Changes the URL map for TargetHttpProxy.
     ///
     /// @Snippet(path: "regionTargetHttpProxies_setUrlMap")
@@ -244,45 +228,7 @@
     /// To mock `RegionTargetHttpProxiesClient` change your functions to receive
     /// `some RegionTargetHttpProxiesProtocol` or `any RegionTargetHttpProxiesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionTargetHttpProxiesProtocol {
-      /// See `RegionTargetHttpProxiesClient.delete`.
-      func delete(request: RegionTargetHttpProxiesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetHttpProxiesClient.`get``.
-      func `get`(request: RegionTargetHttpProxiesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.TargetHttpProxy
-
-      /// See `RegionTargetHttpProxiesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        targetHttpProxy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.TargetHttpProxy
-
-      /// See `RegionTargetHttpProxiesClient.insert`.
-      func insert(request: RegionTargetHttpProxiesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetHttpProxiesClient.list`.
-      func list(request: RegionTargetHttpProxiesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.TargetHttpProxyList
-
-      /// See `RegionTargetHttpProxiesClient.list`.
-      func list(
-        byItem: RegionTargetHttpProxiesClient.ListRequest
-      ) -> any AsyncSequence<TargetHttpProxy, Swift.Error>
-
-      /// See `RegionTargetHttpProxiesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<TargetHttpProxy, Swift.Error>
-
-      /// See `RegionTargetHttpProxiesClient.setUrlMap`.
-      func setUrlMap(request: RegionTargetHttpProxiesClient.SetUrlMapRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionTargetHttpProxiesProtocol: Sendable {
       /// See `RegionTargetHttpProxiesClient.delete`.
       func delete(
         request: RegionTargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -302,11 +248,6 @@
       func list(
         request: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpProxyList
-
-      /// See `RegionTargetHttpProxiesClient.list`.
-      func list(
-        byItem: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TargetHttpProxy, Swift.Error>
 
       /// See `RegionTargetHttpProxiesClient.setUrlMap`.
       func setUrlMap(
@@ -444,12 +385,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of TargetHttpProxy resources available
+    /// to the specified project in the specified region.
+    ///
+    /// @Snippet(path: "regionTargetHttpProxies_list")
     public func list(
       byItem: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -65,11 +65,7 @@ extension Clients {
   /// To mock `QuotaControllerClient` change your functions to receive
   /// `some QuotaControllerProtocol` or `any QuotaControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol QuotaControllerProtocol {
-    /// See `QuotaControllerClient.allocateQuota`.
-    func allocateQuota(request: AllocateQuotaRequest) async throws
-      -> GoogleApiServiceControlV1.AllocateQuotaResponse
-
+  public protocol QuotaControllerProtocol: Sendable {
     /// See `QuotaControllerClient.allocateQuota`.
     func allocateQuota(
       request: AllocateQuotaRequest, options: GoogleGax.RequestOptions

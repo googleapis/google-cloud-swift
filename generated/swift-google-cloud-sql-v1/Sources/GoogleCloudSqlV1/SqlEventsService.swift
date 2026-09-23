@@ -45,7 +45,7 @@
     /// To mock `SqlEventsServiceClient` change your functions to receive
     /// `some SqlEventsServiceProtocol` or `any SqlEventsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlEventsServiceProtocol {
+    public protocol SqlEventsServiceProtocol: Sendable {
     }
   }
 

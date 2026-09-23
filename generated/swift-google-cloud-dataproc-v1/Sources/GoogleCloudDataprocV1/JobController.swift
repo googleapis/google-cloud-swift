@@ -103,20 +103,6 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
     try await self.inner.listJobs(request: request, options: options)
   }
 
-  /// Lists regions/{region}/jobs in a project.
-  ///
-  /// @Snippet(path: "JobController_ListJobs")
-  public func listJobs(
-    byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a job in a project.
   ///
   /// @Snippet(path: "JobController_UpdateJob")
@@ -202,23 +188,6 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "JobController_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "JobController_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -255,20 +224,7 @@ extension Clients {
   /// To mock `JobControllerClient` change your functions to receive
   /// `some JobControllerProtocol` or `any JobControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol JobControllerProtocol {
-    /// See `JobControllerClient.submitJob`.
-    func submitJob(request: SubmitJobRequest) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.submitJob`.
-    func submitJob(
-      projectId: Swift.String,
-      region: Swift.String,
-      job: Job?,
-    ) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.submitJobAsOperation`.
-    func submitJobAsOperation(request: SubmitJobRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol JobControllerProtocol: Sendable {
     /// See `JobControllerClient.submitJobAsOperation`.
     func submitJobAsOperation(withPolling: SubmitJobRequest) async throws -> any GoogleGax
       .PollableOperation<Job>
@@ -279,101 +235,6 @@ extension Clients {
       region: Swift.String,
       job: Job?,
     ) async throws -> any GoogleGax.PollableOperation<Job>
-
-    /// See `JobControllerClient.getJob`.
-    func getJob(request: GetJobRequest) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.getJob`.
-    func getJob(
-      projectId: Swift.String,
-      region: Swift.String,
-      jobId: Swift.String,
-    ) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.listJobs`.
-    func listJobs(request: ListJobsRequest) async throws -> GoogleCloudDataprocV1.ListJobsResponse
-
-    /// See `JobControllerClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `JobControllerClient.listJobs`.
-    func listJobs(
-      projectId: Swift.String,
-      region: Swift.String,
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `JobControllerClient.listJobs`.
-    func listJobs(
-      projectId: Swift.String,
-      region: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<Job, Swift.Error>
-
-    /// See `JobControllerClient.updateJob`.
-    func updateJob(request: UpdateJobRequest) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.cancelJob`.
-    func cancelJob(request: CancelJobRequest) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.cancelJob`.
-    func cancelJob(
-      projectId: Swift.String,
-      region: Swift.String,
-      jobId: Swift.String,
-    ) async throws -> GoogleCloudDataprocV1.Job
-
-    /// See `JobControllerClient.deleteJob`.
-    func deleteJob(request: DeleteJobRequest) async throws
-
-    /// See `JobControllerClient.deleteJob`.
-    func deleteJob(
-      projectId: Swift.String,
-      region: Swift.String,
-      jobId: Swift.String,
-    ) async throws
-
-    /// See `JobControllerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `JobControllerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `JobControllerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `JobControllerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `JobControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `JobControllerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `JobControllerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `JobControllerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `JobControllerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `JobControllerClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `JobControllerClient.submitJob`.
     func submitJob(
@@ -399,11 +260,6 @@ extension Clients {
     func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.ListJobsResponse
-
-    /// See `JobControllerClient.listJobs`.
-    func listJobs(
-      byItem: ListJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Job, Swift.Error>
 
     /// See `JobControllerClient.updateJob`.
     func updateJob(
@@ -439,11 +295,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `JobControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `JobControllerClient.deleteOperation`.
     func deleteOperation(
@@ -564,11 +415,16 @@ extension Clients.JobControllerProtocol {
     self.listJobs(byItem: byItem, options: .init())
   }
 
+  /// Lists regions/{region}/jobs in a project.
+  ///
+  /// @Snippet(path: "JobController_ListJobs")
   public func listJobs(
     byItem: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -707,12 +563,19 @@ extension Clients.JobControllerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

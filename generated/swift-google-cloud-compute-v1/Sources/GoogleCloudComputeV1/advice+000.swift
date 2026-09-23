@@ -56,18 +56,7 @@
     /// To mock `AdviceClient` change your functions to receive
     /// `some AdviceProtocol` or `any AdviceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol AdviceProtocol {
-      /// See `AdviceClient.calendarMode`.
-      func calendarMode(request: AdviceClient.CalendarModeRequest) async throws
-        -> GoogleCloudComputeV1.CalendarModeAdviceResponse
-
-      /// See `AdviceClient.calendarMode`.
-      func calendarMode(
-        project: Swift.String,
-        region: Swift.String,
-        body: CalendarModeAdviceRequest?,
-      ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse
-
+    public protocol AdviceProtocol: Sendable {
       /// See `AdviceClient.calendarMode`.
       func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions

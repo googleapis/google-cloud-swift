@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of commitments by region.
-    ///
-    /// To prevent failure, it is recommended that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "regionCommitments_aggregatedList")
-    public func aggregatedList(
-      byItem: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Returns the specified commitment resource.
     ///
     /// @Snippet(path: "regionCommitments_get")
@@ -139,21 +121,6 @@
       request: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CommitmentList {
       try await self.inner.list(request: request, options: options)
-    }
-
-    /// Retrieves a list of commitments contained within
-    /// the specified region.
-    ///
-    /// @Snippet(path: "regionCommitments_list")
-    public func list(
-      byItem: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Commitment, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates the specified commitment with the data included in the request.
@@ -225,64 +192,11 @@
     /// To mock `RegionCommitmentsClient` change your functions to receive
     /// `some RegionCommitmentsProtocol` or `any RegionCommitmentsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionCommitmentsProtocol {
-      /// See `RegionCommitmentsClient.aggregatedList`.
-      func aggregatedList(request: RegionCommitmentsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.CommitmentAggregatedList
-
-      /// See `RegionCommitmentsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: RegionCommitmentsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
-
-      /// See `RegionCommitmentsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
-
-      /// See `RegionCommitmentsClient.`get``.
-      func `get`(request: RegionCommitmentsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Commitment
-
-      /// See `RegionCommitmentsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        commitment: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Commitment
-
-      /// See `RegionCommitmentsClient.insert`.
-      func insert(request: RegionCommitmentsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionCommitmentsClient.list`.
-      func list(request: RegionCommitmentsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.CommitmentList
-
-      /// See `RegionCommitmentsClient.list`.
-      func list(
-        byItem: RegionCommitmentsClient.ListRequest
-      ) -> any AsyncSequence<Commitment, Swift.Error>
-
-      /// See `RegionCommitmentsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<Commitment, Swift.Error>
-
-      /// See `RegionCommitmentsClient.update`.
-      func update(request: RegionCommitmentsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionCommitmentsProtocol: Sendable {
       /// See `RegionCommitmentsClient.aggregatedList`.
       func aggregatedList(
         request: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CommitmentAggregatedList
-
-      /// See `RegionCommitmentsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error>
 
       /// See `RegionCommitmentsClient.`get``.
       func `get`(
@@ -298,11 +212,6 @@
       func list(
         request: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CommitmentList
-
-      /// See `RegionCommitmentsClient.list`.
-      func list(
-        byItem: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Commitment, Swift.Error>
 
       /// See `RegionCommitmentsClient.update`.
       func update(
@@ -331,12 +240,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of commitments by region.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionCommitments_aggregatedList")
     public func aggregatedList(
       byItem: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -435,11 +352,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of commitments contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionCommitments_list")
     public func list(
       byItem: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Commitment, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

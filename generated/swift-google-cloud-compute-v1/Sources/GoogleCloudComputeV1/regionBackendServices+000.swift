@@ -183,22 +183,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of regional BackendService resources available to the
-    /// specified project in the given region.
-    ///
-    /// @Snippet(path: "regionBackendServices_list")
-    public func list(
-      byItem: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendService, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves a list of all usable backend services for Application Load
     /// Balancers and Proxy Network Load Balancers in the specified project in the
     /// given region. Backend services for external and internal passthrough
@@ -209,24 +193,6 @@
       request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceListUsable {
       try await self.inner.listUsable(request: request, options: options)
-    }
-
-    /// Retrieves a list of all usable backend services for Application Load
-    /// Balancers and Proxy Network Load Balancers in the specified project in the
-    /// given region. Backend services for external and internal passthrough
-    /// Network Load Balancers are not included in the response.
-    ///
-    /// @Snippet(path: "regionBackendServices_listUsable")
-    public func listUsable(
-      byItem: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendService, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceListUsable in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listUsable(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates the specified regional BackendService resource with the data
@@ -432,115 +398,7 @@
     /// To mock `RegionBackendServicesClient` change your functions to receive
     /// `some RegionBackendServicesProtocol` or `any RegionBackendServicesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionBackendServicesProtocol {
-      /// See `RegionBackendServicesClient.delete`.
-      func delete(request: RegionBackendServicesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendServicesClient.`get``.
-      func `get`(request: RegionBackendServicesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.BackendService
-
-      /// See `RegionBackendServicesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        backendService: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.BackendService
-
-      /// See `RegionBackendServicesClient.getHealth`.
-      func getHealth(request: RegionBackendServicesClient.GetHealthRequest) async throws
-        -> GoogleCloudComputeV1.BackendServiceGroupHealth
-
-      /// See `RegionBackendServicesClient.getHealth`.
-      func getHealth(
-        project: Swift.String,
-        region: Swift.String,
-        backendService: Swift.String,
-        body: ResourceGroupReference?,
-      ) async throws -> GoogleCloudComputeV1.BackendServiceGroupHealth
-
-      /// See `RegionBackendServicesClient.getIamPolicy`.
-      func getIamPolicy(request: RegionBackendServicesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendServicesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendServicesClient.insert`.
-      func insert(request: RegionBackendServicesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendServicesClient.list`.
-      func list(request: RegionBackendServicesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.BackendServiceList
-
-      /// See `RegionBackendServicesClient.list`.
-      func list(
-        byItem: RegionBackendServicesClient.ListRequest
-      ) -> any AsyncSequence<BackendService, Swift.Error>
-
-      /// See `RegionBackendServicesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<BackendService, Swift.Error>
-
-      /// See `RegionBackendServicesClient.listUsable`.
-      func listUsable(request: RegionBackendServicesClient.ListUsableRequest) async throws
-        -> GoogleCloudComputeV1.BackendServiceListUsable
-
-      /// See `RegionBackendServicesClient.listUsable`.
-      func listUsable(
-        byItem: RegionBackendServicesClient.ListUsableRequest
-      ) -> any AsyncSequence<BackendService, Swift.Error>
-
-      /// See `RegionBackendServicesClient.listUsable`.
-      func listUsable(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<BackendService, Swift.Error>
-
-      /// See `RegionBackendServicesClient.patch`.
-      func patch(request: RegionBackendServicesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendServicesClient.setIamPolicy`.
-      func setIamPolicy(request: RegionBackendServicesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendServicesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendServicesClient.setSecurityPolicy`.
-      func setSecurityPolicy(request: RegionBackendServicesClient.SetSecurityPolicyRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendServicesClient.testIamPermissions`.
-      func testIamPermissions(request: RegionBackendServicesClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionBackendServicesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionBackendServicesClient.update`.
-      func update(request: RegionBackendServicesClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionBackendServicesProtocol: Sendable {
       /// See `RegionBackendServicesClient.delete`.
       func delete(
         request: RegionBackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -571,20 +429,10 @@
         request: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendServiceList
 
-      /// See `RegionBackendServicesClient.list`.
-      func list(
-        byItem: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<BackendService, Swift.Error>
-
       /// See `RegionBackendServicesClient.listUsable`.
       func listUsable(
         request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendServiceListUsable
-
-      /// See `RegionBackendServicesClient.listUsable`.
-      func listUsable(
-        byItem: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<BackendService, Swift.Error>
 
       /// See `RegionBackendServicesClient.patch`.
       func patch(
@@ -796,12 +644,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of regional BackendService resources available to the
+    /// specified project in the given region.
+    ///
+    /// @Snippet(path: "regionBackendServices_list")
     public func list(
       byItem: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackendService, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -835,12 +689,20 @@
       self.listUsable(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project in the
+    /// given region. Backend services for external and internal passthrough
+    /// Network Load Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "regionBackendServices_listUsable")
     public func listUsable(
       byItem: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackendService, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceListUsable in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listUsable(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

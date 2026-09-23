@@ -128,38 +128,6 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "DataObjectService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataObjectService_GetLocation")
@@ -178,23 +146,6 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "DataObjectService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -237,112 +188,7 @@ extension Clients {
   /// To mock `DataObjectServiceClient` change your functions to receive
   /// `some DataObjectServiceProtocol` or `any DataObjectServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DataObjectServiceProtocol {
-    /// See `DataObjectServiceClient.createDataObject`.
-    func createDataObject(request: CreateDataObjectRequest) async throws
-      -> GoogleCloudVectorSearchV1.DataObject
-
-    /// See `DataObjectServiceClient.createDataObject`.
-    func createDataObject(
-      parent: Swift.String,
-      dataObject: DataObject?,
-      dataObjectId: Swift.String,
-    ) async throws -> GoogleCloudVectorSearchV1.DataObject
-
-    /// See `DataObjectServiceClient.batchCreateDataObjects`.
-    func batchCreateDataObjects(request: BatchCreateDataObjectsRequest) async throws
-      -> GoogleCloudVectorSearchV1.BatchCreateDataObjectsResponse
-
-    /// See `DataObjectServiceClient.getDataObject`.
-    func getDataObject(request: GetDataObjectRequest) async throws
-      -> GoogleCloudVectorSearchV1.DataObject
-
-    /// See `DataObjectServiceClient.getDataObject`.
-    func getDataObject(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVectorSearchV1.DataObject
-
-    /// See `DataObjectServiceClient.updateDataObject`.
-    func updateDataObject(request: UpdateDataObjectRequest) async throws
-      -> GoogleCloudVectorSearchV1.DataObject
-
-    /// See `DataObjectServiceClient.updateDataObject`.
-    func updateDataObject(
-      dataObject: DataObject?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVectorSearchV1.DataObject
-
-    /// See `DataObjectServiceClient.batchUpdateDataObjects`.
-    func batchUpdateDataObjects(request: BatchUpdateDataObjectsRequest) async throws
-      -> GoogleCloudVectorSearchV1.BatchUpdateDataObjectsResponse
-
-    /// See `DataObjectServiceClient.batchUpdateDataObjects`.
-    func batchUpdateDataObjects(
-      parent: Swift.String,
-      requests: [UpdateDataObjectRequest],
-    ) async throws -> GoogleCloudVectorSearchV1.BatchUpdateDataObjectsResponse
-
-    /// See `DataObjectServiceClient.deleteDataObject`.
-    func deleteDataObject(request: DeleteDataObjectRequest) async throws
-
-    /// See `DataObjectServiceClient.deleteDataObject`.
-    func deleteDataObject(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataObjectServiceClient.batchDeleteDataObjects`.
-    func batchDeleteDataObjects(request: BatchDeleteDataObjectsRequest) async throws
-
-    /// See `DataObjectServiceClient.batchDeleteDataObjects`.
-    func batchDeleteDataObjects(
-      parent: Swift.String,
-      requests: [DeleteDataObjectRequest],
-    ) async throws
-
-    /// See `DataObjectServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `DataObjectServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `DataObjectServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `DataObjectServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataObjectServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataObjectServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataObjectServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `DataObjectServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataObjectServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DataObjectServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol DataObjectServiceProtocol: Sendable {
     /// See `DataObjectServiceClient.createDataObject`.
     func createDataObject(
       request: CreateDataObjectRequest, options: GoogleGax.RequestOptions
@@ -383,11 +229,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `DataObjectServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `DataObjectServiceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -397,11 +238,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataObjectServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataObjectServiceClient.deleteOperation`.
     func deleteOperation(
@@ -579,12 +415,34 @@ extension Clients.DataObjectServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataObjectService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -619,12 +477,19 @@ extension Clients.DataObjectServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

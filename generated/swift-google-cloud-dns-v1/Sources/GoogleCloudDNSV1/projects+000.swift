@@ -52,15 +52,7 @@ extension Clients {
   /// To mock `ProjectsClient` change your functions to receive
   /// `some ProjectsProtocol` or `any ProjectsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ProjectsProtocol {
-    /// See `ProjectsClient.`get``.
-    func `get`(request: ProjectsClient.GetRequest) async throws -> Project
-
-    /// See `ProjectsClient.`get``.
-    func `get`(
-      project: Swift.String,
-    ) async throws -> Project
-
+  public protocol ProjectsProtocol: Sendable {
     /// See `ProjectsClient.`get``.
     func `get`(
       request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions

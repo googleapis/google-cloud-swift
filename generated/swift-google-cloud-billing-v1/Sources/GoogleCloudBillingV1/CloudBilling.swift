@@ -60,23 +60,6 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
     try await self.inner.listBillingAccounts(request: request, options: options)
   }
 
-  /// Lists the billing accounts that the current authenticated user has
-  /// permission to
-  /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
-  ///
-  /// @Snippet(path: "CloudBilling_ListBillingAccounts")
-  public func listBillingAccounts(
-    byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BillingAccount, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBillingAccounts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a billing account's fields.
   /// Currently the only field that can be edited is `display_name`.
   /// The current authenticated user must have the `billing.accounts.update`
@@ -124,24 +107,6 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
     request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse {
     try await self.inner.listProjectBillingInfo(request: request, options: options)
-  }
-
-  /// Lists the projects associated with a billing account. The current
-  /// authenticated user must have the `billing.resourceAssociations.list` IAM
-  /// permission, which is often given to billing account
-  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
-  ///
-  /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
-  public func listProjectBillingInfo(
-    byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProjectBillingInfo(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the billing information for a project. The current authenticated user
@@ -249,119 +214,7 @@ extension Clients {
   /// To mock `CloudBillingClient` change your functions to receive
   /// `some CloudBillingProtocol` or `any CloudBillingProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudBillingProtocol {
-    /// See `CloudBillingClient.getBillingAccount`.
-    func getBillingAccount(request: GetBillingAccountRequest) async throws
-      -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.getBillingAccount`.
-    func getBillingAccount(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.listBillingAccounts`.
-    func listBillingAccounts(request: ListBillingAccountsRequest) async throws
-      -> GoogleCloudBillingV1.ListBillingAccountsResponse
-
-    /// See `CloudBillingClient.listBillingAccounts`.
-    func listBillingAccounts(
-      byItem: ListBillingAccountsRequest
-    ) -> any AsyncSequence<BillingAccount, Swift.Error>
-
-    /// See `CloudBillingClient.listBillingAccounts`.
-    func listBillingAccounts(
-      parent: Swift.String,
-    ) -> any AsyncSequence<BillingAccount, Swift.Error>
-
-    /// See `CloudBillingClient.updateBillingAccount`.
-    func updateBillingAccount(request: UpdateBillingAccountRequest) async throws
-      -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.updateBillingAccount`.
-    func updateBillingAccount(
-      name: Swift.String,
-      account: BillingAccount?,
-    ) async throws -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.createBillingAccount`.
-    func createBillingAccount(request: CreateBillingAccountRequest) async throws
-      -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.createBillingAccount`.
-    func createBillingAccount(
-      billingAccount: BillingAccount?,
-    ) async throws -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.createBillingAccount`.
-    func createBillingAccount(
-      billingAccount: BillingAccount?,
-      parent: Swift.String,
-    ) async throws -> GoogleCloudBillingV1.BillingAccount
-
-    /// See `CloudBillingClient.listProjectBillingInfo`.
-    func listProjectBillingInfo(request: ListProjectBillingInfoRequest) async throws
-      -> GoogleCloudBillingV1.ListProjectBillingInfoResponse
-
-    /// See `CloudBillingClient.listProjectBillingInfo`.
-    func listProjectBillingInfo(
-      byItem: ListProjectBillingInfoRequest
-    ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
-
-    /// See `CloudBillingClient.listProjectBillingInfo`.
-    func listProjectBillingInfo(
-      name: Swift.String,
-    ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
-
-    /// See `CloudBillingClient.getProjectBillingInfo`.
-    func getProjectBillingInfo(request: GetProjectBillingInfoRequest) async throws
-      -> GoogleCloudBillingV1.ProjectBillingInfo
-
-    /// See `CloudBillingClient.getProjectBillingInfo`.
-    func getProjectBillingInfo(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo
-
-    /// See `CloudBillingClient.updateProjectBillingInfo`.
-    func updateProjectBillingInfo(request: UpdateProjectBillingInfoRequest) async throws
-      -> GoogleCloudBillingV1.ProjectBillingInfo
-
-    /// See `CloudBillingClient.updateProjectBillingInfo`.
-    func updateProjectBillingInfo(
-      name: Swift.String,
-      projectBillingInfo: ProjectBillingInfo?,
-    ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo
-
-    /// See `CloudBillingClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudBillingClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudBillingClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudBillingClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `CloudBillingClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `CloudBillingClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `CloudBillingClient.moveBillingAccount`.
-    func moveBillingAccount(request: MoveBillingAccountRequest) async throws
-      -> GoogleCloudBillingV1.BillingAccount
-
+  public protocol CloudBillingProtocol: Sendable {
     /// See `CloudBillingClient.getBillingAccount`.
     func getBillingAccount(
       request: GetBillingAccountRequest, options: GoogleGax.RequestOptions
@@ -371,11 +224,6 @@ extension Clients {
     func listBillingAccounts(
       request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse
-
-    /// See `CloudBillingClient.listBillingAccounts`.
-    func listBillingAccounts(
-      byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BillingAccount, Swift.Error>
 
     /// See `CloudBillingClient.updateBillingAccount`.
     func updateBillingAccount(
@@ -391,11 +239,6 @@ extension Clients {
     func listProjectBillingInfo(
       request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse
-
-    /// See `CloudBillingClient.listProjectBillingInfo`.
-    func listProjectBillingInfo(
-      byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error>
 
     /// See `CloudBillingClient.getProjectBillingInfo`.
     func getProjectBillingInfo(
@@ -470,12 +313,19 @@ extension Clients.CloudBillingProtocol {
     self.listBillingAccounts(byItem: byItem, options: .init())
   }
 
+  /// Lists the billing accounts that the current authenticated user has
+  /// permission to
+  /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListBillingAccounts")
   public func listBillingAccounts(
     byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BillingAccount, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBillingAccounts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -562,12 +412,20 @@ extension Clients.CloudBillingProtocol {
     self.listProjectBillingInfo(byItem: byItem, options: .init())
   }
 
+  /// Lists the projects associated with a billing account. The current
+  /// authenticated user must have the `billing.resourceAssociations.list` IAM
+  /// permission, which is often given to billing account
+  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
   public func listProjectBillingInfo(
     byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProjectBillingInfo(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

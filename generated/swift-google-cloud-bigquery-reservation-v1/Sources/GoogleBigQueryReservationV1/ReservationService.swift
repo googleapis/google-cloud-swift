@@ -70,21 +70,6 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     try await self.inner.listReservations(request: request, options: options)
   }
 
-  /// Lists all the reservations for the project in the specified location.
-  ///
-  /// @Snippet(path: "ReservationService_ListReservations")
-  public func listReservations(
-    byItem: ListReservationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Reservation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listReservations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns information about the reservation.
   ///
   /// @Snippet(path: "ReservationService_GetReservation")
@@ -143,22 +128,6 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse {
     try await self.inner.listCapacityCommitments(request: request, options: options)
-  }
-
-  /// Lists all the capacity commitments for the admin project.
-  ///
-  /// @Snippet(path: "ReservationService_ListCapacityCommitments")
-  public func listCapacityCommitments(
-    byItem: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCapacityCommitments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Returns information about the capacity commitment.
@@ -299,41 +268,6 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     try await self.inner.listAssignments(request: request, options: options)
   }
 
-  /// Lists assignments.
-  ///
-  /// Only explicitly created assignments will be returned.
-  ///
-  /// Example:
-  ///
-  /// * Organization `organizationA` contains two projects, `project1` and
-  ///   `project2`.
-  /// * Reservation `res1` exists and was created previously.
-  /// * CreateAssignment was used previously to define the following
-  ///   associations between entities and reservations: `<organizationA, res1>`
-  ///   and `<project1, res1>`
-  ///
-  /// In this example, ListAssignments will just return the above two assignments
-  /// for reservation `res1`, and no expansion/merge will happen.
-  ///
-  /// The wildcard "-" can be used for
-  /// reservations in the request. In that case all assignments belongs to the
-  /// specified project and location will be listed.
-  ///
-  /// **Note** "-" cannot be used for projects nor locations.
-  ///
-  /// @Snippet(path: "ReservationService_ListAssignments")
-  public func listAssignments(
-    byItem: ListAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAssignments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a assignment. No expansion will happen.
   ///
   /// Example:
@@ -389,44 +323,6 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     try await self.inner.searchAssignments(request: request, options: options)
   }
 
-  /// Deprecated: Looks up assignments for a specified resource for a particular
-  /// region. If the request is about a project:
-  ///
-  /// 1. Assignments created on the project will be returned if they exist.
-  /// 2. Otherwise assignments created on the closest ancestor will be
-  ///    returned.
-  /// 3. Assignments for different JobTypes will all be returned.
-  ///
-  /// The same logic applies if the request is about a folder.
-  ///
-  /// If the request is about an organization, then assignments created on the
-  /// organization will be returned (organization doesn't have ancestors).
-  ///
-  /// Comparing to ListAssignments, there are some behavior
-  /// differences:
-  ///
-  /// 1. permission on the assignee will be verified in this API.
-  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
-  /// 3. Parent here is `projects/*/locations/*`, instead of
-  ///    `projects/*/locations/*reservations/*`.
-  ///
-  /// **Note** "-" cannot be used for projects
-  /// nor locations.
-  ///
-  /// @Snippet(path: "ReservationService_SearchAssignments")
-  @available(*, deprecated)
-  public func searchAssignments(
-    byItem: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.SearchAssignmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchAssignments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Looks up assignments for a specified resource for a particular region.
   /// If the request is about a project:
   ///
@@ -453,41 +349,6 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse {
     try await self.inner.searchAllAssignments(request: request, options: options)
-  }
-
-  /// Looks up assignments for a specified resource for a particular region.
-  /// If the request is about a project:
-  ///
-  /// 1. Assignments created on the project will be returned if they exist.
-  /// 2. Otherwise assignments created on the closest ancestor will be
-  ///    returned.
-  /// 3. Assignments for different JobTypes will all be returned.
-  ///
-  /// The same logic applies if the request is about a folder.
-  ///
-  /// If the request is about an organization, then assignments created on the
-  /// organization will be returned (organization doesn't have ancestors).
-  ///
-  /// Comparing to ListAssignments, there are some behavior
-  /// differences:
-  ///
-  /// 1. permission on the assignee will be verified in this API.
-  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
-  /// 3. Parent here is `projects/*/locations/*`, instead of
-  ///    `projects/*/locations/*reservations/*`.
-  ///
-  /// @Snippet(path: "ReservationService_SearchAllAssignments")
-  public func searchAllAssignments(
-    byItem: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchAllAssignments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Moves an assignment under a new reservation.
@@ -633,22 +494,6 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     try await self.inner.listReservationGroups(request: request, options: options)
   }
 
-  /// Lists all the reservation groups for the project in the specified location.
-  ///
-  /// @Snippet(path: "ReservationService_ListReservationGroups")
-  public func listReservationGroups(
-    byItem: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ReservationGroup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleBigQueryReservationV1.ListReservationGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listReservationGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates an existing reservation group resource.
   ///
   /// @Snippet(path: "ReservationService_UpdateReservationGroup")
@@ -665,304 +510,7 @@ extension Clients {
   /// To mock `ReservationServiceClient` change your functions to receive
   /// `some ReservationServiceProtocol` or `any ReservationServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ReservationServiceProtocol {
-    /// See `ReservationServiceClient.createReservation`.
-    func createReservation(request: CreateReservationRequest) async throws
-      -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.createReservation`.
-    func createReservation(
-      parent: Swift.String,
-      reservation: Reservation?,
-      reservationId: Swift.String,
-    ) async throws -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.listReservations`.
-    func listReservations(request: ListReservationsRequest) async throws
-      -> GoogleBigQueryReservationV1.ListReservationsResponse
-
-    /// See `ReservationServiceClient.listReservations`.
-    func listReservations(
-      byItem: ListReservationsRequest
-    ) -> any AsyncSequence<Reservation, Swift.Error>
-
-    /// See `ReservationServiceClient.listReservations`.
-    func listReservations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Reservation, Swift.Error>
-
-    /// See `ReservationServiceClient.getReservation`.
-    func getReservation(request: GetReservationRequest) async throws
-      -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.getReservation`.
-    func getReservation(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.deleteReservation`.
-    func deleteReservation(request: DeleteReservationRequest) async throws
-
-    /// See `ReservationServiceClient.deleteReservation`.
-    func deleteReservation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ReservationServiceClient.updateReservation`.
-    func updateReservation(request: UpdateReservationRequest) async throws
-      -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.updateReservation`.
-    func updateReservation(
-      reservation: Reservation?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.failoverReservation`.
-    func failoverReservation(request: FailoverReservationRequest) async throws
-      -> GoogleBigQueryReservationV1.Reservation
-
-    /// See `ReservationServiceClient.createCapacityCommitment`.
-    func createCapacityCommitment(request: CreateCapacityCommitmentRequest) async throws
-      -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.createCapacityCommitment`.
-    func createCapacityCommitment(
-      parent: Swift.String,
-      capacityCommitment: CapacityCommitment?,
-    ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.listCapacityCommitments`.
-    func listCapacityCommitments(request: ListCapacityCommitmentsRequest) async throws
-      -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse
-
-    /// See `ReservationServiceClient.listCapacityCommitments`.
-    func listCapacityCommitments(
-      byItem: ListCapacityCommitmentsRequest
-    ) -> any AsyncSequence<CapacityCommitment, Swift.Error>
-
-    /// See `ReservationServiceClient.listCapacityCommitments`.
-    func listCapacityCommitments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CapacityCommitment, Swift.Error>
-
-    /// See `ReservationServiceClient.getCapacityCommitment`.
-    func getCapacityCommitment(request: GetCapacityCommitmentRequest) async throws
-      -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.getCapacityCommitment`.
-    func getCapacityCommitment(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.deleteCapacityCommitment`.
-    func deleteCapacityCommitment(request: DeleteCapacityCommitmentRequest) async throws
-
-    /// See `ReservationServiceClient.deleteCapacityCommitment`.
-    func deleteCapacityCommitment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ReservationServiceClient.updateCapacityCommitment`.
-    func updateCapacityCommitment(request: UpdateCapacityCommitmentRequest) async throws
-      -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.updateCapacityCommitment`.
-    func updateCapacityCommitment(
-      capacityCommitment: CapacityCommitment?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.splitCapacityCommitment`.
-    func splitCapacityCommitment(request: SplitCapacityCommitmentRequest) async throws
-      -> GoogleBigQueryReservationV1.SplitCapacityCommitmentResponse
-
-    /// See `ReservationServiceClient.splitCapacityCommitment`.
-    func splitCapacityCommitment(
-      name: Swift.String,
-      slotCount: Swift.Int64,
-    ) async throws -> GoogleBigQueryReservationV1.SplitCapacityCommitmentResponse
-
-    /// See `ReservationServiceClient.mergeCapacityCommitments`.
-    func mergeCapacityCommitments(request: MergeCapacityCommitmentsRequest) async throws
-      -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.mergeCapacityCommitments`.
-    func mergeCapacityCommitments(
-      parent: Swift.String,
-      capacityCommitmentIds: [Swift.String],
-    ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment
-
-    /// See `ReservationServiceClient.createAssignment`.
-    func createAssignment(request: CreateAssignmentRequest) async throws
-      -> GoogleBigQueryReservationV1.Assignment
-
-    /// See `ReservationServiceClient.createAssignment`.
-    func createAssignment(
-      parent: Swift.String,
-      assignment: Assignment?,
-    ) async throws -> GoogleBigQueryReservationV1.Assignment
-
-    /// See `ReservationServiceClient.listAssignments`.
-    func listAssignments(request: ListAssignmentsRequest) async throws
-      -> GoogleBigQueryReservationV1.ListAssignmentsResponse
-
-    /// See `ReservationServiceClient.listAssignments`.
-    func listAssignments(
-      byItem: ListAssignmentsRequest
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
-    /// See `ReservationServiceClient.listAssignments`.
-    func listAssignments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
-    /// See `ReservationServiceClient.deleteAssignment`.
-    func deleteAssignment(request: DeleteAssignmentRequest) async throws
-
-    /// See `ReservationServiceClient.deleteAssignment`.
-    func deleteAssignment(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ReservationServiceClient.searchAssignments`.
-    @available(*, deprecated)
-    func searchAssignments(request: SearchAssignmentsRequest) async throws
-      -> GoogleBigQueryReservationV1.SearchAssignmentsResponse
-
-    /// See `ReservationServiceClient.searchAssignments`.
-    @available(*, deprecated)
-    func searchAssignments(
-      byItem: SearchAssignmentsRequest
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
-    /// See `ReservationServiceClient.searchAssignments`.
-    @available(*, deprecated)
-    func searchAssignments(
-      parent: Swift.String,
-      query: Swift.String,
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
-    /// See `ReservationServiceClient.searchAllAssignments`.
-    func searchAllAssignments(request: SearchAllAssignmentsRequest) async throws
-      -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse
-
-    /// See `ReservationServiceClient.searchAllAssignments`.
-    func searchAllAssignments(
-      byItem: SearchAllAssignmentsRequest
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
-    /// See `ReservationServiceClient.searchAllAssignments`.
-    func searchAllAssignments(
-      parent: Swift.String,
-      query: Swift.String,
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
-    /// See `ReservationServiceClient.moveAssignment`.
-    func moveAssignment(request: MoveAssignmentRequest) async throws
-      -> GoogleBigQueryReservationV1.Assignment
-
-    /// See `ReservationServiceClient.moveAssignment`.
-    func moveAssignment(
-      name: Swift.String,
-      destinationId: Swift.String,
-    ) async throws -> GoogleBigQueryReservationV1.Assignment
-
-    /// See `ReservationServiceClient.updateAssignment`.
-    func updateAssignment(request: UpdateAssignmentRequest) async throws
-      -> GoogleBigQueryReservationV1.Assignment
-
-    /// See `ReservationServiceClient.updateAssignment`.
-    func updateAssignment(
-      assignment: Assignment?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryReservationV1.Assignment
-
-    /// See `ReservationServiceClient.getBiReservation`.
-    func getBiReservation(request: GetBiReservationRequest) async throws
-      -> GoogleBigQueryReservationV1.BiReservation
-
-    /// See `ReservationServiceClient.getBiReservation`.
-    func getBiReservation(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryReservationV1.BiReservation
-
-    /// See `ReservationServiceClient.updateBiReservation`.
-    func updateBiReservation(request: UpdateBiReservationRequest) async throws
-      -> GoogleBigQueryReservationV1.BiReservation
-
-    /// See `ReservationServiceClient.updateBiReservation`.
-    func updateBiReservation(
-      biReservation: BiReservation?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryReservationV1.BiReservation
-
-    /// See `ReservationServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ReservationServiceClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ReservationServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ReservationServiceClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ReservationServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ReservationServiceClient.createReservationGroup`.
-    func createReservationGroup(request: CreateReservationGroupRequest) async throws
-      -> GoogleBigQueryReservationV1.ReservationGroup
-
-    /// See `ReservationServiceClient.getReservationGroup`.
-    func getReservationGroup(request: GetReservationGroupRequest) async throws
-      -> GoogleBigQueryReservationV1.ReservationGroup
-
-    /// See `ReservationServiceClient.getReservationGroup`.
-    func getReservationGroup(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup
-
-    /// See `ReservationServiceClient.deleteReservationGroup`.
-    func deleteReservationGroup(request: DeleteReservationGroupRequest) async throws
-
-    /// See `ReservationServiceClient.deleteReservationGroup`.
-    func deleteReservationGroup(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ReservationServiceClient.listReservationGroups`.
-    func listReservationGroups(request: ListReservationGroupsRequest) async throws
-      -> GoogleBigQueryReservationV1.ListReservationGroupsResponse
-
-    /// See `ReservationServiceClient.listReservationGroups`.
-    func listReservationGroups(
-      byItem: ListReservationGroupsRequest
-    ) -> any AsyncSequence<ReservationGroup, Swift.Error>
-
-    /// See `ReservationServiceClient.listReservationGroups`.
-    func listReservationGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ReservationGroup, Swift.Error>
-
-    /// See `ReservationServiceClient.updateReservationGroup`.
-    func updateReservationGroup(request: UpdateReservationGroupRequest) async throws
-      -> GoogleBigQueryReservationV1.ReservationGroup
-
-    /// See `ReservationServiceClient.updateReservationGroup`.
-    func updateReservationGroup(
-      reservationGroup: ReservationGroup?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup
-
+  public protocol ReservationServiceProtocol: Sendable {
     /// See `ReservationServiceClient.createReservation`.
     func createReservation(
       request: CreateReservationRequest, options: GoogleGax.RequestOptions
@@ -972,11 +520,6 @@ extension Clients {
     func listReservations(
       request: ListReservationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse
-
-    /// See `ReservationServiceClient.listReservations`.
-    func listReservations(
-      byItem: ListReservationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Reservation, Swift.Error>
 
     /// See `ReservationServiceClient.getReservation`.
     func getReservation(
@@ -1007,11 +550,6 @@ extension Clients {
     func listCapacityCommitments(
       request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse
-
-    /// See `ReservationServiceClient.listCapacityCommitments`.
-    func listCapacityCommitments(
-      byItem: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CapacityCommitment, Swift.Error>
 
     /// See `ReservationServiceClient.getCapacityCommitment`.
     func getCapacityCommitment(
@@ -1048,11 +586,6 @@ extension Clients {
       request: ListAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse
 
-    /// See `ReservationServiceClient.listAssignments`.
-    func listAssignments(
-      byItem: ListAssignmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
     /// See `ReservationServiceClient.deleteAssignment`.
     func deleteAssignment(
       request: DeleteAssignmentRequest, options: GoogleGax.RequestOptions
@@ -1064,21 +597,10 @@ extension Clients {
       request: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.SearchAssignmentsResponse
 
-    /// See `ReservationServiceClient.searchAssignments`.
-    @available(*, deprecated)
-    func searchAssignments(
-      byItem: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Assignment, Swift.Error>
-
     /// See `ReservationServiceClient.searchAllAssignments`.
     func searchAllAssignments(
       request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse
-
-    /// See `ReservationServiceClient.searchAllAssignments`.
-    func searchAllAssignments(
-      byItem: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Assignment, Swift.Error>
 
     /// See `ReservationServiceClient.moveAssignment`.
     func moveAssignment(
@@ -1135,11 +657,6 @@ extension Clients {
       request: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListReservationGroupsResponse
 
-    /// See `ReservationServiceClient.listReservationGroups`.
-    func listReservationGroups(
-      byItem: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ReservationGroup, Swift.Error>
-
     /// See `ReservationServiceClient.updateReservationGroup`.
     func updateReservationGroup(
       request: UpdateReservationGroupRequest, options: GoogleGax.RequestOptions
@@ -1192,12 +709,17 @@ extension Clients.ReservationServiceProtocol {
     self.listReservations(byItem: byItem, options: .init())
   }
 
+  /// Lists all the reservations for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservations")
   public func listReservations(
     byItem: ListReservationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Reservation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listReservations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1327,13 +849,18 @@ extension Clients.ReservationServiceProtocol {
     self.listCapacityCommitments(byItem: byItem, options: .init())
   }
 
+  /// Lists all the capacity commitments for the admin project.
+  ///
+  /// @Snippet(path: "ReservationService_ListCapacityCommitments")
   public func listCapacityCommitments(
     byItem: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CapacityCommitment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCapacityCommitments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1497,12 +1024,37 @@ extension Clients.ReservationServiceProtocol {
     self.listAssignments(byItem: byItem, options: .init())
   }
 
+  /// Lists assignments.
+  ///
+  /// Only explicitly created assignments will be returned.
+  ///
+  /// Example:
+  ///
+  /// * Organization `organizationA` contains two projects, `project1` and
+  ///   `project2`.
+  /// * Reservation `res1` exists and was created previously.
+  /// * CreateAssignment was used previously to define the following
+  ///   associations between entities and reservations: `<organizationA, res1>`
+  ///   and `<project1, res1>`
+  ///
+  /// In this example, ListAssignments will just return the above two assignments
+  /// for reservation `res1`, and no expansion/merge will happen.
+  ///
+  /// The wildcard "-" can be used for
+  /// reservations in the request. In that case all assignments belongs to the
+  /// specified project and location will be listed.
+  ///
+  /// **Note** "-" cannot be used for projects nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_ListAssignments")
   public func listAssignments(
     byItem: ListAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Assignment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAssignments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1556,13 +1108,40 @@ extension Clients.ReservationServiceProtocol {
     self.searchAssignments(byItem: byItem, options: .init())
   }
 
+  /// Deprecated: Looks up assignments for a specified resource for a particular
+  /// region. If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// **Note** "-" cannot be used for projects
+  /// nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAssignments")
   @available(*, deprecated)
   public func searchAssignments(
     byItem: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Assignment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryReservationV1.SearchAssignmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchAssignments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1597,13 +1176,37 @@ extension Clients.ReservationServiceProtocol {
     self.searchAllAssignments(byItem: byItem, options: .init())
   }
 
+  /// Looks up assignments for a specified resource for a particular region.
+  /// If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAllAssignments")
   public func searchAllAssignments(
     byItem: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Assignment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchAllAssignments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1835,13 +1438,18 @@ extension Clients.ReservationServiceProtocol {
     self.listReservationGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists all the reservation groups for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservationGroups")
   public func listReservationGroups(
     byItem: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ReservationGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleBigQueryReservationV1.ListReservationGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listReservationGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

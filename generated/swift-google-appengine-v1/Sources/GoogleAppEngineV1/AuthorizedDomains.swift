@@ -48,21 +48,6 @@ public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, S
     try await self.inner.listAuthorizedDomains(request: request, options: options)
   }
 
-  /// Lists all domains the user is authorized to administer.
-  ///
-  /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
-  public func listAuthorizedDomains(
-    byItem: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAuthorizedDomains(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -72,23 +57,6 @@ public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, S
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "AuthorizedDomains_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -109,50 +77,16 @@ extension Clients {
   /// To mock `AuthorizedDomainsClient` change your functions to receive
   /// `some AuthorizedDomainsProtocol` or `any AuthorizedDomainsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AuthorizedDomainsProtocol {
-    /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
-    func listAuthorizedDomains(request: ListAuthorizedDomainsRequest) async throws
-      -> GoogleAppEngineV1.ListAuthorizedDomainsResponse
-
-    /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
-    func listAuthorizedDomains(
-      byItem: ListAuthorizedDomainsRequest
-    ) -> any AsyncSequence<AuthorizedDomain, Swift.Error>
-
-    /// See `AuthorizedDomainsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AuthorizedDomainsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AuthorizedDomainsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
+  public protocol AuthorizedDomainsProtocol: Sendable {
     /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
     func listAuthorizedDomains(
       request: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse
 
-    /// See `AuthorizedDomainsClient.listAuthorizedDomains`.
-    func listAuthorizedDomains(
-      byItem: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AuthorizedDomain, Swift.Error>
-
     /// See `AuthorizedDomainsClient.listOperations`.
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AuthorizedDomainsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -176,12 +110,17 @@ extension Clients.AuthorizedDomainsProtocol {
     self.listAuthorizedDomains(byItem: byItem, options: .init())
   }
 
+  /// Lists all domains the user is authorized to administer.
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
   public func listAuthorizedDomains(
     byItem: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AuthorizedDomain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAuthorizedDomains(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -204,12 +143,19 @@ extension Clients.AuthorizedDomainsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

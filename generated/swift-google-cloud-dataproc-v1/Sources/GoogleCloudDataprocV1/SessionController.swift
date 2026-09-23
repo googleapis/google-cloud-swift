@@ -94,21 +94,6 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
     try await self.inner.listSessions(request: request, options: options)
   }
 
-  /// Lists interactive sessions.
-  ///
-  /// @Snippet(path: "SessionController_ListSessions")
-  public func listSessions(
-    byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Session, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListSessionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSessions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Terminates the interactive session.
   ///
   /// @Snippet(path: "SessionController_TerminateSession")
@@ -232,23 +217,6 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "SessionController_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "SessionController_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -285,10 +253,7 @@ extension Clients {
   /// To mock `SessionControllerClient` change your functions to receive
   /// `some SessionControllerProtocol` or `any SessionControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol SessionControllerProtocol {
-    /// See `SessionControllerClient.createSession`.
-    func createSession(request: CreateSessionRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol SessionControllerProtocol: Sendable {
     /// See `SessionControllerClient.createSession`.
     func createSession(withPolling: CreateSessionRequest) async throws -> any GoogleGax
       .PollableOperation<Session>
@@ -300,32 +265,6 @@ extension Clients {
       sessionId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Session>
 
-    /// See `SessionControllerClient.getSession`.
-    func getSession(request: GetSessionRequest) async throws -> GoogleCloudDataprocV1.Session
-
-    /// See `SessionControllerClient.getSession`.
-    func getSession(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataprocV1.Session
-
-    /// See `SessionControllerClient.listSessions`.
-    func listSessions(request: ListSessionsRequest) async throws
-      -> GoogleCloudDataprocV1.ListSessionsResponse
-
-    /// See `SessionControllerClient.listSessions`.
-    func listSessions(
-      byItem: ListSessionsRequest
-    ) -> any AsyncSequence<Session, Swift.Error>
-
-    /// See `SessionControllerClient.listSessions`.
-    func listSessions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Session, Swift.Error>
-
-    /// See `SessionControllerClient.terminateSession`.
-    func terminateSession(request: TerminateSessionRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `SessionControllerClient.terminateSession`.
     func terminateSession(withPolling: TerminateSessionRequest) async throws -> any GoogleGax
       .PollableOperation<Session>
@@ -336,9 +275,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Session>
 
     /// See `SessionControllerClient.deleteSession`.
-    func deleteSession(request: DeleteSessionRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `SessionControllerClient.deleteSession`.
     func deleteSession(withPolling: DeleteSessionRequest) async throws -> any GoogleGax
       .PollableOperation<Session>
 
@@ -346,47 +282,6 @@ extension Clients {
     func deleteSession(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Session>
-
-    /// See `SessionControllerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `SessionControllerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `SessionControllerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `SessionControllerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `SessionControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `SessionControllerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `SessionControllerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `SessionControllerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `SessionControllerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `SessionControllerClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `SessionControllerClient.createSession`.
     func createSession(
@@ -407,11 +302,6 @@ extension Clients {
     func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.ListSessionsResponse
-
-    /// See `SessionControllerClient.listSessions`.
-    func listSessions(
-      byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Session, Swift.Error>
 
     /// See `SessionControllerClient.terminateSession`.
     func terminateSession(
@@ -452,11 +342,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `SessionControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `SessionControllerClient.deleteOperation`.
     func deleteOperation(
@@ -550,12 +435,17 @@ extension Clients.SessionControllerProtocol {
     self.listSessions(byItem: byItem, options: .init())
   }
 
+  /// Lists interactive sessions.
+  ///
+  /// @Snippet(path: "SessionController_ListSessions")
   public func listSessions(
     byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Session, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListSessionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSessions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -697,12 +587,19 @@ extension Clients.SessionControllerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

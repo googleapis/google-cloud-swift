@@ -45,7 +45,7 @@
     /// To mock `SqlIamPoliciesServiceClient` change your functions to receive
     /// `some SqlIamPoliciesServiceProtocol` or `any SqlIamPoliciesServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlIamPoliciesServiceProtocol {
+    public protocol SqlIamPoliciesServiceProtocol: Sendable {
     }
   }
 

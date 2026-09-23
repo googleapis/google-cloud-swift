@@ -389,21 +389,6 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
     try await self.inner.listMemoryLayers(request: request, options: options)
   }
 
-  /// Lists information about memory layers.
-  ///
-  /// @Snippet(path: "BigtableInstanceAdmin_ListMemoryLayers")
-  public func listMemoryLayers(
-    byItem: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MemoryLayer, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listMemoryLayers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about the memory layer of a cluster.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_GetMemoryLayer")
@@ -438,21 +423,6 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
     request: ListAppProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse {
     try await self.inner.listAppProfiles(request: request, options: options)
-  }
-
-  /// Lists information about app profiles in an instance.
-  ///
-  /// @Snippet(path: "BigtableInstanceAdmin_ListAppProfiles")
-  public func listAppProfiles(
-    byItem: ListAppProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AppProfile, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAppProfiles(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates an app profile within an instance.
@@ -538,22 +508,6 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
     try await self.inner.listHotTablets(request: request, options: options)
   }
 
-  /// Lists hot tablets in a cluster, within the time range provided. Hot
-  /// tablets are ordered based on CPU usage.
-  ///
-  /// @Snippet(path: "BigtableInstanceAdmin_ListHotTablets")
-  public func listHotTablets(
-    byItem: ListHotTabletsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<HotTablet, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listHotTablets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a logical view within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_CreateLogicalView")
@@ -605,21 +559,6 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
     request: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse {
     try await self.inner.listLogicalViews(request: request, options: options)
-  }
-
-  /// Lists information about logical views in an instance.
-  ///
-  /// @Snippet(path: "BigtableInstanceAdmin_ListLogicalViews")
-  public func listLogicalViews(
-    byItem: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogicalView, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLogicalViews(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates a logical view within an instance.
@@ -719,22 +658,6 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
     try await self.inner.listMaterializedViews(request: request, options: options)
   }
 
-  /// Lists information about materialized views in an instance.
-  ///
-  /// @Snippet(path: "BigtableInstanceAdmin_ListMaterializedViews")
-  public func listMaterializedViews(
-    byItem: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MaterializedView, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listMaterializedViews(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a materialized view within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_UpdateMaterializedView")
@@ -794,23 +717,6 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "BigtableInstanceAdmin_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "BigtableInstanceAdmin_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -847,10 +753,7 @@ extension Clients {
   /// To mock `BigtableInstanceAdminClient` change your functions to receive
   /// `some BigtableInstanceAdminProtocol` or `any BigtableInstanceAdminProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol BigtableInstanceAdminProtocol {
-    /// See `BigtableInstanceAdminClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol BigtableInstanceAdminProtocol: Sendable {
     /// See `BigtableInstanceAdminClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
@@ -863,31 +766,6 @@ extension Clients {
       clusters: [Swift.String: Cluster],
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
-    /// See `BigtableInstanceAdminClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws
-      -> GoogleCloudBigtableAdminV2.Instance
-
-    /// See `BigtableInstanceAdminClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.Instance
-
-    /// See `BigtableInstanceAdminClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListInstancesResponse
-
-    /// See `BigtableInstanceAdminClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse
-
-    /// See `BigtableInstanceAdminClient.updateInstance`.
-    func updateInstance(request: Instance) async throws -> GoogleCloudBigtableAdminV2.Instance
-
-    /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
-    func partialUpdateInstance(request: PartialUpdateInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
     func partialUpdateInstance(withPolling: PartialUpdateInstanceRequest) async throws
       -> any GoogleGax.PollableOperation<Instance>
@@ -897,17 +775,6 @@ extension Clients {
       instance: Instance?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `BigtableInstanceAdminClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteInstance`.
-    func deleteInstance(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.createCluster`.
-    func createCluster(request: CreateClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createCluster`.
     func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
@@ -920,34 +787,10 @@ extension Clients {
       cluster: Cluster?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
-    /// See `BigtableInstanceAdminClient.getCluster`.
-    func getCluster(request: GetClusterRequest) async throws -> GoogleCloudBigtableAdminV2.Cluster
-
-    /// See `BigtableInstanceAdminClient.getCluster`.
-    func getCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.Cluster
-
-    /// See `BigtableInstanceAdminClient.listClusters`.
-    func listClusters(request: ListClustersRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListClustersResponse
-
-    /// See `BigtableInstanceAdminClient.listClusters`.
-    func listClusters(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse
-
-    /// See `BigtableInstanceAdminClient.updateCluster`.
-    func updateCluster(request: Cluster) async throws -> GoogleLongRunning.Operation
-
     /// See `BigtableInstanceAdminClient.updateCluster`.
     func updateCluster(withPolling: Cluster) async throws -> any GoogleGax.PollableOperation<
       Cluster
     >
-
-    /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
-    func partialUpdateCluster(request: PartialUpdateClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
     func partialUpdateCluster(withPolling: PartialUpdateClusterRequest) async throws
@@ -959,18 +802,6 @@ extension Clients {
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
-    /// See `BigtableInstanceAdminClient.deleteCluster`.
-    func deleteCluster(request: DeleteClusterRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteCluster`.
-    func deleteCluster(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
-    func updateMemoryLayer(request: UpdateMemoryLayerRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
     func updateMemoryLayer(withPolling: UpdateMemoryLayerRequest) async throws -> any GoogleGax
       .PollableOperation<MemoryLayer>
@@ -981,67 +812,6 @@ extension Clients {
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MemoryLayer>
 
-    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
-    func listMemoryLayers(request: ListMemoryLayersRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
-
-    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
-    func listMemoryLayers(
-      byItem: ListMemoryLayersRequest
-    ) -> any AsyncSequence<MemoryLayer, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
-    func listMemoryLayers(
-      parent: Swift.String,
-    ) -> any AsyncSequence<MemoryLayer, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.getMemoryLayer`.
-    func getMemoryLayer(request: GetMemoryLayerRequest) async throws
-      -> GoogleCloudBigtableAdminV2.MemoryLayer
-
-    /// See `BigtableInstanceAdminClient.getMemoryLayer`.
-    func getMemoryLayer(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer
-
-    /// See `BigtableInstanceAdminClient.createAppProfile`.
-    func createAppProfile(request: CreateAppProfileRequest) async throws
-      -> GoogleCloudBigtableAdminV2.AppProfile
-
-    /// See `BigtableInstanceAdminClient.createAppProfile`.
-    func createAppProfile(
-      parent: Swift.String,
-      appProfileId: Swift.String,
-      appProfile: AppProfile?,
-    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile
-
-    /// See `BigtableInstanceAdminClient.getAppProfile`.
-    func getAppProfile(request: GetAppProfileRequest) async throws
-      -> GoogleCloudBigtableAdminV2.AppProfile
-
-    /// See `BigtableInstanceAdminClient.getAppProfile`.
-    func getAppProfile(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile
-
-    /// See `BigtableInstanceAdminClient.listAppProfiles`.
-    func listAppProfiles(request: ListAppProfilesRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse
-
-    /// See `BigtableInstanceAdminClient.listAppProfiles`.
-    func listAppProfiles(
-      byItem: ListAppProfilesRequest
-    ) -> any AsyncSequence<AppProfile, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.listAppProfiles`.
-    func listAppProfiles(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AppProfile, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.updateAppProfile`.
-    func updateAppProfile(request: UpdateAppProfileRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
     func updateAppProfile(withPolling: UpdateAppProfileRequest) async throws -> any GoogleGax
       .PollableOperation<AppProfile>
@@ -1051,65 +821,6 @@ extension Clients {
       appProfile: AppProfile?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AppProfile>
-
-    /// See `BigtableInstanceAdminClient.deleteAppProfile`.
-    func deleteAppProfile(request: DeleteAppProfileRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteAppProfile`.
-    func deleteAppProfile(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteAppProfile`.
-    func deleteAppProfile(
-      name: Swift.String,
-      ignoreWarnings: Swift.Bool,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BigtableInstanceAdminClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `BigtableInstanceAdminClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BigtableInstanceAdminClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `BigtableInstanceAdminClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `BigtableInstanceAdminClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `BigtableInstanceAdminClient.listHotTablets`.
-    func listHotTablets(request: ListHotTabletsRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse
-
-    /// See `BigtableInstanceAdminClient.listHotTablets`.
-    func listHotTablets(
-      byItem: ListHotTabletsRequest
-    ) -> any AsyncSequence<HotTablet, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.listHotTablets`.
-    func listHotTablets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<HotTablet, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.createLogicalView`.
-    func createLogicalView(request: CreateLogicalViewRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createLogicalView`.
     func createLogicalView(withPolling: CreateLogicalViewRequest) async throws -> any GoogleGax
@@ -1122,33 +833,6 @@ extension Clients {
       logicalViewId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
 
-    /// See `BigtableInstanceAdminClient.getLogicalView`.
-    func getLogicalView(request: GetLogicalViewRequest) async throws
-      -> GoogleCloudBigtableAdminV2.LogicalView
-
-    /// See `BigtableInstanceAdminClient.getLogicalView`.
-    func getLogicalView(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.LogicalView
-
-    /// See `BigtableInstanceAdminClient.listLogicalViews`.
-    func listLogicalViews(request: ListLogicalViewsRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse
-
-    /// See `BigtableInstanceAdminClient.listLogicalViews`.
-    func listLogicalViews(
-      byItem: ListLogicalViewsRequest
-    ) -> any AsyncSequence<LogicalView, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.listLogicalViews`.
-    func listLogicalViews(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LogicalView, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.updateLogicalView`.
-    func updateLogicalView(request: UpdateLogicalViewRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
     func updateLogicalView(withPolling: UpdateLogicalViewRequest) async throws -> any GoogleGax
       .PollableOperation<LogicalView>
@@ -1158,18 +842,6 @@ extension Clients {
       logicalView: LogicalView?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
-
-    /// See `BigtableInstanceAdminClient.deleteLogicalView`.
-    func deleteLogicalView(request: DeleteLogicalViewRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteLogicalView`.
-    func deleteLogicalView(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.createMaterializedView`.
-    func createMaterializedView(request: CreateMaterializedViewRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createMaterializedView`.
     func createMaterializedView(withPolling: CreateMaterializedViewRequest) async throws
@@ -1182,33 +854,6 @@ extension Clients {
       materializedViewId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
 
-    /// See `BigtableInstanceAdminClient.getMaterializedView`.
-    func getMaterializedView(request: GetMaterializedViewRequest) async throws
-      -> GoogleCloudBigtableAdminV2.MaterializedView
-
-    /// See `BigtableInstanceAdminClient.getMaterializedView`.
-    func getMaterializedView(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView
-
-    /// See `BigtableInstanceAdminClient.listMaterializedViews`.
-    func listMaterializedViews(request: ListMaterializedViewsRequest) async throws
-      -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse
-
-    /// See `BigtableInstanceAdminClient.listMaterializedViews`.
-    func listMaterializedViews(
-      byItem: ListMaterializedViewsRequest
-    ) -> any AsyncSequence<MaterializedView, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.listMaterializedViews`.
-    func listMaterializedViews(
-      parent: Swift.String,
-    ) -> any AsyncSequence<MaterializedView, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.updateMaterializedView`.
-    func updateMaterializedView(request: UpdateMaterializedViewRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
     func updateMaterializedView(withPolling: UpdateMaterializedViewRequest) async throws
       -> any GoogleGax.PollableOperation<MaterializedView>
@@ -1218,45 +863,6 @@ extension Clients {
       materializedView: MaterializedView?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
-
-    /// See `BigtableInstanceAdminClient.deleteMaterializedView`.
-    func deleteMaterializedView(request: DeleteMaterializedViewRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteMaterializedView`.
-    func deleteMaterializedView(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BigtableInstanceAdminClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BigtableInstanceAdminClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigtableInstanceAdminClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `BigtableInstanceAdminClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `BigtableInstanceAdminClient.createInstance`.
     func createInstance(
@@ -1358,11 +964,6 @@ extension Clients {
       request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse
 
-    /// See `BigtableInstanceAdminClient.listMemoryLayers`.
-    func listMemoryLayers(
-      byItem: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MemoryLayer, Swift.Error>
-
     /// See `BigtableInstanceAdminClient.getMemoryLayer`.
     func getMemoryLayer(
       request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
@@ -1382,11 +983,6 @@ extension Clients {
     func listAppProfiles(
       request: ListAppProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse
-
-    /// See `BigtableInstanceAdminClient.listAppProfiles`.
-    func listAppProfiles(
-      byItem: ListAppProfilesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AppProfile, Swift.Error>
 
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
     func updateAppProfile(
@@ -1423,11 +1019,6 @@ extension Clients {
       request: ListHotTabletsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse
 
-    /// See `BigtableInstanceAdminClient.listHotTablets`.
-    func listHotTablets(
-      byItem: ListHotTabletsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HotTablet, Swift.Error>
-
     /// See `BigtableInstanceAdminClient.createLogicalView`.
     func createLogicalView(
       request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
@@ -1447,11 +1038,6 @@ extension Clients {
     func listLogicalViews(
       request: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse
-
-    /// See `BigtableInstanceAdminClient.listLogicalViews`.
-    func listLogicalViews(
-      byItem: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LogicalView, Swift.Error>
 
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
     func updateLogicalView(
@@ -1488,11 +1074,6 @@ extension Clients {
       request: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse
 
-    /// See `BigtableInstanceAdminClient.listMaterializedViews`.
-    func listMaterializedViews(
-      byItem: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MaterializedView, Swift.Error>
-
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
     func updateMaterializedView(
       request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
@@ -1512,11 +1093,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BigtableInstanceAdminClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BigtableInstanceAdminClient.deleteOperation`.
     func deleteOperation(
@@ -1910,12 +1486,17 @@ extension Clients.BigtableInstanceAdminProtocol {
     self.listMemoryLayers(byItem: byItem, options: .init())
   }
 
+  /// Lists information about memory layers.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListMemoryLayers")
   public func listMemoryLayers(
     byItem: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MemoryLayer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listMemoryLayers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2014,12 +1595,17 @@ extension Clients.BigtableInstanceAdminProtocol {
     self.listAppProfiles(byItem: byItem, options: .init())
   }
 
+  /// Lists information about app profiles in an instance.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListAppProfiles")
   public func listAppProfiles(
     byItem: ListAppProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AppProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAppProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2187,12 +1773,18 @@ extension Clients.BigtableInstanceAdminProtocol {
     self.listHotTablets(byItem: byItem, options: .init())
   }
 
+  /// Lists hot tablets in a cluster, within the time range provided. Hot
+  /// tablets are ordered based on CPU usage.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListHotTablets")
   public func listHotTablets(
     byItem: ListHotTabletsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<HotTablet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listHotTablets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2286,12 +1878,17 @@ extension Clients.BigtableInstanceAdminProtocol {
     self.listLogicalViews(byItem: byItem, options: .init())
   }
 
+  /// Lists information about logical views in an instance.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListLogicalViews")
   public func listLogicalViews(
     byItem: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogicalView, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLogicalViews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2443,13 +2040,18 @@ extension Clients.BigtableInstanceAdminProtocol {
     self.listMaterializedViews(byItem: byItem, options: .init())
   }
 
+  /// Lists information about materialized views in an instance.
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListMaterializedViews")
   public func listMaterializedViews(
     byItem: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MaterializedView, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listMaterializedViews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2539,12 +2141,19 @@ extension Clients.BigtableInstanceAdminProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigtableInstanceAdmin_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

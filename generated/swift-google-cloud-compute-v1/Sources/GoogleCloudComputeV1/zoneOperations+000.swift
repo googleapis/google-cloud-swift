@@ -65,21 +65,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of Operation resources contained within
-    /// the specified zone.
-    ///
-    /// @Snippet(path: "zoneOperations_list")
-    public func list(
-      byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Waits for the specified Operation resource to return as `DONE`
     /// or for the request to approach the 2 minute deadline, and retrieves the
     /// specified Operation resource. This method waits for no more than the
@@ -110,54 +95,7 @@
     /// To mock `ZoneOperationsClient` change your functions to receive
     /// `some ZoneOperationsProtocol` or `any ZoneOperationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ZoneOperationsProtocol {
-      /// See `ZoneOperationsClient.delete`.
-      func delete(request: ZoneOperationsClient.DeleteRequest) async throws
-
-      /// See `ZoneOperationsClient.delete`.
-      func delete(
-        project: Swift.String,
-        zone: Swift.String,
-        operation: Swift.String,
-      ) async throws
-
-      /// See `ZoneOperationsClient.`get``.
-      func `get`(request: ZoneOperationsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ZoneOperationsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        operation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `ZoneOperationsClient.list`.
-      func list(request: ZoneOperationsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.OperationList
-
-      /// See `ZoneOperationsClient.list`.
-      func list(
-        byItem: ZoneOperationsClient.ListRequest
-      ) -> any AsyncSequence<Operation, Swift.Error>
-
-      /// See `ZoneOperationsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<Operation, Swift.Error>
-
-      /// See `ZoneOperationsClient.wait`.
-      func wait(request: ZoneOperationsClient.WaitRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ZoneOperationsClient.wait`.
-      func wait(
-        project: Swift.String,
-        zone: Swift.String,
-        operation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Operation
-
+    public protocol ZoneOperationsProtocol: Sendable {
       /// See `ZoneOperationsClient.delete`.
       func delete(
         request: ZoneOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -172,11 +110,6 @@
       func list(
         request: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.OperationList
-
-      /// See `ZoneOperationsClient.list`.
-      func list(
-        byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `ZoneOperationsClient.wait`.
       func wait(
@@ -253,11 +186,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of Operation resources contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "zoneOperations_list")
     public func list(
       byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

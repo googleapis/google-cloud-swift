@@ -47,22 +47,6 @@ public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtoco
     try await self.inner.listCloudLocations(request: request, options: options)
   }
 
-  /// Lists cloud locations under a given project and location.
-  ///
-  /// @Snippet(path: "CloudLocationFinder_ListCloudLocations")
-  public func listCloudLocations(
-    byItem: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCloudLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves a resource containing information about a cloud location.
   ///
   /// @Snippet(path: "CloudLocationFinder_GetCloudLocation")
@@ -81,22 +65,6 @@ public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtoco
     try await self.inner.searchCloudLocations(request: request, options: options)
   }
 
-  /// Searches for cloud locations from a given source location.
-  ///
-  /// @Snippet(path: "CloudLocationFinder_SearchCloudLocations")
-  public func searchCloudLocations(
-    byItem: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchCloudLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudLocationFinder_ListLocations")
@@ -104,21 +72,6 @@ public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtoco
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "CloudLocationFinder_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -137,68 +90,11 @@ extension Clients {
   /// To mock `CloudLocationFinderClient` change your functions to receive
   /// `some CloudLocationFinderProtocol` or `any CloudLocationFinderProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudLocationFinderProtocol {
-    /// See `CloudLocationFinderClient.listCloudLocations`.
-    func listCloudLocations(request: ListCloudLocationsRequest) async throws
-      -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse
-
-    /// See `CloudLocationFinderClient.listCloudLocations`.
-    func listCloudLocations(
-      byItem: ListCloudLocationsRequest
-    ) -> any AsyncSequence<CloudLocation, Swift.Error>
-
-    /// See `CloudLocationFinderClient.listCloudLocations`.
-    func listCloudLocations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CloudLocation, Swift.Error>
-
-    /// See `CloudLocationFinderClient.getCloudLocation`.
-    func getCloudLocation(request: GetCloudLocationRequest) async throws
-      -> GoogleCloudLocationFinderV1.CloudLocation
-
-    /// See `CloudLocationFinderClient.getCloudLocation`.
-    func getCloudLocation(
-      name: Swift.String,
-    ) async throws -> GoogleCloudLocationFinderV1.CloudLocation
-
-    /// See `CloudLocationFinderClient.searchCloudLocations`.
-    func searchCloudLocations(request: SearchCloudLocationsRequest) async throws
-      -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse
-
-    /// See `CloudLocationFinderClient.searchCloudLocations`.
-    func searchCloudLocations(
-      byItem: SearchCloudLocationsRequest
-    ) -> any AsyncSequence<CloudLocation, Swift.Error>
-
-    /// See `CloudLocationFinderClient.searchCloudLocations`.
-    func searchCloudLocations(
-      parent: Swift.String,
-      sourceCloudLocation: Swift.String,
-      query: Swift.String,
-    ) -> any AsyncSequence<CloudLocation, Swift.Error>
-
-    /// See `CloudLocationFinderClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudLocationFinderClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `CloudLocationFinderClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol CloudLocationFinderProtocol: Sendable {
     /// See `CloudLocationFinderClient.listCloudLocations`.
     func listCloudLocations(
       request: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse
-
-    /// See `CloudLocationFinderClient.listCloudLocations`.
-    func listCloudLocations(
-      byItem: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CloudLocation, Swift.Error>
 
     /// See `CloudLocationFinderClient.getCloudLocation`.
     func getCloudLocation(
@@ -210,20 +106,10 @@ extension Clients {
       request: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse
 
-    /// See `CloudLocationFinderClient.searchCloudLocations`.
-    func searchCloudLocations(
-      byItem: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CloudLocation, Swift.Error>
-
     /// See `CloudLocationFinderClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudLocationFinderClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CloudLocationFinderClient.getLocation`.
     func getLocation(
@@ -252,13 +138,18 @@ extension Clients.CloudLocationFinderProtocol {
     self.listCloudLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists cloud locations under a given project and location.
+  ///
+  /// @Snippet(path: "CloudLocationFinder_ListCloudLocations")
   public func listCloudLocations(
     byItem: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CloudLocation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCloudLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -311,13 +202,18 @@ extension Clients.CloudLocationFinderProtocol {
     self.searchCloudLocations(byItem: byItem, options: .init())
   }
 
+  /// Searches for cloud locations from a given source location.
+  ///
+  /// @Snippet(path: "CloudLocationFinder_SearchCloudLocations")
   public func searchCloudLocations(
     byItem: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CloudLocation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchCloudLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -353,12 +249,17 @@ extension Clients.CloudLocationFinderProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudLocationFinder_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

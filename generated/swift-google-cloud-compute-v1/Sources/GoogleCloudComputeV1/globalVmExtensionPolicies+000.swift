@@ -58,27 +58,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all VM Extension Policy resources
-    /// available to the specified project.
-    ///
-    /// To prevent failure, it's recommended that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
-    public func aggregatedList(
-      byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Purge scoped resources (zonal policies) from a global VM extension
     /// policy, and then delete the global VM extension policy. Purge of the scoped
     /// resources is a pre-condition of the global VM extension policy deletion.
@@ -203,21 +182,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists global VM extension policies.
-    ///
-    /// @Snippet(path: "globalVmExtensionPolicies_list")
-    public func list(
-      byItem: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates a global VM extension policy.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_update")
@@ -282,68 +246,12 @@
     /// To mock `GlobalVmExtensionPoliciesClient` change your functions to receive
     /// `some GlobalVmExtensionPoliciesProtocol` or `any GlobalVmExtensionPoliciesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol GlobalVmExtensionPoliciesProtocol {
-      /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
-      func aggregatedList(request: GlobalVmExtensionPoliciesClient.AggregatedListRequest)
-        async throws -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse
-
-      /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
-
-      /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
-
-      /// See `GlobalVmExtensionPoliciesClient.delete`.
-      func delete(request: GlobalVmExtensionPoliciesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalVmExtensionPoliciesClient.`get``.
-      func `get`(request: GlobalVmExtensionPoliciesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.GlobalVmExtensionPolicy
-
-      /// See `GlobalVmExtensionPoliciesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        globalVmExtensionPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicy
-
-      /// See `GlobalVmExtensionPoliciesClient.insert`.
-      func insert(request: GlobalVmExtensionPoliciesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalVmExtensionPoliciesClient.list`.
-      func list(request: GlobalVmExtensionPoliciesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList
-
-      /// See `GlobalVmExtensionPoliciesClient.list`.
-      func list(
-        byItem: GlobalVmExtensionPoliciesClient.ListRequest
-      ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
-
-      /// See `GlobalVmExtensionPoliciesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
-
-      /// See `GlobalVmExtensionPoliciesClient.update`.
-      func update(request: GlobalVmExtensionPoliciesClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol GlobalVmExtensionPoliciesProtocol: Sendable {
       /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
       func aggregatedList(
         request: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse
-
-      /// See `GlobalVmExtensionPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
-        options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.delete`.
       func delete(
@@ -364,11 +272,6 @@
       func list(
         request: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList
-
-      /// See `GlobalVmExtensionPoliciesClient.list`.
-      func list(
-        byItem: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error>
 
       /// See `GlobalVmExtensionPoliciesClient.update`.
       func update(
@@ -398,6 +301,13 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all VM Extension Policy resources
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it's recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
     public func aggregatedList(
       byItem: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -405,7 +315,9 @@
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -542,12 +454,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists global VM extension policies.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_list")
     public func list(
       byItem: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

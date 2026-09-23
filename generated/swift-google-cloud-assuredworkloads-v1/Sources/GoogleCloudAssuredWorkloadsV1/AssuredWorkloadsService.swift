@@ -134,21 +134,6 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
     try await self.inner.listWorkloads(request: request, options: options)
   }
 
-  /// Lists Assured Workloads under a CRM Node.
-  ///
-  /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
-  public func listWorkloads(
-    byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workload, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listWorkloads(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -158,23 +143,6 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -195,10 +163,7 @@ extension Clients {
   /// To mock `AssuredWorkloadsServiceClient` change your functions to receive
   /// `some AssuredWorkloadsServiceProtocol` or `any AssuredWorkloadsServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AssuredWorkloadsServiceProtocol {
-    /// See `AssuredWorkloadsServiceClient.createWorkload`.
-    func createWorkload(request: CreateWorkloadRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol AssuredWorkloadsServiceProtocol: Sendable {
     /// See `AssuredWorkloadsServiceClient.createWorkload`.
     func createWorkload(withPolling: CreateWorkloadRequest) async throws -> any GoogleGax
       .PollableOperation<Workload>
@@ -208,66 +173,6 @@ extension Clients {
       parent: Swift.String,
       workload: Workload?,
     ) async throws -> any GoogleGax.PollableOperation<Workload>
-
-    /// See `AssuredWorkloadsServiceClient.updateWorkload`.
-    func updateWorkload(request: UpdateWorkloadRequest) async throws
-      -> GoogleCloudAssuredWorkloadsV1.Workload
-
-    /// See `AssuredWorkloadsServiceClient.updateWorkload`.
-    func updateWorkload(
-      workload: Workload?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload
-
-    /// See `AssuredWorkloadsServiceClient.restrictAllowedResources`.
-    func restrictAllowedResources(request: RestrictAllowedResourcesRequest) async throws
-      -> GoogleCloudAssuredWorkloadsV1.RestrictAllowedResourcesResponse
-
-    /// See `AssuredWorkloadsServiceClient.deleteWorkload`.
-    func deleteWorkload(request: DeleteWorkloadRequest) async throws
-
-    /// See `AssuredWorkloadsServiceClient.deleteWorkload`.
-    func deleteWorkload(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AssuredWorkloadsServiceClient.getWorkload`.
-    func getWorkload(request: GetWorkloadRequest) async throws
-      -> GoogleCloudAssuredWorkloadsV1.Workload
-
-    /// See `AssuredWorkloadsServiceClient.getWorkload`.
-    func getWorkload(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload
-
-    /// See `AssuredWorkloadsServiceClient.listWorkloads`.
-    func listWorkloads(request: ListWorkloadsRequest) async throws
-      -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse
-
-    /// See `AssuredWorkloadsServiceClient.listWorkloads`.
-    func listWorkloads(
-      byItem: ListWorkloadsRequest
-    ) -> any AsyncSequence<Workload, Swift.Error>
-
-    /// See `AssuredWorkloadsServiceClient.listWorkloads`.
-    func listWorkloads(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Workload, Swift.Error>
-
-    /// See `AssuredWorkloadsServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AssuredWorkloadsServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AssuredWorkloadsServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AssuredWorkloadsServiceClient.createWorkload`.
     func createWorkload(
@@ -304,20 +209,10 @@ extension Clients {
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse
 
-    /// See `AssuredWorkloadsServiceClient.listWorkloads`.
-    func listWorkloads(
-      byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Workload, Swift.Error>
-
     /// See `AssuredWorkloadsServiceClient.listOperations`.
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AssuredWorkloadsServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -455,12 +350,17 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     self.listWorkloads(byItem: byItem, options: .init())
   }
 
+  /// Lists Assured Workloads under a CRM Node.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
   public func listWorkloads(
     byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listWorkloads(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -492,12 +392,19 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

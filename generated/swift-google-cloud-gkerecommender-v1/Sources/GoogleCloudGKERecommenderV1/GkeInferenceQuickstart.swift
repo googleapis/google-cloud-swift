@@ -94,31 +94,6 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
     try await self.inner.fetchProfiles(request: request, options: options)
   }
 
-  /// Fetches available profiles. A profile contains performance metrics and
-  /// cost information for a specific model server setup. Profiles can be
-  /// filtered by parameters. If no filters are provided, all profiles are
-  /// returned.
-  ///
-  /// Profiles display a single value per performance metric based on the
-  /// provided performance requirements. If no requirements are given, the
-  /// metrics represent the inflection point. See [Run best practice inference
-  /// with GKE Inference Quickstart
-  /// recipes](https://cloud.google.com/kubernetes-engine/docs/how-to/machine-learning/inference/inference-quickstart#how)
-  /// for details.
-  ///
-  /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
-  public func fetchProfiles(
-    byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Profile, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.fetchProfiles(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Generates an optimized deployment manifest for a given model and model
   /// server, based on the specified accelerator, performance targets, and
   /// configurations. See [Run best practice inference with GKE Inference
@@ -151,36 +126,7 @@ extension Clients {
   /// To mock `GkeInferenceQuickstartClient` change your functions to receive
   /// `some GkeInferenceQuickstartProtocol` or `any GkeInferenceQuickstartProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol GkeInferenceQuickstartProtocol {
-    /// See `GkeInferenceQuickstartClient.fetchModels`.
-    func fetchModels(request: FetchModelsRequest) async throws
-      -> GoogleCloudGKERecommenderV1.FetchModelsResponse
-
-    /// See `GkeInferenceQuickstartClient.fetchModelServers`.
-    func fetchModelServers(request: FetchModelServersRequest) async throws
-      -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
-
-    /// See `GkeInferenceQuickstartClient.fetchModelServerVersions`.
-    func fetchModelServerVersions(request: FetchModelServerVersionsRequest) async throws
-      -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
-
-    /// See `GkeInferenceQuickstartClient.fetchProfiles`.
-    func fetchProfiles(request: FetchProfilesRequest) async throws
-      -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
-
-    /// See `GkeInferenceQuickstartClient.fetchProfiles`.
-    func fetchProfiles(
-      byItem: FetchProfilesRequest
-    ) -> any AsyncSequence<Profile, Swift.Error>
-
-    /// See `GkeInferenceQuickstartClient.generateOptimizedManifest`.
-    func generateOptimizedManifest(request: GenerateOptimizedManifestRequest) async throws
-      -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
-
-    /// See `GkeInferenceQuickstartClient.fetchBenchmarkingData`.
-    func fetchBenchmarkingData(request: FetchBenchmarkingDataRequest) async throws
-      -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
-
+  public protocol GkeInferenceQuickstartProtocol: Sendable {
     /// See `GkeInferenceQuickstartClient.fetchModels`.
     func fetchModels(
       request: FetchModelsRequest, options: GoogleGax.RequestOptions
@@ -200,11 +146,6 @@ extension Clients {
     func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
-
-    /// See `GkeInferenceQuickstartClient.fetchProfiles`.
-    func fetchProfiles(
-      byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Profile, Swift.Error>
 
     /// See `GkeInferenceQuickstartClient.generateOptimizedManifest`.
     func generateOptimizedManifest(
@@ -274,12 +215,27 @@ extension Clients.GkeInferenceQuickstartProtocol {
     self.fetchProfiles(byItem: byItem, options: .init())
   }
 
+  /// Fetches available profiles. A profile contains performance metrics and
+  /// cost information for a specific model server setup. Profiles can be
+  /// filtered by parameters. If no filters are provided, all profiles are
+  /// returned.
+  ///
+  /// Profiles display a single value per performance metric based on the
+  /// provided performance requirements. If no requirements are given, the
+  /// metrics represent the inflection point. See [Run best practice inference
+  /// with GKE Inference Quickstart
+  /// recipes](https://cloud.google.com/kubernetes-engine/docs/how-to/machine-learning/inference/inference-quickstart#how)
+  /// for details.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
   public func fetchProfiles(
     byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Profile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.fetchProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

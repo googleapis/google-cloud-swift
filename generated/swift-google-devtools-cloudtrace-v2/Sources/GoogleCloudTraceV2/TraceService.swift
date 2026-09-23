@@ -68,19 +68,7 @@ extension Clients {
   /// To mock `TraceServiceClient` change your functions to receive
   /// `some TraceServiceProtocol` or `any TraceServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TraceServiceProtocol {
-    /// See `TraceServiceClient.batchWriteSpans`.
-    func batchWriteSpans(request: BatchWriteSpansRequest) async throws
-
-    /// See `TraceServiceClient.batchWriteSpans`.
-    func batchWriteSpans(
-      name: Swift.String,
-      spans: [Span],
-    ) async throws
-
-    /// See `TraceServiceClient.createSpan`.
-    func createSpan(request: Span) async throws -> GoogleCloudTraceV2.Span
-
+  public protocol TraceServiceProtocol: Sendable {
     /// See `TraceServiceClient.batchWriteSpans`.
     func batchWriteSpans(
       request: BatchWriteSpansRequest, options: GoogleGax.RequestOptions

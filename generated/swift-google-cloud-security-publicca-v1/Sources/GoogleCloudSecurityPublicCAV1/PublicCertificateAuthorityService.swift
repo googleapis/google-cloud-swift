@@ -61,17 +61,7 @@ extension Clients {
   /// To mock `PublicCertificateAuthorityServiceClient` change your functions to receive
   /// `some PublicCertificateAuthorityServiceProtocol` or `any PublicCertificateAuthorityServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PublicCertificateAuthorityServiceProtocol {
-    /// See `PublicCertificateAuthorityServiceClient.createExternalAccountKey`.
-    func createExternalAccountKey(request: CreateExternalAccountKeyRequest) async throws
-      -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
-
-    /// See `PublicCertificateAuthorityServiceClient.createExternalAccountKey`.
-    func createExternalAccountKey(
-      parent: Swift.String,
-      externalAccountKey: ExternalAccountKey?,
-    ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
-
+  public protocol PublicCertificateAuthorityServiceProtocol: Sendable {
     /// See `PublicCertificateAuthorityServiceClient.createExternalAccountKey`.
     func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleGax.RequestOptions

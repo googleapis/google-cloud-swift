@@ -54,20 +54,6 @@ public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsPro
   ) async throws -> ManagedZoneOperationsListResponse {
     try await self.inner.list(request: request, options: options)
   }
-
-  /// Enumerates Operations for the given ManagedZone.
-  ///
-  /// @Snippet(path: "managedZoneOperations_list")
-  public func list(
-    byItem: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Operation, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ManagedZoneOperationsListResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.list(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -76,32 +62,7 @@ extension Clients {
   /// To mock `ManagedZoneOperationsClient` change your functions to receive
   /// `some ManagedZoneOperationsProtocol` or `any ManagedZoneOperationsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ManagedZoneOperationsProtocol {
-    /// See `ManagedZoneOperationsClient.`get``.
-    func `get`(request: ManagedZoneOperationsClient.GetRequest) async throws -> Operation
-
-    /// See `ManagedZoneOperationsClient.`get``.
-    func `get`(
-      project: Swift.String,
-      managedZone: Swift.String,
-      operation: Swift.String,
-    ) async throws -> Operation
-
-    /// See `ManagedZoneOperationsClient.list`.
-    func list(request: ManagedZoneOperationsClient.ListRequest) async throws
-      -> ManagedZoneOperationsListResponse
-
-    /// See `ManagedZoneOperationsClient.list`.
-    func list(
-      byItem: ManagedZoneOperationsClient.ListRequest
-    ) -> any AsyncSequence<Operation, Swift.Error>
-
-    /// See `ManagedZoneOperationsClient.list`.
-    func list(
-      project: Swift.String,
-      managedZone: Swift.String,
-    ) -> any AsyncSequence<Operation, Swift.Error>
-
+  public protocol ManagedZoneOperationsProtocol: Sendable {
     /// See `ManagedZoneOperationsClient.`get``.
     func `get`(
       request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -111,11 +72,6 @@ extension Clients {
     func list(
       request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZoneOperationsListResponse
-
-    /// See `ManagedZoneOperationsClient.list`.
-    func list(
-      byItem: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error>
   }
 }
 
@@ -162,11 +118,16 @@ extension Clients.ManagedZoneOperationsProtocol {
     self.list(byItem: byItem, options: .init())
   }
 
+  /// Enumerates Operations for the given ManagedZone.
+  ///
+  /// @Snippet(path: "managedZoneOperations_list")
   public func list(
     byItem: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Operation, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ManagedZoneOperationsListResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.list(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -74,22 +74,6 @@
       try await self.inner.listTrainingPipelines(request: request, options: options)
     }
 
-    /// Lists TrainingPipelines in a Location.
-    ///
-    /// @Snippet(path: "PipelineService_ListTrainingPipelines")
-    public func listTrainingPipelines(
-      byItem: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TrainingPipeline, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTrainingPipelines(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a TrainingPipeline.
     ///
     /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
@@ -177,21 +161,6 @@
       request: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse {
       try await self.inner.listPipelineJobs(request: request, options: options)
-    }
-
-    /// Lists PipelineJobs in a Location.
-    ///
-    /// @Snippet(path: "PipelineService_ListPipelineJobs")
-    public func listPipelineJobs(
-      byItem: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PipelineJob, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listPipelineJobs(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Deletes a PipelineJob.
@@ -354,21 +323,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "PipelineService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "PipelineService_GetLocation")
@@ -431,23 +385,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "PipelineService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "PipelineService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -495,44 +432,7 @@
     /// To mock `PipelineServiceClient` change your functions to receive
     /// `some PipelineServiceProtocol` or `any PipelineServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol PipelineServiceProtocol {
-      /// See `PipelineServiceClient.createTrainingPipeline`.
-      func createTrainingPipeline(request: CreateTrainingPipelineRequest) async throws
-        -> GoogleCloudAIPlatformV1.TrainingPipeline
-
-      /// See `PipelineServiceClient.createTrainingPipeline`.
-      func createTrainingPipeline(
-        parent: Swift.String,
-        trainingPipeline: TrainingPipeline?,
-      ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline
-
-      /// See `PipelineServiceClient.getTrainingPipeline`.
-      func getTrainingPipeline(request: GetTrainingPipelineRequest) async throws
-        -> GoogleCloudAIPlatformV1.TrainingPipeline
-
-      /// See `PipelineServiceClient.getTrainingPipeline`.
-      func getTrainingPipeline(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline
-
-      /// See `PipelineServiceClient.listTrainingPipelines`.
-      func listTrainingPipelines(request: ListTrainingPipelinesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
-
-      /// See `PipelineServiceClient.listTrainingPipelines`.
-      func listTrainingPipelines(
-        byItem: ListTrainingPipelinesRequest
-      ) -> any AsyncSequence<TrainingPipeline, Swift.Error>
-
-      /// See `PipelineServiceClient.listTrainingPipelines`.
-      func listTrainingPipelines(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TrainingPipeline, Swift.Error>
-
-      /// See `PipelineServiceClient.deleteTrainingPipeline`.
-      func deleteTrainingPipeline(request: DeleteTrainingPipelineRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol PipelineServiceProtocol: Sendable {
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(withPolling: DeleteTrainingPipelineRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
@@ -541,52 +441,6 @@
       func deleteTrainingPipeline(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PipelineServiceClient.cancelTrainingPipeline`.
-      func cancelTrainingPipeline(request: CancelTrainingPipelineRequest) async throws
-
-      /// See `PipelineServiceClient.cancelTrainingPipeline`.
-      func cancelTrainingPipeline(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PipelineServiceClient.createPipelineJob`.
-      func createPipelineJob(request: CreatePipelineJobRequest) async throws
-        -> GoogleCloudAIPlatformV1.PipelineJob
-
-      /// See `PipelineServiceClient.createPipelineJob`.
-      func createPipelineJob(
-        parent: Swift.String,
-        pipelineJob: PipelineJob?,
-        pipelineJobId: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.PipelineJob
-
-      /// See `PipelineServiceClient.getPipelineJob`.
-      func getPipelineJob(request: GetPipelineJobRequest) async throws
-        -> GoogleCloudAIPlatformV1.PipelineJob
-
-      /// See `PipelineServiceClient.getPipelineJob`.
-      func getPipelineJob(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.PipelineJob
-
-      /// See `PipelineServiceClient.listPipelineJobs`.
-      func listPipelineJobs(request: ListPipelineJobsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse
-
-      /// See `PipelineServiceClient.listPipelineJobs`.
-      func listPipelineJobs(
-        byItem: ListPipelineJobsRequest
-      ) -> any AsyncSequence<PipelineJob, Swift.Error>
-
-      /// See `PipelineServiceClient.listPipelineJobs`.
-      func listPipelineJobs(
-        parent: Swift.String,
-      ) -> any AsyncSequence<PipelineJob, Swift.Error>
-
-      /// See `PipelineServiceClient.deletePipelineJob`.
-      func deletePipelineJob(request: DeletePipelineJobRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(withPolling: DeletePipelineJobRequest) async throws -> any GoogleGax
@@ -598,10 +452,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
-      func batchDeletePipelineJobs(request: BatchDeletePipelineJobsRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `PipelineServiceClient.batchDeletePipelineJobs`.
       func batchDeletePipelineJobs(withPolling: BatchDeletePipelineJobsRequest) async throws
         -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
 
@@ -610,18 +460,6 @@
         parent: Swift.String,
         names: [Swift.String],
       ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
-
-      /// See `PipelineServiceClient.cancelPipelineJob`.
-      func cancelPipelineJob(request: CancelPipelineJobRequest) async throws
-
-      /// See `PipelineServiceClient.cancelPipelineJob`.
-      func cancelPipelineJob(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PipelineServiceClient.batchCancelPipelineJobs`.
-      func batchCancelPipelineJobs(request: BatchCancelPipelineJobsRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.batchCancelPipelineJobs`.
       func batchCancelPipelineJobs(withPolling: BatchCancelPipelineJobsRequest) async throws
@@ -632,64 +470,6 @@
         parent: Swift.String,
         names: [Swift.String],
       ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
-
-      /// See `PipelineServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `PipelineServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `PipelineServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `PipelineServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `PipelineServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `PipelineServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `PipelineServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `PipelineServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `PipelineServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `PipelineServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `PipelineServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PipelineServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `PipelineServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PipelineServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.createTrainingPipeline`.
       func createTrainingPipeline(
@@ -705,11 +485,6 @@
       func listTrainingPipelines(
         request: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
-
-      /// See `PipelineServiceClient.listTrainingPipelines`.
-      func listTrainingPipelines(
-        byItem: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TrainingPipeline, Swift.Error>
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(
@@ -740,11 +515,6 @@
       func listPipelineJobs(
         request: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse
-
-      /// See `PipelineServiceClient.listPipelineJobs`.
-      func listPipelineJobs(
-        byItem: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<PipelineJob, Swift.Error>
 
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(
@@ -786,11 +556,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `PipelineServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `PipelineServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -815,11 +580,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `PipelineServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PipelineServiceClient.deleteOperation`.
       func deleteOperation(
@@ -902,13 +662,18 @@
       self.listTrainingPipelines(byItem: byItem, options: .init())
     }
 
+    /// Lists TrainingPipelines in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListTrainingPipelines")
     public func listTrainingPipelines(
       byItem: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TrainingPipeline, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTrainingPipelines(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1042,12 +807,17 @@
       self.listPipelineJobs(byItem: byItem, options: .init())
     }
 
+    /// Lists PipelineJobs in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListPipelineJobs")
     public func listPipelineJobs(
       byItem: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<PipelineJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listPipelineJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1217,12 +987,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PipelineService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1293,12 +1068,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

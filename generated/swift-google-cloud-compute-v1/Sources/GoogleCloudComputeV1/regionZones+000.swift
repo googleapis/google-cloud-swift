@@ -46,21 +46,6 @@
     ) async throws -> GoogleCloudComputeV1.ZoneList {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Retrieves the list of Zone resources under the specific region available to
-    /// the specified project.
-    ///
-    /// @Snippet(path: "regionZones_list")
-    public func list(
-      byItem: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Zone, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ZoneList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -69,31 +54,11 @@
     /// To mock `RegionZonesClient` change your functions to receive
     /// `some RegionZonesProtocol` or `any RegionZonesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionZonesProtocol {
-      /// See `RegionZonesClient.list`.
-      func list(request: RegionZonesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.ZoneList
-
-      /// See `RegionZonesClient.list`.
-      func list(
-        byItem: RegionZonesClient.ListRequest
-      ) -> any AsyncSequence<Zone, Swift.Error>
-
-      /// See `RegionZonesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<Zone, Swift.Error>
-
+    public protocol RegionZonesProtocol: Sendable {
       /// See `RegionZonesClient.list`.
       func list(
         request: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ZoneList
-
-      /// See `RegionZonesClient.list`.
-      func list(
-        byItem: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Zone, Swift.Error>
     }
   }
 
@@ -117,11 +82,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of Zone resources under the specific region available to
+    /// the specified project.
+    ///
+    /// @Snippet(path: "regionZones_list")
     public func list(
       byItem: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Zone, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ZoneList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

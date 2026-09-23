@@ -115,21 +115,7 @@
     /// To mock `InstanceSettingsClient` change your functions to receive
     /// `some InstanceSettingsProtocol` or `any InstanceSettingsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InstanceSettingsProtocol {
-      /// See `InstanceSettingsClient.`get``.
-      func `get`(request: InstanceSettingsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InstanceSettings
-
-      /// See `InstanceSettingsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstanceSettings
-
-      /// See `InstanceSettingsClient.patch`.
-      func patch(request: InstanceSettingsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol InstanceSettingsProtocol: Sendable {
       /// See `InstanceSettingsClient.`get``.
       func `get`(
         request: InstanceSettingsClient.GetRequest, options: GoogleGax.RequestOptions

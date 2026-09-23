@@ -186,20 +186,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of Interconnects available to the specified project.
-    ///
-    /// @Snippet(path: "interconnects_list")
-    public func list(
-      byItem: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Interconnect, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the specified Interconnect with the data included in the request.
     /// This method supportsPATCH
     /// semantics and uses theJSON merge
@@ -322,67 +308,7 @@
     /// To mock `InterconnectsClient` change your functions to receive
     /// `some InterconnectsProtocol` or `any InterconnectsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InterconnectsProtocol {
-      /// See `InterconnectsClient.delete`.
-      func delete(request: InterconnectsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectsClient.`get``.
-      func `get`(request: InterconnectsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Interconnect
-
-      /// See `InterconnectsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        interconnect: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Interconnect
-
-      /// See `InterconnectsClient.getDiagnostics`.
-      func getDiagnostics(request: InterconnectsClient.GetDiagnosticsRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectsGetDiagnosticsResponse
-
-      /// See `InterconnectsClient.getDiagnostics`.
-      func getDiagnostics(
-        project: Swift.String,
-        interconnect: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectsGetDiagnosticsResponse
-
-      /// See `InterconnectsClient.getMacsecConfig`.
-      func getMacsecConfig(request: InterconnectsClient.GetMacsecConfigRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectsGetMacsecConfigResponse
-
-      /// See `InterconnectsClient.getMacsecConfig`.
-      func getMacsecConfig(
-        project: Swift.String,
-        interconnect: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectsGetMacsecConfigResponse
-
-      /// See `InterconnectsClient.insert`.
-      func insert(request: InterconnectsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectsClient.list`.
-      func list(request: InterconnectsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectList
-
-      /// See `InterconnectsClient.list`.
-      func list(
-        byItem: InterconnectsClient.ListRequest
-      ) -> any AsyncSequence<Interconnect, Swift.Error>
-
-      /// See `InterconnectsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Interconnect, Swift.Error>
-
-      /// See `InterconnectsClient.patch`.
-      func patch(request: InterconnectsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectsClient.setLabels`.
-      func setLabels(request: InterconnectsClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol InterconnectsProtocol: Sendable {
       /// See `InterconnectsClient.delete`.
       func delete(
         request: InterconnectsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -412,11 +338,6 @@
       func list(
         request: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectList
-
-      /// See `InterconnectsClient.list`.
-      func list(
-        byItem: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Interconnect, Swift.Error>
 
       /// See `InterconnectsClient.patch`.
       func patch(
@@ -599,11 +520,16 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of Interconnects available to the specified project.
+    ///
+    /// @Snippet(path: "interconnects_list")
     public func list(
       byItem: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Interconnect, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

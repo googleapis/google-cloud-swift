@@ -74,29 +74,6 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
-  /// Lists all Redis instances owned by a project in either the specified
-  /// location (region) or all locations.
-  ///
-  /// The location should have the following format:
-  ///
-  /// * `projects/{project_id}/locations/{location_id}`
-  ///
-  /// If `location_id` is specified as `-` (wildcard), then all regions
-  /// available to the project are queried, and the results are aggregated.
-  ///
-  /// @Snippet(path: "CloudRedis_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRedisV1.ListInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the details of a specific Redis instance.
   ///
   /// @Snippet(path: "CloudRedis_GetInstance")
@@ -468,21 +445,6 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "CloudRedis_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudRedis_GetLocation")
@@ -501,23 +463,6 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "CloudRedis_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -560,41 +505,7 @@ extension Clients {
   /// To mock `CloudRedisClient` change your functions to receive
   /// `some CloudRedisProtocol` or `any CloudRedisProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudRedisProtocol {
-    /// See `CloudRedisClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudRedisV1.ListInstancesResponse
-
-    /// See `CloudRedisClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `CloudRedisClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `CloudRedisClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudRedisV1.Instance
-
-    /// See `CloudRedisClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisV1.Instance
-
-    /// See `CloudRedisClient.getInstanceAuthString`.
-    func getInstanceAuthString(request: GetInstanceAuthStringRequest) async throws
-      -> GoogleCloudRedisV1.InstanceAuthString
-
-    /// See `CloudRedisClient.getInstanceAuthString`.
-    func getInstanceAuthString(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisV1.InstanceAuthString
-
-    /// See `CloudRedisClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol CloudRedisProtocol: Sendable {
     /// See `CloudRedisClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
@@ -607,9 +518,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudRedisClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudRedisClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -618,10 +526,6 @@ extension Clients {
       updateMask: GoogleWKT.FieldMask?,
       instance: Instance?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `CloudRedisClient.upgradeInstance`.
-    func upgradeInstance(request: UpgradeInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudRedisClient.upgradeInstance`.
     func upgradeInstance(withPolling: UpgradeInstanceRequest) async throws -> any GoogleGax
@@ -634,9 +538,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudRedisClient.importInstance`.
-    func importInstance(request: ImportInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudRedisClient.importInstance`.
     func importInstance(withPolling: ImportInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -645,9 +546,6 @@ extension Clients {
       name: Swift.String,
       inputConfig: InputConfig?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `CloudRedisClient.exportInstance`.
-    func exportInstance(request: ExportInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudRedisClient.exportInstance`.
     func exportInstance(withPolling: ExportInstanceRequest) async throws -> any GoogleGax
@@ -660,10 +558,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudRedisClient.failoverInstance`.
-    func failoverInstance(request: FailoverInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CloudRedisClient.failoverInstance`.
     func failoverInstance(withPolling: FailoverInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -674,9 +568,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudRedisClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudRedisClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -684,10 +575,6 @@ extension Clients {
     func deleteInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CloudRedisClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudRedisClient.rescheduleMaintenance`.
     func rescheduleMaintenance(withPolling: RescheduleMaintenanceRequest) async throws
@@ -700,59 +587,10 @@ extension Clients {
       scheduleTime: GoogleWKT.Timestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
-    /// See `CloudRedisClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudRedisClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `CloudRedisClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `CloudRedisClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CloudRedisClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CloudRedisClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CloudRedisClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `CloudRedisClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudRedisClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `CloudRedisClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `CloudRedisClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisV1.ListInstancesResponse
-
-    /// See `CloudRedisClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `CloudRedisClient.getInstance`.
     func getInstance(
@@ -849,11 +687,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `CloudRedisClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `CloudRedisClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -863,11 +696,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CloudRedisClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudRedisClient.deleteOperation`.
     func deleteOperation(
@@ -901,12 +729,25 @@ extension Clients.CloudRedisProtocol {
     self.listInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists all Redis instances owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedis_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRedisV1.ListInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1292,12 +1133,17 @@ extension Clients.CloudRedisProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudRedis_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1332,12 +1178,19 @@ extension Clients.CloudRedisProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

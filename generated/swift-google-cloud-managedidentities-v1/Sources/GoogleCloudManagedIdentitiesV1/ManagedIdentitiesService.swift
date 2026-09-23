@@ -128,21 +128,6 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
     try await self.inner.listDomains(request: request, options: options)
   }
 
-  /// Lists domains in a project.
-  ///
-  /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
-  public func listDomains(
-    byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Domain, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDomains(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_GetDomain")
@@ -374,23 +359,6 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ManagedIdentitiesService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -427,11 +395,7 @@ extension Clients {
   /// To mock `ManagedIdentitiesServiceClient` change your functions to receive
   /// `some ManagedIdentitiesServiceProtocol` or `any ManagedIdentitiesServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ManagedIdentitiesServiceProtocol {
-    /// See `ManagedIdentitiesServiceClient.createMicrosoftAdDomain`.
-    func createMicrosoftAdDomain(request: CreateMicrosoftAdDomainRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol ManagedIdentitiesServiceProtocol: Sendable {
     /// See `ManagedIdentitiesServiceClient.createMicrosoftAdDomain`.
     func createMicrosoftAdDomain(withPolling: CreateMicrosoftAdDomainRequest) async throws
       -> any GoogleGax.PollableOperation<Domain>
@@ -442,40 +406,6 @@ extension Clients {
       domainName: Swift.String,
       domain: Domain?,
     ) async throws -> any GoogleGax.PollableOperation<Domain>
-
-    /// See `ManagedIdentitiesServiceClient.resetAdminPassword`.
-    func resetAdminPassword(request: ResetAdminPasswordRequest) async throws
-      -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse
-
-    /// See `ManagedIdentitiesServiceClient.resetAdminPassword`.
-    func resetAdminPassword(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse
-
-    /// See `ManagedIdentitiesServiceClient.listDomains`.
-    func listDomains(request: ListDomainsRequest) async throws
-      -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse
-
-    /// See `ManagedIdentitiesServiceClient.listDomains`.
-    func listDomains(
-      byItem: ListDomainsRequest
-    ) -> any AsyncSequence<Domain, Swift.Error>
-
-    /// See `ManagedIdentitiesServiceClient.listDomains`.
-    func listDomains(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Domain, Swift.Error>
-
-    /// See `ManagedIdentitiesServiceClient.getDomain`.
-    func getDomain(request: GetDomainRequest) async throws -> GoogleCloudManagedIdentitiesV1.Domain
-
-    /// See `ManagedIdentitiesServiceClient.getDomain`.
-    func getDomain(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedIdentitiesV1.Domain
-
-    /// See `ManagedIdentitiesServiceClient.updateDomain`.
-    func updateDomain(request: UpdateDomainRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ManagedIdentitiesServiceClient.updateDomain`.
     func updateDomain(withPolling: UpdateDomainRequest) async throws -> any GoogleGax
@@ -488,9 +418,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Domain>
 
     /// See `ManagedIdentitiesServiceClient.deleteDomain`.
-    func deleteDomain(request: DeleteDomainRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ManagedIdentitiesServiceClient.deleteDomain`.
     func deleteDomain(withPolling: DeleteDomainRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -498,9 +425,6 @@ extension Clients {
     func deleteDomain(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ManagedIdentitiesServiceClient.attachTrust`.
-    func attachTrust(request: AttachTrustRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ManagedIdentitiesServiceClient.attachTrust`.
     func attachTrust(withPolling: AttachTrustRequest) async throws -> any GoogleGax
@@ -511,10 +435,6 @@ extension Clients {
       name: Swift.String,
       trust: Trust?,
     ) async throws -> any GoogleGax.PollableOperation<Domain>
-
-    /// See `ManagedIdentitiesServiceClient.reconfigureTrust`.
-    func reconfigureTrust(request: ReconfigureTrustRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ManagedIdentitiesServiceClient.reconfigureTrust`.
     func reconfigureTrust(withPolling: ReconfigureTrustRequest) async throws -> any GoogleGax
@@ -528,9 +448,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Domain>
 
     /// See `ManagedIdentitiesServiceClient.detachTrust`.
-    func detachTrust(request: DetachTrustRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ManagedIdentitiesServiceClient.detachTrust`.
     func detachTrust(withPolling: DetachTrustRequest) async throws -> any GoogleGax
       .PollableOperation<Domain>
 
@@ -541,9 +458,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Domain>
 
     /// See `ManagedIdentitiesServiceClient.validateTrust`.
-    func validateTrust(request: ValidateTrustRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ManagedIdentitiesServiceClient.validateTrust`.
     func validateTrust(withPolling: ValidateTrustRequest) async throws -> any GoogleGax
       .PollableOperation<Domain>
 
@@ -552,37 +466,6 @@ extension Clients {
       name: Swift.String,
       trust: Trust?,
     ) async throws -> any GoogleGax.PollableOperation<Domain>
-
-    /// See `ManagedIdentitiesServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ManagedIdentitiesServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ManagedIdentitiesServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ManagedIdentitiesServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ManagedIdentitiesServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedIdentitiesServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ManagedIdentitiesServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `ManagedIdentitiesServiceClient.createMicrosoftAdDomain`.
     func createMicrosoftAdDomain(
@@ -603,11 +486,6 @@ extension Clients {
     func listDomains(
       request: ListDomainsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse
-
-    /// See `ManagedIdentitiesServiceClient.listDomains`.
-    func listDomains(
-      byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Domain, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.getDomain`.
     func getDomain(
@@ -678,11 +556,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ManagedIdentitiesServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ManagedIdentitiesServiceClient.deleteOperation`.
     func deleteOperation(
@@ -778,12 +651,17 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     self.listDomains(byItem: byItem, options: .init())
   }
 
+  /// Lists domains in a project.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
   public func listDomains(
     byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Domain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDomains(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1064,12 +942,19 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

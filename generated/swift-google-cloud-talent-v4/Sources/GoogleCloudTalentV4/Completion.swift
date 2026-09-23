@@ -65,11 +65,7 @@ extension Clients {
   /// To mock `CompletionClient` change your functions to receive
   /// `some CompletionProtocol` or `any CompletionProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CompletionProtocol {
-    /// See `CompletionClient.completeQuery`.
-    func completeQuery(request: CompleteQueryRequest) async throws
-      -> GoogleCloudTalentV4.CompleteQueryResponse
-
+  public protocol CompletionProtocol: Sendable {
     /// See `CompletionClient.completeQuery`.
     func completeQuery(
       request: CompleteQueryRequest, options: GoogleGax.RequestOptions

@@ -208,28 +208,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of all of the instances in your project
-    /// across all regions and zones.
-    ///
-    /// The performance of this method degrades when a filter is specified on a
-    /// project that has a very large number of instances.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "instances_aggregatedList")
-    public func aggregatedList(
-      byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Attaches an existing Disk resource to an instance. You must first
     /// create the disk before you can attach it. It is not possible to create
     /// and attach a disk at the same time. For more information, readAdding a
@@ -669,21 +647,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of instances contained within
-    /// the specified zone.
-    ///
-    /// @Snippet(path: "instances_list")
-    public func list(
-      byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves a list of resources that refer to the VM instance specified in
     /// the request. For example, if the VM instance is part of a managed or
     /// unmanaged instance group, the referrers list includes the instance group.
@@ -695,25 +658,6 @@
       request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceListReferrers {
       try await self.inner.listReferrers(request: request, options: options)
-    }
-
-    /// Retrieves a list of resources that refer to the VM instance specified in
-    /// the request. For example, if the VM instance is part of a managed or
-    /// unmanaged instance group, the referrers list includes the instance group.
-    /// For more information, readViewing
-    /// referrers to VM instances.
-    ///
-    /// @Snippet(path: "instances_listReferrers")
-    public func listReferrers(
-      byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Reference, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listReferrers(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Perform a manual maintenance on the instance.
@@ -2251,317 +2195,7 @@
     /// To mock `InstancesClient` change your functions to receive
     /// `some InstancesProtocol` or `any InstancesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InstancesProtocol {
-      /// See `InstancesClient.addAccessConfig`.
-      func addAccessConfig(request: InstancesClient.AddAccessConfigRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.addNetworkInterface`.
-      func addNetworkInterface(request: InstancesClient.AddNetworkInterfaceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.addResourcePolicies`.
-      func addResourcePolicies(request: InstancesClient.AddResourcePoliciesRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.aggregatedList`.
-      func aggregatedList(request: InstancesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.InstanceAggregatedList
-
-      /// See `InstancesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: InstancesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
-
-      /// See `InstancesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
-
-      /// See `InstancesClient.attachDisk`.
-      func attachDisk(request: InstancesClient.AttachDiskRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.bulkInsert`.
-      func bulkInsert(request: InstancesClient.BulkInsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.delete`.
-      func delete(request: InstancesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.deleteAccessConfig`.
-      func deleteAccessConfig(request: InstancesClient.DeleteAccessConfigRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.deleteNetworkInterface`.
-      func deleteNetworkInterface(request: InstancesClient.DeleteNetworkInterfaceRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.detachDisk`.
-      func detachDisk(request: InstancesClient.DetachDiskRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.`get``.
-      func `get`(request: InstancesClient.GetRequest) async throws -> GoogleCloudComputeV1.Instance
-
-      /// See `InstancesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Instance
-
-      /// See `InstancesClient.getEffectiveFirewalls`.
-      func getEffectiveFirewalls(request: InstancesClient.GetEffectiveFirewallsRequest) async throws
-        -> GoogleCloudComputeV1.InstancesGetEffectiveFirewallsResponse
-
-      /// See `InstancesClient.getEffectiveFirewalls`.
-      func getEffectiveFirewalls(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-        networkInterface: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstancesGetEffectiveFirewallsResponse
-
-      /// See `InstancesClient.getGuestAttributes`.
-      func getGuestAttributes(request: InstancesClient.GetGuestAttributesRequest) async throws
-        -> GoogleCloudComputeV1.GuestAttributes
-
-      /// See `InstancesClient.getGuestAttributes`.
-      func getGuestAttributes(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.GuestAttributes
-
-      /// See `InstancesClient.getIamPolicy`.
-      func getIamPolicy(request: InstancesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InstancesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InstancesClient.getScreenshot`.
-      func getScreenshot(request: InstancesClient.GetScreenshotRequest) async throws
-        -> GoogleCloudComputeV1.Screenshot
-
-      /// See `InstancesClient.getScreenshot`.
-      func getScreenshot(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Screenshot
-
-      /// See `InstancesClient.getSerialPortOutput`.
-      func getSerialPortOutput(request: InstancesClient.GetSerialPortOutputRequest) async throws
-        -> GoogleCloudComputeV1.SerialPortOutput
-
-      /// See `InstancesClient.getSerialPortOutput`.
-      func getSerialPortOutput(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SerialPortOutput
-
-      /// See `InstancesClient.getShieldedInstanceIdentity`.
-      func getShieldedInstanceIdentity(request: InstancesClient.GetShieldedInstanceIdentityRequest)
-        async throws -> GoogleCloudComputeV1.ShieldedInstanceIdentity
-
-      /// See `InstancesClient.getShieldedInstanceIdentity`.
-      func getShieldedInstanceIdentity(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.ShieldedInstanceIdentity
-
-      /// See `InstancesClient.insert`.
-      func insert(request: InstancesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.list`.
-      func list(request: InstancesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InstanceList
-
-      /// See `InstancesClient.list`.
-      func list(
-        byItem: InstancesClient.ListRequest
-      ) -> any AsyncSequence<Instance, Swift.Error>
-
-      /// See `InstancesClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<Instance, Swift.Error>
-
-      /// See `InstancesClient.listReferrers`.
-      func listReferrers(request: InstancesClient.ListReferrersRequest) async throws
-        -> GoogleCloudComputeV1.InstanceListReferrers
-
-      /// See `InstancesClient.listReferrers`.
-      func listReferrers(
-        byItem: InstancesClient.ListReferrersRequest
-      ) -> any AsyncSequence<Reference, Swift.Error>
-
-      /// See `InstancesClient.listReferrers`.
-      func listReferrers(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) -> any AsyncSequence<Reference, Swift.Error>
-
-      /// See `InstancesClient.performMaintenance`.
-      func performMaintenance(request: InstancesClient.PerformMaintenanceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.removeResourcePolicies`.
-      func removeResourcePolicies(request: InstancesClient.RemoveResourcePoliciesRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.reportHostAsFaulty`.
-      func reportHostAsFaulty(request: InstancesClient.ReportHostAsFaultyRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.reset`.
-      func reset(request: InstancesClient.ResetRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.resume`.
-      func resume(request: InstancesClient.ResumeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.sendDiagnosticInterrupt`.
-      func sendDiagnosticInterrupt(request: InstancesClient.SendDiagnosticInterruptRequest)
-        async throws
-
-      /// See `InstancesClient.sendDiagnosticInterrupt`.
-      func sendDiagnosticInterrupt(
-        project: Swift.String,
-        zone: Swift.String,
-        instance: Swift.String,
-      ) async throws
-
-      /// See `InstancesClient.setDeletionProtection`.
-      func setDeletionProtection(request: InstancesClient.SetDeletionProtectionRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setDiskAutoDelete`.
-      func setDiskAutoDelete(request: InstancesClient.SetDiskAutoDeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setIamPolicy`.
-      func setIamPolicy(request: InstancesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InstancesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: ZoneSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InstancesClient.setLabels`.
-      func setLabels(request: InstancesClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setMachineResources`.
-      func setMachineResources(request: InstancesClient.SetMachineResourcesRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setMachineType`.
-      func setMachineType(request: InstancesClient.SetMachineTypeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setMetadata`.
-      func setMetadata(request: InstancesClient.SetMetadataRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setMinCpuPlatform`.
-      func setMinCpuPlatform(request: InstancesClient.SetMinCpuPlatformRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setName`.
-      func setName(request: InstancesClient.SetNameRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setScheduling`.
-      func setScheduling(request: InstancesClient.SetSchedulingRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setSecurityPolicy`.
-      func setSecurityPolicy(request: InstancesClient.SetSecurityPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setServiceAccount`.
-      func setServiceAccount(request: InstancesClient.SetServiceAccountRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setShieldedInstanceIntegrityPolicy`.
-      func setShieldedInstanceIntegrityPolicy(
-        request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest
-      ) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.setTags`.
-      func setTags(request: InstancesClient.SetTagsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.simulateMaintenanceEvent`.
-      func simulateMaintenanceEvent(request: InstancesClient.SimulateMaintenanceEventRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.start`.
-      func start(request: InstancesClient.StartRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.startWithEncryptionKey`.
-      func startWithEncryptionKey(request: InstancesClient.StartWithEncryptionKeyRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.stop`.
-      func stop(request: InstancesClient.StopRequest) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.suspend`.
-      func suspend(request: InstancesClient.SuspendRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.testIamPermissions`.
-      func testIamPermissions(request: InstancesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `InstancesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `InstancesClient.update`.
-      func update(request: InstancesClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.updateAccessConfig`.
-      func updateAccessConfig(request: InstancesClient.UpdateAccessConfigRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.updateDisplayDevice`.
-      func updateDisplayDevice(request: InstancesClient.UpdateDisplayDeviceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.updateNetworkInterface`.
-      func updateNetworkInterface(request: InstancesClient.UpdateNetworkInterfaceRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `InstancesClient.updateShieldedInstanceConfig`.
-      func updateShieldedInstanceConfig(
-        request: InstancesClient.UpdateShieldedInstanceConfigRequest
-      ) async throws -> GoogleCloudComputeV1.Operation
-
+    public protocol InstancesProtocol: Sendable {
       /// See `InstancesClient.addAccessConfig`.
       func addAccessConfig(
         request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
@@ -2581,11 +2215,6 @@
       func aggregatedList(
         request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceAggregatedList
-
-      /// See `InstancesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error>
 
       /// See `InstancesClient.attachDisk`.
       func attachDisk(
@@ -2663,20 +2292,10 @@
         request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceList
 
-      /// See `InstancesClient.list`.
-      func list(
-        byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Instance, Swift.Error>
-
       /// See `InstancesClient.listReferrers`.
       func listReferrers(
         request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceListReferrers
-
-      /// See `InstancesClient.listReferrers`.
-      func listReferrers(
-        byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Reference, Swift.Error>
 
       /// See `InstancesClient.performMaintenance`.
       func performMaintenance(
@@ -2991,12 +2610,24 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of all of the instances in your project
+    /// across all regions and zones.
+    ///
+    /// The performance of this method degrades when a filter is specified on a
+    /// project that has a very large number of instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instances_aggregatedList")
     public func aggregatedList(
       byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -3509,11 +3140,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of instances contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "instances_list")
     public func list(
       byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Instance, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -3547,12 +3184,21 @@
       self.listReferrers(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of resources that refer to the VM instance specified in
+    /// the request. For example, if the VM instance is part of a managed or
+    /// unmanaged instance group, the referrers list includes the instance group.
+    /// For more information, readViewing
+    /// referrers to VM instances.
+    ///
+    /// @Snippet(path: "instances_listReferrers")
     public func listReferrers(
       byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Reference, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listReferrers(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

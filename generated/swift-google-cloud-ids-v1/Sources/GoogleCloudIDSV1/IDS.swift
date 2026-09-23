@@ -50,20 +50,6 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
     try await self.inner.listEndpoints(request: request, options: options)
   }
 
-  /// Lists Endpoints in a given project and location.
-  ///
-  /// @Snippet(path: "IDS_ListEndpoints")
-  public func listEndpoints(
-    byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudIDSV1.ListEndpointsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEndpoints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Endpoint.
   ///
   /// @Snippet(path: "IDS_GetEndpoint")
@@ -158,23 +144,6 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "IDS_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "IDS_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -211,32 +180,7 @@ extension Clients {
   /// To mock `IDSClient` change your functions to receive
   /// `some IDSProtocol` or `any IDSProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IDSProtocol {
-    /// See `IDSClient.listEndpoints`.
-    func listEndpoints(request: ListEndpointsRequest) async throws
-      -> GoogleCloudIDSV1.ListEndpointsResponse
-
-    /// See `IDSClient.listEndpoints`.
-    func listEndpoints(
-      byItem: ListEndpointsRequest
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-    /// See `IDSClient.listEndpoints`.
-    func listEndpoints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-    /// See `IDSClient.getEndpoint`.
-    func getEndpoint(request: GetEndpointRequest) async throws -> GoogleCloudIDSV1.Endpoint
-
-    /// See `IDSClient.getEndpoint`.
-    func getEndpoint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudIDSV1.Endpoint
-
-    /// See `IDSClient.createEndpoint`.
-    func createEndpoint(request: CreateEndpointRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol IDSProtocol: Sendable {
     /// See `IDSClient.createEndpoint`.
     func createEndpoint(withPolling: CreateEndpointRequest) async throws -> any GoogleGax
       .PollableOperation<Endpoint>
@@ -249,9 +193,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
     /// See `IDSClient.deleteEndpoint`.
-    func deleteEndpoint(request: DeleteEndpointRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `IDSClient.deleteEndpoint`.
     func deleteEndpoint(withPolling: DeleteEndpointRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -260,46 +201,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `IDSClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `IDSClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `IDSClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `IDSClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `IDSClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `IDSClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `IDSClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `IDSClient.listEndpoints`.
     func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIDSV1.ListEndpointsResponse
-
-    /// See `IDSClient.listEndpoints`.
-    func listEndpoints(
-      byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
 
     /// See `IDSClient.getEndpoint`.
     func getEndpoint(
@@ -330,11 +235,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `IDSClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `IDSClient.deleteOperation`.
     func deleteOperation(
@@ -368,11 +268,16 @@ extension Clients.IDSProtocol {
     self.listEndpoints(byItem: byItem, options: .init())
   }
 
+  /// Lists Endpoints in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_ListEndpoints")
   public func listEndpoints(
     byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudIDSV1.ListEndpointsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -501,12 +406,19 @@ extension Clients.IDSProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -64,24 +64,6 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
     try await self.inner.listSingleTenantHsmInstances(request: request, options: options)
   }
 
-  /// Lists
-  /// [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
-  ///
-  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  ///
-  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
-  public func listSingleTenantHsmInstances(
-    byItem: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSingleTenantHsmInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns metadata for a given
   /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
   ///
@@ -293,25 +275,6 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
     try await self.inner.listSingleTenantHsmInstanceProposals(request: request, options: options)
   }
 
-  /// Lists
-  /// [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
-  ///
-  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  ///
-  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
-  public func listSingleTenantHsmInstanceProposals(
-    byItem: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSingleTenantHsmInstanceProposals(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a
   /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
   ///
@@ -348,38 +311,6 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "HsmManagement_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -447,34 +378,7 @@ extension Clients {
   /// To mock `HsmManagementClient` change your functions to receive
   /// `some HsmManagementProtocol` or `any HsmManagementProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol HsmManagementProtocol {
-    /// See `HsmManagementClient.listSingleTenantHsmInstances`.
-    func listSingleTenantHsmInstances(request: ListSingleTenantHsmInstancesRequest) async throws
-      -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse
-
-    /// See `HsmManagementClient.listSingleTenantHsmInstances`.
-    func listSingleTenantHsmInstances(
-      byItem: ListSingleTenantHsmInstancesRequest
-    ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error>
-
-    /// See `HsmManagementClient.listSingleTenantHsmInstances`.
-    func listSingleTenantHsmInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error>
-
-    /// See `HsmManagementClient.getSingleTenantHsmInstance`.
-    func getSingleTenantHsmInstance(request: GetSingleTenantHsmInstanceRequest) async throws
-      -> GoogleCloudKMSV1.SingleTenantHsmInstance
-
-    /// See `HsmManagementClient.getSingleTenantHsmInstance`.
-    func getSingleTenantHsmInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstance
-
-    /// See `HsmManagementClient.createSingleTenantHsmInstance`.
-    func createSingleTenantHsmInstance(request: CreateSingleTenantHsmInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol HsmManagementProtocol: Sendable {
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
     func createSingleTenantHsmInstance(withPolling: CreateSingleTenantHsmInstanceRequest)
       async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
@@ -488,11 +392,6 @@ extension Clients {
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
     func createSingleTenantHsmInstanceProposal(
-      request: CreateSingleTenantHsmInstanceProposalRequest
-    ) async throws -> GoogleLongRunning.Operation
-
-    /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
-    func createSingleTenantHsmInstanceProposal(
       withPolling: CreateSingleTenantHsmInstanceProposalRequest
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
 
@@ -502,22 +401,6 @@ extension Clients {
       singleTenantHsmInstanceProposal: SingleTenantHsmInstanceProposal?,
       singleTenantHsmInstanceProposalId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
-
-    /// See `HsmManagementClient.approveSingleTenantHsmInstanceProposal`.
-    func approveSingleTenantHsmInstanceProposal(
-      request: ApproveSingleTenantHsmInstanceProposalRequest
-    ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse
-
-    /// See `HsmManagementClient.approveSingleTenantHsmInstanceProposal`.
-    func approveSingleTenantHsmInstanceProposal(
-      name: Swift.String,
-      quorumReply: ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply?,
-    ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse
-
-    /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
-    func executeSingleTenantHsmInstanceProposal(
-      request: ExecuteSingleTenantHsmInstanceProposalRequest
-    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
     func executeSingleTenantHsmInstanceProposal(
@@ -533,70 +416,10 @@ extension Clients {
       ExecuteSingleTenantHsmInstanceProposalResponse
     >
 
-    /// See `HsmManagementClient.getSingleTenantHsmInstanceProposal`.
-    func getSingleTenantHsmInstanceProposal(request: GetSingleTenantHsmInstanceProposalRequest)
-      async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal
-
-    /// See `HsmManagementClient.getSingleTenantHsmInstanceProposal`.
-    func getSingleTenantHsmInstanceProposal(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal
-
-    /// See `HsmManagementClient.listSingleTenantHsmInstanceProposals`.
-    func listSingleTenantHsmInstanceProposals(request: ListSingleTenantHsmInstanceProposalsRequest)
-      async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse
-
-    /// See `HsmManagementClient.listSingleTenantHsmInstanceProposals`.
-    func listSingleTenantHsmInstanceProposals(
-      byItem: ListSingleTenantHsmInstanceProposalsRequest
-    ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error>
-
-    /// See `HsmManagementClient.listSingleTenantHsmInstanceProposals`.
-    func listSingleTenantHsmInstanceProposals(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error>
-
-    /// See `HsmManagementClient.deleteSingleTenantHsmInstanceProposal`.
-    func deleteSingleTenantHsmInstanceProposal(
-      request: DeleteSingleTenantHsmInstanceProposalRequest) async throws
-
-    /// See `HsmManagementClient.deleteSingleTenantHsmInstanceProposal`.
-    func deleteSingleTenantHsmInstanceProposal(
-      name: Swift.String,
-    ) async throws
-
-    /// See `HsmManagementClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `HsmManagementClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `HsmManagementClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `HsmManagementClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `HsmManagementClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `HsmManagementClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
     /// See `HsmManagementClient.listSingleTenantHsmInstances`.
     func listSingleTenantHsmInstances(
       request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse
-
-    /// See `HsmManagementClient.listSingleTenantHsmInstances`.
-    func listSingleTenantHsmInstances(
-      byItem: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error>
 
     /// See `HsmManagementClient.getSingleTenantHsmInstance`.
     func getSingleTenantHsmInstance(
@@ -650,11 +473,6 @@ extension Clients {
       request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse
 
-    /// See `HsmManagementClient.listSingleTenantHsmInstanceProposals`.
-    func listSingleTenantHsmInstanceProposals(
-      byItem: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error>
-
     /// See `HsmManagementClient.deleteSingleTenantHsmInstanceProposal`.
     func deleteSingleTenantHsmInstanceProposal(
       request: DeleteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
@@ -664,11 +482,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `HsmManagementClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `HsmManagementClient.getLocation`.
     func getLocation(
@@ -712,12 +525,20 @@ extension Clients.HsmManagementProtocol {
     self.listSingleTenantHsmInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
   public func listSingleTenantHsmInstances(
     byItem: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSingleTenantHsmInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -941,13 +762,21 @@ extension Clients.HsmManagementProtocol {
     self.listSingleTenantHsmInstanceProposals(byItem: byItem, options: .init())
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
   public func listSingleTenantHsmInstanceProposals(
     byItem: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSingleTenantHsmInstanceProposals(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1000,12 +829,34 @@ extension Clients.HsmManagementProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "HsmManagement_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

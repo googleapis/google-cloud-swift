@@ -46,21 +46,6 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
     try await self.inner.listEvents(request: request, options: options)
   }
 
-  /// Lists events under a given project and location.
-  ///
-  /// @Snippet(path: "ServiceHealth_ListEvents")
-  public func listEvents(
-    byItem: ListEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Event, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEvents(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves a resource containing information about an event.
   ///
   /// @Snippet(path: "ServiceHealth_GetEvent")
@@ -77,22 +62,6 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
     request: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse {
     try await self.inner.listOrganizationEvents(request: request, options: options)
-  }
-
-  /// Lists organization events under a given organization and location.
-  ///
-  /// @Snippet(path: "ServiceHealth_ListOrganizationEvents")
-  public func listOrganizationEvents(
-    byItem: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOrganizationEvents(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Retrieves a resource containing information about an event affecting an
@@ -115,23 +84,6 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
     try await self.inner.listOrganizationImpacts(request: request, options: options)
   }
 
-  /// Lists assets impacted by organization events under a given organization and
-  /// location.
-  ///
-  /// @Snippet(path: "ServiceHealth_ListOrganizationImpacts")
-  public func listOrganizationImpacts(
-    byItem: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOrganizationImpacts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves a resource containing information about impact to an asset under
   /// an organization affected by a service health event.
   ///
@@ -151,21 +103,6 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "ServiceHealth_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ServiceHealth_GetLocation")
@@ -182,97 +119,11 @@ extension Clients {
   /// To mock `ServiceHealthClient` change your functions to receive
   /// `some ServiceHealthProtocol` or `any ServiceHealthProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ServiceHealthProtocol {
-    /// See `ServiceHealthClient.listEvents`.
-    func listEvents(request: ListEventsRequest) async throws
-      -> GoogleCloudServiceHealthV1.ListEventsResponse
-
-    /// See `ServiceHealthClient.listEvents`.
-    func listEvents(
-      byItem: ListEventsRequest
-    ) -> any AsyncSequence<Event, Swift.Error>
-
-    /// See `ServiceHealthClient.listEvents`.
-    func listEvents(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Event, Swift.Error>
-
-    /// See `ServiceHealthClient.getEvent`.
-    func getEvent(request: GetEventRequest) async throws -> GoogleCloudServiceHealthV1.Event
-
-    /// See `ServiceHealthClient.getEvent`.
-    func getEvent(
-      name: Swift.String,
-    ) async throws -> GoogleCloudServiceHealthV1.Event
-
-    /// See `ServiceHealthClient.listOrganizationEvents`.
-    func listOrganizationEvents(request: ListOrganizationEventsRequest) async throws
-      -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse
-
-    /// See `ServiceHealthClient.listOrganizationEvents`.
-    func listOrganizationEvents(
-      byItem: ListOrganizationEventsRequest
-    ) -> any AsyncSequence<OrganizationEvent, Swift.Error>
-
-    /// See `ServiceHealthClient.listOrganizationEvents`.
-    func listOrganizationEvents(
-      parent: Swift.String,
-    ) -> any AsyncSequence<OrganizationEvent, Swift.Error>
-
-    /// See `ServiceHealthClient.getOrganizationEvent`.
-    func getOrganizationEvent(request: GetOrganizationEventRequest) async throws
-      -> GoogleCloudServiceHealthV1.OrganizationEvent
-
-    /// See `ServiceHealthClient.getOrganizationEvent`.
-    func getOrganizationEvent(
-      name: Swift.String,
-    ) async throws -> GoogleCloudServiceHealthV1.OrganizationEvent
-
-    /// See `ServiceHealthClient.listOrganizationImpacts`.
-    func listOrganizationImpacts(request: ListOrganizationImpactsRequest) async throws
-      -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse
-
-    /// See `ServiceHealthClient.listOrganizationImpacts`.
-    func listOrganizationImpacts(
-      byItem: ListOrganizationImpactsRequest
-    ) -> any AsyncSequence<OrganizationImpact, Swift.Error>
-
-    /// See `ServiceHealthClient.listOrganizationImpacts`.
-    func listOrganizationImpacts(
-      parent: Swift.String,
-    ) -> any AsyncSequence<OrganizationImpact, Swift.Error>
-
-    /// See `ServiceHealthClient.getOrganizationImpact`.
-    func getOrganizationImpact(request: GetOrganizationImpactRequest) async throws
-      -> GoogleCloudServiceHealthV1.OrganizationImpact
-
-    /// See `ServiceHealthClient.getOrganizationImpact`.
-    func getOrganizationImpact(
-      name: Swift.String,
-    ) async throws -> GoogleCloudServiceHealthV1.OrganizationImpact
-
-    /// See `ServiceHealthClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ServiceHealthClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ServiceHealthClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol ServiceHealthProtocol: Sendable {
     /// See `ServiceHealthClient.listEvents`.
     func listEvents(
       request: ListEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse
-
-    /// See `ServiceHealthClient.listEvents`.
-    func listEvents(
-      byItem: ListEventsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Event, Swift.Error>
 
     /// See `ServiceHealthClient.getEvent`.
     func getEvent(
@@ -284,11 +135,6 @@ extension Clients {
       request: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse
 
-    /// See `ServiceHealthClient.listOrganizationEvents`.
-    func listOrganizationEvents(
-      byItem: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<OrganizationEvent, Swift.Error>
-
     /// See `ServiceHealthClient.getOrganizationEvent`.
     func getOrganizationEvent(
       request: GetOrganizationEventRequest, options: GoogleGax.RequestOptions
@@ -299,11 +145,6 @@ extension Clients {
       request: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse
 
-    /// See `ServiceHealthClient.listOrganizationImpacts`.
-    func listOrganizationImpacts(
-      byItem: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<OrganizationImpact, Swift.Error>
-
     /// See `ServiceHealthClient.getOrganizationImpact`.
     func getOrganizationImpact(
       request: GetOrganizationImpactRequest, options: GoogleGax.RequestOptions
@@ -313,11 +154,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ServiceHealthClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ServiceHealthClient.getLocation`.
     func getLocation(
@@ -346,12 +182,17 @@ extension Clients.ServiceHealthProtocol {
     self.listEvents(byItem: byItem, options: .init())
   }
 
+  /// Lists events under a given project and location.
+  ///
+  /// @Snippet(path: "ServiceHealth_ListEvents")
   public func listEvents(
     byItem: ListEventsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Event, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEvents(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -402,13 +243,18 @@ extension Clients.ServiceHealthProtocol {
     self.listOrganizationEvents(byItem: byItem, options: .init())
   }
 
+  /// Lists organization events under a given organization and location.
+  ///
+  /// @Snippet(path: "ServiceHealth_ListOrganizationEvents")
   public func listOrganizationEvents(
     byItem: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OrganizationEvent, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOrganizationEvents(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -461,13 +307,19 @@ extension Clients.ServiceHealthProtocol {
     self.listOrganizationImpacts(byItem: byItem, options: .init())
   }
 
+  /// Lists assets impacted by organization events under a given organization and
+  /// location.
+  ///
+  /// @Snippet(path: "ServiceHealth_ListOrganizationImpacts")
   public func listOrganizationImpacts(
     byItem: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OrganizationImpact, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOrganizationImpacts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -520,12 +372,17 @@ extension Clients.ServiceHealthProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ServiceHealth_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

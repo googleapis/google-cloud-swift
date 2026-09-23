@@ -60,21 +60,6 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
     try await self.inner.listExecutions(request: request, options: options)
   }
 
-  /// Lists Executions from a Job. Results are sorted by creation time,
-  /// descending.
-  ///
-  /// @Snippet(path: "Executions_ListExecutions")
-  public func listExecutions(
-    byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Execution, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListExecutionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listExecutions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes an Execution.
   ///
   /// @Snippet(path: "Executions_DeleteExecution")
@@ -160,23 +145,6 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Executions_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Executions_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -213,33 +181,7 @@ extension Clients {
   /// To mock `ExecutionsClient` change your functions to receive
   /// `some ExecutionsProtocol` or `any ExecutionsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ExecutionsProtocol {
-    /// See `ExecutionsClient.getExecution`.
-    func getExecution(request: GetExecutionRequest) async throws -> GoogleCloudRunV2.Execution
-
-    /// See `ExecutionsClient.getExecution`.
-    func getExecution(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRunV2.Execution
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(request: ListExecutionsRequest) async throws
-      -> GoogleCloudRunV2.ListExecutionsResponse
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(
-      byItem: ListExecutionsRequest
-    ) -> any AsyncSequence<Execution, Swift.Error>
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Execution, Swift.Error>
-
-    /// See `ExecutionsClient.deleteExecution`.
-    func deleteExecution(request: DeleteExecutionRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol ExecutionsProtocol: Sendable {
     /// See `ExecutionsClient.deleteExecution`.
     func deleteExecution(withPolling: DeleteExecutionRequest) async throws -> any GoogleGax
       .PollableOperation<Execution>
@@ -250,10 +192,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Execution>
 
     /// See `ExecutionsClient.cancelExecution`.
-    func cancelExecution(request: CancelExecutionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ExecutionsClient.cancelExecution`.
     func cancelExecution(withPolling: CancelExecutionRequest) async throws -> any GoogleGax
       .PollableOperation<Execution>
 
@@ -261,33 +199,6 @@ extension Clients {
     func cancelExecution(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Execution>
-
-    /// See `ExecutionsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ExecutionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ExecutionsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ExecutionsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ExecutionsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ExecutionsClient.waitOperation`.
-    func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ExecutionsClient.getExecution`.
     func getExecution(
@@ -298,11 +209,6 @@ extension Clients {
     func listExecutions(
       request: ListExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.ListExecutionsResponse
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(
-      byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.deleteExecution`.
     func deleteExecution(
@@ -328,11 +234,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ExecutionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ExecutionsClient.deleteOperation`.
     func deleteOperation(
@@ -386,11 +287,17 @@ extension Clients.ExecutionsProtocol {
     self.listExecutions(byItem: byItem, options: .init())
   }
 
+  /// Lists Executions from a Job. Results are sorted by creation time,
+  /// descending.
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
   public func listExecutions(
     byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListExecutionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listExecutions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -496,12 +403,19 @@ extension Clients.ExecutionsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

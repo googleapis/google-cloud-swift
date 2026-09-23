@@ -53,10 +53,7 @@
     /// To mock `SqlFlagsServiceClient` change your functions to receive
     /// `some SqlFlagsServiceProtocol` or `any SqlFlagsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlFlagsServiceProtocol {
-      /// See `SqlFlagsServiceClient.list`.
-      func list(request: SqlFlagsListRequest) async throws -> GoogleCloudSqlV1.FlagsListResponse
-
+    public protocol SqlFlagsServiceProtocol: Sendable {
       /// See `SqlFlagsServiceClient.list`.
       func list(
         request: SqlFlagsListRequest, options: GoogleGax.RequestOptions

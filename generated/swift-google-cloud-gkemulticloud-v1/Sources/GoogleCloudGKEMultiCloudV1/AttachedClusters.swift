@@ -221,25 +221,6 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
     try await self.inner.listAttachedClusters(request: request, options: options)
   }
 
-  /// Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
-  /// resources on a given Google Cloud project and region.
-  ///
-  /// [google.cloud.gkemulticloud.v1.AttachedCluster]: <doc:AttachedCluster>
-  ///
-  /// @Snippet(path: "AttachedClusters_ListAttachedClusters")
-  public func listAttachedClusters(
-    byItem: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AttachedCluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAttachedClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a specific
   /// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
   ///
@@ -334,23 +315,6 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "AttachedClusters_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "AttachedClusters_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -387,11 +351,7 @@ extension Clients {
   /// To mock `AttachedClustersClient` change your functions to receive
   /// `some AttachedClustersProtocol` or `any AttachedClustersProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AttachedClustersProtocol {
-    /// See `AttachedClustersClient.createAttachedCluster`.
-    func createAttachedCluster(request: CreateAttachedClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AttachedClustersProtocol: Sendable {
     /// See `AttachedClustersClient.createAttachedCluster`.
     func createAttachedCluster(withPolling: CreateAttachedClusterRequest) async throws
       -> any GoogleGax.PollableOperation<AttachedCluster>
@@ -404,10 +364,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
 
     /// See `AttachedClustersClient.updateAttachedCluster`.
-    func updateAttachedCluster(request: UpdateAttachedClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AttachedClustersClient.updateAttachedCluster`.
     func updateAttachedCluster(withPolling: UpdateAttachedClusterRequest) async throws
       -> any GoogleGax.PollableOperation<AttachedCluster>
 
@@ -416,10 +372,6 @@ extension Clients {
       attachedCluster: AttachedCluster?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.importAttachedCluster`.
-    func importAttachedCluster(request: ImportAttachedClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AttachedClustersClient.importAttachedCluster`.
     func importAttachedCluster(withPolling: ImportAttachedClusterRequest) async throws
@@ -431,33 +383,6 @@ extension Clients {
       fleetMembership: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
 
-    /// See `AttachedClustersClient.getAttachedCluster`.
-    func getAttachedCluster(request: GetAttachedClusterRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AttachedCluster
-
-    /// See `AttachedClustersClient.getAttachedCluster`.
-    func getAttachedCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AttachedCluster
-
-    /// See `AttachedClustersClient.listAttachedClusters`.
-    func listAttachedClusters(request: ListAttachedClustersRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse
-
-    /// See `AttachedClustersClient.listAttachedClusters`.
-    func listAttachedClusters(
-      byItem: ListAttachedClustersRequest
-    ) -> any AsyncSequence<AttachedCluster, Swift.Error>
-
-    /// See `AttachedClustersClient.listAttachedClusters`.
-    func listAttachedClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AttachedCluster, Swift.Error>
-
-    /// See `AttachedClustersClient.deleteAttachedCluster`.
-    func deleteAttachedCluster(request: DeleteAttachedClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `AttachedClustersClient.deleteAttachedCluster`.
     func deleteAttachedCluster(withPolling: DeleteAttachedClusterRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
@@ -466,61 +391,6 @@ extension Clients {
     func deleteAttachedCluster(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AttachedClustersClient.getAttachedServerConfig`.
-    func getAttachedServerConfig(request: GetAttachedServerConfigRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AttachedServerConfig
-
-    /// See `AttachedClustersClient.getAttachedServerConfig`.
-    func getAttachedServerConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AttachedServerConfig
-
-    /// See `AttachedClustersClient.generateAttachedClusterInstallManifest`.
-    func generateAttachedClusterInstallManifest(
-      request: GenerateAttachedClusterInstallManifestRequest
-    ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAttachedClusterInstallManifestResponse
-
-    /// See `AttachedClustersClient.generateAttachedClusterInstallManifest`.
-    func generateAttachedClusterInstallManifest(
-      parent: Swift.String,
-      attachedClusterId: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAttachedClusterInstallManifestResponse
-
-    /// See `AttachedClustersClient.generateAttachedClusterAgentToken`.
-    func generateAttachedClusterAgentToken(request: GenerateAttachedClusterAgentTokenRequest)
-      async throws -> GoogleCloudGKEMultiCloudV1.GenerateAttachedClusterAgentTokenResponse
-
-    /// See `AttachedClustersClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AttachedClustersClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AttachedClustersClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AttachedClustersClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AttachedClustersClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AttachedClustersClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AttachedClustersClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `AttachedClustersClient.createAttachedCluster`.
     func createAttachedCluster(
@@ -562,11 +432,6 @@ extension Clients {
       request: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse
 
-    /// See `AttachedClustersClient.listAttachedClusters`.
-    func listAttachedClusters(
-      byItem: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AttachedCluster, Swift.Error>
-
     /// See `AttachedClustersClient.deleteAttachedCluster`.
     func deleteAttachedCluster(
       request: DeleteAttachedClusterRequest, options: GoogleGax.RequestOptions
@@ -596,11 +461,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AttachedClustersClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AttachedClustersClient.deleteOperation`.
     func deleteOperation(
@@ -774,13 +634,21 @@ extension Clients.AttachedClustersProtocol {
     self.listAttachedClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
+  /// resources on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AttachedCluster]: <doc:AttachedCluster>
+  ///
+  /// @Snippet(path: "AttachedClusters_ListAttachedClusters")
   public func listAttachedClusters(
     byItem: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AttachedCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAttachedClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -905,12 +773,19 @@ extension Clients.AttachedClustersProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AttachedClusters_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

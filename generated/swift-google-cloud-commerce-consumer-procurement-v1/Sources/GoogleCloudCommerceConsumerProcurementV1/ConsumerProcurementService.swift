@@ -136,26 +136,6 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
     try await self.inner.listOrders(request: request, options: options)
   }
 
-  /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
-  /// resources that the user has access to, within the scope of the parent
-  /// resource.
-  ///
-  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
-  ///
-  /// @Snippet(path: "ConsumerProcurementService_ListOrders")
-  public func listOrders(
-    byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Order, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOrders(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Modifies an existing
   /// [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
   ///
@@ -256,47 +236,15 @@ extension Clients {
   /// To mock `ConsumerProcurementServiceClient` change your functions to receive
   /// `some ConsumerProcurementServiceProtocol` or `any ConsumerProcurementServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConsumerProcurementServiceProtocol {
-    /// See `ConsumerProcurementServiceClient.placeOrder`.
-    func placeOrder(request: PlaceOrderRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ConsumerProcurementServiceProtocol: Sendable {
     /// See `ConsumerProcurementServiceClient.placeOrder`.
     func placeOrder(withPolling: PlaceOrderRequest) async throws -> any GoogleGax.PollableOperation<
       Order
     >
 
-    /// See `ConsumerProcurementServiceClient.getOrder`.
-    func getOrder(request: GetOrderRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.Order
-
-    /// See `ConsumerProcurementServiceClient.getOrder`.
-    func getOrder(
-      name: Swift.String,
-    ) async throws -> GoogleCloudCommerceConsumerProcurementV1.Order
-
-    /// See `ConsumerProcurementServiceClient.listOrders`.
-    func listOrders(request: ListOrdersRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse
-
-    /// See `ConsumerProcurementServiceClient.listOrders`.
-    func listOrders(
-      byItem: ListOrdersRequest
-    ) -> any AsyncSequence<Order, Swift.Error>
-
-    /// See `ConsumerProcurementServiceClient.listOrders`.
-    func listOrders(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Order, Swift.Error>
-
-    /// See `ConsumerProcurementServiceClient.modifyOrder`.
-    func modifyOrder(request: ModifyOrderRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `ConsumerProcurementServiceClient.modifyOrder`.
     func modifyOrder(withPolling: ModifyOrderRequest) async throws -> any GoogleGax
       .PollableOperation<Order>
-
-    /// See `ConsumerProcurementServiceClient.cancelOrder`.
-    func cancelOrder(request: CancelOrderRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConsumerProcurementServiceClient.cancelOrder`.
     func cancelOrder(withPolling: CancelOrderRequest) async throws -> any GoogleGax
@@ -321,11 +269,6 @@ extension Clients {
     func listOrders(
       request: ListOrdersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse
-
-    /// See `ConsumerProcurementServiceClient.listOrders`.
-    func listOrders(
-      byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Order, Swift.Error>
 
     /// See `ConsumerProcurementServiceClient.modifyOrder`.
     func modifyOrder(
@@ -416,13 +359,22 @@ extension Clients.ConsumerProcurementServiceProtocol {
     self.listOrders(byItem: byItem, options: .init())
   }
 
+  /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
+  /// resources that the user has access to, within the scope of the parent
+  /// resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_ListOrders")
   public func listOrders(
     byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Order, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOrders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -100,23 +100,6 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "VideoIntelligenceService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "VideoIntelligenceService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -153,10 +136,7 @@ extension Clients {
   /// To mock `VideoIntelligenceServiceClient` change your functions to receive
   /// `some VideoIntelligenceServiceProtocol` or `any VideoIntelligenceServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol VideoIntelligenceServiceProtocol {
-    /// See `VideoIntelligenceServiceClient.annotateVideo`.
-    func annotateVideo(request: AnnotateVideoRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol VideoIntelligenceServiceProtocol: Sendable {
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
     func annotateVideo(withPolling: AnnotateVideoRequest) async throws -> any GoogleGax
       .PollableOperation<AnnotateVideoResponse>
@@ -166,37 +146,6 @@ extension Clients {
       inputUri: Swift.String,
       features: [Feature],
     ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
-
-    /// See `VideoIntelligenceServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VideoIntelligenceServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VideoIntelligenceServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VideoIntelligenceServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `VideoIntelligenceServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `VideoIntelligenceServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `VideoIntelligenceServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
     func annotateVideo(
@@ -212,11 +161,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VideoIntelligenceServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VideoIntelligenceServiceClient.deleteOperation`.
     func deleteOperation(
@@ -289,12 +233,19 @@ extension Clients.VideoIntelligenceServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoIntelligenceService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

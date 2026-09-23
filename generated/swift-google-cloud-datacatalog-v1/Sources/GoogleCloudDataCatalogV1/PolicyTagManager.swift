@@ -85,22 +85,6 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
     try await self.inner.listTaxonomies(request: request, options: options)
   }
 
-  /// Lists all taxonomies in a project in a particular location that you
-  /// have a permission to view.
-  ///
-  /// @Snippet(path: "PolicyTagManager_ListTaxonomies")
-  public func listTaxonomies(
-    byItem: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Taxonomy, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTaxonomies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a taxonomy.
   ///
   /// @Snippet(path: "PolicyTagManager_GetTaxonomy")
@@ -150,21 +134,6 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
     request: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse {
     try await self.inner.listPolicyTags(request: request, options: options)
-  }
-
-  /// Lists all policy tags in a taxonomy.
-  ///
-  /// @Snippet(path: "PolicyTagManager_ListPolicyTags")
-  public func listPolicyTags(
-    byItem: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyTag, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPolicyTags(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a policy tag.
@@ -219,23 +188,6 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "PolicyTagManager_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "PolicyTagManager_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -272,147 +224,7 @@ extension Clients {
   /// To mock `PolicyTagManagerClient` change your functions to receive
   /// `some PolicyTagManagerProtocol` or `any PolicyTagManagerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PolicyTagManagerProtocol {
-    /// See `PolicyTagManagerClient.createTaxonomy`.
-    func createTaxonomy(request: CreateTaxonomyRequest) async throws
-      -> GoogleCloudDataCatalogV1.Taxonomy
-
-    /// See `PolicyTagManagerClient.createTaxonomy`.
-    func createTaxonomy(
-      parent: Swift.String,
-      taxonomy: Taxonomy?,
-    ) async throws -> GoogleCloudDataCatalogV1.Taxonomy
-
-    /// See `PolicyTagManagerClient.deleteTaxonomy`.
-    func deleteTaxonomy(request: DeleteTaxonomyRequest) async throws
-
-    /// See `PolicyTagManagerClient.deleteTaxonomy`.
-    func deleteTaxonomy(
-      name: Swift.String,
-    ) async throws
-
-    /// See `PolicyTagManagerClient.updateTaxonomy`.
-    func updateTaxonomy(request: UpdateTaxonomyRequest) async throws
-      -> GoogleCloudDataCatalogV1.Taxonomy
-
-    /// See `PolicyTagManagerClient.updateTaxonomy`.
-    func updateTaxonomy(
-      taxonomy: Taxonomy?,
-    ) async throws -> GoogleCloudDataCatalogV1.Taxonomy
-
-    /// See `PolicyTagManagerClient.listTaxonomies`.
-    func listTaxonomies(request: ListTaxonomiesRequest) async throws
-      -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse
-
-    /// See `PolicyTagManagerClient.listTaxonomies`.
-    func listTaxonomies(
-      byItem: ListTaxonomiesRequest
-    ) -> any AsyncSequence<Taxonomy, Swift.Error>
-
-    /// See `PolicyTagManagerClient.listTaxonomies`.
-    func listTaxonomies(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Taxonomy, Swift.Error>
-
-    /// See `PolicyTagManagerClient.getTaxonomy`.
-    func getTaxonomy(request: GetTaxonomyRequest) async throws -> GoogleCloudDataCatalogV1.Taxonomy
-
-    /// See `PolicyTagManagerClient.getTaxonomy`.
-    func getTaxonomy(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.Taxonomy
-
-    /// See `PolicyTagManagerClient.createPolicyTag`.
-    func createPolicyTag(request: CreatePolicyTagRequest) async throws
-      -> GoogleCloudDataCatalogV1.PolicyTag
-
-    /// See `PolicyTagManagerClient.createPolicyTag`.
-    func createPolicyTag(
-      parent: Swift.String,
-      policyTag: PolicyTag?,
-    ) async throws -> GoogleCloudDataCatalogV1.PolicyTag
-
-    /// See `PolicyTagManagerClient.deletePolicyTag`.
-    func deletePolicyTag(request: DeletePolicyTagRequest) async throws
-
-    /// See `PolicyTagManagerClient.deletePolicyTag`.
-    func deletePolicyTag(
-      name: Swift.String,
-    ) async throws
-
-    /// See `PolicyTagManagerClient.updatePolicyTag`.
-    func updatePolicyTag(request: UpdatePolicyTagRequest) async throws
-      -> GoogleCloudDataCatalogV1.PolicyTag
-
-    /// See `PolicyTagManagerClient.updatePolicyTag`.
-    func updatePolicyTag(
-      policyTag: PolicyTag?,
-    ) async throws -> GoogleCloudDataCatalogV1.PolicyTag
-
-    /// See `PolicyTagManagerClient.listPolicyTags`.
-    func listPolicyTags(request: ListPolicyTagsRequest) async throws
-      -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse
-
-    /// See `PolicyTagManagerClient.listPolicyTags`.
-    func listPolicyTags(
-      byItem: ListPolicyTagsRequest
-    ) -> any AsyncSequence<PolicyTag, Swift.Error>
-
-    /// See `PolicyTagManagerClient.listPolicyTags`.
-    func listPolicyTags(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PolicyTag, Swift.Error>
-
-    /// See `PolicyTagManagerClient.getPolicyTag`.
-    func getPolicyTag(request: GetPolicyTagRequest) async throws
-      -> GoogleCloudDataCatalogV1.PolicyTag
-
-    /// See `PolicyTagManagerClient.getPolicyTag`.
-    func getPolicyTag(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.PolicyTag
-
-    /// See `PolicyTagManagerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `PolicyTagManagerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `PolicyTagManagerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `PolicyTagManagerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `PolicyTagManagerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `PolicyTagManagerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `PolicyTagManagerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `PolicyTagManagerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `PolicyTagManagerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `PolicyTagManagerClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol PolicyTagManagerProtocol: Sendable {
     /// See `PolicyTagManagerClient.createTaxonomy`.
     func createTaxonomy(
       request: CreateTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -432,11 +244,6 @@ extension Clients {
     func listTaxonomies(
       request: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse
-
-    /// See `PolicyTagManagerClient.listTaxonomies`.
-    func listTaxonomies(
-      byItem: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Taxonomy, Swift.Error>
 
     /// See `PolicyTagManagerClient.getTaxonomy`.
     func getTaxonomy(
@@ -463,11 +270,6 @@ extension Clients {
       request: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse
 
-    /// See `PolicyTagManagerClient.listPolicyTags`.
-    func listPolicyTags(
-      byItem: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PolicyTag, Swift.Error>
-
     /// See `PolicyTagManagerClient.getPolicyTag`.
     func getPolicyTag(
       request: GetPolicyTagRequest, options: GoogleGax.RequestOptions
@@ -492,11 +294,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `PolicyTagManagerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `PolicyTagManagerClient.deleteOperation`.
     func deleteOperation(
@@ -593,12 +390,18 @@ extension Clients.PolicyTagManagerProtocol {
     self.listTaxonomies(byItem: byItem, options: .init())
   }
 
+  /// Lists all taxonomies in a project in a particular location that you
+  /// have a permission to view.
+  ///
+  /// @Snippet(path: "PolicyTagManager_ListTaxonomies")
   public func listTaxonomies(
     byItem: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Taxonomy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTaxonomies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -714,12 +517,17 @@ extension Clients.PolicyTagManagerProtocol {
     self.listPolicyTags(byItem: byItem, options: .init())
   }
 
+  /// Lists all policy tags in a taxonomy.
+  ///
+  /// @Snippet(path: "PolicyTagManager_ListPolicyTags")
   public func listPolicyTags(
     byItem: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PolicyTag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPolicyTags(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -808,12 +616,19 @@ extension Clients.PolicyTagManagerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManager_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

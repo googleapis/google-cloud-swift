@@ -60,22 +60,6 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
     try await self.inner.listInsightsConfigs(request: request, options: options)
   }
 
-  /// Lists InsightsConfigs in a given project and location.
-  ///
-  /// @Snippet(path: "InsightsConfigService_ListInsightsConfigs")
-  public func listInsightsConfigs(
-    byItem: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InsightsConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInsightsConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a new InsightsConfig in a given project and location.
   ///
   /// @Snippet(path: "InsightsConfigService_CreateInsightsConfig")
@@ -208,22 +192,6 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
     try await self.inner.listDeploymentEvents(request: request, options: options)
   }
 
-  /// Lists Deployment Events in a given insights config.
-  ///
-  /// @Snippet(path: "InsightsConfigService_ListDeploymentEvents")
-  public func listDeploymentEvents(
-    byItem: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeploymentEvent, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeploymentEvents(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   /// This method can be called in two ways:
   ///
@@ -238,28 +206,6 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  /// This method can be called in two ways:
-  ///
-  /// *   **List all public locations:** Use the path `GET /v1/locations`.
-  /// *   **List project-visible locations:** Use the path
-  /// `GET /v1/projects/{project_id}/locations`. This may include public
-  /// locations as well as private or other locations specifically visible
-  /// to the project.
-  ///
-  /// @Snippet(path: "InsightsConfigService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -280,23 +226,6 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "InsightsConfigService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -339,25 +268,7 @@ extension Clients {
   /// To mock `InsightsConfigServiceClient` change your functions to receive
   /// `some InsightsConfigServiceProtocol` or `any InsightsConfigServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol InsightsConfigServiceProtocol {
-    /// See `InsightsConfigServiceClient.listInsightsConfigs`.
-    func listInsightsConfigs(request: ListInsightsConfigsRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse
-
-    /// See `InsightsConfigServiceClient.listInsightsConfigs`.
-    func listInsightsConfigs(
-      byItem: ListInsightsConfigsRequest
-    ) -> any AsyncSequence<InsightsConfig, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.listInsightsConfigs`.
-    func listInsightsConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<InsightsConfig, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.createInsightsConfig`.
-    func createInsightsConfig(request: CreateInsightsConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol InsightsConfigServiceProtocol: Sendable {
     /// See `InsightsConfigServiceClient.createInsightsConfig`.
     func createInsightsConfig(withPolling: CreateInsightsConfigRequest) async throws
       -> any GoogleGax.PollableOperation<InsightsConfig>
@@ -369,26 +280,9 @@ extension Clients {
       insightsConfigId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<InsightsConfig>
 
-    /// See `InsightsConfigServiceClient.getInsightsConfig`.
-    func getInsightsConfig(request: GetInsightsConfigRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.InsightsConfig
-
-    /// See `InsightsConfigServiceClient.getInsightsConfig`.
-    func getInsightsConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.InsightsConfig
-
-    /// See `InsightsConfigServiceClient.updateInsightsConfig`.
-    func updateInsightsConfig(request: UpdateInsightsConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `InsightsConfigServiceClient.updateInsightsConfig`.
     func updateInsightsConfig(withPolling: UpdateInsightsConfigRequest) async throws
       -> any GoogleGax.PollableOperation<InsightsConfig>
-
-    /// See `InsightsConfigServiceClient.deleteInsightsConfig`.
-    func deleteInsightsConfig(request: DeleteInsightsConfigRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `InsightsConfigServiceClient.deleteInsightsConfig`.
     func deleteInsightsConfig(withPolling: DeleteInsightsConfigRequest) async throws
@@ -399,82 +293,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `InsightsConfigServiceClient.getDeploymentEvent`.
-    func getDeploymentEvent(request: GetDeploymentEventRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.DeploymentEvent
-
-    /// See `InsightsConfigServiceClient.getDeploymentEvent`.
-    func getDeploymentEvent(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.DeploymentEvent
-
-    /// See `InsightsConfigServiceClient.listDeploymentEvents`.
-    func listDeploymentEvents(request: ListDeploymentEventsRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse
-
-    /// See `InsightsConfigServiceClient.listDeploymentEvents`.
-    func listDeploymentEvents(
-      byItem: ListDeploymentEventsRequest
-    ) -> any AsyncSequence<DeploymentEvent, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.listDeploymentEvents`.
-    func listDeploymentEvents(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DeploymentEvent, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `InsightsConfigServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `InsightsConfigServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `InsightsConfigServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `InsightsConfigServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `InsightsConfigServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `InsightsConfigServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `InsightsConfigServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `InsightsConfigServiceClient.listInsightsConfigs`.
     func listInsightsConfigs(
       request: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse
-
-    /// See `InsightsConfigServiceClient.listInsightsConfigs`.
-    func listInsightsConfigs(
-      byItem: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InsightsConfig, Swift.Error>
 
     /// See `InsightsConfigServiceClient.createInsightsConfig`.
     func createInsightsConfig(
@@ -521,20 +343,10 @@ extension Clients {
       request: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse
 
-    /// See `InsightsConfigServiceClient.listDeploymentEvents`.
-    func listDeploymentEvents(
-      byItem: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DeploymentEvent, Swift.Error>
-
     /// See `InsightsConfigServiceClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `InsightsConfigServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `InsightsConfigServiceClient.getLocation`.
     func getLocation(
@@ -545,11 +357,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `InsightsConfigServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `InsightsConfigServiceClient.deleteOperation`.
     func deleteOperation(
@@ -583,13 +390,18 @@ extension Clients.InsightsConfigServiceProtocol {
     self.listInsightsConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists InsightsConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "InsightsConfigService_ListInsightsConfigs")
   public func listInsightsConfigs(
     byItem: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InsightsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInsightsConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -769,13 +581,18 @@ extension Clients.InsightsConfigServiceProtocol {
     self.listDeploymentEvents(byItem: byItem, options: .init())
   }
 
+  /// Lists Deployment Events in a given insights config.
+  ///
+  /// @Snippet(path: "InsightsConfigService_ListDeploymentEvents")
   public func listDeploymentEvents(
     byItem: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DeploymentEvent, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeploymentEvents(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -807,12 +624,24 @@ extension Clients.InsightsConfigServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "InsightsConfigService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -847,12 +676,19 @@ extension Clients.InsightsConfigServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InsightsConfigService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -153,25 +153,7 @@ extension Clients {
   /// To mock `MetricsScopesClient` change your functions to receive
   /// `some MetricsScopesProtocol` or `any MetricsScopesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol MetricsScopesProtocol {
-    /// See `MetricsScopesClient.getMetricsScope`.
-    func getMetricsScope(request: GetMetricsScopeRequest) async throws
-      -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope
-
-    /// See `MetricsScopesClient.getMetricsScope`.
-    func getMetricsScope(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope
-
-    /// See `MetricsScopesClient.listMetricsScopesByMonitoredProject`.
-    func listMetricsScopesByMonitoredProject(request: ListMetricsScopesByMonitoredProjectRequest)
-      async throws
-      -> GoogleCloudMonitoringMetricsScopeV1.ListMetricsScopesByMonitoredProjectResponse
-
-    /// See `MetricsScopesClient.createMonitoredProject`.
-    func createMonitoredProject(request: CreateMonitoredProjectRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol MetricsScopesProtocol: Sendable {
     /// See `MetricsScopesClient.createMonitoredProject`.
     func createMonitoredProject(withPolling: CreateMonitoredProjectRequest) async throws
       -> any GoogleGax.PollableOperation<MonitoredProject>
@@ -181,10 +163,6 @@ extension Clients {
       parent: Swift.String,
       monitoredProject: MonitoredProject?,
     ) async throws -> any GoogleGax.PollableOperation<MonitoredProject>
-
-    /// See `MetricsScopesClient.deleteMonitoredProject`.
-    func deleteMonitoredProject(request: DeleteMonitoredProjectRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `MetricsScopesClient.deleteMonitoredProject`.
     func deleteMonitoredProject(withPolling: DeleteMonitoredProjectRequest) async throws

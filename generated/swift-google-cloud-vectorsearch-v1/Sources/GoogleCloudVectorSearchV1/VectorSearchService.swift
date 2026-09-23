@@ -57,21 +57,6 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
     try await self.inner.listCollections(request: request, options: options)
   }
 
-  /// Lists Collections in a given project and location.
-  ///
-  /// @Snippet(path: "VectorSearchService_ListCollections")
-  public func listCollections(
-    byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Collection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCollections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_GetCollection")
@@ -193,21 +178,6 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse {
     try await self.inner.listIndexes(request: request, options: options)
-  }
-
-  /// Lists Indexes in a given project and location.
-  ///
-  /// @Snippet(path: "VectorSearchService_ListIndexes")
-  public func listIndexes(
-    byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Index, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIndexes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single Index.
@@ -420,38 +390,6 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "VectorSearchService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "VectorSearchService_GetLocation")
@@ -470,23 +408,6 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "VectorSearchService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -529,34 +450,7 @@ extension Clients {
   /// To mock `VectorSearchServiceClient` change your functions to receive
   /// `some VectorSearchServiceProtocol` or `any VectorSearchServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol VectorSearchServiceProtocol {
-    /// See `VectorSearchServiceClient.listCollections`.
-    func listCollections(request: ListCollectionsRequest) async throws
-      -> GoogleCloudVectorSearchV1.ListCollectionsResponse
-
-    /// See `VectorSearchServiceClient.listCollections`.
-    func listCollections(
-      byItem: ListCollectionsRequest
-    ) -> any AsyncSequence<Collection, Swift.Error>
-
-    /// See `VectorSearchServiceClient.listCollections`.
-    func listCollections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Collection, Swift.Error>
-
-    /// See `VectorSearchServiceClient.getCollection`.
-    func getCollection(request: GetCollectionRequest) async throws
-      -> GoogleCloudVectorSearchV1.Collection
-
-    /// See `VectorSearchServiceClient.getCollection`.
-    func getCollection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVectorSearchV1.Collection
-
-    /// See `VectorSearchServiceClient.createCollection`.
-    func createCollection(request: CreateCollectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol VectorSearchServiceProtocol: Sendable {
     /// See `VectorSearchServiceClient.createCollection`.
     func createCollection(withPolling: CreateCollectionRequest) async throws -> any GoogleGax
       .PollableOperation<Collection>
@@ -569,10 +463,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.updateCollection`.
-    func updateCollection(request: UpdateCollectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `VectorSearchServiceClient.updateCollection`.
     func updateCollection(withPolling: UpdateCollectionRequest) async throws -> any GoogleGax
       .PollableOperation<Collection>
 
@@ -583,10 +473,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.deleteCollection`.
-    func deleteCollection(request: DeleteCollectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `VectorSearchServiceClient.deleteCollection`.
     func deleteCollection(withPolling: DeleteCollectionRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -594,31 +480,6 @@ extension Clients {
     func deleteCollection(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `VectorSearchServiceClient.listIndexes`.
-    func listIndexes(request: ListIndexesRequest) async throws
-      -> GoogleCloudVectorSearchV1.ListIndexesResponse
-
-    /// See `VectorSearchServiceClient.listIndexes`.
-    func listIndexes(
-      byItem: ListIndexesRequest
-    ) -> any AsyncSequence<Index, Swift.Error>
-
-    /// See `VectorSearchServiceClient.listIndexes`.
-    func listIndexes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Index, Swift.Error>
-
-    /// See `VectorSearchServiceClient.getIndex`.
-    func getIndex(request: GetIndexRequest) async throws -> GoogleCloudVectorSearchV1.Index
-
-    /// See `VectorSearchServiceClient.getIndex`.
-    func getIndex(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVectorSearchV1.Index
-
-    /// See `VectorSearchServiceClient.createIndex`.
-    func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.createIndex`.
     func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
@@ -632,9 +493,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.updateIndex`.
-    func updateIndex(request: UpdateIndexRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `VectorSearchServiceClient.updateIndex`.
     func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
@@ -643,9 +501,6 @@ extension Clients {
       index: Index?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index>
-
-    /// See `VectorSearchServiceClient.deleteIndex`.
-    func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.deleteIndex`.
     func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
@@ -657,74 +512,17 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.importDataObjects`.
-    func importDataObjects(request: ImportDataObjectsRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `VectorSearchServiceClient.importDataObjects`.
     func importDataObjects(withPolling: ImportDataObjectsRequest) async throws -> any GoogleGax
       .PollableOperation<ImportDataObjectsResponse>
-
-    /// See `VectorSearchServiceClient.exportDataObjects`.
-    func exportDataObjects(request: ExportDataObjectsRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.exportDataObjects`.
     func exportDataObjects(withPolling: ExportDataObjectsRequest) async throws -> any GoogleGax
       .PollableOperation<ExportDataObjectsResponse>
 
-    /// See `VectorSearchServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `VectorSearchServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `VectorSearchServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `VectorSearchServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VectorSearchServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VectorSearchServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VectorSearchServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `VectorSearchServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `VectorSearchServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `VectorSearchServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `VectorSearchServiceClient.listCollections`.
     func listCollections(
       request: ListCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse
-
-    /// See `VectorSearchServiceClient.listCollections`.
-    func listCollections(
-      byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Collection, Swift.Error>
 
     /// See `VectorSearchServiceClient.getCollection`.
     func getCollection(
@@ -765,11 +563,6 @@ extension Clients {
     func listIndexes(
       request: ListIndexesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse
-
-    /// See `VectorSearchServiceClient.listIndexes`.
-    func listIndexes(
-      byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `VectorSearchServiceClient.getIndex`.
     func getIndex(
@@ -831,11 +624,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `VectorSearchServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `VectorSearchServiceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -845,11 +633,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VectorSearchServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VectorSearchServiceClient.deleteOperation`.
     func deleteOperation(
@@ -883,12 +666,17 @@ extension Clients.VectorSearchServiceProtocol {
     self.listCollections(byItem: byItem, options: .init())
   }
 
+  /// Lists Collections in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListCollections")
   public func listCollections(
     byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCollections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1058,12 +846,17 @@ extension Clients.VectorSearchServiceProtocol {
     self.listIndexes(byItem: byItem, options: .init())
   }
 
+  /// Lists Indexes in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListIndexes")
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listIndexes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1283,12 +1076,34 @@ extension Clients.VectorSearchServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "VectorSearchService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1323,12 +1138,19 @@ extension Clients.VectorSearchServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

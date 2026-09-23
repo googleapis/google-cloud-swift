@@ -54,25 +54,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all SslPolicy resources, regional and global,
-    /// available to the specified project.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "sslPolicies_aggregatedList")
-    public func aggregatedList(
-      byItem: SslPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified SSL policy. The SSL policy resource can be deleted
     /// only if it is not in use by any TargetHttpsProxy or TargetSslProxy
     /// resources.
@@ -192,21 +173,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists all the SSL policies that have been configured for the specified
-    /// project.
-    ///
-    /// @Snippet(path: "sslPolicies_list")
-    public func list(
-      byItem: SslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists all features that can be specified in the SSL policy when using
     /// custom profile.
     ///
@@ -281,75 +247,11 @@
     /// To mock `SslPoliciesClient` change your functions to receive
     /// `some SslPoliciesProtocol` or `any SslPoliciesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SslPoliciesProtocol {
-      /// See `SslPoliciesClient.aggregatedList`.
-      func aggregatedList(request: SslPoliciesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.SslPoliciesAggregatedList
-
-      /// See `SslPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: SslPoliciesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error>
-
-      /// See `SslPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error>
-
-      /// See `SslPoliciesClient.delete`.
-      func delete(request: SslPoliciesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SslPoliciesClient.`get``.
-      func `get`(request: SslPoliciesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.SslPolicy
-
-      /// See `SslPoliciesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        sslPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SslPolicy
-
-      /// See `SslPoliciesClient.insert`.
-      func insert(request: SslPoliciesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SslPoliciesClient.list`.
-      func list(request: SslPoliciesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SslPoliciesList
-
-      /// See `SslPoliciesClient.list`.
-      func list(
-        byItem: SslPoliciesClient.ListRequest
-      ) -> any AsyncSequence<SslPolicy, Swift.Error>
-
-      /// See `SslPoliciesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<SslPolicy, Swift.Error>
-
-      /// See `SslPoliciesClient.listAvailableFeatures`.
-      func listAvailableFeatures(request: SslPoliciesClient.ListAvailableFeaturesRequest)
-        async throws -> GoogleCloudComputeV1.SslPoliciesListAvailableFeaturesResponse
-
-      /// See `SslPoliciesClient.listAvailableFeatures`.
-      func listAvailableFeatures(
-        project: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SslPoliciesListAvailableFeaturesResponse
-
-      /// See `SslPoliciesClient.patch`.
-      func patch(request: SslPoliciesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol SslPoliciesProtocol: Sendable {
       /// See `SslPoliciesClient.aggregatedList`.
       func aggregatedList(
         request: SslPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslPoliciesAggregatedList
-
-      /// See `SslPoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: SslPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error>
 
       /// See `SslPoliciesClient.delete`.
       func delete(
@@ -370,11 +272,6 @@
       func list(
         request: SslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslPoliciesList
-
-      /// See `SslPoliciesClient.list`.
-      func list(
-        byItem: SslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SslPolicy, Swift.Error>
 
       /// See `SslPoliciesClient.listAvailableFeatures`.
       func listAvailableFeatures(
@@ -408,12 +305,21 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all SslPolicy resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "sslPolicies_aggregatedList")
     public func aggregatedList(
       byItem: SslPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -548,11 +454,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists all the SSL policies that have been configured for the specified
+    /// project.
+    ///
+    /// @Snippet(path: "sslPolicies_list")
     public func list(
       byItem: SslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SslPolicy, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

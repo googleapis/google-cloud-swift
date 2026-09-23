@@ -158,21 +158,6 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
     try await self.inner.listEncryptionConfigs(request: request, options: options)
   }
 
-  /// List EncryptionConfigs.
-  ///
-  /// @Snippet(path: "CmekService_ListEncryptionConfigs")
-  public func listEncryptionConfigs(
-    byItem: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EncryptionConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEncryptionConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEncryptionConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get an EncryptionConfig.
   ///
   /// @Snippet(path: "CmekService_GetEncryptionConfig")
@@ -206,38 +191,6 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "CmekService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -302,23 +255,6 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "CmekService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "CmekService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -355,11 +291,7 @@ extension Clients {
   /// To mock `CmekServiceClient` change your functions to receive
   /// `some CmekServiceProtocol` or `any CmekServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CmekServiceProtocol {
-    /// See `CmekServiceClient.createEncryptionConfig`.
-    func createEncryptionConfig(request: CreateEncryptionConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol CmekServiceProtocol: Sendable {
     /// See `CmekServiceClient.createEncryptionConfig`.
     func createEncryptionConfig(withPolling: CreateEncryptionConfigRequest) async throws
       -> any GoogleGax.PollableOperation<EncryptionConfig>
@@ -372,10 +304,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
 
     /// See `CmekServiceClient.updateEncryptionConfig`.
-    func updateEncryptionConfig(request: UpdateEncryptionConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CmekServiceClient.updateEncryptionConfig`.
     func updateEncryptionConfig(withPolling: UpdateEncryptionConfigRequest) async throws
       -> any GoogleGax.PollableOperation<EncryptionConfig>
 
@@ -386,10 +314,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
 
     /// See `CmekServiceClient.deleteEncryptionConfig`.
-    func deleteEncryptionConfig(request: DeleteEncryptionConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CmekServiceClient.deleteEncryptionConfig`.
     func deleteEncryptionConfig(withPolling: DeleteEncryptionConfigRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -397,83 +321,6 @@ extension Clients {
     func deleteEncryptionConfig(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CmekServiceClient.listEncryptionConfigs`.
-    func listEncryptionConfigs(request: ListEncryptionConfigsRequest) async throws
-      -> GoogleCloudDataplexV1.ListEncryptionConfigsResponse
-
-    /// See `CmekServiceClient.listEncryptionConfigs`.
-    func listEncryptionConfigs(
-      byItem: ListEncryptionConfigsRequest
-    ) -> any AsyncSequence<EncryptionConfig, Swift.Error>
-
-    /// See `CmekServiceClient.listEncryptionConfigs`.
-    func listEncryptionConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EncryptionConfig, Swift.Error>
-
-    /// See `CmekServiceClient.getEncryptionConfig`.
-    func getEncryptionConfig(request: GetEncryptionConfigRequest) async throws
-      -> GoogleCloudDataplexV1.EncryptionConfig
-
-    /// See `CmekServiceClient.getEncryptionConfig`.
-    func getEncryptionConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataplexV1.EncryptionConfig
-
-    /// See `CmekServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CmekServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `CmekServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `CmekServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `CmekServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `CmekServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `CmekServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CmekServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CmekServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CmekServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `CmekServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CmekServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `CmekServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `CmekServiceClient.createEncryptionConfig`.
     func createEncryptionConfig(
@@ -510,11 +357,6 @@ extension Clients {
       request: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListEncryptionConfigsResponse
 
-    /// See `CmekServiceClient.listEncryptionConfigs`.
-    func listEncryptionConfigs(
-      byItem: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EncryptionConfig, Swift.Error>
-
     /// See `CmekServiceClient.getEncryptionConfig`.
     func getEncryptionConfig(
       request: GetEncryptionConfigRequest, options: GoogleGax.RequestOptions
@@ -524,11 +366,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CmekServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `CmekServiceClient.getLocation`.
     func getLocation(
@@ -554,11 +391,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CmekServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CmekServiceClient.deleteOperation`.
     func deleteOperation(
@@ -709,12 +541,17 @@ extension Clients.CmekServiceProtocol {
     self.listEncryptionConfigs(byItem: byItem, options: .init())
   }
 
+  /// List EncryptionConfigs.
+  ///
+  /// @Snippet(path: "CmekService_ListEncryptionConfigs")
   public func listEncryptionConfigs(
     byItem: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EncryptionConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEncryptionConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEncryptionConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -767,12 +604,34 @@ extension Clients.CmekServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CmekService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -843,12 +702,19 @@ extension Clients.CmekServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmekService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

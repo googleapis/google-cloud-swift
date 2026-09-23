@@ -108,21 +108,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of hosts.
-    ///
-    /// @Snippet(path: "hosts_list")
-    public func list(
-      byItem: HostsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Host, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.HostsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified zone-specific Operations resource.
     ///
     /// @Snippet(path: "hosts_getOperation")
@@ -139,38 +124,7 @@
     /// To mock `HostsClient` change your functions to receive
     /// `some HostsProtocol` or `any HostsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol HostsProtocol {
-      /// See `HostsClient.`get``.
-      func `get`(request: HostsClient.GetRequest) async throws -> GoogleCloudComputeV1.Host
-
-      /// See `HostsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        association: Swift.String,
-        host: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Host
-
-      /// See `HostsClient.getVersion`.
-      func getVersion(request: HostsClient.GetVersionRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `HostsClient.list`.
-      func list(request: HostsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.HostsListResponse
-
-      /// See `HostsClient.list`.
-      func list(
-        byItem: HostsClient.ListRequest
-      ) -> any AsyncSequence<Host, Swift.Error>
-
-      /// See `HostsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-        association: Swift.String,
-      ) -> any AsyncSequence<Host, Swift.Error>
-
+    public protocol HostsProtocol: Sendable {
       /// See `HostsClient.`get``.
       func `get`(
         request: HostsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -185,11 +139,6 @@
       func list(
         request: HostsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HostsListResponse
-
-      /// See `HostsClient.list`.
-      func list(
-        byItem: HostsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Host, Swift.Error>
     }
   }
 
@@ -284,12 +233,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of hosts.
+    ///
+    /// @Snippet(path: "hosts_list")
     public func list(
       byItem: HostsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Host, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HostsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

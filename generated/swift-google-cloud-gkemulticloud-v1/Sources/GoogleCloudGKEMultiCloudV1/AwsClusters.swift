@@ -164,25 +164,6 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     try await self.inner.listAwsClusters(request: request, options: options)
   }
 
-  /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
-  /// on a given Google Cloud project and region.
-  ///
-  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
-  ///
-  /// @Snippet(path: "AwsClusters_ListAwsClusters")
-  @available(*, deprecated)
-  public func listAwsClusters(
-    byItem: ListAwsClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AwsCluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAwsClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
   /// resource.
   ///
@@ -442,27 +423,6 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     try await self.inner.listAwsNodePools(request: request, options: options)
   }
 
-  /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-  /// resources on a given
-  /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
-  ///
-  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
-  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
-  ///
-  /// @Snippet(path: "AwsClusters_ListAwsNodePools")
-  @available(*, deprecated)
-  public func listAwsNodePools(
-    byItem: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AwsNodePool, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAwsNodePools(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
   /// resource.
   ///
@@ -567,23 +527,6 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "AwsClusters_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "AwsClusters_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -621,12 +564,7 @@ extension Clients {
   /// `some AwsClustersProtocol` or `any AwsClustersProtocol`
   /// and pass a mock implementation in your tests.
   @available(*, deprecated)
-  public protocol AwsClustersProtocol {
-    /// See `AwsClustersClient.createAwsCluster`.
-    @available(*, deprecated)
-    func createAwsCluster(request: CreateAwsClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AwsClustersProtocol: Sendable {
     /// See `AwsClustersClient.createAwsCluster`.
     @available(*, deprecated)
     func createAwsCluster(withPolling: CreateAwsClusterRequest) async throws -> any GoogleGax
@@ -642,11 +580,6 @@ extension Clients {
 
     /// See `AwsClustersClient.updateAwsCluster`.
     @available(*, deprecated)
-    func updateAwsCluster(request: UpdateAwsClusterRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AwsClustersClient.updateAwsCluster`.
-    @available(*, deprecated)
     func updateAwsCluster(withPolling: UpdateAwsClusterRequest) async throws -> any GoogleGax
       .PollableOperation<AwsCluster>
 
@@ -656,39 +589,6 @@ extension Clients {
       awsCluster: AwsCluster?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AwsCluster>
-
-    /// See `AwsClustersClient.getAwsCluster`.
-    @available(*, deprecated)
-    func getAwsCluster(request: GetAwsClusterRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AwsCluster
-
-    /// See `AwsClustersClient.getAwsCluster`.
-    @available(*, deprecated)
-    func getAwsCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AwsCluster
-
-    /// See `AwsClustersClient.listAwsClusters`.
-    @available(*, deprecated)
-    func listAwsClusters(request: ListAwsClustersRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse
-
-    /// See `AwsClustersClient.listAwsClusters`.
-    @available(*, deprecated)
-    func listAwsClusters(
-      byItem: ListAwsClustersRequest
-    ) -> any AsyncSequence<AwsCluster, Swift.Error>
-
-    /// See `AwsClustersClient.listAwsClusters`.
-    @available(*, deprecated)
-    func listAwsClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AwsCluster, Swift.Error>
-
-    /// See `AwsClustersClient.deleteAwsCluster`.
-    @available(*, deprecated)
-    func deleteAwsCluster(request: DeleteAwsClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AwsClustersClient.deleteAwsCluster`.
     @available(*, deprecated)
@@ -700,21 +600,6 @@ extension Clients {
     func deleteAwsCluster(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AwsClustersClient.generateAwsClusterAgentToken`.
-    @available(*, deprecated)
-    func generateAwsClusterAgentToken(request: GenerateAwsClusterAgentTokenRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.GenerateAwsClusterAgentTokenResponse
-
-    /// See `AwsClustersClient.generateAwsAccessToken`.
-    @available(*, deprecated)
-    func generateAwsAccessToken(request: GenerateAwsAccessTokenRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.GenerateAwsAccessTokenResponse
-
-    /// See `AwsClustersClient.createAwsNodePool`.
-    @available(*, deprecated)
-    func createAwsNodePool(request: CreateAwsNodePoolRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AwsClustersClient.createAwsNodePool`.
     @available(*, deprecated)
@@ -731,11 +616,6 @@ extension Clients {
 
     /// See `AwsClustersClient.updateAwsNodePool`.
     @available(*, deprecated)
-    func updateAwsNodePool(request: UpdateAwsNodePoolRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AwsClustersClient.updateAwsNodePool`.
-    @available(*, deprecated)
     func updateAwsNodePool(withPolling: UpdateAwsNodePoolRequest) async throws -> any GoogleGax
       .PollableOperation<AwsNodePool>
 
@@ -748,11 +628,6 @@ extension Clients {
 
     /// See `AwsClustersClient.rollbackAwsNodePoolUpdate`.
     @available(*, deprecated)
-    func rollbackAwsNodePoolUpdate(request: RollbackAwsNodePoolUpdateRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AwsClustersClient.rollbackAwsNodePoolUpdate`.
-    @available(*, deprecated)
     func rollbackAwsNodePoolUpdate(withPolling: RollbackAwsNodePoolUpdateRequest) async throws
       -> any GoogleGax.PollableOperation<AwsNodePool>
 
@@ -761,39 +636,6 @@ extension Clients {
     func rollbackAwsNodePoolUpdate(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AwsNodePool>
-
-    /// See `AwsClustersClient.getAwsNodePool`.
-    @available(*, deprecated)
-    func getAwsNodePool(request: GetAwsNodePoolRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AwsNodePool
-
-    /// See `AwsClustersClient.getAwsNodePool`.
-    @available(*, deprecated)
-    func getAwsNodePool(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AwsNodePool
-
-    /// See `AwsClustersClient.listAwsNodePools`.
-    @available(*, deprecated)
-    func listAwsNodePools(request: ListAwsNodePoolsRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse
-
-    /// See `AwsClustersClient.listAwsNodePools`.
-    @available(*, deprecated)
-    func listAwsNodePools(
-      byItem: ListAwsNodePoolsRequest
-    ) -> any AsyncSequence<AwsNodePool, Swift.Error>
-
-    /// See `AwsClustersClient.listAwsNodePools`.
-    @available(*, deprecated)
-    func listAwsNodePools(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AwsNodePool, Swift.Error>
-
-    /// See `AwsClustersClient.deleteAwsNodePool`.
-    @available(*, deprecated)
-    func deleteAwsNodePool(request: DeleteAwsNodePoolRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AwsClustersClient.deleteAwsNodePool`.
     @available(*, deprecated)
@@ -805,58 +647,6 @@ extension Clients {
     func deleteAwsNodePool(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AwsClustersClient.getAwsOpenIdConfig`.
-    @available(*, deprecated)
-    func getAwsOpenIdConfig(request: GetAwsOpenIdConfigRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AwsOpenIdConfig
-
-    /// See `AwsClustersClient.getAwsJsonWebKeys`.
-    @available(*, deprecated)
-    func getAwsJsonWebKeys(request: GetAwsJsonWebKeysRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AwsJsonWebKeys
-
-    /// See `AwsClustersClient.getAwsServerConfig`.
-    @available(*, deprecated)
-    func getAwsServerConfig(request: GetAwsServerConfigRequest) async throws
-      -> GoogleCloudGKEMultiCloudV1.AwsServerConfig
-
-    /// See `AwsClustersClient.getAwsServerConfig`.
-    @available(*, deprecated)
-    func getAwsServerConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudGKEMultiCloudV1.AwsServerConfig
-
-    /// See `AwsClustersClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AwsClustersClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AwsClustersClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AwsClustersClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AwsClustersClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AwsClustersClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AwsClustersClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `AwsClustersClient.createAwsCluster`.
     @available(*, deprecated)
@@ -893,12 +683,6 @@ extension Clients {
     func listAwsClusters(
       request: ListAwsClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse
-
-    /// See `AwsClustersClient.listAwsClusters`.
-    @available(*, deprecated)
-    func listAwsClusters(
-      byItem: ListAwsClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AwsCluster, Swift.Error>
 
     /// See `AwsClustersClient.deleteAwsCluster`.
     @available(*, deprecated)
@@ -972,12 +756,6 @@ extension Clients {
       request: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse
 
-    /// See `AwsClustersClient.listAwsNodePools`.
-    @available(*, deprecated)
-    func listAwsNodePools(
-      byItem: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AwsNodePool, Swift.Error>
-
     /// See `AwsClustersClient.deleteAwsNodePool`.
     @available(*, deprecated)
     func deleteAwsNodePool(
@@ -1012,11 +790,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AwsClustersClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AwsClustersClient.deleteOperation`.
     func deleteOperation(
@@ -1168,13 +941,21 @@ extension Clients.AwsClustersProtocol {
     self.listAwsClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+  /// on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsClusters")
   @available(*, deprecated)
   public func listAwsClusters(
     byItem: ListAwsClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AwsCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAwsClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1436,13 +1217,23 @@ extension Clients.AwsClustersProtocol {
     self.listAwsNodePools(byItem: byItem, options: .init())
   }
 
+  /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resources on a given
+  /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsNodePools")
   @available(*, deprecated)
   public func listAwsNodePools(
     byItem: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AwsNodePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAwsNodePools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1569,12 +1360,19 @@ extension Clients.AwsClustersProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

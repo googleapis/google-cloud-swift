@@ -60,23 +60,6 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
     try await self.inner.listSecrets(request: request, options: options)
   }
 
-  /// Lists [Secrets][google.cloud.secretmanager.v1.Secret].
-  ///
-  /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-  ///
-  /// @Snippet(path: "SecretManagerService_ListSecrets")
-  public func listSecrets(
-    byItem: ListSecretsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Secret, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSecrets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
   /// [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
   ///
@@ -148,24 +131,6 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
     request: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse {
     try await self.inner.listSecretVersions(request: request, options: options)
-  }
-
-  /// Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This
-  /// call does not return secret data.
-  ///
-  /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  ///
-  /// @Snippet(path: "SecretManagerService_ListSecretVersions")
-  public func listSecretVersions(
-    byItem: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SecretVersion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSecretVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets metadata for a
@@ -330,21 +295,6 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "SecretManagerService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SecretManagerService_GetLocation")
@@ -361,178 +311,11 @@ extension Clients {
   /// To mock `SecretManagerServiceClient` change your functions to receive
   /// `some SecretManagerServiceProtocol` or `any SecretManagerServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol SecretManagerServiceProtocol {
-    /// See `SecretManagerServiceClient.listSecrets`.
-    func listSecrets(request: ListSecretsRequest) async throws
-      -> GoogleCloudSecretManagerV1.ListSecretsResponse
-
-    /// See `SecretManagerServiceClient.listSecrets`.
-    func listSecrets(
-      byItem: ListSecretsRequest
-    ) -> any AsyncSequence<Secret, Swift.Error>
-
-    /// See `SecretManagerServiceClient.listSecrets`.
-    func listSecrets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Secret, Swift.Error>
-
-    /// See `SecretManagerServiceClient.createSecret`.
-    func createSecret(request: CreateSecretRequest) async throws
-      -> GoogleCloudSecretManagerV1.Secret
-
-    /// See `SecretManagerServiceClient.createSecret`.
-    func createSecret(
-      parent: Swift.String,
-      secretId: Swift.String,
-      secret: Secret?,
-    ) async throws -> GoogleCloudSecretManagerV1.Secret
-
-    /// See `SecretManagerServiceClient.addSecretVersion`.
-    func addSecretVersion(request: AddSecretVersionRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.addSecretVersion`.
-    func addSecretVersion(
-      parent: Swift.String,
-      payload: SecretPayload?,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.getSecret`.
-    func getSecret(request: GetSecretRequest) async throws -> GoogleCloudSecretManagerV1.Secret
-
-    /// See `SecretManagerServiceClient.getSecret`.
-    func getSecret(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.Secret
-
-    /// See `SecretManagerServiceClient.updateSecret`.
-    func updateSecret(request: UpdateSecretRequest) async throws
-      -> GoogleCloudSecretManagerV1.Secret
-
-    /// See `SecretManagerServiceClient.updateSecret`.
-    func updateSecret(
-      secret: Secret?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSecretManagerV1.Secret
-
-    /// See `SecretManagerServiceClient.deleteSecret`.
-    func deleteSecret(request: DeleteSecretRequest) async throws
-
-    /// See `SecretManagerServiceClient.deleteSecret`.
-    func deleteSecret(
-      name: Swift.String,
-    ) async throws
-
-    /// See `SecretManagerServiceClient.listSecretVersions`.
-    func listSecretVersions(request: ListSecretVersionsRequest) async throws
-      -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse
-
-    /// See `SecretManagerServiceClient.listSecretVersions`.
-    func listSecretVersions(
-      byItem: ListSecretVersionsRequest
-    ) -> any AsyncSequence<SecretVersion, Swift.Error>
-
-    /// See `SecretManagerServiceClient.listSecretVersions`.
-    func listSecretVersions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SecretVersion, Swift.Error>
-
-    /// See `SecretManagerServiceClient.getSecretVersion`.
-    func getSecretVersion(request: GetSecretVersionRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.getSecretVersion`.
-    func getSecretVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.accessSecretVersion`.
-    func accessSecretVersion(request: AccessSecretVersionRequest) async throws
-      -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
-
-    /// See `SecretManagerServiceClient.accessSecretVersion`.
-    func accessSecretVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
-
-    /// See `SecretManagerServiceClient.disableSecretVersion`.
-    func disableSecretVersion(request: DisableSecretVersionRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.disableSecretVersion`.
-    func disableSecretVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.enableSecretVersion`.
-    func enableSecretVersion(request: EnableSecretVersionRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.enableSecretVersion`.
-    func enableSecretVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.destroySecretVersion`.
-    func destroySecretVersion(request: DestroySecretVersionRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.destroySecretVersion`.
-    func destroySecretVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `SecretManagerServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `SecretManagerServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `SecretManagerServiceClient.enableManagedRotation`.
-    func enableManagedRotation(request: EnableManagedRotationRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.enableManagedRotation`.
-    func enableManagedRotation(
-      parent: Swift.String,
-      cloudSqlSingleUserCredentials: EnableManagedRotationRequest.CloudSQLSingleUserCredentials?,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.rotateSecret`.
-    func rotateSecret(request: RotateSecretRequest) async throws
-      -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.rotateSecret`.
-    func rotateSecret(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
-
-    /// See `SecretManagerServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `SecretManagerServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `SecretManagerServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol SecretManagerServiceProtocol: Sendable {
     /// See `SecretManagerServiceClient.listSecrets`.
     func listSecrets(
       request: ListSecretsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse
-
-    /// See `SecretManagerServiceClient.listSecrets`.
-    func listSecrets(
-      byItem: ListSecretsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Secret, Swift.Error>
 
     /// See `SecretManagerServiceClient.createSecret`.
     func createSecret(
@@ -563,11 +346,6 @@ extension Clients {
     func listSecretVersions(
       request: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse
-
-    /// See `SecretManagerServiceClient.listSecretVersions`.
-    func listSecretVersions(
-      byItem: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecretVersion, Swift.Error>
 
     /// See `SecretManagerServiceClient.getSecretVersion`.
     func getSecretVersion(
@@ -624,11 +402,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `SecretManagerServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `SecretManagerServiceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -656,12 +429,19 @@ extension Clients.SecretManagerServiceProtocol {
     self.listSecrets(byItem: byItem, options: .init())
   }
 
+  /// Lists [Secrets][google.cloud.secretmanager.v1.Secret].
+  ///
+  /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
+  ///
+  /// @Snippet(path: "SecretManagerService_ListSecrets")
   public func listSecrets(
     byItem: ListSecretsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Secret, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSecrets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -803,12 +583,20 @@ extension Clients.SecretManagerServiceProtocol {
     self.listSecretVersions(byItem: byItem, options: .init())
   }
 
+  /// Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This
+  /// call does not return secret data.
+  ///
+  /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
+  ///
+  /// @Snippet(path: "SecretManagerService_ListSecretVersions")
   public func listSecretVersions(
     byItem: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SecretVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSecretVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1025,12 +813,17 @@ extension Clients.SecretManagerServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "SecretManagerService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

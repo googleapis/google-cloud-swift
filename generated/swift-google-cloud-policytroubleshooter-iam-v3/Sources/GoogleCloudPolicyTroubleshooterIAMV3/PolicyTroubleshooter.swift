@@ -57,11 +57,7 @@ extension Clients {
   /// To mock `PolicyTroubleshooterClient` change your functions to receive
   /// `some PolicyTroubleshooterProtocol` or `any PolicyTroubleshooterProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PolicyTroubleshooterProtocol {
-    /// See `PolicyTroubleshooterClient.troubleshootIamPolicy`.
-    func troubleshootIamPolicy(request: TroubleshootIamPolicyRequest) async throws
-      -> GoogleCloudPolicyTroubleshooterIAMV3.TroubleshootIamPolicyResponse
-
+  public protocol PolicyTroubleshooterProtocol: Sendable {
     /// See `PolicyTroubleshooterClient.troubleshootIamPolicy`.
     func troubleshootIamPolicy(
       request: TroubleshootIamPolicyRequest, options: GoogleGax.RequestOptions

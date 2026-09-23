@@ -63,22 +63,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     try await self.inner.listServiceProjectAttachments(request: request, options: options)
   }
 
-  /// Lists service projects attached to the host project.
-  ///
-  /// @Snippet(path: "AppHub_ListServiceProjectAttachments")
-  public func listServiceProjectAttachments(
-    byItem: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServiceProjectAttachments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Attaches a service project to the host project.
   ///
   /// @Snippet(path: "AppHub_CreateServiceProjectAttachment")
@@ -182,22 +166,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     try await self.inner.listDiscoveredServices(request: request, options: options)
   }
 
-  /// Lists Discovered Services that can be added to an Application in a host
-  /// project and location.
-  ///
-  /// @Snippet(path: "AppHub_ListDiscoveredServices")
-  public func listDiscoveredServices(
-    byItem: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDiscoveredServices(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a Discovered Service in a host project and location.
   ///
   /// @Snippet(path: "AppHub_GetDiscoveredService")
@@ -224,21 +192,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListServicesResponse {
     try await self.inner.listServices(request: request, options: options)
-  }
-
-  /// Lists Services in an Application.
-  ///
-  /// @Snippet(path: "AppHub_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListServicesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServices(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Creates a Service in an Application.
@@ -363,22 +316,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     try await self.inner.listDiscoveredWorkloads(request: request, options: options)
   }
 
-  /// Lists Discovered Workloads that can be added to an Application in a host
-  /// project and location.
-  ///
-  /// @Snippet(path: "AppHub_ListDiscoveredWorkloads")
-  public func listDiscoveredWorkloads(
-    byItem: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDiscoveredWorkloads(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a Discovered Workload in a host project and location.
   ///
   /// @Snippet(path: "AppHub_GetDiscoveredWorkload")
@@ -405,21 +342,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse {
     try await self.inner.listWorkloads(request: request, options: options)
-  }
-
-  /// Lists Workloads in an Application.
-  ///
-  /// @Snippet(path: "AppHub_ListWorkloads")
-  public func listWorkloads(
-    byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workload, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listWorkloads(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Creates a Workload in an Application.
@@ -545,21 +467,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     try await self.inner.listApplications(request: request, options: options)
   }
 
-  /// Lists Applications in a host project and location.
-  ///
-  /// @Snippet(path: "AppHub_ListApplications")
-  public func listApplications(
-    byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Application, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listApplications(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates an Application in a host project and location.
   ///
   /// @Snippet(path: "AppHub_CreateApplication")
@@ -683,21 +590,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "AppHub_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppHub_GetLocation")
@@ -760,23 +652,6 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "AppHub_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "AppHub_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -813,34 +688,7 @@ extension Clients {
   /// To mock `AppHubClient` change your functions to receive
   /// `some AppHubProtocol` or `any AppHubProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AppHubProtocol {
-    /// See `AppHubClient.lookupServiceProjectAttachment`.
-    func lookupServiceProjectAttachment(request: LookupServiceProjectAttachmentRequest) async throws
-      -> GoogleCloudAppHubV1.LookupServiceProjectAttachmentResponse
-
-    /// See `AppHubClient.lookupServiceProjectAttachment`.
-    func lookupServiceProjectAttachment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.LookupServiceProjectAttachmentResponse
-
-    /// See `AppHubClient.listServiceProjectAttachments`.
-    func listServiceProjectAttachments(request: ListServiceProjectAttachmentsRequest) async throws
-      -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse
-
-    /// See `AppHubClient.listServiceProjectAttachments`.
-    func listServiceProjectAttachments(
-      byItem: ListServiceProjectAttachmentsRequest
-    ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error>
-
-    /// See `AppHubClient.listServiceProjectAttachments`.
-    func listServiceProjectAttachments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error>
-
-    /// See `AppHubClient.createServiceProjectAttachment`.
-    func createServiceProjectAttachment(request: CreateServiceProjectAttachmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AppHubProtocol: Sendable {
     /// See `AppHubClient.createServiceProjectAttachment`.
     func createServiceProjectAttachment(withPolling: CreateServiceProjectAttachmentRequest)
       async throws -> any GoogleGax.PollableOperation<ServiceProjectAttachment>
@@ -852,19 +700,6 @@ extension Clients {
       serviceProjectAttachmentId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ServiceProjectAttachment>
 
-    /// See `AppHubClient.getServiceProjectAttachment`.
-    func getServiceProjectAttachment(request: GetServiceProjectAttachmentRequest) async throws
-      -> GoogleCloudAppHubV1.ServiceProjectAttachment
-
-    /// See `AppHubClient.getServiceProjectAttachment`.
-    func getServiceProjectAttachment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.ServiceProjectAttachment
-
-    /// See `AppHubClient.deleteServiceProjectAttachment`.
-    func deleteServiceProjectAttachment(request: DeleteServiceProjectAttachmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `AppHubClient.deleteServiceProjectAttachment`.
     func deleteServiceProjectAttachment(withPolling: DeleteServiceProjectAttachmentRequest)
       async throws -> any GoogleGax.PollableOperation<Swift.Void>
@@ -873,65 +708,6 @@ extension Clients {
     func deleteServiceProjectAttachment(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppHubClient.detachServiceProjectAttachment`.
-    func detachServiceProjectAttachment(request: DetachServiceProjectAttachmentRequest) async throws
-      -> GoogleCloudAppHubV1.DetachServiceProjectAttachmentResponse
-
-    /// See `AppHubClient.detachServiceProjectAttachment`.
-    func detachServiceProjectAttachment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.DetachServiceProjectAttachmentResponse
-
-    /// See `AppHubClient.listDiscoveredServices`.
-    func listDiscoveredServices(request: ListDiscoveredServicesRequest) async throws
-      -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse
-
-    /// See `AppHubClient.listDiscoveredServices`.
-    func listDiscoveredServices(
-      byItem: ListDiscoveredServicesRequest
-    ) -> any AsyncSequence<DiscoveredService, Swift.Error>
-
-    /// See `AppHubClient.listDiscoveredServices`.
-    func listDiscoveredServices(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DiscoveredService, Swift.Error>
-
-    /// See `AppHubClient.getDiscoveredService`.
-    func getDiscoveredService(request: GetDiscoveredServiceRequest) async throws
-      -> GoogleCloudAppHubV1.DiscoveredService
-
-    /// See `AppHubClient.getDiscoveredService`.
-    func getDiscoveredService(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.DiscoveredService
-
-    /// See `AppHubClient.lookupDiscoveredService`.
-    func lookupDiscoveredService(request: LookupDiscoveredServiceRequest) async throws
-      -> GoogleCloudAppHubV1.LookupDiscoveredServiceResponse
-
-    /// See `AppHubClient.lookupDiscoveredService`.
-    func lookupDiscoveredService(
-      parent: Swift.String,
-      uri: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.LookupDiscoveredServiceResponse
-
-    /// See `AppHubClient.listServices`.
-    func listServices(request: ListServicesRequest) async throws
-      -> GoogleCloudAppHubV1.ListServicesResponse
-
-    /// See `AppHubClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `AppHubClient.listServices`.
-    func listServices(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `AppHubClient.createService`.
-    func createService(request: CreateServiceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AppHubClient.createService`.
     func createService(withPolling: CreateServiceRequest) async throws -> any GoogleGax
@@ -944,17 +720,6 @@ extension Clients {
       serviceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
-    /// See `AppHubClient.getService`.
-    func getService(request: GetServiceRequest) async throws -> GoogleCloudAppHubV1.Service
-
-    /// See `AppHubClient.getService`.
-    func getService(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.Service
-
-    /// See `AppHubClient.updateService`.
-    func updateService(request: UpdateServiceRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `AppHubClient.updateService`.
     func updateService(withPolling: UpdateServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Service>
@@ -966,9 +731,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `AppHubClient.deleteService`.
-    func deleteService(request: DeleteServiceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AppHubClient.deleteService`.
     func deleteService(withPolling: DeleteServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -976,56 +738,6 @@ extension Clients {
     func deleteService(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppHubClient.listDiscoveredWorkloads`.
-    func listDiscoveredWorkloads(request: ListDiscoveredWorkloadsRequest) async throws
-      -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse
-
-    /// See `AppHubClient.listDiscoveredWorkloads`.
-    func listDiscoveredWorkloads(
-      byItem: ListDiscoveredWorkloadsRequest
-    ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error>
-
-    /// See `AppHubClient.listDiscoveredWorkloads`.
-    func listDiscoveredWorkloads(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error>
-
-    /// See `AppHubClient.getDiscoveredWorkload`.
-    func getDiscoveredWorkload(request: GetDiscoveredWorkloadRequest) async throws
-      -> GoogleCloudAppHubV1.DiscoveredWorkload
-
-    /// See `AppHubClient.getDiscoveredWorkload`.
-    func getDiscoveredWorkload(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.DiscoveredWorkload
-
-    /// See `AppHubClient.lookupDiscoveredWorkload`.
-    func lookupDiscoveredWorkload(request: LookupDiscoveredWorkloadRequest) async throws
-      -> GoogleCloudAppHubV1.LookupDiscoveredWorkloadResponse
-
-    /// See `AppHubClient.lookupDiscoveredWorkload`.
-    func lookupDiscoveredWorkload(
-      parent: Swift.String,
-      uri: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.LookupDiscoveredWorkloadResponse
-
-    /// See `AppHubClient.listWorkloads`.
-    func listWorkloads(request: ListWorkloadsRequest) async throws
-      -> GoogleCloudAppHubV1.ListWorkloadsResponse
-
-    /// See `AppHubClient.listWorkloads`.
-    func listWorkloads(
-      byItem: ListWorkloadsRequest
-    ) -> any AsyncSequence<Workload, Swift.Error>
-
-    /// See `AppHubClient.listWorkloads`.
-    func listWorkloads(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Workload, Swift.Error>
-
-    /// See `AppHubClient.createWorkload`.
-    func createWorkload(request: CreateWorkloadRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AppHubClient.createWorkload`.
     func createWorkload(withPolling: CreateWorkloadRequest) async throws -> any GoogleGax
@@ -1038,17 +750,6 @@ extension Clients {
       workloadId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Workload>
 
-    /// See `AppHubClient.getWorkload`.
-    func getWorkload(request: GetWorkloadRequest) async throws -> GoogleCloudAppHubV1.Workload
-
-    /// See `AppHubClient.getWorkload`.
-    func getWorkload(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.Workload
-
-    /// See `AppHubClient.updateWorkload`.
-    func updateWorkload(request: UpdateWorkloadRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `AppHubClient.updateWorkload`.
     func updateWorkload(withPolling: UpdateWorkloadRequest) async throws -> any GoogleGax
       .PollableOperation<Workload>
@@ -1060,9 +761,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Workload>
 
     /// See `AppHubClient.deleteWorkload`.
-    func deleteWorkload(request: DeleteWorkloadRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AppHubClient.deleteWorkload`.
     func deleteWorkload(withPolling: DeleteWorkloadRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1070,24 +768,6 @@ extension Clients {
     func deleteWorkload(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppHubClient.listApplications`.
-    func listApplications(request: ListApplicationsRequest) async throws
-      -> GoogleCloudAppHubV1.ListApplicationsResponse
-
-    /// See `AppHubClient.listApplications`.
-    func listApplications(
-      byItem: ListApplicationsRequest
-    ) -> any AsyncSequence<Application, Swift.Error>
-
-    /// See `AppHubClient.listApplications`.
-    func listApplications(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Application, Swift.Error>
-
-    /// See `AppHubClient.createApplication`.
-    func createApplication(request: CreateApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppHubClient.createApplication`.
     func createApplication(withPolling: CreateApplicationRequest) async throws -> any GoogleGax
@@ -1100,19 +780,6 @@ extension Clients {
       applicationId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
-    /// See `AppHubClient.getApplication`.
-    func getApplication(request: GetApplicationRequest) async throws
-      -> GoogleCloudAppHubV1.Application
-
-    /// See `AppHubClient.getApplication`.
-    func getApplication(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAppHubV1.Application
-
-    /// See `AppHubClient.updateApplication`.
-    func updateApplication(request: UpdateApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `AppHubClient.updateApplication`.
     func updateApplication(withPolling: UpdateApplicationRequest) async throws -> any GoogleGax
       .PollableOperation<Application>
@@ -1124,10 +791,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppHubClient.deleteApplication`.
-    func deleteApplication(request: DeleteApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppHubClient.deleteApplication`.
     func deleteApplication(withPolling: DeleteApplicationRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1135,60 +798,6 @@ extension Clients {
     func deleteApplication(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppHubClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AppHubClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `AppHubClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `AppHubClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AppHubClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AppHubClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `AppHubClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AppHubClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AppHubClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AppHubClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AppHubClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AppHubClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AppHubClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `AppHubClient.lookupServiceProjectAttachment`.
     func lookupServiceProjectAttachment(
@@ -1199,11 +808,6 @@ extension Clients {
     func listServiceProjectAttachments(
       request: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse
-
-    /// See `AppHubClient.listServiceProjectAttachments`.
-    func listServiceProjectAttachments(
-      byItem: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error>
 
     /// See `AppHubClient.createServiceProjectAttachment`.
     func createServiceProjectAttachment(
@@ -1240,11 +844,6 @@ extension Clients {
       request: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse
 
-    /// See `AppHubClient.listDiscoveredServices`.
-    func listDiscoveredServices(
-      byItem: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DiscoveredService, Swift.Error>
-
     /// See `AppHubClient.getDiscoveredService`.
     func getDiscoveredService(
       request: GetDiscoveredServiceRequest, options: GoogleGax.RequestOptions
@@ -1259,11 +858,6 @@ extension Clients {
     func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.ListServicesResponse
-
-    /// See `AppHubClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `AppHubClient.createService`.
     func createService(
@@ -1305,11 +899,6 @@ extension Clients {
       request: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse
 
-    /// See `AppHubClient.listDiscoveredWorkloads`.
-    func listDiscoveredWorkloads(
-      byItem: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error>
-
     /// See `AppHubClient.getDiscoveredWorkload`.
     func getDiscoveredWorkload(
       request: GetDiscoveredWorkloadRequest, options: GoogleGax.RequestOptions
@@ -1324,11 +913,6 @@ extension Clients {
     func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse
-
-    /// See `AppHubClient.listWorkloads`.
-    func listWorkloads(
-      byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Workload, Swift.Error>
 
     /// See `AppHubClient.createWorkload`.
     func createWorkload(
@@ -1370,11 +954,6 @@ extension Clients {
       request: ListApplicationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse
 
-    /// See `AppHubClient.listApplications`.
-    func listApplications(
-      byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Application, Swift.Error>
-
     /// See `AppHubClient.createApplication`.
     func createApplication(
       request: CreateApplicationRequest, options: GoogleGax.RequestOptions
@@ -1415,11 +994,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `AppHubClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `AppHubClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1444,11 +1018,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AppHubClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppHubClient.deleteOperation`.
     func deleteOperation(
@@ -1503,13 +1072,18 @@ extension Clients.AppHubProtocol {
     self.listServiceProjectAttachments(byItem: byItem, options: .init())
   }
 
+  /// Lists service projects attached to the host project.
+  ///
+  /// @Snippet(path: "AppHub_ListServiceProjectAttachments")
   public func listServiceProjectAttachments(
     byItem: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServiceProjectAttachments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1662,12 +1236,18 @@ extension Clients.AppHubProtocol {
     self.listDiscoveredServices(byItem: byItem, options: .init())
   }
 
+  /// Lists Discovered Services that can be added to an Application in a host
+  /// project and location.
+  ///
+  /// @Snippet(path: "AppHub_ListDiscoveredServices")
   public func listDiscoveredServices(
     byItem: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDiscoveredServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1743,12 +1323,17 @@ extension Clients.AppHubProtocol {
     self.listServices(byItem: byItem, options: .init())
   }
 
+  /// Lists Services in an Application.
+  ///
+  /// @Snippet(path: "AppHub_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListServicesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1916,12 +1501,18 @@ extension Clients.AppHubProtocol {
     self.listDiscoveredWorkloads(byItem: byItem, options: .init())
   }
 
+  /// Lists Discovered Workloads that can be added to an Application in a host
+  /// project and location.
+  ///
+  /// @Snippet(path: "AppHub_ListDiscoveredWorkloads")
   public func listDiscoveredWorkloads(
     byItem: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDiscoveredWorkloads(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1997,12 +1588,17 @@ extension Clients.AppHubProtocol {
     self.listWorkloads(byItem: byItem, options: .init())
   }
 
+  /// Lists Workloads in an Application.
+  ///
+  /// @Snippet(path: "AppHub_ListWorkloads")
   public func listWorkloads(
     byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listWorkloads(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2171,12 +1767,17 @@ extension Clients.AppHubProtocol {
     self.listApplications(byItem: byItem, options: .init())
   }
 
+  /// Lists Applications in a host project and location.
+  ///
+  /// @Snippet(path: "AppHub_ListApplications")
   public func listApplications(
     byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Application, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listApplications(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2346,12 +1947,17 @@ extension Clients.AppHubProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AppHub_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2422,12 +2028,19 @@ extension Clients.AppHubProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppHub_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -54,25 +54,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all HealthCheck resources, regional and global,
-    /// available to the specified project.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "healthChecks_aggregatedList")
-    public func aggregatedList(
-      byItem: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthChecksAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified HealthCheck resource.
     ///
     /// @Snippet(path: "healthChecks_delete")
@@ -188,21 +169,6 @@
       request: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HealthCheckList {
       try await self.inner.list(request: request, options: options)
-    }
-
-    /// Retrieves the list of HealthCheck resources available to the specified
-    /// project.
-    ///
-    /// @Snippet(path: "healthChecks_list")
-    public func list(
-      byItem: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates a HealthCheck resource in the specified project using the data
@@ -334,81 +300,11 @@
     /// To mock `HealthChecksClient` change your functions to receive
     /// `some HealthChecksProtocol` or `any HealthChecksProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol HealthChecksProtocol {
-      /// See `HealthChecksClient.aggregatedList`.
-      func aggregatedList(request: HealthChecksClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.HealthChecksAggregatedList
-
-      /// See `HealthChecksClient.aggregatedList`.
-      func aggregatedList(
-        byItem: HealthChecksClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error>
-
-      /// See `HealthChecksClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error>
-
-      /// See `HealthChecksClient.delete`.
-      func delete(request: HealthChecksClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `HealthChecksClient.`get``.
-      func `get`(request: HealthChecksClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.HealthCheck
-
-      /// See `HealthChecksClient.`get``.
-      func `get`(
-        project: Swift.String,
-        healthCheck: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.HealthCheck
-
-      /// See `HealthChecksClient.insert`.
-      func insert(request: HealthChecksClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `HealthChecksClient.list`.
-      func list(request: HealthChecksClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.HealthCheckList
-
-      /// See `HealthChecksClient.list`.
-      func list(
-        byItem: HealthChecksClient.ListRequest
-      ) -> any AsyncSequence<HealthCheck, Swift.Error>
-
-      /// See `HealthChecksClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<HealthCheck, Swift.Error>
-
-      /// See `HealthChecksClient.patch`.
-      func patch(request: HealthChecksClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `HealthChecksClient.testIamPermissions`.
-      func testIamPermissions(request: HealthChecksClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `HealthChecksClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `HealthChecksClient.update`.
-      func update(request: HealthChecksClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol HealthChecksProtocol: Sendable {
       /// See `HealthChecksClient.aggregatedList`.
       func aggregatedList(
         request: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthChecksAggregatedList
-
-      /// See `HealthChecksClient.aggregatedList`.
-      func aggregatedList(
-        byItem: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error>
 
       /// See `HealthChecksClient.delete`.
       func delete(
@@ -429,11 +325,6 @@
       func list(
         request: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthCheckList
-
-      /// See `HealthChecksClient.list`.
-      func list(
-        byItem: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<HealthCheck, Swift.Error>
 
       /// See `HealthChecksClient.patch`.
       func patch(
@@ -472,12 +363,21 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all HealthCheck resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "healthChecks_aggregatedList")
     public func aggregatedList(
       byItem: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthChecksAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -612,11 +512,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of HealthCheck resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "healthChecks_list")
     public func list(
       byItem: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<HealthCheck, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

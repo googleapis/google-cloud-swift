@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of subnetworks.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "subnetworks_aggregatedList")
-    public func aggregatedList(
-      byItem: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified subnetwork.
     ///
     /// @Snippet(path: "subnetworks_delete")
@@ -249,21 +231,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of subnetworks available to the specified
-    /// project.
-    ///
-    /// @Snippet(path: "subnetworks_list")
-    public func list(
-      byItem: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves an aggregated list of all usable subnetworks in the project.
     ///
     /// @Snippet(path: "subnetworks_listUsable")
@@ -271,22 +238,6 @@
       request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList {
       try await self.inner.listUsable(request: request, options: options)
-    }
-
-    /// Retrieves an aggregated list of all usable subnetworks in the project.
-    ///
-    /// @Snippet(path: "subnetworks_listUsable")
-    public func listUsable(
-      byItem: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listUsable(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Patches the specified subnetwork with the data included in the request.
@@ -433,125 +384,11 @@
     /// To mock `SubnetworksClient` change your functions to receive
     /// `some SubnetworksProtocol` or `any SubnetworksProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SubnetworksProtocol {
-      /// See `SubnetworksClient.aggregatedList`.
-      func aggregatedList(request: SubnetworksClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.SubnetworkAggregatedList
-
-      /// See `SubnetworksClient.aggregatedList`.
-      func aggregatedList(
-        byItem: SubnetworksClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
-
-      /// See `SubnetworksClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
-
-      /// See `SubnetworksClient.delete`.
-      func delete(request: SubnetworksClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SubnetworksClient.expandIpCidrRange`.
-      func expandIpCidrRange(request: SubnetworksClient.ExpandIpCidrRangeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SubnetworksClient.`get``.
-      func `get`(request: SubnetworksClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Subnetwork
-
-      /// See `SubnetworksClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        subnetwork: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Subnetwork
-
-      /// See `SubnetworksClient.getIamPolicy`.
-      func getIamPolicy(request: SubnetworksClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `SubnetworksClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `SubnetworksClient.insert`.
-      func insert(request: SubnetworksClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SubnetworksClient.list`.
-      func list(request: SubnetworksClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SubnetworkList
-
-      /// See `SubnetworksClient.list`.
-      func list(
-        byItem: SubnetworksClient.ListRequest
-      ) -> any AsyncSequence<Subnetwork, Swift.Error>
-
-      /// See `SubnetworksClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<Subnetwork, Swift.Error>
-
-      /// See `SubnetworksClient.listUsable`.
-      func listUsable(request: SubnetworksClient.ListUsableRequest) async throws
-        -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
-
-      /// See `SubnetworksClient.listUsable`.
-      func listUsable(
-        byItem: SubnetworksClient.ListUsableRequest
-      ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
-
-      /// See `SubnetworksClient.listUsable`.
-      func listUsable(
-        project: Swift.String,
-      ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
-
-      /// See `SubnetworksClient.patch`.
-      func patch(request: SubnetworksClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SubnetworksClient.setIamPolicy`.
-      func setIamPolicy(request: SubnetworksClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `SubnetworksClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `SubnetworksClient.setPrivateIpGoogleAccess`.
-      func setPrivateIpGoogleAccess(request: SubnetworksClient.SetPrivateIpGoogleAccessRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `SubnetworksClient.testIamPermissions`.
-      func testIamPermissions(request: SubnetworksClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `SubnetworksClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol SubnetworksProtocol: Sendable {
       /// See `SubnetworksClient.aggregatedList`.
       func aggregatedList(
         request: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList
-
-      /// See `SubnetworksClient.aggregatedList`.
-      func aggregatedList(
-        byItem: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error>
 
       /// See `SubnetworksClient.delete`.
       func delete(
@@ -583,20 +420,10 @@
         request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SubnetworkList
 
-      /// See `SubnetworksClient.list`.
-      func list(
-        byItem: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Subnetwork, Swift.Error>
-
       /// See `SubnetworksClient.listUsable`.
       func listUsable(
         request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
-
-      /// See `SubnetworksClient.listUsable`.
-      func listUsable(
-        byItem: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<UsableSubnetwork, Swift.Error>
 
       /// See `SubnetworksClient.patch`.
       func patch(
@@ -641,12 +468,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of subnetworks.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "subnetworks_aggregatedList")
     public func aggregatedList(
       byItem: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -856,11 +691,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of subnetworks available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "subnetworks_list")
     public func list(
       byItem: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Subnetwork, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -894,13 +735,18 @@
       self.listUsable(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of all usable subnetworks in the project.
+    ///
+    /// @Snippet(path: "subnetworks_listUsable")
     public func listUsable(
       byItem: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listUsable(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

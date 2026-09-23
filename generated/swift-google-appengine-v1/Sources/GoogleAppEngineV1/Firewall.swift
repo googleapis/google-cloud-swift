@@ -55,21 +55,6 @@ public final class FirewallClient: Clients.FirewallProtocol, Sendable {
     try await self.inner.listIngressRules(request: request, options: options)
   }
 
-  /// Lists the firewall rules of an application.
-  ///
-  /// @Snippet(path: "Firewall_ListIngressRules")
-  public func listIngressRules(
-    byItem: ListIngressRulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FirewallRule, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleAppEngineV1.ListIngressRulesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIngressRules(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Replaces the entire firewall ruleset in one bulk operation. This overrides
   /// and replaces the rules of an existing firewall with the new rules.
   ///
@@ -134,23 +119,6 @@ public final class FirewallClient: Clients.FirewallProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Firewall_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Firewall_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -165,59 +133,11 @@ extension Clients {
   /// To mock `FirewallClient` change your functions to receive
   /// `some FirewallProtocol` or `any FirewallProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol FirewallProtocol {
-    /// See `FirewallClient.listIngressRules`.
-    func listIngressRules(request: ListIngressRulesRequest) async throws
-      -> GoogleAppEngineV1.ListIngressRulesResponse
-
-    /// See `FirewallClient.listIngressRules`.
-    func listIngressRules(
-      byItem: ListIngressRulesRequest
-    ) -> any AsyncSequence<FirewallRule, Swift.Error>
-
-    /// See `FirewallClient.batchUpdateIngressRules`.
-    func batchUpdateIngressRules(request: BatchUpdateIngressRulesRequest) async throws
-      -> GoogleAppEngineV1.BatchUpdateIngressRulesResponse
-
-    /// See `FirewallClient.createIngressRule`.
-    func createIngressRule(request: CreateIngressRuleRequest) async throws
-      -> GoogleAppEngineV1.FirewallRule
-
-    /// See `FirewallClient.getIngressRule`.
-    func getIngressRule(request: GetIngressRuleRequest) async throws
-      -> GoogleAppEngineV1.FirewallRule
-
-    /// See `FirewallClient.updateIngressRule`.
-    func updateIngressRule(request: UpdateIngressRuleRequest) async throws
-      -> GoogleAppEngineV1.FirewallRule
-
-    /// See `FirewallClient.deleteIngressRule`.
-    func deleteIngressRule(request: DeleteIngressRuleRequest) async throws
-
-    /// See `FirewallClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `FirewallClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `FirewallClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
+  public protocol FirewallProtocol: Sendable {
     /// See `FirewallClient.listIngressRules`.
     func listIngressRules(
       request: ListIngressRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListIngressRulesResponse
-
-    /// See `FirewallClient.listIngressRules`.
-    func listIngressRules(
-      byItem: ListIngressRulesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FirewallRule, Swift.Error>
 
     /// See `FirewallClient.batchUpdateIngressRules`.
     func batchUpdateIngressRules(
@@ -248,11 +168,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `FirewallClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -276,12 +191,17 @@ extension Clients.FirewallProtocol {
     self.listIngressRules(byItem: byItem, options: .init())
   }
 
+  /// Lists the firewall rules of an application.
+  ///
+  /// @Snippet(path: "Firewall_ListIngressRules")
   public func listIngressRules(
     byItem: ListIngressRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FirewallRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListIngressRulesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listIngressRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -362,12 +282,19 @@ extension Clients.FirewallProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Firewall_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

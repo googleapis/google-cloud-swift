@@ -86,22 +86,6 @@
       try await self.inner.listSecuritySettings(request: request, options: options)
     }
 
-    /// Returns the list of all security settings in the specified location.
-    ///
-    /// @Snippet(path: "SecuritySettingsService_ListSecuritySettings")
-    public func listSecuritySettings(
-      byItem: ListSecuritySettingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecuritySettings, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListSecuritySettingsResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listSecuritySettings(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified
     /// [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings].
     ///
@@ -140,38 +124,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "SecuritySettingsService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "SecuritySettingsService_GetLocation")
@@ -190,23 +142,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "SecuritySettingsService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -238,94 +173,7 @@
     /// To mock `SecuritySettingsServiceClient` change your functions to receive
     /// `some SecuritySettingsServiceProtocol` or `any SecuritySettingsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SecuritySettingsServiceProtocol {
-      /// See `SecuritySettingsServiceClient.createSecuritySettings`.
-      func createSecuritySettings(request: CreateSecuritySettingsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.SecuritySettings
-
-      /// See `SecuritySettingsServiceClient.createSecuritySettings`.
-      func createSecuritySettings(
-        parent: Swift.String,
-        securitySettings: SecuritySettings?,
-      ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings
-
-      /// See `SecuritySettingsServiceClient.getSecuritySettings`.
-      func getSecuritySettings(request: GetSecuritySettingsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.SecuritySettings
-
-      /// See `SecuritySettingsServiceClient.getSecuritySettings`.
-      func getSecuritySettings(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings
-
-      /// See `SecuritySettingsServiceClient.updateSecuritySettings`.
-      func updateSecuritySettings(request: UpdateSecuritySettingsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.SecuritySettings
-
-      /// See `SecuritySettingsServiceClient.updateSecuritySettings`.
-      func updateSecuritySettings(
-        securitySettings: SecuritySettings?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings
-
-      /// See `SecuritySettingsServiceClient.listSecuritySettings`.
-      func listSecuritySettings(request: ListSecuritySettingsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListSecuritySettingsResponse
-
-      /// See `SecuritySettingsServiceClient.listSecuritySettings`.
-      func listSecuritySettings(
-        byItem: ListSecuritySettingsRequest
-      ) -> any AsyncSequence<SecuritySettings, Swift.Error>
-
-      /// See `SecuritySettingsServiceClient.listSecuritySettings`.
-      func listSecuritySettings(
-        parent: Swift.String,
-      ) -> any AsyncSequence<SecuritySettings, Swift.Error>
-
-      /// See `SecuritySettingsServiceClient.deleteSecuritySettings`.
-      func deleteSecuritySettings(request: DeleteSecuritySettingsRequest) async throws
-
-      /// See `SecuritySettingsServiceClient.deleteSecuritySettings`.
-      func deleteSecuritySettings(
-        name: Swift.String,
-      ) async throws
-
-      /// See `SecuritySettingsServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `SecuritySettingsServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `SecuritySettingsServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `SecuritySettingsServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SecuritySettingsServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SecuritySettingsServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SecuritySettingsServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `SecuritySettingsServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol SecuritySettingsServiceProtocol: Sendable {
       /// See `SecuritySettingsServiceClient.createSecuritySettings`.
       func createSecuritySettings(
         request: CreateSecuritySettingsRequest, options: GoogleGax.RequestOptions
@@ -346,11 +194,6 @@
         request: ListSecuritySettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListSecuritySettingsResponse
 
-      /// See `SecuritySettingsServiceClient.listSecuritySettings`.
-      func listSecuritySettings(
-        byItem: ListSecuritySettingsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SecuritySettings, Swift.Error>
-
       /// See `SecuritySettingsServiceClient.deleteSecuritySettings`.
       func deleteSecuritySettings(
         request: DeleteSecuritySettingsRequest, options: GoogleGax.RequestOptions
@@ -361,11 +204,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `SecuritySettingsServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `SecuritySettingsServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -375,11 +213,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SecuritySettingsServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SecuritySettingsServiceClient.cancelOperation`.
       func cancelOperation(
@@ -475,13 +308,18 @@
       self.listSecuritySettings(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all security settings in the specified location.
+    ///
+    /// @Snippet(path: "SecuritySettingsService_ListSecuritySettings")
     public func listSecuritySettings(
       byItem: ListSecuritySettingsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SecuritySettings, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListSecuritySettingsResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listSecuritySettings(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -532,12 +370,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "SecuritySettingsService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -572,12 +432,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SecuritySettingsService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

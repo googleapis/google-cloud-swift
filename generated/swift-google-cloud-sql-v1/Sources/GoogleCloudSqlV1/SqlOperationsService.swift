@@ -57,22 +57,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists all instance operations that have been performed on the given Cloud
-    /// SQL instance in the reverse chronological order of the start time.
-    ///
-    /// @Snippet(path: "SqlOperationsService_List")
-    public func list(
-      byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudSqlV1.OperationsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Cancels an instance operation that has been performed on an instance.
     ///
     /// @Snippet(path: "SqlOperationsService_Cancel")
@@ -89,22 +73,7 @@
     /// To mock `SqlOperationsServiceClient` change your functions to receive
     /// `some SqlOperationsServiceProtocol` or `any SqlOperationsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlOperationsServiceProtocol {
-      /// See `SqlOperationsServiceClient.`get``.
-      func `get`(request: SqlOperationsGetRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlOperationsServiceClient.list`.
-      func list(request: SqlOperationsListRequest) async throws
-        -> GoogleCloudSqlV1.OperationsListResponse
-
-      /// See `SqlOperationsServiceClient.list`.
-      func list(
-        byItem: SqlOperationsListRequest
-      ) -> any AsyncSequence<Operation, Swift.Error>
-
-      /// See `SqlOperationsServiceClient.cancel`.
-      func cancel(request: SqlOperationsCancelRequest) async throws
-
+    public protocol SqlOperationsServiceProtocol: Sendable {
       /// See `SqlOperationsServiceClient.`get``.
       func `get`(
         request: SqlOperationsGetRequest, options: GoogleGax.RequestOptions
@@ -114,11 +83,6 @@
       func list(
         request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.OperationsListResponse
-
-      /// See `SqlOperationsServiceClient.list`.
-      func list(
-        byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `SqlOperationsServiceClient.cancel`.
       func cancel(
@@ -157,12 +121,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists all instance operations that have been performed on the given Cloud
+    /// SQL instance in the reverse chronological order of the start time.
+    ///
+    /// @Snippet(path: "SqlOperationsService_List")
     public func list(
       byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.OperationsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -52,21 +52,6 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
     try await self.inner.listApplications(request: request, options: options)
   }
 
-  /// Lists Applications in a given project and location.
-  ///
-  /// @Snippet(path: "AppPlatform_ListApplications")
-  public func listApplications(
-    byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Application, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListApplicationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listApplications(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Application.
   ///
   /// @Snippet(path: "AppPlatform_GetApplication")
@@ -387,21 +372,6 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
-  /// Lists Instances in a given project and location.
-  ///
-  /// @Snippet(path: "AppPlatform_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "AppPlatform_GetInstance")
@@ -545,20 +515,6 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
     try await self.inner.listDrafts(request: request, options: options)
   }
 
-  /// Lists Drafts in a given project and location.
-  ///
-  /// @Snippet(path: "AppPlatform_ListDrafts")
-  public func listDrafts(
-    byItem: ListDraftsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Draft, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDraftsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDrafts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_GetDraft")
@@ -678,21 +634,6 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListProcessorsResponse {
     try await self.inner.listProcessors(request: request, options: options)
-  }
-
-  /// Lists Processors in a given project and location.
-  ///
-  /// @Snippet(path: "AppPlatform_ListProcessors")
-  public func listProcessors(
-    byItem: ListProcessorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Processor, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListProcessorsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProcessors(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// ListPrebuiltProcessors is a custom pass-through verb that Lists Prebuilt
@@ -828,21 +769,6 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "AppPlatform_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppPlatform_GetLocation")
@@ -861,23 +787,6 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "AppPlatform_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -920,34 +829,7 @@ extension Clients {
   /// To mock `AppPlatformClient` change your functions to receive
   /// `some AppPlatformProtocol` or `any AppPlatformProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AppPlatformProtocol {
-    /// See `AppPlatformClient.listApplications`.
-    func listApplications(request: ListApplicationsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListApplicationsResponse
-
-    /// See `AppPlatformClient.listApplications`.
-    func listApplications(
-      byItem: ListApplicationsRequest
-    ) -> any AsyncSequence<Application, Swift.Error>
-
-    /// See `AppPlatformClient.listApplications`.
-    func listApplications(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Application, Swift.Error>
-
-    /// See `AppPlatformClient.getApplication`.
-    func getApplication(request: GetApplicationRequest) async throws
-      -> GoogleCloudVideoAIV1.Application
-
-    /// See `AppPlatformClient.getApplication`.
-    func getApplication(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Application
-
-    /// See `AppPlatformClient.createApplication`.
-    func createApplication(request: CreateApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AppPlatformProtocol: Sendable {
     /// See `AppPlatformClient.createApplication`.
     func createApplication(withPolling: CreateApplicationRequest) async throws -> any GoogleGax
       .PollableOperation<Application>
@@ -957,10 +839,6 @@ extension Clients {
       parent: Swift.String,
       application: Application?,
     ) async throws -> any GoogleGax.PollableOperation<Application>
-
-    /// See `AppPlatformClient.updateApplication`.
-    func updateApplication(request: UpdateApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateApplication`.
     func updateApplication(withPolling: UpdateApplicationRequest) async throws -> any GoogleGax
@@ -973,10 +851,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.deleteApplication`.
-    func deleteApplication(request: DeleteApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.deleteApplication`.
     func deleteApplication(withPolling: DeleteApplicationRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -984,10 +858,6 @@ extension Clients {
     func deleteApplication(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppPlatformClient.deployApplication`.
-    func deployApplication(request: DeployApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.deployApplication`.
     func deployApplication(withPolling: DeployApplicationRequest) async throws -> any GoogleGax
@@ -999,10 +869,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<DeployApplicationResponse>
 
     /// See `AppPlatformClient.undeployApplication`.
-    func undeployApplication(request: UndeployApplicationRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.undeployApplication`.
     func undeployApplication(withPolling: UndeployApplicationRequest) async throws -> any GoogleGax
       .PollableOperation<UndeployApplicationResponse>
 
@@ -1010,10 +876,6 @@ extension Clients {
     func undeployApplication(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<UndeployApplicationResponse>
-
-    /// See `AppPlatformClient.addApplicationStreamInput`.
-    func addApplicationStreamInput(request: AddApplicationStreamInputRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.addApplicationStreamInput`.
     func addApplicationStreamInput(withPolling: AddApplicationStreamInputRequest) async throws
@@ -1025,10 +887,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.removeApplicationStreamInput`.
-    func removeApplicationStreamInput(request: RemoveApplicationStreamInputRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.removeApplicationStreamInput`.
     func removeApplicationStreamInput(withPolling: RemoveApplicationStreamInputRequest) async throws
       -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
 
@@ -1038,10 +896,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.updateApplicationStreamInput`.
-    func updateApplicationStreamInput(request: UpdateApplicationStreamInputRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.updateApplicationStreamInput`.
     func updateApplicationStreamInput(withPolling: UpdateApplicationStreamInputRequest) async throws
       -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
 
@@ -1049,32 +903,6 @@ extension Clients {
     func updateApplicationStreamInput(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
-
-    /// See `AppPlatformClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudVideoAIV1.ListInstancesResponse
-
-    /// See `AppPlatformClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `AppPlatformClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `AppPlatformClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudVideoAIV1.Instance
-
-    /// See `AppPlatformClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Instance
-
-    /// See `AppPlatformClient.createApplicationInstances`.
-    func createApplicationInstances(request: CreateApplicationInstancesRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createApplicationInstances`.
     func createApplicationInstances(withPolling: CreateApplicationInstancesRequest) async throws
@@ -1086,10 +914,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.deleteApplicationInstances`.
-    func deleteApplicationInstances(request: DeleteApplicationInstancesRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.deleteApplicationInstances`.
     func deleteApplicationInstances(withPolling: DeleteApplicationInstancesRequest) async throws
       -> any GoogleGax.PollableOperation<Instance>
 
@@ -1097,10 +921,6 @@ extension Clients {
     func deleteApplicationInstances(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `AppPlatformClient.updateApplicationInstances`.
-    func updateApplicationInstances(request: UpdateApplicationInstancesRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateApplicationInstances`.
     func updateApplicationInstances(withPolling: UpdateApplicationInstancesRequest) async throws
@@ -1111,31 +931,6 @@ extension Clients {
       name: Swift.String,
       applicationInstances: [UpdateApplicationInstancesRequest.UpdateApplicationInstance],
     ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse>
-
-    /// See `AppPlatformClient.listDrafts`.
-    func listDrafts(request: ListDraftsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListDraftsResponse
-
-    /// See `AppPlatformClient.listDrafts`.
-    func listDrafts(
-      byItem: ListDraftsRequest
-    ) -> any AsyncSequence<Draft, Swift.Error>
-
-    /// See `AppPlatformClient.listDrafts`.
-    func listDrafts(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Draft, Swift.Error>
-
-    /// See `AppPlatformClient.getDraft`.
-    func getDraft(request: GetDraftRequest) async throws -> GoogleCloudVideoAIV1.Draft
-
-    /// See `AppPlatformClient.getDraft`.
-    func getDraft(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Draft
-
-    /// See `AppPlatformClient.createDraft`.
-    func createDraft(request: CreateDraftRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createDraft`.
     func createDraft(withPolling: CreateDraftRequest) async throws -> any GoogleGax
@@ -1149,9 +944,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.updateDraft`.
-    func updateDraft(request: UpdateDraftRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.updateDraft`.
     func updateDraft(withPolling: UpdateDraftRequest) async throws -> any GoogleGax
       .PollableOperation<Draft>
 
@@ -1162,9 +954,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.deleteDraft`.
-    func deleteDraft(request: DeleteDraftRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.deleteDraft`.
     func deleteDraft(withPolling: DeleteDraftRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1172,41 +961,6 @@ extension Clients {
     func deleteDraft(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppPlatformClient.listProcessors`.
-    func listProcessors(request: ListProcessorsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListProcessorsResponse
-
-    /// See `AppPlatformClient.listProcessors`.
-    func listProcessors(
-      byItem: ListProcessorsRequest
-    ) -> any AsyncSequence<Processor, Swift.Error>
-
-    /// See `AppPlatformClient.listProcessors`.
-    func listProcessors(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Processor, Swift.Error>
-
-    /// See `AppPlatformClient.listPrebuiltProcessors`.
-    func listPrebuiltProcessors(request: ListPrebuiltProcessorsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListPrebuiltProcessorsResponse
-
-    /// See `AppPlatformClient.listPrebuiltProcessors`.
-    func listPrebuiltProcessors(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.ListPrebuiltProcessorsResponse
-
-    /// See `AppPlatformClient.getProcessor`.
-    func getProcessor(request: GetProcessorRequest) async throws -> GoogleCloudVideoAIV1.Processor
-
-    /// See `AppPlatformClient.getProcessor`.
-    func getProcessor(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Processor
-
-    /// See `AppPlatformClient.createProcessor`.
-    func createProcessor(request: CreateProcessorRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createProcessor`.
     func createProcessor(withPolling: CreateProcessorRequest) async throws -> any GoogleGax
@@ -1220,10 +974,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.updateProcessor`.
-    func updateProcessor(request: UpdateProcessorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.updateProcessor`.
     func updateProcessor(withPolling: UpdateProcessorRequest) async throws -> any GoogleGax
       .PollableOperation<Processor>
 
@@ -1234,10 +984,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.deleteProcessor`.
-    func deleteProcessor(request: DeleteProcessorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppPlatformClient.deleteProcessor`.
     func deleteProcessor(withPolling: DeleteProcessorRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1246,59 +992,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `AppPlatformClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AppPlatformClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `AppPlatformClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `AppPlatformClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AppPlatformClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AppPlatformClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AppPlatformClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AppPlatformClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AppPlatformClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AppPlatformClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `AppPlatformClient.listApplications`.
     func listApplications(
       request: ListApplicationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListApplicationsResponse
-
-    /// See `AppPlatformClient.listApplications`.
-    func listApplications(
-      byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Application, Swift.Error>
 
     /// See `AppPlatformClient.getApplication`.
     func getApplication(
@@ -1390,11 +1087,6 @@ extension Clients {
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListInstancesResponse
 
-    /// See `AppPlatformClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
     /// See `AppPlatformClient.getInstance`.
     func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
@@ -1435,11 +1127,6 @@ extension Clients {
       request: ListDraftsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListDraftsResponse
 
-    /// See `AppPlatformClient.listDrafts`.
-    func listDrafts(
-      byItem: ListDraftsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Draft, Swift.Error>
-
     /// See `AppPlatformClient.getDraft`.
     func getDraft(
       request: GetDraftRequest, options: GoogleGax.RequestOptions
@@ -1479,11 +1166,6 @@ extension Clients {
     func listProcessors(
       request: ListProcessorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListProcessorsResponse
-
-    /// See `AppPlatformClient.listProcessors`.
-    func listProcessors(
-      byItem: ListProcessorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Processor, Swift.Error>
 
     /// See `AppPlatformClient.listPrebuiltProcessors`.
     func listPrebuiltProcessors(
@@ -1530,11 +1212,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `AppPlatformClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `AppPlatformClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1544,11 +1221,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AppPlatformClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppPlatformClient.deleteOperation`.
     func deleteOperation(
@@ -1582,12 +1254,17 @@ extension Clients.AppPlatformProtocol {
     self.listApplications(byItem: byItem, options: .init())
   }
 
+  /// Lists Applications in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListApplications")
   public func listApplications(
     byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Application, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListApplicationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listApplications(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1948,12 +1625,17 @@ extension Clients.AppPlatformProtocol {
     self.listInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2122,11 +1804,16 @@ extension Clients.AppPlatformProtocol {
     self.listDrafts(byItem: byItem, options: .init())
   }
 
+  /// Lists Drafts in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListDrafts")
   public func listDrafts(
     byItem: ListDraftsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Draft, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDraftsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDrafts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2288,12 +1975,17 @@ extension Clients.AppPlatformProtocol {
     self.listProcessors(byItem: byItem, options: .init())
   }
 
+  /// Lists Processors in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListProcessors")
   public func listProcessors(
     byItem: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Processor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListProcessorsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProcessors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2484,12 +2176,17 @@ extension Clients.AppPlatformProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AppPlatform_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2524,12 +2221,19 @@ extension Clients.AppPlatformProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

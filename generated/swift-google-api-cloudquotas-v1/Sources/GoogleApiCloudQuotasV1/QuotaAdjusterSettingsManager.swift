@@ -70,26 +70,7 @@ extension Clients {
   /// To mock `QuotaAdjusterSettingsManagerClient` change your functions to receive
   /// `some QuotaAdjusterSettingsManagerProtocol` or `any QuotaAdjusterSettingsManagerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol QuotaAdjusterSettingsManagerProtocol {
-    /// See `QuotaAdjusterSettingsManagerClient.updateQuotaAdjusterSettings`.
-    func updateQuotaAdjusterSettings(request: UpdateQuotaAdjusterSettingsRequest) async throws
-      -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
-
-    /// See `QuotaAdjusterSettingsManagerClient.updateQuotaAdjusterSettings`.
-    func updateQuotaAdjusterSettings(
-      quotaAdjusterSettings: QuotaAdjusterSettings?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
-
-    /// See `QuotaAdjusterSettingsManagerClient.getQuotaAdjusterSettings`.
-    func getQuotaAdjusterSettings(request: GetQuotaAdjusterSettingsRequest) async throws
-      -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
-
-    /// See `QuotaAdjusterSettingsManagerClient.getQuotaAdjusterSettings`.
-    func getQuotaAdjusterSettings(
-      name: Swift.String,
-    ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
-
+  public protocol QuotaAdjusterSettingsManagerProtocol: Sendable {
     /// See `QuotaAdjusterSettingsManagerClient.updateQuotaAdjusterSettings`.
     func updateQuotaAdjusterSettings(
       request: UpdateQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions

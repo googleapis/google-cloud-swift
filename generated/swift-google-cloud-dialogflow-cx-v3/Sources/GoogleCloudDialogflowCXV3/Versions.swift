@@ -58,24 +58,6 @@
       try await self.inner.listVersions(request: request, options: options)
     }
 
-    /// Returns the list of all versions in the specified
-    /// [Flow][google.cloud.dialogflow.cx.v3.Flow].
-    ///
-    /// [google.cloud.dialogflow.cx.v3.Flow]: <doc:Flow>
-    ///
-    /// @Snippet(path: "Versions_ListVersions")
-    public func listVersions(
-      byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Version, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListVersionsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listVersions(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified [Version][google.cloud.dialogflow.cx.v3.Version].
     ///
     /// [google.cloud.dialogflow.cx.v3.Version]: <doc:Version>
@@ -258,38 +240,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Versions_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Versions_GetLocation")
@@ -308,23 +258,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Versions_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -356,32 +289,7 @@
     /// To mock `VersionsClient` change your functions to receive
     /// `some VersionsProtocol` or `any VersionsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol VersionsProtocol {
-      /// See `VersionsClient.listVersions`.
-      func listVersions(request: ListVersionsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListVersionsResponse
-
-      /// See `VersionsClient.listVersions`.
-      func listVersions(
-        byItem: ListVersionsRequest
-      ) -> any AsyncSequence<Version, Swift.Error>
-
-      /// See `VersionsClient.listVersions`.
-      func listVersions(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Version, Swift.Error>
-
-      /// See `VersionsClient.getVersion`.
-      func getVersion(request: GetVersionRequest) async throws -> GoogleCloudDialogflowCXV3.Version
-
-      /// See `VersionsClient.getVersion`.
-      func getVersion(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.Version
-
-      /// See `VersionsClient.createVersion`.
-      func createVersion(request: CreateVersionRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol VersionsProtocol: Sendable {
       /// See `VersionsClient.createVersion`.
       func createVersion(withPolling: CreateVersionRequest) async throws -> any GoogleGax
         .PollableOperation<Version>
@@ -392,27 +300,6 @@
         version: Version?,
       ) async throws -> any GoogleGax.PollableOperation<Version>
 
-      /// See `VersionsClient.updateVersion`.
-      func updateVersion(request: UpdateVersionRequest) async throws
-        -> GoogleCloudDialogflowCXV3.Version
-
-      /// See `VersionsClient.updateVersion`.
-      func updateVersion(
-        version: Version?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.Version
-
-      /// See `VersionsClient.deleteVersion`.
-      func deleteVersion(request: DeleteVersionRequest) async throws
-
-      /// See `VersionsClient.deleteVersion`.
-      func deleteVersion(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VersionsClient.loadVersion`.
-      func loadVersion(request: LoadVersionRequest) async throws -> GoogleLongRunning.Operation
-
       /// See `VersionsClient.loadVersion`.
       func loadVersion(withPolling: LoadVersionRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
@@ -422,60 +309,10 @@
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `VersionsClient.compareVersions`.
-      func compareVersions(request: CompareVersionsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.CompareVersionsResponse
-
-      /// See `VersionsClient.compareVersions`.
-      func compareVersions(
-        baseVersion: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.CompareVersionsResponse
-
-      /// See `VersionsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `VersionsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `VersionsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `VersionsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VersionsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VersionsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VersionsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `VersionsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
       /// See `VersionsClient.listVersions`.
       func listVersions(
         request: ListVersionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListVersionsResponse
-
-      /// See `VersionsClient.listVersions`.
-      func listVersions(
-        byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Version, Swift.Error>
 
       /// See `VersionsClient.getVersion`.
       func getVersion(
@@ -522,11 +359,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `VersionsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `VersionsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -536,11 +368,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VersionsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VersionsClient.cancelOperation`.
       func cancelOperation(
@@ -569,12 +396,20 @@
       self.listVersions(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all versions in the specified
+    /// [Flow][google.cloud.dialogflow.cx.v3.Flow].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Flow]: <doc:Flow>
+    ///
+    /// @Snippet(path: "Versions_ListVersions")
     public func listVersions(
       byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Version, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListVersionsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listVersions(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -765,12 +600,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Versions_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -805,12 +662,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Versions_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

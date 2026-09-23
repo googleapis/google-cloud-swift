@@ -66,23 +66,6 @@
       try await self.inner.listSchemas(request: request, options: options)
     }
 
-    /// Gets a list of [Schema][google.cloud.discoveryengine.v1.Schema]s.
-    ///
-    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
-    ///
-    /// @Snippet(path: "SchemaService_ListSchemas")
-    public func listSchemas(
-      byItem: ListSchemasRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Schema, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listSchemas(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Creates a [Schema][google.cloud.discoveryengine.v1.Schema].
     ///
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
@@ -215,23 +198,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "SchemaService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "SchemaService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -257,32 +223,7 @@
     /// To mock `SchemaServiceClient` change your functions to receive
     /// `some SchemaServiceProtocol` or `any SchemaServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SchemaServiceProtocol {
-      /// See `SchemaServiceClient.getSchema`.
-      func getSchema(request: GetSchemaRequest) async throws -> GoogleCloudDiscoveryEngineV1.Schema
-
-      /// See `SchemaServiceClient.getSchema`.
-      func getSchema(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Schema
-
-      /// See `SchemaServiceClient.listSchemas`.
-      func listSchemas(request: ListSchemasRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse
-
-      /// See `SchemaServiceClient.listSchemas`.
-      func listSchemas(
-        byItem: ListSchemasRequest
-      ) -> any AsyncSequence<Schema, Swift.Error>
-
-      /// See `SchemaServiceClient.listSchemas`.
-      func listSchemas(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Schema, Swift.Error>
-
-      /// See `SchemaServiceClient.createSchema`.
-      func createSchema(request: CreateSchemaRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol SchemaServiceProtocol: Sendable {
       /// See `SchemaServiceClient.createSchema`.
       func createSchema(withPolling: CreateSchemaRequest) async throws -> any GoogleGax
         .PollableOperation<Schema>
@@ -295,14 +236,8 @@
       ) async throws -> any GoogleGax.PollableOperation<Schema>
 
       /// See `SchemaServiceClient.updateSchema`.
-      func updateSchema(request: UpdateSchemaRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `SchemaServiceClient.updateSchema`.
       func updateSchema(withPolling: UpdateSchemaRequest) async throws -> any GoogleGax
         .PollableOperation<Schema>
-
-      /// See `SchemaServiceClient.deleteSchema`.
-      func deleteSchema(request: DeleteSchemaRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `SchemaServiceClient.deleteSchema`.
       func deleteSchema(withPolling: DeleteSchemaRequest) async throws -> any GoogleGax
@@ -313,29 +248,6 @@
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `SchemaServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SchemaServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SchemaServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SchemaServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `SchemaServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
       /// See `SchemaServiceClient.getSchema`.
       func getSchema(
         request: GetSchemaRequest, options: GoogleGax.RequestOptions
@@ -345,11 +257,6 @@
       func listSchemas(
         request: ListSchemasRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse
-
-      /// See `SchemaServiceClient.listSchemas`.
-      func listSchemas(
-        byItem: ListSchemasRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Schema, Swift.Error>
 
       /// See `SchemaServiceClient.createSchema`.
       func createSchema(
@@ -385,11 +292,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SchemaServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SchemaServiceClient.cancelOperation`.
       func cancelOperation(
@@ -439,12 +341,19 @@
       self.listSchemas(byItem: byItem, options: .init())
     }
 
+    /// Gets a list of [Schema][google.cloud.discoveryengine.v1.Schema]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_ListSchemas")
     public func listSchemas(
       byItem: ListSchemasRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Schema, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listSchemas(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -582,12 +491,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SchemaService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

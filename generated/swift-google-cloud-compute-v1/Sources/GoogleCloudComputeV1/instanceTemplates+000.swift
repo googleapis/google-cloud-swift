@@ -54,25 +54,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all InstanceTemplates resources, regional and global,
-    /// available to the specified project.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "instanceTemplates_aggregatedList")
-    public func aggregatedList(
-      byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified instance template. Deleting an instance template is
     /// permanent and cannot be undone. It is not possible to delete templates
     /// that are already in use by a managed instance group.
@@ -210,22 +191,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of instance templates that are contained within
-    /// the specified project.
-    ///
-    /// @Snippet(path: "instanceTemplates_list")
-    public func list(
-      byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///
@@ -261,94 +226,11 @@
     /// To mock `InstanceTemplatesClient` change your functions to receive
     /// `some InstanceTemplatesProtocol` or `any InstanceTemplatesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InstanceTemplatesProtocol {
-      /// See `InstanceTemplatesClient.aggregatedList`.
-      func aggregatedList(request: InstanceTemplatesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.InstanceTemplateAggregatedList
-
-      /// See `InstanceTemplatesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: InstanceTemplatesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
-
-      /// See `InstanceTemplatesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
-
-      /// See `InstanceTemplatesClient.delete`.
-      func delete(request: InstanceTemplatesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstanceTemplatesClient.`get``.
-      func `get`(request: InstanceTemplatesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InstanceTemplate
-
-      /// See `InstanceTemplatesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        instanceTemplate: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstanceTemplate
-
-      /// See `InstanceTemplatesClient.getIamPolicy`.
-      func getIamPolicy(request: InstanceTemplatesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InstanceTemplatesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InstanceTemplatesClient.insert`.
-      func insert(request: InstanceTemplatesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstanceTemplatesClient.list`.
-      func list(request: InstanceTemplatesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InstanceTemplateList
-
-      /// See `InstanceTemplatesClient.list`.
-      func list(
-        byItem: InstanceTemplatesClient.ListRequest
-      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
-
-      /// See `InstanceTemplatesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
-
-      /// See `InstanceTemplatesClient.setIamPolicy`.
-      func setIamPolicy(request: InstanceTemplatesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `InstanceTemplatesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InstanceTemplatesClient.testIamPermissions`.
-      func testIamPermissions(request: InstanceTemplatesClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `InstanceTemplatesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol InstanceTemplatesProtocol: Sendable {
       /// See `InstanceTemplatesClient.aggregatedList`.
       func aggregatedList(
         request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList
-
-      /// See `InstanceTemplatesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error>
 
       /// See `InstanceTemplatesClient.delete`.
       func delete(
@@ -374,11 +256,6 @@
       func list(
         request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceTemplateList
-
-      /// See `InstanceTemplatesClient.list`.
-      func list(
-        byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InstanceTemplate, Swift.Error>
 
       /// See `InstanceTemplatesClient.setIamPolicy`.
       func setIamPolicy(
@@ -413,12 +290,21 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all InstanceTemplates resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceTemplates_aggregatedList")
     public func aggregatedList(
       byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -576,12 +462,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of instance templates that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "instanceTemplates_list")
     public func list(
       byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

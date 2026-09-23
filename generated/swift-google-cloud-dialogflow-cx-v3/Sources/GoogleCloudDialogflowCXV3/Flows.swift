@@ -77,21 +77,6 @@
       try await self.inner.listFlows(request: request, options: options)
     }
 
-    /// Returns the list of all flows in the specified agent.
-    ///
-    /// @Snippet(path: "Flows_ListFlows")
-    public func listFlows(
-      byItem: ListFlowsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Flow, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListFlowsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listFlows(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified flow.
     ///
     /// @Snippet(path: "Flows_GetFlow")
@@ -352,38 +337,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Flows_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Flows_GetLocation")
@@ -402,23 +355,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Flows_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -450,58 +386,7 @@
     /// To mock `FlowsClient` change your functions to receive
     /// `some FlowsProtocol` or `any FlowsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol FlowsProtocol {
-      /// See `FlowsClient.createFlow`.
-      func createFlow(request: CreateFlowRequest) async throws -> GoogleCloudDialogflowCXV3.Flow
-
-      /// See `FlowsClient.createFlow`.
-      func createFlow(
-        parent: Swift.String,
-        flow: Flow?,
-      ) async throws -> GoogleCloudDialogflowCXV3.Flow
-
-      /// See `FlowsClient.deleteFlow`.
-      func deleteFlow(request: DeleteFlowRequest) async throws
-
-      /// See `FlowsClient.deleteFlow`.
-      func deleteFlow(
-        name: Swift.String,
-      ) async throws
-
-      /// See `FlowsClient.listFlows`.
-      func listFlows(request: ListFlowsRequest) async throws
-        -> GoogleCloudDialogflowCXV3.ListFlowsResponse
-
-      /// See `FlowsClient.listFlows`.
-      func listFlows(
-        byItem: ListFlowsRequest
-      ) -> any AsyncSequence<Flow, Swift.Error>
-
-      /// See `FlowsClient.listFlows`.
-      func listFlows(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Flow, Swift.Error>
-
-      /// See `FlowsClient.getFlow`.
-      func getFlow(request: GetFlowRequest) async throws -> GoogleCloudDialogflowCXV3.Flow
-
-      /// See `FlowsClient.getFlow`.
-      func getFlow(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.Flow
-
-      /// See `FlowsClient.updateFlow`.
-      func updateFlow(request: UpdateFlowRequest) async throws -> GoogleCloudDialogflowCXV3.Flow
-
-      /// See `FlowsClient.updateFlow`.
-      func updateFlow(
-        flow: Flow?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowCXV3.Flow
-
-      /// See `FlowsClient.trainFlow`.
-      func trainFlow(request: TrainFlowRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol FlowsProtocol: Sendable {
       /// See `FlowsClient.trainFlow`.
       func trainFlow(withPolling: TrainFlowRequest) async throws -> any GoogleGax.PollableOperation<
         Swift.Void
@@ -512,68 +397,13 @@
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `FlowsClient.validateFlow`.
-      func validateFlow(request: ValidateFlowRequest) async throws
-        -> GoogleCloudDialogflowCXV3.FlowValidationResult
-
-      /// See `FlowsClient.getFlowValidationResult`.
-      func getFlowValidationResult(request: GetFlowValidationResultRequest) async throws
-        -> GoogleCloudDialogflowCXV3.FlowValidationResult
-
-      /// See `FlowsClient.getFlowValidationResult`.
-      func getFlowValidationResult(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowCXV3.FlowValidationResult
-
-      /// See `FlowsClient.importFlow`.
-      func importFlow(request: ImportFlowRequest) async throws -> GoogleLongRunning.Operation
-
       /// See `FlowsClient.importFlow`.
       func importFlow(withPolling: ImportFlowRequest) async throws -> any GoogleGax
         .PollableOperation<ImportFlowResponse>
 
       /// See `FlowsClient.exportFlow`.
-      func exportFlow(request: ExportFlowRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `FlowsClient.exportFlow`.
       func exportFlow(withPolling: ExportFlowRequest) async throws -> any GoogleGax
         .PollableOperation<ExportFlowResponse>
-
-      /// See `FlowsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `FlowsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `FlowsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `FlowsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `FlowsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `FlowsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `FlowsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `FlowsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `FlowsClient.createFlow`.
       func createFlow(
@@ -589,11 +419,6 @@
       func listFlows(
         request: ListFlowsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListFlowsResponse
-
-      /// See `FlowsClient.listFlows`.
-      func listFlows(
-        byItem: ListFlowsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Flow, Swift.Error>
 
       /// See `FlowsClient.getFlow`.
       func getFlow(
@@ -650,11 +475,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `FlowsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `FlowsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -664,11 +484,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `FlowsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FlowsClient.cancelOperation`.
       func cancelOperation(
@@ -739,12 +554,17 @@
       self.listFlows(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all flows in the specified agent.
+    ///
+    /// @Snippet(path: "Flows_ListFlows")
     public func listFlows(
       byItem: ListFlowsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Flow, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListFlowsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listFlows(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -938,12 +758,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Flows_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -978,12 +820,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Flows_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

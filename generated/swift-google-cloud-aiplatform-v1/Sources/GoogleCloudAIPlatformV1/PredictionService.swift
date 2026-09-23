@@ -170,21 +170,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "PredictionService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "PredictionService_GetLocation")
@@ -247,23 +232,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "PredictionService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "PredictionService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -311,149 +279,7 @@
     /// To mock `PredictionServiceClient` change your functions to receive
     /// `some PredictionServiceProtocol` or `any PredictionServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol PredictionServiceProtocol {
-      /// See `PredictionServiceClient.predict`.
-      func predict(request: PredictRequest) async throws -> GoogleCloudAIPlatformV1.PredictResponse
-
-      /// See `PredictionServiceClient.predict`.
-      func predict(
-        endpoint: Swift.String,
-        instances: [GoogleWKT.Value],
-        parameters: GoogleWKT.Value?,
-      ) async throws -> GoogleCloudAIPlatformV1.PredictResponse
-
-      /// See `PredictionServiceClient.rawPredict`.
-      func rawPredict(request: RawPredictRequest) async throws -> GoogleApi.HttpBody
-
-      /// See `PredictionServiceClient.rawPredict`.
-      func rawPredict(
-        endpoint: Swift.String,
-        httpBody: GoogleApi.HttpBody?,
-      ) async throws -> GoogleApi.HttpBody
-
-      /// See `PredictionServiceClient.streamRawPredict`.
-      func streamRawPredict(request: StreamRawPredictRequest) async throws -> GoogleApi.HttpBody
-
-      /// See `PredictionServiceClient.streamRawPredict`.
-      func streamRawPredict(
-        endpoint: Swift.String,
-        httpBody: GoogleApi.HttpBody?,
-      ) async throws -> GoogleApi.HttpBody
-
-      /// See `PredictionServiceClient.directPredict`.
-      func directPredict(request: DirectPredictRequest) async throws
-        -> GoogleCloudAIPlatformV1.DirectPredictResponse
-
-      /// See `PredictionServiceClient.directRawPredict`.
-      func directRawPredict(request: DirectRawPredictRequest) async throws
-        -> GoogleCloudAIPlatformV1.DirectRawPredictResponse
-
-      /// See `PredictionServiceClient.serverStreamingPredict`.
-      func serverStreamingPredict(request: StreamingPredictRequest) async throws
-        -> GoogleCloudAIPlatformV1.StreamingPredictResponse
-
-      /// See `PredictionServiceClient.explain`.
-      func explain(request: ExplainRequest) async throws -> GoogleCloudAIPlatformV1.ExplainResponse
-
-      /// See `PredictionServiceClient.explain`.
-      func explain(
-        endpoint: Swift.String,
-        instances: [GoogleWKT.Value],
-        parameters: GoogleWKT.Value?,
-        deployedModelId: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse
-
-      /// See `PredictionServiceClient.generateContent`.
-      func generateContent(request: GenerateContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.GenerateContentResponse
-
-      /// See `PredictionServiceClient.generateContent`.
-      func generateContent(
-        model: Swift.String,
-        contents: [Content],
-      ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse
-
-      /// See `PredictionServiceClient.streamGenerateContent`.
-      func streamGenerateContent(request: GenerateContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.GenerateContentResponse
-
-      /// See `PredictionServiceClient.streamGenerateContent`.
-      func streamGenerateContent(
-        model: Swift.String,
-        contents: [Content],
-      ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse
-
-      /// See `PredictionServiceClient.embedContent`.
-      func embedContent(request: EmbedContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.EmbedContentResponse
-
-      /// See `PredictionServiceClient.embedContent`.
-      #if hasAttribute(diagnose)
-        @diagnose(DeprecatedDeclaration, as: ignored)
-      #endif
-      func embedContent(
-        model: Swift.String?,
-        content: Content?,
-      ) async throws -> GoogleCloudAIPlatformV1.EmbedContentResponse
-
-      /// See `PredictionServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `PredictionServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `PredictionServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `PredictionServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `PredictionServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `PredictionServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `PredictionServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `PredictionServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `PredictionServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `PredictionServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `PredictionServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PredictionServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `PredictionServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `PredictionServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol PredictionServiceProtocol: Sendable {
       /// See `PredictionServiceClient.predict`.
       func predict(
         request: PredictRequest, options: GoogleGax.RequestOptions
@@ -509,11 +335,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `PredictionServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `PredictionServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -538,11 +359,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `PredictionServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `PredictionServiceClient.deleteOperation`.
       func deleteOperation(
@@ -785,12 +601,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PredictionService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -861,12 +682,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

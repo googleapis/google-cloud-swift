@@ -95,24 +95,6 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
     try await self.inner.listKeys(request: request, options: options)
   }
 
-  /// Lists the API keys owned by a project. The key string of the API key
-  /// isn't included in the response.
-  ///
-  /// NOTE: Key is a global resource; hence the only supported value for
-  /// location is `global`.
-  ///
-  /// @Snippet(path: "ApiKeys_ListKeys")
-  public func listKeys(
-    byItem: ListKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Key, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listKeys(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the metadata for an API key. The key string of the API key
   /// isn't included in the response.
   ///
@@ -293,10 +275,7 @@ extension Clients {
   /// To mock `ApiKeysClient` change your functions to receive
   /// `some ApiKeysProtocol` or `any ApiKeysProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ApiKeysProtocol {
-    /// See `ApiKeysClient.createKey`.
-    func createKey(request: CreateKeyRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ApiKeysProtocol: Sendable {
     /// See `ApiKeysClient.createKey`.
     func createKey(withPolling: CreateKeyRequest) async throws -> any GoogleGax.PollableOperation<
       Key
@@ -308,39 +287,6 @@ extension Clients {
       key: Key?,
       keyId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Key>
-
-    /// See `ApiKeysClient.listKeys`.
-    func listKeys(request: ListKeysRequest) async throws -> GoogleApiApiKeysV1.ListKeysResponse
-
-    /// See `ApiKeysClient.listKeys`.
-    func listKeys(
-      byItem: ListKeysRequest
-    ) -> any AsyncSequence<Key, Swift.Error>
-
-    /// See `ApiKeysClient.listKeys`.
-    func listKeys(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Key, Swift.Error>
-
-    /// See `ApiKeysClient.getKey`.
-    func getKey(request: GetKeyRequest) async throws -> GoogleApiApiKeysV1.Key
-
-    /// See `ApiKeysClient.getKey`.
-    func getKey(
-      name: Swift.String,
-    ) async throws -> GoogleApiApiKeysV1.Key
-
-    /// See `ApiKeysClient.getKeyString`.
-    func getKeyString(request: GetKeyStringRequest) async throws
-      -> GoogleApiApiKeysV1.GetKeyStringResponse
-
-    /// See `ApiKeysClient.getKeyString`.
-    func getKeyString(
-      name: Swift.String,
-    ) async throws -> GoogleApiApiKeysV1.GetKeyStringResponse
-
-    /// See `ApiKeysClient.updateKey`.
-    func updateKey(request: UpdateKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.updateKey`.
     func updateKey(withPolling: UpdateKeyRequest) async throws -> any GoogleGax.PollableOperation<
@@ -354,9 +300,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Key>
 
     /// See `ApiKeysClient.deleteKey`.
-    func deleteKey(request: DeleteKeyRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ApiKeysClient.deleteKey`.
     func deleteKey(withPolling: DeleteKeyRequest) async throws -> any GoogleGax.PollableOperation<
       Key
     >
@@ -367,14 +310,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Key>
 
     /// See `ApiKeysClient.undeleteKey`.
-    func undeleteKey(request: UndeleteKeyRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ApiKeysClient.undeleteKey`.
     func undeleteKey(withPolling: UndeleteKeyRequest) async throws -> any GoogleGax
       .PollableOperation<Key>
-
-    /// See `ApiKeysClient.lookupKey`.
-    func lookupKey(request: LookupKeyRequest) async throws -> GoogleApiApiKeysV1.LookupKeyResponse
 
     /// See `ApiKeysClient.createKey`.
     func createKey(
@@ -390,11 +327,6 @@ extension Clients {
     func listKeys(
       request: ListKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiApiKeysV1.ListKeysResponse
-
-    /// See `ApiKeysClient.listKeys`.
-    func listKeys(
-      byItem: ListKeysRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Key, Swift.Error>
 
     /// See `ApiKeysClient.getKey`.
     func getKey(
@@ -501,11 +433,20 @@ extension Clients.ApiKeysProtocol {
     self.listKeys(byItem: byItem, options: .init())
   }
 
+  /// Lists the API keys owned by a project. The key string of the API key
+  /// isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_ListKeys")
   public func listKeys(
     byItem: ListKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Key, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

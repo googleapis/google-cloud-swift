@@ -186,22 +186,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the InterconnectAttachmentGroups for a project in the given scope.
-    ///
-    /// @Snippet(path: "interconnectAttachmentGroups_list")
-    public func list(
-      byItem: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified InterconnectAttachmentGroup resource with the data
     /// included in the request. This method supports PATCH
     /// semantics and usesJSON merge
@@ -294,88 +278,7 @@
     /// To mock `InterconnectAttachmentGroupsClient` change your functions to receive
     /// `some InterconnectAttachmentGroupsProtocol` or `any InterconnectAttachmentGroupsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InterconnectAttachmentGroupsProtocol {
-      /// See `InterconnectAttachmentGroupsClient.delete`.
-      func delete(request: InterconnectAttachmentGroupsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectAttachmentGroupsClient.`get``.
-      func `get`(request: InterconnectAttachmentGroupsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachmentGroup
-
-      /// See `InterconnectAttachmentGroupsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        interconnectAttachmentGroup: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroup
-
-      /// See `InterconnectAttachmentGroupsClient.getIamPolicy`.
-      func getIamPolicy(request: InterconnectAttachmentGroupsClient.GetIamPolicyRequest)
-        async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectAttachmentGroupsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectAttachmentGroupsClient.getOperationalStatus`.
-      func getOperationalStatus(
-        request: InterconnectAttachmentGroupsClient.GetOperationalStatusRequest
-      ) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachmentGroupsGetOperationalStatusResponse
-
-      /// See `InterconnectAttachmentGroupsClient.getOperationalStatus`.
-      func getOperationalStatus(
-        project: Swift.String,
-        interconnectAttachmentGroup: Swift.String,
-      ) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachmentGroupsGetOperationalStatusResponse
-
-      /// See `InterconnectAttachmentGroupsClient.insert`.
-      func insert(request: InterconnectAttachmentGroupsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectAttachmentGroupsClient.list`.
-      func list(request: InterconnectAttachmentGroupsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse
-
-      /// See `InterconnectAttachmentGroupsClient.list`.
-      func list(
-        byItem: InterconnectAttachmentGroupsClient.ListRequest
-      ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
-
-      /// See `InterconnectAttachmentGroupsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
-
-      /// See `InterconnectAttachmentGroupsClient.patch`.
-      func patch(request: InterconnectAttachmentGroupsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InterconnectAttachmentGroupsClient.setIamPolicy`.
-      func setIamPolicy(request: InterconnectAttachmentGroupsClient.SetIamPolicyRequest)
-        async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectAttachmentGroupsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `InterconnectAttachmentGroupsClient.testIamPermissions`.
-      func testIamPermissions(request: InterconnectAttachmentGroupsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `InterconnectAttachmentGroupsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol InterconnectAttachmentGroupsProtocol: Sendable {
       /// See `InterconnectAttachmentGroupsClient.delete`.
       func delete(
         request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -408,11 +311,6 @@
       func list(
         request: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse
-
-      /// See `InterconnectAttachmentGroupsClient.list`.
-      func list(
-        byItem: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error>
 
       /// See `InterconnectAttachmentGroupsClient.patch`.
       func patch(
@@ -609,13 +507,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the InterconnectAttachmentGroups for a project in the given scope.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_list")
     public func list(
       byItem: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

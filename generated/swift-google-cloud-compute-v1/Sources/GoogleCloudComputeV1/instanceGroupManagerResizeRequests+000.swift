@@ -230,24 +230,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of resize requests that are contained in the
-    /// managed instance group.
-    ///
-    /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
-    public func list(
-      byItem: InstanceGroupManagerResizeRequestsClient.ListRequest,
-      options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified zone-specific Operations resource.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_getOperation")
@@ -264,47 +246,7 @@
     /// To mock `InstanceGroupManagerResizeRequestsClient` change your functions to receive
     /// `some InstanceGroupManagerResizeRequestsProtocol` or `any InstanceGroupManagerResizeRequestsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol InstanceGroupManagerResizeRequestsProtocol {
-      /// See `InstanceGroupManagerResizeRequestsClient.cancel`.
-      func cancel(request: InstanceGroupManagerResizeRequestsClient.CancelRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstanceGroupManagerResizeRequestsClient.delete`.
-      func delete(request: InstanceGroupManagerResizeRequestsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstanceGroupManagerResizeRequestsClient.`get``.
-      func `get`(request: InstanceGroupManagerResizeRequestsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequest
-
-      /// See `InstanceGroupManagerResizeRequestsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        instanceGroupManager: Swift.String,
-        resizeRequest: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequest
-
-      /// See `InstanceGroupManagerResizeRequestsClient.insert`.
-      func insert(request: InstanceGroupManagerResizeRequestsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `InstanceGroupManagerResizeRequestsClient.list`.
-      func list(request: InstanceGroupManagerResizeRequestsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse
-
-      /// See `InstanceGroupManagerResizeRequestsClient.list`.
-      func list(
-        byItem: InstanceGroupManagerResizeRequestsClient.ListRequest
-      ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
-
-      /// See `InstanceGroupManagerResizeRequestsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-        instanceGroupManager: Swift.String,
-      ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
-
+    public protocol InstanceGroupManagerResizeRequestsProtocol: Sendable {
       /// See `InstanceGroupManagerResizeRequestsClient.cancel`.
       func cancel(
         request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
@@ -334,12 +276,6 @@
         request: InstanceGroupManagerResizeRequestsClient.ListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse
-
-      /// See `InstanceGroupManagerResizeRequestsClient.list`.
-      func list(
-        byItem: InstanceGroupManagerResizeRequestsClient.ListRequest,
-        options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error>
     }
   }
 
@@ -530,6 +466,10 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of resize requests that are contained in the
+    /// managed instance group.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
     public func list(
       byItem: InstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
@@ -537,7 +477,9 @@
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

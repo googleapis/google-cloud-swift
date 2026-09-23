@@ -60,22 +60,6 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
     try await self.inner.listSnoozes(request: request, options: options)
   }
 
-  /// Lists the `Snooze`s associated with a project. Can optionally pass in
-  /// `filter`, which specifies predicates to match `Snooze`s.
-  ///
-  /// @Snippet(path: "SnoozeService_ListSnoozes")
-  public func listSnoozes(
-    byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Snooze, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSnoozes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves a `Snooze` by `name`.
   ///
   /// @Snippet(path: "SnoozeService_GetSnooze")
@@ -102,47 +86,7 @@ extension Clients {
   /// To mock `SnoozeServiceClient` change your functions to receive
   /// `some SnoozeServiceProtocol` or `any SnoozeServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol SnoozeServiceProtocol {
-    /// See `SnoozeServiceClient.createSnooze`.
-    func createSnooze(request: CreateSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze
-
-    /// See `SnoozeServiceClient.createSnooze`.
-    func createSnooze(
-      parent: Swift.String,
-      snooze: Snooze?,
-    ) async throws -> GoogleCloudMonitoringV3.Snooze
-
-    /// See `SnoozeServiceClient.listSnoozes`.
-    func listSnoozes(request: ListSnoozesRequest) async throws
-      -> GoogleCloudMonitoringV3.ListSnoozesResponse
-
-    /// See `SnoozeServiceClient.listSnoozes`.
-    func listSnoozes(
-      byItem: ListSnoozesRequest
-    ) -> any AsyncSequence<Snooze, Swift.Error>
-
-    /// See `SnoozeServiceClient.listSnoozes`.
-    func listSnoozes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Snooze, Swift.Error>
-
-    /// See `SnoozeServiceClient.getSnooze`.
-    func getSnooze(request: GetSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze
-
-    /// See `SnoozeServiceClient.getSnooze`.
-    func getSnooze(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMonitoringV3.Snooze
-
-    /// See `SnoozeServiceClient.updateSnooze`.
-    func updateSnooze(request: UpdateSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze
-
-    /// See `SnoozeServiceClient.updateSnooze`.
-    func updateSnooze(
-      snooze: Snooze?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudMonitoringV3.Snooze
-
+  public protocol SnoozeServiceProtocol: Sendable {
     /// See `SnoozeServiceClient.createSnooze`.
     func createSnooze(
       request: CreateSnoozeRequest, options: GoogleGax.RequestOptions
@@ -152,11 +96,6 @@ extension Clients {
     func listSnoozes(
       request: ListSnoozesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse
-
-    /// See `SnoozeServiceClient.listSnoozes`.
-    func listSnoozes(
-      byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Snooze, Swift.Error>
 
     /// See `SnoozeServiceClient.getSnooze`.
     func getSnooze(
@@ -213,12 +152,18 @@ extension Clients.SnoozeServiceProtocol {
     self.listSnoozes(byItem: byItem, options: .init())
   }
 
+  /// Lists the `Snooze`s associated with a project. Can optionally pass in
+  /// `filter`, which specifies predicates to match `Snooze`s.
+  ///
+  /// @Snippet(path: "SnoozeService_ListSnoozes")
   public func listSnoozes(
     byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Snooze, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSnoozes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

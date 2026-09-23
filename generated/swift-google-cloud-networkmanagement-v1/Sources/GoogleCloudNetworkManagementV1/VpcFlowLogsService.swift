@@ -55,22 +55,6 @@ public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol,
     try await self.inner.listVpcFlowLogsConfigs(request: request, options: options)
   }
 
-  /// Lists all `VpcFlowLogsConfigs` in a given project.
-  ///
-  /// @Snippet(path: "VpcFlowLogsService_ListVpcFlowLogsConfigs")
-  public func listVpcFlowLogsConfigs(
-    byItem: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listVpcFlowLogsConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the details of a specific `VpcFlowLogsConfig`.
   ///
   /// @Snippet(path: "VpcFlowLogsService_GetVpcFlowLogsConfig")
@@ -251,23 +235,6 @@ public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol,
     try await self.inner.queryOrgVpcFlowLogsConfigs(request: request, options: options)
   }
 
-  /// QueryOrgVpcFlowLogsConfigs returns a list of all organization-level VPC
-  /// Flow Logs configurations applicable to the specified project.
-  ///
-  /// @Snippet(path: "VpcFlowLogsService_QueryOrgVpcFlowLogsConfigs")
-  public func queryOrgVpcFlowLogsConfigs(
-    byItem: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudNetworkManagementV1.QueryOrgVpcFlowLogsConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.queryOrgVpcFlowLogsConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs
   /// configurations applicable to a specified resource.
   ///
@@ -276,23 +243,6 @@ public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol,
     request: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse {
     try await self.inner.showEffectiveFlowLogsConfigs(request: request, options: options)
-  }
-
-  /// ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs
-  /// configurations applicable to a specified resource.
-  ///
-  /// @Snippet(path: "VpcFlowLogsService_ShowEffectiveFlowLogsConfigs")
-  public func showEffectiveFlowLogsConfigs(
-    byItem: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.showEffectiveFlowLogsConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Lists information about the supported locations for this service.
@@ -309,28 +259,6 @@ public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol,
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  /// This method can be called in two ways:
-  ///
-  /// *   **List all public locations:** Use the path `GET /v1/locations`.
-  /// *   **List project-visible locations:** Use the path
-  /// `GET /v1/projects/{project_id}/locations`. This may include public
-  /// locations as well as private or other locations specifically visible
-  /// to the project.
-  ///
-  /// @Snippet(path: "VpcFlowLogsService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -395,23 +323,6 @@ public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol,
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "VpcFlowLogsService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "VpcFlowLogsService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -448,34 +359,7 @@ extension Clients {
   /// To mock `VpcFlowLogsServiceClient` change your functions to receive
   /// `some VpcFlowLogsServiceProtocol` or `any VpcFlowLogsServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol VpcFlowLogsServiceProtocol {
-    /// See `VpcFlowLogsServiceClient.listVpcFlowLogsConfigs`.
-    func listVpcFlowLogsConfigs(request: ListVpcFlowLogsConfigsRequest) async throws
-      -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse
-
-    /// See `VpcFlowLogsServiceClient.listVpcFlowLogsConfigs`.
-    func listVpcFlowLogsConfigs(
-      byItem: ListVpcFlowLogsConfigsRequest
-    ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.listVpcFlowLogsConfigs`.
-    func listVpcFlowLogsConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.getVpcFlowLogsConfig`.
-    func getVpcFlowLogsConfig(request: GetVpcFlowLogsConfigRequest) async throws
-      -> GoogleCloudNetworkManagementV1.VpcFlowLogsConfig
-
-    /// See `VpcFlowLogsServiceClient.getVpcFlowLogsConfig`.
-    func getVpcFlowLogsConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudNetworkManagementV1.VpcFlowLogsConfig
-
-    /// See `VpcFlowLogsServiceClient.createVpcFlowLogsConfig`.
-    func createVpcFlowLogsConfig(request: CreateVpcFlowLogsConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol VpcFlowLogsServiceProtocol: Sendable {
     /// See `VpcFlowLogsServiceClient.createVpcFlowLogsConfig`.
     func createVpcFlowLogsConfig(withPolling: CreateVpcFlowLogsConfigRequest) async throws
       -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
@@ -488,10 +372,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
 
     /// See `VpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
-    func updateVpcFlowLogsConfig(request: UpdateVpcFlowLogsConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `VpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
     func updateVpcFlowLogsConfig(withPolling: UpdateVpcFlowLogsConfigRequest) async throws
       -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
 
@@ -502,10 +382,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
 
     /// See `VpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
-    func deleteVpcFlowLogsConfig(request: DeleteVpcFlowLogsConfigRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `VpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
     func deleteVpcFlowLogsConfig(withPolling: DeleteVpcFlowLogsConfigRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -514,87 +390,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `VpcFlowLogsServiceClient.queryOrgVpcFlowLogsConfigs`.
-    func queryOrgVpcFlowLogsConfigs(request: QueryOrgVpcFlowLogsConfigsRequest) async throws
-      -> GoogleCloudNetworkManagementV1.QueryOrgVpcFlowLogsConfigsResponse
-
-    /// See `VpcFlowLogsServiceClient.queryOrgVpcFlowLogsConfigs`.
-    func queryOrgVpcFlowLogsConfigs(
-      byItem: QueryOrgVpcFlowLogsConfigsRequest
-    ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.showEffectiveFlowLogsConfigs`.
-    func showEffectiveFlowLogsConfigs(request: ShowEffectiveFlowLogsConfigsRequest) async throws
-      -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse
-
-    /// See `VpcFlowLogsServiceClient.showEffectiveFlowLogsConfigs`.
-    func showEffectiveFlowLogsConfigs(
-      byItem: ShowEffectiveFlowLogsConfigsRequest
-    ) -> any AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `VpcFlowLogsServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `VpcFlowLogsServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `VpcFlowLogsServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `VpcFlowLogsServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `VpcFlowLogsServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VpcFlowLogsServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VpcFlowLogsServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `VpcFlowLogsServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `VpcFlowLogsServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `VpcFlowLogsServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `VpcFlowLogsServiceClient.listVpcFlowLogsConfigs`.
     func listVpcFlowLogsConfigs(
       request: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse
-
-    /// See `VpcFlowLogsServiceClient.listVpcFlowLogsConfigs`.
-    func listVpcFlowLogsConfigs(
-      byItem: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error>
 
     /// See `VpcFlowLogsServiceClient.getVpcFlowLogsConfig`.
     func getVpcFlowLogsConfig(
@@ -636,30 +435,15 @@ extension Clients {
       request: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkManagementV1.QueryOrgVpcFlowLogsConfigsResponse
 
-    /// See `VpcFlowLogsServiceClient.queryOrgVpcFlowLogsConfigs`.
-    func queryOrgVpcFlowLogsConfigs(
-      byItem: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error>
-
     /// See `VpcFlowLogsServiceClient.showEffectiveFlowLogsConfigs`.
     func showEffectiveFlowLogsConfigs(
       request: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse
 
-    /// See `VpcFlowLogsServiceClient.showEffectiveFlowLogsConfigs`.
-    func showEffectiveFlowLogsConfigs(
-      byItem: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error>
-
     /// See `VpcFlowLogsServiceClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `VpcFlowLogsServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `VpcFlowLogsServiceClient.getLocation`.
     func getLocation(
@@ -685,11 +469,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VpcFlowLogsServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VpcFlowLogsServiceClient.deleteOperation`.
     func deleteOperation(
@@ -723,13 +502,18 @@ extension Clients.VpcFlowLogsServiceProtocol {
     self.listVpcFlowLogsConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists all `VpcFlowLogsConfigs` in a given project.
+  ///
+  /// @Snippet(path: "VpcFlowLogsService_ListVpcFlowLogsConfigs")
   public func listVpcFlowLogsConfigs(
     byItem: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listVpcFlowLogsConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -899,13 +683,19 @@ extension Clients.VpcFlowLogsServiceProtocol {
     self.queryOrgVpcFlowLogsConfigs(byItem: byItem, options: .init())
   }
 
+  /// QueryOrgVpcFlowLogsConfigs returns a list of all organization-level VPC
+  /// Flow Logs configurations applicable to the specified project.
+  ///
+  /// @Snippet(path: "VpcFlowLogsService_QueryOrgVpcFlowLogsConfigs")
   public func queryOrgVpcFlowLogsConfigs(
     byItem: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.QueryOrgVpcFlowLogsConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.queryOrgVpcFlowLogsConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -928,13 +718,19 @@ extension Clients.VpcFlowLogsServiceProtocol {
     self.showEffectiveFlowLogsConfigs(byItem: byItem, options: .init())
   }
 
+  /// ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs
+  /// configurations applicable to a specified resource.
+  ///
+  /// @Snippet(path: "VpcFlowLogsService_ShowEffectiveFlowLogsConfigs")
   public func showEffectiveFlowLogsConfigs(
     byItem: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.showEffectiveFlowLogsConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -957,12 +753,24 @@ extension Clients.VpcFlowLogsServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "VpcFlowLogsService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1033,12 +841,19 @@ extension Clients.VpcFlowLogsServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VpcFlowLogsService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

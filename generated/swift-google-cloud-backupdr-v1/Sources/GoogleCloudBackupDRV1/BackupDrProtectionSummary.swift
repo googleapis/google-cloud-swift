@@ -51,22 +51,6 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
     try await self.inner.listResourceBackupConfigs(request: request, options: options)
   }
 
-  /// Lists ResourceBackupConfigs.
-  ///
-  /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
-  public func listResourceBackupConfigs(
-    byItem: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listResourceBackupConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
@@ -74,21 +58,6 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -153,23 +122,6 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "BackupDrProtectionSummary_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -206,94 +158,16 @@ extension Clients {
   /// To mock `BackupDrProtectionSummaryClient` change your functions to receive
   /// `some BackupDrProtectionSummaryProtocol` or `any BackupDrProtectionSummaryProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol BackupDrProtectionSummaryProtocol {
-    /// See `BackupDrProtectionSummaryClient.listResourceBackupConfigs`.
-    func listResourceBackupConfigs(request: ListResourceBackupConfigsRequest) async throws
-      -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse
-
-    /// See `BackupDrProtectionSummaryClient.listResourceBackupConfigs`.
-    func listResourceBackupConfigs(
-      byItem: ListResourceBackupConfigsRequest
-    ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error>
-
-    /// See `BackupDrProtectionSummaryClient.listResourceBackupConfigs`.
-    func listResourceBackupConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error>
-
-    /// See `BackupDrProtectionSummaryClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `BackupDrProtectionSummaryClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `BackupDrProtectionSummaryClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `BackupDrProtectionSummaryClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BackupDrProtectionSummaryClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `BackupDrProtectionSummaryClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `BackupDrProtectionSummaryClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BackupDrProtectionSummaryClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BackupDrProtectionSummaryClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BackupDrProtectionSummaryClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `BackupDrProtectionSummaryClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BackupDrProtectionSummaryClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `BackupDrProtectionSummaryClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol BackupDrProtectionSummaryProtocol: Sendable {
     /// See `BackupDrProtectionSummaryClient.listResourceBackupConfigs`.
     func listResourceBackupConfigs(
       request: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse
 
-    /// See `BackupDrProtectionSummaryClient.listResourceBackupConfigs`.
-    func listResourceBackupConfigs(
-      byItem: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error>
-
     /// See `BackupDrProtectionSummaryClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `BackupDrProtectionSummaryClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `BackupDrProtectionSummaryClient.getLocation`.
     func getLocation(
@@ -319,11 +193,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BackupDrProtectionSummaryClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BackupDrProtectionSummaryClient.deleteOperation`.
     func deleteOperation(
@@ -357,13 +226,18 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     self.listResourceBackupConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists ResourceBackupConfigs.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
   public func listResourceBackupConfigs(
     byItem: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listResourceBackupConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -395,12 +269,17 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -471,12 +350,19 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

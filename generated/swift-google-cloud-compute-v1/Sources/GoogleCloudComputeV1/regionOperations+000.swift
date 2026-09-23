@@ -65,21 +65,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of Operation resources contained within
-    /// the specified region.
-    ///
-    /// @Snippet(path: "regionOperations_list")
-    public func list(
-      byItem: RegionOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Waits for the specified Operation resource to return as `DONE`
     /// or for the request to approach the 2 minute deadline, and retrieves the
     /// specified Operation resource. This method differs from the
@@ -111,54 +96,7 @@
     /// To mock `RegionOperationsClient` change your functions to receive
     /// `some RegionOperationsProtocol` or `any RegionOperationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionOperationsProtocol {
-      /// See `RegionOperationsClient.delete`.
-      func delete(request: RegionOperationsClient.DeleteRequest) async throws
-
-      /// See `RegionOperationsClient.delete`.
-      func delete(
-        project: Swift.String,
-        region: Swift.String,
-        operation: Swift.String,
-      ) async throws
-
-      /// See `RegionOperationsClient.`get``.
-      func `get`(request: RegionOperationsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionOperationsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        operation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionOperationsClient.list`.
-      func list(request: RegionOperationsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.OperationList
-
-      /// See `RegionOperationsClient.list`.
-      func list(
-        byItem: RegionOperationsClient.ListRequest
-      ) -> any AsyncSequence<Operation, Swift.Error>
-
-      /// See `RegionOperationsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<Operation, Swift.Error>
-
-      /// See `RegionOperationsClient.wait`.
-      func wait(request: RegionOperationsClient.WaitRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionOperationsClient.wait`.
-      func wait(
-        project: Swift.String,
-        region: Swift.String,
-        operation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Operation
-
+    public protocol RegionOperationsProtocol: Sendable {
       /// See `RegionOperationsClient.delete`.
       func delete(
         request: RegionOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -173,11 +111,6 @@
       func list(
         request: RegionOperationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.OperationList
-
-      /// See `RegionOperationsClient.list`.
-      func list(
-        byItem: RegionOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Operation, Swift.Error>
 
       /// See `RegionOperationsClient.wait`.
       func wait(
@@ -254,11 +187,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of Operation resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionOperations_list")
     public func list(
       byItem: RegionOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

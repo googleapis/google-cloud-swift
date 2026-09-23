@@ -52,21 +52,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     try await self.inner.listConnections(request: request, options: options)
   }
 
-  /// Lists Connections in a given project and location.
-  ///
-  /// @Snippet(path: "DeveloperConnect_ListConnections")
-  public func listConnections(
-    byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConnections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Connection.
   ///
   /// @Snippet(path: "DeveloperConnect_GetConnection")
@@ -270,22 +255,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     try await self.inner.listGitRepositoryLinks(request: request, options: options)
   }
 
-  /// Lists GitRepositoryLinks in a given project, location, and connection.
-  ///
-  /// @Snippet(path: "DeveloperConnect_ListGitRepositoryLinks")
-  public func listGitRepositoryLinks(
-    byItem: ListGitRepositoryLinksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GitRepositoryLink, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudDeveloperConnectV1.ListGitRepositoryLinksResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGitRepositoryLinks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single GitRepositoryLink.
   ///
   /// @Snippet(path: "DeveloperConnect_GetGitRepositoryLink")
@@ -323,23 +292,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     try await self.inner.fetchLinkableGitRepositories(request: request, options: options)
   }
 
-  /// FetchLinkableGitRepositories returns a list of git repositories from an SCM
-  /// that are available to be added to a Connection.
-  ///
-  /// @Snippet(path: "DeveloperConnect_FetchLinkableGitRepositories")
-  public func fetchLinkableGitRepositories(
-    byItem: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LinkableGitRepository, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.fetchLinkableGitRepositories(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// FetchGitHubInstallations returns the list of GitHub Installations that
   /// are available to be added to a Connection.
   /// For github.com, only installations accessible to the authorizer token
@@ -368,22 +320,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     request: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse {
     try await self.inner.listAccountConnectors(request: request, options: options)
-  }
-
-  /// Lists AccountConnectors in a given project and location.
-  ///
-  /// @Snippet(path: "DeveloperConnect_ListAccountConnectors")
-  public func listAccountConnectors(
-    byItem: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccountConnector, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAccountConnectors(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single AccountConnector.
@@ -518,21 +454,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     try await self.inner.listUsers(request: request, options: options)
   }
 
-  /// Lists Users in a given project, location, and account_connector.
-  ///
-  /// @Snippet(path: "DeveloperConnect_ListUsers")
-  public func listUsers(
-    byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<User, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDeveloperConnectV1.ListUsersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listUsers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a single User.
   ///
   /// @Snippet(path: "DeveloperConnect_DeleteUser")
@@ -646,28 +567,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  /// This method can be called in two ways:
-  ///
-  /// *   **List all public locations:** Use the path `GET /v1/locations`.
-  /// *   **List project-visible locations:** Use the path
-  /// `GET /v1/projects/{project_id}/locations`. This may include public
-  /// locations as well as private or other locations specifically visible
-  /// to the project.
-  ///
-  /// @Snippet(path: "DeveloperConnect_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DeveloperConnect_GetLocation")
@@ -686,23 +585,6 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "DeveloperConnect_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -745,34 +627,7 @@ extension Clients {
   /// To mock `DeveloperConnectClient` change your functions to receive
   /// `some DeveloperConnectProtocol` or `any DeveloperConnectProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DeveloperConnectProtocol {
-    /// See `DeveloperConnectClient.listConnections`.
-    func listConnections(request: ListConnectionsRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse
-
-    /// See `DeveloperConnectClient.listConnections`.
-    func listConnections(
-      byItem: ListConnectionsRequest
-    ) -> any AsyncSequence<Connection, Swift.Error>
-
-    /// See `DeveloperConnectClient.listConnections`.
-    func listConnections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Connection, Swift.Error>
-
-    /// See `DeveloperConnectClient.getConnection`.
-    func getConnection(request: GetConnectionRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.Connection
-
-    /// See `DeveloperConnectClient.getConnection`.
-    func getConnection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.Connection
-
-    /// See `DeveloperConnectClient.createConnection`.
-    func createConnection(request: CreateConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol DeveloperConnectProtocol: Sendable {
     /// See `DeveloperConnectClient.createConnection`.
     func createConnection(withPolling: CreateConnectionRequest) async throws -> any GoogleGax
       .PollableOperation<Connection>
@@ -785,10 +640,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Connection>
 
     /// See `DeveloperConnectClient.updateConnection`.
-    func updateConnection(request: UpdateConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DeveloperConnectClient.updateConnection`.
     func updateConnection(withPolling: UpdateConnectionRequest) async throws -> any GoogleGax
       .PollableOperation<Connection>
 
@@ -799,10 +650,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Connection>
 
     /// See `DeveloperConnectClient.deleteConnection`.
-    func deleteConnection(request: DeleteConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DeveloperConnectClient.deleteConnection`.
     func deleteConnection(withPolling: DeleteConnectionRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -810,10 +657,6 @@ extension Clients {
     func deleteConnection(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DeveloperConnectClient.createGitRepositoryLink`.
-    func createGitRepositoryLink(request: CreateGitRepositoryLinkRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DeveloperConnectClient.createGitRepositoryLink`.
     func createGitRepositoryLink(withPolling: CreateGitRepositoryLinkRequest) async throws
@@ -827,10 +670,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<GitRepositoryLink>
 
     /// See `DeveloperConnectClient.deleteGitRepositoryLink`.
-    func deleteGitRepositoryLink(request: DeleteGitRepositoryLinkRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DeveloperConnectClient.deleteGitRepositoryLink`.
     func deleteGitRepositoryLink(withPolling: DeleteGitRepositoryLinkRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -838,107 +677,6 @@ extension Clients {
     func deleteGitRepositoryLink(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DeveloperConnectClient.listGitRepositoryLinks`.
-    func listGitRepositoryLinks(request: ListGitRepositoryLinksRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.ListGitRepositoryLinksResponse
-
-    /// See `DeveloperConnectClient.listGitRepositoryLinks`.
-    func listGitRepositoryLinks(
-      byItem: ListGitRepositoryLinksRequest
-    ) -> any AsyncSequence<GitRepositoryLink, Swift.Error>
-
-    /// See `DeveloperConnectClient.listGitRepositoryLinks`.
-    func listGitRepositoryLinks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<GitRepositoryLink, Swift.Error>
-
-    /// See `DeveloperConnectClient.getGitRepositoryLink`.
-    func getGitRepositoryLink(request: GetGitRepositoryLinkRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.GitRepositoryLink
-
-    /// See `DeveloperConnectClient.getGitRepositoryLink`.
-    func getGitRepositoryLink(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.GitRepositoryLink
-
-    /// See `DeveloperConnectClient.fetchReadWriteToken`.
-    func fetchReadWriteToken(request: FetchReadWriteTokenRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FetchReadWriteTokenResponse
-
-    /// See `DeveloperConnectClient.fetchReadWriteToken`.
-    func fetchReadWriteToken(
-      gitRepositoryLink: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadWriteTokenResponse
-
-    /// See `DeveloperConnectClient.fetchReadToken`.
-    func fetchReadToken(request: FetchReadTokenRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FetchReadTokenResponse
-
-    /// See `DeveloperConnectClient.fetchReadToken`.
-    func fetchReadToken(
-      gitRepositoryLink: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadTokenResponse
-
-    /// See `DeveloperConnectClient.fetchLinkableGitRepositories`.
-    func fetchLinkableGitRepositories(request: FetchLinkableGitRepositoriesRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse
-
-    /// See `DeveloperConnectClient.fetchLinkableGitRepositories`.
-    func fetchLinkableGitRepositories(
-      byItem: FetchLinkableGitRepositoriesRequest
-    ) -> any AsyncSequence<LinkableGitRepository, Swift.Error>
-
-    /// See `DeveloperConnectClient.fetchLinkableGitRepositories`.
-    func fetchLinkableGitRepositories(
-      connection: Swift.String,
-    ) -> any AsyncSequence<LinkableGitRepository, Swift.Error>
-
-    /// See `DeveloperConnectClient.fetchGitHubInstallations`.
-    func fetchGitHubInstallations(request: FetchGitHubInstallationsRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FetchGitHubInstallationsResponse
-
-    /// See `DeveloperConnectClient.fetchGitHubInstallations`.
-    func fetchGitHubInstallations(
-      connection: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitHubInstallationsResponse
-
-    /// See `DeveloperConnectClient.fetchGitRefs`.
-    func fetchGitRefs(request: FetchGitRefsRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse
-
-    /// See `DeveloperConnectClient.fetchGitRefs`.
-    func fetchGitRefs(
-      gitRepositoryLink: Swift.String,
-      refType: FetchGitRefsRequest.RefType,
-    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse
-
-    /// See `DeveloperConnectClient.listAccountConnectors`.
-    func listAccountConnectors(request: ListAccountConnectorsRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse
-
-    /// See `DeveloperConnectClient.listAccountConnectors`.
-    func listAccountConnectors(
-      byItem: ListAccountConnectorsRequest
-    ) -> any AsyncSequence<AccountConnector, Swift.Error>
-
-    /// See `DeveloperConnectClient.listAccountConnectors`.
-    func listAccountConnectors(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AccountConnector, Swift.Error>
-
-    /// See `DeveloperConnectClient.getAccountConnector`.
-    func getAccountConnector(request: GetAccountConnectorRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.AccountConnector
-
-    /// See `DeveloperConnectClient.getAccountConnector`.
-    func getAccountConnector(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.AccountConnector
-
-    /// See `DeveloperConnectClient.createAccountConnector`.
-    func createAccountConnector(request: CreateAccountConnectorRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DeveloperConnectClient.createAccountConnector`.
     func createAccountConnector(withPolling: CreateAccountConnectorRequest) async throws
@@ -952,10 +690,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AccountConnector>
 
     /// See `DeveloperConnectClient.updateAccountConnector`.
-    func updateAccountConnector(request: UpdateAccountConnectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DeveloperConnectClient.updateAccountConnector`.
     func updateAccountConnector(withPolling: UpdateAccountConnectorRequest) async throws
       -> any GoogleGax.PollableOperation<AccountConnector>
 
@@ -966,10 +700,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AccountConnector>
 
     /// See `DeveloperConnectClient.deleteAccountConnector`.
-    func deleteAccountConnector(request: DeleteAccountConnectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DeveloperConnectClient.deleteAccountConnector`.
     func deleteAccountConnector(withPolling: DeleteAccountConnectorRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -977,32 +707,6 @@ extension Clients {
     func deleteAccountConnector(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DeveloperConnectClient.fetchAccessToken`.
-    func fetchAccessToken(request: FetchAccessTokenRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FetchAccessTokenResponse
-
-    /// See `DeveloperConnectClient.fetchAccessToken`.
-    func fetchAccessToken(
-      accountConnector: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.FetchAccessTokenResponse
-
-    /// See `DeveloperConnectClient.listUsers`.
-    func listUsers(request: ListUsersRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.ListUsersResponse
-
-    /// See `DeveloperConnectClient.listUsers`.
-    func listUsers(
-      byItem: ListUsersRequest
-    ) -> any AsyncSequence<User, Swift.Error>
-
-    /// See `DeveloperConnectClient.listUsers`.
-    func listUsers(
-      parent: Swift.String,
-    ) -> any AsyncSequence<User, Swift.Error>
-
-    /// See `DeveloperConnectClient.deleteUser`.
-    func deleteUser(request: DeleteUserRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DeveloperConnectClient.deleteUser`.
     func deleteUser(withPolling: DeleteUserRequest) async throws -> any GoogleGax.PollableOperation<
@@ -1014,17 +718,6 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `DeveloperConnectClient.fetchSelf`.
-    func fetchSelf(request: FetchSelfRequest) async throws -> GoogleCloudDeveloperConnectV1.User
-
-    /// See `DeveloperConnectClient.fetchSelf`.
-    func fetchSelf(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.User
-
-    /// See `DeveloperConnectClient.deleteSelf`.
-    func deleteSelf(request: DeleteSelfRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `DeveloperConnectClient.deleteSelf`.
     func deleteSelf(withPolling: DeleteSelfRequest) async throws -> any GoogleGax.PollableOperation<
       Swift.Void
@@ -1035,77 +728,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `DeveloperConnectClient.startOauth`.
-    func startOauth(request: StartOAuthRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.StartOAuthResponse
-
-    /// See `DeveloperConnectClient.startOauth`.
-    func startOauth(
-      accountConnector: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.StartOAuthResponse
-
-    /// See `DeveloperConnectClient.finishOauth`.
-    func finishOauth(request: FinishOAuthRequest) async throws
-      -> GoogleCloudDeveloperConnectV1.FinishOAuthResponse
-
-    /// See `DeveloperConnectClient.finishOauth`.
-    func finishOauth(
-      accountConnector: Swift.String,
-    ) async throws -> GoogleCloudDeveloperConnectV1.FinishOAuthResponse
-
-    /// See `DeveloperConnectClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `DeveloperConnectClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `DeveloperConnectClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `DeveloperConnectClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DeveloperConnectClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DeveloperConnectClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DeveloperConnectClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `DeveloperConnectClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DeveloperConnectClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DeveloperConnectClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `DeveloperConnectClient.listConnections`.
     func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse
-
-    /// See `DeveloperConnectClient.listConnections`.
-    func listConnections(
-      byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `DeveloperConnectClient.getConnection`.
     func getConnection(
@@ -1167,11 +793,6 @@ extension Clients {
       request: ListGitRepositoryLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListGitRepositoryLinksResponse
 
-    /// See `DeveloperConnectClient.listGitRepositoryLinks`.
-    func listGitRepositoryLinks(
-      byItem: ListGitRepositoryLinksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GitRepositoryLink, Swift.Error>
-
     /// See `DeveloperConnectClient.getGitRepositoryLink`.
     func getGitRepositoryLink(
       request: GetGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
@@ -1192,11 +813,6 @@ extension Clients {
       request: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse
 
-    /// See `DeveloperConnectClient.fetchLinkableGitRepositories`.
-    func fetchLinkableGitRepositories(
-      byItem: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LinkableGitRepository, Swift.Error>
-
     /// See `DeveloperConnectClient.fetchGitHubInstallations`.
     func fetchGitHubInstallations(
       request: FetchGitHubInstallationsRequest, options: GoogleGax.RequestOptions
@@ -1211,11 +827,6 @@ extension Clients {
     func listAccountConnectors(
       request: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse
-
-    /// See `DeveloperConnectClient.listAccountConnectors`.
-    func listAccountConnectors(
-      byItem: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AccountConnector, Swift.Error>
 
     /// See `DeveloperConnectClient.getAccountConnector`.
     func getAccountConnector(
@@ -1262,11 +873,6 @@ extension Clients {
       request: ListUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListUsersResponse
 
-    /// See `DeveloperConnectClient.listUsers`.
-    func listUsers(
-      byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<User, Swift.Error>
-
     /// See `DeveloperConnectClient.deleteUser`.
     func deleteUser(
       request: DeleteUserRequest, options: GoogleGax.RequestOptions
@@ -1307,11 +913,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `DeveloperConnectClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `DeveloperConnectClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1321,11 +922,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DeveloperConnectClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DeveloperConnectClient.deleteOperation`.
     func deleteOperation(
@@ -1359,12 +955,17 @@ extension Clients.DeveloperConnectProtocol {
     self.listConnections(byItem: byItem, options: .init())
   }
 
+  /// Lists Connections in a given project and location.
+  ///
+  /// @Snippet(path: "DeveloperConnect_ListConnections")
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1612,13 +1213,18 @@ extension Clients.DeveloperConnectProtocol {
     self.listGitRepositoryLinks(byItem: byItem, options: .init())
   }
 
+  /// Lists GitRepositoryLinks in a given project, location, and connection.
+  ///
+  /// @Snippet(path: "DeveloperConnect_ListGitRepositoryLinks")
   public func listGitRepositoryLinks(
     byItem: ListGitRepositoryLinksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GitRepositoryLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListGitRepositoryLinksResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGitRepositoryLinks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1713,13 +1319,19 @@ extension Clients.DeveloperConnectProtocol {
     self.fetchLinkableGitRepositories(byItem: byItem, options: .init())
   }
 
+  /// FetchLinkableGitRepositories returns a list of git repositories from an SCM
+  /// that are available to be added to a Connection.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchLinkableGitRepositories")
   public func fetchLinkableGitRepositories(
     byItem: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LinkableGitRepository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.fetchLinkableGitRepositories(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1795,13 +1407,18 @@ extension Clients.DeveloperConnectProtocol {
     self.listAccountConnectors(byItem: byItem, options: .init())
   }
 
+  /// Lists AccountConnectors in a given project and location.
+  ///
+  /// @Snippet(path: "DeveloperConnect_ListAccountConnectors")
   public func listAccountConnectors(
     byItem: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccountConnector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAccountConnectors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1992,12 +1609,17 @@ extension Clients.DeveloperConnectProtocol {
     self.listUsers(byItem: byItem, options: .init())
   }
 
+  /// Lists Users in a given project, location, and account_connector.
+  ///
+  /// @Snippet(path: "DeveloperConnect_ListUsers")
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeveloperConnectV1.ListUsersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listUsers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2162,12 +1784,24 @@ extension Clients.DeveloperConnectProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "DeveloperConnect_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2202,12 +1836,19 @@ extension Clients.DeveloperConnectProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DeveloperConnect_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

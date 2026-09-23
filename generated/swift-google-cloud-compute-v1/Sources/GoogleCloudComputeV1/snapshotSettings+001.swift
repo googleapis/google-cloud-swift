@@ -114,20 +114,7 @@
     /// To mock `SnapshotSettingsClient` change your functions to receive
     /// `some SnapshotSettingsProtocol` or `any SnapshotSettingsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SnapshotSettingsProtocol {
-      /// See `SnapshotSettingsClient.`get``.
-      func `get`(request: SnapshotSettingsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.SnapshotSettings
-
-      /// See `SnapshotSettingsClient.`get``.
-      func `get`(
-        project: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SnapshotSettings
-
-      /// See `SnapshotSettingsClient.patch`.
-      func patch(request: SnapshotSettingsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol SnapshotSettingsProtocol: Sendable {
       /// See `SnapshotSettingsClient.`get``.
       func `get`(
         request: SnapshotSettingsClient.GetRequest, options: GoogleGax.RequestOptions

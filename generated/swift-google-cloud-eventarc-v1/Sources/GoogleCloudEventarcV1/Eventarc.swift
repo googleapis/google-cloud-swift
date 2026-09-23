@@ -63,21 +63,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     try await self.inner.listTriggers(request: request, options: options)
   }
 
-  /// List triggers.
-  ///
-  /// @Snippet(path: "Eventarc_ListTriggers")
-  public func listTriggers(
-    byItem: ListTriggersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Trigger, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListTriggersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTriggers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Create a new trigger in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateTrigger")
@@ -196,21 +181,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     request: ListChannelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListChannelsResponse {
     try await self.inner.listChannels(request: request, options: options)
-  }
-
-  /// List channels.
-  ///
-  /// @Snippet(path: "Eventarc_ListChannels")
-  public func listChannels(
-    byItem: ListChannelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Channel, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListChannelsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listChannels(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Create a new channel in a particular project and location.
@@ -333,21 +303,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     try await self.inner.listProviders(request: request, options: options)
   }
 
-  /// List providers.
-  ///
-  /// @Snippet(path: "Eventarc_ListProviders")
-  public func listProviders(
-    byItem: ListProvidersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Provider, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListProvidersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProviders(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get a single ChannelConnection.
   ///
   /// @Snippet(path: "Eventarc_GetChannelConnection")
@@ -364,21 +319,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     request: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListChannelConnectionsResponse {
     try await self.inner.listChannelConnections(request: request, options: options)
-  }
-
-  /// List channel connections.
-  ///
-  /// @Snippet(path: "Eventarc_ListChannelConnections")
-  public func listChannelConnections(
-    byItem: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ChannelConnection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListChannelConnectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listChannelConnections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Create a new ChannelConnection in a particular project and location.
@@ -487,21 +427,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     request: ListMessageBusesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListMessageBusesResponse {
     try await self.inner.listMessageBuses(request: request, options: options)
-  }
-
-  /// List message buses.
-  ///
-  /// @Snippet(path: "Eventarc_ListMessageBuses")
-  public func listMessageBuses(
-    byItem: ListMessageBusesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MessageBus, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListMessageBusesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listMessageBuses(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// List message bus enrollments.
@@ -636,21 +561,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     try await self.inner.listEnrollments(request: request, options: options)
   }
 
-  /// List Enrollments.
-  ///
-  /// @Snippet(path: "Eventarc_ListEnrollments")
-  public func listEnrollments(
-    byItem: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Enrollment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListEnrollmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEnrollments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Create a new Enrollment in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateEnrollment")
@@ -772,21 +682,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     request: ListPipelinesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListPipelinesResponse {
     try await self.inner.listPipelines(request: request, options: options)
-  }
-
-  /// List pipelines.
-  ///
-  /// @Snippet(path: "Eventarc_ListPipelines")
-  public func listPipelines(
-    byItem: ListPipelinesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Pipeline, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListPipelinesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPipelines(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Create a new Pipeline in a particular project and location.
@@ -912,21 +807,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     try await self.inner.listGoogleApiSources(request: request, options: options)
   }
 
-  /// List GoogleApiSources.
-  ///
-  /// @Snippet(path: "Eventarc_ListGoogleApiSources")
-  public func listGoogleApiSources(
-    byItem: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleApiSource, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGoogleApiSources(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Create a new GoogleApiSource in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
@@ -1041,21 +921,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "Eventarc_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Eventarc_GetLocation")
@@ -1118,23 +983,6 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Eventarc_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Eventarc_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -1171,32 +1019,7 @@ extension Clients {
   /// To mock `EventarcClient` change your functions to receive
   /// `some EventarcProtocol` or `any EventarcProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol EventarcProtocol {
-    /// See `EventarcClient.getTrigger`.
-    func getTrigger(request: GetTriggerRequest) async throws -> GoogleCloudEventarcV1.Trigger
-
-    /// See `EventarcClient.getTrigger`.
-    func getTrigger(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.Trigger
-
-    /// See `EventarcClient.listTriggers`.
-    func listTriggers(request: ListTriggersRequest) async throws
-      -> GoogleCloudEventarcV1.ListTriggersResponse
-
-    /// See `EventarcClient.listTriggers`.
-    func listTriggers(
-      byItem: ListTriggersRequest
-    ) -> any AsyncSequence<Trigger, Swift.Error>
-
-    /// See `EventarcClient.listTriggers`.
-    func listTriggers(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Trigger, Swift.Error>
-
-    /// See `EventarcClient.createTrigger`.
-    func createTrigger(request: CreateTriggerRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol EventarcProtocol: Sendable {
     /// See `EventarcClient.createTrigger`.
     func createTrigger(withPolling: CreateTriggerRequest) async throws -> any GoogleGax
       .PollableOperation<Trigger>
@@ -1207,9 +1030,6 @@ extension Clients {
       trigger: Trigger?,
       triggerId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Trigger>
-
-    /// See `EventarcClient.updateTrigger`.
-    func updateTrigger(request: UpdateTriggerRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateTrigger`.
     func updateTrigger(withPolling: UpdateTriggerRequest) async throws -> any GoogleGax
@@ -1223,9 +1043,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Trigger>
 
     /// See `EventarcClient.deleteTrigger`.
-    func deleteTrigger(request: DeleteTriggerRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.deleteTrigger`.
     func deleteTrigger(withPolling: DeleteTriggerRequest) async throws -> any GoogleGax
       .PollableOperation<Trigger>
 
@@ -1234,31 +1051,6 @@ extension Clients {
       name: Swift.String,
       allowMissing: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Trigger>
-
-    /// See `EventarcClient.getChannel`.
-    func getChannel(request: GetChannelRequest) async throws -> GoogleCloudEventarcV1.Channel
-
-    /// See `EventarcClient.getChannel`.
-    func getChannel(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.Channel
-
-    /// See `EventarcClient.listChannels`.
-    func listChannels(request: ListChannelsRequest) async throws
-      -> GoogleCloudEventarcV1.ListChannelsResponse
-
-    /// See `EventarcClient.listChannels`.
-    func listChannels(
-      byItem: ListChannelsRequest
-    ) -> any AsyncSequence<Channel, Swift.Error>
-
-    /// See `EventarcClient.listChannels`.
-    func listChannels(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Channel, Swift.Error>
-
-    /// See `EventarcClient.createChannel`.
-    func createChannel(request: CreateChannelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createChannel`.
     func createChannel(withPolling: CreateChannelRequest) async throws -> any GoogleGax
@@ -1272,9 +1064,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Channel>
 
     /// See `EventarcClient.updateChannel`.
-    func updateChannel(request: UpdateChannelRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.updateChannel`.
     func updateChannel(withPolling: UpdateChannelRequest) async throws -> any GoogleGax
       .PollableOperation<Channel>
 
@@ -1285,9 +1074,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Channel>
 
     /// See `EventarcClient.deleteChannel`.
-    func deleteChannel(request: DeleteChannelRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.deleteChannel`.
     func deleteChannel(withPolling: DeleteChannelRequest) async throws -> any GoogleGax
       .PollableOperation<Channel>
 
@@ -1295,55 +1081,6 @@ extension Clients {
     func deleteChannel(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Channel>
-
-    /// See `EventarcClient.getProvider`.
-    func getProvider(request: GetProviderRequest) async throws -> GoogleCloudEventarcV1.Provider
-
-    /// See `EventarcClient.getProvider`.
-    func getProvider(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.Provider
-
-    /// See `EventarcClient.listProviders`.
-    func listProviders(request: ListProvidersRequest) async throws
-      -> GoogleCloudEventarcV1.ListProvidersResponse
-
-    /// See `EventarcClient.listProviders`.
-    func listProviders(
-      byItem: ListProvidersRequest
-    ) -> any AsyncSequence<Provider, Swift.Error>
-
-    /// See `EventarcClient.listProviders`.
-    func listProviders(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Provider, Swift.Error>
-
-    /// See `EventarcClient.getChannelConnection`.
-    func getChannelConnection(request: GetChannelConnectionRequest) async throws
-      -> GoogleCloudEventarcV1.ChannelConnection
-
-    /// See `EventarcClient.getChannelConnection`.
-    func getChannelConnection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.ChannelConnection
-
-    /// See `EventarcClient.listChannelConnections`.
-    func listChannelConnections(request: ListChannelConnectionsRequest) async throws
-      -> GoogleCloudEventarcV1.ListChannelConnectionsResponse
-
-    /// See `EventarcClient.listChannelConnections`.
-    func listChannelConnections(
-      byItem: ListChannelConnectionsRequest
-    ) -> any AsyncSequence<ChannelConnection, Swift.Error>
-
-    /// See `EventarcClient.listChannelConnections`.
-    func listChannelConnections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ChannelConnection, Swift.Error>
-
-    /// See `EventarcClient.createChannelConnection`.
-    func createChannelConnection(request: CreateChannelConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnection(withPolling: CreateChannelConnectionRequest) async throws
@@ -1357,10 +1094,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ChannelConnection>
 
     /// See `EventarcClient.deleteChannelConnection`.
-    func deleteChannelConnection(request: DeleteChannelConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnection(withPolling: DeleteChannelConnectionRequest) async throws
       -> any GoogleGax.PollableOperation<ChannelConnection>
 
@@ -1368,61 +1101,6 @@ extension Clients {
     func deleteChannelConnection(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ChannelConnection>
-
-    /// See `EventarcClient.getGoogleChannelConfig`.
-    func getGoogleChannelConfig(request: GetGoogleChannelConfigRequest) async throws
-      -> GoogleCloudEventarcV1.GoogleChannelConfig
-
-    /// See `EventarcClient.getGoogleChannelConfig`.
-    func getGoogleChannelConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig
-
-    /// See `EventarcClient.updateGoogleChannelConfig`.
-    func updateGoogleChannelConfig(request: UpdateGoogleChannelConfigRequest) async throws
-      -> GoogleCloudEventarcV1.GoogleChannelConfig
-
-    /// See `EventarcClient.updateGoogleChannelConfig`.
-    func updateGoogleChannelConfig(
-      googleChannelConfig: GoogleChannelConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig
-
-    /// See `EventarcClient.getMessageBus`.
-    func getMessageBus(request: GetMessageBusRequest) async throws
-      -> GoogleCloudEventarcV1.MessageBus
-
-    /// See `EventarcClient.getMessageBus`.
-    func getMessageBus(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.MessageBus
-
-    /// See `EventarcClient.listMessageBuses`.
-    func listMessageBuses(request: ListMessageBusesRequest) async throws
-      -> GoogleCloudEventarcV1.ListMessageBusesResponse
-
-    /// See `EventarcClient.listMessageBuses`.
-    func listMessageBuses(
-      byItem: ListMessageBusesRequest
-    ) -> any AsyncSequence<MessageBus, Swift.Error>
-
-    /// See `EventarcClient.listMessageBuses`.
-    func listMessageBuses(
-      parent: Swift.String,
-    ) -> any AsyncSequence<MessageBus, Swift.Error>
-
-    /// See `EventarcClient.listMessageBusEnrollments`.
-    func listMessageBusEnrollments(request: ListMessageBusEnrollmentsRequest) async throws
-      -> GoogleCloudEventarcV1.ListMessageBusEnrollmentsResponse
-
-    /// See `EventarcClient.listMessageBusEnrollments`.
-    func listMessageBusEnrollments(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.ListMessageBusEnrollmentsResponse
-
-    /// See `EventarcClient.createMessageBus`.
-    func createMessageBus(request: CreateMessageBusRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createMessageBus`.
     func createMessageBus(withPolling: CreateMessageBusRequest) async throws -> any GoogleGax
@@ -1436,10 +1114,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<MessageBus>
 
     /// See `EventarcClient.updateMessageBus`.
-    func updateMessageBus(request: UpdateMessageBusRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(withPolling: UpdateMessageBusRequest) async throws -> any GoogleGax
       .PollableOperation<MessageBus>
 
@@ -1450,10 +1124,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<MessageBus>
 
     /// See `EventarcClient.deleteMessageBus`.
-    func deleteMessageBus(request: DeleteMessageBusRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBus(withPolling: DeleteMessageBusRequest) async throws -> any GoogleGax
       .PollableOperation<MessageBus>
 
@@ -1462,33 +1132,6 @@ extension Clients {
       name: Swift.String,
       etag: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MessageBus>
-
-    /// See `EventarcClient.getEnrollment`.
-    func getEnrollment(request: GetEnrollmentRequest) async throws
-      -> GoogleCloudEventarcV1.Enrollment
-
-    /// See `EventarcClient.getEnrollment`.
-    func getEnrollment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.Enrollment
-
-    /// See `EventarcClient.listEnrollments`.
-    func listEnrollments(request: ListEnrollmentsRequest) async throws
-      -> GoogleCloudEventarcV1.ListEnrollmentsResponse
-
-    /// See `EventarcClient.listEnrollments`.
-    func listEnrollments(
-      byItem: ListEnrollmentsRequest
-    ) -> any AsyncSequence<Enrollment, Swift.Error>
-
-    /// See `EventarcClient.listEnrollments`.
-    func listEnrollments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Enrollment, Swift.Error>
-
-    /// See `EventarcClient.createEnrollment`.
-    func createEnrollment(request: CreateEnrollmentRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createEnrollment`.
     func createEnrollment(withPolling: CreateEnrollmentRequest) async throws -> any GoogleGax
@@ -1502,10 +1145,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Enrollment>
 
     /// See `EventarcClient.updateEnrollment`.
-    func updateEnrollment(request: UpdateEnrollmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(withPolling: UpdateEnrollmentRequest) async throws -> any GoogleGax
       .PollableOperation<Enrollment>
 
@@ -1516,10 +1155,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Enrollment>
 
     /// See `EventarcClient.deleteEnrollment`.
-    func deleteEnrollment(request: DeleteEnrollmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollment(withPolling: DeleteEnrollmentRequest) async throws -> any GoogleGax
       .PollableOperation<Enrollment>
 
@@ -1528,31 +1163,6 @@ extension Clients {
       name: Swift.String,
       etag: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Enrollment>
-
-    /// See `EventarcClient.getPipeline`.
-    func getPipeline(request: GetPipelineRequest) async throws -> GoogleCloudEventarcV1.Pipeline
-
-    /// See `EventarcClient.getPipeline`.
-    func getPipeline(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.Pipeline
-
-    /// See `EventarcClient.listPipelines`.
-    func listPipelines(request: ListPipelinesRequest) async throws
-      -> GoogleCloudEventarcV1.ListPipelinesResponse
-
-    /// See `EventarcClient.listPipelines`.
-    func listPipelines(
-      byItem: ListPipelinesRequest
-    ) -> any AsyncSequence<Pipeline, Swift.Error>
-
-    /// See `EventarcClient.listPipelines`.
-    func listPipelines(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Pipeline, Swift.Error>
-
-    /// See `EventarcClient.createPipeline`.
-    func createPipeline(request: CreatePipelineRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createPipeline`.
     func createPipeline(withPolling: CreatePipelineRequest) async throws -> any GoogleGax
@@ -1566,9 +1176,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Pipeline>
 
     /// See `EventarcClient.updatePipeline`.
-    func updatePipeline(request: UpdatePipelineRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.updatePipeline`.
     func updatePipeline(withPolling: UpdatePipelineRequest) async throws -> any GoogleGax
       .PollableOperation<Pipeline>
 
@@ -1579,9 +1186,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Pipeline>
 
     /// See `EventarcClient.deletePipeline`.
-    func deletePipeline(request: DeletePipelineRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.deletePipeline`.
     func deletePipeline(withPolling: DeletePipelineRequest) async throws -> any GoogleGax
       .PollableOperation<Pipeline>
 
@@ -1590,33 +1194,6 @@ extension Clients {
       name: Swift.String,
       etag: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Pipeline>
-
-    /// See `EventarcClient.getGoogleApiSource`.
-    func getGoogleApiSource(request: GetGoogleApiSourceRequest) async throws
-      -> GoogleCloudEventarcV1.GoogleApiSource
-
-    /// See `EventarcClient.getGoogleApiSource`.
-    func getGoogleApiSource(
-      name: Swift.String,
-    ) async throws -> GoogleCloudEventarcV1.GoogleApiSource
-
-    /// See `EventarcClient.listGoogleApiSources`.
-    func listGoogleApiSources(request: ListGoogleApiSourcesRequest) async throws
-      -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse
-
-    /// See `EventarcClient.listGoogleApiSources`.
-    func listGoogleApiSources(
-      byItem: ListGoogleApiSourcesRequest
-    ) -> any AsyncSequence<GoogleApiSource, Swift.Error>
-
-    /// See `EventarcClient.listGoogleApiSources`.
-    func listGoogleApiSources(
-      parent: Swift.String,
-    ) -> any AsyncSequence<GoogleApiSource, Swift.Error>
-
-    /// See `EventarcClient.createGoogleApiSource`.
-    func createGoogleApiSource(request: CreateGoogleApiSourceRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSource(withPolling: CreateGoogleApiSourceRequest) async throws
@@ -1630,10 +1207,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
 
     /// See `EventarcClient.updateGoogleApiSource`.
-    func updateGoogleApiSource(request: UpdateGoogleApiSourceRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(withPolling: UpdateGoogleApiSourceRequest) async throws
       -> any GoogleGax.PollableOperation<GoogleApiSource>
 
@@ -1642,10 +1215,6 @@ extension Clients {
       googleApiSource: GoogleApiSource?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
-
-    /// See `EventarcClient.deleteGoogleApiSource`.
-    func deleteGoogleApiSource(request: DeleteGoogleApiSourceRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSource(withPolling: DeleteGoogleApiSourceRequest) async throws
@@ -1657,60 +1226,6 @@ extension Clients {
       etag: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
 
-    /// See `EventarcClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `EventarcClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `EventarcClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `EventarcClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `EventarcClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `EventarcClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `EventarcClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `EventarcClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `EventarcClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `EventarcClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `EventarcClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `EventarcClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `EventarcClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `EventarcClient.getTrigger`.
     func getTrigger(
       request: GetTriggerRequest, options: GoogleGax.RequestOptions
@@ -1720,11 +1235,6 @@ extension Clients {
     func listTriggers(
       request: ListTriggersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListTriggersResponse
-
-    /// See `EventarcClient.listTriggers`.
-    func listTriggers(
-      byItem: ListTriggersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Trigger, Swift.Error>
 
     /// See `EventarcClient.createTrigger`.
     func createTrigger(
@@ -1766,11 +1276,6 @@ extension Clients {
       request: ListChannelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListChannelsResponse
 
-    /// See `EventarcClient.listChannels`.
-    func listChannels(
-      byItem: ListChannelsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Channel, Swift.Error>
-
     /// See `EventarcClient.createChannel`.
     func createChannel(
       request: CreateChannelRequest, options: GoogleGax.RequestOptions
@@ -1811,11 +1316,6 @@ extension Clients {
       request: ListProvidersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListProvidersResponse
 
-    /// See `EventarcClient.listProviders`.
-    func listProviders(
-      byItem: ListProvidersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Provider, Swift.Error>
-
     /// See `EventarcClient.getChannelConnection`.
     func getChannelConnection(
       request: GetChannelConnectionRequest, options: GoogleGax.RequestOptions
@@ -1825,11 +1325,6 @@ extension Clients {
     func listChannelConnections(
       request: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListChannelConnectionsResponse
-
-    /// See `EventarcClient.listChannelConnections`.
-    func listChannelConnections(
-      byItem: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ChannelConnection, Swift.Error>
 
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnection(
@@ -1870,11 +1365,6 @@ extension Clients {
     func listMessageBuses(
       request: ListMessageBusesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListMessageBusesResponse
-
-    /// See `EventarcClient.listMessageBuses`.
-    func listMessageBuses(
-      byItem: ListMessageBusesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MessageBus, Swift.Error>
 
     /// See `EventarcClient.listMessageBusEnrollments`.
     func listMessageBusEnrollments(
@@ -1921,11 +1411,6 @@ extension Clients {
       request: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListEnrollmentsResponse
 
-    /// See `EventarcClient.listEnrollments`.
-    func listEnrollments(
-      byItem: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Enrollment, Swift.Error>
-
     /// See `EventarcClient.createEnrollment`.
     func createEnrollment(
       request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
@@ -1965,11 +1450,6 @@ extension Clients {
     func listPipelines(
       request: ListPipelinesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListPipelinesResponse
-
-    /// See `EventarcClient.listPipelines`.
-    func listPipelines(
-      byItem: ListPipelinesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Pipeline, Swift.Error>
 
     /// See `EventarcClient.createPipeline`.
     func createPipeline(
@@ -2011,11 +1491,6 @@ extension Clients {
       request: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse
 
-    /// See `EventarcClient.listGoogleApiSources`.
-    func listGoogleApiSources(
-      byItem: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleApiSource, Swift.Error>
-
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSource(
       request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
@@ -2051,11 +1526,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `EventarcClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `EventarcClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -2080,11 +1550,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `EventarcClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EventarcClient.deleteOperation`.
     func deleteOperation(
@@ -2137,12 +1602,17 @@ extension Clients.EventarcProtocol {
     self.listTriggers(byItem: byItem, options: .init())
   }
 
+  /// List triggers.
+  ///
+  /// @Snippet(path: "Eventarc_ListTriggers")
   public func listTriggers(
     byItem: ListTriggersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Trigger, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListTriggersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTriggers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2314,12 +1784,17 @@ extension Clients.EventarcProtocol {
     self.listChannels(byItem: byItem, options: .init())
   }
 
+  /// List channels.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannels")
   public func listChannels(
     byItem: ListChannelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Channel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListChannelsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listChannels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2489,12 +1964,17 @@ extension Clients.EventarcProtocol {
     self.listProviders(byItem: byItem, options: .init())
   }
 
+  /// List providers.
+  ///
+  /// @Snippet(path: "Eventarc_ListProviders")
   public func listProviders(
     byItem: ListProvidersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Provider, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListProvidersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProviders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2547,12 +2027,17 @@ extension Clients.EventarcProtocol {
     self.listChannelConnections(byItem: byItem, options: .init())
   }
 
+  /// List channel connections.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannelConnections")
   public func listChannelConnections(
     byItem: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ChannelConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListChannelConnectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listChannelConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2727,12 +2212,17 @@ extension Clients.EventarcProtocol {
     self.listMessageBuses(byItem: byItem, options: .init())
   }
 
+  /// List message buses.
+  ///
+  /// @Snippet(path: "Eventarc_ListMessageBuses")
   public func listMessageBuses(
     byItem: ListMessageBusesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MessageBus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListMessageBusesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listMessageBuses(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2925,12 +2415,17 @@ extension Clients.EventarcProtocol {
     self.listEnrollments(byItem: byItem, options: .init())
   }
 
+  /// List Enrollments.
+  ///
+  /// @Snippet(path: "Eventarc_ListEnrollments")
   public func listEnrollments(
     byItem: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Enrollment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListEnrollmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEnrollments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3102,12 +2597,17 @@ extension Clients.EventarcProtocol {
     self.listPipelines(byItem: byItem, options: .init())
   }
 
+  /// List pipelines.
+  ///
+  /// @Snippet(path: "Eventarc_ListPipelines")
   public func listPipelines(
     byItem: ListPipelinesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Pipeline, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListPipelinesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPipelines(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3279,12 +2779,17 @@ extension Clients.EventarcProtocol {
     self.listGoogleApiSources(byItem: byItem, options: .init())
   }
 
+  /// List GoogleApiSources.
+  ///
+  /// @Snippet(path: "Eventarc_ListGoogleApiSources")
   public func listGoogleApiSources(
     byItem: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleApiSource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGoogleApiSources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3435,12 +2940,17 @@ extension Clients.EventarcProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Eventarc_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3511,12 +3021,19 @@ extension Clients.EventarcProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -128,21 +128,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "VertexRagService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "VertexRagService_GetLocation")
@@ -205,23 +190,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "VertexRagService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "VertexRagService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -269,53 +237,7 @@
     /// To mock `VertexRagServiceClient` change your functions to receive
     /// `some VertexRagServiceProtocol` or `any VertexRagServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol VertexRagServiceProtocol {
-      /// See `VertexRagServiceClient.retrieveContexts`.
-      func retrieveContexts(request: RetrieveContextsRequest) async throws
-        -> GoogleCloudAIPlatformV1.RetrieveContextsResponse
-
-      /// See `VertexRagServiceClient.retrieveContexts`.
-      func retrieveContexts(
-        parent: Swift.String,
-        query: RagQuery?,
-      ) async throws -> GoogleCloudAIPlatformV1.RetrieveContextsResponse
-
-      /// See `VertexRagServiceClient.augmentPrompt`.
-      func augmentPrompt(request: AugmentPromptRequest) async throws
-        -> GoogleCloudAIPlatformV1.AugmentPromptResponse
-
-      /// See `VertexRagServiceClient.augmentPrompt`.
-      func augmentPrompt(
-        parent: Swift.String,
-        model: AugmentPromptRequest.Model?,
-        vertexRagStore: VertexRagStore?,
-      ) async throws -> GoogleCloudAIPlatformV1.AugmentPromptResponse
-
-      /// See `VertexRagServiceClient.corroborateContent`.
-      func corroborateContent(request: CorroborateContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.CorroborateContentResponse
-
-      /// See `VertexRagServiceClient.corroborateContent`.
-      func corroborateContent(
-        parent: Swift.String,
-        content: Content?,
-        facts: [Fact],
-      ) async throws -> GoogleCloudAIPlatformV1.CorroborateContentResponse
-
-      /// See `VertexRagServiceClient.askContexts`.
-      func askContexts(request: AskContextsRequest) async throws
-        -> GoogleCloudAIPlatformV1.AskContextsResponse
-
-      /// See `VertexRagServiceClient.askContexts`.
-      func askContexts(
-        parent: Swift.String,
-        query: RagQuery?,
-      ) async throws -> GoogleCloudAIPlatformV1.AskContextsResponse
-
-      /// See `VertexRagServiceClient.asyncRetrieveContexts`.
-      func asyncRetrieveContexts(request: AsyncRetrieveContextsRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol VertexRagServiceProtocol: Sendable {
       /// See `VertexRagServiceClient.asyncRetrieveContexts`.
       func asyncRetrieveContexts(withPolling: AsyncRetrieveContextsRequest) async throws
         -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
@@ -325,64 +247,6 @@
         parent: Swift.String,
         query: RagQuery?,
       ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
-
-      /// See `VertexRagServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `VertexRagServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `VertexRagServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `VertexRagServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `VertexRagServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `VertexRagServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `VertexRagServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VertexRagServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VertexRagServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `VertexRagServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `VertexRagServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VertexRagServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `VertexRagServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `VertexRagServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `VertexRagServiceClient.retrieveContexts`.
       func retrieveContexts(
@@ -419,11 +283,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `VertexRagServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `VertexRagServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -448,11 +307,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `VertexRagServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VertexRagServiceClient.deleteOperation`.
       func deleteOperation(
@@ -627,12 +481,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "VertexRagService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -703,12 +562,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VertexRagService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

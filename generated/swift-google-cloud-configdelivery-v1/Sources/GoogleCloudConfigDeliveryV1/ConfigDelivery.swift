@@ -53,22 +53,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     try await self.inner.listResourceBundles(request: request, options: options)
   }
 
-  /// Lists ResourceBundles in a given project and location.
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListResourceBundles")
-  public func listResourceBundles(
-    byItem: ListResourceBundlesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceBundle, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListResourceBundlesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listResourceBundles(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single ResourceBundle.
   ///
   /// @Snippet(path: "ConfigDelivery_GetResourceBundle")
@@ -190,21 +174,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: ListFleetPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigDeliveryV1.ListFleetPackagesResponse {
     try await self.inner.listFleetPackages(request: request, options: options)
-  }
-
-  /// Lists FleetPackages in a given project and location.
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListFleetPackages")
-  public func listFleetPackages(
-    byItem: ListFleetPackagesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FleetPackage, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListFleetPackagesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listFleetPackages(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single FleetPackage.
@@ -330,21 +299,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     try await self.inner.listReleases(request: request, options: options)
   }
 
-  /// Lists Releases in a given project and location.
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListReleases")
-  public func listReleases(
-    byItem: ListReleasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Release, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListReleasesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listReleases(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Release.
   ///
   /// @Snippet(path: "ConfigDelivery_GetRelease")
@@ -464,21 +418,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: ListVariantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigDeliveryV1.ListVariantsResponse {
     try await self.inner.listVariants(request: request, options: options)
-  }
-
-  /// Lists Variants in a given project and location.
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListVariants")
-  public func listVariants(
-    byItem: ListVariantsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Variant, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListVariantsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listVariants(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single Variant.
@@ -604,21 +543,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     try await self.inner.listRollouts(request: request, options: options)
   }
 
-  /// Lists Rollouts in a given project, location, and Fleet Package.
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListRollouts")
-  public func listRollouts(
-    byItem: ListRolloutsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Rollout, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListRolloutsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRollouts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Rollout.
   ///
   /// @Snippet(path: "ConfigDelivery_GetRollout")
@@ -739,21 +663,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ConfigDelivery_GetLocation")
@@ -772,23 +681,6 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "ConfigDelivery_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -831,34 +723,7 @@ extension Clients {
   /// To mock `ConfigDeliveryClient` change your functions to receive
   /// `some ConfigDeliveryProtocol` or `any ConfigDeliveryProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConfigDeliveryProtocol {
-    /// See `ConfigDeliveryClient.listResourceBundles`.
-    func listResourceBundles(request: ListResourceBundlesRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.ListResourceBundlesResponse
-
-    /// See `ConfigDeliveryClient.listResourceBundles`.
-    func listResourceBundles(
-      byItem: ListResourceBundlesRequest
-    ) -> any AsyncSequence<ResourceBundle, Swift.Error>
-
-    /// See `ConfigDeliveryClient.listResourceBundles`.
-    func listResourceBundles(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ResourceBundle, Swift.Error>
-
-    /// See `ConfigDeliveryClient.getResourceBundle`.
-    func getResourceBundle(request: GetResourceBundleRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.ResourceBundle
-
-    /// See `ConfigDeliveryClient.getResourceBundle`.
-    func getResourceBundle(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigDeliveryV1.ResourceBundle
-
-    /// See `ConfigDeliveryClient.createResourceBundle`.
-    func createResourceBundle(request: CreateResourceBundleRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol ConfigDeliveryProtocol: Sendable {
     /// See `ConfigDeliveryClient.createResourceBundle`.
     func createResourceBundle(withPolling: CreateResourceBundleRequest) async throws
       -> any GoogleGax.PollableOperation<ResourceBundle>
@@ -871,10 +736,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ResourceBundle>
 
     /// See `ConfigDeliveryClient.updateResourceBundle`.
-    func updateResourceBundle(request: UpdateResourceBundleRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.updateResourceBundle`.
     func updateResourceBundle(withPolling: UpdateResourceBundleRequest) async throws
       -> any GoogleGax.PollableOperation<ResourceBundle>
 
@@ -885,10 +746,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ResourceBundle>
 
     /// See `ConfigDeliveryClient.deleteResourceBundle`.
-    func deleteResourceBundle(request: DeleteResourceBundleRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.deleteResourceBundle`.
     func deleteResourceBundle(withPolling: DeleteResourceBundleRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -896,33 +753,6 @@ extension Clients {
     func deleteResourceBundle(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConfigDeliveryClient.listFleetPackages`.
-    func listFleetPackages(request: ListFleetPackagesRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.ListFleetPackagesResponse
-
-    /// See `ConfigDeliveryClient.listFleetPackages`.
-    func listFleetPackages(
-      byItem: ListFleetPackagesRequest
-    ) -> any AsyncSequence<FleetPackage, Swift.Error>
-
-    /// See `ConfigDeliveryClient.listFleetPackages`.
-    func listFleetPackages(
-      parent: Swift.String,
-    ) -> any AsyncSequence<FleetPackage, Swift.Error>
-
-    /// See `ConfigDeliveryClient.getFleetPackage`.
-    func getFleetPackage(request: GetFleetPackageRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.FleetPackage
-
-    /// See `ConfigDeliveryClient.getFleetPackage`.
-    func getFleetPackage(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigDeliveryV1.FleetPackage
-
-    /// See `ConfigDeliveryClient.createFleetPackage`.
-    func createFleetPackage(request: CreateFleetPackageRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ConfigDeliveryClient.createFleetPackage`.
     func createFleetPackage(withPolling: CreateFleetPackageRequest) async throws -> any GoogleGax
@@ -936,10 +766,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<FleetPackage>
 
     /// See `ConfigDeliveryClient.updateFleetPackage`.
-    func updateFleetPackage(request: UpdateFleetPackageRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.updateFleetPackage`.
     func updateFleetPackage(withPolling: UpdateFleetPackageRequest) async throws -> any GoogleGax
       .PollableOperation<FleetPackage>
 
@@ -950,10 +776,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<FleetPackage>
 
     /// See `ConfigDeliveryClient.deleteFleetPackage`.
-    func deleteFleetPackage(request: DeleteFleetPackageRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.deleteFleetPackage`.
     func deleteFleetPackage(withPolling: DeleteFleetPackageRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -961,31 +783,6 @@ extension Clients {
     func deleteFleetPackage(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConfigDeliveryClient.listReleases`.
-    func listReleases(request: ListReleasesRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.ListReleasesResponse
-
-    /// See `ConfigDeliveryClient.listReleases`.
-    func listReleases(
-      byItem: ListReleasesRequest
-    ) -> any AsyncSequence<Release, Swift.Error>
-
-    /// See `ConfigDeliveryClient.listReleases`.
-    func listReleases(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Release, Swift.Error>
-
-    /// See `ConfigDeliveryClient.getRelease`.
-    func getRelease(request: GetReleaseRequest) async throws -> GoogleCloudConfigDeliveryV1.Release
-
-    /// See `ConfigDeliveryClient.getRelease`.
-    func getRelease(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigDeliveryV1.Release
-
-    /// See `ConfigDeliveryClient.createRelease`.
-    func createRelease(request: CreateReleaseRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigDeliveryClient.createRelease`.
     func createRelease(withPolling: CreateReleaseRequest) async throws -> any GoogleGax
@@ -999,9 +796,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Release>
 
     /// See `ConfigDeliveryClient.updateRelease`.
-    func updateRelease(request: UpdateReleaseRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.updateRelease`.
     func updateRelease(withPolling: UpdateReleaseRequest) async throws -> any GoogleGax
       .PollableOperation<Release>
 
@@ -1012,9 +806,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Release>
 
     /// See `ConfigDeliveryClient.deleteRelease`.
-    func deleteRelease(request: DeleteReleaseRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.deleteRelease`.
     func deleteRelease(withPolling: DeleteReleaseRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1022,31 +813,6 @@ extension Clients {
     func deleteRelease(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConfigDeliveryClient.listVariants`.
-    func listVariants(request: ListVariantsRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.ListVariantsResponse
-
-    /// See `ConfigDeliveryClient.listVariants`.
-    func listVariants(
-      byItem: ListVariantsRequest
-    ) -> any AsyncSequence<Variant, Swift.Error>
-
-    /// See `ConfigDeliveryClient.listVariants`.
-    func listVariants(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Variant, Swift.Error>
-
-    /// See `ConfigDeliveryClient.getVariant`.
-    func getVariant(request: GetVariantRequest) async throws -> GoogleCloudConfigDeliveryV1.Variant
-
-    /// See `ConfigDeliveryClient.getVariant`.
-    func getVariant(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigDeliveryV1.Variant
-
-    /// See `ConfigDeliveryClient.createVariant`.
-    func createVariant(request: CreateVariantRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigDeliveryClient.createVariant`.
     func createVariant(withPolling: CreateVariantRequest) async throws -> any GoogleGax
@@ -1060,9 +826,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Variant>
 
     /// See `ConfigDeliveryClient.updateVariant`.
-    func updateVariant(request: UpdateVariantRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.updateVariant`.
     func updateVariant(withPolling: UpdateVariantRequest) async throws -> any GoogleGax
       .PollableOperation<Variant>
 
@@ -1073,9 +836,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Variant>
 
     /// See `ConfigDeliveryClient.deleteVariant`.
-    func deleteVariant(request: DeleteVariantRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.deleteVariant`.
     func deleteVariant(withPolling: DeleteVariantRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1083,31 +843,6 @@ extension Clients {
     func deleteVariant(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConfigDeliveryClient.listRollouts`.
-    func listRollouts(request: ListRolloutsRequest) async throws
-      -> GoogleCloudConfigDeliveryV1.ListRolloutsResponse
-
-    /// See `ConfigDeliveryClient.listRollouts`.
-    func listRollouts(
-      byItem: ListRolloutsRequest
-    ) -> any AsyncSequence<Rollout, Swift.Error>
-
-    /// See `ConfigDeliveryClient.listRollouts`.
-    func listRollouts(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Rollout, Swift.Error>
-
-    /// See `ConfigDeliveryClient.getRollout`.
-    func getRollout(request: GetRolloutRequest) async throws -> GoogleCloudConfigDeliveryV1.Rollout
-
-    /// See `ConfigDeliveryClient.getRollout`.
-    func getRollout(
-      name: Swift.String,
-    ) async throws -> GoogleCloudConfigDeliveryV1.Rollout
-
-    /// See `ConfigDeliveryClient.suspendRollout`.
-    func suspendRollout(request: SuspendRolloutRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigDeliveryClient.suspendRollout`.
     func suspendRollout(withPolling: SuspendRolloutRequest) async throws -> any GoogleGax
@@ -1119,9 +854,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Rollout>
 
     /// See `ConfigDeliveryClient.resumeRollout`.
-    func resumeRollout(request: ResumeRolloutRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigDeliveryClient.resumeRollout`.
     func resumeRollout(withPolling: ResumeRolloutRequest) async throws -> any GoogleGax
       .PollableOperation<Rollout>
 
@@ -1129,9 +861,6 @@ extension Clients {
     func resumeRollout(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Rollout>
-
-    /// See `ConfigDeliveryClient.abortRollout`.
-    func abortRollout(request: AbortRolloutRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigDeliveryClient.abortRollout`.
     func abortRollout(withPolling: AbortRolloutRequest) async throws -> any GoogleGax
@@ -1142,59 +871,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Rollout>
 
-    /// See `ConfigDeliveryClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ConfigDeliveryClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ConfigDeliveryClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ConfigDeliveryClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigDeliveryClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigDeliveryClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigDeliveryClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ConfigDeliveryClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigDeliveryClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ConfigDeliveryClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `ConfigDeliveryClient.listResourceBundles`.
     func listResourceBundles(
       request: ListResourceBundlesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigDeliveryV1.ListResourceBundlesResponse
-
-    /// See `ConfigDeliveryClient.listResourceBundles`.
-    func listResourceBundles(
-      byItem: ListResourceBundlesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ResourceBundle, Swift.Error>
 
     /// See `ConfigDeliveryClient.getResourceBundle`.
     func getResourceBundle(
@@ -1236,11 +916,6 @@ extension Clients {
       request: ListFleetPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigDeliveryV1.ListFleetPackagesResponse
 
-    /// See `ConfigDeliveryClient.listFleetPackages`.
-    func listFleetPackages(
-      byItem: ListFleetPackagesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FleetPackage, Swift.Error>
-
     /// See `ConfigDeliveryClient.getFleetPackage`.
     func getFleetPackage(
       request: GetFleetPackageRequest, options: GoogleGax.RequestOptions
@@ -1280,11 +955,6 @@ extension Clients {
     func listReleases(
       request: ListReleasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigDeliveryV1.ListReleasesResponse
-
-    /// See `ConfigDeliveryClient.listReleases`.
-    func listReleases(
-      byItem: ListReleasesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Release, Swift.Error>
 
     /// See `ConfigDeliveryClient.getRelease`.
     func getRelease(
@@ -1326,11 +996,6 @@ extension Clients {
       request: ListVariantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigDeliveryV1.ListVariantsResponse
 
-    /// See `ConfigDeliveryClient.listVariants`.
-    func listVariants(
-      byItem: ListVariantsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Variant, Swift.Error>
-
     /// See `ConfigDeliveryClient.getVariant`.
     func getVariant(
       request: GetVariantRequest, options: GoogleGax.RequestOptions
@@ -1370,11 +1035,6 @@ extension Clients {
     func listRollouts(
       request: ListRolloutsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfigDeliveryV1.ListRolloutsResponse
-
-    /// See `ConfigDeliveryClient.listRollouts`.
-    func listRollouts(
-      byItem: ListRolloutsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Rollout, Swift.Error>
 
     /// See `ConfigDeliveryClient.getRollout`.
     func getRollout(
@@ -1416,11 +1076,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ConfigDeliveryClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ConfigDeliveryClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1430,11 +1085,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigDeliveryClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ConfigDeliveryClient.deleteOperation`.
     func deleteOperation(
@@ -1468,13 +1118,18 @@ extension Clients.ConfigDeliveryProtocol {
     self.listResourceBundles(byItem: byItem, options: .init())
   }
 
+  /// Lists ResourceBundles in a given project and location.
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListResourceBundles")
   public func listResourceBundles(
     byItem: ListResourceBundlesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ResourceBundle, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListResourceBundlesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listResourceBundles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1644,12 +1299,17 @@ extension Clients.ConfigDeliveryProtocol {
     self.listFleetPackages(byItem: byItem, options: .init())
   }
 
+  /// Lists FleetPackages in a given project and location.
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListFleetPackages")
   public func listFleetPackages(
     byItem: ListFleetPackagesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FleetPackage, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListFleetPackagesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listFleetPackages(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1819,12 +1479,17 @@ extension Clients.ConfigDeliveryProtocol {
     self.listReleases(byItem: byItem, options: .init())
   }
 
+  /// Lists Releases in a given project and location.
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListReleases")
   public func listReleases(
     byItem: ListReleasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Release, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListReleasesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listReleases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1994,12 +1659,17 @@ extension Clients.ConfigDeliveryProtocol {
     self.listVariants(byItem: byItem, options: .init())
   }
 
+  /// Lists Variants in a given project and location.
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListVariants")
   public func listVariants(
     byItem: ListVariantsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Variant, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListVariantsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listVariants(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2169,12 +1839,17 @@ extension Clients.ConfigDeliveryProtocol {
     self.listRollouts(byItem: byItem, options: .init())
   }
 
+  /// Lists Rollouts in a given project, location, and Fleet Package.
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListRollouts")
   public func listRollouts(
     byItem: ListRolloutsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Rollout, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConfigDeliveryV1.ListRolloutsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRollouts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2337,12 +2012,17 @@ extension Clients.ConfigDeliveryProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2377,12 +2057,19 @@ extension Clients.ConfigDeliveryProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigDelivery_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

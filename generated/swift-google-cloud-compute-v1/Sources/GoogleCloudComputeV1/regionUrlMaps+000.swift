@@ -160,21 +160,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of UrlMap resources available to the specified
-    /// project in the specified region.
-    ///
-    /// @Snippet(path: "regionUrlMaps_list")
-    public func list(
-      byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified UrlMap resource with the data included in the
     /// request. This method supportsPATCH
     /// semantics and usesJSON merge
@@ -308,61 +293,7 @@
     /// To mock `RegionUrlMapsClient` change your functions to receive
     /// `some RegionUrlMapsProtocol` or `any RegionUrlMapsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionUrlMapsProtocol {
-      /// See `RegionUrlMapsClient.delete`.
-      func delete(request: RegionUrlMapsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionUrlMapsClient.`get``.
-      func `get`(request: RegionUrlMapsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.UrlMap
-
-      /// See `RegionUrlMapsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        urlMap: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.UrlMap
-
-      /// See `RegionUrlMapsClient.insert`.
-      func insert(request: RegionUrlMapsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionUrlMapsClient.list`.
-      func list(request: RegionUrlMapsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.UrlMapList
-
-      /// See `RegionUrlMapsClient.list`.
-      func list(
-        byItem: RegionUrlMapsClient.ListRequest
-      ) -> any AsyncSequence<UrlMap, Swift.Error>
-
-      /// See `RegionUrlMapsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<UrlMap, Swift.Error>
-
-      /// See `RegionUrlMapsClient.patch`.
-      func patch(request: RegionUrlMapsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionUrlMapsClient.update`.
-      func update(request: RegionUrlMapsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionUrlMapsClient.validate`.
-      func validate(request: RegionUrlMapsClient.ValidateRequest) async throws
-        -> GoogleCloudComputeV1.UrlMapsValidateResponse
-
-      /// See `RegionUrlMapsClient.validate`.
-      func validate(
-        project: Swift.String,
-        region: Swift.String,
-        urlMap: Swift.String,
-        body: RegionUrlMapsValidateRequest?,
-      ) async throws -> GoogleCloudComputeV1.UrlMapsValidateResponse
-
+    public protocol RegionUrlMapsProtocol: Sendable {
       /// See `RegionUrlMapsClient.delete`.
       func delete(
         request: RegionUrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -382,11 +313,6 @@
       func list(
         request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UrlMapList
-
-      /// See `RegionUrlMapsClient.list`.
-      func list(
-        byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<UrlMap, Swift.Error>
 
       /// See `RegionUrlMapsClient.patch`.
       func patch(
@@ -534,11 +460,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of UrlMap resources available to the specified
+    /// project in the specified region.
+    ///
+    /// @Snippet(path: "regionUrlMaps_list")
     public func list(
       byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

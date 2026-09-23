@@ -103,38 +103,6 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "ConfidentialComputing_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ConfidentialComputing_GetLocation")
@@ -151,42 +119,7 @@ extension Clients {
   /// To mock `ConfidentialComputingClient` change your functions to receive
   /// `some ConfidentialComputingProtocol` or `any ConfidentialComputingProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConfidentialComputingProtocol {
-    /// See `ConfidentialComputingClient.createChallenge`.
-    func createChallenge(request: CreateChallengeRequest) async throws
-      -> GoogleCloudConfidentialComputingV1.Challenge
-
-    /// See `ConfidentialComputingClient.createChallenge`.
-    func createChallenge(
-      parent: Swift.String,
-      challenge: Challenge?,
-    ) async throws -> GoogleCloudConfidentialComputingV1.Challenge
-
-    /// See `ConfidentialComputingClient.verifyAttestation`.
-    func verifyAttestation(request: VerifyAttestationRequest) async throws
-      -> GoogleCloudConfidentialComputingV1.VerifyAttestationResponse
-
-    /// See `ConfidentialComputingClient.verifyConfidentialSpace`.
-    func verifyConfidentialSpace(request: VerifyConfidentialSpaceRequest) async throws
-      -> GoogleCloudConfidentialComputingV1.VerifyConfidentialSpaceResponse
-
-    /// See `ConfidentialComputingClient.verifyConfidentialGke`.
-    func verifyConfidentialGke(request: VerifyConfidentialGkeRequest) async throws
-      -> GoogleCloudConfidentialComputingV1.VerifyConfidentialGkeResponse
-
-    /// See `ConfidentialComputingClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ConfidentialComputingClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ConfidentialComputingClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol ConfidentialComputingProtocol: Sendable {
     /// See `ConfidentialComputingClient.createChallenge`.
     func createChallenge(
       request: CreateChallengeRequest, options: GoogleGax.RequestOptions
@@ -211,11 +144,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ConfidentialComputingClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `ConfidentialComputingClient.getLocation`.
     func getLocation(
@@ -303,12 +231,34 @@ extension Clients.ConfidentialComputingProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ConfidentialComputing_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

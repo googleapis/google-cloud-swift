@@ -163,22 +163,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of SslCertificate resources available to the specified
-    /// project in the specified region.
-    ///
-    /// @Snippet(path: "regionSslCertificates_list")
-    public func list(
-      byItem: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified region-specific Operations resource.
     ///
     /// @Snippet(path: "regionSslCertificates_getOperation")
@@ -195,41 +179,7 @@
     /// To mock `RegionSslCertificatesClient` change your functions to receive
     /// `some RegionSslCertificatesProtocol` or `any RegionSslCertificatesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionSslCertificatesProtocol {
-      /// See `RegionSslCertificatesClient.delete`.
-      func delete(request: RegionSslCertificatesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionSslCertificatesClient.`get``.
-      func `get`(request: RegionSslCertificatesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.SslCertificate
-
-      /// See `RegionSslCertificatesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        sslCertificate: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.SslCertificate
-
-      /// See `RegionSslCertificatesClient.insert`.
-      func insert(request: RegionSslCertificatesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionSslCertificatesClient.list`.
-      func list(request: RegionSslCertificatesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SslCertificateList
-
-      /// See `RegionSslCertificatesClient.list`.
-      func list(
-        byItem: RegionSslCertificatesClient.ListRequest
-      ) -> any AsyncSequence<SslCertificate, Swift.Error>
-
-      /// See `RegionSslCertificatesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<SslCertificate, Swift.Error>
-
+    public protocol RegionSslCertificatesProtocol: Sendable {
       /// See `RegionSslCertificatesClient.delete`.
       func delete(
         request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -249,11 +199,6 @@
       func list(
         request: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslCertificateList
-
-      /// See `RegionSslCertificatesClient.list`.
-      func list(
-        byItem: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SslCertificate, Swift.Error>
     }
   }
 
@@ -386,12 +331,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of SslCertificate resources available to the specified
+    /// project in the specified region.
+    ///
+    /// @Snippet(path: "regionSslCertificates_list")
     public func list(
       byItem: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SslCertificate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

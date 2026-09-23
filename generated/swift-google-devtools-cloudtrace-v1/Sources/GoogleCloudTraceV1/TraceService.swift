@@ -49,20 +49,6 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
     try await self.inner.listTraces(request: request, options: options)
   }
 
-  /// Returns of a list of traces that match the specified filter conditions.
-  ///
-  /// @Snippet(path: "TraceService_ListTraces")
-  public func listTraces(
-    byItem: ListTracesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Trace, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTraceV1.ListTracesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTraces(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a single trace by its ID.
   ///
   /// @Snippet(path: "TraceService_GetTrace")
@@ -92,48 +78,11 @@ extension Clients {
   /// To mock `TraceServiceClient` change your functions to receive
   /// `some TraceServiceProtocol` or `any TraceServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TraceServiceProtocol {
-    /// See `TraceServiceClient.listTraces`.
-    func listTraces(request: ListTracesRequest) async throws
-      -> GoogleCloudTraceV1.ListTracesResponse
-
-    /// See `TraceServiceClient.listTraces`.
-    func listTraces(
-      byItem: ListTracesRequest
-    ) -> any AsyncSequence<Trace, Swift.Error>
-
-    /// See `TraceServiceClient.listTraces`.
-    func listTraces(
-      projectId: Swift.String,
-    ) -> any AsyncSequence<Trace, Swift.Error>
-
-    /// See `TraceServiceClient.getTrace`.
-    func getTrace(request: GetTraceRequest) async throws -> GoogleCloudTraceV1.Trace
-
-    /// See `TraceServiceClient.getTrace`.
-    func getTrace(
-      projectId: Swift.String,
-      traceId: Swift.String,
-    ) async throws -> GoogleCloudTraceV1.Trace
-
-    /// See `TraceServiceClient.patchTraces`.
-    func patchTraces(request: PatchTracesRequest) async throws
-
-    /// See `TraceServiceClient.patchTraces`.
-    func patchTraces(
-      projectId: Swift.String,
-      traces: Traces?,
-    ) async throws
-
+  public protocol TraceServiceProtocol: Sendable {
     /// See `TraceServiceClient.listTraces`.
     func listTraces(
       request: ListTracesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTraceV1.ListTracesResponse
-
-    /// See `TraceServiceClient.listTraces`.
-    func listTraces(
-      byItem: ListTracesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Trace, Swift.Error>
 
     /// See `TraceServiceClient.getTrace`.
     func getTrace(
@@ -167,11 +116,16 @@ extension Clients.TraceServiceProtocol {
     self.listTraces(byItem: byItem, options: .init())
   }
 
+  /// Returns of a list of traces that match the specified filter conditions.
+  ///
+  /// @Snippet(path: "TraceService_ListTraces")
   public func listTraces(
     byItem: ListTracesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Trace, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTraceV1.ListTracesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTraces(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

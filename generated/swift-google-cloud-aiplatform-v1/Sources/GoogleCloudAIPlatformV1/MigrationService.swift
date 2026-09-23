@@ -56,24 +56,6 @@
       try await self.inner.searchMigratableResources(request: request, options: options)
     }
 
-    /// Searches all of the resources in automl.googleapis.com,
-    /// datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
-    /// Vertex AI's given location.
-    ///
-    /// @Snippet(path: "MigrationService_SearchMigratableResources")
-    public func searchMigratableResources(
-      byItem: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MigratableResource, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.searchMigratableResources(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
     /// and datalabeling.googleapis.com to Vertex AI.
     ///
@@ -119,21 +101,6 @@
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
       try await self.inner.listLocations(request: request, options: options)
-    }
-
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "MigrationService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Gets information about a location.
@@ -198,23 +165,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "MigrationService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "MigrationService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -262,25 +212,7 @@
     /// To mock `MigrationServiceClient` change your functions to receive
     /// `some MigrationServiceProtocol` or `any MigrationServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol MigrationServiceProtocol {
-      /// See `MigrationServiceClient.searchMigratableResources`.
-      func searchMigratableResources(request: SearchMigratableResourcesRequest) async throws
-        -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse
-
-      /// See `MigrationServiceClient.searchMigratableResources`.
-      func searchMigratableResources(
-        byItem: SearchMigratableResourcesRequest
-      ) -> any AsyncSequence<MigratableResource, Swift.Error>
-
-      /// See `MigrationServiceClient.searchMigratableResources`.
-      func searchMigratableResources(
-        parent: Swift.String,
-      ) -> any AsyncSequence<MigratableResource, Swift.Error>
-
-      /// See `MigrationServiceClient.batchMigrateResources`.
-      func batchMigrateResources(request: BatchMigrateResourcesRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol MigrationServiceProtocol: Sendable {
       /// See `MigrationServiceClient.batchMigrateResources`.
       func batchMigrateResources(withPolling: BatchMigrateResourcesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse>
@@ -291,73 +223,10 @@
         migrateResourceRequests: [MigrateResourceRequest],
       ) async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse>
 
-      /// See `MigrationServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `MigrationServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `MigrationServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `MigrationServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `MigrationServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `MigrationServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `MigrationServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `MigrationServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `MigrationServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `MigrationServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `MigrationServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `MigrationServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `MigrationServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `MigrationServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `MigrationServiceClient.searchMigratableResources`.
       func searchMigratableResources(
         request: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse
-
-      /// See `MigrationServiceClient.searchMigratableResources`.
-      func searchMigratableResources(
-        byItem: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<MigratableResource, Swift.Error>
 
       /// See `MigrationServiceClient.batchMigrateResources`.
       func batchMigrateResources(
@@ -373,11 +242,6 @@
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `MigrationServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `MigrationServiceClient.getLocation`.
       func getLocation(
@@ -403,11 +267,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `MigrationServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `MigrationServiceClient.deleteOperation`.
       func deleteOperation(
@@ -446,13 +305,20 @@
       self.searchMigratableResources(byItem: byItem, options: .init())
     }
 
+    /// Searches all of the resources in automl.googleapis.com,
+    /// datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
+    /// Vertex AI's given location.
+    ///
+    /// @Snippet(path: "MigrationService_SearchMigratableResources")
     public func searchMigratableResources(
       byItem: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<MigratableResource, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.searchMigratableResources(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -524,12 +390,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "MigrationService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -600,12 +471,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

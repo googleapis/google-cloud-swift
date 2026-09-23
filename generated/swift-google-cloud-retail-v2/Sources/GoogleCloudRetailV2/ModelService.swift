@@ -132,20 +132,6 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
     try await self.inner.listModels(request: request, options: options)
   }
 
-  /// Lists all the models linked to this event store.
-  ///
-  /// @Snippet(path: "ModelService_ListModels")
-  public func listModels(
-    byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Model, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudRetailV2.ListModelsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listModels(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Update of model metadata. Only fields that
   /// currently can be updated are: `filtering_option` and
   /// `periodic_tuning_state`.
@@ -208,23 +194,6 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ModelService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ModelService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -239,10 +208,7 @@ extension Clients {
   /// To mock `ModelServiceClient` change your functions to receive
   /// `some ModelServiceProtocol` or `any ModelServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ModelServiceProtocol {
-    /// See `ModelServiceClient.createModel`.
-    func createModel(request: CreateModelRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ModelServiceProtocol: Sendable {
     /// See `ModelServiceClient.createModel`.
     func createModel(withPolling: CreateModelRequest) async throws -> any GoogleGax
       .PollableOperation<Model>
@@ -253,64 +219,6 @@ extension Clients {
       model: Model?,
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
-    /// See `ModelServiceClient.getModel`.
-    func getModel(request: GetModelRequest) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.getModel`.
-    func getModel(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.pauseModel`.
-    func pauseModel(request: PauseModelRequest) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.pauseModel`.
-    func pauseModel(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.resumeModel`.
-    func resumeModel(request: ResumeModelRequest) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.resumeModel`.
-    func resumeModel(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.deleteModel`.
-    func deleteModel(request: DeleteModelRequest) async throws
-
-    /// See `ModelServiceClient.deleteModel`.
-    func deleteModel(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ModelServiceClient.listModels`.
-    func listModels(request: ListModelsRequest) async throws
-      -> GoogleCloudRetailV2.ListModelsResponse
-
-    /// See `ModelServiceClient.listModels`.
-    func listModels(
-      byItem: ListModelsRequest
-    ) -> any AsyncSequence<Model, Swift.Error>
-
-    /// See `ModelServiceClient.listModels`.
-    func listModels(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Model, Swift.Error>
-
-    /// See `ModelServiceClient.updateModel`.
-    func updateModel(request: UpdateModelRequest) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.updateModel`.
-    func updateModel(
-      model: Model?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudRetailV2.Model
-
-    /// See `ModelServiceClient.tuneModel`.
-    func tuneModel(request: TuneModelRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `ModelServiceClient.tuneModel`.
     func tuneModel(withPolling: TuneModelRequest) async throws -> any GoogleGax.PollableOperation<
       TuneModelResponse
@@ -320,21 +228,6 @@ extension Clients {
     func tuneModel(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse>
-
-    /// See `ModelServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ModelServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ModelServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ModelServiceClient.createModel`.
     func createModel(
@@ -371,11 +264,6 @@ extension Clients {
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListModelsResponse
 
-    /// See `ModelServiceClient.listModels`.
-    func listModels(
-      byItem: ListModelsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Model, Swift.Error>
-
     /// See `ModelServiceClient.updateModel`.
     func updateModel(
       request: UpdateModelRequest, options: GoogleGax.RequestOptions
@@ -395,11 +283,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ModelServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -536,11 +419,16 @@ extension Clients.ModelServiceProtocol {
     self.listModels(byItem: byItem, options: .init())
   }
 
+  /// Lists all the models linked to this event store.
+  ///
+  /// @Snippet(path: "ModelService_ListModels")
   public func listModels(
     byItem: ListModelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRetailV2.ListModelsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listModels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -628,12 +516,19 @@ extension Clients.ModelServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ModelService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

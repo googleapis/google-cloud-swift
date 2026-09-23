@@ -94,10 +94,7 @@ extension Clients {
   /// To mock `PipelineServiceClient` change your functions to receive
   /// `some PipelineServiceProtocol` or `any PipelineServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PipelineServiceProtocol {
-    /// See `PipelineServiceClient.runPipeline`.
-    func runPipeline(request: RunPipelineRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol PipelineServiceProtocol: Sendable {
     /// See `PipelineServiceClient.runPipeline`.
     func runPipeline(withPolling: RunPipelineRequest) async throws -> any GoogleGax
       .PollableOperation<RunPipelineResponse>

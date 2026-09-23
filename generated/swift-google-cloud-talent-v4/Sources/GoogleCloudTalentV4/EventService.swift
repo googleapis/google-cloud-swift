@@ -70,17 +70,7 @@ extension Clients {
   /// To mock `EventServiceClient` change your functions to receive
   /// `some EventServiceProtocol` or `any EventServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol EventServiceProtocol {
-    /// See `EventServiceClient.createClientEvent`.
-    func createClientEvent(request: CreateClientEventRequest) async throws
-      -> GoogleCloudTalentV4.ClientEvent
-
-    /// See `EventServiceClient.createClientEvent`.
-    func createClientEvent(
-      parent: Swift.String,
-      clientEvent: ClientEvent?,
-    ) async throws -> GoogleCloudTalentV4.ClientEvent
-
+  public protocol EventServiceProtocol: Sendable {
     /// See `EventServiceClient.createClientEvent`.
     func createClientEvent(
       request: CreateClientEventRequest, options: GoogleGax.RequestOptions

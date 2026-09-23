@@ -48,7 +48,7 @@
     /// To mock `SqlAvailableDatabaseVersionsServiceClient` change your functions to receive
     /// `some SqlAvailableDatabaseVersionsServiceProtocol` or `any SqlAvailableDatabaseVersionsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlAvailableDatabaseVersionsServiceProtocol {
+    public protocol SqlAvailableDatabaseVersionsServiceProtocol: Sendable {
     }
   }
 

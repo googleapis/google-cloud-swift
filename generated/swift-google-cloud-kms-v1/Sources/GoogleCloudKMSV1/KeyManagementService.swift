@@ -72,22 +72,6 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
     try await self.inner.listKeyRings(request: request, options: options)
   }
 
-  /// Lists [KeyRings][google.cloud.kms.v1.KeyRing].
-  ///
-  /// [google.cloud.kms.v1.KeyRing]: <doc:KeyRing>
-  ///
-  /// @Snippet(path: "KeyManagementService_ListKeyRings")
-  public func listKeyRings(
-    byItem: ListKeyRingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<KeyRing, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listKeyRings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
   ///
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
@@ -97,22 +81,6 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
     request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse {
     try await self.inner.listCryptoKeys(request: request, options: options)
-  }
-
-  /// Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
-  ///
-  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-  ///
-  /// @Snippet(path: "KeyManagementService_ListCryptoKeys")
-  public func listCryptoKeys(
-    byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CryptoKey, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCryptoKeys(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
@@ -126,23 +94,6 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
     try await self.inner.listCryptoKeyVersions(request: request, options: options)
   }
 
-  /// Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
-  ///
-  /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  ///
-  /// @Snippet(path: "KeyManagementService_ListCryptoKeyVersions")
-  public func listCryptoKeyVersions(
-    byItem: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCryptoKeyVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
@@ -152,22 +103,6 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
     request: ListImportJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListImportJobsResponse {
     try await self.inner.listImportJobs(request: request, options: options)
-  }
-
-  /// Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
-  ///
-  /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  ///
-  /// @Snippet(path: "KeyManagementService_ListImportJobs")
-  public func listImportJobs(
-    byItem: ListImportJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ImportJob, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListImportJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listImportJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Lists the [RetiredResources][google.cloud.kms.v1.RetiredResource] which are
@@ -182,26 +117,6 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
     request: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse {
     try await self.inner.listRetiredResources(request: request, options: options)
-  }
-
-  /// Lists the [RetiredResources][google.cloud.kms.v1.RetiredResource] which are
-  /// the records of deleted [CryptoKeys][google.cloud.kms.v1.CryptoKey].
-  /// RetiredResources prevent the reuse of these resource names after deletion.
-  ///
-  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-  /// [google.cloud.kms.v1.RetiredResource]: <doc:RetiredResource>
-  ///
-  /// @Snippet(path: "KeyManagementService_ListRetiredResources")
-  public func listRetiredResources(
-    byItem: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RetiredResource, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRetiredResources(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Returns metadata for a given [KeyRing][google.cloud.kms.v1.KeyRing].
@@ -830,38 +745,6 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// This method lists locations based on the resource scope provided in
-  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-  /// **Global locations**: If `name` is empty, the method lists the
-  /// public locations available to all projects. * **Project-specific
-  /// locations**: If `name` follows the format
-  /// `projects/{project}`, the method lists locations visible to that
-  /// specific project. This includes public, private, or other
-  /// project-specific locations enabled for the project.
-  ///
-  /// For gRPC and client library implementations, the resource name is
-  /// passed as the `name` field. For direct service calls, the resource
-  /// name is
-  /// incorporated into the request path based on the specific service
-  /// implementation and version.
-  ///
-  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-  ///
-  /// @Snippet(path: "KeyManagementService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "KeyManagementService_GetLocation")
@@ -927,161 +810,7 @@ extension Clients {
   /// To mock `KeyManagementServiceClient` change your functions to receive
   /// `some KeyManagementServiceProtocol` or `any KeyManagementServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol KeyManagementServiceProtocol {
-    /// See `KeyManagementServiceClient.listKeyRings`.
-    func listKeyRings(request: ListKeyRingsRequest) async throws
-      -> GoogleCloudKMSV1.ListKeyRingsResponse
-
-    /// See `KeyManagementServiceClient.listKeyRings`.
-    func listKeyRings(
-      byItem: ListKeyRingsRequest
-    ) -> any AsyncSequence<KeyRing, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listKeyRings`.
-    func listKeyRings(
-      parent: Swift.String,
-    ) -> any AsyncSequence<KeyRing, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listCryptoKeys`.
-    func listCryptoKeys(request: ListCryptoKeysRequest) async throws
-      -> GoogleCloudKMSV1.ListCryptoKeysResponse
-
-    /// See `KeyManagementServiceClient.listCryptoKeys`.
-    func listCryptoKeys(
-      byItem: ListCryptoKeysRequest
-    ) -> any AsyncSequence<CryptoKey, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listCryptoKeys`.
-    func listCryptoKeys(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CryptoKey, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
-    func listCryptoKeyVersions(request: ListCryptoKeyVersionsRequest) async throws
-      -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse
-
-    /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
-    func listCryptoKeyVersions(
-      byItem: ListCryptoKeyVersionsRequest
-    ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
-    func listCryptoKeyVersions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listImportJobs`.
-    func listImportJobs(request: ListImportJobsRequest) async throws
-      -> GoogleCloudKMSV1.ListImportJobsResponse
-
-    /// See `KeyManagementServiceClient.listImportJobs`.
-    func listImportJobs(
-      byItem: ListImportJobsRequest
-    ) -> any AsyncSequence<ImportJob, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listImportJobs`.
-    func listImportJobs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ImportJob, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listRetiredResources`.
-    func listRetiredResources(request: ListRetiredResourcesRequest) async throws
-      -> GoogleCloudKMSV1.ListRetiredResourcesResponse
-
-    /// See `KeyManagementServiceClient.listRetiredResources`.
-    func listRetiredResources(
-      byItem: ListRetiredResourcesRequest
-    ) -> any AsyncSequence<RetiredResource, Swift.Error>
-
-    /// See `KeyManagementServiceClient.listRetiredResources`.
-    func listRetiredResources(
-      parent: Swift.String,
-    ) -> any AsyncSequence<RetiredResource, Swift.Error>
-
-    /// See `KeyManagementServiceClient.getKeyRing`.
-    func getKeyRing(request: GetKeyRingRequest) async throws -> GoogleCloudKMSV1.KeyRing
-
-    /// See `KeyManagementServiceClient.getKeyRing`.
-    func getKeyRing(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.KeyRing
-
-    /// See `KeyManagementServiceClient.getCryptoKey`.
-    func getCryptoKey(request: GetCryptoKeyRequest) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.getCryptoKey`.
-    func getCryptoKey(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.getCryptoKeyVersion`.
-    func getCryptoKeyVersion(request: GetCryptoKeyVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.getCryptoKeyVersion`.
-    func getCryptoKeyVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.getPublicKey`.
-    func getPublicKey(request: GetPublicKeyRequest) async throws -> GoogleCloudKMSV1.PublicKey
-
-    /// See `KeyManagementServiceClient.getPublicKey`.
-    func getPublicKey(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.PublicKey
-
-    /// See `KeyManagementServiceClient.getImportJob`.
-    func getImportJob(request: GetImportJobRequest) async throws -> GoogleCloudKMSV1.ImportJob
-
-    /// See `KeyManagementServiceClient.getImportJob`.
-    func getImportJob(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.ImportJob
-
-    /// See `KeyManagementServiceClient.getRetiredResource`.
-    func getRetiredResource(request: GetRetiredResourceRequest) async throws
-      -> GoogleCloudKMSV1.RetiredResource
-
-    /// See `KeyManagementServiceClient.getRetiredResource`.
-    func getRetiredResource(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.RetiredResource
-
-    /// See `KeyManagementServiceClient.createKeyRing`.
-    func createKeyRing(request: CreateKeyRingRequest) async throws -> GoogleCloudKMSV1.KeyRing
-
-    /// See `KeyManagementServiceClient.createKeyRing`.
-    func createKeyRing(
-      parent: Swift.String,
-      keyRingId: Swift.String,
-      keyRing: KeyRing?,
-    ) async throws -> GoogleCloudKMSV1.KeyRing
-
-    /// See `KeyManagementServiceClient.createCryptoKey`.
-    func createCryptoKey(request: CreateCryptoKeyRequest) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.createCryptoKey`.
-    func createCryptoKey(
-      parent: Swift.String,
-      cryptoKeyId: Swift.String,
-      cryptoKey: CryptoKey?,
-    ) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.createCryptoKeyVersion`.
-    func createCryptoKeyVersion(request: CreateCryptoKeyVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.createCryptoKeyVersion`.
-    func createCryptoKeyVersion(
-      parent: Swift.String,
-      cryptoKeyVersion: CryptoKeyVersion?,
-    ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.deleteCryptoKey`.
-    func deleteCryptoKey(request: DeleteCryptoKeyRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol KeyManagementServiceProtocol: Sendable {
     /// See `KeyManagementServiceClient.deleteCryptoKey`.
     func deleteCryptoKey(withPolling: DeleteCryptoKeyRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
@@ -1092,10 +821,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
-    func deleteCryptoKeyVersion(request: DeleteCryptoKeyVersionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersion(withPolling: DeleteCryptoKeyVersionRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1104,227 +829,30 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `KeyManagementServiceClient.importCryptoKeyVersion`.
-    func importCryptoKeyVersion(request: ImportCryptoKeyVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.importTrustedKeyWrappedCryptoKeyVersion`.
-    func importTrustedKeyWrappedCryptoKeyVersion(
-      request: ImportTrustedKeyWrappedCryptoKeyVersionRequest
-    ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.exportTrustedKeyWrappedCryptoKeyVersion`.
-    func exportTrustedKeyWrappedCryptoKeyVersion(
-      request: ExportTrustedKeyWrappedCryptoKeyVersionRequest
-    ) async throws -> GoogleCloudKMSV1.ExportTrustedKeyWrappedCryptoKeyVersionResponse
-
-    /// See `KeyManagementServiceClient.createImportJob`.
-    func createImportJob(request: CreateImportJobRequest) async throws -> GoogleCloudKMSV1.ImportJob
-
-    /// See `KeyManagementServiceClient.createImportJob`.
-    func createImportJob(
-      parent: Swift.String,
-      importJobId: Swift.String,
-      importJob: ImportJob?,
-    ) async throws -> GoogleCloudKMSV1.ImportJob
-
-    /// See `KeyManagementServiceClient.updateCryptoKey`.
-    func updateCryptoKey(request: UpdateCryptoKeyRequest) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.updateCryptoKey`.
-    func updateCryptoKey(
-      cryptoKey: CryptoKey?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.updateCryptoKeyVersion`.
-    func updateCryptoKeyVersion(request: UpdateCryptoKeyVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.updateCryptoKeyVersion`.
-    func updateCryptoKeyVersion(
-      cryptoKeyVersion: CryptoKeyVersion?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.updateCryptoKeyPrimaryVersion`.
-    func updateCryptoKeyPrimaryVersion(request: UpdateCryptoKeyPrimaryVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.updateCryptoKeyPrimaryVersion`.
-    func updateCryptoKeyPrimaryVersion(
-      name: Swift.String,
-      cryptoKeyVersionId: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.CryptoKey
-
-    /// See `KeyManagementServiceClient.destroyCryptoKeyVersion`.
-    func destroyCryptoKeyVersion(request: DestroyCryptoKeyVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.destroyCryptoKeyVersion`.
-    func destroyCryptoKeyVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.restoreCryptoKeyVersion`.
-    func restoreCryptoKeyVersion(request: RestoreCryptoKeyVersionRequest) async throws
-      -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.restoreCryptoKeyVersion`.
-    func restoreCryptoKeyVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
-
-    /// See `KeyManagementServiceClient.encrypt`.
-    func encrypt(request: EncryptRequest) async throws -> GoogleCloudKMSV1.EncryptResponse
-
-    /// See `KeyManagementServiceClient.encrypt`.
-    func encrypt(
-      name: Swift.String,
-      plaintext: Foundation.Data,
-    ) async throws -> GoogleCloudKMSV1.EncryptResponse
-
-    /// See `KeyManagementServiceClient.decrypt`.
-    func decrypt(request: DecryptRequest) async throws -> GoogleCloudKMSV1.DecryptResponse
-
-    /// See `KeyManagementServiceClient.decrypt`.
-    func decrypt(
-      name: Swift.String,
-      ciphertext: Foundation.Data,
-    ) async throws -> GoogleCloudKMSV1.DecryptResponse
-
-    /// See `KeyManagementServiceClient.rawEncrypt`.
-    func rawEncrypt(request: RawEncryptRequest) async throws -> GoogleCloudKMSV1.RawEncryptResponse
-
-    /// See `KeyManagementServiceClient.rawDecrypt`.
-    func rawDecrypt(request: RawDecryptRequest) async throws -> GoogleCloudKMSV1.RawDecryptResponse
-
-    /// See `KeyManagementServiceClient.asymmetricSign`.
-    func asymmetricSign(request: AsymmetricSignRequest) async throws
-      -> GoogleCloudKMSV1.AsymmetricSignResponse
-
-    /// See `KeyManagementServiceClient.asymmetricSign`.
-    func asymmetricSign(
-      name: Swift.String,
-      digest: Digest?,
-    ) async throws -> GoogleCloudKMSV1.AsymmetricSignResponse
-
-    /// See `KeyManagementServiceClient.asymmetricDecrypt`.
-    func asymmetricDecrypt(request: AsymmetricDecryptRequest) async throws
-      -> GoogleCloudKMSV1.AsymmetricDecryptResponse
-
-    /// See `KeyManagementServiceClient.asymmetricDecrypt`.
-    func asymmetricDecrypt(
-      name: Swift.String,
-      ciphertext: Foundation.Data,
-    ) async throws -> GoogleCloudKMSV1.AsymmetricDecryptResponse
-
-    /// See `KeyManagementServiceClient.macSign`.
-    func macSign(request: MacSignRequest) async throws -> GoogleCloudKMSV1.MacSignResponse
-
-    /// See `KeyManagementServiceClient.macSign`.
-    func macSign(
-      name: Swift.String,
-      data: Foundation.Data,
-    ) async throws -> GoogleCloudKMSV1.MacSignResponse
-
-    /// See `KeyManagementServiceClient.macVerify`.
-    func macVerify(request: MacVerifyRequest) async throws -> GoogleCloudKMSV1.MacVerifyResponse
-
-    /// See `KeyManagementServiceClient.macVerify`.
-    func macVerify(
-      name: Swift.String,
-      data: Foundation.Data,
-      mac: Foundation.Data,
-    ) async throws -> GoogleCloudKMSV1.MacVerifyResponse
-
-    /// See `KeyManagementServiceClient.decapsulate`.
-    func decapsulate(request: DecapsulateRequest) async throws
-      -> GoogleCloudKMSV1.DecapsulateResponse
-
-    /// See `KeyManagementServiceClient.generateRandomBytes`.
-    func generateRandomBytes(request: GenerateRandomBytesRequest) async throws
-      -> GoogleCloudKMSV1.GenerateRandomBytesResponse
-
-    /// See `KeyManagementServiceClient.generateRandomBytes`.
-    func generateRandomBytes(
-      location: Swift.String,
-      lengthBytes: Swift.Int32,
-      protectionLevel: ProtectionLevel,
-    ) async throws -> GoogleCloudKMSV1.GenerateRandomBytesResponse
-
-    /// See `KeyManagementServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `KeyManagementServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `KeyManagementServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `KeyManagementServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `KeyManagementServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `KeyManagementServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
     /// See `KeyManagementServiceClient.listKeyRings`.
     func listKeyRings(
       request: ListKeyRingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse
-
-    /// See `KeyManagementServiceClient.listKeyRings`.
-    func listKeyRings(
-      byItem: ListKeyRingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<KeyRing, Swift.Error>
 
     /// See `KeyManagementServiceClient.listCryptoKeys`.
     func listCryptoKeys(
       request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse
 
-    /// See `KeyManagementServiceClient.listCryptoKeys`.
-    func listCryptoKeys(
-      byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CryptoKey, Swift.Error>
-
     /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
     func listCryptoKeyVersions(
       request: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse
-
-    /// See `KeyManagementServiceClient.listCryptoKeyVersions`.
-    func listCryptoKeyVersions(
-      byItem: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error>
 
     /// See `KeyManagementServiceClient.listImportJobs`.
     func listImportJobs(
       request: ListImportJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListImportJobsResponse
 
-    /// See `KeyManagementServiceClient.listImportJobs`.
-    func listImportJobs(
-      byItem: ListImportJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ImportJob, Swift.Error>
-
     /// See `KeyManagementServiceClient.listRetiredResources`.
     func listRetiredResources(
       request: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse
-
-    /// See `KeyManagementServiceClient.listRetiredResources`.
-    func listRetiredResources(
-      byItem: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RetiredResource, Swift.Error>
 
     /// See `KeyManagementServiceClient.getKeyRing`.
     func getKeyRing(
@@ -1491,11 +1019,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `KeyManagementServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `KeyManagementServiceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1538,11 +1061,18 @@ extension Clients.KeyManagementServiceProtocol {
     self.listKeyRings(byItem: byItem, options: .init())
   }
 
+  /// Lists [KeyRings][google.cloud.kms.v1.KeyRing].
+  ///
+  /// [google.cloud.kms.v1.KeyRing]: <doc:KeyRing>
+  ///
+  /// @Snippet(path: "KeyManagementService_ListKeyRings")
   public func listKeyRings(
     byItem: ListKeyRingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<KeyRing, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listKeyRings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1574,11 +1104,18 @@ extension Clients.KeyManagementServiceProtocol {
     self.listCryptoKeys(byItem: byItem, options: .init())
   }
 
+  /// Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  ///
+  /// @Snippet(path: "KeyManagementService_ListCryptoKeys")
   public func listCryptoKeys(
     byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CryptoKey, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCryptoKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1610,12 +1147,19 @@ extension Clients.KeyManagementServiceProtocol {
     self.listCryptoKeyVersions(byItem: byItem, options: .init())
   }
 
+  /// Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
+  ///
+  /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
+  ///
+  /// @Snippet(path: "KeyManagementService_ListCryptoKeyVersions")
   public func listCryptoKeyVersions(
     byItem: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CryptoKeyVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCryptoKeyVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1647,11 +1191,18 @@ extension Clients.KeyManagementServiceProtocol {
     self.listImportJobs(byItem: byItem, options: .init())
   }
 
+  /// Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
+  ///
+  /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
+  ///
+  /// @Snippet(path: "KeyManagementService_ListImportJobs")
   public func listImportJobs(
     byItem: ListImportJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ImportJob, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListImportJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listImportJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1683,12 +1234,22 @@ extension Clients.KeyManagementServiceProtocol {
     self.listRetiredResources(byItem: byItem, options: .init())
   }
 
+  /// Lists the [RetiredResources][google.cloud.kms.v1.RetiredResource] which are
+  /// the records of deleted [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+  /// RetiredResources prevent the reuse of these resource names after deletion.
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  /// [google.cloud.kms.v1.RetiredResource]: <doc:RetiredResource>
+  ///
+  /// @Snippet(path: "KeyManagementService_ListRetiredResources")
   public func listRetiredResources(
     byItem: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RetiredResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRetiredResources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2354,12 +1915,34 @@ extension Clients.KeyManagementServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "KeyManagementService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

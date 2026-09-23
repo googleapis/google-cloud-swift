@@ -84,21 +84,6 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
     try await self.inner.listCompanies(request: request, options: options)
   }
 
-  /// Lists all companies associated with the project.
-  ///
-  /// @Snippet(path: "CompanyService_ListCompanies")
-  public func listCompanies(
-    byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Company, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCompanies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -117,55 +102,7 @@ extension Clients {
   /// To mock `CompanyServiceClient` change your functions to receive
   /// `some CompanyServiceProtocol` or `any CompanyServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CompanyServiceProtocol {
-    /// See `CompanyServiceClient.createCompany`.
-    func createCompany(request: CreateCompanyRequest) async throws -> GoogleCloudTalentV4.Company
-
-    /// See `CompanyServiceClient.createCompany`.
-    func createCompany(
-      parent: Swift.String,
-      company: Company?,
-    ) async throws -> GoogleCloudTalentV4.Company
-
-    /// See `CompanyServiceClient.getCompany`.
-    func getCompany(request: GetCompanyRequest) async throws -> GoogleCloudTalentV4.Company
-
-    /// See `CompanyServiceClient.getCompany`.
-    func getCompany(
-      name: Swift.String,
-    ) async throws -> GoogleCloudTalentV4.Company
-
-    /// See `CompanyServiceClient.updateCompany`.
-    func updateCompany(request: UpdateCompanyRequest) async throws -> GoogleCloudTalentV4.Company
-
-    /// See `CompanyServiceClient.updateCompany`.
-    func updateCompany(
-      company: Company?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudTalentV4.Company
-
-    /// See `CompanyServiceClient.deleteCompany`.
-    func deleteCompany(request: DeleteCompanyRequest) async throws
-
-    /// See `CompanyServiceClient.deleteCompany`.
-    func deleteCompany(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CompanyServiceClient.listCompanies`.
-    func listCompanies(request: ListCompaniesRequest) async throws
-      -> GoogleCloudTalentV4.ListCompaniesResponse
-
-    /// See `CompanyServiceClient.listCompanies`.
-    func listCompanies(
-      byItem: ListCompaniesRequest
-    ) -> any AsyncSequence<Company, Swift.Error>
-
-    /// See `CompanyServiceClient.listCompanies`.
-    func listCompanies(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Company, Swift.Error>
-
+  public protocol CompanyServiceProtocol: Sendable {
     /// See `CompanyServiceClient.createCompany`.
     func createCompany(
       request: CreateCompanyRequest, options: GoogleGax.RequestOptions
@@ -190,11 +127,6 @@ extension Clients {
     func listCompanies(
       request: ListCompaniesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListCompaniesResponse
-
-    /// See `CompanyServiceClient.listCompanies`.
-    func listCompanies(
-      byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Company, Swift.Error>
   }
 }
 
@@ -302,12 +234,17 @@ extension Clients.CompanyServiceProtocol {
     self.listCompanies(byItem: byItem, options: .init())
   }
 
+  /// Lists all companies associated with the project.
+  ///
+  /// @Snippet(path: "CompanyService_ListCompanies")
   public func listCompanies(
     byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Company, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCompanies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

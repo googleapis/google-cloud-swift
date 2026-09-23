@@ -83,23 +83,6 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "BigQueryExportService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "BigQueryExportService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -136,66 +119,7 @@ extension Clients {
   /// To mock `BigQueryExportServiceClient` change your functions to receive
   /// `some BigQueryExportServiceProtocol` or `any BigQueryExportServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol BigQueryExportServiceProtocol {
-    /// See `BigQueryExportServiceClient.getBigQueryExport`.
-    func getBigQueryExport(request: GetBigQueryExportRequest) async throws
-      -> GoogleCloudChronicleV1.BigQueryExport
-
-    /// See `BigQueryExportServiceClient.getBigQueryExport`.
-    func getBigQueryExport(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.BigQueryExport
-
-    /// See `BigQueryExportServiceClient.updateBigQueryExport`.
-    func updateBigQueryExport(request: UpdateBigQueryExportRequest) async throws
-      -> GoogleCloudChronicleV1.BigQueryExport
-
-    /// See `BigQueryExportServiceClient.updateBigQueryExport`.
-    func updateBigQueryExport(
-      bigQueryExport: BigQueryExport?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudChronicleV1.BigQueryExport
-
-    /// See `BigQueryExportServiceClient.provisionBigQueryExport`.
-    func provisionBigQueryExport(request: ProvisionBigQueryExportRequest) async throws
-      -> GoogleCloudChronicleV1.BigQueryExport
-
-    /// See `BigQueryExportServiceClient.provisionBigQueryExport`.
-    func provisionBigQueryExport(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.BigQueryExport
-
-    /// See `BigQueryExportServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BigQueryExportServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BigQueryExportServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BigQueryExportServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `BigQueryExportServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BigQueryExportServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `BigQueryExportServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol BigQueryExportServiceProtocol: Sendable {
     /// See `BigQueryExportServiceClient.getBigQueryExport`.
     func getBigQueryExport(
       request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
@@ -215,11 +139,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BigQueryExportServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BigQueryExportServiceClient.deleteOperation`.
     func deleteOperation(
@@ -318,12 +237,19 @@ extension Clients.BigQueryExportServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

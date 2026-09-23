@@ -50,25 +50,6 @@ public final class QueryServiceClient: Clients.QueryServiceProtocol, Sendable {
   ) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse {
     try await self.inner.queryTimeSeries(request: request, options: options)
   }
-
-  /// Queries time series by using Monitoring Query Language (MQL). We recommend
-  /// using PromQL instead of MQL. For more information about the status of MQL,
-  /// see the [MQL deprecation
-  /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
-  ///
-  /// @Snippet(path: "QueryService_QueryTimeSeries")
-  @available(*, deprecated)
-  public func queryTimeSeries(
-    byItem: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TimeSeriesData, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.queryTimeSeries(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -77,29 +58,12 @@ extension Clients {
   /// To mock `QueryServiceClient` change your functions to receive
   /// `some QueryServiceProtocol` or `any QueryServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol QueryServiceProtocol {
-    /// See `QueryServiceClient.queryTimeSeries`.
-    @available(*, deprecated)
-    func queryTimeSeries(request: QueryTimeSeriesRequest) async throws
-      -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse
-
-    /// See `QueryServiceClient.queryTimeSeries`.
-    @available(*, deprecated)
-    func queryTimeSeries(
-      byItem: QueryTimeSeriesRequest
-    ) -> any AsyncSequence<TimeSeriesData, Swift.Error>
-
+  public protocol QueryServiceProtocol: Sendable {
     /// See `QueryServiceClient.queryTimeSeries`.
     @available(*, deprecated)
     func queryTimeSeries(
       request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse
-
-    /// See `QueryServiceClient.queryTimeSeries`.
-    @available(*, deprecated)
-    func queryTimeSeries(
-      byItem: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TimeSeriesData, Swift.Error>
   }
 }
 
@@ -126,13 +90,21 @@ extension Clients.QueryServiceProtocol {
     self.queryTimeSeries(byItem: byItem, options: .init())
   }
 
+  /// Queries time series by using Monitoring Query Language (MQL). We recommend
+  /// using PromQL instead of MQL. For more information about the status of MQL,
+  /// see the [MQL deprecation
+  /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
+  ///
+  /// @Snippet(path: "QueryService_QueryTimeSeries")
   @available(*, deprecated)
   public func queryTimeSeries(
     byItem: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TimeSeriesData, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.queryTimeSeries(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

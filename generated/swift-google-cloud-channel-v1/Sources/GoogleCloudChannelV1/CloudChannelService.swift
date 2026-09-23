@@ -86,33 +86,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listCustomers(request: request, options: options)
   }
 
-  /// List [Customer][google.cloud.channel.v1.Customer]s.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED: The reseller account making the request is different
-  /// from the reseller account in the API request.
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// Return value:
-  /// List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
-  /// there are no customers.
-  ///
-  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListCustomers")
-  public func listCustomers(
-    byItem: ListCustomersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Customer, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListCustomersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCustomers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns the requested [Customer][google.cloud.channel.v1.Customer]
   /// resource.
   ///
@@ -370,33 +343,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listEntitlements(request: request, options: options)
   }
 
-  /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
-  /// customer.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// Return value:
-  /// A list of the customer's
-  /// [Entitlement][google.cloud.channel.v1.Entitlement]s.
-  ///
-  /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListEntitlements")
-  public func listEntitlements(
-    byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entitlement, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEntitlements(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
   /// customer based on the Cloud Identity ID or Customer Name in the request.
   ///
@@ -424,41 +370,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse {
     try await self.inner.listTransferableSkus(request: request, options: options)
-  }
-
-  /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
-  /// customer based on the Cloud Identity ID or Customer Name in the request.
-  ///
-  /// Use this method to list the entitlements information of an
-  /// unowned customer. You should provide the customer's
-  /// Cloud Identity ID or Customer Name.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED:
-  ///     * The customer doesn't belong to the reseller and has no auth token.
-  ///     * The supplied auth token is invalid.
-  ///     * The reseller account making the request is different
-  ///     from the reseller account in the query.
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// Return value:
-  /// A list of the customer's
-  /// [TransferableSku][google.cloud.channel.v1.TransferableSku].
-  ///
-  /// [google.cloud.channel.v1.TransferableSku]: <doc:TransferableSku>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
-  public func listTransferableSkus(
-    byItem: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TransferableSku, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTransferableSkus(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
@@ -491,44 +402,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse {
     try await self.inner.listTransferableOffers(request: request, options: options)
-  }
-
-  /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
-  /// customer based on Cloud Identity ID or Customer Name in the request.
-  ///
-  /// Use this method when a reseller gets the entitlement information of an
-  /// unowned customer. The reseller should provide the customer's
-  /// Cloud Identity ID or Customer Name.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED:
-  ///     * The customer doesn't belong to the reseller and has no auth token.
-  ///     * The customer provided incorrect reseller information when generating
-  ///     auth token.
-  ///     * The reseller account making the request is different
-  ///     from the reseller account in the query.
-  ///     * The reseller is not authorized to transact on this Product. See
-  ///     https://support.google.com/channelservices/answer/9759265
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// Return value:
-  /// List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
-  /// the given customer and SKU.
-  ///
-  /// [google.cloud.channel.v1.TransferableOffer]: <doc:TransferableOffer>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
-  public func listTransferableOffers(
-    byItem: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TransferableOffer, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTransferableOffers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
@@ -1475,34 +1348,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listChannelPartnerLinks(request: request, options: options)
   }
 
-  /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
-  /// belonging to a distributor. You must be a distributor to call this method.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED: The reseller account making the request is different
-  /// from the reseller account in the API request.
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// Return value:
-  /// The list of the distributor account's
-  /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
-  ///
-  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
-  public func listChannelPartnerLinks(
-    byItem: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listChannelPartnerLinks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns the requested
   /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
   /// You must be a distributor to call this method.
@@ -1656,51 +1501,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse {
     try await self.inner.listCustomerRepricingConfigs(request: request, options: options)
-  }
-
-  /// Lists information about how a Reseller modifies their bill before sending
-  /// it to a Customer.
-  ///
-  /// Possible Error Codes:
-  ///
-  /// * PERMISSION_DENIED: If the account making the request and the account
-  /// being queried are different.
-  /// * NOT_FOUND: The
-  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-  /// specified does not exist or is not associated with the given account.
-  /// * INTERNAL: Any non-user error related to technical issues in the
-  /// backend. In this case, contact Cloud Channel support.
-  ///
-  /// Return Value:
-  /// If successful, the
-  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-  /// resources. The data for each resource is displayed in the ascending order
-  /// of:
-  ///
-  /// * Customer ID
-  /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-  /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
-  ///
-  /// If unsuccessful, returns an error.
-  ///
-  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
-  /// [google.cloud.channel.v1.CustomerRepricingConfig.update_time]: <doc:CustomerRepricingConfig/updateTime>
-  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
-  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
-  public func listCustomerRepricingConfigs(
-    byItem: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCustomerRepricingConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Creates a CustomerRepricingConfig. Call this method to set modifications
@@ -1893,49 +1693,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listChannelPartnerRepricingConfigs(request: request, options: options)
   }
 
-  /// Lists information about how a Reseller modifies their bill before sending
-  /// it to a ChannelPartner.
-  ///
-  /// Possible Error Codes:
-  ///
-  /// * PERMISSION_DENIED: If the account making the request and the account
-  /// being queried are different.
-  /// * NOT_FOUND: The
-  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-  /// specified does not exist or is not associated with the given account.
-  /// * INTERNAL: Any non-user error related to technical issues in the
-  /// backend. In this case, contact Cloud Channel support.
-  ///
-  /// Return Value:
-  /// If successful, the
-  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-  /// resources. The data for each resource is displayed in the ascending order
-  /// of:
-  ///
-  /// * Channel Partner ID
-  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-  /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
-  ///
-  /// If unsuccessful, returns an error.
-  ///
-  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
-  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]: <doc:ChannelPartnerRepricingConfig/updateTime>
-  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
-  public func listChannelPartnerRepricingConfigs(
-    byItem: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listChannelPartnerRepricingConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a ChannelPartnerRepricingConfig. Call this method to set
   /// modifications for a specific ChannelPartner's bill. You can only create
   /// configs if the
@@ -2094,42 +1851,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listSkuGroups(request: request, options: options)
   }
 
-  /// Lists the Rebilling supported SKU groups the account is authorized to
-  /// sell.
-  /// Reference: https://cloud.google.com/skus/sku-groups
-  ///
-  /// Possible Error Codes:
-  ///
-  /// * PERMISSION_DENIED: If the account making the request and the account
-  /// being queried are different, or the account doesn't exist.
-  /// * INTERNAL: Any non-user error related to technical issues in the
-  /// backend. In this case, contact Cloud Channel support.
-  ///
-  /// Return Value:
-  /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
-  /// The data for each resource is displayed in the alphabetical order of SKU
-  /// group display name.
-  /// The data for each resource is displayed in the ascending order of
-  /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
-  ///
-  /// If unsuccessful, returns an error.
-  ///
-  /// [google.cloud.channel.v1.SkuGroup]: <doc:SkuGroup>
-  /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListSkuGroups")
-  public func listSkuGroups(
-    byItem: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SkuGroup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSkuGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists the Billable SKUs in a given SKU group.
   ///
   /// Possible error codes:
@@ -2159,43 +1880,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse {
     try await self.inner.listSkuGroupBillableSkus(request: request, options: options)
-  }
-
-  /// Lists the Billable SKUs in a given SKU group.
-  ///
-  /// Possible error codes:
-  /// PERMISSION_DENIED: If the account making the request and the account
-  /// being queried for are different, or the account doesn't exist.
-  /// INVALID_ARGUMENT: Missing or invalid required parameters in the
-  /// request.
-  /// INTERNAL: Any non-user error related to technical issue in the
-  /// backend. In this case, contact cloud channel support.
-  ///
-  /// Return Value:
-  /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
-  /// resources. The data for each resource is displayed in the ascending order
-  /// of:
-  ///
-  /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
-  /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
-  ///
-  /// If unsuccessful, returns an error.
-  ///
-  /// [google.cloud.channel.v1.BillableSku]: <doc:BillableSku>
-  /// [google.cloud.channel.v1.BillableSku.service_display_name]: <doc:BillableSku/serviceDisplayName>
-  /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
-  public func listSkuGroupBillableSkus(
-    byItem: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BillableSku, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSkuGroupBillableSkus(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
@@ -2231,25 +1915,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listProducts(request: request, options: options)
   }
 
-  /// Lists the Products the reseller is authorized to sell.
-  ///
-  /// Possible error codes:
-  ///
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// @Snippet(path: "CloudChannelService_ListProducts")
-  public func listProducts(
-    byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Product, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListProductsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProducts(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists the SKUs for a product the reseller is authorized to sell.
   ///
   /// Possible error codes:
@@ -2263,24 +1928,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listSkus(request: request, options: options)
   }
 
-  /// Lists the SKUs for a product the reseller is authorized to sell.
-  ///
-  /// Possible error codes:
-  ///
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// @Snippet(path: "CloudChannelService_ListSkus")
-  public func listSkus(
-    byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Sku, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkusResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSkus(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists the Offers the reseller can sell.
   ///
   /// Possible error codes:
@@ -2292,24 +1939,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ListOffersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListOffersResponse {
     try await self.inner.listOffers(request: request, options: options)
-  }
-
-  /// Lists the Offers the reseller can sell.
-  ///
-  /// Possible error codes:
-  ///
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// @Snippet(path: "CloudChannelService_ListOffers")
-  public func listOffers(
-    byItem: ListOffersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Offer, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListOffersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOffers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Lists the following:
@@ -2331,29 +1960,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
 
   /// Lists the following:
   ///
-  /// * SKUs that you can purchase for a customer
-  /// * SKUs that you can upgrade or downgrade for an entitlement.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
-  public func listPurchasableSkus(
-    byItem: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PurchasableSku, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPurchasableSkus(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Lists the following:
-  ///
   /// * Offers that you can purchase for a customer.
   /// * Offers that you can change for an entitlement.
   ///
@@ -2370,32 +1976,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse {
     try await self.inner.listPurchasableOffers(request: request, options: options)
-  }
-
-  /// Lists the following:
-  ///
-  /// * Offers that you can purchase for a customer.
-  /// * Offers that you can change for an entitlement.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED:
-  ///     * The customer doesn't belong to the reseller
-  ///     * The reseller is not authorized to transact on this Product. See
-  ///     https://support.google.com/channelservices/answer/9759265
-  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-  ///
-  /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
-  public func listPurchasableOffers(
-    byItem: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PurchasableOffer, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPurchasableOffers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Lists the billing accounts that are eligible to purchase particular SKUs
@@ -2526,38 +2106,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     try await self.inner.listEntitlementChanges(request: request, options: options)
   }
 
-  /// List entitlement history.
-  ///
-  /// Possible error codes:
-  ///
-  /// * PERMISSION_DENIED: The reseller account making the request and the
-  /// provided reseller account are different.
-  /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
-  /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
-  /// invalid name parameter.
-  /// * INTERNAL: Any non-user error related to a technical issue in the backend.
-  /// In this case, contact CloudChannel support.
-  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-  /// In this case, contact Cloud Channel support.
-  ///
-  /// Return value:
-  /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
-  ///
-  /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
-  ///
-  /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
-  public func listEntitlementChanges(
-    byItem: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntitlementChange, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEntitlementChanges(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -2567,23 +2115,6 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "CloudChannelService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -2626,433 +2157,55 @@ extension Clients {
   /// To mock `CloudChannelServiceClient` change your functions to receive
   /// `some CloudChannelServiceProtocol` or `any CloudChannelServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudChannelServiceProtocol {
-    /// See `CloudChannelServiceClient.listCustomers`.
-    func listCustomers(request: ListCustomersRequest) async throws
-      -> GoogleCloudChannelV1.ListCustomersResponse
-
-    /// See `CloudChannelServiceClient.listCustomers`.
-    func listCustomers(
-      byItem: ListCustomersRequest
-    ) -> any AsyncSequence<Customer, Swift.Error>
-
-    /// See `CloudChannelServiceClient.getCustomer`.
-    func getCustomer(request: GetCustomerRequest) async throws -> GoogleCloudChannelV1.Customer
-
-    /// See `CloudChannelServiceClient.getCustomer`.
-    func getCustomer(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChannelV1.Customer
-
-    /// See `CloudChannelServiceClient.checkCloudIdentityAccountsExist`.
-    func checkCloudIdentityAccountsExist(request: CheckCloudIdentityAccountsExistRequest)
-      async throws -> GoogleCloudChannelV1.CheckCloudIdentityAccountsExistResponse
-
-    /// See `CloudChannelServiceClient.createCustomer`.
-    func createCustomer(request: CreateCustomerRequest) async throws
-      -> GoogleCloudChannelV1.Customer
-
-    /// See `CloudChannelServiceClient.updateCustomer`.
-    func updateCustomer(request: UpdateCustomerRequest) async throws
-      -> GoogleCloudChannelV1.Customer
-
-    /// See `CloudChannelServiceClient.deleteCustomer`.
-    func deleteCustomer(request: DeleteCustomerRequest) async throws
-
-    /// See `CloudChannelServiceClient.deleteCustomer`.
-    func deleteCustomer(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudChannelServiceClient.importCustomer`.
-    func importCustomer(request: ImportCustomerRequest) async throws
-      -> GoogleCloudChannelV1.Customer
-
-    /// See `CloudChannelServiceClient.provisionCloudIdentity`.
-    func provisionCloudIdentity(request: ProvisionCloudIdentityRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol CloudChannelServiceProtocol: Sendable {
     /// See `CloudChannelServiceClient.provisionCloudIdentity`.
     func provisionCloudIdentity(withPolling: ProvisionCloudIdentityRequest) async throws
       -> any GoogleGax.PollableOperation<Customer>
-
-    /// See `CloudChannelServiceClient.listEntitlements`.
-    func listEntitlements(request: ListEntitlementsRequest) async throws
-      -> GoogleCloudChannelV1.ListEntitlementsResponse
-
-    /// See `CloudChannelServiceClient.listEntitlements`.
-    func listEntitlements(
-      byItem: ListEntitlementsRequest
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listTransferableSkus`.
-    func listTransferableSkus(request: ListTransferableSkusRequest) async throws
-      -> GoogleCloudChannelV1.ListTransferableSkusResponse
-
-    /// See `CloudChannelServiceClient.listTransferableSkus`.
-    func listTransferableSkus(
-      byItem: ListTransferableSkusRequest
-    ) -> any AsyncSequence<TransferableSku, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listTransferableOffers`.
-    func listTransferableOffers(request: ListTransferableOffersRequest) async throws
-      -> GoogleCloudChannelV1.ListTransferableOffersResponse
-
-    /// See `CloudChannelServiceClient.listTransferableOffers`.
-    func listTransferableOffers(
-      byItem: ListTransferableOffersRequest
-    ) -> any AsyncSequence<TransferableOffer, Swift.Error>
-
-    /// See `CloudChannelServiceClient.getEntitlement`.
-    func getEntitlement(request: GetEntitlementRequest) async throws
-      -> GoogleCloudChannelV1.Entitlement
-
-    /// See `CloudChannelServiceClient.createEntitlement`.
-    func createEntitlement(request: CreateEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudChannelServiceClient.createEntitlement`.
     func createEntitlement(withPolling: CreateEntitlementRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
 
     /// See `CloudChannelServiceClient.changeParameters`.
-    func changeParameters(request: ChangeParametersRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CloudChannelServiceClient.changeParameters`.
     func changeParameters(withPolling: ChangeParametersRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.changeRenewalSettings`.
-    func changeRenewalSettings(request: ChangeRenewalSettingsRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudChannelServiceClient.changeRenewalSettings`.
     func changeRenewalSettings(withPolling: ChangeRenewalSettingsRequest) async throws
       -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `CloudChannelServiceClient.changeOffer`.
-    func changeOffer(request: ChangeOfferRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudChannelServiceClient.changeOffer`.
     func changeOffer(withPolling: ChangeOfferRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.startPaidService`.
-    func startPaidService(request: StartPaidServiceRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudChannelServiceClient.startPaidService`.
     func startPaidService(withPolling: StartPaidServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
 
     /// See `CloudChannelServiceClient.suspendEntitlement`.
-    func suspendEntitlement(request: SuspendEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CloudChannelServiceClient.suspendEntitlement`.
     func suspendEntitlement(withPolling: SuspendEntitlementRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.cancelEntitlement`.
-    func cancelEntitlement(request: CancelEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudChannelServiceClient.cancelEntitlement`.
     func cancelEntitlement(withPolling: CancelEntitlementRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `CloudChannelServiceClient.activateEntitlement`.
-    func activateEntitlement(request: ActivateEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CloudChannelServiceClient.activateEntitlement`.
     func activateEntitlement(withPolling: ActivateEntitlementRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.transferEntitlements`.
-    func transferEntitlements(request: TransferEntitlementsRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudChannelServiceClient.transferEntitlements`.
     func transferEntitlements(withPolling: TransferEntitlementsRequest) async throws
       -> any GoogleGax.PollableOperation<TransferEntitlementsResponse>
 
     /// See `CloudChannelServiceClient.transferEntitlementsToGoogle`.
-    func transferEntitlementsToGoogle(request: TransferEntitlementsToGoogleRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `CloudChannelServiceClient.transferEntitlementsToGoogle`.
     func transferEntitlementsToGoogle(withPolling: TransferEntitlementsToGoogleRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CloudChannelServiceClient.listChannelPartnerLinks`.
-    func listChannelPartnerLinks(request: ListChannelPartnerLinksRequest) async throws
-      -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse
-
-    /// See `CloudChannelServiceClient.listChannelPartnerLinks`.
-    func listChannelPartnerLinks(
-      byItem: ListChannelPartnerLinksRequest
-    ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error>
-
-    /// See `CloudChannelServiceClient.getChannelPartnerLink`.
-    func getChannelPartnerLink(request: GetChannelPartnerLinkRequest) async throws
-      -> GoogleCloudChannelV1.ChannelPartnerLink
-
-    /// See `CloudChannelServiceClient.createChannelPartnerLink`.
-    func createChannelPartnerLink(request: CreateChannelPartnerLinkRequest) async throws
-      -> GoogleCloudChannelV1.ChannelPartnerLink
-
-    /// See `CloudChannelServiceClient.updateChannelPartnerLink`.
-    func updateChannelPartnerLink(request: UpdateChannelPartnerLinkRequest) async throws
-      -> GoogleCloudChannelV1.ChannelPartnerLink
-
-    /// See `CloudChannelServiceClient.getCustomerRepricingConfig`.
-    func getCustomerRepricingConfig(request: GetCustomerRepricingConfigRequest) async throws
-      -> GoogleCloudChannelV1.CustomerRepricingConfig
-
-    /// See `CloudChannelServiceClient.getCustomerRepricingConfig`.
-    func getCustomerRepricingConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig
-
-    /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
-    func listCustomerRepricingConfigs(request: ListCustomerRepricingConfigsRequest) async throws
-      -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse
-
-    /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
-    func listCustomerRepricingConfigs(
-      byItem: ListCustomerRepricingConfigsRequest
-    ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
-    func listCustomerRepricingConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
-
-    /// See `CloudChannelServiceClient.createCustomerRepricingConfig`.
-    func createCustomerRepricingConfig(request: CreateCustomerRepricingConfigRequest) async throws
-      -> GoogleCloudChannelV1.CustomerRepricingConfig
-
-    /// See `CloudChannelServiceClient.createCustomerRepricingConfig`.
-    func createCustomerRepricingConfig(
-      parent: Swift.String,
-      customerRepricingConfig: CustomerRepricingConfig?,
-    ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig
-
-    /// See `CloudChannelServiceClient.updateCustomerRepricingConfig`.
-    func updateCustomerRepricingConfig(request: UpdateCustomerRepricingConfigRequest) async throws
-      -> GoogleCloudChannelV1.CustomerRepricingConfig
-
-    /// See `CloudChannelServiceClient.updateCustomerRepricingConfig`.
-    func updateCustomerRepricingConfig(
-      customerRepricingConfig: CustomerRepricingConfig?,
-    ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig
-
-    /// See `CloudChannelServiceClient.deleteCustomerRepricingConfig`.
-    func deleteCustomerRepricingConfig(request: DeleteCustomerRepricingConfigRequest) async throws
-
-    /// See `CloudChannelServiceClient.deleteCustomerRepricingConfig`.
-    func deleteCustomerRepricingConfig(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudChannelServiceClient.getChannelPartnerRepricingConfig`.
-    func getChannelPartnerRepricingConfig(request: GetChannelPartnerRepricingConfigRequest)
-      async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
-
-    /// See `CloudChannelServiceClient.getChannelPartnerRepricingConfig`.
-    func getChannelPartnerRepricingConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
-
-    /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
-    func listChannelPartnerRepricingConfigs(request: ListChannelPartnerRepricingConfigsRequest)
-      async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse
-
-    /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
-    func listChannelPartnerRepricingConfigs(
-      byItem: ListChannelPartnerRepricingConfigsRequest
-    ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
-    func listChannelPartnerRepricingConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
-
-    /// See `CloudChannelServiceClient.createChannelPartnerRepricingConfig`.
-    func createChannelPartnerRepricingConfig(request: CreateChannelPartnerRepricingConfigRequest)
-      async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
-
-    /// See `CloudChannelServiceClient.createChannelPartnerRepricingConfig`.
-    func createChannelPartnerRepricingConfig(
-      parent: Swift.String,
-      channelPartnerRepricingConfig: ChannelPartnerRepricingConfig?,
-    ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
-
-    /// See `CloudChannelServiceClient.updateChannelPartnerRepricingConfig`.
-    func updateChannelPartnerRepricingConfig(request: UpdateChannelPartnerRepricingConfigRequest)
-      async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
-
-    /// See `CloudChannelServiceClient.updateChannelPartnerRepricingConfig`.
-    func updateChannelPartnerRepricingConfig(
-      channelPartnerRepricingConfig: ChannelPartnerRepricingConfig?,
-    ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
-
-    /// See `CloudChannelServiceClient.deleteChannelPartnerRepricingConfig`.
-    func deleteChannelPartnerRepricingConfig(request: DeleteChannelPartnerRepricingConfigRequest)
-      async throws
-
-    /// See `CloudChannelServiceClient.deleteChannelPartnerRepricingConfig`.
-    func deleteChannelPartnerRepricingConfig(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudChannelServiceClient.listSkuGroups`.
-    func listSkuGroups(request: ListSkuGroupsRequest) async throws
-      -> GoogleCloudChannelV1.ListSkuGroupsResponse
-
-    /// See `CloudChannelServiceClient.listSkuGroups`.
-    func listSkuGroups(
-      byItem: ListSkuGroupsRequest
-    ) -> any AsyncSequence<SkuGroup, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listSkuGroups`.
-    func listSkuGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SkuGroup, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
-    func listSkuGroupBillableSkus(request: ListSkuGroupBillableSkusRequest) async throws
-      -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse
-
-    /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
-    func listSkuGroupBillableSkus(
-      byItem: ListSkuGroupBillableSkusRequest
-    ) -> any AsyncSequence<BillableSku, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
-    func listSkuGroupBillableSkus(
-      parent: Swift.String,
-    ) -> any AsyncSequence<BillableSku, Swift.Error>
-
-    /// See `CloudChannelServiceClient.lookupOffer`.
-    func lookupOffer(request: LookupOfferRequest) async throws -> GoogleCloudChannelV1.Offer
-
-    /// See `CloudChannelServiceClient.listProducts`.
-    func listProducts(request: ListProductsRequest) async throws
-      -> GoogleCloudChannelV1.ListProductsResponse
-
-    /// See `CloudChannelServiceClient.listProducts`.
-    func listProducts(
-      byItem: ListProductsRequest
-    ) -> any AsyncSequence<Product, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listSkus`.
-    func listSkus(request: ListSkusRequest) async throws -> GoogleCloudChannelV1.ListSkusResponse
-
-    /// See `CloudChannelServiceClient.listSkus`.
-    func listSkus(
-      byItem: ListSkusRequest
-    ) -> any AsyncSequence<Sku, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listOffers`.
-    func listOffers(request: ListOffersRequest) async throws
-      -> GoogleCloudChannelV1.ListOffersResponse
-
-    /// See `CloudChannelServiceClient.listOffers`.
-    func listOffers(
-      byItem: ListOffersRequest
-    ) -> any AsyncSequence<Offer, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listPurchasableSkus`.
-    func listPurchasableSkus(request: ListPurchasableSkusRequest) async throws
-      -> GoogleCloudChannelV1.ListPurchasableSkusResponse
-
-    /// See `CloudChannelServiceClient.listPurchasableSkus`.
-    func listPurchasableSkus(
-      byItem: ListPurchasableSkusRequest
-    ) -> any AsyncSequence<PurchasableSku, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listPurchasableOffers`.
-    func listPurchasableOffers(request: ListPurchasableOffersRequest) async throws
-      -> GoogleCloudChannelV1.ListPurchasableOffersResponse
-
-    /// See `CloudChannelServiceClient.listPurchasableOffers`.
-    func listPurchasableOffers(
-      byItem: ListPurchasableOffersRequest
-    ) -> any AsyncSequence<PurchasableOffer, Swift.Error>
-
-    /// See `CloudChannelServiceClient.queryEligibleBillingAccounts`.
-    func queryEligibleBillingAccounts(request: QueryEligibleBillingAccountsRequest) async throws
-      -> GoogleCloudChannelV1.QueryEligibleBillingAccountsResponse
-
-    /// See `CloudChannelServiceClient.registerSubscriber`.
-    func registerSubscriber(request: RegisterSubscriberRequest) async throws
-      -> GoogleCloudChannelV1.RegisterSubscriberResponse
-
-    /// See `CloudChannelServiceClient.unregisterSubscriber`.
-    func unregisterSubscriber(request: UnregisterSubscriberRequest) async throws
-      -> GoogleCloudChannelV1.UnregisterSubscriberResponse
-
-    /// See `CloudChannelServiceClient.listSubscribers`.
-    func listSubscribers(request: ListSubscribersRequest) async throws
-      -> GoogleCloudChannelV1.ListSubscribersResponse
-
-    /// See `CloudChannelServiceClient.listEntitlementChanges`.
-    func listEntitlementChanges(request: ListEntitlementChangesRequest) async throws
-      -> GoogleCloudChannelV1.ListEntitlementChangesResponse
-
-    /// See `CloudChannelServiceClient.listEntitlementChanges`.
-    func listEntitlementChanges(
-      byItem: ListEntitlementChangesRequest
-    ) -> any AsyncSequence<EntitlementChange, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listEntitlementChanges`.
-    func listEntitlementChanges(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EntitlementChange, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CloudChannelServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CloudChannelServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CloudChannelServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `CloudChannelServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudChannelServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `CloudChannelServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `CloudChannelServiceClient.listCustomers`.
     func listCustomers(
       request: ListCustomersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomersResponse
-
-    /// See `CloudChannelServiceClient.listCustomers`.
-    func listCustomers(
-      byItem: ListCustomersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Customer, Swift.Error>
 
     /// See `CloudChannelServiceClient.getCustomer`.
     func getCustomer(
@@ -3099,30 +2252,15 @@ extension Clients {
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse
 
-    /// See `CloudChannelServiceClient.listEntitlements`.
-    func listEntitlements(
-      byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
-
     /// See `CloudChannelServiceClient.listTransferableSkus`.
     func listTransferableSkus(
       request: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse
 
-    /// See `CloudChannelServiceClient.listTransferableSkus`.
-    func listTransferableSkus(
-      byItem: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TransferableSku, Swift.Error>
-
     /// See `CloudChannelServiceClient.listTransferableOffers`.
     func listTransferableOffers(
       request: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse
-
-    /// See `CloudChannelServiceClient.listTransferableOffers`.
-    func listTransferableOffers(
-      byItem: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TransferableOffer, Swift.Error>
 
     /// See `CloudChannelServiceClient.getEntitlement`.
     func getEntitlement(
@@ -3234,11 +2372,6 @@ extension Clients {
       request: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse
 
-    /// See `CloudChannelServiceClient.listChannelPartnerLinks`.
-    func listChannelPartnerLinks(
-      byItem: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error>
-
     /// See `CloudChannelServiceClient.getChannelPartnerLink`.
     func getChannelPartnerLink(
       request: GetChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
@@ -3263,11 +2396,6 @@ extension Clients {
     func listCustomerRepricingConfigs(
       request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse
-
-    /// See `CloudChannelServiceClient.listCustomerRepricingConfigs`.
-    func listCustomerRepricingConfigs(
-      byItem: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error>
 
     /// See `CloudChannelServiceClient.createCustomerRepricingConfig`.
     func createCustomerRepricingConfig(
@@ -3294,11 +2422,6 @@ extension Clients {
       request: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse
 
-    /// See `CloudChannelServiceClient.listChannelPartnerRepricingConfigs`.
-    func listChannelPartnerRepricingConfigs(
-      byItem: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error>
-
     /// See `CloudChannelServiceClient.createChannelPartnerRepricingConfig`.
     func createChannelPartnerRepricingConfig(
       request: CreateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
@@ -3319,20 +2442,10 @@ extension Clients {
       request: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse
 
-    /// See `CloudChannelServiceClient.listSkuGroups`.
-    func listSkuGroups(
-      byItem: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SkuGroup, Swift.Error>
-
     /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
     func listSkuGroupBillableSkus(
       request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse
-
-    /// See `CloudChannelServiceClient.listSkuGroupBillableSkus`.
-    func listSkuGroupBillableSkus(
-      byItem: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BillableSku, Swift.Error>
 
     /// See `CloudChannelServiceClient.lookupOffer`.
     func lookupOffer(
@@ -3344,50 +2457,25 @@ extension Clients {
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListProductsResponse
 
-    /// See `CloudChannelServiceClient.listProducts`.
-    func listProducts(
-      byItem: ListProductsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Product, Swift.Error>
-
     /// See `CloudChannelServiceClient.listSkus`.
     func listSkus(
       request: ListSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkusResponse
-
-    /// See `CloudChannelServiceClient.listSkus`.
-    func listSkus(
-      byItem: ListSkusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Sku, Swift.Error>
 
     /// See `CloudChannelServiceClient.listOffers`.
     func listOffers(
       request: ListOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListOffersResponse
 
-    /// See `CloudChannelServiceClient.listOffers`.
-    func listOffers(
-      byItem: ListOffersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Offer, Swift.Error>
-
     /// See `CloudChannelServiceClient.listPurchasableSkus`.
     func listPurchasableSkus(
       request: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse
 
-    /// See `CloudChannelServiceClient.listPurchasableSkus`.
-    func listPurchasableSkus(
-      byItem: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PurchasableSku, Swift.Error>
-
     /// See `CloudChannelServiceClient.listPurchasableOffers`.
     func listPurchasableOffers(
       request: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse
-
-    /// See `CloudChannelServiceClient.listPurchasableOffers`.
-    func listPurchasableOffers(
-      byItem: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PurchasableOffer, Swift.Error>
 
     /// See `CloudChannelServiceClient.queryEligibleBillingAccounts`.
     func queryEligibleBillingAccounts(
@@ -3414,20 +2502,10 @@ extension Clients {
       request: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse
 
-    /// See `CloudChannelServiceClient.listEntitlementChanges`.
-    func listEntitlementChanges(
-      byItem: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EntitlementChange, Swift.Error>
-
     /// See `CloudChannelServiceClient.listOperations`.
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CloudChannelServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudChannelServiceClient.deleteOperation`.
     func deleteOperation(
@@ -3461,12 +2539,29 @@ extension Clients.CloudChannelServiceProtocol {
     self.listCustomers(byItem: byItem, options: .init())
   }
 
+  /// List [Customer][google.cloud.channel.v1.Customer]s.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
+  /// there are no customers.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomers")
   public func listCustomers(
     byItem: ListCustomersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Customer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListCustomersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCustomers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3604,12 +2699,29 @@ extension Clients.CloudChannelServiceProtocol {
     self.listEntitlements(byItem: byItem, options: .init())
   }
 
+  /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
+  /// customer.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// A list of the customer's
+  /// [Entitlement][google.cloud.channel.v1.Entitlement]s.
+  ///
+  /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlements")
   public func listEntitlements(
     byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEntitlements(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3632,12 +2744,37 @@ extension Clients.CloudChannelServiceProtocol {
     self.listTransferableSkus(byItem: byItem, options: .init())
   }
 
+  /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
+  /// customer based on the Cloud Identity ID or Customer Name in the request.
+  ///
+  /// Use this method to list the entitlements information of an
+  /// unowned customer. You should provide the customer's
+  /// Cloud Identity ID or Customer Name.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller and has no auth token.
+  ///     * The supplied auth token is invalid.
+  ///     * The reseller account making the request is different
+  ///     from the reseller account in the query.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// A list of the customer's
+  /// [TransferableSku][google.cloud.channel.v1.TransferableSku].
+  ///
+  /// [google.cloud.channel.v1.TransferableSku]: <doc:TransferableSku>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
   public func listTransferableSkus(
     byItem: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TransferableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTransferableSkus(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3660,12 +2797,40 @@ extension Clients.CloudChannelServiceProtocol {
     self.listTransferableOffers(byItem: byItem, options: .init())
   }
 
+  /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
+  /// customer based on Cloud Identity ID or Customer Name in the request.
+  ///
+  /// Use this method when a reseller gets the entitlement information of an
+  /// unowned customer. The reseller should provide the customer's
+  /// Cloud Identity ID or Customer Name.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller and has no auth token.
+  ///     * The customer provided incorrect reseller information when generating
+  ///     auth token.
+  ///     * The reseller account making the request is different
+  ///     from the reseller account in the query.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
+  /// the given customer and SKU.
+  ///
+  /// [google.cloud.channel.v1.TransferableOffer]: <doc:TransferableOffer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
   public func listTransferableOffers(
     byItem: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TransferableOffer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTransferableOffers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3979,12 +3144,30 @@ extension Clients.CloudChannelServiceProtocol {
     self.listChannelPartnerLinks(byItem: byItem, options: .init())
   }
 
+  /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
+  /// belonging to a distributor. You must be a distributor to call this method.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// The list of the distributor account's
+  /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
   public func listChannelPartnerLinks(
     byItem: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ChannelPartnerLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listChannelPartnerLinks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4064,13 +3247,47 @@ extension Clients.CloudChannelServiceProtocol {
     self.listCustomerRepricingConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a Customer.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Customer ID
+  /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig.update_time]: <doc:CustomerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
   public func listCustomerRepricingConfigs(
     byItem: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CustomerRepricingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCustomerRepricingConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4188,13 +3405,45 @@ extension Clients.CloudChannelServiceProtocol {
     self.listChannelPartnerRepricingConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Channel Partner ID
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]: <doc:ChannelPartnerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
   public func listChannelPartnerRepricingConfigs(
     byItem: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ChannelPartnerRepricingConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listChannelPartnerRepricingConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4291,12 +3540,38 @@ extension Clients.CloudChannelServiceProtocol {
     self.listSkuGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists the Rebilling supported SKU groups the account is authorized to
+  /// sell.
+  /// Reference: https://cloud.google.com/skus/sku-groups
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different, or the account doesn't exist.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+  /// The data for each resource is displayed in the alphabetical order of SKU
+  /// group display name.
+  /// The data for each resource is displayed in the ascending order of
+  /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.SkuGroup]: <doc:SkuGroup>
+  /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroups")
   public func listSkuGroups(
     byItem: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SkuGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSkuGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4328,12 +3603,39 @@ extension Clients.CloudChannelServiceProtocol {
     self.listSkuGroupBillableSkus(byItem: byItem, options: .init())
   }
 
+  /// Lists the Billable SKUs in a given SKU group.
+  ///
+  /// Possible error codes:
+  /// PERMISSION_DENIED: If the account making the request and the account
+  /// being queried for are different, or the account doesn't exist.
+  /// INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request.
+  /// INTERNAL: Any non-user error related to technical issue in the
+  /// backend. In this case, contact cloud channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+  /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.BillableSku]: <doc:BillableSku>
+  /// [google.cloud.channel.v1.BillableSku.service_display_name]: <doc:BillableSku/serviceDisplayName>
+  /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
   public func listSkuGroupBillableSkus(
     byItem: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BillableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSkuGroupBillableSkus(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4375,12 +3677,21 @@ extension Clients.CloudChannelServiceProtocol {
     self.listProducts(byItem: byItem, options: .init())
   }
 
+  /// Lists the Products the reseller is authorized to sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListProducts")
   public func listProducts(
     byItem: ListProductsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Product, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListProductsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProducts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4403,11 +3714,20 @@ extension Clients.CloudChannelServiceProtocol {
     self.listSkus(byItem: byItem, options: .init())
   }
 
+  /// Lists the SKUs for a product the reseller is authorized to sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkus")
   public func listSkus(
     byItem: ListSkusRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Sku, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListSkusResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSkus(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4430,11 +3750,20 @@ extension Clients.CloudChannelServiceProtocol {
     self.listOffers(byItem: byItem, options: .init())
   }
 
+  /// Lists the Offers the reseller can sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOffers")
   public func listOffers(
     byItem: ListOffersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Offer, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudChannelV1.ListOffersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOffers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4457,12 +3786,25 @@ extension Clients.CloudChannelServiceProtocol {
     self.listPurchasableSkus(byItem: byItem, options: .init())
   }
 
+  /// Lists the following:
+  ///
+  /// * SKUs that you can purchase for a customer
+  /// * SKUs that you can upgrade or downgrade for an entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
   public func listPurchasableSkus(
     byItem: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PurchasableSku, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPurchasableSkus(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4485,12 +3827,28 @@ extension Clients.CloudChannelServiceProtocol {
     self.listPurchasableOffers(byItem: byItem, options: .init())
   }
 
+  /// Lists the following:
+  ///
+  /// * Offers that you can purchase for a customer.
+  /// * Offers that you can change for an entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
   public func listPurchasableOffers(
     byItem: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PurchasableOffer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPurchasableOffers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4561,12 +3919,34 @@ extension Clients.CloudChannelServiceProtocol {
     self.listEntitlementChanges(byItem: byItem, options: .init())
   }
 
+  /// List entitlement history.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
+  /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
+  /// invalid name parameter.
+  /// * INTERNAL: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact CloudChannel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
+  ///
+  /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
   public func listEntitlementChanges(
     byItem: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EntitlementChange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEntitlementChanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4598,12 +3978,19 @@ extension Clients.CloudChannelServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

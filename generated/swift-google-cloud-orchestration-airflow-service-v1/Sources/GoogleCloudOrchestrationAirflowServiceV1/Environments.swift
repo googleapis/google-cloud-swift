@@ -95,22 +95,6 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     try await self.inner.listEnvironments(request: request, options: options)
   }
 
-  /// List environments.
-  ///
-  /// @Snippet(path: "Environments_ListEnvironments")
-  public func listEnvironments(
-    byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Environment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEnvironments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Update an environment.
   ///
   /// @Snippet(path: "Environments_UpdateEnvironment")
@@ -221,26 +205,6 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     try await self.inner.listWorkloads(request: request, options: options)
   }
 
-  /// Lists workloads in a Cloud Composer environment. Workload is a unit that
-  /// runs a single Composer component.
-  ///
-  /// This method is supported for Cloud Composer environments in versions
-  /// composer-2.*.*-airflow-*.*.* and newer.
-  ///
-  /// @Snippet(path: "Environments_ListWorkloads")
-  public func listWorkloads(
-    byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listWorkloads(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Check if an upgrade operation on the environment will succeed.
   ///
   /// In case of problems detailed info can be found in the returned Operation.
@@ -317,25 +281,6 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     try await self.inner.listUserWorkloadsSecrets(request: request, options: options)
   }
 
-  /// Lists user workloads Secrets.
-  ///
-  /// This method is supported for Cloud Composer environments in versions
-  /// composer-3-airflow-*.*.*-build.* and newer.
-  ///
-  /// @Snippet(path: "Environments_ListUserWorkloadsSecrets")
-  public func listUserWorkloadsSecrets(
-    byItem: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listUserWorkloadsSecrets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a user workloads Secret.
   ///
   /// This method is supported for Cloud Composer environments in versions
@@ -394,25 +339,6 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse {
     try await self.inner.listUserWorkloadsConfigMaps(request: request, options: options)
-  }
-
-  /// Lists user workloads ConfigMaps.
-  ///
-  /// This method is supported for Cloud Composer environments in versions
-  /// composer-3-airflow-*.*.*-build.* and newer.
-  ///
-  /// @Snippet(path: "Environments_ListUserWorkloadsConfigMaps")
-  public func listUserWorkloadsConfigMaps(
-    byItem: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listUserWorkloadsConfigMaps(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates a user workloads ConfigMap.
@@ -581,23 +507,6 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Environments_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Environments_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -623,11 +532,7 @@ extension Clients {
   /// To mock `EnvironmentsClient` change your functions to receive
   /// `some EnvironmentsProtocol` or `any EnvironmentsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol EnvironmentsProtocol {
-    /// See `EnvironmentsClient.createEnvironment`.
-    func createEnvironment(request: CreateEnvironmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol EnvironmentsProtocol: Sendable {
     /// See `EnvironmentsClient.createEnvironment`.
     func createEnvironment(withPolling: CreateEnvironmentRequest) async throws -> any GoogleGax
       .PollableOperation<Environment>
@@ -637,33 +542,6 @@ extension Clients {
       parent: Swift.String,
       environment: Environment?,
     ) async throws -> any GoogleGax.PollableOperation<Environment>
-
-    /// See `EnvironmentsClient.getEnvironment`.
-    func getEnvironment(request: GetEnvironmentRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.Environment
-
-    /// See `EnvironmentsClient.getEnvironment`.
-    func getEnvironment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.Environment
-
-    /// See `EnvironmentsClient.listEnvironments`.
-    func listEnvironments(request: ListEnvironmentsRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse
-
-    /// See `EnvironmentsClient.listEnvironments`.
-    func listEnvironments(
-      byItem: ListEnvironmentsRequest
-    ) -> any AsyncSequence<Environment, Swift.Error>
-
-    /// See `EnvironmentsClient.listEnvironments`.
-    func listEnvironments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Environment, Swift.Error>
-
-    /// See `EnvironmentsClient.updateEnvironment`.
-    func updateEnvironment(request: UpdateEnvironmentRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.updateEnvironment`.
     func updateEnvironment(withPolling: UpdateEnvironmentRequest) async throws -> any GoogleGax
@@ -677,10 +555,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.deleteEnvironment`.
-    func deleteEnvironment(request: DeleteEnvironmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EnvironmentsClient.deleteEnvironment`.
     func deleteEnvironment(withPolling: DeleteEnvironmentRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -689,187 +563,21 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `EnvironmentsClient.executeAirflowCommand`.
-    func executeAirflowCommand(request: ExecuteAirflowCommandRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.ExecuteAirflowCommandResponse
-
-    /// See `EnvironmentsClient.stopAirflowCommand`.
-    func stopAirflowCommand(request: StopAirflowCommandRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.StopAirflowCommandResponse
-
-    /// See `EnvironmentsClient.pollAirflowCommand`.
-    func pollAirflowCommand(request: PollAirflowCommandRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.PollAirflowCommandResponse
-
-    /// See `EnvironmentsClient.listWorkloads`.
-    func listWorkloads(request: ListWorkloadsRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse
-
-    /// See `EnvironmentsClient.listWorkloads`.
-    func listWorkloads(
-      byItem: ListWorkloadsRequest
-    ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
-
-    /// See `EnvironmentsClient.listWorkloads`.
-    func listWorkloads(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
-
-    /// See `EnvironmentsClient.checkUpgrade`.
-    func checkUpgrade(request: CheckUpgradeRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `EnvironmentsClient.checkUpgrade`.
     func checkUpgrade(withPolling: CheckUpgradeRequest) async throws -> any GoogleGax
       .PollableOperation<CheckUpgradeResponse>
-
-    /// See `EnvironmentsClient.createUserWorkloadsSecret`.
-    func createUserWorkloadsSecret(request: CreateUserWorkloadsSecretRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret
-
-    /// See `EnvironmentsClient.createUserWorkloadsSecret`.
-    func createUserWorkloadsSecret(
-      parent: Swift.String,
-      userWorkloadsSecret: UserWorkloadsSecret?,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret
-
-    /// See `EnvironmentsClient.getUserWorkloadsSecret`.
-    func getUserWorkloadsSecret(request: GetUserWorkloadsSecretRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret
-
-    /// See `EnvironmentsClient.getUserWorkloadsSecret`.
-    func getUserWorkloadsSecret(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret
-
-    /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
-    func listUserWorkloadsSecrets(request: ListUserWorkloadsSecretsRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse
-
-    /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
-    func listUserWorkloadsSecrets(
-      byItem: ListUserWorkloadsSecretsRequest
-    ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
-
-    /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
-    func listUserWorkloadsSecrets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
-
-    /// See `EnvironmentsClient.updateUserWorkloadsSecret`.
-    func updateUserWorkloadsSecret(request: UpdateUserWorkloadsSecretRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret
-
-    /// See `EnvironmentsClient.updateUserWorkloadsSecret`.
-    func updateUserWorkloadsSecret(
-      userWorkloadsSecret: UserWorkloadsSecret?,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret
-
-    /// See `EnvironmentsClient.deleteUserWorkloadsSecret`.
-    func deleteUserWorkloadsSecret(request: DeleteUserWorkloadsSecretRequest) async throws
-
-    /// See `EnvironmentsClient.deleteUserWorkloadsSecret`.
-    func deleteUserWorkloadsSecret(
-      name: Swift.String,
-    ) async throws
-
-    /// See `EnvironmentsClient.createUserWorkloadsConfigMap`.
-    func createUserWorkloadsConfigMap(request: CreateUserWorkloadsConfigMapRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap
-
-    /// See `EnvironmentsClient.createUserWorkloadsConfigMap`.
-    func createUserWorkloadsConfigMap(
-      parent: Swift.String,
-      userWorkloadsConfigMap: UserWorkloadsConfigMap?,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap
-
-    /// See `EnvironmentsClient.getUserWorkloadsConfigMap`.
-    func getUserWorkloadsConfigMap(request: GetUserWorkloadsConfigMapRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap
-
-    /// See `EnvironmentsClient.getUserWorkloadsConfigMap`.
-    func getUserWorkloadsConfigMap(
-      name: Swift.String,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap
-
-    /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
-    func listUserWorkloadsConfigMaps(request: ListUserWorkloadsConfigMapsRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse
-
-    /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
-    func listUserWorkloadsConfigMaps(
-      byItem: ListUserWorkloadsConfigMapsRequest
-    ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
-
-    /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
-    func listUserWorkloadsConfigMaps(
-      parent: Swift.String,
-    ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
-
-    /// See `EnvironmentsClient.updateUserWorkloadsConfigMap`.
-    func updateUserWorkloadsConfigMap(request: UpdateUserWorkloadsConfigMapRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap
-
-    /// See `EnvironmentsClient.updateUserWorkloadsConfigMap`.
-    func updateUserWorkloadsConfigMap(
-      userWorkloadsConfigMap: UserWorkloadsConfigMap?,
-    ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap
-
-    /// See `EnvironmentsClient.deleteUserWorkloadsConfigMap`.
-    func deleteUserWorkloadsConfigMap(request: DeleteUserWorkloadsConfigMapRequest) async throws
-
-    /// See `EnvironmentsClient.deleteUserWorkloadsConfigMap`.
-    func deleteUserWorkloadsConfigMap(
-      name: Swift.String,
-    ) async throws
-
-    /// See `EnvironmentsClient.saveSnapshot`.
-    func saveSnapshot(request: SaveSnapshotRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.saveSnapshot`.
     func saveSnapshot(withPolling: SaveSnapshotRequest) async throws -> any GoogleGax
       .PollableOperation<SaveSnapshotResponse>
 
     /// See `EnvironmentsClient.loadSnapshot`.
-    func loadSnapshot(request: LoadSnapshotRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `EnvironmentsClient.loadSnapshot`.
     func loadSnapshot(withPolling: LoadSnapshotRequest) async throws -> any GoogleGax
       .PollableOperation<LoadSnapshotResponse>
 
     /// See `EnvironmentsClient.databaseFailover`.
-    func databaseFailover(request: DatabaseFailoverRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `EnvironmentsClient.databaseFailover`.
     func databaseFailover(withPolling: DatabaseFailoverRequest) async throws -> any GoogleGax
       .PollableOperation<DatabaseFailoverResponse>
-
-    /// See `EnvironmentsClient.fetchDatabaseProperties`.
-    func fetchDatabaseProperties(request: FetchDatabasePropertiesRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.FetchDatabasePropertiesResponse
-
-    /// See `EnvironmentsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `EnvironmentsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `EnvironmentsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `EnvironmentsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `EnvironmentsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `EnvironmentsClient.createEnvironment`.
     func createEnvironment(
@@ -890,11 +598,6 @@ extension Clients {
     func listEnvironments(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse
-
-    /// See `EnvironmentsClient.listEnvironments`.
-    func listEnvironments(
-      byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Environment, Swift.Error>
 
     /// See `EnvironmentsClient.updateEnvironment`.
     func updateEnvironment(
@@ -936,11 +639,6 @@ extension Clients {
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse
 
-    /// See `EnvironmentsClient.listWorkloads`.
-    func listWorkloads(
-      byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error>
-
     /// See `EnvironmentsClient.checkUpgrade`.
     func checkUpgrade(
       request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
@@ -966,11 +664,6 @@ extension Clients {
       request: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse
 
-    /// See `EnvironmentsClient.listUserWorkloadsSecrets`.
-    func listUserWorkloadsSecrets(
-      byItem: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error>
-
     /// See `EnvironmentsClient.updateUserWorkloadsSecret`.
     func updateUserWorkloadsSecret(
       request: UpdateUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
@@ -995,11 +688,6 @@ extension Clients {
     func listUserWorkloadsConfigMaps(
       request: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse
-
-    /// See `EnvironmentsClient.listUserWorkloadsConfigMaps`.
-    func listUserWorkloadsConfigMaps(
-      byItem: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error>
 
     /// See `EnvironmentsClient.updateUserWorkloadsConfigMap`.
     func updateUserWorkloadsConfigMap(
@@ -1050,11 +738,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `EnvironmentsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EnvironmentsClient.deleteOperation`.
     func deleteOperation(
@@ -1143,13 +826,18 @@ extension Clients.EnvironmentsProtocol {
     self.listEnvironments(byItem: byItem, options: .init())
   }
 
+  /// List environments.
+  ///
+  /// @Snippet(path: "Environments_ListEnvironments")
   public func listEnvironments(
     byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Environment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEnvironments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1295,13 +983,22 @@ extension Clients.EnvironmentsProtocol {
     self.listWorkloads(byItem: byItem, options: .init())
   }
 
+  /// Lists workloads in a Cloud Composer environment. Workload is a unit that
+  /// runs a single Composer component.
+  ///
+  /// This method is supported for Cloud Composer environments in versions
+  /// composer-2.*.*-airflow-*.*.* and newer.
+  ///
+  /// @Snippet(path: "Environments_ListWorkloads")
   public func listWorkloads(
     byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listWorkloads(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1404,13 +1101,21 @@ extension Clients.EnvironmentsProtocol {
     self.listUserWorkloadsSecrets(byItem: byItem, options: .init())
   }
 
+  /// Lists user workloads Secrets.
+  ///
+  /// This method is supported for Cloud Composer environments in versions
+  /// composer-3-airflow-*.*.*-build.* and newer.
+  ///
+  /// @Snippet(path: "Environments_ListUserWorkloadsSecrets")
   public func listUserWorkloadsSecrets(
     byItem: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<UserWorkloadsSecret, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listUserWorkloadsSecrets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1526,13 +1231,21 @@ extension Clients.EnvironmentsProtocol {
     self.listUserWorkloadsConfigMaps(byItem: byItem, options: .init())
   }
 
+  /// Lists user workloads ConfigMaps.
+  ///
+  /// This method is supported for Cloud Composer environments in versions
+  /// composer-3-airflow-*.*.*-build.* and newer.
+  ///
+  /// @Snippet(path: "Environments_ListUserWorkloadsConfigMaps")
   public func listUserWorkloadsConfigMaps(
     byItem: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<UserWorkloadsConfigMap, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listUserWorkloadsConfigMaps(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1701,12 +1414,19 @@ extension Clients.EnvironmentsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Environments_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

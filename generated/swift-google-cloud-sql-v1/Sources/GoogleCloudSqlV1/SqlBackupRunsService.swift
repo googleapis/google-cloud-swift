@@ -75,23 +75,6 @@
     ) async throws -> GoogleCloudSqlV1.BackupRunsListResponse {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Lists all backup runs associated with the project or a given instance
-    /// and configuration in the reverse chronological order of the backup
-    /// initiation time.
-    ///
-    /// @Snippet(path: "SqlBackupRunsService_List")
-    public func list(
-      byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackupRun, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudSqlV1.BackupRunsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -100,25 +83,7 @@
     /// To mock `SqlBackupRunsServiceClient` change your functions to receive
     /// `some SqlBackupRunsServiceProtocol` or `any SqlBackupRunsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlBackupRunsServiceProtocol {
-      /// See `SqlBackupRunsServiceClient.delete`.
-      func delete(request: SqlBackupRunsDeleteRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupRunsServiceClient.`get``.
-      func `get`(request: SqlBackupRunsGetRequest) async throws -> GoogleCloudSqlV1.BackupRun
-
-      /// See `SqlBackupRunsServiceClient.insert`.
-      func insert(request: SqlBackupRunsInsertRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupRunsServiceClient.list`.
-      func list(request: SqlBackupRunsListRequest) async throws
-        -> GoogleCloudSqlV1.BackupRunsListResponse
-
-      /// See `SqlBackupRunsServiceClient.list`.
-      func list(
-        byItem: SqlBackupRunsListRequest
-      ) -> any AsyncSequence<BackupRun, Swift.Error>
-
+    public protocol SqlBackupRunsServiceProtocol: Sendable {
       /// See `SqlBackupRunsServiceClient.delete`.
       func delete(
         request: SqlBackupRunsDeleteRequest, options: GoogleGax.RequestOptions
@@ -138,11 +103,6 @@
       func list(
         request: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.BackupRunsListResponse
-
-      /// See `SqlBackupRunsServiceClient.list`.
-      func list(
-        byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<BackupRun, Swift.Error>
     }
   }
 
@@ -200,12 +160,19 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists all backup runs associated with the project or a given instance
+    /// and configuration in the reverse chronological order of the backup
+    /// initiation time.
+    ///
+    /// @Snippet(path: "SqlBackupRunsService_List")
     public func list(
       byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackupRun, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.BackupRunsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

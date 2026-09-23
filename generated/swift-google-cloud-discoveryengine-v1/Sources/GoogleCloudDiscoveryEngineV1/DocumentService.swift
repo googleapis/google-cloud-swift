@@ -68,23 +68,6 @@
       try await self.inner.listDocuments(request: request, options: options)
     }
 
-    /// Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
-    ///
-    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    ///
-    /// @Snippet(path: "DocumentService_ListDocuments")
-    public func listDocuments(
-      byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Document, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listDocuments(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Creates a [Document][google.cloud.discoveryengine.v1.Document].
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
@@ -274,23 +257,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "DocumentService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "DocumentService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -316,106 +282,14 @@
     /// To mock `DocumentServiceClient` change your functions to receive
     /// `some DocumentServiceProtocol` or `any DocumentServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol DocumentServiceProtocol {
-      /// See `DocumentServiceClient.getDocument`.
-      func getDocument(request: GetDocumentRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Document
-
-      /// See `DocumentServiceClient.getDocument`.
-      func getDocument(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Document
-
-      /// See `DocumentServiceClient.listDocuments`.
-      func listDocuments(request: ListDocumentsRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse
-
-      /// See `DocumentServiceClient.listDocuments`.
-      func listDocuments(
-        byItem: ListDocumentsRequest
-      ) -> any AsyncSequence<Document, Swift.Error>
-
-      /// See `DocumentServiceClient.listDocuments`.
-      func listDocuments(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Document, Swift.Error>
-
-      /// See `DocumentServiceClient.createDocument`.
-      func createDocument(request: CreateDocumentRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Document
-
-      /// See `DocumentServiceClient.createDocument`.
-      func createDocument(
-        parent: Swift.String,
-        document: Document?,
-        documentId: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Document
-
-      /// See `DocumentServiceClient.updateDocument`.
-      func updateDocument(request: UpdateDocumentRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Document
-
-      /// See `DocumentServiceClient.updateDocument`.
-      func updateDocument(
-        document: Document?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Document
-
-      /// See `DocumentServiceClient.deleteDocument`.
-      func deleteDocument(request: DeleteDocumentRequest) async throws
-
-      /// See `DocumentServiceClient.deleteDocument`.
-      func deleteDocument(
-        name: Swift.String,
-      ) async throws
-
-      /// See `DocumentServiceClient.importDocuments`.
-      func importDocuments(request: ImportDocumentsRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol DocumentServiceProtocol: Sendable {
       /// See `DocumentServiceClient.importDocuments`.
       func importDocuments(withPolling: ImportDocumentsRequest) async throws -> any GoogleGax
         .PollableOperation<ImportDocumentsResponse>
 
       /// See `DocumentServiceClient.purgeDocuments`.
-      func purgeDocuments(request: PurgeDocumentsRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `DocumentServiceClient.purgeDocuments`.
       func purgeDocuments(withPolling: PurgeDocumentsRequest) async throws -> any GoogleGax
         .PollableOperation<PurgeDocumentsResponse>
-
-      /// See `DocumentServiceClient.batchGetDocumentsMetadata`.
-      func batchGetDocumentsMetadata(request: BatchGetDocumentsMetadataRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse
-
-      /// See `DocumentServiceClient.batchGetDocumentsMetadata`.
-      func batchGetDocumentsMetadata(
-        parent: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse
-
-      /// See `DocumentServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DocumentServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DocumentServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DocumentServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `DocumentServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `DocumentServiceClient.getDocument`.
       func getDocument(
@@ -426,11 +300,6 @@
       func listDocuments(
         request: ListDocumentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse
-
-      /// See `DocumentServiceClient.listDocuments`.
-      func listDocuments(
-        byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Document, Swift.Error>
 
       /// See `DocumentServiceClient.createDocument`.
       func createDocument(
@@ -476,11 +345,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DocumentServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.cancelOperation`.
       func cancelOperation(
@@ -530,12 +394,19 @@
       self.listDocuments(byItem: byItem, options: .init())
     }
 
+    /// Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_ListDocuments")
     public func listDocuments(
       byItem: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Document, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listDocuments(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -713,12 +584,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DocumentService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -63,22 +63,6 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
     try await self.inner.listMigrationWorkflows(request: request, options: options)
   }
 
-  /// Lists previously created migration workflow.
-  ///
-  /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
-  public func listMigrationWorkflows(
-    byItem: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listMigrationWorkflows(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a migration workflow by name.
   ///
   /// @Snippet(path: "MigrationService_DeleteMigrationWorkflow")
@@ -117,22 +101,6 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   ) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse {
     try await self.inner.listMigrationSubtasks(request: request, options: options)
   }
-
-  /// Lists previously created migration subtasks.
-  ///
-  /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
-  public func listMigrationSubtasks(
-    byItem: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MigrationSubtask, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listMigrationSubtasks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -141,79 +109,7 @@ extension Clients {
   /// To mock `MigrationServiceClient` change your functions to receive
   /// `some MigrationServiceProtocol` or `any MigrationServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol MigrationServiceProtocol {
-    /// See `MigrationServiceClient.createMigrationWorkflow`.
-    func createMigrationWorkflow(request: CreateMigrationWorkflowRequest) async throws
-      -> GoogleBigQueryMigrationV2.MigrationWorkflow
-
-    /// See `MigrationServiceClient.createMigrationWorkflow`.
-    func createMigrationWorkflow(
-      parent: Swift.String,
-      migrationWorkflow: MigrationWorkflow?,
-    ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow
-
-    /// See `MigrationServiceClient.getMigrationWorkflow`.
-    func getMigrationWorkflow(request: GetMigrationWorkflowRequest) async throws
-      -> GoogleBigQueryMigrationV2.MigrationWorkflow
-
-    /// See `MigrationServiceClient.getMigrationWorkflow`.
-    func getMigrationWorkflow(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow
-
-    /// See `MigrationServiceClient.listMigrationWorkflows`.
-    func listMigrationWorkflows(request: ListMigrationWorkflowsRequest) async throws
-      -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse
-
-    /// See `MigrationServiceClient.listMigrationWorkflows`.
-    func listMigrationWorkflows(
-      byItem: ListMigrationWorkflowsRequest
-    ) -> any AsyncSequence<MigrationWorkflow, Swift.Error>
-
-    /// See `MigrationServiceClient.listMigrationWorkflows`.
-    func listMigrationWorkflows(
-      parent: Swift.String,
-    ) -> any AsyncSequence<MigrationWorkflow, Swift.Error>
-
-    /// See `MigrationServiceClient.deleteMigrationWorkflow`.
-    func deleteMigrationWorkflow(request: DeleteMigrationWorkflowRequest) async throws
-
-    /// See `MigrationServiceClient.deleteMigrationWorkflow`.
-    func deleteMigrationWorkflow(
-      name: Swift.String,
-    ) async throws
-
-    /// See `MigrationServiceClient.startMigrationWorkflow`.
-    func startMigrationWorkflow(request: StartMigrationWorkflowRequest) async throws
-
-    /// See `MigrationServiceClient.startMigrationWorkflow`.
-    func startMigrationWorkflow(
-      name: Swift.String,
-    ) async throws
-
-    /// See `MigrationServiceClient.getMigrationSubtask`.
-    func getMigrationSubtask(request: GetMigrationSubtaskRequest) async throws
-      -> GoogleBigQueryMigrationV2.MigrationSubtask
-
-    /// See `MigrationServiceClient.getMigrationSubtask`.
-    func getMigrationSubtask(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryMigrationV2.MigrationSubtask
-
-    /// See `MigrationServiceClient.listMigrationSubtasks`.
-    func listMigrationSubtasks(request: ListMigrationSubtasksRequest) async throws
-      -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse
-
-    /// See `MigrationServiceClient.listMigrationSubtasks`.
-    func listMigrationSubtasks(
-      byItem: ListMigrationSubtasksRequest
-    ) -> any AsyncSequence<MigrationSubtask, Swift.Error>
-
-    /// See `MigrationServiceClient.listMigrationSubtasks`.
-    func listMigrationSubtasks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<MigrationSubtask, Swift.Error>
-
+  public protocol MigrationServiceProtocol: Sendable {
     /// See `MigrationServiceClient.createMigrationWorkflow`.
     func createMigrationWorkflow(
       request: CreateMigrationWorkflowRequest, options: GoogleGax.RequestOptions
@@ -228,11 +124,6 @@ extension Clients {
     func listMigrationWorkflows(
       request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse
-
-    /// See `MigrationServiceClient.listMigrationWorkflows`.
-    func listMigrationWorkflows(
-      byItem: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MigrationWorkflow, Swift.Error>
 
     /// See `MigrationServiceClient.deleteMigrationWorkflow`.
     func deleteMigrationWorkflow(
@@ -253,11 +144,6 @@ extension Clients {
     func listMigrationSubtasks(
       request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse
-
-    /// See `MigrationServiceClient.listMigrationSubtasks`.
-    func listMigrationSubtasks(
-      byItem: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MigrationSubtask, Swift.Error>
   }
 }
 
@@ -325,13 +211,18 @@ extension Clients.MigrationServiceProtocol {
     self.listMigrationWorkflows(byItem: byItem, options: .init())
   }
 
+  /// Lists previously created migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
   public func listMigrationWorkflows(
     byItem: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listMigrationWorkflows(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -422,13 +313,18 @@ extension Clients.MigrationServiceProtocol {
     self.listMigrationSubtasks(byItem: byItem, options: .init())
   }
 
+  /// Lists previously created migration subtasks.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
   public func listMigrationSubtasks(
     byItem: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MigrationSubtask, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listMigrationSubtasks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

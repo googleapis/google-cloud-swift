@@ -87,21 +87,6 @@
       try await self.inner.listCachedContents(request: request, options: options)
     }
 
-    /// Lists cached contents in a project
-    ///
-    /// @Snippet(path: "GenAiCacheService_ListCachedContents")
-    public func listCachedContents(
-      byItem: ListCachedContentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CachedContent, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listCachedContents(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "GenAiCacheService_ListLocations")
@@ -109,21 +94,6 @@
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
       try await self.inner.listLocations(request: request, options: options)
-    }
-
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "GenAiCacheService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Gets information about a location.
@@ -188,23 +158,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "GenAiCacheService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "GenAiCacheService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -252,116 +205,7 @@
     /// To mock `GenAiCacheServiceClient` change your functions to receive
     /// `some GenAiCacheServiceProtocol` or `any GenAiCacheServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol GenAiCacheServiceProtocol {
-      /// See `GenAiCacheServiceClient.createCachedContent`.
-      func createCachedContent(request: CreateCachedContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.CachedContent
-
-      /// See `GenAiCacheServiceClient.createCachedContent`.
-      func createCachedContent(
-        parent: Swift.String,
-        cachedContent: CachedContent?,
-      ) async throws -> GoogleCloudAIPlatformV1.CachedContent
-
-      /// See `GenAiCacheServiceClient.getCachedContent`.
-      func getCachedContent(request: GetCachedContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.CachedContent
-
-      /// See `GenAiCacheServiceClient.getCachedContent`.
-      func getCachedContent(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.CachedContent
-
-      /// See `GenAiCacheServiceClient.updateCachedContent`.
-      func updateCachedContent(request: UpdateCachedContentRequest) async throws
-        -> GoogleCloudAIPlatformV1.CachedContent
-
-      /// See `GenAiCacheServiceClient.updateCachedContent`.
-      func updateCachedContent(
-        cachedContent: CachedContent?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudAIPlatformV1.CachedContent
-
-      /// See `GenAiCacheServiceClient.deleteCachedContent`.
-      func deleteCachedContent(request: DeleteCachedContentRequest) async throws
-
-      /// See `GenAiCacheServiceClient.deleteCachedContent`.
-      func deleteCachedContent(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GenAiCacheServiceClient.listCachedContents`.
-      func listCachedContents(request: ListCachedContentsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListCachedContentsResponse
-
-      /// See `GenAiCacheServiceClient.listCachedContents`.
-      func listCachedContents(
-        byItem: ListCachedContentsRequest
-      ) -> any AsyncSequence<CachedContent, Swift.Error>
-
-      /// See `GenAiCacheServiceClient.listCachedContents`.
-      func listCachedContents(
-        parent: Swift.String,
-      ) -> any AsyncSequence<CachedContent, Swift.Error>
-
-      /// See `GenAiCacheServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `GenAiCacheServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `GenAiCacheServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `GenAiCacheServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `GenAiCacheServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `GenAiCacheServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `GenAiCacheServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `GenAiCacheServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `GenAiCacheServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `GenAiCacheServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `GenAiCacheServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GenAiCacheServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `GenAiCacheServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GenAiCacheServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol GenAiCacheServiceProtocol: Sendable {
       /// See `GenAiCacheServiceClient.createCachedContent`.
       func createCachedContent(
         request: CreateCachedContentRequest, options: GoogleGax.RequestOptions
@@ -387,20 +231,10 @@
         request: ListCachedContentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse
 
-      /// See `GenAiCacheServiceClient.listCachedContents`.
-      func listCachedContents(
-        byItem: ListCachedContentsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<CachedContent, Swift.Error>
-
       /// See `GenAiCacheServiceClient.listLocations`.
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `GenAiCacheServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `GenAiCacheServiceClient.getLocation`.
       func getLocation(
@@ -426,11 +260,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `GenAiCacheServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GenAiCacheServiceClient.deleteOperation`.
       func deleteOperation(
@@ -555,12 +384,17 @@
       self.listCachedContents(byItem: byItem, options: .init())
     }
 
+    /// Lists cached contents in a project
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListCachedContents")
     public func listCachedContents(
       byItem: ListCachedContentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<CachedContent, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listCachedContents(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -592,12 +426,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -668,12 +507,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

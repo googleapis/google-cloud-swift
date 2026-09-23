@@ -54,21 +54,6 @@
     ) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Retrieves the list of reliabilityRisks available in the specified project.
-    ///
-    /// @Snippet(path: "reliabilityRisks_list")
-    public func list(
-      byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -77,31 +62,7 @@
     /// To mock `ReliabilityRisksClient` change your functions to receive
     /// `some ReliabilityRisksProtocol` or `any ReliabilityRisksProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ReliabilityRisksProtocol {
-      /// See `ReliabilityRisksClient.`get``.
-      func `get`(request: ReliabilityRisksClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.ReliabilityRisk
-
-      /// See `ReliabilityRisksClient.`get``.
-      func `get`(
-        project: Swift.String,
-        reliabilityRisk: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.ReliabilityRisk
-
-      /// See `ReliabilityRisksClient.list`.
-      func list(request: ReliabilityRisksClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.ReliabilityRisksListResponse
-
-      /// See `ReliabilityRisksClient.list`.
-      func list(
-        byItem: ReliabilityRisksClient.ListRequest
-      ) -> any AsyncSequence<ReliabilityRisk, Swift.Error>
-
-      /// See `ReliabilityRisksClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<ReliabilityRisk, Swift.Error>
-
+    public protocol ReliabilityRisksProtocol: Sendable {
       /// See `ReliabilityRisksClient.`get``.
       func `get`(
         request: ReliabilityRisksClient.GetRequest, options: GoogleGax.RequestOptions
@@ -111,11 +72,6 @@
       func list(
         request: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse
-
-      /// See `ReliabilityRisksClient.list`.
-      func list(
-        byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ReliabilityRisk, Swift.Error>
     }
   }
 
@@ -162,12 +118,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of reliabilityRisks available in the specified project.
+    ///
+    /// @Snippet(path: "reliabilityRisks_list")
     public func list(
       byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

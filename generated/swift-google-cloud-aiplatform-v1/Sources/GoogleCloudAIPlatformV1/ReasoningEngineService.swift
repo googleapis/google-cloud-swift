@@ -100,22 +100,6 @@
       try await self.inner.listReasoningEngines(request: request, options: options)
     }
 
-    /// Lists reasoning engines in a location.
-    ///
-    /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
-    public func listReasoningEngines(
-      byItem: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listReasoningEngines(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
@@ -195,21 +179,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "ReasoningEngineService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "ReasoningEngineService_GetLocation")
@@ -272,23 +241,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "ReasoningEngineService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "ReasoningEngineService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -336,11 +288,7 @@
     /// To mock `ReasoningEngineServiceClient` change your functions to receive
     /// `some ReasoningEngineServiceProtocol` or `any ReasoningEngineServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ReasoningEngineServiceProtocol {
-      /// See `ReasoningEngineServiceClient.createReasoningEngine`.
-      func createReasoningEngine(request: CreateReasoningEngineRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol ReasoningEngineServiceProtocol: Sendable {
       /// See `ReasoningEngineServiceClient.createReasoningEngine`.
       func createReasoningEngine(withPolling: CreateReasoningEngineRequest) async throws
         -> any GoogleGax.PollableOperation<ReasoningEngine>
@@ -350,33 +298,6 @@
         parent: Swift.String,
         reasoningEngine: ReasoningEngine?,
       ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
-
-      /// See `ReasoningEngineServiceClient.getReasoningEngine`.
-      func getReasoningEngine(request: GetReasoningEngineRequest) async throws
-        -> GoogleCloudAIPlatformV1.ReasoningEngine
-
-      /// See `ReasoningEngineServiceClient.getReasoningEngine`.
-      func getReasoningEngine(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.ReasoningEngine
-
-      /// See `ReasoningEngineServiceClient.listReasoningEngines`.
-      func listReasoningEngines(request: ListReasoningEnginesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
-
-      /// See `ReasoningEngineServiceClient.listReasoningEngines`.
-      func listReasoningEngines(
-        byItem: ListReasoningEnginesRequest
-      ) -> any AsyncSequence<ReasoningEngine, Swift.Error>
-
-      /// See `ReasoningEngineServiceClient.listReasoningEngines`.
-      func listReasoningEngines(
-        parent: Swift.String,
-      ) -> any AsyncSequence<ReasoningEngine, Swift.Error>
-
-      /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
-      func updateReasoningEngine(request: UpdateReasoningEngineRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEngine(withPolling: UpdateReasoningEngineRequest) async throws
@@ -389,10 +310,6 @@
       ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
 
       /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
-      func deleteReasoningEngine(request: DeleteReasoningEngineRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
       func deleteReasoningEngine(withPolling: DeleteReasoningEngineRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -400,64 +317,6 @@
       func deleteReasoningEngine(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ReasoningEngineServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `ReasoningEngineServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `ReasoningEngineServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `ReasoningEngineServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `ReasoningEngineServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `ReasoningEngineServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `ReasoningEngineServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ReasoningEngineServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ReasoningEngineServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ReasoningEngineServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `ReasoningEngineServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `ReasoningEngineServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `ReasoningEngineServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `ReasoningEngineServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `ReasoningEngineServiceClient.createReasoningEngine`.
       func createReasoningEngine(
@@ -478,11 +337,6 @@
       func listReasoningEngines(
         request: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
-
-      /// See `ReasoningEngineServiceClient.listReasoningEngines`.
-      func listReasoningEngines(
-        byItem: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ReasoningEngine, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEngine(
@@ -509,11 +363,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `ReasoningEngineServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `ReasoningEngineServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -538,11 +387,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ReasoningEngineServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ReasoningEngineServiceClient.deleteOperation`.
       func deleteOperation(
@@ -641,13 +485,18 @@
       self.listReasoningEngines(byItem: byItem, options: .init())
     }
 
+    /// Lists reasoning engines in a location.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
     public func listReasoningEngines(
       byItem: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ReasoningEngine, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listReasoningEngines(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -755,12 +604,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -831,12 +685,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

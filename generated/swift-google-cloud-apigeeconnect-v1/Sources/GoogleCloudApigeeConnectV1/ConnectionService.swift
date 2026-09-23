@@ -45,22 +45,6 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   ) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse {
     try await self.inner.listConnections(request: request, options: options)
   }
-
-  /// Lists connections that are currently active for the given Apigee Connect
-  /// endpoint.
-  ///
-  /// @Snippet(path: "ConnectionService_ListConnections")
-  public func listConnections(
-    byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConnections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -69,30 +53,11 @@ extension Clients {
   /// To mock `ConnectionServiceClient` change your functions to receive
   /// `some ConnectionServiceProtocol` or `any ConnectionServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConnectionServiceProtocol {
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(request: ListConnectionsRequest) async throws
-      -> GoogleCloudApigeeConnectV1.ListConnectionsResponse
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(
-      byItem: ListConnectionsRequest
-    ) -> any AsyncSequence<Connection, Swift.Error>
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Connection, Swift.Error>
-
+  public protocol ConnectionServiceProtocol: Sendable {
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(
-      byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Connection, Swift.Error>
   }
 }
 
@@ -116,12 +81,18 @@ extension Clients.ConnectionServiceProtocol {
     self.listConnections(byItem: byItem, options: .init())
   }
 
+  /// Lists connections that are currently active for the given Apigee Connect
+  /// endpoint.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

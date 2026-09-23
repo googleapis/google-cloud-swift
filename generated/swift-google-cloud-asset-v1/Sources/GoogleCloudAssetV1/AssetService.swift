@@ -113,21 +113,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     try await self.inner.listAssets(request: request, options: options)
   }
 
-  /// Lists assets with time and resource types and returns paged results in
-  /// response.
-  ///
-  /// @Snippet(path: "AssetService_ListAssets")
-  public func listAssets(
-    byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Asset, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudAssetV1.ListAssetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAssets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Batch gets the update history of assets that overlap a time window.
   /// For IAM_POLICY content, this API outputs history when the asset and its
   /// attached IAM POLICY both exist. This can create gaps in the output history.
@@ -201,24 +186,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     try await self.inner.searchAllResources(request: request, options: options)
   }
 
-  /// Searches all Google Cloud resources within the specified scope, such as a
-  /// project, folder, or organization. The caller must be granted the
-  /// `cloudasset.assets.searchAllResources` permission on the desired scope,
-  /// otherwise the request will be rejected.
-  ///
-  /// @Snippet(path: "AssetService_SearchAllResources")
-  public func searchAllResources(
-    byItem: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchAllResources(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Searches all IAM policies within the specified scope, such as a project,
   /// folder, or organization. The caller must be granted the
   /// `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
@@ -229,24 +196,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     request: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse {
     try await self.inner.searchAllIamPolicies(request: request, options: options)
-  }
-
-  /// Searches all IAM policies within the specified scope, such as a project,
-  /// folder, or organization. The caller must be granted the
-  /// `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
-  /// otherwise the request will be rejected.
-  ///
-  /// @Snippet(path: "AssetService_SearchAllIamPolicies")
-  public func searchAllIamPolicies(
-    byItem: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchAllIamPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Analyzes IAM policies to answer which identities have what accesses on
@@ -380,21 +329,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     try await self.inner.listSavedQueries(request: request, options: options)
   }
 
-  /// Lists all saved queries in a parent project/folder/organization.
-  ///
-  /// @Snippet(path: "AssetService_ListSavedQueries")
-  public func listSavedQueries(
-    byItem: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSavedQueries(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a saved query.
   ///
   /// @Snippet(path: "AssetService_UpdateSavedQuery")
@@ -431,21 +365,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     try await self.inner.analyzeOrgPolicies(request: request, options: options)
   }
 
-  /// Analyzes organization policies under a scope.
-  ///
-  /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
-  public func analyzeOrgPolicies(
-    byItem: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.analyzeOrgPolicies(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Analyzes organization policies governed containers (projects, folders or
   /// organization) under a scope.
   ///
@@ -454,24 +373,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     request: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse {
     try await self.inner.analyzeOrgPolicyGovernedContainers(request: request, options: options)
-  }
-
-  /// Analyzes organization policies governed containers (projects, folders or
-  /// organization) under a scope.
-  ///
-  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
-  public func analyzeOrgPolicyGovernedContainers(
-    byItem: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
-  {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.analyzeOrgPolicyGovernedContainers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Analyzes organization policies governed assets (Google Cloud resources or
@@ -531,70 +432,6 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     try await self.inner.analyzeOrgPolicyGovernedAssets(request: request, options: options)
   }
 
-  /// Analyzes organization policies governed assets (Google Cloud resources or
-  /// policies) under a scope. This RPC supports custom constraints and the
-  /// following canned constraints:
-  ///
-  /// * constraints/ainotebooks.accessMode
-  /// * constraints/ainotebooks.disableFileDownloads
-  /// * constraints/ainotebooks.disableRootAccess
-  /// * constraints/ainotebooks.disableTerminal
-  /// * constraints/ainotebooks.environmentOptions
-  /// * constraints/ainotebooks.requireAutoUpgradeSchedule
-  /// * constraints/ainotebooks.restrictVpcNetworks
-  /// * constraints/compute.disableGuestAttributesAccess
-  /// * constraints/compute.disableInstanceDataAccessApis
-  /// * constraints/compute.disableNestedVirtualization
-  /// * constraints/compute.disableSerialPortAccess
-  /// * constraints/compute.disableSerialPortLogging
-  /// * constraints/compute.disableVpcExternalIpv6
-  /// * constraints/compute.requireOsLogin
-  /// * constraints/compute.requireShieldedVm
-  /// * constraints/compute.restrictLoadBalancerCreationForTypes
-  /// * constraints/compute.restrictProtocolForwardingCreationForTypes
-  /// * constraints/compute.restrictXpnProjectLienRemoval
-  /// * constraints/compute.setNewProjectDefaultToZonalDNSOnly
-  /// * constraints/compute.skipDefaultNetworkCreation
-  /// * constraints/compute.trustedImageProjects
-  /// * constraints/compute.vmCanIpForward
-  /// * constraints/compute.vmExternalIpAccess
-  /// * constraints/gcp.detailedAuditLoggingMode
-  /// * constraints/gcp.resourceLocations
-  /// * constraints/iam.allowedPolicyMemberDomains
-  /// * constraints/iam.automaticIamGrantsForDefaultServiceAccounts
-  /// * constraints/iam.disableServiceAccountCreation
-  /// * constraints/iam.disableServiceAccountKeyCreation
-  /// * constraints/iam.disableServiceAccountKeyUpload
-  /// * constraints/iam.restrictCrossProjectServiceAccountLienRemoval
-  /// * constraints/iam.serviceAccountKeyExpiryHours
-  /// * constraints/resourcemanager.accessBoundaries
-  /// * constraints/resourcemanager.allowedExportDestinations
-  /// * constraints/sql.restrictAuthorizedNetworks
-  /// * constraints/sql.restrictNoncompliantDiagnosticDataAccess
-  /// * constraints/sql.restrictNoncompliantResourceCreation
-  /// * constraints/sql.restrictPublicIp
-  /// * constraints/storage.publicAccessPrevention
-  /// * constraints/storage.restrictAuthTypes
-  /// * constraints/storage.uniformBucketLevelAccess
-  ///
-  /// This RPC only returns either resources of types [supported by search
-  /// APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-  /// or IAM policies.
-  ///
-  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
-  public func analyzeOrgPolicyGovernedAssets(
-    byItem: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.analyzeOrgPolicyGovernedAssets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -613,229 +450,14 @@ extension Clients {
   /// To mock `AssetServiceClient` change your functions to receive
   /// `some AssetServiceProtocol` or `any AssetServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AssetServiceProtocol {
-    /// See `AssetServiceClient.exportAssets`.
-    func exportAssets(request: ExportAssetsRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol AssetServiceProtocol: Sendable {
     /// See `AssetServiceClient.exportAssets`.
     func exportAssets(withPolling: ExportAssetsRequest) async throws -> any GoogleGax
       .PollableOperation<ExportAssetsResponse>
 
-    /// See `AssetServiceClient.listAssets`.
-    func listAssets(request: ListAssetsRequest) async throws
-      -> GoogleCloudAssetV1.ListAssetsResponse
-
-    /// See `AssetServiceClient.listAssets`.
-    func listAssets(
-      byItem: ListAssetsRequest
-    ) -> any AsyncSequence<Asset, Swift.Error>
-
-    /// See `AssetServiceClient.listAssets`.
-    func listAssets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Asset, Swift.Error>
-
-    /// See `AssetServiceClient.batchGetAssetsHistory`.
-    func batchGetAssetsHistory(request: BatchGetAssetsHistoryRequest) async throws
-      -> GoogleCloudAssetV1.BatchGetAssetsHistoryResponse
-
-    /// See `AssetServiceClient.createFeed`.
-    func createFeed(request: CreateFeedRequest) async throws -> GoogleCloudAssetV1.Feed
-
-    /// See `AssetServiceClient.createFeed`.
-    func createFeed(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudAssetV1.Feed
-
-    /// See `AssetServiceClient.getFeed`.
-    func getFeed(request: GetFeedRequest) async throws -> GoogleCloudAssetV1.Feed
-
-    /// See `AssetServiceClient.getFeed`.
-    func getFeed(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAssetV1.Feed
-
-    /// See `AssetServiceClient.listFeeds`.
-    func listFeeds(request: ListFeedsRequest) async throws -> GoogleCloudAssetV1.ListFeedsResponse
-
-    /// See `AssetServiceClient.listFeeds`.
-    func listFeeds(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudAssetV1.ListFeedsResponse
-
-    /// See `AssetServiceClient.updateFeed`.
-    func updateFeed(request: UpdateFeedRequest) async throws -> GoogleCloudAssetV1.Feed
-
-    /// See `AssetServiceClient.updateFeed`.
-    func updateFeed(
-      feed: Feed?,
-    ) async throws -> GoogleCloudAssetV1.Feed
-
-    /// See `AssetServiceClient.deleteFeed`.
-    func deleteFeed(request: DeleteFeedRequest) async throws
-
-    /// See `AssetServiceClient.deleteFeed`.
-    func deleteFeed(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AssetServiceClient.searchAllResources`.
-    func searchAllResources(request: SearchAllResourcesRequest) async throws
-      -> GoogleCloudAssetV1.SearchAllResourcesResponse
-
-    /// See `AssetServiceClient.searchAllResources`.
-    func searchAllResources(
-      byItem: SearchAllResourcesRequest
-    ) -> any AsyncSequence<ResourceSearchResult, Swift.Error>
-
-    /// See `AssetServiceClient.searchAllResources`.
-    func searchAllResources(
-      scope: Swift.String,
-      query: Swift.String,
-      assetTypes: [Swift.String],
-    ) -> any AsyncSequence<ResourceSearchResult, Swift.Error>
-
-    /// See `AssetServiceClient.searchAllIamPolicies`.
-    func searchAllIamPolicies(request: SearchAllIamPoliciesRequest) async throws
-      -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse
-
-    /// See `AssetServiceClient.searchAllIamPolicies`.
-    func searchAllIamPolicies(
-      byItem: SearchAllIamPoliciesRequest
-    ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
-
-    /// See `AssetServiceClient.searchAllIamPolicies`.
-    func searchAllIamPolicies(
-      scope: Swift.String,
-      query: Swift.String,
-    ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
-
-    /// See `AssetServiceClient.analyzeIamPolicy`.
-    func analyzeIamPolicy(request: AnalyzeIamPolicyRequest) async throws
-      -> GoogleCloudAssetV1.AnalyzeIamPolicyResponse
-
-    /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
-    func analyzeIamPolicyLongrunning(request: AnalyzeIamPolicyLongrunningRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
     func analyzeIamPolicyLongrunning(withPolling: AnalyzeIamPolicyLongrunningRequest) async throws
       -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse>
-
-    /// See `AssetServiceClient.analyzeMove`.
-    func analyzeMove(request: AnalyzeMoveRequest) async throws
-      -> GoogleCloudAssetV1.AnalyzeMoveResponse
-
-    /// See `AssetServiceClient.queryAssets`.
-    func queryAssets(request: QueryAssetsRequest) async throws
-      -> GoogleCloudAssetV1.QueryAssetsResponse
-
-    /// See `AssetServiceClient.createSavedQuery`.
-    func createSavedQuery(request: CreateSavedQueryRequest) async throws
-      -> GoogleCloudAssetV1.SavedQuery
-
-    /// See `AssetServiceClient.createSavedQuery`.
-    func createSavedQuery(
-      parent: Swift.String,
-      savedQuery: SavedQuery?,
-      savedQueryId: Swift.String,
-    ) async throws -> GoogleCloudAssetV1.SavedQuery
-
-    /// See `AssetServiceClient.getSavedQuery`.
-    func getSavedQuery(request: GetSavedQueryRequest) async throws -> GoogleCloudAssetV1.SavedQuery
-
-    /// See `AssetServiceClient.getSavedQuery`.
-    func getSavedQuery(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAssetV1.SavedQuery
-
-    /// See `AssetServiceClient.listSavedQueries`.
-    func listSavedQueries(request: ListSavedQueriesRequest) async throws
-      -> GoogleCloudAssetV1.ListSavedQueriesResponse
-
-    /// See `AssetServiceClient.listSavedQueries`.
-    func listSavedQueries(
-      byItem: ListSavedQueriesRequest
-    ) -> any AsyncSequence<SavedQuery, Swift.Error>
-
-    /// See `AssetServiceClient.listSavedQueries`.
-    func listSavedQueries(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SavedQuery, Swift.Error>
-
-    /// See `AssetServiceClient.updateSavedQuery`.
-    func updateSavedQuery(request: UpdateSavedQueryRequest) async throws
-      -> GoogleCloudAssetV1.SavedQuery
-
-    /// See `AssetServiceClient.updateSavedQuery`.
-    func updateSavedQuery(
-      savedQuery: SavedQuery?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudAssetV1.SavedQuery
-
-    /// See `AssetServiceClient.deleteSavedQuery`.
-    func deleteSavedQuery(request: DeleteSavedQueryRequest) async throws
-
-    /// See `AssetServiceClient.deleteSavedQuery`.
-    func deleteSavedQuery(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AssetServiceClient.batchGetEffectiveIamPolicies`.
-    func batchGetEffectiveIamPolicies(request: BatchGetEffectiveIamPoliciesRequest) async throws
-      -> GoogleCloudAssetV1.BatchGetEffectiveIamPoliciesResponse
-
-    /// See `AssetServiceClient.analyzeOrgPolicies`.
-    func analyzeOrgPolicies(request: AnalyzeOrgPoliciesRequest) async throws
-      -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse
-
-    /// See `AssetServiceClient.analyzeOrgPolicies`.
-    func analyzeOrgPolicies(
-      byItem: AnalyzeOrgPoliciesRequest
-    ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
-
-    /// See `AssetServiceClient.analyzeOrgPolicies`.
-    func analyzeOrgPolicies(
-      scope: Swift.String,
-      constraint: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
-    func analyzeOrgPolicyGovernedContainers(request: AnalyzeOrgPolicyGovernedContainersRequest)
-      async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
-    func analyzeOrgPolicyGovernedContainers(
-      byItem: AnalyzeOrgPolicyGovernedContainersRequest
-    ) -> any AsyncSequence<
-      AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-    >
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
-    func analyzeOrgPolicyGovernedContainers(
-      scope: Swift.String,
-      constraint: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<
-      AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-    >
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
-    func analyzeOrgPolicyGovernedAssets(request: AnalyzeOrgPolicyGovernedAssetsRequest) async throws
-      -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
-    func analyzeOrgPolicyGovernedAssets(
-      byItem: AnalyzeOrgPolicyGovernedAssetsRequest
-    ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
-    func analyzeOrgPolicyGovernedAssets(
-      scope: Swift.String,
-      constraint: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
 
     /// See `AssetServiceClient.exportAssets`.
     func exportAssets(
@@ -851,11 +473,6 @@ extension Clients {
     func listAssets(
       request: ListAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.ListAssetsResponse
-
-    /// See `AssetServiceClient.listAssets`.
-    func listAssets(
-      byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `AssetServiceClient.batchGetAssetsHistory`.
     func batchGetAssetsHistory(
@@ -892,20 +509,10 @@ extension Clients {
       request: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse
 
-    /// See `AssetServiceClient.searchAllResources`.
-    func searchAllResources(
-      byItem: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ResourceSearchResult, Swift.Error>
-
     /// See `AssetServiceClient.searchAllIamPolicies`.
     func searchAllIamPolicies(
       request: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse
-
-    /// See `AssetServiceClient.searchAllIamPolicies`.
-    func searchAllIamPolicies(
-      byItem: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error>
 
     /// See `AssetServiceClient.analyzeIamPolicy`.
     func analyzeIamPolicy(
@@ -947,11 +554,6 @@ extension Clients {
       request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse
 
-    /// See `AssetServiceClient.listSavedQueries`.
-    func listSavedQueries(
-      byItem: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SavedQuery, Swift.Error>
-
     /// See `AssetServiceClient.updateSavedQuery`.
     func updateSavedQuery(
       request: UpdateSavedQueryRequest, options: GoogleGax.RequestOptions
@@ -972,32 +574,15 @@ extension Clients {
       request: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse
 
-    /// See `AssetServiceClient.analyzeOrgPolicies`.
-    func analyzeOrgPolicies(
-      byItem: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error>
-
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
     func analyzeOrgPolicyGovernedContainers(
       request: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse
 
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedContainers`.
-    func analyzeOrgPolicyGovernedContainers(
-      byItem: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<
-      AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error
-    >
-
     /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
     func analyzeOrgPolicyGovernedAssets(
       request: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse
-
-    /// See `AssetServiceClient.analyzeOrgPolicyGovernedAssets`.
-    func analyzeOrgPolicyGovernedAssets(
-      byItem: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
   }
 }
 
@@ -1048,11 +633,17 @@ extension Clients.AssetServiceProtocol {
     self.listAssets(byItem: byItem, options: .init())
   }
 
+  /// Lists assets with time and resource types and returns paged results in
+  /// response.
+  ///
+  /// @Snippet(path: "AssetService_ListAssets")
   public func listAssets(
     byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudAssetV1.ListAssetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1193,12 +784,20 @@ extension Clients.AssetServiceProtocol {
     self.searchAllResources(byItem: byItem, options: .init())
   }
 
+  /// Searches all Google Cloud resources within the specified scope, such as a
+  /// project, folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllResources` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllResources")
   public func searchAllResources(
     byItem: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchAllResources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1234,12 +833,20 @@ extension Clients.AssetServiceProtocol {
     self.searchAllIamPolicies(byItem: byItem, options: .init())
   }
 
+  /// Searches all IAM policies within the specified scope, such as a project,
+  /// folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllIamPolicies")
   public func searchAllIamPolicies(
     byItem: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchAllIamPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1385,12 +992,17 @@ extension Clients.AssetServiceProtocol {
     self.listSavedQueries(byItem: byItem, options: .init())
   }
 
+  /// Lists all saved queries in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_ListSavedQueries")
   public func listSavedQueries(
     byItem: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SavedQuery, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSavedQueries(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1476,12 +1088,17 @@ extension Clients.AssetServiceProtocol {
     self.analyzeOrgPolicies(byItem: byItem, options: .init())
   }
 
+  /// Analyzes organization policies under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
   public func analyzeOrgPolicies(
     byItem: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.analyzeOrgPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1518,6 +1135,10 @@ extension Clients.AssetServiceProtocol {
     self.analyzeOrgPolicyGovernedContainers(byItem: byItem, options: .init())
   }
 
+  /// Analyzes organization policies governed containers (projects, folders or
+  /// organization) under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
   public func analyzeOrgPolicyGovernedContainers(
     byItem: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
@@ -1525,7 +1146,9 @@ extension Clients.AssetServiceProtocol {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.analyzeOrgPolicyGovernedContainers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1562,13 +1185,66 @@ extension Clients.AssetServiceProtocol {
     self.analyzeOrgPolicyGovernedAssets(byItem: byItem, options: .init())
   }
 
+  /// Analyzes organization policies governed assets (Google Cloud resources or
+  /// policies) under a scope. This RPC supports custom constraints and the
+  /// following canned constraints:
+  ///
+  /// * constraints/ainotebooks.accessMode
+  /// * constraints/ainotebooks.disableFileDownloads
+  /// * constraints/ainotebooks.disableRootAccess
+  /// * constraints/ainotebooks.disableTerminal
+  /// * constraints/ainotebooks.environmentOptions
+  /// * constraints/ainotebooks.requireAutoUpgradeSchedule
+  /// * constraints/ainotebooks.restrictVpcNetworks
+  /// * constraints/compute.disableGuestAttributesAccess
+  /// * constraints/compute.disableInstanceDataAccessApis
+  /// * constraints/compute.disableNestedVirtualization
+  /// * constraints/compute.disableSerialPortAccess
+  /// * constraints/compute.disableSerialPortLogging
+  /// * constraints/compute.disableVpcExternalIpv6
+  /// * constraints/compute.requireOsLogin
+  /// * constraints/compute.requireShieldedVm
+  /// * constraints/compute.restrictLoadBalancerCreationForTypes
+  /// * constraints/compute.restrictProtocolForwardingCreationForTypes
+  /// * constraints/compute.restrictXpnProjectLienRemoval
+  /// * constraints/compute.setNewProjectDefaultToZonalDNSOnly
+  /// * constraints/compute.skipDefaultNetworkCreation
+  /// * constraints/compute.trustedImageProjects
+  /// * constraints/compute.vmCanIpForward
+  /// * constraints/compute.vmExternalIpAccess
+  /// * constraints/gcp.detailedAuditLoggingMode
+  /// * constraints/gcp.resourceLocations
+  /// * constraints/iam.allowedPolicyMemberDomains
+  /// * constraints/iam.automaticIamGrantsForDefaultServiceAccounts
+  /// * constraints/iam.disableServiceAccountCreation
+  /// * constraints/iam.disableServiceAccountKeyCreation
+  /// * constraints/iam.disableServiceAccountKeyUpload
+  /// * constraints/iam.restrictCrossProjectServiceAccountLienRemoval
+  /// * constraints/iam.serviceAccountKeyExpiryHours
+  /// * constraints/resourcemanager.accessBoundaries
+  /// * constraints/resourcemanager.allowedExportDestinations
+  /// * constraints/sql.restrictAuthorizedNetworks
+  /// * constraints/sql.restrictNoncompliantDiagnosticDataAccess
+  /// * constraints/sql.restrictNoncompliantResourceCreation
+  /// * constraints/sql.restrictPublicIp
+  /// * constraints/storage.publicAccessPrevention
+  /// * constraints/storage.restrictAuthTypes
+  /// * constraints/storage.uniformBucketLevelAccess
+  ///
+  /// This RPC only returns either resources of types [supported by search
+  /// APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+  /// or IAM policies.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
   public func analyzeOrgPolicyGovernedAssets(
     byItem: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.analyzeOrgPolicyGovernedAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

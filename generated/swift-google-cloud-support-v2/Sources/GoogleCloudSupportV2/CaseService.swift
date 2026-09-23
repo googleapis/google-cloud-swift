@@ -59,24 +59,6 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
     try await self.inner.listCases(request: request, options: options)
   }
 
-  /// Retrieve all cases under a parent, but not its children.
-  ///
-  /// For example, listing cases under an organization only returns the cases
-  /// that are directly parented by that organization. To retrieve cases
-  /// under an organization and its projects, use `cases.search`.
-  ///
-  /// @Snippet(path: "CaseService_ListCases")
-  public func listCases(
-    byItem: ListCasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Case, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCasesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCases(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Search for cases using a query.
   ///
   /// @Snippet(path: "CaseService_SearchCases")
@@ -84,21 +66,6 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
     request: SearchCasesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SearchCasesResponse {
     try await self.inner.searchCases(request: request, options: options)
-  }
-
-  /// Search for cases using a query.
-  ///
-  /// @Snippet(path: "CaseService_SearchCases")
-  public func searchCases(
-    byItem: SearchCasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Case, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSupportV2.SearchCasesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchCases(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Create a new case and associate it with a parent.
@@ -164,31 +131,6 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
   ) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse {
     try await self.inner.searchCaseClassifications(request: request, options: options)
   }
-
-  /// Retrieve valid classifications to use when creating a support case.
-  ///
-  /// Classifications are hierarchical. Each classification is a string
-  /// containing all levels of the hierarchy separated by `" > "`. For example,
-  /// `"Technical Issue > Compute > Compute Engine"`.
-  ///
-  /// Classification IDs returned by this endpoint are valid for at least six
-  /// months. When a classification is deactivated, this endpoint immediately
-  /// stops returning it. After six months, `case.create` requests using the
-  /// classification will fail.
-  ///
-  /// @Snippet(path: "CaseService_SearchCaseClassifications")
-  public func searchCaseClassifications(
-    byItem: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CaseClassification, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchCaseClassifications(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -197,70 +139,7 @@ extension Clients {
   /// To mock `CaseServiceClient` change your functions to receive
   /// `some CaseServiceProtocol` or `any CaseServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CaseServiceProtocol {
-    /// See `CaseServiceClient.getCase`.
-    func getCase(request: GetCaseRequest) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.getCase`.
-    func getCase(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.listCases`.
-    func listCases(request: ListCasesRequest) async throws -> GoogleCloudSupportV2.ListCasesResponse
-
-    /// See `CaseServiceClient.listCases`.
-    func listCases(
-      byItem: ListCasesRequest
-    ) -> any AsyncSequence<Case, Swift.Error>
-
-    /// See `CaseServiceClient.listCases`.
-    func listCases(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Case, Swift.Error>
-
-    /// See `CaseServiceClient.searchCases`.
-    func searchCases(request: SearchCasesRequest) async throws
-      -> GoogleCloudSupportV2.SearchCasesResponse
-
-    /// See `CaseServiceClient.searchCases`.
-    func searchCases(
-      byItem: SearchCasesRequest
-    ) -> any AsyncSequence<Case, Swift.Error>
-
-    /// See `CaseServiceClient.createCase`.
-    func createCase(request: CreateCaseRequest) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.createCase`.
-    func createCase(
-      parent: Swift.String,
-      `case`: Case?,
-    ) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.updateCase`.
-    func updateCase(request: UpdateCaseRequest) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.updateCase`.
-    func updateCase(
-      `case`: Case?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.escalateCase`.
-    func escalateCase(request: EscalateCaseRequest) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.closeCase`.
-    func closeCase(request: CloseCaseRequest) async throws -> GoogleCloudSupportV2.Case
-
-    /// See `CaseServiceClient.searchCaseClassifications`.
-    func searchCaseClassifications(request: SearchCaseClassificationsRequest) async throws
-      -> GoogleCloudSupportV2.SearchCaseClassificationsResponse
-
-    /// See `CaseServiceClient.searchCaseClassifications`.
-    func searchCaseClassifications(
-      byItem: SearchCaseClassificationsRequest
-    ) -> any AsyncSequence<CaseClassification, Swift.Error>
-
+  public protocol CaseServiceProtocol: Sendable {
     /// See `CaseServiceClient.getCase`.
     func getCase(
       request: GetCaseRequest, options: GoogleGax.RequestOptions
@@ -271,20 +150,10 @@ extension Clients {
       request: ListCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCasesResponse
 
-    /// See `CaseServiceClient.listCases`.
-    func listCases(
-      byItem: ListCasesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Case, Swift.Error>
-
     /// See `CaseServiceClient.searchCases`.
     func searchCases(
       request: SearchCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SearchCasesResponse
-
-    /// See `CaseServiceClient.searchCases`.
-    func searchCases(
-      byItem: SearchCasesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Case, Swift.Error>
 
     /// See `CaseServiceClient.createCase`.
     func createCase(
@@ -310,11 +179,6 @@ extension Clients {
     func searchCaseClassifications(
       request: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse
-
-    /// See `CaseServiceClient.searchCaseClassifications`.
-    func searchCaseClassifications(
-      byItem: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CaseClassification, Swift.Error>
   }
 }
 
@@ -357,11 +221,20 @@ extension Clients.CaseServiceProtocol {
     self.listCases(byItem: byItem, options: .init())
   }
 
+  /// Retrieve all cases under a parent, but not its children.
+  ///
+  /// For example, listing cases under an organization only returns the cases
+  /// that are directly parented by that organization. To retrieve cases
+  /// under an organization and its projects, use `cases.search`.
+  ///
+  /// @Snippet(path: "CaseService_ListCases")
   public func listCases(
     byItem: ListCasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Case, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCasesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -393,12 +266,17 @@ extension Clients.CaseServiceProtocol {
     self.searchCases(byItem: byItem, options: .init())
   }
 
+  /// Search for cases using a query.
+  ///
+  /// @Snippet(path: "CaseService_SearchCases")
   public func searchCases(
     byItem: SearchCasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Case, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.SearchCasesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchCases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -483,13 +361,27 @@ extension Clients.CaseServiceProtocol {
     self.searchCaseClassifications(byItem: byItem, options: .init())
   }
 
+  /// Retrieve valid classifications to use when creating a support case.
+  ///
+  /// Classifications are hierarchical. Each classification is a string
+  /// containing all levels of the hierarchy separated by `" > "`. For example,
+  /// `"Technical Issue > Compute > Compute Engine"`.
+  ///
+  /// Classification IDs returned by this endpoint are valid for at least six
+  /// months. When a classification is deactivated, this endpoint immediately
+  /// stops returning it. After six months, `case.create` requests using the
+  /// classification will fail.
+  ///
+  /// @Snippet(path: "CaseService_SearchCaseClassifications")
   public func searchCaseClassifications(
     byItem: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CaseClassification, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchCaseClassifications(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

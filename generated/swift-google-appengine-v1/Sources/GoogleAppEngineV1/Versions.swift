@@ -50,20 +50,6 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
     try await self.inner.listVersions(request: request, options: options)
   }
 
-  /// Lists the versions of a service.
-  ///
-  /// @Snippet(path: "Versions_ListVersions")
-  public func listVersions(
-    byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Version, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleAppEngineV1.ListVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the specified Version resource.
   /// By default, only a `BASIC_VIEW` will be returned.
   /// Specify the `FULL_VIEW` parameter to get the full resource.
@@ -263,23 +249,6 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "Versions_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "Versions_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -294,64 +263,23 @@ extension Clients {
   /// To mock `VersionsClient` change your functions to receive
   /// `some VersionsProtocol` or `any VersionsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol VersionsProtocol {
-    /// See `VersionsClient.listVersions`.
-    func listVersions(request: ListVersionsRequest) async throws
-      -> GoogleAppEngineV1.ListVersionsResponse
-
-    /// See `VersionsClient.listVersions`.
-    func listVersions(
-      byItem: ListVersionsRequest
-    ) -> any AsyncSequence<Version, Swift.Error>
-
-    /// See `VersionsClient.getVersion`.
-    func getVersion(request: GetVersionRequest) async throws -> GoogleAppEngineV1.Version
-
-    /// See `VersionsClient.createVersion`.
-    func createVersion(request: CreateVersionRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol VersionsProtocol: Sendable {
     /// See `VersionsClient.createVersion`.
     func createVersion(withPolling: CreateVersionRequest) async throws -> any GoogleGax
       .PollableOperation<Version>
-
-    /// See `VersionsClient.updateVersion`.
-    func updateVersion(request: UpdateVersionRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `VersionsClient.updateVersion`.
     func updateVersion(withPolling: UpdateVersionRequest) async throws -> any GoogleGax
       .PollableOperation<Version>
 
     /// See `VersionsClient.deleteVersion`.
-    func deleteVersion(request: DeleteVersionRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `VersionsClient.deleteVersion`.
     func deleteVersion(withPolling: DeleteVersionRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
-
-    /// See `VersionsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VersionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VersionsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VersionsClient.listVersions`.
     func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListVersionsResponse
-
-    /// See `VersionsClient.listVersions`.
-    func listVersions(
-      byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Version, Swift.Error>
 
     /// See `VersionsClient.getVersion`.
     func getVersion(
@@ -392,11 +320,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VersionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -420,11 +343,16 @@ extension Clients.VersionsProtocol {
     self.listVersions(byItem: byItem, options: .init())
   }
 
+  /// Lists the versions of a service.
+  ///
+  /// @Snippet(path: "Versions_ListVersions")
   public func listVersions(
     byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleAppEngineV1.ListVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -541,12 +469,19 @@ extension Clients.VersionsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Versions_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

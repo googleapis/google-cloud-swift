@@ -72,20 +72,6 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
     try await self.inner.list(request: request, options: options)
   }
 
-  /// Enumerates all policies associated with a project.
-  ///
-  /// @Snippet(path: "policies_list")
-  public func list(
-    byItem: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Policy, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> PoliciesListResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.list(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Applies a partial update to an existing policy.
   ///
   /// @Snippet(path: "policies_patch")
@@ -111,67 +97,7 @@ extension Clients {
   /// To mock `PoliciesClient` change your functions to receive
   /// `some PoliciesProtocol` or `any PoliciesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PoliciesProtocol {
-    /// See `PoliciesClient.create`.
-    func create(request: PoliciesClient.CreateRequest) async throws -> Policy
-
-    /// See `PoliciesClient.create`.
-    func create(
-      project: Swift.String,
-      body: Policy?,
-    ) async throws -> Policy
-
-    /// See `PoliciesClient.delete`.
-    func delete(request: PoliciesClient.DeleteRequest) async throws
-
-    /// See `PoliciesClient.delete`.
-    func delete(
-      project: Swift.String,
-      policy: Swift.String,
-    ) async throws
-
-    /// See `PoliciesClient.`get``.
-    func `get`(request: PoliciesClient.GetRequest) async throws -> Policy
-
-    /// See `PoliciesClient.`get``.
-    func `get`(
-      project: Swift.String,
-      policy: Swift.String,
-    ) async throws -> Policy
-
-    /// See `PoliciesClient.list`.
-    func list(request: PoliciesClient.ListRequest) async throws -> PoliciesListResponse
-
-    /// See `PoliciesClient.list`.
-    func list(
-      byItem: PoliciesClient.ListRequest
-    ) -> any AsyncSequence<Policy, Swift.Error>
-
-    /// See `PoliciesClient.list`.
-    func list(
-      project: Swift.String,
-    ) -> any AsyncSequence<Policy, Swift.Error>
-
-    /// See `PoliciesClient.patch`.
-    func patch(request: PoliciesClient.PatchRequest) async throws -> PoliciesPatchResponse
-
-    /// See `PoliciesClient.patch`.
-    func patch(
-      project: Swift.String,
-      policy: Swift.String,
-      body: Policy?,
-    ) async throws -> PoliciesPatchResponse
-
-    /// See `PoliciesClient.update`.
-    func update(request: PoliciesClient.UpdateRequest) async throws -> PoliciesUpdateResponse
-
-    /// See `PoliciesClient.update`.
-    func update(
-      project: Swift.String,
-      policy: Swift.String,
-      body: Policy?,
-    ) async throws -> PoliciesUpdateResponse
-
+  public protocol PoliciesProtocol: Sendable {
     /// See `PoliciesClient.create`.
     func create(
       request: PoliciesClient.CreateRequest, options: GoogleGax.RequestOptions
@@ -191,11 +117,6 @@ extension Clients {
     func list(
       request: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> PoliciesListResponse
-
-    /// See `PoliciesClient.list`.
-    func list(
-      byItem: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Policy, Swift.Error>
 
     /// See `PoliciesClient.patch`.
     func patch(
@@ -290,11 +211,16 @@ extension Clients.PoliciesProtocol {
     self.list(byItem: byItem, options: .init())
   }
 
+  /// Enumerates all policies associated with a project.
+  ///
+  /// @Snippet(path: "policies_list")
   public func list(
     byItem: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> PoliciesListResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.list(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

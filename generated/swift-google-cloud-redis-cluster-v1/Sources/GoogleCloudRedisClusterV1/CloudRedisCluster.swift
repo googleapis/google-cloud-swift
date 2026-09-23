@@ -74,29 +74,6 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     try await self.inner.listClusters(request: request, options: options)
   }
 
-  /// Lists all Redis clusters owned by a project in either the specified
-  /// location (region) or all locations.
-  ///
-  /// The location should have the following format:
-  ///
-  /// * `projects/{project_id}/locations/{location_id}`
-  ///
-  /// If `location_id` is specified as `-` (wildcard), then all regions
-  /// available to the project are queried, and the results are aggregated.
-  ///
-  /// @Snippet(path: "CloudRedisCluster_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the details of a specific Redis cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetCluster")
@@ -299,26 +276,6 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     try await self.inner.listBackupCollections(request: request, options: options)
   }
 
-  /// Lists all backup collections owned by a consumer project in either the
-  /// specified location (region) or all locations.
-  ///
-  /// If `location_id` is specified as `-` (wildcard), then all regions
-  /// available to the project are queried, and the results are aggregated.
-  ///
-  /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
-  public func listBackupCollections(
-    byItem: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupCollection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBackupCollections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Get a backup collection.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetBackupCollection")
@@ -335,21 +292,6 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListBackupsResponse {
     try await self.inner.listBackups(request: request, options: options)
-  }
-
-  /// Lists all backups owned by a backup collection.
-  ///
-  /// @Snippet(path: "CloudRedisCluster_ListBackups")
-  public func listBackups(
-    byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListBackupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBackups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the details of a specific backup.
@@ -495,21 +437,6 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "CloudRedisCluster_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetLocation")
@@ -528,23 +455,6 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "CloudRedisCluster_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -587,32 +497,7 @@ extension Clients {
   /// To mock `CloudRedisClusterClient` change your functions to receive
   /// `some CloudRedisClusterProtocol` or `any CloudRedisClusterProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudRedisClusterProtocol {
-    /// See `CloudRedisClusterClient.listClusters`.
-    func listClusters(request: ListClustersRequest) async throws
-      -> GoogleCloudRedisClusterV1.ListClustersResponse
-
-    /// See `CloudRedisClusterClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `CloudRedisClusterClient.listClusters`.
-    func listClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `CloudRedisClusterClient.getCluster`.
-    func getCluster(request: GetClusterRequest) async throws -> GoogleCloudRedisClusterV1.Cluster
-
-    /// See `CloudRedisClusterClient.getCluster`.
-    func getCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisClusterV1.Cluster
-
-    /// See `CloudRedisClusterClient.updateCluster`.
-    func updateCluster(request: UpdateClusterRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol CloudRedisClusterProtocol: Sendable {
     /// See `CloudRedisClusterClient.updateCluster`.
     func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
@@ -624,9 +509,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `CloudRedisClusterClient.deleteCluster`.
-    func deleteCluster(request: DeleteClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudRedisClusterClient.deleteCluster`.
     func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -634,9 +516,6 @@ extension Clients {
     func deleteCluster(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CloudRedisClusterClient.createCluster`.
-    func createCluster(request: CreateClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudRedisClusterClient.createCluster`.
     func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
@@ -649,29 +528,6 @@ extension Clients {
       clusterId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
-    /// See `CloudRedisClusterClient.getClusterCertificateAuthority`.
-    func getClusterCertificateAuthority(request: GetClusterCertificateAuthorityRequest) async throws
-      -> GoogleCloudRedisClusterV1.CertificateAuthority
-
-    /// See `CloudRedisClusterClient.getClusterCertificateAuthority`.
-    func getClusterCertificateAuthority(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisClusterV1.CertificateAuthority
-
-    /// See `CloudRedisClusterClient.getSharedRegionalCertificateAuthority`.
-    func getSharedRegionalCertificateAuthority(
-      request: GetSharedRegionalCertificateAuthorityRequest
-    ) async throws -> GoogleCloudRedisClusterV1.SharedRegionalCertificateAuthority
-
-    /// See `CloudRedisClusterClient.getSharedRegionalCertificateAuthority`.
-    func getSharedRegionalCertificateAuthority(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisClusterV1.SharedRegionalCertificateAuthority
-
-    /// See `CloudRedisClusterClient.rescheduleClusterMaintenance`.
-    func rescheduleClusterMaintenance(request: RescheduleClusterMaintenanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `CloudRedisClusterClient.rescheduleClusterMaintenance`.
     func rescheduleClusterMaintenance(withPolling: RescheduleClusterMaintenanceRequest) async throws
       -> any GoogleGax.PollableOperation<Cluster>
@@ -683,54 +539,6 @@ extension Clients {
       scheduleTime: GoogleWKT.Timestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
-    /// See `CloudRedisClusterClient.listBackupCollections`.
-    func listBackupCollections(request: ListBackupCollectionsRequest) async throws
-      -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse
-
-    /// See `CloudRedisClusterClient.listBackupCollections`.
-    func listBackupCollections(
-      byItem: ListBackupCollectionsRequest
-    ) -> any AsyncSequence<BackupCollection, Swift.Error>
-
-    /// See `CloudRedisClusterClient.listBackupCollections`.
-    func listBackupCollections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<BackupCollection, Swift.Error>
-
-    /// See `CloudRedisClusterClient.getBackupCollection`.
-    func getBackupCollection(request: GetBackupCollectionRequest) async throws
-      -> GoogleCloudRedisClusterV1.BackupCollection
-
-    /// See `CloudRedisClusterClient.getBackupCollection`.
-    func getBackupCollection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisClusterV1.BackupCollection
-
-    /// See `CloudRedisClusterClient.listBackups`.
-    func listBackups(request: ListBackupsRequest) async throws
-      -> GoogleCloudRedisClusterV1.ListBackupsResponse
-
-    /// See `CloudRedisClusterClient.listBackups`.
-    func listBackups(
-      byItem: ListBackupsRequest
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
-    /// See `CloudRedisClusterClient.listBackups`.
-    func listBackups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
-    /// See `CloudRedisClusterClient.getBackup`.
-    func getBackup(request: GetBackupRequest) async throws -> GoogleCloudRedisClusterV1.Backup
-
-    /// See `CloudRedisClusterClient.getBackup`.
-    func getBackup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRedisClusterV1.Backup
-
-    /// See `CloudRedisClusterClient.deleteBackup`.
-    func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `CloudRedisClusterClient.deleteBackup`.
     func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
@@ -741,14 +549,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudRedisClusterClient.exportBackup`.
-    func exportBackup(request: ExportBackupRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudRedisClusterClient.exportBackup`.
     func exportBackup(withPolling: ExportBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Backup>
-
-    /// See `CloudRedisClusterClient.backupCluster`.
-    func backupCluster(request: BackupClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudRedisClusterClient.backupCluster`.
     func backupCluster(withPolling: BackupClusterRequest) async throws -> any GoogleGax
@@ -759,59 +561,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
-    /// See `CloudRedisClusterClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `CloudRedisClusterClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `CloudRedisClusterClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `CloudRedisClusterClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CloudRedisClusterClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CloudRedisClusterClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `CloudRedisClusterClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `CloudRedisClusterClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `CloudRedisClusterClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `CloudRedisClusterClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `CloudRedisClusterClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse
-
-    /// See `CloudRedisClusterClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `CloudRedisClusterClient.getCluster`.
     func getCluster(
@@ -873,11 +626,6 @@ extension Clients {
       request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse
 
-    /// See `CloudRedisClusterClient.listBackupCollections`.
-    func listBackupCollections(
-      byItem: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackupCollection, Swift.Error>
-
     /// See `CloudRedisClusterClient.getBackupCollection`.
     func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleGax.RequestOptions
@@ -887,11 +635,6 @@ extension Clients {
     func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.ListBackupsResponse
-
-    /// See `CloudRedisClusterClient.listBackups`.
-    func listBackups(
-      byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `CloudRedisClusterClient.getBackup`.
     func getBackup(
@@ -933,11 +676,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `CloudRedisClusterClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `CloudRedisClusterClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -947,11 +685,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `CloudRedisClusterClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudRedisClusterClient.deleteOperation`.
     func deleteOperation(
@@ -985,12 +718,25 @@ extension Clients.CloudRedisClusterProtocol {
     self.listClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists all Redis clusters owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListClusters")
   public func listClusters(
     byItem: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1243,13 +989,22 @@ extension Clients.CloudRedisClusterProtocol {
     self.listBackupCollections(byItem: byItem, options: .init())
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
   public func listBackupCollections(
     byItem: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BackupCollection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBackupCollections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1302,12 +1057,17 @@ extension Clients.CloudRedisClusterProtocol {
     self.listBackups(byItem: byItem, options: .init())
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListBackupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBackups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1459,12 +1219,17 @@ extension Clients.CloudRedisClusterProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1499,12 +1264,19 @@ extension Clients.CloudRedisClusterProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

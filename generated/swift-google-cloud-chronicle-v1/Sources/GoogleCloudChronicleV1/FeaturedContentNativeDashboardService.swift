@@ -59,22 +59,6 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
     try await self.inner.listFeaturedContentNativeDashboards(request: request, options: options)
   }
 
-  /// List all native dashboards featured content.
-  ///
-  /// @Snippet(path: "FeaturedContentNativeDashboardService_ListFeaturedContentNativeDashboards")
-  public func listFeaturedContentNativeDashboards(
-    byItem: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listFeaturedContentNativeDashboards(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Install a native dashboard featured content.
   ///
   /// @Snippet(path: "FeaturedContentNativeDashboardService_InstallFeaturedContentNativeDashboard")
@@ -93,23 +77,6 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "FeaturedContentNativeDashboardService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -152,71 +119,7 @@ extension Clients {
   /// To mock `FeaturedContentNativeDashboardServiceClient` change your functions to receive
   /// `some FeaturedContentNativeDashboardServiceProtocol` or `any FeaturedContentNativeDashboardServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol FeaturedContentNativeDashboardServiceProtocol {
-    /// See `FeaturedContentNativeDashboardServiceClient.getFeaturedContentNativeDashboard`.
-    func getFeaturedContentNativeDashboard(request: GetFeaturedContentNativeDashboardRequest)
-      async throws -> GoogleCloudChronicleV1.FeaturedContentNativeDashboard
-
-    /// See `FeaturedContentNativeDashboardServiceClient.getFeaturedContentNativeDashboard`.
-    func getFeaturedContentNativeDashboard(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.FeaturedContentNativeDashboard
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
-    func listFeaturedContentNativeDashboards(request: ListFeaturedContentNativeDashboardsRequest)
-      async throws -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
-    func listFeaturedContentNativeDashboards(
-      byItem: ListFeaturedContentNativeDashboardsRequest
-    ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
-    func listFeaturedContentNativeDashboards(
-      parent: Swift.String,
-    ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
-
-    /// See `FeaturedContentNativeDashboardServiceClient.installFeaturedContentNativeDashboard`.
-    func installFeaturedContentNativeDashboard(
-      request: InstallFeaturedContentNativeDashboardRequest
-    ) async throws -> GoogleCloudChronicleV1.InstallFeaturedContentNativeDashboardResponse
-
-    /// See `FeaturedContentNativeDashboardServiceClient.installFeaturedContentNativeDashboard`.
-    func installFeaturedContentNativeDashboard(
-      name: Swift.String,
-    ) async throws -> GoogleCloudChronicleV1.InstallFeaturedContentNativeDashboardResponse
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `FeaturedContentNativeDashboardServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `FeaturedContentNativeDashboardServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `FeaturedContentNativeDashboardServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `FeaturedContentNativeDashboardServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol FeaturedContentNativeDashboardServiceProtocol: Sendable {
     /// See `FeaturedContentNativeDashboardServiceClient.getFeaturedContentNativeDashboard`.
     func getFeaturedContentNativeDashboard(
       request: GetFeaturedContentNativeDashboardRequest, options: GoogleGax.RequestOptions
@@ -227,11 +130,6 @@ extension Clients {
       request: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse
 
-    /// See `FeaturedContentNativeDashboardServiceClient.listFeaturedContentNativeDashboards`.
-    func listFeaturedContentNativeDashboards(
-      byItem: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error>
-
     /// See `FeaturedContentNativeDashboardServiceClient.installFeaturedContentNativeDashboard`.
     func installFeaturedContentNativeDashboard(
       request: InstallFeaturedContentNativeDashboardRequest, options: GoogleGax.RequestOptions
@@ -241,11 +139,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `FeaturedContentNativeDashboardServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `FeaturedContentNativeDashboardServiceClient.deleteOperation`.
     func deleteOperation(
@@ -300,13 +193,18 @@ extension Clients.FeaturedContentNativeDashboardServiceProtocol {
     self.listFeaturedContentNativeDashboards(byItem: byItem, options: .init())
   }
 
+  /// List all native dashboards featured content.
+  ///
+  /// @Snippet(path: "FeaturedContentNativeDashboardService_ListFeaturedContentNativeDashboards")
   public func listFeaturedContentNativeDashboards(
     byItem: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FeaturedContentNativeDashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listFeaturedContentNativeDashboards(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -359,12 +257,19 @@ extension Clients.FeaturedContentNativeDashboardServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeaturedContentNativeDashboardService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

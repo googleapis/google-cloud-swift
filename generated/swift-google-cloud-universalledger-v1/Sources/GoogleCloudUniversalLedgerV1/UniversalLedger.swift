@@ -66,21 +66,6 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
     try await self.inner.listEndpoints(request: request, options: options)
   }
 
-  /// Lists all endpoints for a given project and location.
-  ///
-  /// @Snippet(path: "UniversalLedger_ListEndpoints")
-  public func listEndpoints(
-    byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEndpoints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the details of a specific endpoint.
   ///
   /// @Snippet(path: "UniversalLedger_GetEndpoint")
@@ -149,80 +134,7 @@ extension Clients {
   /// To mock `UniversalLedgerClient` change your functions to receive
   /// `some UniversalLedgerProtocol` or `any UniversalLedgerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol UniversalLedgerProtocol {
-    /// See `UniversalLedgerClient.submitTransaction`.
-    func submitTransaction(request: SubmitTransactionRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse
-
-    /// See `UniversalLedgerClient.submitTransaction`.
-    func submitTransaction(
-      endpoint: Swift.String,
-      serializedSignedTransaction: Foundation.Data,
-    ) async throws -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse
-
-    /// See `UniversalLedgerClient.listEndpoints`.
-    func listEndpoints(request: ListEndpointsRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse
-
-    /// See `UniversalLedgerClient.listEndpoints`.
-    func listEndpoints(
-      byItem: ListEndpointsRequest
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-    /// See `UniversalLedgerClient.listEndpoints`.
-    func listEndpoints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-    /// See `UniversalLedgerClient.getEndpoint`.
-    func getEndpoint(request: GetEndpointRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.Endpoint
-
-    /// See `UniversalLedgerClient.getEndpoint`.
-    func getEndpoint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudUniversalLedgerV1.Endpoint
-
-    /// See `UniversalLedgerClient.submitOperationalTransaction`.
-    func submitOperationalTransaction(request: SubmitOperationalTransactionRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse
-
-    /// See `UniversalLedgerClient.submitOperationalTransaction`.
-    func submitOperationalTransaction(
-      endpoint: Swift.String,
-      serializedSignedOperationalTransaction: Foundation.Data,
-    ) async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse
-
-    /// See `UniversalLedgerClient.queryTransactionState`.
-    func queryTransactionState(request: QueryTransactionStateRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse
-
-    /// See `UniversalLedgerClient.queryTransactionState`.
-    func queryTransactionState(
-      endpoint: Swift.String,
-      transactionDigestHex: Swift.String,
-    ) async throws -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse
-
-    /// See `UniversalLedgerClient.queryAccount`.
-    func queryAccount(request: QueryAccountRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
-
-    /// See `UniversalLedgerClient.queryAccount`.
-    func queryAccount(
-      endpoint: Swift.String,
-      accountId: Swift.String,
-    ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
-
-    /// See `UniversalLedgerClient.queryData`.
-    func queryData(request: QueryDataRequest) async throws
-      -> GoogleCloudUniversalLedgerV1.QueryDataResponse
-
-    /// See `UniversalLedgerClient.queryData`.
-    func queryData(
-      endpoint: Swift.String,
-      serializedSignedQueryRequest: Foundation.Data,
-    ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse
-
+  public protocol UniversalLedgerProtocol: Sendable {
     /// See `UniversalLedgerClient.submitTransaction`.
     func submitTransaction(
       request: SubmitTransactionRequest, options: GoogleGax.RequestOptions
@@ -232,11 +144,6 @@ extension Clients {
     func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse
-
-    /// See `UniversalLedgerClient.listEndpoints`.
-    func listEndpoints(
-      byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
 
     /// See `UniversalLedgerClient.getEndpoint`.
     func getEndpoint(
@@ -308,12 +215,17 @@ extension Clients.UniversalLedgerProtocol {
     self.listEndpoints(byItem: byItem, options: .init())
   }
 
+  /// Lists all endpoints for a given project and location.
+  ///
+  /// @Snippet(path: "UniversalLedger_ListEndpoints")
   public func listEndpoints(
     byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -86,22 +86,6 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
     try await self.inner.enumerateLicensedUsers(request: request, options: options)
   }
 
-  /// Enumerates all users assigned a license.
-  ///
-  /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
-  public func enumerateLicensedUsers(
-    byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LicensedUser, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.enumerateLicensedUsers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -120,60 +104,7 @@ extension Clients {
   /// To mock `LicenseManagementServiceClient` change your functions to receive
   /// `some LicenseManagementServiceProtocol` or `any LicenseManagementServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol LicenseManagementServiceProtocol {
-    /// See `LicenseManagementServiceClient.getLicensePool`.
-    func getLicensePool(request: GetLicensePoolRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
-
-    /// See `LicenseManagementServiceClient.getLicensePool`.
-    func getLicensePool(
-      name: Swift.String,
-    ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
-
-    /// See `LicenseManagementServiceClient.updateLicensePool`.
-    func updateLicensePool(request: UpdateLicensePoolRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
-
-    /// See `LicenseManagementServiceClient.updateLicensePool`.
-    func updateLicensePool(
-      licensePool: LicensePool?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
-
-    /// See `LicenseManagementServiceClient.assign`.
-    func assign(request: AssignRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.AssignResponse
-
-    /// See `LicenseManagementServiceClient.assign`.
-    func assign(
-      parent: Swift.String,
-      usernames: [Swift.String],
-    ) async throws -> GoogleCloudCommerceConsumerProcurementV1.AssignResponse
-
-    /// See `LicenseManagementServiceClient.unassign`.
-    func unassign(request: UnassignRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.UnassignResponse
-
-    /// See `LicenseManagementServiceClient.unassign`.
-    func unassign(
-      parent: Swift.String,
-      usernames: [Swift.String],
-    ) async throws -> GoogleCloudCommerceConsumerProcurementV1.UnassignResponse
-
-    /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
-    func enumerateLicensedUsers(request: EnumerateLicensedUsersRequest) async throws
-      -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse
-
-    /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
-    func enumerateLicensedUsers(
-      byItem: EnumerateLicensedUsersRequest
-    ) -> any AsyncSequence<LicensedUser, Swift.Error>
-
-    /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
-    func enumerateLicensedUsers(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LicensedUser, Swift.Error>
-
+  public protocol LicenseManagementServiceProtocol: Sendable {
     /// See `LicenseManagementServiceClient.getLicensePool`.
     func getLicensePool(
       request: GetLicensePoolRequest, options: GoogleGax.RequestOptions
@@ -198,11 +129,6 @@ extension Clients {
     func enumerateLicensedUsers(
       request: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse
-
-    /// See `LicenseManagementServiceClient.enumerateLicensedUsers`.
-    func enumerateLicensedUsers(
-      byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LicensedUser, Swift.Error>
   }
 }
 
@@ -316,13 +242,18 @@ extension Clients.LicenseManagementServiceProtocol {
     self.enumerateLicensedUsers(byItem: byItem, options: .init())
   }
 
+  /// Enumerates all users assigned a license.
+  ///
+  /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
   public func enumerateLicensedUsers(
     byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LicensedUser, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.enumerateLicensedUsers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

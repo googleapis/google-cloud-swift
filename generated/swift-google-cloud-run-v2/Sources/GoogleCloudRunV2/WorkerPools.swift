@@ -96,21 +96,6 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
     try await self.inner.listWorkerPools(request: request, options: options)
   }
 
-  /// Lists WorkerPools. Results are sorted by creation time, descending.
-  ///
-  /// @Snippet(path: "WorkerPools_ListWorkerPools")
-  public func listWorkerPools(
-    byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listWorkerPools(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates a WorkerPool.
   ///
   /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
@@ -227,23 +212,6 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "WorkerPools_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "WorkerPools_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -280,11 +248,7 @@ extension Clients {
   /// To mock `WorkerPoolsClient` change your functions to receive
   /// `some WorkerPoolsProtocol` or `any WorkerPoolsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol WorkerPoolsProtocol {
-    /// See `WorkerPoolsClient.createWorkerPool`.
-    func createWorkerPool(request: CreateWorkerPoolRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol WorkerPoolsProtocol: Sendable {
     /// See `WorkerPoolsClient.createWorkerPool`.
     func createWorkerPool(withPolling: CreateWorkerPoolRequest) async throws -> any GoogleGax
       .PollableOperation<WorkerPool>
@@ -295,32 +259,6 @@ extension Clients {
       workerPool: WorkerPool?,
       workerPoolId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.getWorkerPool`.
-    func getWorkerPool(request: GetWorkerPoolRequest) async throws -> GoogleCloudRunV2.WorkerPool
-
-    /// See `WorkerPoolsClient.getWorkerPool`.
-    func getWorkerPool(
-      name: Swift.String,
-    ) async throws -> GoogleCloudRunV2.WorkerPool
-
-    /// See `WorkerPoolsClient.listWorkerPools`.
-    func listWorkerPools(request: ListWorkerPoolsRequest) async throws
-      -> GoogleCloudRunV2.ListWorkerPoolsResponse
-
-    /// See `WorkerPoolsClient.listWorkerPools`.
-    func listWorkerPools(
-      byItem: ListWorkerPoolsRequest
-    ) -> any AsyncSequence<WorkerPool, Swift.Error>
-
-    /// See `WorkerPoolsClient.listWorkerPools`.
-    func listWorkerPools(
-      parent: Swift.String,
-    ) -> any AsyncSequence<WorkerPool, Swift.Error>
-
-    /// See `WorkerPoolsClient.updateWorkerPool`.
-    func updateWorkerPool(request: UpdateWorkerPoolRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPool(withPolling: UpdateWorkerPoolRequest) async throws -> any GoogleGax
@@ -338,10 +276,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `WorkerPoolsClient.deleteWorkerPool`.
-    func deleteWorkerPool(request: DeleteWorkerPoolRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `WorkerPoolsClient.deleteWorkerPool`.
     func deleteWorkerPool(withPolling: DeleteWorkerPoolRequest) async throws -> any GoogleGax
       .PollableOperation<WorkerPool>
 
@@ -349,43 +283,6 @@ extension Clients {
     func deleteWorkerPool(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `WorkerPoolsClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `WorkerPoolsClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `WorkerPoolsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `WorkerPoolsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `WorkerPoolsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `WorkerPoolsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `WorkerPoolsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WorkerPoolsClient.waitOperation`.
-    func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `WorkerPoolsClient.createWorkerPool`.
     func createWorkerPool(
@@ -406,11 +303,6 @@ extension Clients {
     func listWorkerPools(
       request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse
-
-    /// See `WorkerPoolsClient.listWorkerPools`.
-    func listWorkerPools(
-      byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<WorkerPool, Swift.Error>
 
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPool(
@@ -451,11 +343,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `WorkerPoolsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkerPoolsClient.deleteOperation`.
     func deleteOperation(
@@ -551,12 +438,17 @@ extension Clients.WorkerPoolsProtocol {
     self.listWorkerPools(byItem: byItem, options: .init())
   }
 
+  /// Lists WorkerPools. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "WorkerPools_ListWorkerPools")
   public func listWorkerPools(
     byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listWorkerPools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -709,12 +601,19 @@ extension Clients.WorkerPoolsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

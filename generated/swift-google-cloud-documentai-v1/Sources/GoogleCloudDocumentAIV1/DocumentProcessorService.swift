@@ -116,21 +116,6 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
     try await self.inner.listProcessorTypes(request: request, options: options)
   }
 
-  /// Lists the processor types that exist.
-  ///
-  /// @Snippet(path: "DocumentProcessorService_ListProcessorTypes")
-  public func listProcessorTypes(
-    byItem: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProcessorType, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProcessorTypes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a processor type detail.
   ///
   /// @Snippet(path: "DocumentProcessorService_GetProcessorType")
@@ -147,21 +132,6 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse {
     try await self.inner.listProcessors(request: request, options: options)
-  }
-
-  /// Lists all processors which belong to this project.
-  ///
-  /// @Snippet(path: "DocumentProcessorService_ListProcessors")
-  public func listProcessors(
-    byItem: ListProcessorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Processor, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProcessors(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a processor detail.
@@ -233,21 +203,6 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
     request: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse {
     try await self.inner.listProcessorVersions(request: request, options: options)
-  }
-
-  /// Lists all versions of a processor.
-  ///
-  /// @Snippet(path: "DocumentProcessorService_ListProcessorVersions")
-  public func listProcessorVersions(
-    byItem: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listProcessorVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Deletes the processor version, all artifacts under the processor version
@@ -632,21 +587,6 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
     try await self.inner.listEvaluations(request: request, options: options)
   }
 
-  /// Retrieves a set of evaluations for a given processor version.
-  ///
-  /// @Snippet(path: "DocumentProcessorService_ListEvaluations")
-  public func listEvaluations(
-    byItem: ListEvaluationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Evaluation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListEvaluationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEvaluations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DocumentProcessorService_ListLocations")
@@ -654,21 +594,6 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "DocumentProcessorService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -689,23 +614,6 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "DocumentProcessorService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -737,20 +645,7 @@ extension Clients {
   /// To mock `DocumentProcessorServiceClient` change your functions to receive
   /// `some DocumentProcessorServiceProtocol` or `any DocumentProcessorServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DocumentProcessorServiceProtocol {
-    /// See `DocumentProcessorServiceClient.processDocument`.
-    func processDocument(request: ProcessRequest) async throws
-      -> GoogleCloudDocumentAIV1.ProcessResponse
-
-    /// See `DocumentProcessorServiceClient.processDocument`.
-    func processDocument(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDocumentAIV1.ProcessResponse
-
-    /// See `DocumentProcessorServiceClient.batchProcessDocuments`.
-    func batchProcessDocuments(request: BatchProcessRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol DocumentProcessorServiceProtocol: Sendable {
     /// See `DocumentProcessorServiceClient.batchProcessDocuments`.
     func batchProcessDocuments(withPolling: BatchProcessRequest) async throws -> any GoogleGax
       .PollableOperation<BatchProcessResponse>
@@ -759,65 +654,6 @@ extension Clients {
     func batchProcessDocuments(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<BatchProcessResponse>
-
-    /// See `DocumentProcessorServiceClient.fetchProcessorTypes`.
-    func fetchProcessorTypes(request: FetchProcessorTypesRequest) async throws
-      -> GoogleCloudDocumentAIV1.FetchProcessorTypesResponse
-
-    /// See `DocumentProcessorServiceClient.fetchProcessorTypes`.
-    func fetchProcessorTypes(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudDocumentAIV1.FetchProcessorTypesResponse
-
-    /// See `DocumentProcessorServiceClient.listProcessorTypes`.
-    func listProcessorTypes(request: ListProcessorTypesRequest) async throws
-      -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse
-
-    /// See `DocumentProcessorServiceClient.listProcessorTypes`.
-    func listProcessorTypes(
-      byItem: ListProcessorTypesRequest
-    ) -> any AsyncSequence<ProcessorType, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.listProcessorTypes`.
-    func listProcessorTypes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ProcessorType, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.getProcessorType`.
-    func getProcessorType(request: GetProcessorTypeRequest) async throws
-      -> GoogleCloudDocumentAIV1.ProcessorType
-
-    /// See `DocumentProcessorServiceClient.getProcessorType`.
-    func getProcessorType(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDocumentAIV1.ProcessorType
-
-    /// See `DocumentProcessorServiceClient.listProcessors`.
-    func listProcessors(request: ListProcessorsRequest) async throws
-      -> GoogleCloudDocumentAIV1.ListProcessorsResponse
-
-    /// See `DocumentProcessorServiceClient.listProcessors`.
-    func listProcessors(
-      byItem: ListProcessorsRequest
-    ) -> any AsyncSequence<Processor, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.listProcessors`.
-    func listProcessors(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Processor, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.getProcessor`.
-    func getProcessor(request: GetProcessorRequest) async throws
-      -> GoogleCloudDocumentAIV1.Processor
-
-    /// See `DocumentProcessorServiceClient.getProcessor`.
-    func getProcessor(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDocumentAIV1.Processor
-
-    /// See `DocumentProcessorServiceClient.trainProcessorVersion`.
-    func trainProcessorVersion(request: TrainProcessorVersionRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DocumentProcessorServiceClient.trainProcessorVersion`.
     func trainProcessorVersion(withPolling: TrainProcessorVersionRequest) async throws
@@ -829,33 +665,6 @@ extension Clients {
       processorVersion: ProcessorVersion?,
     ) async throws -> any GoogleGax.PollableOperation<TrainProcessorVersionResponse>
 
-    /// See `DocumentProcessorServiceClient.getProcessorVersion`.
-    func getProcessorVersion(request: GetProcessorVersionRequest) async throws
-      -> GoogleCloudDocumentAIV1.ProcessorVersion
-
-    /// See `DocumentProcessorServiceClient.getProcessorVersion`.
-    func getProcessorVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDocumentAIV1.ProcessorVersion
-
-    /// See `DocumentProcessorServiceClient.listProcessorVersions`.
-    func listProcessorVersions(request: ListProcessorVersionsRequest) async throws
-      -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse
-
-    /// See `DocumentProcessorServiceClient.listProcessorVersions`.
-    func listProcessorVersions(
-      byItem: ListProcessorVersionsRequest
-    ) -> any AsyncSequence<ProcessorVersion, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.listProcessorVersions`.
-    func listProcessorVersions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ProcessorVersion, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.deleteProcessorVersion`.
-    func deleteProcessorVersion(request: DeleteProcessorVersionRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `DocumentProcessorServiceClient.deleteProcessorVersion`.
     func deleteProcessorVersion(withPolling: DeleteProcessorVersionRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
@@ -864,10 +673,6 @@ extension Clients {
     func deleteProcessorVersion(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DocumentProcessorServiceClient.deployProcessorVersion`.
-    func deployProcessorVersion(request: DeployProcessorVersionRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DocumentProcessorServiceClient.deployProcessorVersion`.
     func deployProcessorVersion(withPolling: DeployProcessorVersionRequest) async throws
@@ -879,10 +684,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<DeployProcessorVersionResponse>
 
     /// See `DocumentProcessorServiceClient.undeployProcessorVersion`.
-    func undeployProcessorVersion(request: UndeployProcessorVersionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DocumentProcessorServiceClient.undeployProcessorVersion`.
     func undeployProcessorVersion(withPolling: UndeployProcessorVersionRequest) async throws
       -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse>
 
@@ -890,20 +691,6 @@ extension Clients {
     func undeployProcessorVersion(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse>
-
-    /// See `DocumentProcessorServiceClient.createProcessor`.
-    func createProcessor(request: CreateProcessorRequest) async throws
-      -> GoogleCloudDocumentAIV1.Processor
-
-    /// See `DocumentProcessorServiceClient.createProcessor`.
-    func createProcessor(
-      parent: Swift.String,
-      processor: Processor?,
-    ) async throws -> GoogleCloudDocumentAIV1.Processor
-
-    /// See `DocumentProcessorServiceClient.deleteProcessor`.
-    func deleteProcessor(request: DeleteProcessorRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DocumentProcessorServiceClient.deleteProcessor`.
     func deleteProcessor(withPolling: DeleteProcessorRequest) async throws -> any GoogleGax
@@ -915,31 +702,16 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DocumentProcessorServiceClient.enableProcessor`.
-    func enableProcessor(request: EnableProcessorRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DocumentProcessorServiceClient.enableProcessor`.
     func enableProcessor(withPolling: EnableProcessorRequest) async throws -> any GoogleGax
       .PollableOperation<EnableProcessorResponse>
-
-    /// See `DocumentProcessorServiceClient.disableProcessor`.
-    func disableProcessor(request: DisableProcessorRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DocumentProcessorServiceClient.disableProcessor`.
     func disableProcessor(withPolling: DisableProcessorRequest) async throws -> any GoogleGax
       .PollableOperation<DisableProcessorResponse>
 
     /// See `DocumentProcessorServiceClient.setDefaultProcessorVersion`.
-    func setDefaultProcessorVersion(request: SetDefaultProcessorVersionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DocumentProcessorServiceClient.setDefaultProcessorVersion`.
     func setDefaultProcessorVersion(withPolling: SetDefaultProcessorVersionRequest) async throws
       -> any GoogleGax.PollableOperation<SetDefaultProcessorVersionResponse>
-
-    /// See `DocumentProcessorServiceClient.reviewDocument`.
-    func reviewDocument(request: ReviewDocumentRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DocumentProcessorServiceClient.reviewDocument`.
     func reviewDocument(withPolling: ReviewDocumentRequest) async throws -> any GoogleGax
@@ -951,10 +723,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ReviewDocumentResponse>
 
     /// See `DocumentProcessorServiceClient.evaluateProcessorVersion`.
-    func evaluateProcessorVersion(request: EvaluateProcessorVersionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DocumentProcessorServiceClient.evaluateProcessorVersion`.
     func evaluateProcessorVersion(withPolling: EvaluateProcessorVersionRequest) async throws
       -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse>
 
@@ -962,65 +730,6 @@ extension Clients {
     func evaluateProcessorVersion(
       processorVersion: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse>
-
-    /// See `DocumentProcessorServiceClient.getEvaluation`.
-    func getEvaluation(request: GetEvaluationRequest) async throws
-      -> GoogleCloudDocumentAIV1.Evaluation
-
-    /// See `DocumentProcessorServiceClient.getEvaluation`.
-    func getEvaluation(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDocumentAIV1.Evaluation
-
-    /// See `DocumentProcessorServiceClient.listEvaluations`.
-    func listEvaluations(request: ListEvaluationsRequest) async throws
-      -> GoogleCloudDocumentAIV1.ListEvaluationsResponse
-
-    /// See `DocumentProcessorServiceClient.listEvaluations`.
-    func listEvaluations(
-      byItem: ListEvaluationsRequest
-    ) -> any AsyncSequence<Evaluation, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.listEvaluations`.
-    func listEvaluations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Evaluation, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `DocumentProcessorServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `DocumentProcessorServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DocumentProcessorServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DocumentProcessorServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DocumentProcessorServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `DocumentProcessorServiceClient.processDocument`.
     func processDocument(
@@ -1047,11 +756,6 @@ extension Clients {
       request: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse
 
-    /// See `DocumentProcessorServiceClient.listProcessorTypes`.
-    func listProcessorTypes(
-      byItem: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ProcessorType, Swift.Error>
-
     /// See `DocumentProcessorServiceClient.getProcessorType`.
     func getProcessorType(
       request: GetProcessorTypeRequest, options: GoogleGax.RequestOptions
@@ -1061,11 +765,6 @@ extension Clients {
     func listProcessors(
       request: ListProcessorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse
-
-    /// See `DocumentProcessorServiceClient.listProcessors`.
-    func listProcessors(
-      byItem: ListProcessorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Processor, Swift.Error>
 
     /// See `DocumentProcessorServiceClient.getProcessor`.
     func getProcessor(
@@ -1091,11 +790,6 @@ extension Clients {
     func listProcessorVersions(
       request: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse
-
-    /// See `DocumentProcessorServiceClient.listProcessorVersions`.
-    func listProcessorVersions(
-      byItem: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ProcessorVersion, Swift.Error>
 
     /// See `DocumentProcessorServiceClient.deleteProcessorVersion`.
     func deleteProcessorVersion(
@@ -1202,20 +896,10 @@ extension Clients {
       request: ListEvaluationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListEvaluationsResponse
 
-    /// See `DocumentProcessorServiceClient.listEvaluations`.
-    func listEvaluations(
-      byItem: ListEvaluationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Evaluation, Swift.Error>
-
     /// See `DocumentProcessorServiceClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `DocumentProcessorServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `DocumentProcessorServiceClient.getLocation`.
     func getLocation(
@@ -1226,11 +910,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DocumentProcessorServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DocumentProcessorServiceClient.cancelOperation`.
     func cancelOperation(
@@ -1338,12 +1017,17 @@ extension Clients.DocumentProcessorServiceProtocol {
     self.listProcessorTypes(byItem: byItem, options: .init())
   }
 
+  /// Lists the processor types that exist.
+  ///
+  /// @Snippet(path: "DocumentProcessorService_ListProcessorTypes")
   public func listProcessorTypes(
     byItem: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ProcessorType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProcessorTypes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1396,12 +1080,17 @@ extension Clients.DocumentProcessorServiceProtocol {
     self.listProcessors(byItem: byItem, options: .init())
   }
 
+  /// Lists all processors which belong to this project.
+  ///
+  /// @Snippet(path: "DocumentProcessorService_ListProcessors")
   public func listProcessors(
     byItem: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Processor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProcessors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1515,12 +1204,17 @@ extension Clients.DocumentProcessorServiceProtocol {
     self.listProcessorVersions(byItem: byItem, options: .init())
   }
 
+  /// Lists all versions of a processor.
+  ///
+  /// @Snippet(path: "DocumentProcessorService_ListProcessorVersions")
   public func listProcessorVersions(
     byItem: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ProcessorVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listProcessorVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1910,12 +1604,17 @@ extension Clients.DocumentProcessorServiceProtocol {
     self.listEvaluations(byItem: byItem, options: .init())
   }
 
+  /// Retrieves a set of evaluations for a given processor version.
+  ///
+  /// @Snippet(path: "DocumentProcessorService_ListEvaluations")
   public func listEvaluations(
     byItem: ListEvaluationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Evaluation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListEvaluationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEvaluations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1947,12 +1646,17 @@ extension Clients.DocumentProcessorServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "DocumentProcessorService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1987,12 +1691,19 @@ extension Clients.DocumentProcessorServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DocumentProcessorService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -65,22 +65,6 @@ public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtoco
     try await self.inner.listDeviceSessions(request: request, options: options)
   }
 
-  /// Lists DeviceSessions owned by the project user.
-  ///
-  /// @Snippet(path: "DirectAccessService_ListDeviceSessions")
-  public func listDeviceSessions(
-    byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeviceSession, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDeviceSessions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a DeviceSession, which documents the allocation status and
   /// whether the device is allocated. Clients making requests from this API
   /// must poll GetDeviceSession.
@@ -122,54 +106,7 @@ extension Clients {
   /// To mock `DirectAccessServiceClient` change your functions to receive
   /// `some DirectAccessServiceProtocol` or `any DirectAccessServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DirectAccessServiceProtocol {
-    /// See `DirectAccessServiceClient.createDeviceSession`.
-    func createDeviceSession(request: CreateDeviceSessionRequest) async throws
-      -> GoogleCloudDeviceStreamingV1.DeviceSession
-
-    /// See `DirectAccessServiceClient.createDeviceSession`.
-    func createDeviceSession(
-      parent: Swift.String,
-      deviceSession: DeviceSession?,
-      deviceSessionId: Swift.String,
-    ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession
-
-    /// See `DirectAccessServiceClient.listDeviceSessions`.
-    func listDeviceSessions(request: ListDeviceSessionsRequest) async throws
-      -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
-
-    /// See `DirectAccessServiceClient.listDeviceSessions`.
-    func listDeviceSessions(
-      byItem: ListDeviceSessionsRequest
-    ) -> any AsyncSequence<DeviceSession, Swift.Error>
-
-    /// See `DirectAccessServiceClient.listDeviceSessions`.
-    func listDeviceSessions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DeviceSession, Swift.Error>
-
-    /// See `DirectAccessServiceClient.getDeviceSession`.
-    func getDeviceSession(request: GetDeviceSessionRequest) async throws
-      -> GoogleCloudDeviceStreamingV1.DeviceSession
-
-    /// See `DirectAccessServiceClient.getDeviceSession`.
-    func getDeviceSession(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession
-
-    /// See `DirectAccessServiceClient.cancelDeviceSession`.
-    func cancelDeviceSession(request: CancelDeviceSessionRequest) async throws
-
-    /// See `DirectAccessServiceClient.updateDeviceSession`.
-    func updateDeviceSession(request: UpdateDeviceSessionRequest) async throws
-      -> GoogleCloudDeviceStreamingV1.DeviceSession
-
-    /// See `DirectAccessServiceClient.updateDeviceSession`.
-    func updateDeviceSession(
-      deviceSession: DeviceSession?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession
-
+  public protocol DirectAccessServiceProtocol: Sendable {
     /// See `DirectAccessServiceClient.createDeviceSession`.
     func createDeviceSession(
       request: CreateDeviceSessionRequest, options: GoogleGax.RequestOptions
@@ -179,11 +116,6 @@ extension Clients {
     func listDeviceSessions(
       request: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
-
-    /// See `DirectAccessServiceClient.listDeviceSessions`.
-    func listDeviceSessions(
-      byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DeviceSession, Swift.Error>
 
     /// See `DirectAccessServiceClient.getDeviceSession`.
     func getDeviceSession(
@@ -247,13 +179,18 @@ extension Clients.DirectAccessServiceProtocol {
     self.listDeviceSessions(byItem: byItem, options: .init())
   }
 
+  /// Lists DeviceSessions owned by the project user.
+  ///
+  /// @Snippet(path: "DirectAccessService_ListDeviceSessions")
   public func listDeviceSessions(
     byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DeviceSession, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDeviceSessions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

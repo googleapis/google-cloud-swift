@@ -248,23 +248,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "CompletionService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "CompletionService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -290,65 +273,22 @@
     /// To mock `CompletionServiceClient` change your functions to receive
     /// `some CompletionServiceProtocol` or `any CompletionServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol CompletionServiceProtocol {
-      /// See `CompletionServiceClient.completeQuery`.
-      func completeQuery(request: CompleteQueryRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse
-
-      /// See `CompletionServiceClient.importSuggestionDenyListEntries`.
-      func importSuggestionDenyListEntries(request: ImportSuggestionDenyListEntriesRequest)
-        async throws -> GoogleLongRunning.Operation
-
+    public protocol CompletionServiceProtocol: Sendable {
       /// See `CompletionServiceClient.importSuggestionDenyListEntries`.
       func importSuggestionDenyListEntries(withPolling: ImportSuggestionDenyListEntriesRequest)
         async throws -> any GoogleGax.PollableOperation<ImportSuggestionDenyListEntriesResponse>
-
-      /// See `CompletionServiceClient.purgeSuggestionDenyListEntries`.
-      func purgeSuggestionDenyListEntries(request: PurgeSuggestionDenyListEntriesRequest)
-        async throws -> GoogleLongRunning.Operation
 
       /// See `CompletionServiceClient.purgeSuggestionDenyListEntries`.
       func purgeSuggestionDenyListEntries(withPolling: PurgeSuggestionDenyListEntriesRequest)
         async throws -> any GoogleGax.PollableOperation<PurgeSuggestionDenyListEntriesResponse>
 
       /// See `CompletionServiceClient.importCompletionSuggestions`.
-      func importCompletionSuggestions(request: ImportCompletionSuggestionsRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `CompletionServiceClient.importCompletionSuggestions`.
       func importCompletionSuggestions(withPolling: ImportCompletionSuggestionsRequest) async throws
         -> any GoogleGax.PollableOperation<ImportCompletionSuggestionsResponse>
 
       /// See `CompletionServiceClient.purgeCompletionSuggestions`.
-      func purgeCompletionSuggestions(request: PurgeCompletionSuggestionsRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `CompletionServiceClient.purgeCompletionSuggestions`.
       func purgeCompletionSuggestions(withPolling: PurgeCompletionSuggestionsRequest) async throws
         -> any GoogleGax.PollableOperation<PurgeCompletionSuggestionsResponse>
-
-      /// See `CompletionServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `CompletionServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `CompletionServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `CompletionServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `CompletionServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `CompletionServiceClient.completeQuery`.
       func completeQuery(
@@ -399,11 +339,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `CompletionServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `CompletionServiceClient.cancelOperation`.
       func cancelOperation(
@@ -564,12 +499,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompletionService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

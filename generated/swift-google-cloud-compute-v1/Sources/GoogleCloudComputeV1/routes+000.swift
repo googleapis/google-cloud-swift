@@ -157,20 +157,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of Route resources available to the specified project.
-    ///
-    /// @Snippet(path: "routes_list")
-    public func list(
-      byItem: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Route, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RouteList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "routes_testIamPermissions")
@@ -196,48 +182,7 @@
     /// To mock `RoutesClient` change your functions to receive
     /// `some RoutesProtocol` or `any RoutesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RoutesProtocol {
-      /// See `RoutesClient.delete`.
-      func delete(request: RoutesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RoutesClient.`get``.
-      func `get`(request: RoutesClient.GetRequest) async throws -> GoogleCloudComputeV1.Route
-
-      /// See `RoutesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        route: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Route
-
-      /// See `RoutesClient.insert`.
-      func insert(request: RoutesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RoutesClient.list`.
-      func list(request: RoutesClient.ListRequest) async throws -> GoogleCloudComputeV1.RouteList
-
-      /// See `RoutesClient.list`.
-      func list(
-        byItem: RoutesClient.ListRequest
-      ) -> any AsyncSequence<Route, Swift.Error>
-
-      /// See `RoutesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Route, Swift.Error>
-
-      /// See `RoutesClient.testIamPermissions`.
-      func testIamPermissions(request: RoutesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RoutesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol RoutesProtocol: Sendable {
       /// See `RoutesClient.delete`.
       func delete(
         request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -257,11 +202,6 @@
       func list(
         request: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouteList
-
-      /// See `RoutesClient.list`.
-      func list(
-        byItem: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Route, Swift.Error>
 
       /// See `RoutesClient.testIamPermissions`.
       func testIamPermissions(
@@ -391,11 +331,16 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of Route resources available to the specified project.
+    ///
+    /// @Snippet(path: "routes_list")
     public func list(
       byItem: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Route, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RouteList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

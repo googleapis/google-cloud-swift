@@ -53,21 +53,6 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
     try await self.inner.listClusters(request: request, options: options)
   }
 
-  /// Lists the clusters in a given project and location.
-  ///
-  /// @Snippet(path: "ManagedKafka_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns the properties of a single cluster.
   ///
   /// @Snippet(path: "ManagedKafka_GetCluster")
@@ -189,21 +174,6 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
     try await self.inner.listTopics(request: request, options: options)
   }
 
-  /// Lists the topics in a given cluster.
-  ///
-  /// @Snippet(path: "ManagedKafka_ListTopics")
-  public func listTopics(
-    byItem: ListTopicsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Topic, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTopics(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns the properties of a single topic.
   ///
   /// @Snippet(path: "ManagedKafka_GetTopic")
@@ -249,21 +219,6 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
     try await self.inner.listConsumerGroups(request: request, options: options)
   }
 
-  /// Lists the consumer groups in a given cluster.
-  ///
-  /// @Snippet(path: "ManagedKafka_ListConsumerGroups")
-  public func listConsumerGroups(
-    byItem: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ConsumerGroup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConsumerGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Returns the properties of a single consumer group.
   ///
   /// @Snippet(path: "ManagedKafka_GetConsumerGroup")
@@ -298,21 +253,6 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
     request: ListAclsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse {
     try await self.inner.listAcls(request: request, options: options)
-  }
-
-  /// Lists the acls in a given cluster.
-  ///
-  /// @Snippet(path: "ManagedKafka_ListAcls")
-  public func listAcls(
-    byItem: ListAclsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Acl, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAcls(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Returns the properties of a single acl.
@@ -381,21 +321,6 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "ManagedKafka_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ManagedKafka_GetLocation")
@@ -414,23 +339,6 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "ManagedKafka_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -473,32 +381,7 @@ extension Clients {
   /// To mock `ManagedKafkaClient` change your functions to receive
   /// `some ManagedKafkaProtocol` or `any ManagedKafkaProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ManagedKafkaProtocol {
-    /// See `ManagedKafkaClient.listClusters`.
-    func listClusters(request: ListClustersRequest) async throws
-      -> GoogleCloudManagedKafkaV1.ListClustersResponse
-
-    /// See `ManagedKafkaClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `ManagedKafkaClient.listClusters`.
-    func listClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `ManagedKafkaClient.getCluster`.
-    func getCluster(request: GetClusterRequest) async throws -> GoogleCloudManagedKafkaV1.Cluster
-
-    /// See `ManagedKafkaClient.getCluster`.
-    func getCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaV1.Cluster
-
-    /// See `ManagedKafkaClient.createCluster`.
-    func createCluster(request: CreateClusterRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ManagedKafkaProtocol: Sendable {
     /// See `ManagedKafkaClient.createCluster`.
     func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
@@ -511,9 +394,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.updateCluster`.
-    func updateCluster(request: UpdateClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ManagedKafkaClient.updateCluster`.
     func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
@@ -524,9 +404,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.deleteCluster`.
-    func deleteCluster(request: DeleteClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ManagedKafkaClient.deleteCluster`.
     func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -535,218 +412,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `ManagedKafkaClient.listTopics`.
-    func listTopics(request: ListTopicsRequest) async throws
-      -> GoogleCloudManagedKafkaV1.ListTopicsResponse
-
-    /// See `ManagedKafkaClient.listTopics`.
-    func listTopics(
-      byItem: ListTopicsRequest
-    ) -> any AsyncSequence<Topic, Swift.Error>
-
-    /// See `ManagedKafkaClient.listTopics`.
-    func listTopics(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Topic, Swift.Error>
-
-    /// See `ManagedKafkaClient.getTopic`.
-    func getTopic(request: GetTopicRequest) async throws -> GoogleCloudManagedKafkaV1.Topic
-
-    /// See `ManagedKafkaClient.getTopic`.
-    func getTopic(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaV1.Topic
-
-    /// See `ManagedKafkaClient.createTopic`.
-    func createTopic(request: CreateTopicRequest) async throws -> GoogleCloudManagedKafkaV1.Topic
-
-    /// See `ManagedKafkaClient.createTopic`.
-    func createTopic(
-      parent: Swift.String,
-      topic: Topic?,
-      topicId: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaV1.Topic
-
-    /// See `ManagedKafkaClient.updateTopic`.
-    func updateTopic(request: UpdateTopicRequest) async throws -> GoogleCloudManagedKafkaV1.Topic
-
-    /// See `ManagedKafkaClient.updateTopic`.
-    func updateTopic(
-      topic: Topic?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudManagedKafkaV1.Topic
-
-    /// See `ManagedKafkaClient.deleteTopic`.
-    func deleteTopic(request: DeleteTopicRequest) async throws
-
-    /// See `ManagedKafkaClient.deleteTopic`.
-    func deleteTopic(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedKafkaClient.listConsumerGroups`.
-    func listConsumerGroups(request: ListConsumerGroupsRequest) async throws
-      -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse
-
-    /// See `ManagedKafkaClient.listConsumerGroups`.
-    func listConsumerGroups(
-      byItem: ListConsumerGroupsRequest
-    ) -> any AsyncSequence<ConsumerGroup, Swift.Error>
-
-    /// See `ManagedKafkaClient.listConsumerGroups`.
-    func listConsumerGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ConsumerGroup, Swift.Error>
-
-    /// See `ManagedKafkaClient.getConsumerGroup`.
-    func getConsumerGroup(request: GetConsumerGroupRequest) async throws
-      -> GoogleCloudManagedKafkaV1.ConsumerGroup
-
-    /// See `ManagedKafkaClient.getConsumerGroup`.
-    func getConsumerGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup
-
-    /// See `ManagedKafkaClient.updateConsumerGroup`.
-    func updateConsumerGroup(request: UpdateConsumerGroupRequest) async throws
-      -> GoogleCloudManagedKafkaV1.ConsumerGroup
-
-    /// See `ManagedKafkaClient.updateConsumerGroup`.
-    func updateConsumerGroup(
-      consumerGroup: ConsumerGroup?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup
-
-    /// See `ManagedKafkaClient.deleteConsumerGroup`.
-    func deleteConsumerGroup(request: DeleteConsumerGroupRequest) async throws
-
-    /// See `ManagedKafkaClient.deleteConsumerGroup`.
-    func deleteConsumerGroup(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedKafkaClient.listAcls`.
-    func listAcls(request: ListAclsRequest) async throws
-      -> GoogleCloudManagedKafkaV1.ListAclsResponse
-
-    /// See `ManagedKafkaClient.listAcls`.
-    func listAcls(
-      byItem: ListAclsRequest
-    ) -> any AsyncSequence<Acl, Swift.Error>
-
-    /// See `ManagedKafkaClient.listAcls`.
-    func listAcls(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Acl, Swift.Error>
-
-    /// See `ManagedKafkaClient.getAcl`.
-    func getAcl(request: GetAclRequest) async throws -> GoogleCloudManagedKafkaV1.Acl
-
-    /// See `ManagedKafkaClient.getAcl`.
-    func getAcl(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaV1.Acl
-
-    /// See `ManagedKafkaClient.createAcl`.
-    func createAcl(request: CreateAclRequest) async throws -> GoogleCloudManagedKafkaV1.Acl
-
-    /// See `ManagedKafkaClient.createAcl`.
-    func createAcl(
-      parent: Swift.String,
-      acl: Acl?,
-      aclId: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaV1.Acl
-
-    /// See `ManagedKafkaClient.updateAcl`.
-    func updateAcl(request: UpdateAclRequest) async throws -> GoogleCloudManagedKafkaV1.Acl
-
-    /// See `ManagedKafkaClient.updateAcl`.
-    func updateAcl(
-      acl: Acl?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudManagedKafkaV1.Acl
-
-    /// See `ManagedKafkaClient.deleteAcl`.
-    func deleteAcl(request: DeleteAclRequest) async throws
-
-    /// See `ManagedKafkaClient.deleteAcl`.
-    func deleteAcl(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedKafkaClient.addAclEntry`.
-    func addAclEntry(request: AddAclEntryRequest) async throws
-      -> GoogleCloudManagedKafkaV1.AddAclEntryResponse
-
-    /// See `ManagedKafkaClient.addAclEntry`.
-    func addAclEntry(
-      acl: Swift.String,
-      aclEntry: AclEntry?,
-    ) async throws -> GoogleCloudManagedKafkaV1.AddAclEntryResponse
-
-    /// See `ManagedKafkaClient.removeAclEntry`.
-    func removeAclEntry(request: RemoveAclEntryRequest) async throws
-      -> GoogleCloudManagedKafkaV1.RemoveAclEntryResponse
-
-    /// See `ManagedKafkaClient.removeAclEntry`.
-    func removeAclEntry(
-      acl: Swift.String,
-      aclEntry: AclEntry?,
-    ) async throws -> GoogleCloudManagedKafkaV1.RemoveAclEntryResponse
-
-    /// See `ManagedKafkaClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ManagedKafkaClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ManagedKafkaClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ManagedKafkaClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ManagedKafkaClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ManagedKafkaClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ManagedKafkaClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ManagedKafkaClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedKafkaClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ManagedKafkaClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `ManagedKafkaClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse
-
-    /// See `ManagedKafkaClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `ManagedKafkaClient.getCluster`.
     func getCluster(
@@ -788,11 +457,6 @@ extension Clients {
       request: ListTopicsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse
 
-    /// See `ManagedKafkaClient.listTopics`.
-    func listTopics(
-      byItem: ListTopicsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Topic, Swift.Error>
-
     /// See `ManagedKafkaClient.getTopic`.
     func getTopic(
       request: GetTopicRequest, options: GoogleGax.RequestOptions
@@ -818,11 +482,6 @@ extension Clients {
       request: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse
 
-    /// See `ManagedKafkaClient.listConsumerGroups`.
-    func listConsumerGroups(
-      byItem: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ConsumerGroup, Swift.Error>
-
     /// See `ManagedKafkaClient.getConsumerGroup`.
     func getConsumerGroup(
       request: GetConsumerGroupRequest, options: GoogleGax.RequestOptions
@@ -842,11 +501,6 @@ extension Clients {
     func listAcls(
       request: ListAclsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse
-
-    /// See `ManagedKafkaClient.listAcls`.
-    func listAcls(
-      byItem: ListAclsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Acl, Swift.Error>
 
     /// See `ManagedKafkaClient.getAcl`.
     func getAcl(
@@ -883,11 +537,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ManagedKafkaClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ManagedKafkaClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -897,11 +546,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ManagedKafkaClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ManagedKafkaClient.deleteOperation`.
     func deleteOperation(
@@ -935,12 +579,17 @@ extension Clients.ManagedKafkaProtocol {
     self.listClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists the clusters in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafka_ListClusters")
   public func listClusters(
     byItem: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1110,12 +759,17 @@ extension Clients.ManagedKafkaProtocol {
     self.listTopics(byItem: byItem, options: .init())
   }
 
+  /// Lists the topics in a given cluster.
+  ///
+  /// @Snippet(path: "ManagedKafka_ListTopics")
   public func listTopics(
     byItem: ListTopicsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Topic, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTopics(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1233,12 +887,17 @@ extension Clients.ManagedKafkaProtocol {
     self.listConsumerGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists the consumer groups in a given cluster.
+  ///
+  /// @Snippet(path: "ManagedKafka_ListConsumerGroups")
   public func listConsumerGroups(
     byItem: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ConsumerGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConsumerGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1333,12 +992,17 @@ extension Clients.ManagedKafkaProtocol {
     self.listAcls(byItem: byItem, options: .init())
   }
 
+  /// Lists the acls in a given cluster.
+  ///
+  /// @Snippet(path: "ManagedKafka_ListAcls")
   public func listAcls(
     byItem: ListAclsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Acl, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAcls(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1498,12 +1162,17 @@ extension Clients.ManagedKafkaProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ManagedKafka_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1538,12 +1207,19 @@ extension Clients.ManagedKafkaProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafka_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

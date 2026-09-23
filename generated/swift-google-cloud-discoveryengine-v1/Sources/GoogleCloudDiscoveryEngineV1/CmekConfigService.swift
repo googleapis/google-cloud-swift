@@ -156,23 +156,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "CmekConfigService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "CmekConfigService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -198,11 +181,7 @@
     /// To mock `CmekConfigServiceClient` change your functions to receive
     /// `some CmekConfigServiceProtocol` or `any CmekConfigServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol CmekConfigServiceProtocol {
-      /// See `CmekConfigServiceClient.updateCmekConfig`.
-      func updateCmekConfig(request: UpdateCmekConfigRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol CmekConfigServiceProtocol: Sendable {
       /// See `CmekConfigServiceClient.updateCmekConfig`.
       func updateCmekConfig(withPolling: UpdateCmekConfigRequest) async throws -> any GoogleGax
         .PollableOperation<CmekConfig>
@@ -212,28 +191,6 @@
         config: CmekConfig?,
       ) async throws -> any GoogleGax.PollableOperation<CmekConfig>
 
-      /// See `CmekConfigServiceClient.getCmekConfig`.
-      func getCmekConfig(request: GetCmekConfigRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.CmekConfig
-
-      /// See `CmekConfigServiceClient.getCmekConfig`.
-      func getCmekConfig(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.CmekConfig
-
-      /// See `CmekConfigServiceClient.listCmekConfigs`.
-      func listCmekConfigs(request: ListCmekConfigsRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListCmekConfigsResponse
-
-      /// See `CmekConfigServiceClient.listCmekConfigs`.
-      func listCmekConfigs(
-        parent: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.ListCmekConfigsResponse
-
-      /// See `CmekConfigServiceClient.deleteCmekConfig`.
-      func deleteCmekConfig(request: DeleteCmekConfigRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `CmekConfigServiceClient.deleteCmekConfig`.
       func deleteCmekConfig(withPolling: DeleteCmekConfigRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
@@ -242,29 +199,6 @@
       func deleteCmekConfig(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `CmekConfigServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `CmekConfigServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `CmekConfigServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `CmekConfigServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `CmekConfigServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `CmekConfigServiceClient.updateCmekConfig`.
       func updateCmekConfig(
@@ -300,11 +234,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `CmekConfigServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `CmekConfigServiceClient.cancelOperation`.
       func cancelOperation(
@@ -449,12 +378,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CmekConfigService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

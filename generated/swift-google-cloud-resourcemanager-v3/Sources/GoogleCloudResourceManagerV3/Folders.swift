@@ -73,27 +73,6 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
     try await self.inner.listFolders(request: request, options: options)
   }
 
-  /// Lists the folders that are direct descendants of supplied parent resource.
-  /// `list()` provides a strongly consistent view of the folders underneath
-  /// the specified parent resource.
-  /// `list()` returns folders sorted based upon the (ascending) lexical ordering
-  /// of their display_name.
-  /// The caller must have `resourcemanager.folders.list` permission on the
-  /// identified parent.
-  ///
-  /// @Snippet(path: "Folders_ListFolders")
-  public func listFolders(
-    byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Folder, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listFolders(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Search for folders that match specific filter criteria.
   /// `search()` provides an eventually consistent view of the folders a user has
   /// access to which meet the specified filter criteria.
@@ -106,26 +85,6 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
     request: SearchFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse {
     try await self.inner.searchFolders(request: request, options: options)
-  }
-
-  /// Search for folders that match specific filter criteria.
-  /// `search()` provides an eventually consistent view of the folders a user has
-  /// access to which meet the specified filter criteria.
-  ///
-  /// This will only return folders on which the caller has the
-  /// permission `resourcemanager.folders.get`.
-  ///
-  /// @Snippet(path: "Folders_SearchFolders")
-  public func searchFolders(
-    byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Folder, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchFolders(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Creates a folder in the resource hierarchy.
@@ -531,46 +490,7 @@ extension Clients {
   /// To mock `FoldersClient` change your functions to receive
   /// `some FoldersProtocol` or `any FoldersProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol FoldersProtocol {
-    /// See `FoldersClient.getFolder`.
-    func getFolder(request: GetFolderRequest) async throws -> GoogleCloudResourceManagerV3.Folder
-
-    /// See `FoldersClient.getFolder`.
-    func getFolder(
-      name: Swift.String,
-    ) async throws -> GoogleCloudResourceManagerV3.Folder
-
-    /// See `FoldersClient.listFolders`.
-    func listFolders(request: ListFoldersRequest) async throws
-      -> GoogleCloudResourceManagerV3.ListFoldersResponse
-
-    /// See `FoldersClient.listFolders`.
-    func listFolders(
-      byItem: ListFoldersRequest
-    ) -> any AsyncSequence<Folder, Swift.Error>
-
-    /// See `FoldersClient.listFolders`.
-    func listFolders(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Folder, Swift.Error>
-
-    /// See `FoldersClient.searchFolders`.
-    func searchFolders(request: SearchFoldersRequest) async throws
-      -> GoogleCloudResourceManagerV3.SearchFoldersResponse
-
-    /// See `FoldersClient.searchFolders`.
-    func searchFolders(
-      byItem: SearchFoldersRequest
-    ) -> any AsyncSequence<Folder, Swift.Error>
-
-    /// See `FoldersClient.searchFolders`.
-    func searchFolders(
-      query: Swift.String,
-    ) -> any AsyncSequence<Folder, Swift.Error>
-
-    /// See `FoldersClient.createFolder`.
-    func createFolder(request: CreateFolderRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol FoldersProtocol: Sendable {
     /// See `FoldersClient.createFolder`.
     func createFolder(withPolling: CreateFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
@@ -581,9 +501,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.updateFolder`.
-    func updateFolder(request: UpdateFolderRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `FoldersClient.updateFolder`.
     func updateFolder(withPolling: UpdateFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
 
@@ -592,9 +509,6 @@ extension Clients {
       folder: Folder?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.moveFolder`.
-    func moveFolder(request: MoveFolderRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `FoldersClient.moveFolder`.
     func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleGax.PollableOperation<
@@ -608,9 +522,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.deleteFolder`.
-    func deleteFolder(request: DeleteFolderRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `FoldersClient.deleteFolder`.
     func deleteFolder(withPolling: DeleteFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
 
@@ -620,9 +531,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.undeleteFolder`.
-    func undeleteFolder(request: UndeleteFolderRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `FoldersClient.undeleteFolder`.
     func undeleteFolder(withPolling: UndeleteFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
 
@@ -630,33 +538,6 @@ extension Clients {
     func undeleteFolder(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `FoldersClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `FoldersClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `FoldersClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `FoldersClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `FoldersClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `FoldersClient.getFolder`.
     func getFolder(
@@ -668,20 +549,10 @@ extension Clients {
       request: ListFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse
 
-    /// See `FoldersClient.listFolders`.
-    func listFolders(
-      byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Folder, Swift.Error>
-
     /// See `FoldersClient.searchFolders`.
     func searchFolders(
       request: SearchFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse
-
-    /// See `FoldersClient.searchFolders`.
-    func searchFolders(
-      byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Folder, Swift.Error>
 
     /// See `FoldersClient.createFolder`.
     func createFolder(
@@ -791,12 +662,23 @@ extension Clients.FoldersProtocol {
     self.listFolders(byItem: byItem, options: .init())
   }
 
+  /// Lists the folders that are direct descendants of supplied parent resource.
+  /// `list()` provides a strongly consistent view of the folders underneath
+  /// the specified parent resource.
+  /// `list()` returns folders sorted based upon the (ascending) lexical ordering
+  /// of their display_name.
+  /// The caller must have `resourcemanager.folders.list` permission on the
+  /// identified parent.
+  ///
+  /// @Snippet(path: "Folders_ListFolders")
   public func listFolders(
     byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listFolders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -828,12 +710,22 @@ extension Clients.FoldersProtocol {
     self.searchFolders(byItem: byItem, options: .init())
   }
 
+  /// Search for folders that match specific filter criteria.
+  /// `search()` provides an eventually consistent view of the folders a user has
+  /// access to which meet the specified filter criteria.
+  ///
+  /// This will only return folders on which the caller has the
+  /// permission `resourcemanager.folders.get`.
+  ///
+  /// @Snippet(path: "Folders_SearchFolders")
   public func searchFolders(
     byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchFolders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

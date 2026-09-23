@@ -46,22 +46,6 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
     try await self.inner.listImageVersions(request: request, options: options)
   }
 
-  /// List ImageVersions for provided location.
-  ///
-  /// @Snippet(path: "ImageVersions_ListImageVersions")
-  public func listImageVersions(
-    byItem: ListImageVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ImageVersion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listImageVersions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -71,23 +55,6 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "ImageVersions_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -119,63 +86,16 @@ extension Clients {
   /// To mock `ImageVersionsClient` change your functions to receive
   /// `some ImageVersionsProtocol` or `any ImageVersionsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ImageVersionsProtocol {
-    /// See `ImageVersionsClient.listImageVersions`.
-    func listImageVersions(request: ListImageVersionsRequest) async throws
-      -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse
-
-    /// See `ImageVersionsClient.listImageVersions`.
-    func listImageVersions(
-      byItem: ListImageVersionsRequest
-    ) -> any AsyncSequence<ImageVersion, Swift.Error>
-
-    /// See `ImageVersionsClient.listImageVersions`.
-    func listImageVersions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ImageVersion, Swift.Error>
-
-    /// See `ImageVersionsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ImageVersionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ImageVersionsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ImageVersionsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ImageVersionsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol ImageVersionsProtocol: Sendable {
     /// See `ImageVersionsClient.listImageVersions`.
     func listImageVersions(
       request: ListImageVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse
 
-    /// See `ImageVersionsClient.listImageVersions`.
-    func listImageVersions(
-      byItem: ListImageVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ImageVersion, Swift.Error>
-
     /// See `ImageVersionsClient.listOperations`.
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ImageVersionsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ImageVersionsClient.deleteOperation`.
     func deleteOperation(
@@ -204,13 +124,18 @@ extension Clients.ImageVersionsProtocol {
     self.listImageVersions(byItem: byItem, options: .init())
   }
 
+  /// List ImageVersions for provided location.
+  ///
+  /// @Snippet(path: "ImageVersions_ListImageVersions")
   public func listImageVersions(
     byItem: ListImageVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ImageVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listImageVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -242,12 +167,19 @@ extension Clients.ImageVersionsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ImageVersions_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

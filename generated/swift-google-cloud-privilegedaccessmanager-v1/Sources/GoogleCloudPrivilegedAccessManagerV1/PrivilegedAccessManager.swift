@@ -84,22 +84,6 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     try await self.inner.listEntitlements(request: request, options: options)
   }
 
-  /// Lists entitlements in a given project/folder/organization and location.
-  ///
-  /// @Snippet(path: "PrivilegedAccessManager_ListEntitlements")
-  public func listEntitlements(
-    byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entitlement, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudPrivilegedAccessManagerV1.ListEntitlementsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEntitlements(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// `SearchEntitlements` returns entitlements on which the caller has the
   /// specified access.
   ///
@@ -108,23 +92,6 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: SearchEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.SearchEntitlementsResponse {
     try await self.inner.searchEntitlements(request: request, options: options)
-  }
-
-  /// `SearchEntitlements` returns entitlements on which the caller has the
-  /// specified access.
-  ///
-  /// @Snippet(path: "PrivilegedAccessManager_SearchEntitlements")
-  public func searchEntitlements(
-    byItem: SearchEntitlementsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entitlement, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudPrivilegedAccessManagerV1.SearchEntitlementsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchEntitlements(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single entitlement.
@@ -294,22 +261,6 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     try await self.inner.listGrants(request: request, options: options)
   }
 
-  /// Lists grants for a given entitlement.
-  ///
-  /// @Snippet(path: "PrivilegedAccessManager_ListGrants")
-  public func listGrants(
-    byItem: ListGrantsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Grant, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListGrantsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listGrants(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// `SearchGrants` returns grants that are related to the calling user in the
   /// specified way.
   ///
@@ -318,23 +269,6 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: SearchGrantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.SearchGrantsResponse {
     try await self.inner.searchGrants(request: request, options: options)
-  }
-
-  /// `SearchGrants` returns grants that are related to the calling user in the
-  /// specified way.
-  ///
-  /// @Snippet(path: "PrivilegedAccessManager_SearchGrants")
-  public func searchGrants(
-    byItem: SearchGrantsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Grant, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudPrivilegedAccessManagerV1.SearchGrantsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchGrants(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Get details of a single grant.
@@ -423,21 +357,6 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "PrivilegedAccessManager_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "PrivilegedAccessManager_GetLocation")
@@ -456,23 +375,6 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "PrivilegedAccessManager_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -504,47 +406,7 @@ extension Clients {
   /// To mock `PrivilegedAccessManagerClient` change your functions to receive
   /// `some PrivilegedAccessManagerProtocol` or `any PrivilegedAccessManagerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol PrivilegedAccessManagerProtocol {
-    /// See `PrivilegedAccessManagerClient.checkOnboardingStatus`.
-    func checkOnboardingStatus(request: CheckOnboardingStatusRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.CheckOnboardingStatusResponse
-
-    /// See `PrivilegedAccessManagerClient.listEntitlements`.
-    func listEntitlements(request: ListEntitlementsRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.ListEntitlementsResponse
-
-    /// See `PrivilegedAccessManagerClient.listEntitlements`.
-    func listEntitlements(
-      byItem: ListEntitlementsRequest
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.listEntitlements`.
-    func listEntitlements(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.searchEntitlements`.
-    func searchEntitlements(request: SearchEntitlementsRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.SearchEntitlementsResponse
-
-    /// See `PrivilegedAccessManagerClient.searchEntitlements`.
-    func searchEntitlements(
-      byItem: SearchEntitlementsRequest
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.getEntitlement`.
-    func getEntitlement(request: GetEntitlementRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.Entitlement
-
-    /// See `PrivilegedAccessManagerClient.getEntitlement`.
-    func getEntitlement(
-      name: Swift.String,
-    ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Entitlement
-
-    /// See `PrivilegedAccessManagerClient.createEntitlement`.
-    func createEntitlement(request: CreateEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol PrivilegedAccessManagerProtocol: Sendable {
     /// See `PrivilegedAccessManagerClient.createEntitlement`.
     func createEntitlement(withPolling: CreateEntitlementRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
@@ -557,10 +419,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
-    func deleteEntitlement(request: DeleteEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
     func deleteEntitlement(withPolling: DeleteEntitlementRequest) async throws -> any GoogleGax
       .PollableOperation<Entitlement>
 
@@ -568,10 +426,6 @@ extension Clients {
     func deleteEntitlement(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.updateEntitlement`.
-    func updateEntitlement(request: UpdateEntitlementRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
     func updateEntitlement(withPolling: UpdateEntitlementRequest) async throws -> any GoogleGax
@@ -583,98 +437,9 @@ extension Clients {
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
-    /// See `PrivilegedAccessManagerClient.listGrants`.
-    func listGrants(request: ListGrantsRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.ListGrantsResponse
-
-    /// See `PrivilegedAccessManagerClient.listGrants`.
-    func listGrants(
-      byItem: ListGrantsRequest
-    ) -> any AsyncSequence<Grant, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.listGrants`.
-    func listGrants(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Grant, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.searchGrants`.
-    func searchGrants(request: SearchGrantsRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.SearchGrantsResponse
-
-    /// See `PrivilegedAccessManagerClient.searchGrants`.
-    func searchGrants(
-      byItem: SearchGrantsRequest
-    ) -> any AsyncSequence<Grant, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.getGrant`.
-    func getGrant(request: GetGrantRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.Grant
-
-    /// See `PrivilegedAccessManagerClient.getGrant`.
-    func getGrant(
-      name: Swift.String,
-    ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant
-
-    /// See `PrivilegedAccessManagerClient.createGrant`.
-    func createGrant(request: CreateGrantRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.Grant
-
-    /// See `PrivilegedAccessManagerClient.createGrant`.
-    func createGrant(
-      parent: Swift.String,
-      grant: Grant?,
-    ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant
-
-    /// See `PrivilegedAccessManagerClient.approveGrant`.
-    func approveGrant(request: ApproveGrantRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.Grant
-
-    /// See `PrivilegedAccessManagerClient.denyGrant`.
-    func denyGrant(request: DenyGrantRequest) async throws
-      -> GoogleCloudPrivilegedAccessManagerV1.Grant
-
-    /// See `PrivilegedAccessManagerClient.revokeGrant`.
-    func revokeGrant(request: RevokeGrantRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `PrivilegedAccessManagerClient.revokeGrant`.
     func revokeGrant(withPolling: RevokeGrantRequest) async throws -> any GoogleGax
       .PollableOperation<Grant>
-
-    /// See `PrivilegedAccessManagerClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `PrivilegedAccessManagerClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `PrivilegedAccessManagerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `PrivilegedAccessManagerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `PrivilegedAccessManagerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `PrivilegedAccessManagerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `PrivilegedAccessManagerClient.checkOnboardingStatus`.
     func checkOnboardingStatus(
@@ -686,20 +451,10 @@ extension Clients {
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListEntitlementsResponse
 
-    /// See `PrivilegedAccessManagerClient.listEntitlements`.
-    func listEntitlements(
-      byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
-
     /// See `PrivilegedAccessManagerClient.searchEntitlements`.
     func searchEntitlements(
       request: SearchEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.SearchEntitlementsResponse
-
-    /// See `PrivilegedAccessManagerClient.searchEntitlements`.
-    func searchEntitlements(
-      byItem: SearchEntitlementsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Entitlement, Swift.Error>
 
     /// See `PrivilegedAccessManagerClient.getEntitlement`.
     func getEntitlement(
@@ -741,20 +496,10 @@ extension Clients {
       request: ListGrantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListGrantsResponse
 
-    /// See `PrivilegedAccessManagerClient.listGrants`.
-    func listGrants(
-      byItem: ListGrantsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Grant, Swift.Error>
-
     /// See `PrivilegedAccessManagerClient.searchGrants`.
     func searchGrants(
       request: SearchGrantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.SearchGrantsResponse
-
-    /// See `PrivilegedAccessManagerClient.searchGrants`.
-    func searchGrants(
-      byItem: SearchGrantsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Grant, Swift.Error>
 
     /// See `PrivilegedAccessManagerClient.getGrant`.
     func getGrant(
@@ -791,11 +536,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `PrivilegedAccessManagerClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `PrivilegedAccessManagerClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -805,11 +545,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `PrivilegedAccessManagerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `PrivilegedAccessManagerClient.deleteOperation`.
     func deleteOperation(
@@ -850,13 +585,18 @@ extension Clients.PrivilegedAccessManagerProtocol {
     self.listEntitlements(byItem: byItem, options: .init())
   }
 
+  /// Lists entitlements in a given project/folder/organization and location.
+  ///
+  /// @Snippet(path: "PrivilegedAccessManager_ListEntitlements")
   public func listEntitlements(
     byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPrivilegedAccessManagerV1.ListEntitlementsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEntitlements(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -888,13 +628,19 @@ extension Clients.PrivilegedAccessManagerProtocol {
     self.searchEntitlements(byItem: byItem, options: .init())
   }
 
+  /// `SearchEntitlements` returns entitlements on which the caller has the
+  /// specified access.
+  ///
+  /// @Snippet(path: "PrivilegedAccessManager_SearchEntitlements")
   public func searchEntitlements(
     byItem: SearchEntitlementsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPrivilegedAccessManagerV1.SearchEntitlementsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchEntitlements(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1055,13 +801,18 @@ extension Clients.PrivilegedAccessManagerProtocol {
     self.listGrants(byItem: byItem, options: .init())
   }
 
+  /// Lists grants for a given entitlement.
+  ///
+  /// @Snippet(path: "PrivilegedAccessManager_ListGrants")
   public func listGrants(
     byItem: ListGrantsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Grant, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListGrantsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listGrants(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1093,13 +844,19 @@ extension Clients.PrivilegedAccessManagerProtocol {
     self.searchGrants(byItem: byItem, options: .init())
   }
 
+  /// `SearchGrants` returns grants that are related to the calling user in the
+  /// specified way.
+  ///
+  /// @Snippet(path: "PrivilegedAccessManager_SearchGrants")
   public func searchGrants(
     byItem: SearchGrantsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Grant, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPrivilegedAccessManagerV1.SearchGrantsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchGrants(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1216,12 +973,17 @@ extension Clients.PrivilegedAccessManagerProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "PrivilegedAccessManager_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1256,12 +1018,19 @@ extension Clients.PrivilegedAccessManagerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PrivilegedAccessManager_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

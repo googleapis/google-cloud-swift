@@ -160,21 +160,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists all VM extension policies within a specific zone for a project.
-    ///
-    /// @Snippet(path: "zoneVmExtensionPolicies_list")
-    public func list(
-      byItem: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Modifies an existing zone VM extension policy within a project.
     ///
     /// @Snippet(path: "zoneVmExtensionPolicies_update")
@@ -240,45 +225,7 @@
     /// To mock `ZoneVmExtensionPoliciesClient` change your functions to receive
     /// `some ZoneVmExtensionPoliciesProtocol` or `any ZoneVmExtensionPoliciesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ZoneVmExtensionPoliciesProtocol {
-      /// See `ZoneVmExtensionPoliciesClient.delete`.
-      func delete(request: ZoneVmExtensionPoliciesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ZoneVmExtensionPoliciesClient.`get``.
-      func `get`(request: ZoneVmExtensionPoliciesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.VmExtensionPolicy
-
-      /// See `ZoneVmExtensionPoliciesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        vmExtensionPolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.VmExtensionPolicy
-
-      /// See `ZoneVmExtensionPoliciesClient.insert`.
-      func insert(request: ZoneVmExtensionPoliciesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ZoneVmExtensionPoliciesClient.list`.
-      func list(request: ZoneVmExtensionPoliciesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.VmExtensionPolicyList
-
-      /// See `ZoneVmExtensionPoliciesClient.list`.
-      func list(
-        byItem: ZoneVmExtensionPoliciesClient.ListRequest
-      ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
-
-      /// See `ZoneVmExtensionPoliciesClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
-
-      /// See `ZoneVmExtensionPoliciesClient.update`.
-      func update(request: ZoneVmExtensionPoliciesClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol ZoneVmExtensionPoliciesProtocol: Sendable {
       /// See `ZoneVmExtensionPoliciesClient.delete`.
       func delete(
         request: ZoneVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -298,11 +245,6 @@
       func list(
         request: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList
-
-      /// See `ZoneVmExtensionPoliciesClient.list`.
-      func list(
-        byItem: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error>
 
       /// See `ZoneVmExtensionPoliciesClient.update`.
       func update(
@@ -440,12 +382,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists all VM extension policies within a specific zone for a project.
+    ///
+    /// @Snippet(path: "zoneVmExtensionPolicies_list")
     public func list(
       byItem: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

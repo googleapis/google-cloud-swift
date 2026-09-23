@@ -158,33 +158,6 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
     try await self.inner.listServices(request: request, options: options)
   }
 
-  /// List all services available to the specified project, and the current
-  /// state of those services with respect to the project. The list includes
-  /// all public services, all services for which the calling user has the
-  /// `servicemanagement.services.bind` permission, and all services that have
-  /// already been enabled on the project. The list can be filtered to
-  /// only include services in a specific state, for example to only include
-  /// services enabled on the project.
-  ///
-  /// WARNING: If you need to query enabled services frequently or across
-  /// an organization, you should use
-  /// [Cloud Asset Inventory
-  /// API](https://cloud.google.com/asset-inventory/docs/apis), which provides
-  /// higher throughput and richer filtering capability.
-  ///
-  /// @Snippet(path: "ServiceUsage_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleApiServiceUsageV1.ListServicesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServices(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Enable multiple services on a project. The operation is atomic: if enabling
   /// any service fails, then the entire batch fails, and no state changes occur.
   /// To enable a single service, use the `EnableService` method instead.
@@ -250,23 +223,6 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ServiceUsage_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ServiceUsage_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -281,59 +237,18 @@ extension Clients {
   /// To mock `ServiceUsageClient` change your functions to receive
   /// `some ServiceUsageProtocol` or `any ServiceUsageProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ServiceUsageProtocol {
-    /// See `ServiceUsageClient.enableService`.
-    func enableService(request: EnableServiceRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ServiceUsageProtocol: Sendable {
     /// See `ServiceUsageClient.enableService`.
     func enableService(withPolling: EnableServiceRequest) async throws -> any GoogleGax
       .PollableOperation<EnableServiceResponse>
 
     /// See `ServiceUsageClient.disableService`.
-    func disableService(request: DisableServiceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ServiceUsageClient.disableService`.
     func disableService(withPolling: DisableServiceRequest) async throws -> any GoogleGax
       .PollableOperation<DisableServiceResponse>
-
-    /// See `ServiceUsageClient.getService`.
-    func getService(request: GetServiceRequest) async throws -> GoogleApiServiceUsageV1.Service
-
-    /// See `ServiceUsageClient.listServices`.
-    func listServices(request: ListServicesRequest) async throws
-      -> GoogleApiServiceUsageV1.ListServicesResponse
-
-    /// See `ServiceUsageClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `ServiceUsageClient.batchEnableServices`.
-    func batchEnableServices(request: BatchEnableServicesRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServices(withPolling: BatchEnableServicesRequest) async throws -> any GoogleGax
       .PollableOperation<BatchEnableServicesResponse>
-
-    /// See `ServiceUsageClient.batchGetServices`.
-    func batchGetServices(request: BatchGetServicesRequest) async throws
-      -> GoogleApiServiceUsageV1.BatchGetServicesResponse
-
-    /// See `ServiceUsageClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ServiceUsageClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ServiceUsageClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServiceUsageClient.enableService`.
     func enableService(
@@ -365,11 +280,6 @@ extension Clients {
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceUsageV1.ListServicesResponse
 
-    /// See `ServiceUsageClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Service, Swift.Error>
-
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServices(
       request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
@@ -389,11 +299,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ServiceUsageClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -485,12 +390,29 @@ extension Clients.ServiceUsageProtocol {
     self.listServices(byItem: byItem, options: .init())
   }
 
+  /// List all services available to the specified project, and the current
+  /// state of those services with respect to the project. The list includes
+  /// all public services, all services for which the calling user has the
+  /// `servicemanagement.services.bind` permission, and all services that have
+  /// already been enabled on the project. The list can be filtered to
+  /// only include services in a specific state, for example to only include
+  /// services enabled on the project.
+  ///
+  /// WARNING: If you need to query enabled services frequently or across
+  /// an organization, you should use
+  /// [Cloud Asset Inventory
+  /// API](https://cloud.google.com/asset-inventory/docs/apis), which provides
+  /// higher throughput and richer filtering capability.
+  ///
+  /// @Snippet(path: "ServiceUsage_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiServiceUsageV1.ListServicesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -554,12 +476,19 @@ extension Clients.ServiceUsageProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServiceUsage_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

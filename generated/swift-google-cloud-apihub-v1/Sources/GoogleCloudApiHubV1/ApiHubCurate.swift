@@ -68,21 +68,6 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
     try await self.inner.listCurations(request: request, options: options)
   }
 
-  /// List curation resources in the API hub.
-  ///
-  /// @Snippet(path: "ApiHubCurate_ListCurations")
-  public func listCurations(
-    byItem: ListCurationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Curation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListCurationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCurations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Update a curation resource in the API hub. The following fields in the
   /// [curation][google.cloud.apihub.v1.Curation] can be updated:
   ///
@@ -124,21 +109,6 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "ApiHubCurate_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ApiHubCurate_GetLocation")
@@ -157,23 +127,6 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "ApiHubCurate_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -216,100 +169,7 @@ extension Clients {
   /// To mock `ApiHubCurateClient` change your functions to receive
   /// `some ApiHubCurateProtocol` or `any ApiHubCurateProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ApiHubCurateProtocol {
-    /// See `ApiHubCurateClient.createCuration`.
-    func createCuration(request: CreateCurationRequest) async throws -> GoogleCloudApiHubV1.Curation
-
-    /// See `ApiHubCurateClient.createCuration`.
-    func createCuration(
-      parent: Swift.String,
-      curation: Curation?,
-      curationId: Swift.String,
-    ) async throws -> GoogleCloudApiHubV1.Curation
-
-    /// See `ApiHubCurateClient.getCuration`.
-    func getCuration(request: GetCurationRequest) async throws -> GoogleCloudApiHubV1.Curation
-
-    /// See `ApiHubCurateClient.getCuration`.
-    func getCuration(
-      name: Swift.String,
-    ) async throws -> GoogleCloudApiHubV1.Curation
-
-    /// See `ApiHubCurateClient.listCurations`.
-    func listCurations(request: ListCurationsRequest) async throws
-      -> GoogleCloudApiHubV1.ListCurationsResponse
-
-    /// See `ApiHubCurateClient.listCurations`.
-    func listCurations(
-      byItem: ListCurationsRequest
-    ) -> any AsyncSequence<Curation, Swift.Error>
-
-    /// See `ApiHubCurateClient.listCurations`.
-    func listCurations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Curation, Swift.Error>
-
-    /// See `ApiHubCurateClient.updateCuration`.
-    func updateCuration(request: UpdateCurationRequest) async throws -> GoogleCloudApiHubV1.Curation
-
-    /// See `ApiHubCurateClient.updateCuration`.
-    func updateCuration(
-      curation: Curation?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudApiHubV1.Curation
-
-    /// See `ApiHubCurateClient.deleteCuration`.
-    func deleteCuration(request: DeleteCurationRequest) async throws
-
-    /// See `ApiHubCurateClient.deleteCuration`.
-    func deleteCuration(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ApiHubCurateClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ApiHubCurateClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ApiHubCurateClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ApiHubCurateClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ApiHubCurateClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ApiHubCurateClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ApiHubCurateClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ApiHubCurateClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ApiHubCurateClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ApiHubCurateClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol ApiHubCurateProtocol: Sendable {
     /// See `ApiHubCurateClient.createCuration`.
     func createCuration(
       request: CreateCurationRequest, options: GoogleGax.RequestOptions
@@ -324,11 +184,6 @@ extension Clients {
     func listCurations(
       request: ListCurationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.ListCurationsResponse
-
-    /// See `ApiHubCurateClient.listCurations`.
-    func listCurations(
-      byItem: ListCurationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Curation, Swift.Error>
 
     /// See `ApiHubCurateClient.updateCuration`.
     func updateCuration(
@@ -345,11 +200,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ApiHubCurateClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ApiHubCurateClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -359,11 +209,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ApiHubCurateClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ApiHubCurateClient.deleteOperation`.
     func deleteOperation(
@@ -442,12 +287,17 @@ extension Clients.ApiHubCurateProtocol {
     self.listCurations(byItem: byItem, options: .init())
   }
 
+  /// List curation resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHubCurate_ListCurations")
   public func listCurations(
     byItem: ListCurationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Curation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListCurationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCurations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -521,12 +371,17 @@ extension Clients.ApiHubCurateProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHubCurate_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -561,12 +416,19 @@ extension Clients.ApiHubCurateProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubCurate_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

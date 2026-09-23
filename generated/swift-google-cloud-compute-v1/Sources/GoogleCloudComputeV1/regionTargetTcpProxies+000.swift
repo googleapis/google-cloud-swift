@@ -162,22 +162,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of TargetTcpProxy resources
-    /// available to the specified project in a given region.
-    ///
-    /// @Snippet(path: "regionTargetTcpProxies_list")
-    public func list(
-      byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified region-specific Operations resource.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_getOperation")
@@ -194,41 +178,7 @@
     /// To mock `RegionTargetTcpProxiesClient` change your functions to receive
     /// `some RegionTargetTcpProxiesProtocol` or `any RegionTargetTcpProxiesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionTargetTcpProxiesProtocol {
-      /// See `RegionTargetTcpProxiesClient.delete`.
-      func delete(request: RegionTargetTcpProxiesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetTcpProxiesClient.`get``.
-      func `get`(request: RegionTargetTcpProxiesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.TargetTcpProxy
-
-      /// See `RegionTargetTcpProxiesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        targetTcpProxy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.TargetTcpProxy
-
-      /// See `RegionTargetTcpProxiesClient.insert`.
-      func insert(request: RegionTargetTcpProxiesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionTargetTcpProxiesClient.list`.
-      func list(request: RegionTargetTcpProxiesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.TargetTcpProxyList
-
-      /// See `RegionTargetTcpProxiesClient.list`.
-      func list(
-        byItem: RegionTargetTcpProxiesClient.ListRequest
-      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
-
-      /// See `RegionTargetTcpProxiesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
-
+    public protocol RegionTargetTcpProxiesProtocol: Sendable {
       /// See `RegionTargetTcpProxiesClient.delete`.
       func delete(
         request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -248,11 +198,6 @@
       func list(
         request: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetTcpProxyList
-
-      /// See `RegionTargetTcpProxiesClient.list`.
-      func list(
-        byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TargetTcpProxy, Swift.Error>
     }
   }
 
@@ -385,12 +330,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of TargetTcpProxy resources
+    /// available to the specified project in a given region.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_list")
     public func list(
       byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

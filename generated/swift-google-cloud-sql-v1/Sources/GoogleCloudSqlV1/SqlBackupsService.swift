@@ -65,20 +65,6 @@
       try await self.inner.listBackups(request: request, options: options)
     }
 
-    /// Lists all backups associated with the project.
-    ///
-    /// @Snippet(path: "SqlBackupsService_ListBackups")
-    public func listBackups(
-      byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Backup, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudSqlV1.ListBackupsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listBackups(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the retention period and description of the backup. You can use
     /// this API to update final backups only.
     ///
@@ -105,55 +91,7 @@
     /// To mock `SqlBackupsServiceClient` change your functions to receive
     /// `some SqlBackupsServiceProtocol` or `any SqlBackupsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlBackupsServiceProtocol {
-      /// See `SqlBackupsServiceClient.createBackup`.
-      func createBackup(request: CreateBackupRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupsServiceClient.createBackup`.
-      func createBackup(
-        parent: Swift.String,
-        backup: Backup?,
-      ) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupsServiceClient.getBackup`.
-      func getBackup(request: GetBackupRequest) async throws -> GoogleCloudSqlV1.Backup
-
-      /// See `SqlBackupsServiceClient.getBackup`.
-      func getBackup(
-        name: Swift.String,
-      ) async throws -> GoogleCloudSqlV1.Backup
-
-      /// See `SqlBackupsServiceClient.listBackups`.
-      func listBackups(request: ListBackupsRequest) async throws
-        -> GoogleCloudSqlV1.ListBackupsResponse
-
-      /// See `SqlBackupsServiceClient.listBackups`.
-      func listBackups(
-        byItem: ListBackupsRequest
-      ) -> any AsyncSequence<Backup, Swift.Error>
-
-      /// See `SqlBackupsServiceClient.listBackups`.
-      func listBackups(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Backup, Swift.Error>
-
-      /// See `SqlBackupsServiceClient.updateBackup`.
-      func updateBackup(request: UpdateBackupRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupsServiceClient.updateBackup`.
-      func updateBackup(
-        backup: Backup?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupsServiceClient.deleteBackup`.
-      func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlBackupsServiceClient.deleteBackup`.
-      func deleteBackup(
-        name: Swift.String,
-      ) async throws -> GoogleCloudSqlV1.Operation
-
+    public protocol SqlBackupsServiceProtocol: Sendable {
       /// See `SqlBackupsServiceClient.createBackup`.
       func createBackup(
         request: CreateBackupRequest, options: GoogleGax.RequestOptions
@@ -168,11 +106,6 @@
       func listBackups(
         request: ListBackupsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.ListBackupsResponse
-
-      /// See `SqlBackupsServiceClient.listBackups`.
-      func listBackups(
-        byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Backup, Swift.Error>
 
       /// See `SqlBackupsServiceClient.updateBackup`.
       func updateBackup(
@@ -248,11 +181,16 @@
       self.listBackups(byItem: byItem, options: .init())
     }
 
+    /// Lists all backups associated with the project.
+    ///
+    /// @Snippet(path: "SqlBackupsService_ListBackups")
     public func listBackups(
       byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Backup, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudSqlV1.ListBackupsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listBackups(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

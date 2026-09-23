@@ -193,23 +193,6 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "NodeGroupController_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "NodeGroupController_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -246,11 +229,7 @@ extension Clients {
   /// To mock `NodeGroupControllerClient` change your functions to receive
   /// `some NodeGroupControllerProtocol` or `any NodeGroupControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol NodeGroupControllerProtocol {
-    /// See `NodeGroupControllerClient.createNodeGroup`.
-    func createNodeGroup(request: CreateNodeGroupRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol NodeGroupControllerProtocol: Sendable {
     /// See `NodeGroupControllerClient.createNodeGroup`.
     func createNodeGroup(withPolling: CreateNodeGroupRequest) async throws -> any GoogleGax
       .PollableOperation<NodeGroup>
@@ -263,10 +242,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
 
     /// See `NodeGroupControllerClient.resizeNodeGroup`.
-    func resizeNodeGroup(request: ResizeNodeGroupRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `NodeGroupControllerClient.resizeNodeGroup`.
     func resizeNodeGroup(withPolling: ResizeNodeGroupRequest) async throws -> any GoogleGax
       .PollableOperation<NodeGroup>
 
@@ -275,55 +250,6 @@ extension Clients {
       name: Swift.String,
       size: Swift.Int32,
     ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
-
-    /// See `NodeGroupControllerClient.getNodeGroup`.
-    func getNodeGroup(request: GetNodeGroupRequest) async throws -> GoogleCloudDataprocV1.NodeGroup
-
-    /// See `NodeGroupControllerClient.getNodeGroup`.
-    func getNodeGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataprocV1.NodeGroup
-
-    /// See `NodeGroupControllerClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `NodeGroupControllerClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `NodeGroupControllerClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `NodeGroupControllerClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `NodeGroupControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `NodeGroupControllerClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `NodeGroupControllerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `NodeGroupControllerClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `NodeGroupControllerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `NodeGroupControllerClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `NodeGroupControllerClient.createNodeGroup`.
     func createNodeGroup(
@@ -369,11 +295,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `NodeGroupControllerClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NodeGroupControllerClient.deleteOperation`.
     func deleteOperation(
@@ -544,12 +465,19 @@ extension Clients.NodeGroupControllerProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

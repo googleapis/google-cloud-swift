@@ -121,48 +121,7 @@ extension Clients {
   /// To mock `ContainerAnalysisClient` change your functions to receive
   /// `some ContainerAnalysisProtocol` or `any ContainerAnalysisProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ContainerAnalysisProtocol {
-    /// See `ContainerAnalysisClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ContainerAnalysisClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ContainerAnalysisClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ContainerAnalysisClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ContainerAnalysisClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ContainerAnalysisClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ContainerAnalysisClient.getVulnerabilityOccurrencesSummary`.
-    func getVulnerabilityOccurrencesSummary(request: GetVulnerabilityOccurrencesSummaryRequest)
-      async throws -> GoogleCloudContainerAnalysisV1.VulnerabilityOccurrencesSummary
-
-    /// See `ContainerAnalysisClient.getVulnerabilityOccurrencesSummary`.
-    func getVulnerabilityOccurrencesSummary(
-      parent: Swift.String,
-      filter: Swift.String,
-    ) async throws -> GoogleCloudContainerAnalysisV1.VulnerabilityOccurrencesSummary
-
-    /// See `ContainerAnalysisClient.exportSbom`.
-    func exportSbom(request: ExportSBOMRequest) async throws
-      -> GoogleCloudContainerAnalysisV1.ExportSBOMResponse
-
+  public protocol ContainerAnalysisProtocol: Sendable {
     /// See `ContainerAnalysisClient.setIamPolicy`.
     func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions

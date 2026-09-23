@@ -89,26 +89,6 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
     try await self.inner.searchDocuments(request: request, options: options)
   }
 
-  /// Searches for documents using provided
-  /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
-  /// This call only returns documents that the caller has permission to search
-  /// against.
-  ///
-  /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
-  ///
-  /// @Snippet(path: "DocumentService_SearchDocuments")
-  public func searchDocuments(
-    byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchDocuments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lock the document so the document cannot be updated by other users.
   ///
   /// @Snippet(path: "DocumentService_LockDocument")
@@ -157,85 +137,7 @@ extension Clients {
   /// To mock `DocumentServiceClient` change your functions to receive
   /// `some DocumentServiceProtocol` or `any DocumentServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DocumentServiceProtocol {
-    /// See `DocumentServiceClient.createDocument`.
-    func createDocument(request: CreateDocumentRequest) async throws
-      -> GoogleCloudContentWarehouseV1.CreateDocumentResponse
-
-    /// See `DocumentServiceClient.createDocument`.
-    func createDocument(
-      parent: Swift.String,
-      document: Document?,
-    ) async throws -> GoogleCloudContentWarehouseV1.CreateDocumentResponse
-
-    /// See `DocumentServiceClient.getDocument`.
-    func getDocument(request: GetDocumentRequest) async throws
-      -> GoogleCloudContentWarehouseV1.Document
-
-    /// See `DocumentServiceClient.getDocument`.
-    func getDocument(
-      name: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.Document
-
-    /// See `DocumentServiceClient.updateDocument`.
-    func updateDocument(request: UpdateDocumentRequest) async throws
-      -> GoogleCloudContentWarehouseV1.UpdateDocumentResponse
-
-    /// See `DocumentServiceClient.updateDocument`.
-    func updateDocument(
-      name: Swift.String,
-      document: Document?,
-    ) async throws -> GoogleCloudContentWarehouseV1.UpdateDocumentResponse
-
-    /// See `DocumentServiceClient.deleteDocument`.
-    func deleteDocument(request: DeleteDocumentRequest) async throws
-
-    /// See `DocumentServiceClient.deleteDocument`.
-    func deleteDocument(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DocumentServiceClient.searchDocuments`.
-    func searchDocuments(request: SearchDocumentsRequest) async throws
-      -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse
-
-    /// See `DocumentServiceClient.searchDocuments`.
-    func searchDocuments(
-      byItem: SearchDocumentsRequest
-    ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
-
-    /// See `DocumentServiceClient.searchDocuments`.
-    func searchDocuments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
-
-    /// See `DocumentServiceClient.lockDocument`.
-    func lockDocument(request: LockDocumentRequest) async throws
-      -> GoogleCloudContentWarehouseV1.Document
-
-    /// See `DocumentServiceClient.lockDocument`.
-    func lockDocument(
-      name: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.Document
-
-    /// See `DocumentServiceClient.fetchAcl`.
-    func fetchAcl(request: FetchAclRequest) async throws
-      -> GoogleCloudContentWarehouseV1.FetchAclResponse
-
-    /// See `DocumentServiceClient.fetchAcl`.
-    func fetchAcl(
-      resource: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.FetchAclResponse
-
-    /// See `DocumentServiceClient.setAcl`.
-    func setAcl(request: SetAclRequest) async throws -> GoogleCloudContentWarehouseV1.SetAclResponse
-
-    /// See `DocumentServiceClient.setAcl`.
-    func setAcl(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleCloudContentWarehouseV1.SetAclResponse
-
+  public protocol DocumentServiceProtocol: Sendable {
     /// See `DocumentServiceClient.createDocument`.
     func createDocument(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
@@ -260,11 +162,6 @@ extension Clients {
     func searchDocuments(
       request: SearchDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse
-
-    /// See `DocumentServiceClient.searchDocuments`.
-    func searchDocuments(
-      byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error>
 
     /// See `DocumentServiceClient.lockDocument`.
     func lockDocument(
@@ -389,12 +286,22 @@ extension Clients.DocumentServiceProtocol {
     self.searchDocuments(byItem: byItem, options: .init())
   }
 
+  /// Searches for documents using provided
+  /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
+  /// This call only returns documents that the caller has permission to search
+  /// against.
+  ///
+  /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
+  ///
+  /// @Snippet(path: "DocumentService_SearchDocuments")
   public func searchDocuments(
     byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchDocuments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

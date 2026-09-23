@@ -45,21 +45,6 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
     try await self.inner.listComments(request: request, options: options)
   }
 
-  /// List all the comments associated with a case.
-  ///
-  /// @Snippet(path: "CommentService_ListComments")
-  public func listComments(
-    byItem: ListCommentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Comment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCommentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listComments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Add a new comment to a case.
   ///
   /// The comment must have the following fields set: `body`.
@@ -116,47 +101,11 @@ extension Clients {
   /// To mock `CommentServiceClient` change your functions to receive
   /// `some CommentServiceProtocol` or `any CommentServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CommentServiceProtocol {
-    /// See `CommentServiceClient.listComments`.
-    func listComments(request: ListCommentsRequest) async throws
-      -> GoogleCloudSupportV2.ListCommentsResponse
-
-    /// See `CommentServiceClient.listComments`.
-    func listComments(
-      byItem: ListCommentsRequest
-    ) -> any AsyncSequence<Comment, Swift.Error>
-
-    /// See `CommentServiceClient.listComments`.
-    func listComments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Comment, Swift.Error>
-
-    /// See `CommentServiceClient.createComment`.
-    func createComment(request: CreateCommentRequest) async throws -> GoogleCloudSupportV2.Comment
-
-    /// See `CommentServiceClient.createComment`.
-    func createComment(
-      parent: Swift.String,
-      comment: Comment?,
-    ) async throws -> GoogleCloudSupportV2.Comment
-
-    /// See `CommentServiceClient.getComment`.
-    func getComment(request: GetCommentRequest) async throws -> GoogleCloudSupportV2.Comment
-
-    /// See `CommentServiceClient.getComment`.
-    func getComment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSupportV2.Comment
-
+  public protocol CommentServiceProtocol: Sendable {
     /// See `CommentServiceClient.listComments`.
     func listComments(
       request: ListCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCommentsResponse
-
-    /// See `CommentServiceClient.listComments`.
-    func listComments(
-      byItem: ListCommentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Comment, Swift.Error>
 
     /// See `CommentServiceClient.createComment`.
     func createComment(
@@ -190,12 +139,17 @@ extension Clients.CommentServiceProtocol {
     self.listComments(byItem: byItem, options: .init())
   }
 
+  /// List all the comments associated with a case.
+  ///
+  /// @Snippet(path: "CommentService_ListComments")
   public func listComments(
     byItem: ListCommentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Comment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCommentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listComments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

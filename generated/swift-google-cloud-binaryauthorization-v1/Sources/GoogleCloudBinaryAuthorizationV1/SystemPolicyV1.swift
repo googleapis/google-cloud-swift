@@ -91,26 +91,7 @@ extension Clients {
   /// To mock `SystemPolicyV1Client` change your functions to receive
   /// `some SystemPolicyV1Protocol` or `any SystemPolicyV1Protocol`
   /// and pass a mock implementation in your tests.
-  public protocol SystemPolicyV1Protocol {
-    /// See `SystemPolicyV1Client.getSystemPolicy`.
-    func getSystemPolicy(request: GetSystemPolicyRequest) async throws
-      -> GoogleCloudBinaryAuthorizationV1.Policy
-
-    /// See `SystemPolicyV1Client.getSystemPolicy`.
-    func getSystemPolicy(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy
-
-    /// See `SystemPolicyV1Client.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `SystemPolicyV1Client.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `SystemPolicyV1Client.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol SystemPolicyV1Protocol: Sendable {
     /// See `SystemPolicyV1Client.getSystemPolicy`.
     func getSystemPolicy(
       request: GetSystemPolicyRequest, options: GoogleGax.RequestOptions

@@ -56,11 +56,7 @@ extension Clients {
   /// To mock `IamCheckerClient` change your functions to receive
   /// `some IamCheckerProtocol` or `any IamCheckerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IamCheckerProtocol {
-    /// See `IamCheckerClient.troubleshootIamPolicy`.
-    func troubleshootIamPolicy(request: TroubleshootIamPolicyRequest) async throws
-      -> GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse
-
+  public protocol IamCheckerProtocol: Sendable {
     /// See `IamCheckerClient.troubleshootIamPolicy`.
     func troubleshootIamPolicy(
       request: TroubleshootIamPolicyRequest, options: GoogleGax.RequestOptions

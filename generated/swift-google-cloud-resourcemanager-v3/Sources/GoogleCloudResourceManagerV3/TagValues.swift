@@ -52,21 +52,6 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
     try await self.inner.listTagValues(request: request, options: options)
   }
 
-  /// Lists all TagValues for a specific TagKey.
-  ///
-  /// @Snippet(path: "TagValues_ListTagValues")
-  public func listTagValues(
-    byItem: ListTagValuesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TagValue, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTagValues(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
   /// value does not exist or the user does not have permission to view it.
   ///
@@ -259,42 +244,7 @@ extension Clients {
   /// To mock `TagValuesClient` change your functions to receive
   /// `some TagValuesProtocol` or `any TagValuesProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TagValuesProtocol {
-    /// See `TagValuesClient.listTagValues`.
-    func listTagValues(request: ListTagValuesRequest) async throws
-      -> GoogleCloudResourceManagerV3.ListTagValuesResponse
-
-    /// See `TagValuesClient.listTagValues`.
-    func listTagValues(
-      byItem: ListTagValuesRequest
-    ) -> any AsyncSequence<TagValue, Swift.Error>
-
-    /// See `TagValuesClient.listTagValues`.
-    func listTagValues(
-      parent: Swift.String,
-    ) -> any AsyncSequence<TagValue, Swift.Error>
-
-    /// See `TagValuesClient.getTagValue`.
-    func getTagValue(request: GetTagValueRequest) async throws
-      -> GoogleCloudResourceManagerV3.TagValue
-
-    /// See `TagValuesClient.getTagValue`.
-    func getTagValue(
-      name: Swift.String,
-    ) async throws -> GoogleCloudResourceManagerV3.TagValue
-
-    /// See `TagValuesClient.getNamespacedTagValue`.
-    func getNamespacedTagValue(request: GetNamespacedTagValueRequest) async throws
-      -> GoogleCloudResourceManagerV3.TagValue
-
-    /// See `TagValuesClient.getNamespacedTagValue`.
-    func getNamespacedTagValue(
-      name: Swift.String,
-    ) async throws -> GoogleCloudResourceManagerV3.TagValue
-
-    /// See `TagValuesClient.createTagValue`.
-    func createTagValue(request: CreateTagValueRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol TagValuesProtocol: Sendable {
     /// See `TagValuesClient.createTagValue`.
     func createTagValue(withPolling: CreateTagValueRequest) async throws -> any GoogleGax
       .PollableOperation<TagValue>
@@ -303,9 +253,6 @@ extension Clients {
     func createTagValue(
       tagValue: TagValue?,
     ) async throws -> any GoogleGax.PollableOperation<TagValue>
-
-    /// See `TagValuesClient.updateTagValue`.
-    func updateTagValue(request: UpdateTagValueRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TagValuesClient.updateTagValue`.
     func updateTagValue(withPolling: UpdateTagValueRequest) async throws -> any GoogleGax
@@ -318,9 +265,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<TagValue>
 
     /// See `TagValuesClient.deleteTagValue`.
-    func deleteTagValue(request: DeleteTagValueRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `TagValuesClient.deleteTagValue`.
     func deleteTagValue(withPolling: DeleteTagValueRequest) async throws -> any GoogleGax
       .PollableOperation<TagValue>
 
@@ -329,42 +273,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<TagValue>
 
-    /// See `TagValuesClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `TagValuesClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `TagValuesClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `TagValuesClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `TagValuesClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `TagValuesClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
-
     /// See `TagValuesClient.listTagValues`.
     func listTagValues(
       request: ListTagValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse
-
-    /// See `TagValuesClient.listTagValues`.
-    func listTagValues(
-      byItem: ListTagValuesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TagValue, Swift.Error>
 
     /// See `TagValuesClient.getTagValue`.
     func getTagValue(
@@ -443,12 +355,17 @@ extension Clients.TagValuesProtocol {
     self.listTagValues(byItem: byItem, options: .init())
   }
 
+  /// Lists all TagValues for a specific TagKey.
+  ///
+  /// @Snippet(path: "TagValues_ListTagValues")
   public func listTagValues(
     byItem: ListTagValuesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TagValue, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTagValues(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

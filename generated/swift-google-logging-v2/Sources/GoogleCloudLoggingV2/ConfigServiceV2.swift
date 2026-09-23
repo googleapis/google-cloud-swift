@@ -51,21 +51,6 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
     try await self.inner.listBuckets(request: request, options: options)
   }
 
-  /// Lists log buckets.
-  ///
-  /// @Snippet(path: "ConfigServiceV2_ListBuckets")
-  public func listBuckets(
-    byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogBucket, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListBucketsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBuckets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a log bucket.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetBucket")
@@ -215,20 +200,6 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
     try await self.inner.listViews(request: request, options: options)
   }
 
-  /// Lists views on a log bucket.
-  ///
-  /// @Snippet(path: "ConfigServiceV2_ListViews")
-  public func listViews(
-    byItem: ListViewsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogView, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListViewsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listViews(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a view on a log bucket..
   ///
   /// @Snippet(path: "ConfigServiceV2_GetView")
@@ -280,20 +251,6 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
     request: ListSinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListSinksResponse {
     try await self.inner.listSinks(request: request, options: options)
-  }
-
-  /// Lists sinks.
-  ///
-  /// @Snippet(path: "ConfigServiceV2_ListSinks")
-  public func listSinks(
-    byItem: ListSinksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogSink, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListSinksResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSinks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets a sink.
@@ -424,20 +381,6 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
     try await self.inner.listLinks(request: request, options: options)
   }
 
-  /// Lists links.
-  ///
-  /// @Snippet(path: "ConfigServiceV2_ListLinks")
-  public func listLinks(
-    byItem: ListLinksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Link, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLinksResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLinks(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a link.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetLink")
@@ -454,21 +397,6 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
     request: ListExclusionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse {
     try await self.inner.listExclusions(request: request, options: options)
-  }
-
-  /// Lists all the exclusions on the _Default sink in a parent resource.
-  ///
-  /// @Snippet(path: "ConfigServiceV2_ListExclusions")
-  public func listExclusions(
-    byItem: ListExclusionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogExclusion, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listExclusions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets the description of an exclusion in the _Default sink.
@@ -648,23 +576,6 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "ConfigServiceV2_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "ConfigServiceV2_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -690,131 +601,14 @@ extension Clients {
   /// To mock `ConfigServiceV2Client` change your functions to receive
   /// `some ConfigServiceV2Protocol` or `any ConfigServiceV2Protocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConfigServiceV2Protocol {
-    /// See `ConfigServiceV2Client.listBuckets`.
-    func listBuckets(request: ListBucketsRequest) async throws
-      -> GoogleCloudLoggingV2.ListBucketsResponse
-
-    /// See `ConfigServiceV2Client.listBuckets`.
-    func listBuckets(
-      byItem: ListBucketsRequest
-    ) -> any AsyncSequence<LogBucket, Swift.Error>
-
-    /// See `ConfigServiceV2Client.listBuckets`.
-    func listBuckets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LogBucket, Swift.Error>
-
-    /// See `ConfigServiceV2Client.getBucket`.
-    func getBucket(request: GetBucketRequest) async throws -> GoogleCloudLoggingV2.LogBucket
-
-    /// See `ConfigServiceV2Client.createBucketAsync`.
-    func createBucketAsync(request: CreateBucketRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol ConfigServiceV2Protocol: Sendable {
     /// See `ConfigServiceV2Client.createBucketAsync`.
     func createBucketAsync(withPolling: CreateBucketRequest) async throws -> any GoogleGax
       .PollableOperation<LogBucket>
 
     /// See `ConfigServiceV2Client.updateBucketAsync`.
-    func updateBucketAsync(request: UpdateBucketRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigServiceV2Client.updateBucketAsync`.
     func updateBucketAsync(withPolling: UpdateBucketRequest) async throws -> any GoogleGax
       .PollableOperation<LogBucket>
-
-    /// See `ConfigServiceV2Client.createBucket`.
-    func createBucket(request: CreateBucketRequest) async throws -> GoogleCloudLoggingV2.LogBucket
-
-    /// See `ConfigServiceV2Client.updateBucket`.
-    func updateBucket(request: UpdateBucketRequest) async throws -> GoogleCloudLoggingV2.LogBucket
-
-    /// See `ConfigServiceV2Client.deleteBucket`.
-    func deleteBucket(request: DeleteBucketRequest) async throws
-
-    /// See `ConfigServiceV2Client.undeleteBucket`.
-    func undeleteBucket(request: UndeleteBucketRequest) async throws
-
-    /// See `ConfigServiceV2Client.listViews`.
-    func listViews(request: ListViewsRequest) async throws -> GoogleCloudLoggingV2.ListViewsResponse
-
-    /// See `ConfigServiceV2Client.listViews`.
-    func listViews(
-      byItem: ListViewsRequest
-    ) -> any AsyncSequence<LogView, Swift.Error>
-
-    /// See `ConfigServiceV2Client.listViews`.
-    func listViews(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LogView, Swift.Error>
-
-    /// See `ConfigServiceV2Client.getView`.
-    func getView(request: GetViewRequest) async throws -> GoogleCloudLoggingV2.LogView
-
-    /// See `ConfigServiceV2Client.createView`.
-    func createView(request: CreateViewRequest) async throws -> GoogleCloudLoggingV2.LogView
-
-    /// See `ConfigServiceV2Client.updateView`.
-    func updateView(request: UpdateViewRequest) async throws -> GoogleCloudLoggingV2.LogView
-
-    /// See `ConfigServiceV2Client.deleteView`.
-    func deleteView(request: DeleteViewRequest) async throws
-
-    /// See `ConfigServiceV2Client.listSinks`.
-    func listSinks(request: ListSinksRequest) async throws -> GoogleCloudLoggingV2.ListSinksResponse
-
-    /// See `ConfigServiceV2Client.listSinks`.
-    func listSinks(
-      byItem: ListSinksRequest
-    ) -> any AsyncSequence<LogSink, Swift.Error>
-
-    /// See `ConfigServiceV2Client.listSinks`.
-    func listSinks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LogSink, Swift.Error>
-
-    /// See `ConfigServiceV2Client.getSink`.
-    func getSink(request: GetSinkRequest) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.getSink`.
-    func getSink(
-      sinkName: Swift.String,
-    ) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.createSink`.
-    func createSink(request: CreateSinkRequest) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.createSink`.
-    func createSink(
-      parent: Swift.String,
-      sink: LogSink?,
-    ) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.updateSink`.
-    func updateSink(request: UpdateSinkRequest) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.updateSink`.
-    func updateSink(
-      sinkName: Swift.String,
-      sink: LogSink?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.updateSink`.
-    func updateSink(
-      sinkName: Swift.String,
-      sink: LogSink?,
-    ) async throws -> GoogleCloudLoggingV2.LogSink
-
-    /// See `ConfigServiceV2Client.deleteSink`.
-    func deleteSink(request: DeleteSinkRequest) async throws
-
-    /// See `ConfigServiceV2Client.deleteSink`.
-    func deleteSink(
-      sinkName: Swift.String,
-    ) async throws
-
-    /// See `ConfigServiceV2Client.createLink`.
-    func createLink(request: CreateLinkRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ConfigServiceV2Client.createLink`.
     func createLink(withPolling: CreateLinkRequest) async throws -> any GoogleGax.PollableOperation<
@@ -829,9 +623,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Link>
 
     /// See `ConfigServiceV2Client.deleteLink`.
-    func deleteLink(request: DeleteLinkRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `ConfigServiceV2Client.deleteLink`.
     func deleteLink(withPolling: DeleteLinkRequest) async throws -> any GoogleGax.PollableOperation<
       Swift.Void
     >
@@ -841,144 +632,14 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `ConfigServiceV2Client.listLinks`.
-    func listLinks(request: ListLinksRequest) async throws -> GoogleCloudLoggingV2.ListLinksResponse
-
-    /// See `ConfigServiceV2Client.listLinks`.
-    func listLinks(
-      byItem: ListLinksRequest
-    ) -> any AsyncSequence<Link, Swift.Error>
-
-    /// See `ConfigServiceV2Client.listLinks`.
-    func listLinks(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Link, Swift.Error>
-
-    /// See `ConfigServiceV2Client.getLink`.
-    func getLink(request: GetLinkRequest) async throws -> GoogleCloudLoggingV2.Link
-
-    /// See `ConfigServiceV2Client.getLink`.
-    func getLink(
-      name: Swift.String,
-    ) async throws -> GoogleCloudLoggingV2.Link
-
-    /// See `ConfigServiceV2Client.listExclusions`.
-    func listExclusions(request: ListExclusionsRequest) async throws
-      -> GoogleCloudLoggingV2.ListExclusionsResponse
-
-    /// See `ConfigServiceV2Client.listExclusions`.
-    func listExclusions(
-      byItem: ListExclusionsRequest
-    ) -> any AsyncSequence<LogExclusion, Swift.Error>
-
-    /// See `ConfigServiceV2Client.listExclusions`.
-    func listExclusions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<LogExclusion, Swift.Error>
-
-    /// See `ConfigServiceV2Client.getExclusion`.
-    func getExclusion(request: GetExclusionRequest) async throws
-      -> GoogleCloudLoggingV2.LogExclusion
-
-    /// See `ConfigServiceV2Client.getExclusion`.
-    func getExclusion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudLoggingV2.LogExclusion
-
-    /// See `ConfigServiceV2Client.createExclusion`.
-    func createExclusion(request: CreateExclusionRequest) async throws
-      -> GoogleCloudLoggingV2.LogExclusion
-
-    /// See `ConfigServiceV2Client.createExclusion`.
-    func createExclusion(
-      parent: Swift.String,
-      exclusion: LogExclusion?,
-    ) async throws -> GoogleCloudLoggingV2.LogExclusion
-
-    /// See `ConfigServiceV2Client.updateExclusion`.
-    func updateExclusion(request: UpdateExclusionRequest) async throws
-      -> GoogleCloudLoggingV2.LogExclusion
-
-    /// See `ConfigServiceV2Client.updateExclusion`.
-    func updateExclusion(
-      name: Swift.String,
-      exclusion: LogExclusion?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudLoggingV2.LogExclusion
-
-    /// See `ConfigServiceV2Client.deleteExclusion`.
-    func deleteExclusion(request: DeleteExclusionRequest) async throws
-
-    /// See `ConfigServiceV2Client.deleteExclusion`.
-    func deleteExclusion(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConfigServiceV2Client.getCmekSettings`.
-    func getCmekSettings(request: GetCmekSettingsRequest) async throws
-      -> GoogleCloudLoggingV2.CmekSettings
-
-    /// See `ConfigServiceV2Client.updateCmekSettings`.
-    func updateCmekSettings(request: UpdateCmekSettingsRequest) async throws
-      -> GoogleCloudLoggingV2.CmekSettings
-
-    /// See `ConfigServiceV2Client.getSettings`.
-    func getSettings(request: GetSettingsRequest) async throws -> GoogleCloudLoggingV2.Settings
-
-    /// See `ConfigServiceV2Client.getSettings`.
-    func getSettings(
-      name: Swift.String,
-    ) async throws -> GoogleCloudLoggingV2.Settings
-
-    /// See `ConfigServiceV2Client.updateSettings`.
-    func updateSettings(request: UpdateSettingsRequest) async throws
-      -> GoogleCloudLoggingV2.Settings
-
-    /// See `ConfigServiceV2Client.updateSettings`.
-    func updateSettings(
-      settings: Settings?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudLoggingV2.Settings
-
-    /// See `ConfigServiceV2Client.copyLogEntries`.
-    func copyLogEntries(request: CopyLogEntriesRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `ConfigServiceV2Client.copyLogEntries`.
     func copyLogEntries(withPolling: CopyLogEntriesRequest) async throws -> any GoogleGax
       .PollableOperation<CopyLogEntriesResponse>
-
-    /// See `ConfigServiceV2Client.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ConfigServiceV2Client.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigServiceV2Client.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ConfigServiceV2Client.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ConfigServiceV2Client.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `ConfigServiceV2Client.listBuckets`.
     func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListBucketsResponse
-
-    /// See `ConfigServiceV2Client.listBuckets`.
-    func listBuckets(
-      byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LogBucket, Swift.Error>
 
     /// See `ConfigServiceV2Client.getBucket`.
     func getBucket(
@@ -1030,11 +691,6 @@ extension Clients {
       request: ListViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListViewsResponse
 
-    /// See `ConfigServiceV2Client.listViews`.
-    func listViews(
-      byItem: ListViewsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LogView, Swift.Error>
-
     /// See `ConfigServiceV2Client.getView`.
     func getView(
       request: GetViewRequest, options: GoogleGax.RequestOptions
@@ -1059,11 +715,6 @@ extension Clients {
     func listSinks(
       request: ListSinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListSinksResponse
-
-    /// See `ConfigServiceV2Client.listSinks`.
-    func listSinks(
-      byItem: ListSinksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LogSink, Swift.Error>
 
     /// See `ConfigServiceV2Client.getSink`.
     func getSink(
@@ -1110,11 +761,6 @@ extension Clients {
       request: ListLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLinksResponse
 
-    /// See `ConfigServiceV2Client.listLinks`.
-    func listLinks(
-      byItem: ListLinksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Link, Swift.Error>
-
     /// See `ConfigServiceV2Client.getLink`.
     func getLink(
       request: GetLinkRequest, options: GoogleGax.RequestOptions
@@ -1124,11 +770,6 @@ extension Clients {
     func listExclusions(
       request: ListExclusionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse
-
-    /// See `ConfigServiceV2Client.listExclusions`.
-    func listExclusions(
-      byItem: ListExclusionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<LogExclusion, Swift.Error>
 
     /// See `ConfigServiceV2Client.getExclusion`.
     func getExclusion(
@@ -1185,11 +826,6 @@ extension Clients {
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
 
-    /// See `ConfigServiceV2Client.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
     /// See `ConfigServiceV2Client.cancelOperation`.
     func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
@@ -1217,12 +853,17 @@ extension Clients.ConfigServiceV2Protocol {
     self.listBuckets(byItem: byItem, options: .init())
   }
 
+  /// Lists log buckets.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListBuckets")
   public func listBuckets(
     byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogBucket, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListBucketsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBuckets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1364,11 +1005,16 @@ extension Clients.ConfigServiceV2Protocol {
     self.listViews(byItem: byItem, options: .init())
   }
 
+  /// Lists views on a log bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListViews")
   public func listViews(
     byItem: ListViewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogView, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListViewsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listViews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1440,11 +1086,16 @@ extension Clients.ConfigServiceV2Protocol {
     self.listSinks(byItem: byItem, options: .init())
   }
 
+  /// Lists sinks.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListSinks")
   public func listSinks(
     byItem: ListSinksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogSink, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListSinksResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSinks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1643,11 +1294,16 @@ extension Clients.ConfigServiceV2Protocol {
     self.listLinks(byItem: byItem, options: .init())
   }
 
+  /// Lists links.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListLinks")
   public func listLinks(
     byItem: ListLinksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Link, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLinksResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLinks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1698,12 +1354,17 @@ extension Clients.ConfigServiceV2Protocol {
     self.listExclusions(byItem: byItem, options: .init())
   }
 
+  /// Lists all the exclusions on the _Default sink in a parent resource.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListExclusions")
   public func listExclusions(
     byItem: ListExclusionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogExclusion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listExclusions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1919,12 +1580,19 @@ extension Clients.ConfigServiceV2Protocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

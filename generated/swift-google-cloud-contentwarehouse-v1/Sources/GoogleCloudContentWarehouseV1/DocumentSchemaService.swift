@@ -94,22 +94,6 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
     try await self.inner.listDocumentSchemas(request: request, options: options)
   }
 
-  /// Lists document schemas.
-  ///
-  /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
-  public func listDocumentSchemas(
-    byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDocumentSchemas(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -128,58 +112,7 @@ extension Clients {
   /// To mock `DocumentSchemaServiceClient` change your functions to receive
   /// `some DocumentSchemaServiceProtocol` or `any DocumentSchemaServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DocumentSchemaServiceProtocol {
-    /// See `DocumentSchemaServiceClient.createDocumentSchema`.
-    func createDocumentSchema(request: CreateDocumentSchemaRequest) async throws
-      -> GoogleCloudContentWarehouseV1.DocumentSchema
-
-    /// See `DocumentSchemaServiceClient.createDocumentSchema`.
-    func createDocumentSchema(
-      parent: Swift.String,
-      documentSchema: DocumentSchema?,
-    ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema
-
-    /// See `DocumentSchemaServiceClient.updateDocumentSchema`.
-    func updateDocumentSchema(request: UpdateDocumentSchemaRequest) async throws
-      -> GoogleCloudContentWarehouseV1.DocumentSchema
-
-    /// See `DocumentSchemaServiceClient.updateDocumentSchema`.
-    func updateDocumentSchema(
-      name: Swift.String,
-      documentSchema: DocumentSchema?,
-    ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema
-
-    /// See `DocumentSchemaServiceClient.getDocumentSchema`.
-    func getDocumentSchema(request: GetDocumentSchemaRequest) async throws
-      -> GoogleCloudContentWarehouseV1.DocumentSchema
-
-    /// See `DocumentSchemaServiceClient.getDocumentSchema`.
-    func getDocumentSchema(
-      name: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema
-
-    /// See `DocumentSchemaServiceClient.deleteDocumentSchema`.
-    func deleteDocumentSchema(request: DeleteDocumentSchemaRequest) async throws
-
-    /// See `DocumentSchemaServiceClient.deleteDocumentSchema`.
-    func deleteDocumentSchema(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
-    func listDocumentSchemas(request: ListDocumentSchemasRequest) async throws
-      -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse
-
-    /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
-    func listDocumentSchemas(
-      byItem: ListDocumentSchemasRequest
-    ) -> any AsyncSequence<DocumentSchema, Swift.Error>
-
-    /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
-    func listDocumentSchemas(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DocumentSchema, Swift.Error>
-
+  public protocol DocumentSchemaServiceProtocol: Sendable {
     /// See `DocumentSchemaServiceClient.createDocumentSchema`.
     func createDocumentSchema(
       request: CreateDocumentSchemaRequest, options: GoogleGax.RequestOptions
@@ -204,11 +137,6 @@ extension Clients {
     func listDocumentSchemas(
       request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse
-
-    /// See `DocumentSchemaServiceClient.listDocumentSchemas`.
-    func listDocumentSchemas(
-      byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DocumentSchema, Swift.Error>
   }
 }
 
@@ -318,13 +246,18 @@ extension Clients.DocumentSchemaServiceProtocol {
     self.listDocumentSchemas(byItem: byItem, options: .init())
   }
 
+  /// Lists document schemas.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
   public func listDocumentSchemas(
     byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDocumentSchemas(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

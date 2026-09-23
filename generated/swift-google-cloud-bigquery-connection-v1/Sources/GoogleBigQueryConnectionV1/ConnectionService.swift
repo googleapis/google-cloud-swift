@@ -65,21 +65,6 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
     try await self.inner.listConnections(request: request, options: options)
   }
 
-  /// Returns a list of connections in the given project.
-  ///
-  /// @Snippet(path: "ConnectionService_ListConnections")
-  public func listConnections(
-    byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConnections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Updates the specified connection. For security reasons, also resets
   /// credential if connection properties are in the update field mask.
   ///
@@ -144,88 +129,7 @@ extension Clients {
   /// To mock `ConnectionServiceClient` change your functions to receive
   /// `some ConnectionServiceProtocol` or `any ConnectionServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ConnectionServiceProtocol {
-    /// See `ConnectionServiceClient.createConnection`.
-    func createConnection(request: CreateConnectionRequest) async throws
-      -> GoogleBigQueryConnectionV1.Connection
-
-    /// See `ConnectionServiceClient.createConnection`.
-    func createConnection(
-      parent: Swift.String,
-      connection: Connection?,
-      connectionId: Swift.String,
-    ) async throws -> GoogleBigQueryConnectionV1.Connection
-
-    /// See `ConnectionServiceClient.getConnection`.
-    func getConnection(request: GetConnectionRequest) async throws
-      -> GoogleBigQueryConnectionV1.Connection
-
-    /// See `ConnectionServiceClient.getConnection`.
-    func getConnection(
-      name: Swift.String,
-    ) async throws -> GoogleBigQueryConnectionV1.Connection
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(request: ListConnectionsRequest) async throws
-      -> GoogleBigQueryConnectionV1.ListConnectionsResponse
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(
-      byItem: ListConnectionsRequest
-    ) -> any AsyncSequence<Connection, Swift.Error>
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Connection, Swift.Error>
-
-    /// See `ConnectionServiceClient.updateConnection`.
-    func updateConnection(request: UpdateConnectionRequest) async throws
-      -> GoogleBigQueryConnectionV1.Connection
-
-    /// See `ConnectionServiceClient.updateConnection`.
-    func updateConnection(
-      name: Swift.String,
-      connection: Connection?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleBigQueryConnectionV1.Connection
-
-    /// See `ConnectionServiceClient.deleteConnection`.
-    func deleteConnection(request: DeleteConnectionRequest) async throws
-
-    /// See `ConnectionServiceClient.deleteConnection`.
-    func deleteConnection(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ConnectionServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ConnectionServiceClient.getIamPolicy`.
-    func getIamPolicy(
-      resource: Swift.String,
-      options: GoogleIAMV1.GetPolicyOptions?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ConnectionServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `ConnectionServiceClient.setIamPolicy`.
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `ConnectionServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `ConnectionServiceClient.testIamPermissions`.
-    func testIamPermissions(
-      resource: Swift.String,
-      permissions: [Swift.String],
-    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol ConnectionServiceProtocol: Sendable {
     /// See `ConnectionServiceClient.createConnection`.
     func createConnection(
       request: CreateConnectionRequest, options: GoogleGax.RequestOptions
@@ -240,11 +144,6 @@ extension Clients {
     func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse
-
-    /// See `ConnectionServiceClient.listConnections`.
-    func listConnections(
-      byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Connection, Swift.Error>
 
     /// See `ConnectionServiceClient.updateConnection`.
     func updateConnection(
@@ -339,12 +238,17 @@ extension Clients.ConnectionServiceProtocol {
     self.listConnections(byItem: byItem, options: .init())
   }
 
+  /// Returns a list of connections in the given project.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
   public func listConnections(
     byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

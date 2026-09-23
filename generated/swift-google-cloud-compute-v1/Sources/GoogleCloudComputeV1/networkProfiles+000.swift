@@ -55,22 +55,6 @@
     ) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Retrieves a list of network profiles available to the specified
-    /// project.
-    ///
-    /// @Snippet(path: "networkProfiles_list")
-    public func list(
-      byItem: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkProfile, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -79,31 +63,7 @@
     /// To mock `NetworkProfilesClient` change your functions to receive
     /// `some NetworkProfilesProtocol` or `any NetworkProfilesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol NetworkProfilesProtocol {
-      /// See `NetworkProfilesClient.`get``.
-      func `get`(request: NetworkProfilesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.NetworkProfile
-
-      /// See `NetworkProfilesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        networkProfile: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.NetworkProfile
-
-      /// See `NetworkProfilesClient.list`.
-      func list(request: NetworkProfilesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.NetworkProfilesListResponse
-
-      /// See `NetworkProfilesClient.list`.
-      func list(
-        byItem: NetworkProfilesClient.ListRequest
-      ) -> any AsyncSequence<NetworkProfile, Swift.Error>
-
-      /// See `NetworkProfilesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<NetworkProfile, Swift.Error>
-
+    public protocol NetworkProfilesProtocol: Sendable {
       /// See `NetworkProfilesClient.`get``.
       func `get`(
         request: NetworkProfilesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -113,11 +73,6 @@
       func list(
         request: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse
-
-      /// See `NetworkProfilesClient.list`.
-      func list(
-        byItem: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<NetworkProfile, Swift.Error>
     }
   }
 
@@ -164,12 +119,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of network profiles available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "networkProfiles_list")
     public func list(
       byItem: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NetworkProfile, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

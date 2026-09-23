@@ -97,21 +97,6 @@
       try await self.inner.listIndexes(request: request, options: options)
     }
 
-    /// Lists Indexes in a Location.
-    ///
-    /// @Snippet(path: "IndexService_ListIndexes")
-    public func listIndexes(
-      byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Index, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListIndexesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listIndexes(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates an Index.
     ///
     /// @Snippet(path: "IndexService_UpdateIndex")
@@ -218,21 +203,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "IndexService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "IndexService_GetLocation")
@@ -295,23 +265,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "IndexService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "IndexService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -359,10 +312,7 @@
     /// To mock `IndexServiceClient` change your functions to receive
     /// `some IndexServiceProtocol` or `any IndexServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol IndexServiceProtocol {
-      /// See `IndexServiceClient.createIndex`.
-      func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation
-
+    public protocol IndexServiceProtocol: Sendable {
       /// See `IndexServiceClient.createIndex`.
       func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
         .PollableOperation<Index>
@@ -372,31 +322,6 @@
         parent: Swift.String,
         index: Index?,
       ) async throws -> any GoogleGax.PollableOperation<Index>
-
-      /// See `IndexServiceClient.getIndex`.
-      func getIndex(request: GetIndexRequest) async throws -> GoogleCloudAIPlatformV1.Index
-
-      /// See `IndexServiceClient.getIndex`.
-      func getIndex(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.Index
-
-      /// See `IndexServiceClient.listIndexes`.
-      func listIndexes(request: ListIndexesRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListIndexesResponse
-
-      /// See `IndexServiceClient.listIndexes`.
-      func listIndexes(
-        byItem: ListIndexesRequest
-      ) -> any AsyncSequence<Index, Swift.Error>
-
-      /// See `IndexServiceClient.listIndexes`.
-      func listIndexes(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Index, Swift.Error>
-
-      /// See `IndexServiceClient.updateIndex`.
-      func updateIndex(request: UpdateIndexRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexServiceClient.updateIndex`.
       func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
@@ -409,9 +334,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.deleteIndex`.
-      func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `IndexServiceClient.deleteIndex`.
       func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
@@ -419,72 +341,6 @@
       func deleteIndex(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `IndexServiceClient.upsertDatapoints`.
-      func upsertDatapoints(request: UpsertDatapointsRequest) async throws
-        -> GoogleCloudAIPlatformV1.UpsertDatapointsResponse
-
-      /// See `IndexServiceClient.removeDatapoints`.
-      func removeDatapoints(request: RemoveDatapointsRequest) async throws
-        -> GoogleCloudAIPlatformV1.RemoveDatapointsResponse
-
-      /// See `IndexServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `IndexServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `IndexServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `IndexServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `IndexServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `IndexServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `IndexServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `IndexServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `IndexServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `IndexServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `IndexServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `IndexServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `IndexServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `IndexServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `IndexServiceClient.createIndex`.
       func createIndex(
@@ -505,11 +361,6 @@
       func listIndexes(
         request: ListIndexesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListIndexesResponse
-
-      /// See `IndexServiceClient.listIndexes`.
-      func listIndexes(
-        byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Index, Swift.Error>
 
       /// See `IndexServiceClient.updateIndex`.
       func updateIndex(
@@ -546,11 +397,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `IndexServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `IndexServiceClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -575,11 +421,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `IndexServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `IndexServiceClient.deleteOperation`.
       func deleteOperation(
@@ -675,12 +516,17 @@
       self.listIndexes(byItem: byItem, options: .init())
     }
 
+    /// Lists Indexes in a Location.
+    ///
+    /// @Snippet(path: "IndexService_ListIndexes")
     public func listIndexes(
       byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Index, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListIndexesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listIndexes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -810,12 +656,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "IndexService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -886,12 +737,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

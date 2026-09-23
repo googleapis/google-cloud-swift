@@ -353,21 +353,6 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "ManagedSchemaRegistry_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetLocation")
@@ -386,23 +371,6 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -445,299 +413,7 @@ extension Clients {
   /// To mock `ManagedSchemaRegistryClient` change your functions to receive
   /// `some ManagedSchemaRegistryProtocol` or `any ManagedSchemaRegistryProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ManagedSchemaRegistryProtocol {
-    /// See `ManagedSchemaRegistryClient.getSchemaRegistry`.
-    func getSchemaRegistry(request: GetSchemaRegistryRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry
-
-    /// See `ManagedSchemaRegistryClient.getSchemaRegistry`.
-    func getSchemaRegistry(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry
-
-    /// See `ManagedSchemaRegistryClient.listSchemaRegistries`.
-    func listSchemaRegistries(request: ListSchemaRegistriesRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse
-
-    /// See `ManagedSchemaRegistryClient.listSchemaRegistries`.
-    func listSchemaRegistries(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse
-
-    /// See `ManagedSchemaRegistryClient.createSchemaRegistry`.
-    func createSchemaRegistry(request: CreateSchemaRegistryRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry
-
-    /// See `ManagedSchemaRegistryClient.createSchemaRegistry`.
-    func createSchemaRegistry(
-      parent: Swift.String,
-      schemaRegistry: SchemaRegistry?,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry
-
-    /// See `ManagedSchemaRegistryClient.deleteSchemaRegistry`.
-    func deleteSchemaRegistry(request: DeleteSchemaRegistryRequest) async throws
-
-    /// See `ManagedSchemaRegistryClient.deleteSchemaRegistry`.
-    func deleteSchemaRegistry(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedSchemaRegistryClient.getContext`.
-    func getContext(request: GetContextRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.Context
-
-    /// See `ManagedSchemaRegistryClient.getContext`.
-    func getContext(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Context
-
-    /// See `ManagedSchemaRegistryClient.listContexts`.
-    func listContexts(request: ListContextsRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listContexts`.
-    func listContexts(
-      parent: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.getSchema`.
-    func getSchema(request: GetSchemaRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema
-
-    /// See `ManagedSchemaRegistryClient.getSchema`.
-    func getSchema(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema
-
-    /// See `ManagedSchemaRegistryClient.getRawSchema`.
-    func getRawSchema(request: GetSchemaRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.getRawSchema`.
-    func getRawSchema(
-      name: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSchemaVersions`.
-    func listSchemaVersions(request: ListSchemaVersionsRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSchemaVersions`.
-    func listSchemaVersions(
-      parent: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSchemaTypes`.
-    func listSchemaTypes(request: ListSchemaTypesRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSchemaTypes`.
-    func listSchemaTypes(
-      parent: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSubjects`.
-    func listSubjects(request: ListSubjectsRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSubjects`.
-    func listSubjects(
-      parent: Swift.String,
-      subjectPrefix: Swift.String?,
-      deleted: Swift.Bool?,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSubjectsBySchemaId`.
-    func listSubjectsBySchemaId(request: ListSubjectsBySchemaIdRequest) async throws
-      -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listSubjectsBySchemaId`.
-    func listSubjectsBySchemaId(
-      parent: Swift.String,
-      subject: Swift.String?,
-      deleted: Swift.Bool?,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.deleteSubject`.
-    func deleteSubject(request: DeleteSubjectRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.deleteSubject`.
-    func deleteSubject(
-      name: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.lookupVersion`.
-    func lookupVersion(request: LookupVersionRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion
-
-    /// See `ManagedSchemaRegistryClient.lookupVersion`.
-    func lookupVersion(
-      parent: Swift.String,
-      schema: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion
-
-    /// See `ManagedSchemaRegistryClient.getVersion`.
-    func getVersion(request: GetVersionRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion
-
-    /// See `ManagedSchemaRegistryClient.getVersion`.
-    func getVersion(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion
-
-    /// See `ManagedSchemaRegistryClient.getRawSchemaVersion`.
-    func getRawSchemaVersion(request: GetVersionRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.getRawSchemaVersion`.
-    func getRawSchemaVersion(
-      name: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listVersions`.
-    func listVersions(request: ListVersionsRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listVersions`.
-    func listVersions(
-      parent: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.createVersion`.
-    func createVersion(request: CreateVersionRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse
-
-    /// See `ManagedSchemaRegistryClient.createVersion`.
-    func createVersion(
-      parent: Swift.String,
-      version: Swift.Int32?,
-      id: Swift.Int32?,
-      schemaType: Schema.SchemaType?,
-      schema: Swift.String,
-      references: [Schema.SchemaReference],
-      normalize: Swift.Bool?,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse
-
-    /// See `ManagedSchemaRegistryClient.deleteVersion`.
-    func deleteVersion(request: DeleteVersionRequest) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.deleteVersion`.
-    func deleteVersion(
-      name: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listReferencedSchemas`.
-    func listReferencedSchemas(request: ListReferencedSchemasRequest) async throws
-      -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.listReferencedSchemas`.
-    func listReferencedSchemas(
-      parent: Swift.String,
-    ) async throws -> GoogleApi.HttpBody
-
-    /// See `ManagedSchemaRegistryClient.checkCompatibility`.
-    func checkCompatibility(request: CheckCompatibilityRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse
-
-    /// See `ManagedSchemaRegistryClient.checkCompatibility`.
-    func checkCompatibility(
-      name: Swift.String,
-      schema: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse
-
-    /// See `ManagedSchemaRegistryClient.getSchemaConfig`.
-    func getSchemaConfig(request: GetSchemaConfigRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
-
-    /// See `ManagedSchemaRegistryClient.getSchemaConfig`.
-    func getSchemaConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
-
-    /// See `ManagedSchemaRegistryClient.updateSchemaConfig`.
-    func updateSchemaConfig(request: UpdateSchemaConfigRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
-
-    /// See `ManagedSchemaRegistryClient.updateSchemaConfig`.
-    func updateSchemaConfig(
-      name: Swift.String,
-      compatibility: SchemaConfig.CompatibilityType?,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
-
-    /// See `ManagedSchemaRegistryClient.deleteSchemaConfig`.
-    func deleteSchemaConfig(request: DeleteSchemaConfigRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
-
-    /// See `ManagedSchemaRegistryClient.deleteSchemaConfig`.
-    func deleteSchemaConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
-
-    /// See `ManagedSchemaRegistryClient.getSchemaMode`.
-    func getSchemaMode(request: GetSchemaModeRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
-
-    /// See `ManagedSchemaRegistryClient.getSchemaMode`.
-    func getSchemaMode(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
-
-    /// See `ManagedSchemaRegistryClient.updateSchemaMode`.
-    func updateSchemaMode(request: UpdateSchemaModeRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
-
-    /// See `ManagedSchemaRegistryClient.updateSchemaMode`.
-    func updateSchemaMode(
-      name: Swift.String,
-      mode: SchemaMode.ModeType,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
-
-    /// See `ManagedSchemaRegistryClient.deleteSchemaMode`.
-    func deleteSchemaMode(request: DeleteSchemaModeRequest) async throws
-      -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
-
-    /// See `ManagedSchemaRegistryClient.deleteSchemaMode`.
-    func deleteSchemaMode(
-      name: Swift.String,
-    ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
-
-    /// See `ManagedSchemaRegistryClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ManagedSchemaRegistryClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ManagedSchemaRegistryClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ManagedSchemaRegistryClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ManagedSchemaRegistryClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ManagedSchemaRegistryClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ManagedSchemaRegistryClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ManagedSchemaRegistryClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ManagedSchemaRegistryClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ManagedSchemaRegistryClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
+  public protocol ManagedSchemaRegistryProtocol: Sendable {
     /// See `ManagedSchemaRegistryClient.getSchemaRegistry`.
     func getSchemaRegistry(
       request: GetSchemaRegistryRequest, options: GoogleGax.RequestOptions
@@ -878,11 +554,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ManagedSchemaRegistryClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ManagedSchemaRegistryClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -892,11 +563,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ManagedSchemaRegistryClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ManagedSchemaRegistryClient.deleteOperation`.
     func deleteOperation(
@@ -1509,12 +1175,17 @@ extension Clients.ManagedSchemaRegistryProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1549,12 +1220,19 @@ extension Clients.ManagedSchemaRegistryProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

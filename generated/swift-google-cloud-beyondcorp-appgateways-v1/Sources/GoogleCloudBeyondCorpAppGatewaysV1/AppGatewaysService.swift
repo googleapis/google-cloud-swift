@@ -65,22 +65,6 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
     try await self.inner.listAppGateways(request: request, options: options)
   }
 
-  /// Lists AppGateways in a given project and location.
-  ///
-  /// @Snippet(path: "AppGatewaysService_ListAppGateways")
-  public func listAppGateways(
-    byItem: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AppGateway, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAppGateways(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_GetAppGateway")
@@ -169,21 +153,6 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "AppGatewaysService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppGatewaysService_GetLocation")
@@ -246,23 +215,6 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "AppGatewaysService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "AppGatewaysService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -299,34 +251,7 @@ extension Clients {
   /// To mock `AppGatewaysServiceClient` change your functions to receive
   /// `some AppGatewaysServiceProtocol` or `any AppGatewaysServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AppGatewaysServiceProtocol {
-    /// See `AppGatewaysServiceClient.listAppGateways`.
-    func listAppGateways(request: ListAppGatewaysRequest) async throws
-      -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse
-
-    /// See `AppGatewaysServiceClient.listAppGateways`.
-    func listAppGateways(
-      byItem: ListAppGatewaysRequest
-    ) -> any AsyncSequence<AppGateway, Swift.Error>
-
-    /// See `AppGatewaysServiceClient.listAppGateways`.
-    func listAppGateways(
-      parent: Swift.String,
-    ) -> any AsyncSequence<AppGateway, Swift.Error>
-
-    /// See `AppGatewaysServiceClient.getAppGateway`.
-    func getAppGateway(request: GetAppGatewayRequest) async throws
-      -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway
-
-    /// See `AppGatewaysServiceClient.getAppGateway`.
-    func getAppGateway(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway
-
-    /// See `AppGatewaysServiceClient.createAppGateway`.
-    func createAppGateway(request: CreateAppGatewayRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol AppGatewaysServiceProtocol: Sendable {
     /// See `AppGatewaysServiceClient.createAppGateway`.
     func createAppGateway(withPolling: CreateAppGatewayRequest) async throws -> any GoogleGax
       .PollableOperation<AppGateway>
@@ -339,10 +264,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<AppGateway>
 
     /// See `AppGatewaysServiceClient.deleteAppGateway`.
-    func deleteAppGateway(request: DeleteAppGatewayRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AppGatewaysServiceClient.deleteAppGateway`.
     func deleteAppGateway(withPolling: DeleteAppGatewayRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -351,69 +272,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `AppGatewaysServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AppGatewaysServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `AppGatewaysServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `AppGatewaysServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AppGatewaysServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `AppGatewaysServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `AppGatewaysServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AppGatewaysServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AppGatewaysServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AppGatewaysServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AppGatewaysServiceClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AppGatewaysServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AppGatewaysServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `AppGatewaysServiceClient.listAppGateways`.
     func listAppGateways(
       request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse
-
-    /// See `AppGatewaysServiceClient.listAppGateways`.
-    func listAppGateways(
-      byItem: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AppGateway, Swift.Error>
 
     /// See `AppGatewaysServiceClient.getAppGateway`.
     func getAppGateway(
@@ -445,11 +307,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `AppGatewaysServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `AppGatewaysServiceClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -474,11 +331,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AppGatewaysServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppGatewaysServiceClient.deleteOperation`.
     func deleteOperation(
@@ -512,13 +364,18 @@ extension Clients.AppGatewaysServiceProtocol {
     self.listAppGateways(byItem: byItem, options: .init())
   }
 
+  /// Lists AppGateways in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListAppGateways")
   public func listAppGateways(
     byItem: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AppGateway, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAppGateways(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -649,12 +506,17 @@ extension Clients.AppGatewaysServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -725,12 +587,19 @@ extension Clients.AppGatewaysServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

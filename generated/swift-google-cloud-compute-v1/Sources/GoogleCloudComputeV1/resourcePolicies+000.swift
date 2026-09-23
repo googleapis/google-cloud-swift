@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of resource policies.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "resourcePolicies_aggregatedList")
-    public func aggregatedList(
-      byItem: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified resource policy.
     ///
     /// @Snippet(path: "resourcePolicies_delete")
@@ -198,22 +180,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// A list all the resource policies that have been configured for the
-    /// specified project in specified region.
-    ///
-    /// @Snippet(path: "resourcePolicies_list")
-    public func list(
-      byItem: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ResourcePolicy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Modify the specified resource policy.
     ///
     /// @Snippet(path: "resourcePolicies_patch")
@@ -298,103 +264,11 @@
     /// To mock `ResourcePoliciesClient` change your functions to receive
     /// `some ResourcePoliciesProtocol` or `any ResourcePoliciesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ResourcePoliciesProtocol {
-      /// See `ResourcePoliciesClient.aggregatedList`.
-      func aggregatedList(request: ResourcePoliciesClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.ResourcePolicyAggregatedList
-
-      /// See `ResourcePoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: ResourcePoliciesClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
-
-      /// See `ResourcePoliciesClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
-
-      /// See `ResourcePoliciesClient.delete`.
-      func delete(request: ResourcePoliciesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ResourcePoliciesClient.`get``.
-      func `get`(request: ResourcePoliciesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.ResourcePolicy
-
-      /// See `ResourcePoliciesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        resourcePolicy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.ResourcePolicy
-
-      /// See `ResourcePoliciesClient.getIamPolicy`.
-      func getIamPolicy(request: ResourcePoliciesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `ResourcePoliciesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `ResourcePoliciesClient.insert`.
-      func insert(request: ResourcePoliciesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ResourcePoliciesClient.list`.
-      func list(request: ResourcePoliciesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.ResourcePolicyList
-
-      /// See `ResourcePoliciesClient.list`.
-      func list(
-        byItem: ResourcePoliciesClient.ListRequest
-      ) -> any AsyncSequence<ResourcePolicy, Swift.Error>
-
-      /// See `ResourcePoliciesClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<ResourcePolicy, Swift.Error>
-
-      /// See `ResourcePoliciesClient.patch`.
-      func patch(request: ResourcePoliciesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ResourcePoliciesClient.setIamPolicy`.
-      func setIamPolicy(request: ResourcePoliciesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `ResourcePoliciesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `ResourcePoliciesClient.testIamPermissions`.
-      func testIamPermissions(request: ResourcePoliciesClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `ResourcePoliciesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol ResourcePoliciesProtocol: Sendable {
       /// See `ResourcePoliciesClient.aggregatedList`.
       func aggregatedList(
         request: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ResourcePolicyAggregatedList
-
-      /// See `ResourcePoliciesClient.aggregatedList`.
-      func aggregatedList(
-        byItem: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error>
 
       /// See `ResourcePoliciesClient.delete`.
       func delete(
@@ -420,11 +294,6 @@
       func list(
         request: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ResourcePolicyList
-
-      /// See `ResourcePoliciesClient.list`.
-      func list(
-        byItem: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ResourcePolicy, Swift.Error>
 
       /// See `ResourcePoliciesClient.patch`.
       func patch(
@@ -463,12 +332,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of resource policies.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "resourcePolicies_aggregatedList")
     public func aggregatedList(
       byItem: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -634,12 +511,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// A list all the resource policies that have been configured for the
+    /// specified project in specified region.
+    ///
+    /// @Snippet(path: "resourcePolicies_list")
     public func list(
       byItem: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ResourcePolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

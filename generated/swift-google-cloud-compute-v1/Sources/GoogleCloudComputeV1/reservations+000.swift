@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of reservations.
-    ///
-    /// To prevent failure, it is recommended that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "reservations_aggregatedList")
-    public func aggregatedList(
-      byItem: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified reservation.
     ///
     /// @Snippet(path: "reservations_delete")
@@ -198,21 +180,6 @@
       request: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationList {
       try await self.inner.list(request: request, options: options)
-    }
-
-    /// A list of all the reservations that have been configured for the
-    /// specified project in specified zone.
-    ///
-    /// @Snippet(path: "reservations_list")
-    public func list(
-      byItem: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Reservation, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Perform maintenance on an extended reservation
@@ -401,111 +368,11 @@
     /// To mock `ReservationsClient` change your functions to receive
     /// `some ReservationsProtocol` or `any ReservationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ReservationsProtocol {
-      /// See `ReservationsClient.aggregatedList`.
-      func aggregatedList(request: ReservationsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.ReservationAggregatedList
-
-      /// See `ReservationsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: ReservationsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
-
-      /// See `ReservationsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
-
-      /// See `ReservationsClient.delete`.
-      func delete(request: ReservationsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ReservationsClient.`get``.
-      func `get`(request: ReservationsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Reservation
-
-      /// See `ReservationsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        reservation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Reservation
-
-      /// See `ReservationsClient.getIamPolicy`.
-      func getIamPolicy(request: ReservationsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `ReservationsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `ReservationsClient.insert`.
-      func insert(request: ReservationsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ReservationsClient.list`.
-      func list(request: ReservationsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.ReservationList
-
-      /// See `ReservationsClient.list`.
-      func list(
-        byItem: ReservationsClient.ListRequest
-      ) -> any AsyncSequence<Reservation, Swift.Error>
-
-      /// See `ReservationsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<Reservation, Swift.Error>
-
-      /// See `ReservationsClient.performMaintenance`.
-      func performMaintenance(request: ReservationsClient.PerformMaintenanceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ReservationsClient.resize`.
-      func resize(request: ReservationsClient.ResizeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ReservationsClient.setIamPolicy`.
-      func setIamPolicy(request: ReservationsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `ReservationsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: ZoneSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `ReservationsClient.testIamPermissions`.
-      func testIamPermissions(request: ReservationsClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `ReservationsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        zone: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `ReservationsClient.update`.
-      func update(request: ReservationsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol ReservationsProtocol: Sendable {
       /// See `ReservationsClient.aggregatedList`.
       func aggregatedList(
         request: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationAggregatedList
-
-      /// See `ReservationsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error>
 
       /// See `ReservationsClient.delete`.
       func delete(
@@ -531,11 +398,6 @@
       func list(
         request: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationList
-
-      /// See `ReservationsClient.list`.
-      func list(
-        byItem: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Reservation, Swift.Error>
 
       /// See `ReservationsClient.performMaintenance`.
       func performMaintenance(
@@ -584,12 +446,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of reservations.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "reservations_aggregatedList")
     public func aggregatedList(
       byItem: ReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, ReservationsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -755,11 +625,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// A list of all the reservations that have been configured for the
+    /// specified project in specified zone.
+    ///
+    /// @Snippet(path: "reservations_list")
     public func list(
       byItem: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Reservation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

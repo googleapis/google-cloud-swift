@@ -46,21 +46,6 @@ public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServicePro
     try await self.inner.listAttachments(request: request, options: options)
   }
 
-  /// List all the attachments associated with a support case.
-  ///
-  /// @Snippet(path: "CaseAttachmentService_ListAttachments")
-  public func listAttachments(
-    byItem: ListAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Attachment, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAttachments(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieve an attachment associated with a support case.
   ///
   /// EXAMPLES:
@@ -107,39 +92,11 @@ extension Clients {
   /// To mock `CaseAttachmentServiceClient` change your functions to receive
   /// `some CaseAttachmentServiceProtocol` or `any CaseAttachmentServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CaseAttachmentServiceProtocol {
-    /// See `CaseAttachmentServiceClient.listAttachments`.
-    func listAttachments(request: ListAttachmentsRequest) async throws
-      -> GoogleCloudSupportV2.ListAttachmentsResponse
-
-    /// See `CaseAttachmentServiceClient.listAttachments`.
-    func listAttachments(
-      byItem: ListAttachmentsRequest
-    ) -> any AsyncSequence<Attachment, Swift.Error>
-
-    /// See `CaseAttachmentServiceClient.listAttachments`.
-    func listAttachments(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Attachment, Swift.Error>
-
-    /// See `CaseAttachmentServiceClient.getAttachment`.
-    func getAttachment(request: GetAttachmentRequest) async throws
-      -> GoogleCloudSupportV2.Attachment
-
-    /// See `CaseAttachmentServiceClient.getAttachment`.
-    func getAttachment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudSupportV2.Attachment
-
+  public protocol CaseAttachmentServiceProtocol: Sendable {
     /// See `CaseAttachmentServiceClient.listAttachments`.
     func listAttachments(
       request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse
-
-    /// See `CaseAttachmentServiceClient.listAttachments`.
-    func listAttachments(
-      byItem: ListAttachmentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Attachment, Swift.Error>
 
     /// See `CaseAttachmentServiceClient.getAttachment`.
     func getAttachment(
@@ -168,12 +125,17 @@ extension Clients.CaseAttachmentServiceProtocol {
     self.listAttachments(byItem: byItem, options: .init())
   }
 
+  /// List all the attachments associated with a support case.
+  ///
+  /// @Snippet(path: "CaseAttachmentService_ListAttachments")
   public func listAttachments(
     byItem: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Attachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAttachments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -71,36 +71,6 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
     try await self.inner.searchCatalog(request: request, options: options)
   }
 
-  /// Searches Data Catalog for multiple resources like entries and tags that
-  /// match a query.
-  ///
-  /// This is a [Custom Method]
-  /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
-  /// all information on a resource, only its ID and high level fields. To get
-  /// more information, you can subsequently call specific get methods.
-  ///
-  /// Note: Data Catalog search queries don't guarantee full recall. Results
-  /// that match your query might not be returned, even in subsequent
-  /// result pages. Additionally, returned (and not returned) results can vary
-  /// if you repeat search queries.
-  ///
-  /// For more information, see [Data Catalog search syntax]
-  /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
-  ///
-  /// @Snippet(path: "DataCatalog_SearchCatalog")
-  @available(*, deprecated)
-  public func searchCatalog(
-    byItem: SearchCatalogRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchCatalog(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates an entry group.
   ///
   /// An entry group contains logically related entries together with [Cloud
@@ -185,22 +155,6 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse {
     try await self.inner.listEntryGroups(request: request, options: options)
-  }
-
-  /// Lists entry groups.
-  ///
-  /// @Snippet(path: "DataCatalog_ListEntryGroups")
-  @available(*, deprecated)
-  public func listEntryGroups(
-    byItem: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEntryGroups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Creates an entry.
@@ -295,28 +249,6 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse {
     try await self.inner.listEntries(request: request, options: options)
-  }
-
-  /// Lists entries.
-  ///
-  /// Note: Currently, this method can list only custom entries.
-  /// To get a list of both custom and automatically created entries, use
-  /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
-  ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
-  ///
-  /// @Snippet(path: "DataCatalog_ListEntries")
-  @available(*, deprecated)
-  public func listEntries(
-    byItem: ListEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entry, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEntries(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Modifies entry overview, part of the business context of an
@@ -537,27 +469,6 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
     request: ListTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse {
     try await self.inner.listTags(request: request, options: options)
-  }
-
-  /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
-  /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
-  /// lowercased.
-  ///
-  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
-  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/OneOf_Scope/column(_:)>
-  ///
-  /// @Snippet(path: "DataCatalog_ListTags")
-  @available(*, deprecated)
-  public func listTags(
-    byItem: ListTagsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Tag, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTags(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// `ReconcileTags` creates or updates a list of tags on the entry.
@@ -861,23 +772,6 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "DataCatalog_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "DataCatalog_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -915,480 +809,22 @@ extension Clients {
   /// `some DataCatalogProtocol` or `any DataCatalogProtocol`
   /// and pass a mock implementation in your tests.
   @available(*, deprecated)
-  public protocol DataCatalogProtocol {
-    /// See `DataCatalogClient.searchCatalog`.
-    @available(*, deprecated)
-    func searchCatalog(request: SearchCatalogRequest) async throws
-      -> GoogleCloudDataCatalogV1.SearchCatalogResponse
-
-    /// See `DataCatalogClient.searchCatalog`.
-    @available(*, deprecated)
-    func searchCatalog(
-      byItem: SearchCatalogRequest
-    ) -> any AsyncSequence<SearchCatalogResult, Swift.Error>
-
-    /// See `DataCatalogClient.searchCatalog`.
-    @available(*, deprecated)
-    func searchCatalog(
-      scope: SearchCatalogRequest.Scope?,
-      query: Swift.String,
-    ) -> any AsyncSequence<SearchCatalogResult, Swift.Error>
-
-    /// See `DataCatalogClient.createEntryGroup`.
-    @available(*, deprecated)
-    func createEntryGroup(request: CreateEntryGroupRequest) async throws
-      -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.createEntryGroup`.
-    @available(*, deprecated)
-    func createEntryGroup(
-      parent: Swift.String,
-      entryGroupId: Swift.String,
-      entryGroup: EntryGroup?,
-    ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.getEntryGroup`.
-    @available(*, deprecated)
-    func getEntryGroup(request: GetEntryGroupRequest) async throws
-      -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.getEntryGroup`.
-    @available(*, deprecated)
-    func getEntryGroup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.getEntryGroup`.
-    @available(*, deprecated)
-    func getEntryGroup(
-      name: Swift.String,
-      readMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.updateEntryGroup`.
-    @available(*, deprecated)
-    func updateEntryGroup(request: UpdateEntryGroupRequest) async throws
-      -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.updateEntryGroup`.
-    @available(*, deprecated)
-    func updateEntryGroup(
-      entryGroup: EntryGroup?,
-    ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.updateEntryGroup`.
-    @available(*, deprecated)
-    func updateEntryGroup(
-      entryGroup: EntryGroup?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
-
-    /// See `DataCatalogClient.deleteEntryGroup`.
-    @available(*, deprecated)
-    func deleteEntryGroup(request: DeleteEntryGroupRequest) async throws
-
-    /// See `DataCatalogClient.deleteEntryGroup`.
-    @available(*, deprecated)
-    func deleteEntryGroup(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataCatalogClient.listEntryGroups`.
-    @available(*, deprecated)
-    func listEntryGroups(request: ListEntryGroupsRequest) async throws
-      -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse
-
-    /// See `DataCatalogClient.listEntryGroups`.
-    @available(*, deprecated)
-    func listEntryGroups(
-      byItem: ListEntryGroupsRequest
-    ) -> any AsyncSequence<EntryGroup, Swift.Error>
-
-    /// See `DataCatalogClient.listEntryGroups`.
-    @available(*, deprecated)
-    func listEntryGroups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<EntryGroup, Swift.Error>
-
-    /// See `DataCatalogClient.createEntry`.
-    @available(*, deprecated)
-    func createEntry(request: CreateEntryRequest) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.createEntry`.
-    @available(*, deprecated)
-    func createEntry(
-      parent: Swift.String,
-      entryId: Swift.String,
-      entry: Entry?,
-    ) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.updateEntry`.
-    @available(*, deprecated)
-    func updateEntry(request: UpdateEntryRequest) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.updateEntry`.
-    @available(*, deprecated)
-    func updateEntry(
-      entry: Entry?,
-    ) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.updateEntry`.
-    @available(*, deprecated)
-    func updateEntry(
-      entry: Entry?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.deleteEntry`.
-    @available(*, deprecated)
-    func deleteEntry(request: DeleteEntryRequest) async throws
-
-    /// See `DataCatalogClient.deleteEntry`.
-    @available(*, deprecated)
-    func deleteEntry(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataCatalogClient.getEntry`.
-    @available(*, deprecated)
-    func getEntry(request: GetEntryRequest) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.getEntry`.
-    @available(*, deprecated)
-    func getEntry(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.lookupEntry`.
-    @available(*, deprecated)
-    func lookupEntry(request: LookupEntryRequest) async throws -> GoogleCloudDataCatalogV1.Entry
-
-    /// See `DataCatalogClient.listEntries`.
-    @available(*, deprecated)
-    func listEntries(request: ListEntriesRequest) async throws
-      -> GoogleCloudDataCatalogV1.ListEntriesResponse
-
-    /// See `DataCatalogClient.listEntries`.
-    @available(*, deprecated)
-    func listEntries(
-      byItem: ListEntriesRequest
-    ) -> any AsyncSequence<Entry, Swift.Error>
-
-    /// See `DataCatalogClient.listEntries`.
-    @available(*, deprecated)
-    func listEntries(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Entry, Swift.Error>
-
-    /// See `DataCatalogClient.modifyEntryOverview`.
-    @available(*, deprecated)
-    func modifyEntryOverview(request: ModifyEntryOverviewRequest) async throws
-      -> GoogleCloudDataCatalogV1.EntryOverview
-
-    /// See `DataCatalogClient.modifyEntryContacts`.
-    @available(*, deprecated)
-    func modifyEntryContacts(request: ModifyEntryContactsRequest) async throws
-      -> GoogleCloudDataCatalogV1.Contacts
-
-    /// See `DataCatalogClient.createTagTemplate`.
-    @available(*, deprecated)
-    func createTagTemplate(request: CreateTagTemplateRequest) async throws
-      -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.createTagTemplate`.
-    @available(*, deprecated)
-    func createTagTemplate(
-      parent: Swift.String,
-      tagTemplateId: Swift.String,
-      tagTemplate: TagTemplate?,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.getTagTemplate`.
-    @available(*, deprecated)
-    func getTagTemplate(request: GetTagTemplateRequest) async throws
-      -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.getTagTemplate`.
-    @available(*, deprecated)
-    func getTagTemplate(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.updateTagTemplate`.
-    @available(*, deprecated)
-    func updateTagTemplate(request: UpdateTagTemplateRequest) async throws
-      -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.updateTagTemplate`.
-    @available(*, deprecated)
-    func updateTagTemplate(
-      tagTemplate: TagTemplate?,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.updateTagTemplate`.
-    @available(*, deprecated)
-    func updateTagTemplate(
-      tagTemplate: TagTemplate?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplate
-
-    /// See `DataCatalogClient.deleteTagTemplate`.
-    @available(*, deprecated)
-    func deleteTagTemplate(request: DeleteTagTemplateRequest) async throws
-
-    /// See `DataCatalogClient.deleteTagTemplate`.
-    @available(*, deprecated)
-    func deleteTagTemplate(
-      name: Swift.String,
-      force: Swift.Bool,
-    ) async throws
-
-    /// See `DataCatalogClient.createTagTemplateField`.
-    @available(*, deprecated)
-    func createTagTemplateField(request: CreateTagTemplateFieldRequest) async throws
-      -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.createTagTemplateField`.
-    @available(*, deprecated)
-    func createTagTemplateField(
-      parent: Swift.String,
-      tagTemplateFieldId: Swift.String,
-      tagTemplateField: TagTemplateField?,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.updateTagTemplateField`.
-    @available(*, deprecated)
-    func updateTagTemplateField(request: UpdateTagTemplateFieldRequest) async throws
-      -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.updateTagTemplateField`.
-    @available(*, deprecated)
-    func updateTagTemplateField(
-      name: Swift.String,
-      tagTemplateField: TagTemplateField?,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.updateTagTemplateField`.
-    @available(*, deprecated)
-    func updateTagTemplateField(
-      name: Swift.String,
-      tagTemplateField: TagTemplateField?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.renameTagTemplateField`.
-    @available(*, deprecated)
-    func renameTagTemplateField(request: RenameTagTemplateFieldRequest) async throws
-      -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.renameTagTemplateField`.
-    @available(*, deprecated)
-    func renameTagTemplateField(
-      name: Swift.String,
-      newTagTemplateFieldId: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.renameTagTemplateFieldEnumValue`.
-    @available(*, deprecated)
-    func renameTagTemplateFieldEnumValue(request: RenameTagTemplateFieldEnumValueRequest)
-      async throws -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.renameTagTemplateFieldEnumValue`.
-    @available(*, deprecated)
-    func renameTagTemplateFieldEnumValue(
-      name: Swift.String,
-      newEnumValueDisplayName: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField
-
-    /// See `DataCatalogClient.deleteTagTemplateField`.
-    @available(*, deprecated)
-    func deleteTagTemplateField(request: DeleteTagTemplateFieldRequest) async throws
-
-    /// See `DataCatalogClient.deleteTagTemplateField`.
-    @available(*, deprecated)
-    func deleteTagTemplateField(
-      name: Swift.String,
-      force: Swift.Bool,
-    ) async throws
-
-    /// See `DataCatalogClient.createTag`.
-    @available(*, deprecated)
-    func createTag(request: CreateTagRequest) async throws -> GoogleCloudDataCatalogV1.Tag
-
-    /// See `DataCatalogClient.createTag`.
-    @available(*, deprecated)
-    func createTag(
-      parent: Swift.String,
-      tag: Tag?,
-    ) async throws -> GoogleCloudDataCatalogV1.Tag
-
-    /// See `DataCatalogClient.updateTag`.
-    @available(*, deprecated)
-    func updateTag(request: UpdateTagRequest) async throws -> GoogleCloudDataCatalogV1.Tag
-
-    /// See `DataCatalogClient.updateTag`.
-    @available(*, deprecated)
-    func updateTag(
-      tag: Tag?,
-    ) async throws -> GoogleCloudDataCatalogV1.Tag
-
-    /// See `DataCatalogClient.updateTag`.
-    @available(*, deprecated)
-    func updateTag(
-      tag: Tag?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudDataCatalogV1.Tag
-
-    /// See `DataCatalogClient.deleteTag`.
-    @available(*, deprecated)
-    func deleteTag(request: DeleteTagRequest) async throws
-
-    /// See `DataCatalogClient.deleteTag`.
-    @available(*, deprecated)
-    func deleteTag(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataCatalogClient.listTags`.
-    @available(*, deprecated)
-    func listTags(request: ListTagsRequest) async throws
-      -> GoogleCloudDataCatalogV1.ListTagsResponse
-
-    /// See `DataCatalogClient.listTags`.
-    @available(*, deprecated)
-    func listTags(
-      byItem: ListTagsRequest
-    ) -> any AsyncSequence<Tag, Swift.Error>
-
-    /// See `DataCatalogClient.listTags`.
-    @available(*, deprecated)
-    func listTags(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Tag, Swift.Error>
-
-    /// See `DataCatalogClient.reconcileTags`.
-    @available(*, deprecated)
-    func reconcileTags(request: ReconcileTagsRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol DataCatalogProtocol: Sendable {
     /// See `DataCatalogClient.reconcileTags`.
     @available(*, deprecated)
     func reconcileTags(withPolling: ReconcileTagsRequest) async throws -> any GoogleGax
       .PollableOperation<ReconcileTagsResponse>
-
-    /// See `DataCatalogClient.starEntry`.
-    @available(*, deprecated)
-    func starEntry(request: StarEntryRequest) async throws
-      -> GoogleCloudDataCatalogV1.StarEntryResponse
-
-    /// See `DataCatalogClient.starEntry`.
-    @available(*, deprecated)
-    func starEntry(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.StarEntryResponse
-
-    /// See `DataCatalogClient.unstarEntry`.
-    @available(*, deprecated)
-    func unstarEntry(request: UnstarEntryRequest) async throws
-      -> GoogleCloudDataCatalogV1.UnstarEntryResponse
-
-    /// See `DataCatalogClient.unstarEntry`.
-    @available(*, deprecated)
-    func unstarEntry(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDataCatalogV1.UnstarEntryResponse
-
-    /// See `DataCatalogClient.setIamPolicy`.
-    @available(*, deprecated)
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataCatalogClient.setIamPolicy`.
-    @available(*, deprecated)
-    func setIamPolicy(
-      resource: Swift.String,
-      policy: GoogleIAMV1.Policy?,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataCatalogClient.getIamPolicy`.
-    @available(*, deprecated)
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataCatalogClient.getIamPolicy`.
-    @available(*, deprecated)
-    func getIamPolicy(
-      resource: Swift.String,
-    ) async throws -> GoogleIAMV1.Policy
-
-    /// See `DataCatalogClient.testIamPermissions`.
-    @available(*, deprecated)
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `DataCatalogClient.importEntries`.
-    @available(*, deprecated)
-    func importEntries(request: ImportEntriesRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DataCatalogClient.importEntries`.
     @available(*, deprecated)
     func importEntries(withPolling: ImportEntriesRequest) async throws -> any GoogleGax
       .PollableOperation<ImportEntriesResponse>
 
-    /// See `DataCatalogClient.setConfig`.
-    @available(*, deprecated)
-    func setConfig(request: SetConfigRequest) async throws
-      -> GoogleCloudDataCatalogV1.MigrationConfig
-
-    /// See `DataCatalogClient.retrieveConfig`.
-    @available(*, deprecated)
-    func retrieveConfig(request: RetrieveConfigRequest) async throws
-      -> GoogleCloudDataCatalogV1.OrganizationConfig
-
-    /// See `DataCatalogClient.retrieveEffectiveConfig`.
-    @available(*, deprecated)
-    func retrieveEffectiveConfig(request: RetrieveEffectiveConfigRequest) async throws
-      -> GoogleCloudDataCatalogV1.MigrationConfig
-
-    /// See `DataCatalogClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DataCatalogClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataCatalogClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DataCatalogClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `DataCatalogClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DataCatalogClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DataCatalogClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `DataCatalogClient.searchCatalog`.
     @available(*, deprecated)
     func searchCatalog(
       request: SearchCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse
-
-    /// See `DataCatalogClient.searchCatalog`.
-    @available(*, deprecated)
-    func searchCatalog(
-      byItem: SearchCatalogRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchCatalogResult, Swift.Error>
 
     /// See `DataCatalogClient.createEntryGroup`.
     @available(*, deprecated)
@@ -1419,12 +855,6 @@ extension Clients {
     func listEntryGroups(
       request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse
-
-    /// See `DataCatalogClient.listEntryGroups`.
-    @available(*, deprecated)
-    func listEntryGroups(
-      byItem: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EntryGroup, Swift.Error>
 
     /// See `DataCatalogClient.createEntry`.
     @available(*, deprecated)
@@ -1461,12 +891,6 @@ extension Clients {
     func listEntries(
       request: ListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse
-
-    /// See `DataCatalogClient.listEntries`.
-    @available(*, deprecated)
-    func listEntries(
-      byItem: ListEntriesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Entry, Swift.Error>
 
     /// See `DataCatalogClient.modifyEntryOverview`.
     @available(*, deprecated)
@@ -1558,12 +982,6 @@ extension Clients {
       request: ListTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse
 
-    /// See `DataCatalogClient.listTags`.
-    @available(*, deprecated)
-    func listTags(
-      byItem: ListTagsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Tag, Swift.Error>
-
     /// See `DataCatalogClient.reconcileTags`.
     @available(*, deprecated)
     func reconcileTags(
@@ -1641,11 +1059,6 @@ extension Clients {
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
 
-    /// See `DataCatalogClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
     /// See `DataCatalogClient.deleteOperation`.
     func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
@@ -1682,13 +1095,32 @@ extension Clients.DataCatalogProtocol {
     self.searchCatalog(byItem: byItem, options: .init())
   }
 
+  /// Searches Data Catalog for multiple resources like entries and tags that
+  /// match a query.
+  ///
+  /// This is a [Custom Method]
+  /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
+  /// all information on a resource, only its ID and high level fields. To get
+  /// more information, you can subsequently call specific get methods.
+  ///
+  /// Note: Data Catalog search queries don't guarantee full recall. Results
+  /// that match your query might not be returned, even in subsequent
+  /// result pages. Additionally, returned (and not returned) results can vary
+  /// if you repeat search queries.
+  ///
+  /// For more information, see [Data Catalog search syntax]
+  /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
+  ///
+  /// @Snippet(path: "DataCatalog_SearchCatalog")
   @available(*, deprecated)
   public func searchCatalog(
     byItem: SearchCatalogRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchCatalog(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1848,13 +1280,18 @@ extension Clients.DataCatalogProtocol {
     self.listEntryGroups(byItem: byItem, options: .init())
   }
 
+  /// Lists entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntryGroups")
   @available(*, deprecated)
   public func listEntryGroups(
     byItem: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EntryGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEntryGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2012,13 +1449,24 @@ extension Clients.DataCatalogProtocol {
     self.listEntries(byItem: byItem, options: .init())
   }
 
+  /// Lists entries.
+  ///
+  /// Note: Currently, this method can list only custom entries.
+  /// To get a list of both custom and automatically created entries, use
+  /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
+  ///
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntries")
   @available(*, deprecated)
   public func listEntries(
     byItem: ListEntriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Entry, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEntries(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2418,13 +1866,23 @@ extension Clients.DataCatalogProtocol {
     self.listTags(byItem: byItem, options: .init())
   }
 
+  /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+  /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+  /// lowercased.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/OneOf_Scope/column(_:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListTags")
   @available(*, deprecated)
   public func listTags(
     byItem: ListTagsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Tag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTags(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2675,12 +2133,19 @@ extension Clients.DataCatalogProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

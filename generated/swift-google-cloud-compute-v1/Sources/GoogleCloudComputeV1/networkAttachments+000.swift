@@ -55,26 +55,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves the list of all NetworkAttachment resources,
-    /// regional and global, available to the specified project.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "networkAttachments_aggregatedList")
-    public func aggregatedList(
-      byItem: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified NetworkAttachment in the given scope
     ///
     /// @Snippet(path: "networkAttachments_delete")
@@ -203,21 +183,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the NetworkAttachments for a project in the given scope.
-    ///
-    /// @Snippet(path: "networkAttachments_list")
-    public func list(
-      byItem: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified NetworkAttachment resource with the data included in
     /// the request. This method supports PATCH
     /// semantics and usesJSON merge
@@ -308,103 +273,11 @@
     /// To mock `NetworkAttachmentsClient` change your functions to receive
     /// `some NetworkAttachmentsProtocol` or `any NetworkAttachmentsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol NetworkAttachmentsProtocol {
-      /// See `NetworkAttachmentsClient.aggregatedList`.
-      func aggregatedList(request: NetworkAttachmentsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
-
-      /// See `NetworkAttachmentsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: NetworkAttachmentsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
-
-      /// See `NetworkAttachmentsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
-
-      /// See `NetworkAttachmentsClient.delete`.
-      func delete(request: NetworkAttachmentsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworkAttachmentsClient.`get``.
-      func `get`(request: NetworkAttachmentsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.NetworkAttachment
-
-      /// See `NetworkAttachmentsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        networkAttachment: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.NetworkAttachment
-
-      /// See `NetworkAttachmentsClient.getIamPolicy`.
-      func getIamPolicy(request: NetworkAttachmentsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `NetworkAttachmentsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `NetworkAttachmentsClient.insert`.
-      func insert(request: NetworkAttachmentsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworkAttachmentsClient.list`.
-      func list(request: NetworkAttachmentsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.NetworkAttachmentList
-
-      /// See `NetworkAttachmentsClient.list`.
-      func list(
-        byItem: NetworkAttachmentsClient.ListRequest
-      ) -> any AsyncSequence<NetworkAttachment, Swift.Error>
-
-      /// See `NetworkAttachmentsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<NetworkAttachment, Swift.Error>
-
-      /// See `NetworkAttachmentsClient.patch`.
-      func patch(request: NetworkAttachmentsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworkAttachmentsClient.setIamPolicy`.
-      func setIamPolicy(request: NetworkAttachmentsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `NetworkAttachmentsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `NetworkAttachmentsClient.testIamPermissions`.
-      func testIamPermissions(request: NetworkAttachmentsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `NetworkAttachmentsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol NetworkAttachmentsProtocol: Sendable {
       /// See `NetworkAttachmentsClient.aggregatedList`.
       func aggregatedList(
         request: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
-
-      /// See `NetworkAttachmentsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error>
 
       /// See `NetworkAttachmentsClient.delete`.
       func delete(
@@ -430,11 +303,6 @@
       func list(
         request: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkAttachmentList
-
-      /// See `NetworkAttachmentsClient.list`.
-      func list(
-        byItem: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<NetworkAttachment, Swift.Error>
 
       /// See `NetworkAttachmentsClient.patch`.
       func patch(
@@ -474,13 +342,22 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of all NetworkAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkAttachments_aggregatedList")
     public func aggregatedList(
       byItem: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -646,12 +523,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the NetworkAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "networkAttachments_list")
     public func list(
       byItem: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NetworkAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

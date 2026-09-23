@@ -71,21 +71,6 @@
       try await self.inner.listGenerators(request: request, options: options)
     }
 
-    /// Lists generators.
-    ///
-    /// @Snippet(path: "Generators_ListGenerators")
-    public func listGenerators(
-      byItem: ListGeneratorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Generator, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListGeneratorsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listGenerators(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a generator.
     ///
     /// @Snippet(path: "Generators_DeleteGenerator")
@@ -130,38 +115,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Generators_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Generators_GetLocation")
@@ -180,23 +133,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Generators_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -228,95 +164,7 @@
     /// To mock `GeneratorsClient` change your functions to receive
     /// `some GeneratorsProtocol` or `any GeneratorsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol GeneratorsProtocol {
-      /// See `GeneratorsClient.createGenerator`.
-      func createGenerator(request: CreateGeneratorRequest) async throws
-        -> GoogleCloudDialogflowV2.Generator
-
-      /// See `GeneratorsClient.createGenerator`.
-      func createGenerator(
-        parent: Swift.String,
-        generator: Generator?,
-        generatorId: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.Generator
-
-      /// See `GeneratorsClient.getGenerator`.
-      func getGenerator(request: GetGeneratorRequest) async throws
-        -> GoogleCloudDialogflowV2.Generator
-
-      /// See `GeneratorsClient.getGenerator`.
-      func getGenerator(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.Generator
-
-      /// See `GeneratorsClient.listGenerators`.
-      func listGenerators(request: ListGeneratorsRequest) async throws
-        -> GoogleCloudDialogflowV2.ListGeneratorsResponse
-
-      /// See `GeneratorsClient.listGenerators`.
-      func listGenerators(
-        byItem: ListGeneratorsRequest
-      ) -> any AsyncSequence<Generator, Swift.Error>
-
-      /// See `GeneratorsClient.listGenerators`.
-      func listGenerators(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Generator, Swift.Error>
-
-      /// See `GeneratorsClient.deleteGenerator`.
-      func deleteGenerator(request: DeleteGeneratorRequest) async throws
-
-      /// See `GeneratorsClient.deleteGenerator`.
-      func deleteGenerator(
-        name: Swift.String,
-      ) async throws
-
-      /// See `GeneratorsClient.updateGenerator`.
-      func updateGenerator(request: UpdateGeneratorRequest) async throws
-        -> GoogleCloudDialogflowV2.Generator
-
-      /// See `GeneratorsClient.updateGenerator`.
-      func updateGenerator(
-        generator: Generator?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowV2.Generator
-
-      /// See `GeneratorsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `GeneratorsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `GeneratorsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `GeneratorsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `GeneratorsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `GeneratorsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `GeneratorsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `GeneratorsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol GeneratorsProtocol: Sendable {
       /// See `GeneratorsClient.createGenerator`.
       func createGenerator(
         request: CreateGeneratorRequest, options: GoogleGax.RequestOptions
@@ -331,11 +179,6 @@
       func listGenerators(
         request: ListGeneratorsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListGeneratorsResponse
-
-      /// See `GeneratorsClient.listGenerators`.
-      func listGenerators(
-        byItem: ListGeneratorsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Generator, Swift.Error>
 
       /// See `GeneratorsClient.deleteGenerator`.
       func deleteGenerator(
@@ -352,11 +195,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `GeneratorsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `GeneratorsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -366,11 +204,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `GeneratorsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `GeneratorsClient.cancelOperation`.
       func cancelOperation(
@@ -445,12 +278,17 @@
       self.listGenerators(byItem: byItem, options: .init())
     }
 
+    /// Lists generators.
+    ///
+    /// @Snippet(path: "Generators_ListGenerators")
     public func listGenerators(
       byItem: ListGeneratorsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Generator, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListGeneratorsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listGenerators(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -524,12 +362,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Generators_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -564,12 +424,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Generators_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

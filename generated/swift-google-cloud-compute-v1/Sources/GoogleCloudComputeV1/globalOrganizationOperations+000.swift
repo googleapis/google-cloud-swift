@@ -68,21 +68,6 @@
     ) async throws -> GoogleCloudComputeV1.OperationList {
       try await self.inner.list(request: request, options: options)
     }
-
-    /// Retrieves a list of Operation resources contained within the specified
-    /// organization.
-    ///
-    /// @Snippet(path: "globalOrganizationOperations_list")
-    public func list(
-      byItem: GlobalOrganizationOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   extension Clients {
@@ -91,33 +76,7 @@
     /// To mock `GlobalOrganizationOperationsClient` change your functions to receive
     /// `some GlobalOrganizationOperationsProtocol` or `any GlobalOrganizationOperationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol GlobalOrganizationOperationsProtocol {
-      /// See `GlobalOrganizationOperationsClient.delete`.
-      func delete(request: GlobalOrganizationOperationsClient.DeleteRequest) async throws
-
-      /// See `GlobalOrganizationOperationsClient.delete`.
-      func delete(
-        operation: Swift.String,
-      ) async throws
-
-      /// See `GlobalOrganizationOperationsClient.`get``.
-      func `get`(request: GlobalOrganizationOperationsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalOrganizationOperationsClient.`get``.
-      func `get`(
-        operation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `GlobalOrganizationOperationsClient.list`.
-      func list(request: GlobalOrganizationOperationsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.OperationList
-
-      /// See `GlobalOrganizationOperationsClient.list`.
-      func list(
-        byItem: GlobalOrganizationOperationsClient.ListRequest
-      ) -> any AsyncSequence<Operation, Swift.Error>
-
+    public protocol GlobalOrganizationOperationsProtocol: Sendable {
       /// See `GlobalOrganizationOperationsClient.delete`.
       func delete(
         request: GlobalOrganizationOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -132,11 +91,6 @@
       func list(
         request: GlobalOrganizationOperationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.OperationList
-
-      /// See `GlobalOrganizationOperationsClient.list`.
-      func list(
-        byItem: GlobalOrganizationOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Operation, Swift.Error>
     }
   }
 
@@ -200,11 +154,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of Operation resources contained within the specified
+    /// organization.
+    ///
+    /// @Snippet(path: "globalOrganizationOperations_list")
     public func list(
       byItem: GlobalOrganizationOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

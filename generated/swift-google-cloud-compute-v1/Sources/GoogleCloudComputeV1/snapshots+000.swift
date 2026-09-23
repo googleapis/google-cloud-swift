@@ -188,21 +188,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of Snapshot resources contained within
-    /// the specified project.
-    ///
-    /// @Snippet(path: "snapshots_list")
-    public func list(
-      byItem: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Snapshot, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the access control policy on the specified resource.
     /// Replaces any existing policy.
     ///
@@ -338,78 +323,7 @@
     /// To mock `SnapshotsClient` change your functions to receive
     /// `some SnapshotsProtocol` or `any SnapshotsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SnapshotsProtocol {
-      /// See `SnapshotsClient.delete`.
-      func delete(request: SnapshotsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SnapshotsClient.`get``.
-      func `get`(request: SnapshotsClient.GetRequest) async throws -> GoogleCloudComputeV1.Snapshot
-
-      /// See `SnapshotsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        snapshot: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Snapshot
-
-      /// See `SnapshotsClient.getIamPolicy`.
-      func getIamPolicy(request: SnapshotsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `SnapshotsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `SnapshotsClient.insert`.
-      func insert(request: SnapshotsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SnapshotsClient.list`.
-      func list(request: SnapshotsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.SnapshotList
-
-      /// See `SnapshotsClient.list`.
-      func list(
-        byItem: SnapshotsClient.ListRequest
-      ) -> any AsyncSequence<Snapshot, Swift.Error>
-
-      /// See `SnapshotsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Snapshot, Swift.Error>
-
-      /// See `SnapshotsClient.setIamPolicy`.
-      func setIamPolicy(request: SnapshotsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `SnapshotsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `SnapshotsClient.setLabels`.
-      func setLabels(request: SnapshotsClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `SnapshotsClient.testIamPermissions`.
-      func testIamPermissions(request: SnapshotsClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `SnapshotsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `SnapshotsClient.updateKmsKey`.
-      func updateKmsKey(request: SnapshotsClient.UpdateKmsKeyRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol SnapshotsProtocol: Sendable {
       /// See `SnapshotsClient.delete`.
       func delete(
         request: SnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -434,11 +348,6 @@
       func list(
         request: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SnapshotList
-
-      /// See `SnapshotsClient.list`.
-      func list(
-        byItem: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Snapshot, Swift.Error>
 
       /// See `SnapshotsClient.setIamPolicy`.
       func setIamPolicy(
@@ -608,11 +517,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of Snapshot resources contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "snapshots_list")
     public func list(
       byItem: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Snapshot, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

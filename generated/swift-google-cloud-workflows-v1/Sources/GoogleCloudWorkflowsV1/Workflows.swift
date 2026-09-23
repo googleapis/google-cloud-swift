@@ -55,22 +55,6 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
     try await self.inner.listWorkflows(request: request, options: options)
   }
 
-  /// Lists workflows in a given project and location.
-  /// The default order is not specified.
-  ///
-  /// @Snippet(path: "Workflows_ListWorkflows")
-  public func listWorkflows(
-    byItem: ListWorkflowsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workflow, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWorkflowsV1.ListWorkflowsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listWorkflows(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single workflow.
   ///
   /// @Snippet(path: "Workflows_GetWorkflow")
@@ -210,21 +194,6 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
     try await self.inner.listWorkflowRevisions(request: request, options: options)
   }
 
-  /// Lists revisions for a given workflow.
-  ///
-  /// @Snippet(path: "Workflows_ListWorkflowRevisions")
-  public func listWorkflowRevisions(
-    byItem: ListWorkflowRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workflow, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWorkflowsV1.ListWorkflowRevisionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listWorkflowRevisions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Workflows_ListLocations")
@@ -232,21 +201,6 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "Workflows_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -267,23 +221,6 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Workflows_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -315,32 +252,7 @@ extension Clients {
   /// To mock `WorkflowsClient` change your functions to receive
   /// `some WorkflowsProtocol` or `any WorkflowsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol WorkflowsProtocol {
-    /// See `WorkflowsClient.listWorkflows`.
-    func listWorkflows(request: ListWorkflowsRequest) async throws
-      -> GoogleCloudWorkflowsV1.ListWorkflowsResponse
-
-    /// See `WorkflowsClient.listWorkflows`.
-    func listWorkflows(
-      byItem: ListWorkflowsRequest
-    ) -> any AsyncSequence<Workflow, Swift.Error>
-
-    /// See `WorkflowsClient.listWorkflows`.
-    func listWorkflows(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Workflow, Swift.Error>
-
-    /// See `WorkflowsClient.getWorkflow`.
-    func getWorkflow(request: GetWorkflowRequest) async throws -> GoogleCloudWorkflowsV1.Workflow
-
-    /// See `WorkflowsClient.getWorkflow`.
-    func getWorkflow(
-      name: Swift.String,
-    ) async throws -> GoogleCloudWorkflowsV1.Workflow
-
-    /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflow(request: CreateWorkflowRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol WorkflowsProtocol: Sendable {
     /// See `WorkflowsClient.createWorkflow`.
     func createWorkflow(withPolling: CreateWorkflowRequest) async throws -> any GoogleGax
       .PollableOperation<Workflow>
@@ -353,9 +265,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflow(request: DeleteWorkflowRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `WorkflowsClient.deleteWorkflow`.
     func deleteWorkflow(withPolling: DeleteWorkflowRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -363,9 +272,6 @@ extension Clients {
     func deleteWorkflow(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflow(request: UpdateWorkflowRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.updateWorkflow`.
     func updateWorkflow(withPolling: UpdateWorkflowRequest) async throws -> any GoogleGax
@@ -377,60 +283,10 @@ extension Clients {
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
 
-    /// See `WorkflowsClient.listWorkflowRevisions`.
-    func listWorkflowRevisions(request: ListWorkflowRevisionsRequest) async throws
-      -> GoogleCloudWorkflowsV1.ListWorkflowRevisionsResponse
-
-    /// See `WorkflowsClient.listWorkflowRevisions`.
-    func listWorkflowRevisions(
-      byItem: ListWorkflowRevisionsRequest
-    ) -> any AsyncSequence<Workflow, Swift.Error>
-
-    /// See `WorkflowsClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `WorkflowsClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `WorkflowsClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `WorkflowsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `WorkflowsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `WorkflowsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `WorkflowsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `WorkflowsClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `WorkflowsClient.listWorkflows`.
     func listWorkflows(
       request: ListWorkflowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWorkflowsV1.ListWorkflowsResponse
-
-    /// See `WorkflowsClient.listWorkflows`.
-    func listWorkflows(
-      byItem: ListWorkflowsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Workflow, Swift.Error>
 
     /// See `WorkflowsClient.getWorkflow`.
     func getWorkflow(
@@ -472,20 +328,10 @@ extension Clients {
       request: ListWorkflowRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWorkflowsV1.ListWorkflowRevisionsResponse
 
-    /// See `WorkflowsClient.listWorkflowRevisions`.
-    func listWorkflowRevisions(
-      byItem: ListWorkflowRevisionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Workflow, Swift.Error>
-
     /// See `WorkflowsClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `WorkflowsClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `WorkflowsClient.getLocation`.
     func getLocation(
@@ -496,11 +342,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `WorkflowsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowsClient.deleteOperation`.
     func deleteOperation(
@@ -529,12 +370,18 @@ extension Clients.WorkflowsProtocol {
     self.listWorkflows(byItem: byItem, options: .init())
   }
 
+  /// Lists workflows in a given project and location.
+  /// The default order is not specified.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflows")
   public func listWorkflows(
     byItem: ListWorkflowsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workflow, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkflowsV1.ListWorkflowsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listWorkflows(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -704,12 +551,17 @@ extension Clients.WorkflowsProtocol {
     self.listWorkflowRevisions(byItem: byItem, options: .init())
   }
 
+  /// Lists revisions for a given workflow.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflowRevisions")
   public func listWorkflowRevisions(
     byItem: ListWorkflowRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workflow, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkflowsV1.ListWorkflowRevisionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listWorkflowRevisions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -732,12 +584,17 @@ extension Clients.WorkflowsProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Workflows_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -772,12 +629,19 @@ extension Clients.WorkflowsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Workflows_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

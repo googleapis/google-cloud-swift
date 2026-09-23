@@ -109,21 +109,6 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
     try await self.inner.listTransferJobs(request: request, options: options)
   }
 
-  /// Lists transfer jobs.
-  ///
-  /// @Snippet(path: "StorageTransferService_ListTransferJobs")
-  public func listTransferJobs(
-    byItem: ListTransferJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TransferJob, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleStorageTransferV1.ListTransferJobsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listTransferJobs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Pauses a transfer operation.
   ///
   /// @Snippet(path: "StorageTransferService_PauseTransferOperation")
@@ -231,21 +216,6 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
     try await self.inner.listAgentPools(request: request, options: options)
   }
 
-  /// Lists agent pools.
-  ///
-  /// @Snippet(path: "StorageTransferService_ListAgentPools")
-  public func listAgentPools(
-    byItem: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AgentPool, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAgentPools(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes an agent pool.
   ///
   /// @Snippet(path: "StorageTransferService_DeleteAgentPool")
@@ -263,22 +233,6 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Lists transfer operations. Operations are ordered by their creation
-  /// time in reverse chronological order.
-  ///
-  /// @Snippet(path: "StorageTransferService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -334,122 +288,10 @@ extension Clients {
   /// To mock `StorageTransferServiceClient` change your functions to receive
   /// `some StorageTransferServiceProtocol` or `any StorageTransferServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol StorageTransferServiceProtocol {
-    /// See `StorageTransferServiceClient.getGoogleServiceAccount`.
-    func getGoogleServiceAccount(request: GetGoogleServiceAccountRequest) async throws
-      -> GoogleStorageTransferV1.GoogleServiceAccount
-
-    /// See `StorageTransferServiceClient.createTransferJob`.
-    func createTransferJob(request: CreateTransferJobRequest) async throws
-      -> GoogleStorageTransferV1.TransferJob
-
-    /// See `StorageTransferServiceClient.updateTransferJob`.
-    func updateTransferJob(request: UpdateTransferJobRequest) async throws
-      -> GoogleStorageTransferV1.TransferJob
-
-    /// See `StorageTransferServiceClient.getTransferJob`.
-    func getTransferJob(request: GetTransferJobRequest) async throws
-      -> GoogleStorageTransferV1.TransferJob
-
-    /// See `StorageTransferServiceClient.listTransferJobs`.
-    func listTransferJobs(request: ListTransferJobsRequest) async throws
-      -> GoogleStorageTransferV1.ListTransferJobsResponse
-
-    /// See `StorageTransferServiceClient.listTransferJobs`.
-    func listTransferJobs(
-      byItem: ListTransferJobsRequest
-    ) -> any AsyncSequence<TransferJob, Swift.Error>
-
-    /// See `StorageTransferServiceClient.pauseTransferOperation`.
-    func pauseTransferOperation(request: PauseTransferOperationRequest) async throws
-
-    /// See `StorageTransferServiceClient.resumeTransferOperation`.
-    func resumeTransferOperation(request: ResumeTransferOperationRequest) async throws
-
-    /// See `StorageTransferServiceClient.runTransferJob`.
-    func runTransferJob(request: RunTransferJobRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol StorageTransferServiceProtocol: Sendable {
     /// See `StorageTransferServiceClient.runTransferJob`.
     func runTransferJob(withPolling: RunTransferJobRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
-
-    /// See `StorageTransferServiceClient.deleteTransferJob`.
-    func deleteTransferJob(request: DeleteTransferJobRequest) async throws
-
-    /// See `StorageTransferServiceClient.createAgentPool`.
-    func createAgentPool(request: CreateAgentPoolRequest) async throws
-      -> GoogleStorageTransferV1.AgentPool
-
-    /// See `StorageTransferServiceClient.createAgentPool`.
-    func createAgentPool(
-      projectId: Swift.String,
-      agentPool: AgentPool?,
-      agentPoolId: Swift.String,
-    ) async throws -> GoogleStorageTransferV1.AgentPool
-
-    /// See `StorageTransferServiceClient.updateAgentPool`.
-    func updateAgentPool(request: UpdateAgentPoolRequest) async throws
-      -> GoogleStorageTransferV1.AgentPool
-
-    /// See `StorageTransferServiceClient.updateAgentPool`.
-    func updateAgentPool(
-      agentPool: AgentPool?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleStorageTransferV1.AgentPool
-
-    /// See `StorageTransferServiceClient.getAgentPool`.
-    func getAgentPool(request: GetAgentPoolRequest) async throws
-      -> GoogleStorageTransferV1.AgentPool
-
-    /// See `StorageTransferServiceClient.getAgentPool`.
-    func getAgentPool(
-      name: Swift.String,
-    ) async throws -> GoogleStorageTransferV1.AgentPool
-
-    /// See `StorageTransferServiceClient.listAgentPools`.
-    func listAgentPools(request: ListAgentPoolsRequest) async throws
-      -> GoogleStorageTransferV1.ListAgentPoolsResponse
-
-    /// See `StorageTransferServiceClient.listAgentPools`.
-    func listAgentPools(
-      byItem: ListAgentPoolsRequest
-    ) -> any AsyncSequence<AgentPool, Swift.Error>
-
-    /// See `StorageTransferServiceClient.listAgentPools`.
-    func listAgentPools(
-      projectId: Swift.String,
-    ) -> any AsyncSequence<AgentPool, Swift.Error>
-
-    /// See `StorageTransferServiceClient.deleteAgentPool`.
-    func deleteAgentPool(request: DeleteAgentPoolRequest) async throws
-
-    /// See `StorageTransferServiceClient.deleteAgentPool`.
-    func deleteAgentPool(
-      name: Swift.String,
-    ) async throws
-
-    /// See `StorageTransferServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `StorageTransferServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `StorageTransferServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `StorageTransferServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `StorageTransferServiceClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `StorageTransferServiceClient.getGoogleServiceAccount`.
     func getGoogleServiceAccount(
@@ -475,11 +317,6 @@ extension Clients {
     func listTransferJobs(
       request: ListTransferJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.ListTransferJobsResponse
-
-    /// See `StorageTransferServiceClient.listTransferJobs`.
-    func listTransferJobs(
-      byItem: ListTransferJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TransferJob, Swift.Error>
 
     /// See `StorageTransferServiceClient.pauseTransferOperation`.
     func pauseTransferOperation(
@@ -526,11 +363,6 @@ extension Clients {
       request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse
 
-    /// See `StorageTransferServiceClient.listAgentPools`.
-    func listAgentPools(
-      byItem: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AgentPool, Swift.Error>
-
     /// See `StorageTransferServiceClient.deleteAgentPool`.
     func deleteAgentPool(
       request: DeleteAgentPoolRequest, options: GoogleGax.RequestOptions
@@ -540,11 +372,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `StorageTransferServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `StorageTransferServiceClient.cancelOperation`.
     func cancelOperation(
@@ -621,12 +448,17 @@ extension Clients.StorageTransferServiceProtocol {
     self.listTransferJobs(byItem: byItem, options: .init())
   }
 
+  /// Lists transfer jobs.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListTransferJobs")
   public func listTransferJobs(
     byItem: ListTransferJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TransferJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleStorageTransferV1.ListTransferJobsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listTransferJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -776,12 +608,17 @@ extension Clients.StorageTransferServiceProtocol {
     self.listAgentPools(byItem: byItem, options: .init())
   }
 
+  /// Lists agent pools.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListAgentPools")
   public func listAgentPools(
     byItem: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AgentPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAgentPools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -832,12 +669,18 @@ extension Clients.StorageTransferServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Lists transfer operations. Operations are ordered by their creation
+  /// time in reverse chronological order.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

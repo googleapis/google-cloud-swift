@@ -238,24 +238,6 @@
       try await self.inner.listTargetSites(request: request, options: options)
     }
 
-    /// Gets a list of [TargetSite][google.cloud.discoveryengine.v1.TargetSite]s.
-    ///
-    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
-    ///
-    /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
-    public func listTargetSites(
-      byItem: ListTargetSitesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetSite, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listTargetSites(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Creates a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
     ///
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
@@ -507,24 +489,6 @@
       try await self.inner.fetchDomainVerificationStatus(request: request, options: options)
     }
 
-    /// Returns list of target sites with its domain verification status.
-    /// This method can only be called under data store with BASIC_SITE_SEARCH
-    /// state at the moment.
-    ///
-    /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
-    public func fetchDomainVerificationStatus(
-      byItem: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetSite, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.fetchDomainVerificationStatus(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -534,23 +498,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "SiteSearchEngineService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -582,20 +529,7 @@
     /// To mock `SiteSearchEngineServiceClient` change your functions to receive
     /// `some SiteSearchEngineServiceProtocol` or `any SiteSearchEngineServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SiteSearchEngineServiceProtocol {
-      /// See `SiteSearchEngineServiceClient.getSiteSearchEngine`.
-      func getSiteSearchEngine(request: GetSiteSearchEngineRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine
-
-      /// See `SiteSearchEngineServiceClient.getSiteSearchEngine`.
-      func getSiteSearchEngine(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine
-
-      /// See `SiteSearchEngineServiceClient.createTargetSite`.
-      func createTargetSite(request: CreateTargetSiteRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol SiteSearchEngineServiceProtocol: Sendable {
       /// See `SiteSearchEngineServiceClient.createTargetSite`.
       func createTargetSite(withPolling: CreateTargetSiteRequest) async throws -> any GoogleGax
         .PollableOperation<TargetSite>
@@ -607,25 +541,8 @@
       ) async throws -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.batchCreateTargetSites`.
-      func batchCreateTargetSites(request: BatchCreateTargetSitesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `SiteSearchEngineServiceClient.batchCreateTargetSites`.
       func batchCreateTargetSites(withPolling: BatchCreateTargetSitesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse>
-
-      /// See `SiteSearchEngineServiceClient.getTargetSite`.
-      func getTargetSite(request: GetTargetSiteRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.TargetSite
-
-      /// See `SiteSearchEngineServiceClient.getTargetSite`.
-      func getTargetSite(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.TargetSite
-
-      /// See `SiteSearchEngineServiceClient.updateTargetSite`.
-      func updateTargetSite(request: UpdateTargetSiteRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.updateTargetSite`.
       func updateTargetSite(withPolling: UpdateTargetSiteRequest) async throws -> any GoogleGax
@@ -637,10 +554,6 @@
       ) async throws -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
-      func deleteTargetSite(request: DeleteTargetSiteRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
       func deleteTargetSite(withPolling: DeleteTargetSiteRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
@@ -648,23 +561,6 @@
       func deleteTargetSite(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `SiteSearchEngineServiceClient.listTargetSites`.
-      func listTargetSites(request: ListTargetSitesRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
-
-      /// See `SiteSearchEngineServiceClient.listTargetSites`.
-      func listTargetSites(
-        byItem: ListTargetSitesRequest
-      ) -> any AsyncSequence<TargetSite, Swift.Error>
-
-      /// See `SiteSearchEngineServiceClient.listTargetSites`.
-      func listTargetSites(
-        parent: Swift.String,
-      ) -> any AsyncSequence<TargetSite, Swift.Error>
-
-      /// See `SiteSearchEngineServiceClient.createSitemap`.
-      func createSitemap(request: CreateSitemapRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
       func createSitemap(withPolling: CreateSitemapRequest) async throws -> any GoogleGax
@@ -677,9 +573,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Sitemap>
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
-      func deleteSitemap(request: DeleteSitemapRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `SiteSearchEngineServiceClient.deleteSitemap`.
       func deleteSitemap(withPolling: DeleteSitemapRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
@@ -688,77 +581,21 @@
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `SiteSearchEngineServiceClient.fetchSitemaps`.
-      func fetchSitemaps(request: FetchSitemapsRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse
-
-      /// See `SiteSearchEngineServiceClient.fetchSitemaps`.
-      func fetchSitemaps(
-        parent: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse
-
-      /// See `SiteSearchEngineServiceClient.enableAdvancedSiteSearch`.
-      func enableAdvancedSiteSearch(request: EnableAdvancedSiteSearchRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `SiteSearchEngineServiceClient.enableAdvancedSiteSearch`.
       func enableAdvancedSiteSearch(withPolling: EnableAdvancedSiteSearchRequest) async throws
         -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse>
-
-      /// See `SiteSearchEngineServiceClient.disableAdvancedSiteSearch`.
-      func disableAdvancedSiteSearch(request: DisableAdvancedSiteSearchRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.disableAdvancedSiteSearch`.
       func disableAdvancedSiteSearch(withPolling: DisableAdvancedSiteSearchRequest) async throws
         -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse>
 
       /// See `SiteSearchEngineServiceClient.recrawlUris`.
-      func recrawlUris(request: RecrawlUrisRequest) async throws -> GoogleLongRunning.Operation
-
-      /// See `SiteSearchEngineServiceClient.recrawlUris`.
       func recrawlUris(withPolling: RecrawlUrisRequest) async throws -> any GoogleGax
         .PollableOperation<RecrawlUrisResponse>
 
       /// See `SiteSearchEngineServiceClient.batchVerifyTargetSites`.
-      func batchVerifyTargetSites(request: BatchVerifyTargetSitesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `SiteSearchEngineServiceClient.batchVerifyTargetSites`.
       func batchVerifyTargetSites(withPolling: BatchVerifyTargetSitesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse>
-
-      /// See `SiteSearchEngineServiceClient.fetchDomainVerificationStatus`.
-      func fetchDomainVerificationStatus(request: FetchDomainVerificationStatusRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse
-
-      /// See `SiteSearchEngineServiceClient.fetchDomainVerificationStatus`.
-      func fetchDomainVerificationStatus(
-        byItem: FetchDomainVerificationStatusRequest
-      ) -> any AsyncSequence<TargetSite, Swift.Error>
-
-      /// See `SiteSearchEngineServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SiteSearchEngineServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SiteSearchEngineServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SiteSearchEngineServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `SiteSearchEngineServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `SiteSearchEngineServiceClient.getSiteSearchEngine`.
       func getSiteSearchEngine(
@@ -814,11 +651,6 @@
       func listTargetSites(
         request: ListTargetSitesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
-
-      /// See `SiteSearchEngineServiceClient.listTargetSites`.
-      func listTargetSites(
-        byItem: ListTargetSitesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TargetSite, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
       func createSitemap(
@@ -890,20 +722,10 @@
         request: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse
 
-      /// See `SiteSearchEngineServiceClient.fetchDomainVerificationStatus`.
-      func fetchDomainVerificationStatus(
-        byItem: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TargetSite, Swift.Error>
-
       /// See `SiteSearchEngineServiceClient.listOperations`.
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SiteSearchEngineServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SiteSearchEngineServiceClient.cancelOperation`.
       func cancelOperation(
@@ -1116,13 +938,20 @@
       self.listTargetSites(byItem: byItem, options: .init())
     }
 
+    /// Gets a list of [TargetSite][google.cloud.discoveryengine.v1.TargetSite]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
     public func listTargetSites(
       byItem: ListTargetSitesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listTargetSites(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1367,13 +1196,20 @@
       self.fetchDomainVerificationStatus(byItem: byItem, options: .init())
     }
 
+    /// Returns list of target sites with its domain verification status.
+    /// This method can only be called under data store with BASIC_SITE_SEARCH
+    /// state at the moment.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
     public func fetchDomainVerificationStatus(
       byItem: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetSite, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.fetchDomainVerificationStatus(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1396,12 +1232,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -55,10 +55,7 @@
     /// To mock `SqlTiersServiceClient` change your functions to receive
     /// `some SqlTiersServiceProtocol` or `any SqlTiersServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlTiersServiceProtocol {
-      /// See `SqlTiersServiceClient.list`.
-      func list(request: SqlTiersListRequest) async throws -> GoogleCloudSqlV1.TiersListResponse
-
+    public protocol SqlTiersServiceProtocol: Sendable {
       /// See `SqlTiersServiceClient.list`.
       func list(
         request: SqlTiersListRequest, options: GoogleGax.RequestOptions

@@ -203,21 +203,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists Rollouts in a given project and location.
-    ///
-    /// @Snippet(path: "rollouts_list")
-    public func list(
-      byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Rollout, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Pauses a Rollout.
     ///
     /// @Snippet(path: "rollouts_pause")
@@ -330,50 +315,7 @@
     /// To mock `RolloutsClient` change your functions to receive
     /// `some RolloutsProtocol` or `any RolloutsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RolloutsProtocol {
-      /// See `RolloutsClient.advance`.
-      func advance(request: RolloutsClient.AdvanceRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RolloutsClient.cancel`.
-      func cancel(request: RolloutsClient.CancelRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RolloutsClient.delete`.
-      func delete(request: RolloutsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RolloutsClient.`get``.
-      func `get`(request: RolloutsClient.GetRequest) async throws -> GoogleCloudComputeV1.Rollout
-
-      /// See `RolloutsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        rollout: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Rollout
-
-      /// See `RolloutsClient.list`.
-      func list(request: RolloutsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.RolloutsListResponse
-
-      /// See `RolloutsClient.list`.
-      func list(
-        byItem: RolloutsClient.ListRequest
-      ) -> any AsyncSequence<Rollout, Swift.Error>
-
-      /// See `RolloutsClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Rollout, Swift.Error>
-
-      /// See `RolloutsClient.pause`.
-      func pause(request: RolloutsClient.PauseRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RolloutsClient.resume`.
-      func resume(request: RolloutsClient.ResumeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol RolloutsProtocol: Sendable {
       /// See `RolloutsClient.advance`.
       func advance(
         request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
@@ -398,11 +340,6 @@
       func list(
         request: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RolloutsListResponse
-
-      /// See `RolloutsClient.list`.
-      func list(
-        byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Rollout, Swift.Error>
 
       /// See `RolloutsClient.pause`.
       func pause(
@@ -579,12 +516,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists Rollouts in a given project and location.
+    ///
+    /// @Snippet(path: "rollouts_list")
     public func list(
       byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Rollout, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

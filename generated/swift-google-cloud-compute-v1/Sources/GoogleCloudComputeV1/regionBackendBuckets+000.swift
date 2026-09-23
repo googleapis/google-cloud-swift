@@ -171,22 +171,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of BackendBucket resources available to the specified
-    /// project in the given region.
-    ///
-    /// @Snippet(path: "regionBackendBuckets_list")
-    public func list(
-      byItem: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves a list of all usable backend buckets in the specified project in
     /// the given region.
     ///
@@ -195,22 +179,6 @@
       request: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendBucketListUsable {
       try await self.inner.listUsable(request: request, options: options)
-    }
-
-    /// Retrieves a list of all usable backend buckets in the specified project in
-    /// the given region.
-    ///
-    /// @Snippet(path: "regionBackendBuckets_listUsable")
-    public func listUsable(
-      byItem: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listUsable(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Updates the specified  BackendBucket resource with the data included in the
@@ -304,95 +272,7 @@
     /// To mock `RegionBackendBucketsClient` change your functions to receive
     /// `some RegionBackendBucketsProtocol` or `any RegionBackendBucketsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol RegionBackendBucketsProtocol {
-      /// See `RegionBackendBucketsClient.delete`.
-      func delete(request: RegionBackendBucketsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendBucketsClient.`get``.
-      func `get`(request: RegionBackendBucketsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.BackendBucket
-
-      /// See `RegionBackendBucketsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        backendBucket: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.BackendBucket
-
-      /// See `RegionBackendBucketsClient.getIamPolicy`.
-      func getIamPolicy(request: RegionBackendBucketsClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendBucketsClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendBucketsClient.insert`.
-      func insert(request: RegionBackendBucketsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendBucketsClient.list`.
-      func list(request: RegionBackendBucketsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.BackendBucketList
-
-      /// See `RegionBackendBucketsClient.list`.
-      func list(
-        byItem: RegionBackendBucketsClient.ListRequest
-      ) -> any AsyncSequence<BackendBucket, Swift.Error>
-
-      /// See `RegionBackendBucketsClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<BackendBucket, Swift.Error>
-
-      /// See `RegionBackendBucketsClient.listUsable`.
-      func listUsable(request: RegionBackendBucketsClient.ListUsableRequest) async throws
-        -> GoogleCloudComputeV1.BackendBucketListUsable
-
-      /// See `RegionBackendBucketsClient.listUsable`.
-      func listUsable(
-        byItem: RegionBackendBucketsClient.ListUsableRequest
-      ) -> any AsyncSequence<BackendBucket, Swift.Error>
-
-      /// See `RegionBackendBucketsClient.listUsable`.
-      func listUsable(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<BackendBucket, Swift.Error>
-
-      /// See `RegionBackendBucketsClient.patch`.
-      func patch(request: RegionBackendBucketsClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `RegionBackendBucketsClient.setIamPolicy`.
-      func setIamPolicy(request: RegionBackendBucketsClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendBucketsClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: RegionSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `RegionBackendBucketsClient.testIamPermissions`.
-      func testIamPermissions(request: RegionBackendBucketsClient.TestIamPermissionsRequest)
-        async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `RegionBackendBucketsClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol RegionBackendBucketsProtocol: Sendable {
       /// See `RegionBackendBucketsClient.delete`.
       func delete(
         request: RegionBackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -418,20 +298,10 @@
         request: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketList
 
-      /// See `RegionBackendBucketsClient.list`.
-      func list(
-        byItem: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<BackendBucket, Swift.Error>
-
       /// See `RegionBackendBucketsClient.listUsable`.
       func listUsable(
         request: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketListUsable
-
-      /// See `RegionBackendBucketsClient.listUsable`.
-      func listUsable(
-        byItem: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<BackendBucket, Swift.Error>
 
       /// See `RegionBackendBucketsClient.patch`.
       func patch(
@@ -605,12 +475,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of BackendBucket resources available to the specified
+    /// project in the given region.
+    ///
+    /// @Snippet(path: "regionBackendBuckets_list")
     public func list(
       byItem: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -644,12 +520,18 @@
       self.listUsable(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of all usable backend buckets in the specified project in
+    /// the given region.
+    ///
+    /// @Snippet(path: "regionBackendBuckets_listUsable")
     public func listUsable(
       byItem: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackendBucket, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listUsable(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

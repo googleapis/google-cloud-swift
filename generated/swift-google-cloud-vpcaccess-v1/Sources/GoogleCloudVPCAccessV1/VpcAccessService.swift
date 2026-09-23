@@ -98,21 +98,6 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
     try await self.inner.listConnectors(request: request, options: options)
   }
 
-  /// Lists Serverless VPC Access connectors.
-  ///
-  /// @Snippet(path: "VpcAccessService_ListConnectors")
-  public func listConnectors(
-    byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connector, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConnectors(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the
   /// resource does not exist.
   ///
@@ -159,21 +144,6 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "VpcAccessService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -183,23 +153,6 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "VpcAccessService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -220,11 +173,7 @@ extension Clients {
   /// To mock `VpcAccessServiceClient` change your functions to receive
   /// `some VpcAccessServiceProtocol` or `any VpcAccessServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol VpcAccessServiceProtocol {
-    /// See `VpcAccessServiceClient.createConnector`.
-    func createConnector(request: CreateConnectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol VpcAccessServiceProtocol: Sendable {
     /// See `VpcAccessServiceClient.createConnector`.
     func createConnector(withPolling: CreateConnectorRequest) async throws -> any GoogleGax
       .PollableOperation<Connector>
@@ -236,32 +185,6 @@ extension Clients {
       connector: Connector?,
     ) async throws -> any GoogleGax.PollableOperation<Connector>
 
-    /// See `VpcAccessServiceClient.getConnector`.
-    func getConnector(request: GetConnectorRequest) async throws -> GoogleCloudVPCAccessV1.Connector
-
-    /// See `VpcAccessServiceClient.getConnector`.
-    func getConnector(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVPCAccessV1.Connector
-
-    /// See `VpcAccessServiceClient.listConnectors`.
-    func listConnectors(request: ListConnectorsRequest) async throws
-      -> GoogleCloudVPCAccessV1.ListConnectorsResponse
-
-    /// See `VpcAccessServiceClient.listConnectors`.
-    func listConnectors(
-      byItem: ListConnectorsRequest
-    ) -> any AsyncSequence<Connector, Swift.Error>
-
-    /// See `VpcAccessServiceClient.listConnectors`.
-    func listConnectors(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Connector, Swift.Error>
-
-    /// See `VpcAccessServiceClient.deleteConnector`.
-    func deleteConnector(request: DeleteConnectorRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `VpcAccessServiceClient.deleteConnector`.
     func deleteConnector(withPolling: DeleteConnectorRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
@@ -270,30 +193,6 @@ extension Clients {
     func deleteConnector(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `VpcAccessServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `VpcAccessServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `VpcAccessServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VpcAccessServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `VpcAccessServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `VpcAccessServiceClient.createConnector`.
     func createConnector(
@@ -315,11 +214,6 @@ extension Clients {
       request: ListConnectorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse
 
-    /// See `VpcAccessServiceClient.listConnectors`.
-    func listConnectors(
-      byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Connector, Swift.Error>
-
     /// See `VpcAccessServiceClient.deleteConnector`.
     func deleteConnector(
       request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
@@ -335,20 +229,10 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `VpcAccessServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `VpcAccessServiceClient.listOperations`.
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `VpcAccessServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -434,12 +318,17 @@ extension Clients.VpcAccessServiceProtocol {
     self.listConnectors(byItem: byItem, options: .init())
   }
 
+  /// Lists Serverless VPC Access connectors.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListConnectors")
   public func listConnectors(
     byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConnectors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -508,12 +397,17 @@ extension Clients.VpcAccessServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -536,12 +430,19 @@ extension Clients.VpcAccessServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VpcAccessService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

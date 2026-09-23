@@ -189,21 +189,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists instances under a given project.
-    ///
-    /// @Snippet(path: "SqlInstancesService_List")
-    public func list(
-      byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ApiWarning, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudSqlV1.InstancesListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists all of the trusted Certificate Authorities (CAs) for the specified
     /// instance. There can be up to three CAs listed: the CA that was used to sign
     /// the certificate that is currently in use, a CA that has been added but not
@@ -502,173 +487,7 @@
     /// To mock `SqlInstancesServiceClient` change your functions to receive
     /// `some SqlInstancesServiceProtocol` or `any SqlInstancesServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlInstancesServiceProtocol {
-      /// See `SqlInstancesServiceClient.addServerCa`.
-      func addServerCa(request: SqlInstancesAddServerCaRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.addServerCertificate`.
-      func addServerCertificate(request: SqlInstancesAddServerCertificateRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.addEntraIdCertificate`.
-      func addEntraIdCertificate(request: SqlInstancesAddEntraIdCertificateRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.clone`.
-      func clone(request: SqlInstancesCloneRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.delete`.
-      func delete(request: SqlInstancesDeleteRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.demoteMaster`.
-      func demoteMaster(request: SqlInstancesDemoteMasterRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.demote`.
-      func demote(request: SqlInstancesDemoteRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.export`.
-      func export(request: SqlInstancesExportRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.failover`.
-      func failover(request: SqlInstancesFailoverRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.reencrypt`.
-      func reencrypt(request: SqlInstancesReencryptRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.`get``.
-      func `get`(request: SqlInstancesGetRequest) async throws -> GoogleCloudSqlV1.DatabaseInstance
-
-      /// See `SqlInstancesServiceClient.`import``.
-      func `import`(request: SqlInstancesImportRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.insert`.
-      func insert(request: SqlInstancesInsertRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.list`.
-      func list(request: SqlInstancesListRequest) async throws
-        -> GoogleCloudSqlV1.InstancesListResponse
-
-      /// See `SqlInstancesServiceClient.list`.
-      func list(
-        byItem: SqlInstancesListRequest
-      ) -> any AsyncSequence<ApiWarning, Swift.Error>
-
-      /// See `SqlInstancesServiceClient.listServerCas`.
-      func listServerCas(request: SqlInstancesListServerCasRequest) async throws
-        -> GoogleCloudSqlV1.InstancesListServerCasResponse
-
-      /// See `SqlInstancesServiceClient.listServerCertificates`.
-      func listServerCertificates(request: SqlInstancesListServerCertificatesRequest) async throws
-        -> GoogleCloudSqlV1.InstancesListServerCertificatesResponse
-
-      /// See `SqlInstancesServiceClient.listEntraIdCertificates`.
-      func listEntraIdCertificates(request: SqlInstancesListEntraIdCertificatesRequest) async throws
-        -> GoogleCloudSqlV1.InstancesListEntraIdCertificatesResponse
-
-      /// See `SqlInstancesServiceClient.patch`.
-      func patch(request: SqlInstancesPatchRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.promoteReplica`.
-      func promoteReplica(request: SqlInstancesPromoteReplicaRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.switchover`.
-      func switchover(request: SqlInstancesSwitchoverRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.resetSslConfig`.
-      func resetSslConfig(request: SqlInstancesResetSslConfigRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.restart`.
-      func restart(request: SqlInstancesRestartRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.restoreBackup`.
-      func restoreBackup(request: SqlInstancesRestoreBackupRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.rotateServerCa`.
-      func rotateServerCa(request: SqlInstancesRotateServerCaRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.rotateServerCertificate`.
-      func rotateServerCertificate(request: SqlInstancesRotateServerCertificateRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.rotateEntraIdCertificate`.
-      func rotateEntraIdCertificate(request: SqlInstancesRotateEntraIdCertificateRequest)
-        async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.startReplica`.
-      func startReplica(request: SqlInstancesStartReplicaRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.stopReplica`.
-      func stopReplica(request: SqlInstancesStopReplicaRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.truncateLog`.
-      func truncateLog(request: SqlInstancesTruncateLogRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.update`.
-      func update(request: SqlInstancesUpdateRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.createEphemeral`.
-      func createEphemeral(request: SqlInstancesCreateEphemeralCertRequest) async throws
-        -> GoogleCloudSqlV1.SslCert
-
-      /// See `SqlInstancesServiceClient.rescheduleMaintenance`.
-      func rescheduleMaintenance(request: SqlInstancesRescheduleMaintenanceRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.verifyExternalSyncSettings`.
-      func verifyExternalSyncSettings(request: SqlInstancesVerifyExternalSyncSettingsRequest)
-        async throws -> GoogleCloudSqlV1.SqlInstancesVerifyExternalSyncSettingsResponse
-
-      /// See `SqlInstancesServiceClient.startExternalSync`.
-      func startExternalSync(request: SqlInstancesStartExternalSyncRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.performDiskShrink`.
-      func performDiskShrink(request: SqlInstancesPerformDiskShrinkRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.getDiskShrinkConfig`.
-      func getDiskShrinkConfig(request: SqlInstancesGetDiskShrinkConfigRequest) async throws
-        -> GoogleCloudSqlV1.SqlInstancesGetDiskShrinkConfigResponse
-
-      /// See `SqlInstancesServiceClient.resetReplicaSize`.
-      func resetReplicaSize(request: SqlInstancesResetReplicaSizeRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.getLatestRecoveryTime`.
-      func getLatestRecoveryTime(request: SqlInstancesGetLatestRecoveryTimeRequest) async throws
-        -> GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse
-
-      /// See `SqlInstancesServiceClient.executeSql`.
-      func executeSql(request: SqlInstancesExecuteSqlRequest) async throws
-        -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse
-
-      /// See `SqlInstancesServiceClient.acquireSsrsLease`.
-      func acquireSsrsLease(request: SqlInstancesAcquireSsrsLeaseRequest) async throws
-        -> GoogleCloudSqlV1.SqlInstancesAcquireSsrsLeaseResponse
-
-      /// See `SqlInstancesServiceClient.releaseSsrsLease`.
-      func releaseSsrsLease(request: SqlInstancesReleaseSsrsLeaseRequest) async throws
-        -> GoogleCloudSqlV1.SqlInstancesReleaseSsrsLeaseResponse
-
-      /// See `SqlInstancesServiceClient.preCheckMajorVersionUpgrade`.
-      func preCheckMajorVersionUpgrade(request: SqlInstancesPreCheckMajorVersionUpgradeRequest)
-        async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlInstancesServiceClient.pointInTimeRestore`.
-      func pointInTimeRestore(request: SqlInstancesPointInTimeRestoreRequest) async throws
-        -> GoogleCloudSqlV1.Operation
-
+    public protocol SqlInstancesServiceProtocol: Sendable {
       /// See `SqlInstancesServiceClient.addServerCa`.
       func addServerCa(
         request: SqlInstancesAddServerCaRequest, options: GoogleGax.RequestOptions
@@ -738,11 +557,6 @@
       func list(
         request: SqlInstancesListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.InstancesListResponse
-
-      /// See `SqlInstancesServiceClient.list`.
-      func list(
-        byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ApiWarning, Swift.Error>
 
       /// See `SqlInstancesServiceClient.listServerCas`.
       func listServerCas(
@@ -1066,12 +880,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists instances under a given project.
+    ///
+    /// @Snippet(path: "SqlInstancesService_List")
     public func list(
       byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ApiWarning, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.InstancesListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

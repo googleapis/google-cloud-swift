@@ -103,23 +103,6 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "GenerativeQuestionService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "GenerativeQuestionService_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -134,71 +117,7 @@ extension Clients {
   /// To mock `GenerativeQuestionServiceClient` change your functions to receive
   /// `some GenerativeQuestionServiceProtocol` or `any GenerativeQuestionServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol GenerativeQuestionServiceProtocol {
-    /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionsFeatureConfig`.
-    func updateGenerativeQuestionsFeatureConfig(
-      request: UpdateGenerativeQuestionsFeatureConfigRequest
-    ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig
-
-    /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionsFeatureConfig`.
-    func updateGenerativeQuestionsFeatureConfig(
-      generativeQuestionsFeatureConfig: GenerativeQuestionsFeatureConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig
-
-    /// See `GenerativeQuestionServiceClient.getGenerativeQuestionsFeatureConfig`.
-    func getGenerativeQuestionsFeatureConfig(request: GetGenerativeQuestionsFeatureConfigRequest)
-      async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig
-
-    /// See `GenerativeQuestionServiceClient.getGenerativeQuestionsFeatureConfig`.
-    func getGenerativeQuestionsFeatureConfig(
-      catalog: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig
-
-    /// See `GenerativeQuestionServiceClient.listGenerativeQuestionConfigs`.
-    func listGenerativeQuestionConfigs(request: ListGenerativeQuestionConfigsRequest) async throws
-      -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse
-
-    /// See `GenerativeQuestionServiceClient.listGenerativeQuestionConfigs`.
-    func listGenerativeQuestionConfigs(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse
-
-    /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionConfig`.
-    func updateGenerativeQuestionConfig(request: UpdateGenerativeQuestionConfigRequest) async throws
-      -> GoogleCloudRetailV2.GenerativeQuestionConfig
-
-    /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionConfig`.
-    func updateGenerativeQuestionConfig(
-      generativeQuestionConfig: GenerativeQuestionConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig
-
-    /// See `GenerativeQuestionServiceClient.batchUpdateGenerativeQuestionConfigs`.
-    func batchUpdateGenerativeQuestionConfigs(request: BatchUpdateGenerativeQuestionConfigsRequest)
-      async throws -> GoogleCloudRetailV2.BatchUpdateGenerativeQuestionConfigsResponse
-
-    /// See `GenerativeQuestionServiceClient.batchUpdateGenerativeQuestionConfigs`.
-    func batchUpdateGenerativeQuestionConfigs(
-      parent: Swift.String,
-      requests: [UpdateGenerativeQuestionConfigRequest],
-    ) async throws -> GoogleCloudRetailV2.BatchUpdateGenerativeQuestionConfigsResponse
-
-    /// See `GenerativeQuestionServiceClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `GenerativeQuestionServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `GenerativeQuestionServiceClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
+  public protocol GenerativeQuestionServiceProtocol: Sendable {
     /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionsFeatureConfig`.
     func updateGenerativeQuestionsFeatureConfig(
       request: UpdateGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
@@ -228,11 +147,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `GenerativeQuestionServiceClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -367,12 +281,19 @@ extension Clients.GenerativeQuestionServiceProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

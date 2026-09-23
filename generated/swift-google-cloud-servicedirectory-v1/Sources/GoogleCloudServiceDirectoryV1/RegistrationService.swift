@@ -76,21 +76,6 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
     try await self.inner.listNamespaces(request: request, options: options)
   }
 
-  /// Lists all namespaces.
-  ///
-  /// @Snippet(path: "RegistrationService_ListNamespaces")
-  public func listNamespaces(
-    byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Namespace, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listNamespaces(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a namespace.
   ///
   /// @Snippet(path: "RegistrationService_GetNamespace")
@@ -137,21 +122,6 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
     try await self.inner.listServices(request: request, options: options)
   }
 
-  /// Lists all services belonging to a namespace.
-  ///
-  /// @Snippet(path: "RegistrationService_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServices(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets a service.
   ///
   /// @Snippet(path: "RegistrationService_GetService")
@@ -196,21 +166,6 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse {
     try await self.inner.listEndpoints(request: request, options: options)
-  }
-
-  /// Lists all endpoints.
-  ///
-  /// @Snippet(path: "RegistrationService_ListEndpoints")
-  public func listEndpoints(
-    byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listEndpoints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets an endpoint.
@@ -276,21 +231,6 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "RegistrationService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "RegistrationService_GetLocation")
@@ -307,186 +247,7 @@ extension Clients {
   /// To mock `RegistrationServiceClient` change your functions to receive
   /// `some RegistrationServiceProtocol` or `any RegistrationServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol RegistrationServiceProtocol {
-    /// See `RegistrationServiceClient.createNamespace`.
-    func createNamespace(request: CreateNamespaceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Namespace
-
-    /// See `RegistrationServiceClient.createNamespace`.
-    func createNamespace(
-      parent: Swift.String,
-      namespace: Namespace?,
-      namespaceId: Swift.String,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Namespace
-
-    /// See `RegistrationServiceClient.listNamespaces`.
-    func listNamespaces(request: ListNamespacesRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse
-
-    /// See `RegistrationServiceClient.listNamespaces`.
-    func listNamespaces(
-      byItem: ListNamespacesRequest
-    ) -> any AsyncSequence<Namespace, Swift.Error>
-
-    /// See `RegistrationServiceClient.listNamespaces`.
-    func listNamespaces(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Namespace, Swift.Error>
-
-    /// See `RegistrationServiceClient.getNamespace`.
-    func getNamespace(request: GetNamespaceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Namespace
-
-    /// See `RegistrationServiceClient.getNamespace`.
-    func getNamespace(
-      name: Swift.String,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Namespace
-
-    /// See `RegistrationServiceClient.updateNamespace`.
-    func updateNamespace(request: UpdateNamespaceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Namespace
-
-    /// See `RegistrationServiceClient.updateNamespace`.
-    func updateNamespace(
-      namespace: Namespace?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Namespace
-
-    /// See `RegistrationServiceClient.deleteNamespace`.
-    func deleteNamespace(request: DeleteNamespaceRequest) async throws
-
-    /// See `RegistrationServiceClient.deleteNamespace`.
-    func deleteNamespace(
-      name: Swift.String,
-    ) async throws
-
-    /// See `RegistrationServiceClient.createService`.
-    func createService(request: CreateServiceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Service
-
-    /// See `RegistrationServiceClient.createService`.
-    func createService(
-      parent: Swift.String,
-      service: Service?,
-      serviceId: Swift.String,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Service
-
-    /// See `RegistrationServiceClient.listServices`.
-    func listServices(request: ListServicesRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.ListServicesResponse
-
-    /// See `RegistrationServiceClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `RegistrationServiceClient.listServices`.
-    func listServices(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `RegistrationServiceClient.getService`.
-    func getService(request: GetServiceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Service
-
-    /// See `RegistrationServiceClient.getService`.
-    func getService(
-      name: Swift.String,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Service
-
-    /// See `RegistrationServiceClient.updateService`.
-    func updateService(request: UpdateServiceRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Service
-
-    /// See `RegistrationServiceClient.updateService`.
-    func updateService(
-      service: Service?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Service
-
-    /// See `RegistrationServiceClient.deleteService`.
-    func deleteService(request: DeleteServiceRequest) async throws
-
-    /// See `RegistrationServiceClient.deleteService`.
-    func deleteService(
-      name: Swift.String,
-    ) async throws
-
-    /// See `RegistrationServiceClient.createEndpoint`.
-    func createEndpoint(request: CreateEndpointRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Endpoint
-
-    /// See `RegistrationServiceClient.createEndpoint`.
-    func createEndpoint(
-      parent: Swift.String,
-      endpoint: Endpoint?,
-      endpointId: Swift.String,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint
-
-    /// See `RegistrationServiceClient.listEndpoints`.
-    func listEndpoints(request: ListEndpointsRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse
-
-    /// See `RegistrationServiceClient.listEndpoints`.
-    func listEndpoints(
-      byItem: ListEndpointsRequest
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-    /// See `RegistrationServiceClient.listEndpoints`.
-    func listEndpoints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
-
-    /// See `RegistrationServiceClient.getEndpoint`.
-    func getEndpoint(request: GetEndpointRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Endpoint
-
-    /// See `RegistrationServiceClient.getEndpoint`.
-    func getEndpoint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint
-
-    /// See `RegistrationServiceClient.updateEndpoint`.
-    func updateEndpoint(request: UpdateEndpointRequest) async throws
-      -> GoogleCloudServiceDirectoryV1.Endpoint
-
-    /// See `RegistrationServiceClient.updateEndpoint`.
-    func updateEndpoint(
-      endpoint: Endpoint?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint
-
-    /// See `RegistrationServiceClient.deleteEndpoint`.
-    func deleteEndpoint(request: DeleteEndpointRequest) async throws
-
-    /// See `RegistrationServiceClient.deleteEndpoint`.
-    func deleteEndpoint(
-      name: Swift.String,
-    ) async throws
-
-    /// See `RegistrationServiceClient.getIamPolicy`.
-    func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `RegistrationServiceClient.setIamPolicy`.
-    func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `RegistrationServiceClient.testIamPermissions`.
-    func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
-    /// See `RegistrationServiceClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `RegistrationServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `RegistrationServiceClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
+  public protocol RegistrationServiceProtocol: Sendable {
     /// See `RegistrationServiceClient.createNamespace`.
     func createNamespace(
       request: CreateNamespaceRequest, options: GoogleGax.RequestOptions
@@ -496,11 +257,6 @@ extension Clients {
     func listNamespaces(
       request: ListNamespacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse
-
-    /// See `RegistrationServiceClient.listNamespaces`.
-    func listNamespaces(
-      byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Namespace, Swift.Error>
 
     /// See `RegistrationServiceClient.getNamespace`.
     func getNamespace(
@@ -527,11 +283,6 @@ extension Clients {
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse
 
-    /// See `RegistrationServiceClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Service, Swift.Error>
-
     /// See `RegistrationServiceClient.getService`.
     func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
@@ -556,11 +307,6 @@ extension Clients {
     func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse
-
-    /// See `RegistrationServiceClient.listEndpoints`.
-    func listEndpoints(
-      byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Endpoint, Swift.Error>
 
     /// See `RegistrationServiceClient.getEndpoint`.
     func getEndpoint(
@@ -596,11 +342,6 @@ extension Clients {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `RegistrationServiceClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `RegistrationServiceClient.getLocation`.
     func getLocation(
@@ -654,12 +395,17 @@ extension Clients.RegistrationServiceProtocol {
     self.listNamespaces(byItem: byItem, options: .init())
   }
 
+  /// Lists all namespaces.
+  ///
+  /// @Snippet(path: "RegistrationService_ListNamespaces")
   public func listNamespaces(
     byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Namespace, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listNamespaces(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -779,12 +525,17 @@ extension Clients.RegistrationServiceProtocol {
     self.listServices(byItem: byItem, options: .init())
   }
 
+  /// Lists all services belonging to a namespace.
+  ///
+  /// @Snippet(path: "RegistrationService_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -904,12 +655,17 @@ extension Clients.RegistrationServiceProtocol {
     self.listEndpoints(byItem: byItem, options: .init())
   }
 
+  /// Lists all endpoints.
+  ///
+  /// @Snippet(path: "RegistrationService_ListEndpoints")
   public func listEndpoints(
     byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1040,12 +796,17 @@ extension Clients.RegistrationServiceProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "RegistrationService_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

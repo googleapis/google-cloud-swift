@@ -105,17 +105,7 @@ extension Clients {
   /// To mock `IAMPolicyClient` change your functions to receive
   /// `some IAMPolicyProtocol` or `any IAMPolicyProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IAMPolicyProtocol {
-    /// See `IAMPolicyClient.setIamPolicy`.
-    func setIamPolicy(request: SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `IAMPolicyClient.getIamPolicy`.
-    func getIamPolicy(request: GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-    /// See `IAMPolicyClient.testIamPermissions`.
-    func testIamPermissions(request: TestIamPermissionsRequest) async throws
-      -> GoogleIAMV1.TestIamPermissionsResponse
-
+  public protocol IAMPolicyProtocol: Sendable {
     /// See `IAMPolicyClient.setIamPolicy`.
     func setIamPolicy(
       request: SetIamPolicyRequest, options: GoogleGax.RequestOptions

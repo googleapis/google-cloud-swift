@@ -53,23 +53,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     try await self.inner.listConnectionProfiles(request: request, options: options)
   }
 
-  /// Use this method to list connection profiles created in a project and
-  /// location.
-  ///
-  /// @Snippet(path: "Datastream_ListConnectionProfiles")
-  public func listConnectionProfiles(
-    byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listConnectionProfiles(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Use this method to get details about a connection profile.
   ///
   /// @Snippet(path: "Datastream_GetConnectionProfile")
@@ -203,21 +186,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: ListStreamsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse {
     try await self.inner.listStreams(request: request, options: options)
-  }
-
-  /// Use this method to list streams in a project and location.
-  ///
-  /// @Snippet(path: "Datastream_ListStreams")
-  public func listStreams(
-    byItem: ListStreamsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Stream, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listStreams(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Use this method to get details about a stream.
@@ -395,21 +363,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     try await self.inner.listStreamObjects(request: request, options: options)
   }
 
-  /// Use this method to list the objects of a specific stream.
-  ///
-  /// @Snippet(path: "Datastream_ListStreamObjects")
-  public func listStreamObjects(
-    byItem: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<StreamObject, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listStreamObjects(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Use this method to start a backfill job for the specified stream object.
   ///
   /// @Snippet(path: "Datastream_StartBackfillJob")
@@ -490,23 +443,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse {
     try await self.inner.listPrivateConnections(request: request, options: options)
-  }
-
-  /// Use this method to list private connectivity configurations in a project
-  /// and location.
-  ///
-  /// @Snippet(path: "Datastream_ListPrivateConnections")
-  public func listPrivateConnections(
-    byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listPrivateConnections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Use this method to delete a private connectivity configuration.
@@ -599,22 +535,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     try await self.inner.listRoutes(request: request, options: options)
   }
 
-  /// Use this method to list routes created for a private connectivity
-  /// configuration in a project and location.
-  ///
-  /// @Snippet(path: "Datastream_ListRoutes")
-  public func listRoutes(
-    byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Route, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listRoutes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Use this method to delete a route.
   ///
   /// @Snippet(path: "Datastream_DeleteRoute")
@@ -659,21 +579,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "Datastream_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Datastream_GetLocation")
@@ -692,23 +597,6 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Datastream_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -751,34 +639,7 @@ extension Clients {
   /// To mock `DatastreamClient` change your functions to receive
   /// `some DatastreamProtocol` or `any DatastreamProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DatastreamProtocol {
-    /// See `DatastreamClient.listConnectionProfiles`.
-    func listConnectionProfiles(request: ListConnectionProfilesRequest) async throws
-      -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse
-
-    /// See `DatastreamClient.listConnectionProfiles`.
-    func listConnectionProfiles(
-      byItem: ListConnectionProfilesRequest
-    ) -> any AsyncSequence<ConnectionProfile, Swift.Error>
-
-    /// See `DatastreamClient.listConnectionProfiles`.
-    func listConnectionProfiles(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ConnectionProfile, Swift.Error>
-
-    /// See `DatastreamClient.getConnectionProfile`.
-    func getConnectionProfile(request: GetConnectionProfileRequest) async throws
-      -> GoogleCloudDatastreamV1.ConnectionProfile
-
-    /// See `DatastreamClient.getConnectionProfile`.
-    func getConnectionProfile(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.ConnectionProfile
-
-    /// See `DatastreamClient.createConnectionProfile`.
-    func createConnectionProfile(request: CreateConnectionProfileRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol DatastreamProtocol: Sendable {
     /// See `DatastreamClient.createConnectionProfile`.
     func createConnectionProfile(withPolling: CreateConnectionProfileRequest) async throws
       -> any GoogleGax.PollableOperation<ConnectionProfile>
@@ -791,10 +652,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile>
 
     /// See `DatastreamClient.updateConnectionProfile`.
-    func updateConnectionProfile(request: UpdateConnectionProfileRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DatastreamClient.updateConnectionProfile`.
     func updateConnectionProfile(withPolling: UpdateConnectionProfileRequest) async throws
       -> any GoogleGax.PollableOperation<ConnectionProfile>
 
@@ -805,10 +662,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile>
 
     /// See `DatastreamClient.deleteConnectionProfile`.
-    func deleteConnectionProfile(request: DeleteConnectionProfileRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DatastreamClient.deleteConnectionProfile`.
     func deleteConnectionProfile(withPolling: DeleteConnectionProfileRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -816,35 +669,6 @@ extension Clients {
     func deleteConnectionProfile(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DatastreamClient.discoverConnectionProfile`.
-    func discoverConnectionProfile(request: DiscoverConnectionProfileRequest) async throws
-      -> GoogleCloudDatastreamV1.DiscoverConnectionProfileResponse
-
-    /// See `DatastreamClient.listStreams`.
-    func listStreams(request: ListStreamsRequest) async throws
-      -> GoogleCloudDatastreamV1.ListStreamsResponse
-
-    /// See `DatastreamClient.listStreams`.
-    func listStreams(
-      byItem: ListStreamsRequest
-    ) -> any AsyncSequence<Stream, Swift.Error>
-
-    /// See `DatastreamClient.listStreams`.
-    func listStreams(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Stream, Swift.Error>
-
-    /// See `DatastreamClient.getStream`.
-    func getStream(request: GetStreamRequest) async throws -> GoogleCloudDatastreamV1.Stream
-
-    /// See `DatastreamClient.getStream`.
-    func getStream(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.Stream
-
-    /// See `DatastreamClient.createStream`.
-    func createStream(request: CreateStreamRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastreamClient.createStream`.
     func createStream(withPolling: CreateStreamRequest) async throws -> any GoogleGax
@@ -858,9 +682,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Stream>
 
     /// See `DatastreamClient.updateStream`.
-    func updateStream(request: UpdateStreamRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `DatastreamClient.updateStream`.
     func updateStream(withPolling: UpdateStreamRequest) async throws -> any GoogleGax
       .PollableOperation<Stream>
 
@@ -869,9 +690,6 @@ extension Clients {
       stream: Stream?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Stream>
-
-    /// See `DatastreamClient.deleteStream`.
-    func deleteStream(request: DeleteStreamRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastreamClient.deleteStream`.
     func deleteStream(withPolling: DeleteStreamRequest) async throws -> any GoogleGax
@@ -883,70 +701,9 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DatastreamClient.runStream`.
-    func runStream(request: RunStreamRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `DatastreamClient.runStream`.
     func runStream(withPolling: RunStreamRequest) async throws -> any GoogleGax.PollableOperation<
       Stream
     >
-
-    /// See `DatastreamClient.getStreamObject`.
-    func getStreamObject(request: GetStreamObjectRequest) async throws
-      -> GoogleCloudDatastreamV1.StreamObject
-
-    /// See `DatastreamClient.getStreamObject`.
-    func getStreamObject(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.StreamObject
-
-    /// See `DatastreamClient.lookupStreamObject`.
-    func lookupStreamObject(request: LookupStreamObjectRequest) async throws
-      -> GoogleCloudDatastreamV1.StreamObject
-
-    /// See `DatastreamClient.listStreamObjects`.
-    func listStreamObjects(request: ListStreamObjectsRequest) async throws
-      -> GoogleCloudDatastreamV1.ListStreamObjectsResponse
-
-    /// See `DatastreamClient.listStreamObjects`.
-    func listStreamObjects(
-      byItem: ListStreamObjectsRequest
-    ) -> any AsyncSequence<StreamObject, Swift.Error>
-
-    /// See `DatastreamClient.listStreamObjects`.
-    func listStreamObjects(
-      parent: Swift.String,
-    ) -> any AsyncSequence<StreamObject, Swift.Error>
-
-    /// See `DatastreamClient.startBackfillJob`.
-    func startBackfillJob(request: StartBackfillJobRequest) async throws
-      -> GoogleCloudDatastreamV1.StartBackfillJobResponse
-
-    /// See `DatastreamClient.startBackfillJob`.
-    func startBackfillJob(
-      object: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.StartBackfillJobResponse
-
-    /// See `DatastreamClient.stopBackfillJob`.
-    func stopBackfillJob(request: StopBackfillJobRequest) async throws
-      -> GoogleCloudDatastreamV1.StopBackfillJobResponse
-
-    /// See `DatastreamClient.stopBackfillJob`.
-    func stopBackfillJob(
-      object: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.StopBackfillJobResponse
-
-    /// See `DatastreamClient.fetchStaticIps`.
-    func fetchStaticIps(request: FetchStaticIpsRequest) async throws
-      -> GoogleCloudDatastreamV1.FetchStaticIpsResponse
-
-    /// See `DatastreamClient.fetchStaticIps`.
-    func fetchStaticIps(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.FetchStaticIpsResponse
-
-    /// See `DatastreamClient.createPrivateConnection`.
-    func createPrivateConnection(request: CreatePrivateConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DatastreamClient.createPrivateConnection`.
     func createPrivateConnection(withPolling: CreatePrivateConnectionRequest) async throws
@@ -959,33 +716,6 @@ extension Clients {
       privateConnectionId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<PrivateConnection>
 
-    /// See `DatastreamClient.getPrivateConnection`.
-    func getPrivateConnection(request: GetPrivateConnectionRequest) async throws
-      -> GoogleCloudDatastreamV1.PrivateConnection
-
-    /// See `DatastreamClient.getPrivateConnection`.
-    func getPrivateConnection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.PrivateConnection
-
-    /// See `DatastreamClient.listPrivateConnections`.
-    func listPrivateConnections(request: ListPrivateConnectionsRequest) async throws
-      -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse
-
-    /// See `DatastreamClient.listPrivateConnections`.
-    func listPrivateConnections(
-      byItem: ListPrivateConnectionsRequest
-    ) -> any AsyncSequence<PrivateConnection, Swift.Error>
-
-    /// See `DatastreamClient.listPrivateConnections`.
-    func listPrivateConnections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<PrivateConnection, Swift.Error>
-
-    /// See `DatastreamClient.deletePrivateConnection`.
-    func deletePrivateConnection(request: DeletePrivateConnectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `DatastreamClient.deletePrivateConnection`.
     func deletePrivateConnection(withPolling: DeletePrivateConnectionRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
@@ -994,9 +724,6 @@ extension Clients {
     func deletePrivateConnection(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DatastreamClient.createRoute`.
-    func createRoute(request: CreateRouteRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastreamClient.createRoute`.
     func createRoute(withPolling: CreateRouteRequest) async throws -> any GoogleGax
@@ -1009,31 +736,6 @@ extension Clients {
       routeId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Route>
 
-    /// See `DatastreamClient.getRoute`.
-    func getRoute(request: GetRouteRequest) async throws -> GoogleCloudDatastreamV1.Route
-
-    /// See `DatastreamClient.getRoute`.
-    func getRoute(
-      name: Swift.String,
-    ) async throws -> GoogleCloudDatastreamV1.Route
-
-    /// See `DatastreamClient.listRoutes`.
-    func listRoutes(request: ListRoutesRequest) async throws
-      -> GoogleCloudDatastreamV1.ListRoutesResponse
-
-    /// See `DatastreamClient.listRoutes`.
-    func listRoutes(
-      byItem: ListRoutesRequest
-    ) -> any AsyncSequence<Route, Swift.Error>
-
-    /// See `DatastreamClient.listRoutes`.
-    func listRoutes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Route, Swift.Error>
-
-    /// See `DatastreamClient.deleteRoute`.
-    func deleteRoute(request: DeleteRouteRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `DatastreamClient.deleteRoute`.
     func deleteRoute(withPolling: DeleteRouteRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
@@ -1043,59 +745,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `DatastreamClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `DatastreamClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `DatastreamClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `DatastreamClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DatastreamClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DatastreamClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DatastreamClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `DatastreamClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `DatastreamClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `DatastreamClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `DatastreamClient.listConnectionProfiles`.
     func listConnectionProfiles(
       request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse
-
-    /// See `DatastreamClient.listConnectionProfiles`.
-    func listConnectionProfiles(
-      byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ConnectionProfile, Swift.Error>
 
     /// See `DatastreamClient.getConnectionProfile`.
     func getConnectionProfile(
@@ -1141,11 +794,6 @@ extension Clients {
     func listStreams(
       request: ListStreamsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse
-
-    /// See `DatastreamClient.listStreams`.
-    func listStreams(
-      byItem: ListStreamsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Stream, Swift.Error>
 
     /// See `DatastreamClient.getStream`.
     func getStream(
@@ -1207,11 +855,6 @@ extension Clients {
       request: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse
 
-    /// See `DatastreamClient.listStreamObjects`.
-    func listStreamObjects(
-      byItem: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<StreamObject, Swift.Error>
-
     /// See `DatastreamClient.startBackfillJob`.
     func startBackfillJob(
       request: StartBackfillJobRequest, options: GoogleGax.RequestOptions
@@ -1247,11 +890,6 @@ extension Clients {
       request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse
 
-    /// See `DatastreamClient.listPrivateConnections`.
-    func listPrivateConnections(
-      byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PrivateConnection, Swift.Error>
-
     /// See `DatastreamClient.deletePrivateConnection`.
     func deletePrivateConnection(
       request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
@@ -1282,11 +920,6 @@ extension Clients {
       request: ListRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse
 
-    /// See `DatastreamClient.listRoutes`.
-    func listRoutes(
-      byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Route, Swift.Error>
-
     /// See `DatastreamClient.deleteRoute`.
     func deleteRoute(
       request: DeleteRouteRequest, options: GoogleGax.RequestOptions
@@ -1302,11 +935,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `DatastreamClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `DatastreamClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -1316,11 +944,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DatastreamClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastreamClient.deleteOperation`.
     func deleteOperation(
@@ -1354,13 +977,19 @@ extension Clients.DatastreamProtocol {
     self.listConnectionProfiles(byItem: byItem, options: .init())
   }
 
+  /// Use this method to list connection profiles created in a project and
+  /// location.
+  ///
+  /// @Snippet(path: "Datastream_ListConnectionProfiles")
   public func listConnectionProfiles(
     byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listConnectionProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1542,12 +1171,17 @@ extension Clients.DatastreamProtocol {
     self.listStreams(byItem: byItem, options: .init())
   }
 
+  /// Use this method to list streams in a project and location.
+  ///
+  /// @Snippet(path: "Datastream_ListStreams")
   public func listStreams(
     byItem: ListStreamsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Stream, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listStreams(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1771,12 +1405,17 @@ extension Clients.DatastreamProtocol {
     self.listStreamObjects(byItem: byItem, options: .init())
   }
 
+  /// Use this method to list the objects of a specific stream.
+  ///
+  /// @Snippet(path: "Datastream_ListStreamObjects")
   public func listStreamObjects(
     byItem: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<StreamObject, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listStreamObjects(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -1933,13 +1572,19 @@ extension Clients.DatastreamProtocol {
     self.listPrivateConnections(byItem: byItem, options: .init())
   }
 
+  /// Use this method to list private connectivity configurations in a project
+  /// and location.
+  ///
+  /// @Snippet(path: "Datastream_ListPrivateConnections")
   public func listPrivateConnections(
     byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listPrivateConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2066,12 +1711,18 @@ extension Clients.DatastreamProtocol {
     self.listRoutes(byItem: byItem, options: .init())
   }
 
+  /// Use this method to list routes created for a private connectivity
+  /// configuration in a project and location.
+  ///
+  /// @Snippet(path: "Datastream_ListRoutes")
   public func listRoutes(
     byItem: ListRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Route, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2138,12 +1789,17 @@ extension Clients.DatastreamProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Datastream_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2178,12 +1834,19 @@ extension Clients.DatastreamProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Datastream_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -53,27 +53,6 @@ public final class TimeseriesInsightsControllerClient: Clients.TimeseriesInsight
     try await self.inner.listDataSets(request: request, options: options)
   }
 
-  /// Lists [DataSets][google.cloud.timeseriesinsights.v1.DataSet] under the project.
-  ///
-  /// The order of the results is unspecified but deterministic. Newly created
-  /// [DataSets][google.cloud.timeseriesinsights.v1.DataSet] will not necessarily be added to the end
-  /// of this list.
-  ///
-  /// [google.cloud.timeseriesinsights.v1.DataSet]: <doc:DataSet>
-  ///
-  /// @Snippet(path: "TimeseriesInsightsController_ListDataSets")
-  public func listDataSets(
-    byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSet, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDataSets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Create a [DataSet][google.cloud.timeseriesinsights.v1.DataSet] from data stored on Cloud
   /// Storage.
   ///
@@ -154,70 +133,11 @@ extension Clients {
   /// To mock `TimeseriesInsightsControllerClient` change your functions to receive
   /// `some TimeseriesInsightsControllerProtocol` or `any TimeseriesInsightsControllerProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol TimeseriesInsightsControllerProtocol {
-    /// See `TimeseriesInsightsControllerClient.listDataSets`.
-    func listDataSets(request: ListDataSetsRequest) async throws
-      -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse
-
-    /// See `TimeseriesInsightsControllerClient.listDataSets`.
-    func listDataSets(
-      byItem: ListDataSetsRequest
-    ) -> any AsyncSequence<DataSet, Swift.Error>
-
-    /// See `TimeseriesInsightsControllerClient.listDataSets`.
-    func listDataSets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DataSet, Swift.Error>
-
-    /// See `TimeseriesInsightsControllerClient.createDataSet`.
-    func createDataSet(request: CreateDataSetRequest) async throws
-      -> GoogleCloudTimeseriesInsightsV1.DataSet
-
-    /// See `TimeseriesInsightsControllerClient.createDataSet`.
-    func createDataSet(
-      parent: Swift.String,
-      dataset: DataSet?,
-    ) async throws -> GoogleCloudTimeseriesInsightsV1.DataSet
-
-    /// See `TimeseriesInsightsControllerClient.deleteDataSet`.
-    func deleteDataSet(request: DeleteDataSetRequest) async throws
-
-    /// See `TimeseriesInsightsControllerClient.deleteDataSet`.
-    func deleteDataSet(
-      name: Swift.String,
-    ) async throws
-
-    /// See `TimeseriesInsightsControllerClient.appendEvents`.
-    func appendEvents(request: AppendEventsRequest) async throws
-      -> GoogleCloudTimeseriesInsightsV1.AppendEventsResponse
-
-    /// See `TimeseriesInsightsControllerClient.appendEvents`.
-    func appendEvents(
-      dataset: Swift.String,
-      events: [Event],
-    ) async throws -> GoogleCloudTimeseriesInsightsV1.AppendEventsResponse
-
-    /// See `TimeseriesInsightsControllerClient.queryDataSet`.
-    func queryDataSet(request: QueryDataSetRequest) async throws
-      -> GoogleCloudTimeseriesInsightsV1.QueryDataSetResponse
-
-    /// See `TimeseriesInsightsControllerClient.evaluateSlice`.
-    func evaluateSlice(request: EvaluateSliceRequest) async throws
-      -> GoogleCloudTimeseriesInsightsV1.EvaluatedSlice
-
-    /// See `TimeseriesInsightsControllerClient.evaluateTimeseries`.
-    func evaluateTimeseries(request: EvaluateTimeseriesRequest) async throws
-      -> GoogleCloudTimeseriesInsightsV1.EvaluatedSlice
-
+  public protocol TimeseriesInsightsControllerProtocol: Sendable {
     /// See `TimeseriesInsightsControllerClient.listDataSets`.
     func listDataSets(
       request: ListDataSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse
-
-    /// See `TimeseriesInsightsControllerClient.listDataSets`.
-    func listDataSets(
-      byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataSet, Swift.Error>
 
     /// See `TimeseriesInsightsControllerClient.createDataSet`.
     func createDataSet(
@@ -271,12 +191,23 @@ extension Clients.TimeseriesInsightsControllerProtocol {
     self.listDataSets(byItem: byItem, options: .init())
   }
 
+  /// Lists [DataSets][google.cloud.timeseriesinsights.v1.DataSet] under the project.
+  ///
+  /// The order of the results is unspecified but deterministic. Newly created
+  /// [DataSets][google.cloud.timeseriesinsights.v1.DataSet] will not necessarily be added to the end
+  /// of this list.
+  ///
+  /// [google.cloud.timeseriesinsights.v1.DataSet]: <doc:DataSet>
+  ///
+  /// @Snippet(path: "TimeseriesInsightsController_ListDataSets")
   public func listDataSets(
     byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDataSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

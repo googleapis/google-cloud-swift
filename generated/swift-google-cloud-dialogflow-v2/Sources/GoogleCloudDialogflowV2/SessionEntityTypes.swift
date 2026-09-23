@@ -57,26 +57,6 @@
       try await self.inner.listSessionEntityTypes(request: request, options: options)
     }
 
-    /// Returns the list of all session entity types in the specified session.
-    ///
-    /// This method doesn't work with Google Assistant integration.
-    /// Contact Dialogflow support if you need to use session entities
-    /// with Google Assistant integration.
-    ///
-    /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
-    public func listSessionEntityTypes(
-      byItem: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SessionEntityType, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListSessionEntityTypesResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listSessionEntityTypes(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified session entity type.
     ///
     /// This method doesn't work with Google Assistant integration.
@@ -158,38 +138,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "SessionEntityTypes_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "SessionEntityTypes_GetLocation")
@@ -208,23 +156,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "SessionEntityTypes_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -256,108 +187,11 @@
     /// To mock `SessionEntityTypesClient` change your functions to receive
     /// `some SessionEntityTypesProtocol` or `any SessionEntityTypesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SessionEntityTypesProtocol {
-      /// See `SessionEntityTypesClient.listSessionEntityTypes`.
-      func listSessionEntityTypes(request: ListSessionEntityTypesRequest) async throws
-        -> GoogleCloudDialogflowV2.ListSessionEntityTypesResponse
-
-      /// See `SessionEntityTypesClient.listSessionEntityTypes`.
-      func listSessionEntityTypes(
-        byItem: ListSessionEntityTypesRequest
-      ) -> any AsyncSequence<SessionEntityType, Swift.Error>
-
-      /// See `SessionEntityTypesClient.listSessionEntityTypes`.
-      func listSessionEntityTypes(
-        parent: Swift.String,
-      ) -> any AsyncSequence<SessionEntityType, Swift.Error>
-
-      /// See `SessionEntityTypesClient.getSessionEntityType`.
-      func getSessionEntityType(request: GetSessionEntityTypeRequest) async throws
-        -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.getSessionEntityType`.
-      func getSessionEntityType(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.createSessionEntityType`.
-      func createSessionEntityType(request: CreateSessionEntityTypeRequest) async throws
-        -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.createSessionEntityType`.
-      func createSessionEntityType(
-        parent: Swift.String,
-        sessionEntityType: SessionEntityType?,
-      ) async throws -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.updateSessionEntityType`.
-      func updateSessionEntityType(request: UpdateSessionEntityTypeRequest) async throws
-        -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.updateSessionEntityType`.
-      func updateSessionEntityType(
-        sessionEntityType: SessionEntityType?,
-      ) async throws -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.updateSessionEntityType`.
-      func updateSessionEntityType(
-        sessionEntityType: SessionEntityType?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDialogflowV2.SessionEntityType
-
-      /// See `SessionEntityTypesClient.deleteSessionEntityType`.
-      func deleteSessionEntityType(request: DeleteSessionEntityTypeRequest) async throws
-
-      /// See `SessionEntityTypesClient.deleteSessionEntityType`.
-      func deleteSessionEntityType(
-        name: Swift.String,
-      ) async throws
-
-      /// See `SessionEntityTypesClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `SessionEntityTypesClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `SessionEntityTypesClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `SessionEntityTypesClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SessionEntityTypesClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SessionEntityTypesClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `SessionEntityTypesClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `SessionEntityTypesClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol SessionEntityTypesProtocol: Sendable {
       /// See `SessionEntityTypesClient.listSessionEntityTypes`.
       func listSessionEntityTypes(
         request: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListSessionEntityTypesResponse
-
-      /// See `SessionEntityTypesClient.listSessionEntityTypes`.
-      func listSessionEntityTypes(
-        byItem: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<SessionEntityType, Swift.Error>
 
       /// See `SessionEntityTypesClient.getSessionEntityType`.
       func getSessionEntityType(
@@ -384,11 +218,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `SessionEntityTypesClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `SessionEntityTypesClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -398,11 +227,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `SessionEntityTypesClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `SessionEntityTypesClient.cancelOperation`.
       func cancelOperation(
@@ -431,13 +255,22 @@
       self.listSessionEntityTypes(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all session entity types in the specified session.
+    ///
+    /// This method doesn't work with Google Assistant integration.
+    /// Contact Dialogflow support if you need to use session entities
+    /// with Google Assistant integration.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
     public func listSessionEntityTypes(
       byItem: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SessionEntityType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListSessionEntityTypesResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listSessionEntityTypes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -564,12 +397,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -604,12 +459,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

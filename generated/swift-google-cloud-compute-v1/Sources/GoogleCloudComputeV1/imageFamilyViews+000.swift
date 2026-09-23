@@ -54,18 +54,7 @@
     /// To mock `ImageFamilyViewsClient` change your functions to receive
     /// `some ImageFamilyViewsProtocol` or `any ImageFamilyViewsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ImageFamilyViewsProtocol {
-      /// See `ImageFamilyViewsClient.`get``.
-      func `get`(request: ImageFamilyViewsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.ImageFamilyView
-
-      /// See `ImageFamilyViewsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        family: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.ImageFamilyView
-
+    public protocol ImageFamilyViewsProtocol: Sendable {
       /// See `ImageFamilyViewsClient.`get``.
       func `get`(
         request: ImageFamilyViewsClient.GetRequest, options: GoogleGax.RequestOptions

@@ -86,21 +86,7 @@
     /// To mock `SqlSslCertsServiceClient` change your functions to receive
     /// `some SqlSslCertsServiceProtocol` or `any SqlSslCertsServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol SqlSslCertsServiceProtocol {
-      /// See `SqlSslCertsServiceClient.delete`.
-      func delete(request: SqlSslCertsDeleteRequest) async throws -> GoogleCloudSqlV1.Operation
-
-      /// See `SqlSslCertsServiceClient.`get``.
-      func `get`(request: SqlSslCertsGetRequest) async throws -> GoogleCloudSqlV1.SslCert
-
-      /// See `SqlSslCertsServiceClient.insert`.
-      func insert(request: SqlSslCertsInsertRequest) async throws
-        -> GoogleCloudSqlV1.SslCertsInsertResponse
-
-      /// See `SqlSslCertsServiceClient.list`.
-      func list(request: SqlSslCertsListRequest) async throws
-        -> GoogleCloudSqlV1.SslCertsListResponse
-
+    public protocol SqlSslCertsServiceProtocol: Sendable {
       /// See `SqlSslCertsServiceClient.delete`.
       func delete(
         request: SqlSslCertsDeleteRequest, options: GoogleGax.RequestOptions

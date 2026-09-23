@@ -48,23 +48,6 @@ public final class KeyDashboardServiceClient: Clients.KeyDashboardServiceProtoco
   ) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse {
     try await self.inner.listCryptoKeys(request: request, options: options)
   }
-
-  /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
-  /// Note that this data is sourced from snapshots, meaning it may not
-  /// completely reflect the actual state of key metadata at call time.
-  ///
-  /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
-  public func listCryptoKeys(
-    byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCryptoKeys(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
 }
 
 extension Clients {
@@ -73,30 +56,11 @@ extension Clients {
   /// To mock `KeyDashboardServiceClient` change your functions to receive
   /// `some KeyDashboardServiceProtocol` or `any KeyDashboardServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol KeyDashboardServiceProtocol {
-    /// See `KeyDashboardServiceClient.listCryptoKeys`.
-    func listCryptoKeys(request: ListCryptoKeysRequest) async throws
-      -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse
-
-    /// See `KeyDashboardServiceClient.listCryptoKeys`.
-    func listCryptoKeys(
-      byItem: ListCryptoKeysRequest
-    ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error>
-
-    /// See `KeyDashboardServiceClient.listCryptoKeys`.
-    func listCryptoKeys(
-      parent: Swift.String,
-    ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error>
-
+  public protocol KeyDashboardServiceProtocol: Sendable {
     /// See `KeyDashboardServiceClient.listCryptoKeys`.
     func listCryptoKeys(
       request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse
-
-    /// See `KeyDashboardServiceClient.listCryptoKeys`.
-    func listCryptoKeys(
-      byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error>
   }
 }
 
@@ -120,12 +84,19 @@ extension Clients.KeyDashboardServiceProtocol {
     self.listCryptoKeys(byItem: byItem, options: .init())
   }
 
+  /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
+  /// Note that this data is sourced from snapshots, meaning it may not
+  /// completely reflect the actual state of key metadata at call time.
+  ///
+  /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
   public func listCryptoKeys(
     byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCryptoKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

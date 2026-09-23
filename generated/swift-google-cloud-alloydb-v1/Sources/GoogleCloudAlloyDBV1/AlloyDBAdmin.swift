@@ -52,21 +52,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     try await self.inner.listClusters(request: request, options: options)
   }
 
-  /// Lists Clusters in a given project and location.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListClustersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listClusters(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Cluster.
   ///
   /// @Snippet(path: "AlloyDBAdmin_GetCluster")
@@ -452,21 +437,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
-  /// Lists Instances in a given project and location.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListInstancesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listInstances(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "AlloyDBAdmin_GetInstance")
@@ -801,21 +771,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     try await self.inner.listBackups(request: request, options: options)
   }
 
-  /// Lists Backups in a given project and location.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListBackups")
-  public func listBackups(
-    byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListBackupsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBackups(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single Backup.
   ///
   /// @Snippet(path: "AlloyDBAdmin_GetBackup")
@@ -937,22 +892,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     try await self.inner.listSupportedDatabaseFlags(request: request, options: options)
   }
 
-  /// Lists SupportedDatabaseFlags for a given project and location.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListSupportedDatabaseFlags")
-  public func listSupportedDatabaseFlags(
-    byItem: ListSupportedDatabaseFlagsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SupportedDatabaseFlag, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListSupportedDatabaseFlagsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSupportedDatabaseFlags(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Generate a client certificate signed by a Cluster CA.
   /// The sole purpose of this endpoint is to support AlloyDB connectors and the
   /// Auth Proxy client. The endpoint's behavior is subject to change without
@@ -982,20 +921,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse {
     try await self.inner.listUsers(request: request, options: options)
-  }
-
-  /// Lists Users in a given project and location.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListUsers")
-  public func listUsers(
-    byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<User, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listUsers(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets details of a single User.
@@ -1043,21 +968,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     try await self.inner.listDatabases(request: request, options: options)
   }
 
-  /// Lists Databases in a given project and location.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListDatabases")
-  public func listDatabases(
-    byItem: ListDatabasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Database, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListDatabasesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDatabases(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AlloyDBAdmin_ListLocations")
@@ -1065,21 +975,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -1100,23 +995,6 @@ public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "AlloyDBAdmin_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1159,32 +1037,7 @@ extension Clients {
   /// To mock `AlloyDBAdminClient` change your functions to receive
   /// `some AlloyDBAdminProtocol` or `any AlloyDBAdminProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol AlloyDBAdminProtocol {
-    /// See `AlloyDBAdminClient.listClusters`.
-    func listClusters(request: ListClustersRequest) async throws
-      -> GoogleCloudAlloyDBV1.ListClustersResponse
-
-    /// See `AlloyDBAdminClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listClusters`.
-    func listClusters(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Cluster, Swift.Error>
-
-    /// See `AlloyDBAdminClient.getCluster`.
-    func getCluster(request: GetClusterRequest) async throws -> GoogleCloudAlloyDBV1.Cluster
-
-    /// See `AlloyDBAdminClient.getCluster`.
-    func getCluster(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.Cluster
-
-    /// See `AlloyDBAdminClient.createCluster`.
-    func createCluster(request: CreateClusterRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol AlloyDBAdminProtocol: Sendable {
     /// See `AlloyDBAdminClient.createCluster`.
     func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
@@ -1197,9 +1050,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `AlloyDBAdminClient.updateCluster`.
-    func updateCluster(request: UpdateClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.updateCluster`.
     func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
@@ -1208,9 +1058,6 @@ extension Clients {
       cluster: Cluster?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `AlloyDBAdminClient.exportCluster`.
-    func exportCluster(request: ExportClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.exportCluster`.
     func exportCluster(withPolling: ExportClusterRequest) async throws -> any GoogleGax
@@ -1226,9 +1073,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ExportClusterResponse>
 
     /// See `AlloyDBAdminClient.importCluster`.
-    func importCluster(request: ImportClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.importCluster`.
     func importCluster(withPolling: ImportClusterRequest) async throws -> any GoogleGax
       .PollableOperation<ImportClusterResponse>
 
@@ -1241,9 +1085,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ImportClusterResponse>
 
     /// See `AlloyDBAdminClient.upgradeCluster`.
-    func upgradeCluster(request: UpgradeClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.upgradeCluster`.
     func upgradeCluster(withPolling: UpgradeClusterRequest) async throws -> any GoogleGax
       .PollableOperation<UpgradeClusterResponse>
 
@@ -1252,9 +1093,6 @@ extension Clients {
       name: Swift.String,
       version: DatabaseVersion,
     ) async throws -> any GoogleGax.PollableOperation<UpgradeClusterResponse>
-
-    /// See `AlloyDBAdminClient.deleteCluster`.
-    func deleteCluster(request: DeleteClusterRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.deleteCluster`.
     func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
@@ -1266,9 +1104,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AlloyDBAdminClient.promoteCluster`.
-    func promoteCluster(request: PromoteClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.promoteCluster`.
     func promoteCluster(withPolling: PromoteClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
@@ -1276,10 +1111,6 @@ extension Clients {
     func promoteCluster(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `AlloyDBAdminClient.switchoverCluster`.
-    func switchoverCluster(request: SwitchoverClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.switchoverCluster`.
     func switchoverCluster(withPolling: SwitchoverClusterRequest) async throws -> any GoogleGax
@@ -1291,15 +1122,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `AlloyDBAdminClient.restoreCluster`.
-    func restoreCluster(request: RestoreClusterRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.restoreCluster`.
     func restoreCluster(withPolling: RestoreClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
-
-    /// See `AlloyDBAdminClient.createSecondaryCluster`.
-    func createSecondaryCluster(request: CreateSecondaryClusterRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.createSecondaryCluster`.
     func createSecondaryCluster(withPolling: CreateSecondaryClusterRequest) async throws
@@ -1311,31 +1135,6 @@ extension Clients {
       cluster: Cluster?,
       clusterId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `AlloyDBAdminClient.listInstances`.
-    func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudAlloyDBV1.ListInstancesResponse
-
-    /// See `AlloyDBAdminClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listInstances`.
-    func listInstances(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
-    /// See `AlloyDBAdminClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudAlloyDBV1.Instance
-
-    /// See `AlloyDBAdminClient.getInstance`.
-    func getInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.Instance
-
-    /// See `AlloyDBAdminClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
@@ -1349,10 +1148,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AlloyDBAdminClient.createSecondaryInstance`.
-    func createSecondaryInstance(request: CreateSecondaryInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.createSecondaryInstance`.
     func createSecondaryInstance(withPolling: CreateSecondaryInstanceRequest) async throws
       -> any GoogleGax.PollableOperation<Instance>
 
@@ -1364,15 +1159,8 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AlloyDBAdminClient.batchCreateInstances`.
-    func batchCreateInstances(request: BatchCreateInstancesRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.batchCreateInstances`.
     func batchCreateInstances(withPolling: BatchCreateInstancesRequest) async throws
       -> any GoogleGax.PollableOperation<BatchCreateInstancesResponse>
-
-    /// See `AlloyDBAdminClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
@@ -1385,9 +1173,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AlloyDBAdminClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1397,10 +1182,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AlloyDBAdminClient.failoverInstance`.
-    func failoverInstance(request: FailoverInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.failoverInstance`.
     func failoverInstance(withPolling: FailoverInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -1408,9 +1189,6 @@ extension Clients {
     func failoverInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `AlloyDBAdminClient.injectFault`.
-    func injectFault(request: InjectFaultRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.injectFault`.
     func injectFault(withPolling: InjectFaultRequest) async throws -> any GoogleGax
@@ -1423,10 +1201,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AlloyDBAdminClient.restartInstance`.
-    func restartInstance(request: RestartInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.restartInstance`.
     func restartInstance(withPolling: RestartInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
@@ -1434,44 +1208,6 @@ extension Clients {
     func restartInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `AlloyDBAdminClient.executeSql`.
-    func executeSql(request: ExecuteSqlRequest) async throws
-      -> GoogleCloudAlloyDBV1.ExecuteSqlResponse
-
-    /// See `AlloyDBAdminClient.executeSql`.
-    func executeSql(
-      instance: Swift.String,
-      database: Swift.String,
-      user: Swift.String,
-      sqlStatement: Swift.String,
-      password: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.ExecuteSqlResponse
-
-    /// See `AlloyDBAdminClient.listBackups`.
-    func listBackups(request: ListBackupsRequest) async throws
-      -> GoogleCloudAlloyDBV1.ListBackupsResponse
-
-    /// See `AlloyDBAdminClient.listBackups`.
-    func listBackups(
-      byItem: ListBackupsRequest
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listBackups`.
-    func listBackups(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
-    /// See `AlloyDBAdminClient.getBackup`.
-    func getBackup(request: GetBackupRequest) async throws -> GoogleCloudAlloyDBV1.Backup
-
-    /// See `AlloyDBAdminClient.getBackup`.
-    func getBackup(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.Backup
-
-    /// See `AlloyDBAdminClient.createBackup`.
-    func createBackup(request: CreateBackupRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBAdminClient.createBackup`.
     func createBackup(withPolling: CreateBackupRequest) async throws -> any GoogleGax
@@ -1485,9 +1221,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `AlloyDBAdminClient.updateBackup`.
-    func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.updateBackup`.
     func updateBackup(withPolling: UpdateBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Backup>
 
@@ -1498,9 +1231,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `AlloyDBAdminClient.deleteBackup`.
-    func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `AlloyDBAdminClient.deleteBackup`.
     func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1509,153 +1239,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `AlloyDBAdminClient.listSupportedDatabaseFlags`.
-    func listSupportedDatabaseFlags(request: ListSupportedDatabaseFlagsRequest) async throws
-      -> GoogleCloudAlloyDBV1.ListSupportedDatabaseFlagsResponse
-
-    /// See `AlloyDBAdminClient.listSupportedDatabaseFlags`.
-    func listSupportedDatabaseFlags(
-      byItem: ListSupportedDatabaseFlagsRequest
-    ) -> any AsyncSequence<SupportedDatabaseFlag, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listSupportedDatabaseFlags`.
-    func listSupportedDatabaseFlags(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SupportedDatabaseFlag, Swift.Error>
-
-    /// See `AlloyDBAdminClient.generateClientCertificate`.
-    func generateClientCertificate(request: GenerateClientCertificateRequest) async throws
-      -> GoogleCloudAlloyDBV1.GenerateClientCertificateResponse
-
-    /// See `AlloyDBAdminClient.generateClientCertificate`.
-    func generateClientCertificate(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.GenerateClientCertificateResponse
-
-    /// See `AlloyDBAdminClient.getConnectionInfo`.
-    func getConnectionInfo(request: GetConnectionInfoRequest) async throws
-      -> GoogleCloudAlloyDBV1.ConnectionInfo
-
-    /// See `AlloyDBAdminClient.getConnectionInfo`.
-    func getConnectionInfo(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.ConnectionInfo
-
-    /// See `AlloyDBAdminClient.listUsers`.
-    func listUsers(request: ListUsersRequest) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse
-
-    /// See `AlloyDBAdminClient.listUsers`.
-    func listUsers(
-      byItem: ListUsersRequest
-    ) -> any AsyncSequence<User, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listUsers`.
-    func listUsers(
-      parent: Swift.String,
-    ) -> any AsyncSequence<User, Swift.Error>
-
-    /// See `AlloyDBAdminClient.getUser`.
-    func getUser(request: GetUserRequest) async throws -> GoogleCloudAlloyDBV1.User
-
-    /// See `AlloyDBAdminClient.getUser`.
-    func getUser(
-      name: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.User
-
-    /// See `AlloyDBAdminClient.createUser`.
-    func createUser(request: CreateUserRequest) async throws -> GoogleCloudAlloyDBV1.User
-
-    /// See `AlloyDBAdminClient.createUser`.
-    func createUser(
-      parent: Swift.String,
-      user: User?,
-      userId: Swift.String,
-    ) async throws -> GoogleCloudAlloyDBV1.User
-
-    /// See `AlloyDBAdminClient.updateUser`.
-    func updateUser(request: UpdateUserRequest) async throws -> GoogleCloudAlloyDBV1.User
-
-    /// See `AlloyDBAdminClient.updateUser`.
-    func updateUser(
-      user: User?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudAlloyDBV1.User
-
-    /// See `AlloyDBAdminClient.deleteUser`.
-    func deleteUser(request: DeleteUserRequest) async throws
-
-    /// See `AlloyDBAdminClient.deleteUser`.
-    func deleteUser(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AlloyDBAdminClient.listDatabases`.
-    func listDatabases(request: ListDatabasesRequest) async throws
-      -> GoogleCloudAlloyDBV1.ListDatabasesResponse
-
-    /// See `AlloyDBAdminClient.listDatabases`.
-    func listDatabases(
-      byItem: ListDatabasesRequest
-    ) -> any AsyncSequence<Database, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listDatabases`.
-    func listDatabases(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Database, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AlloyDBAdminClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `AlloyDBAdminClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `AlloyDBAdminClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AlloyDBAdminClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AlloyDBAdminClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `AlloyDBAdminClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `AlloyDBAdminClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `AlloyDBAdminClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `AlloyDBAdminClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `AlloyDBAdminClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListClustersResponse
-
-    /// See `AlloyDBAdminClient.listClusters`.
-    func listClusters(
-      byItem: ListClustersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Cluster, Swift.Error>
 
     /// See `AlloyDBAdminClient.getCluster`.
     func getCluster(
@@ -1767,11 +1354,6 @@ extension Clients {
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListInstancesResponse
 
-    /// See `AlloyDBAdminClient.listInstances`.
-    func listInstances(
-      byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error>
-
     /// See `AlloyDBAdminClient.getInstance`.
     func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
@@ -1867,11 +1449,6 @@ extension Clients {
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListBackupsResponse
 
-    /// See `AlloyDBAdminClient.listBackups`.
-    func listBackups(
-      byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Backup, Swift.Error>
-
     /// See `AlloyDBAdminClient.getBackup`.
     func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
@@ -1912,11 +1489,6 @@ extension Clients {
       request: ListSupportedDatabaseFlagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListSupportedDatabaseFlagsResponse
 
-    /// See `AlloyDBAdminClient.listSupportedDatabaseFlags`.
-    func listSupportedDatabaseFlags(
-      byItem: ListSupportedDatabaseFlagsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SupportedDatabaseFlag, Swift.Error>
-
     /// See `AlloyDBAdminClient.generateClientCertificate`.
     func generateClientCertificate(
       request: GenerateClientCertificateRequest, options: GoogleGax.RequestOptions
@@ -1931,11 +1503,6 @@ extension Clients {
     func listUsers(
       request: ListUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse
-
-    /// See `AlloyDBAdminClient.listUsers`.
-    func listUsers(
-      byItem: ListUsersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<User, Swift.Error>
 
     /// See `AlloyDBAdminClient.getUser`.
     func getUser(
@@ -1962,20 +1529,10 @@ extension Clients {
       request: ListDatabasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListDatabasesResponse
 
-    /// See `AlloyDBAdminClient.listDatabases`.
-    func listDatabases(
-      byItem: ListDatabasesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Database, Swift.Error>
-
     /// See `AlloyDBAdminClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `AlloyDBAdminClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `AlloyDBAdminClient.getLocation`.
     func getLocation(
@@ -1986,11 +1543,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `AlloyDBAdminClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AlloyDBAdminClient.deleteOperation`.
     func deleteOperation(
@@ -2024,12 +1576,17 @@ extension Clients.AlloyDBAdminProtocol {
     self.listClusters(byItem: byItem, options: .init())
   }
 
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListClusters")
   public func listClusters(
     byItem: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListClustersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2468,12 +2025,17 @@ extension Clients.AlloyDBAdminProtocol {
     self.listInstances(byItem: byItem, options: .init())
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListInstances")
   public func listInstances(
     byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListInstancesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2852,12 +2414,17 @@ extension Clients.AlloyDBAdminProtocol {
     self.listBackups(byItem: byItem, options: .init())
   }
 
+  /// Lists Backups in a given project and location.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListBackups")
   public func listBackups(
     byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListBackupsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBackups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3022,13 +2589,18 @@ extension Clients.AlloyDBAdminProtocol {
     self.listSupportedDatabaseFlags(byItem: byItem, options: .init())
   }
 
+  /// Lists SupportedDatabaseFlags for a given project and location.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListSupportedDatabaseFlags")
   public func listSupportedDatabaseFlags(
     byItem: ListSupportedDatabaseFlagsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SupportedDatabaseFlag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListSupportedDatabaseFlagsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSupportedDatabaseFlags(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3102,11 +2674,16 @@ extension Clients.AlloyDBAdminProtocol {
     self.listUsers(byItem: byItem, options: .init())
   }
 
+  /// Lists Users in a given project and location.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListUsers")
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<User, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listUsers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3220,12 +2797,17 @@ extension Clients.AlloyDBAdminProtocol {
     self.listDatabases(byItem: byItem, options: .init())
   }
 
+  /// Lists Databases in a given project and location.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListDatabases")
   public func listDatabases(
     byItem: ListDatabasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Database, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListDatabasesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDatabases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3257,12 +2839,17 @@ extension Clients.AlloyDBAdminProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3297,12 +2884,19 @@ extension Clients.AlloyDBAdminProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBAdmin_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

@@ -243,42 +243,18 @@ extension Clients {
   /// To mock `CloudShellServiceClient` change your functions to receive
   /// `some CloudShellServiceProtocol` or `any CloudShellServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol CloudShellServiceProtocol {
-    /// See `CloudShellServiceClient.getEnvironment`.
-    func getEnvironment(request: GetEnvironmentRequest) async throws
-      -> GoogleCloudShellV1.Environment
-
-    /// See `CloudShellServiceClient.getEnvironment`.
-    func getEnvironment(
-      name: Swift.String,
-    ) async throws -> GoogleCloudShellV1.Environment
-
-    /// See `CloudShellServiceClient.startEnvironment`.
-    func startEnvironment(request: StartEnvironmentRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol CloudShellServiceProtocol: Sendable {
     /// See `CloudShellServiceClient.startEnvironment`.
     func startEnvironment(withPolling: StartEnvironmentRequest) async throws -> any GoogleGax
       .PollableOperation<StartEnvironmentResponse>
-
-    /// See `CloudShellServiceClient.authorizeEnvironment`.
-    func authorizeEnvironment(request: AuthorizeEnvironmentRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudShellServiceClient.authorizeEnvironment`.
     func authorizeEnvironment(withPolling: AuthorizeEnvironmentRequest) async throws
       -> any GoogleGax.PollableOperation<AuthorizeEnvironmentResponse>
 
     /// See `CloudShellServiceClient.addPublicKey`.
-    func addPublicKey(request: AddPublicKeyRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `CloudShellServiceClient.addPublicKey`.
     func addPublicKey(withPolling: AddPublicKeyRequest) async throws -> any GoogleGax
       .PollableOperation<AddPublicKeyResponse>
-
-    /// See `CloudShellServiceClient.removePublicKey`.
-    func removePublicKey(request: RemovePublicKeyRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `CloudShellServiceClient.removePublicKey`.
     func removePublicKey(withPolling: RemovePublicKeyRequest) async throws -> any GoogleGax

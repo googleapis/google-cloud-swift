@@ -57,22 +57,6 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
     try await self.inner.listLinkedSources(request: request, options: options)
   }
 
-  /// Return all source document-links from the document.
-  ///
-  /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
-  public func listLinkedSources(
-    byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DocumentLink, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLinkedSources(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Create a link between a source document and a target document.
   ///
   /// @Snippet(path: "DocumentLinkService_CreateDocumentLink")
@@ -109,48 +93,7 @@ extension Clients {
   /// To mock `DocumentLinkServiceClient` change your functions to receive
   /// `some DocumentLinkServiceProtocol` or `any DocumentLinkServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DocumentLinkServiceProtocol {
-    /// See `DocumentLinkServiceClient.listLinkedTargets`.
-    func listLinkedTargets(request: ListLinkedTargetsRequest) async throws
-      -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse
-
-    /// See `DocumentLinkServiceClient.listLinkedTargets`.
-    func listLinkedTargets(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse
-
-    /// See `DocumentLinkServiceClient.listLinkedSources`.
-    func listLinkedSources(request: ListLinkedSourcesRequest) async throws
-      -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
-
-    /// See `DocumentLinkServiceClient.listLinkedSources`.
-    func listLinkedSources(
-      byItem: ListLinkedSourcesRequest
-    ) -> any AsyncSequence<DocumentLink, Swift.Error>
-
-    /// See `DocumentLinkServiceClient.listLinkedSources`.
-    func listLinkedSources(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DocumentLink, Swift.Error>
-
-    /// See `DocumentLinkServiceClient.createDocumentLink`.
-    func createDocumentLink(request: CreateDocumentLinkRequest) async throws
-      -> GoogleCloudContentWarehouseV1.DocumentLink
-
-    /// See `DocumentLinkServiceClient.createDocumentLink`.
-    func createDocumentLink(
-      parent: Swift.String,
-      documentLink: DocumentLink?,
-    ) async throws -> GoogleCloudContentWarehouseV1.DocumentLink
-
-    /// See `DocumentLinkServiceClient.deleteDocumentLink`.
-    func deleteDocumentLink(request: DeleteDocumentLinkRequest) async throws
-
-    /// See `DocumentLinkServiceClient.deleteDocumentLink`.
-    func deleteDocumentLink(
-      name: Swift.String,
-    ) async throws
-
+  public protocol DocumentLinkServiceProtocol: Sendable {
     /// See `DocumentLinkServiceClient.listLinkedTargets`.
     func listLinkedTargets(
       request: ListLinkedTargetsRequest, options: GoogleGax.RequestOptions
@@ -160,11 +103,6 @@ extension Clients {
     func listLinkedSources(
       request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
-
-    /// See `DocumentLinkServiceClient.listLinkedSources`.
-    func listLinkedSources(
-      byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DocumentLink, Swift.Error>
 
     /// See `DocumentLinkServiceClient.createDocumentLink`.
     func createDocumentLink(
@@ -219,13 +157,18 @@ extension Clients.DocumentLinkServiceProtocol {
     self.listLinkedSources(byItem: byItem, options: .init())
   }
 
+  /// Return all source document-links from the document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
   public func listLinkedSources(
     byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DocumentLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLinkedSources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

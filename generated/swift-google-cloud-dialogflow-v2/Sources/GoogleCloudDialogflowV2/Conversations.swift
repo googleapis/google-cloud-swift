@@ -84,21 +84,6 @@
       try await self.inner.listConversations(request: request, options: options)
     }
 
-    /// Returns the list of all conversations in the specified project.
-    ///
-    /// @Snippet(path: "Conversations_ListConversations")
-    public func listConversations(
-      byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Conversation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListConversationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listConversations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specific conversation.
     ///
     /// @Snippet(path: "Conversations_GetConversation")
@@ -139,25 +124,6 @@
       request: ListMessagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse {
       try await self.inner.listMessages(request: request, options: options)
-    }
-
-    /// Lists messages that belong to a given conversation.
-    /// `messages` are ordered by `create_time` in descending order. To fetch
-    /// updates without duplication, send request with filter
-    /// `create_time_epoch_microseconds >
-    /// [first item's create_time of previous request]` and empty page_token.
-    ///
-    /// @Snippet(path: "Conversations_ListMessages")
-    public func listMessages(
-      byItem: ListMessagesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Message, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listMessages(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Suggests summary for a conversation based on specific historical messages.
@@ -237,38 +203,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "Conversations_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Conversations_GetLocation")
@@ -287,23 +221,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "Conversations_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -335,139 +252,7 @@
     /// To mock `ConversationsClient` change your functions to receive
     /// `some ConversationsProtocol` or `any ConversationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ConversationsProtocol {
-      /// See `ConversationsClient.createConversation`.
-      func createConversation(request: CreateConversationRequest) async throws
-        -> GoogleCloudDialogflowV2.Conversation
-
-      /// See `ConversationsClient.createConversation`.
-      func createConversation(
-        parent: Swift.String,
-        conversation: Conversation?,
-      ) async throws -> GoogleCloudDialogflowV2.Conversation
-
-      /// See `ConversationsClient.listConversations`.
-      func listConversations(request: ListConversationsRequest) async throws
-        -> GoogleCloudDialogflowV2.ListConversationsResponse
-
-      /// See `ConversationsClient.listConversations`.
-      func listConversations(
-        byItem: ListConversationsRequest
-      ) -> any AsyncSequence<Conversation, Swift.Error>
-
-      /// See `ConversationsClient.listConversations`.
-      func listConversations(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Conversation, Swift.Error>
-
-      /// See `ConversationsClient.getConversation`.
-      func getConversation(request: GetConversationRequest) async throws
-        -> GoogleCloudDialogflowV2.Conversation
-
-      /// See `ConversationsClient.getConversation`.
-      func getConversation(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.Conversation
-
-      /// See `ConversationsClient.completeConversation`.
-      func completeConversation(request: CompleteConversationRequest) async throws
-        -> GoogleCloudDialogflowV2.Conversation
-
-      /// See `ConversationsClient.completeConversation`.
-      func completeConversation(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.Conversation
-
-      /// See `ConversationsClient.ingestContextReferences`.
-      func ingestContextReferences(request: IngestContextReferencesRequest) async throws
-        -> GoogleCloudDialogflowV2.IngestContextReferencesResponse
-
-      /// See `ConversationsClient.ingestContextReferences`.
-      func ingestContextReferences(
-        conversation: Swift.String,
-        contextReferences: [Swift.String: Conversation.ContextReference],
-      ) async throws -> GoogleCloudDialogflowV2.IngestContextReferencesResponse
-
-      /// See `ConversationsClient.listMessages`.
-      func listMessages(request: ListMessagesRequest) async throws
-        -> GoogleCloudDialogflowV2.ListMessagesResponse
-
-      /// See `ConversationsClient.listMessages`.
-      func listMessages(
-        byItem: ListMessagesRequest
-      ) -> any AsyncSequence<Message, Swift.Error>
-
-      /// See `ConversationsClient.listMessages`.
-      func listMessages(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Message, Swift.Error>
-
-      /// See `ConversationsClient.suggestConversationSummary`.
-      func suggestConversationSummary(request: SuggestConversationSummaryRequest) async throws
-        -> GoogleCloudDialogflowV2.SuggestConversationSummaryResponse
-
-      /// See `ConversationsClient.suggestConversationSummary`.
-      func suggestConversationSummary(
-        conversation: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.SuggestConversationSummaryResponse
-
-      /// See `ConversationsClient.generateStatelessSummary`.
-      func generateStatelessSummary(request: GenerateStatelessSummaryRequest) async throws
-        -> GoogleCloudDialogflowV2.GenerateStatelessSummaryResponse
-
-      /// See `ConversationsClient.generateStatelessSuggestion`.
-      func generateStatelessSuggestion(request: GenerateStatelessSuggestionRequest) async throws
-        -> GoogleCloudDialogflowV2.GenerateStatelessSuggestionResponse
-
-      /// See `ConversationsClient.searchKnowledge`.
-      func searchKnowledge(request: SearchKnowledgeRequest) async throws
-        -> GoogleCloudDialogflowV2.SearchKnowledgeResponse
-
-      /// See `ConversationsClient.generateSuggestions`.
-      func generateSuggestions(request: GenerateSuggestionsRequest) async throws
-        -> GoogleCloudDialogflowV2.GenerateSuggestionsResponse
-
-      /// See `ConversationsClient.generateSuggestions`.
-      func generateSuggestions(
-        conversation: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.GenerateSuggestionsResponse
-
-      /// See `ConversationsClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `ConversationsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `ConversationsClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `ConversationsClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ConversationsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ConversationsClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ConversationsClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `ConversationsClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol ConversationsProtocol: Sendable {
       /// See `ConversationsClient.createConversation`.
       func createConversation(
         request: CreateConversationRequest, options: GoogleGax.RequestOptions
@@ -477,11 +262,6 @@
       func listConversations(
         request: ListConversationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationsResponse
-
-      /// See `ConversationsClient.listConversations`.
-      func listConversations(
-        byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Conversation, Swift.Error>
 
       /// See `ConversationsClient.getConversation`.
       func getConversation(
@@ -502,11 +282,6 @@
       func listMessages(
         request: ListMessagesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse
-
-      /// See `ConversationsClient.listMessages`.
-      func listMessages(
-        byItem: ListMessagesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Message, Swift.Error>
 
       /// See `ConversationsClient.suggestConversationSummary`.
       func suggestConversationSummary(
@@ -538,11 +313,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `ConversationsClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `ConversationsClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -552,11 +322,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ConversationsClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ConversationsClient.cancelOperation`.
       func cancelOperation(
@@ -608,12 +373,17 @@
       self.listConversations(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all conversations in the specified project.
+    ///
+    /// @Snippet(path: "Conversations_ListConversations")
     public func listConversations(
       byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Conversation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListConversationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listConversations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -710,12 +480,21 @@
       self.listMessages(byItem: byItem, options: .init())
     }
 
+    /// Lists messages that belong to a given conversation.
+    /// `messages` are ordered by `create_time` in descending order. To fetch
+    /// updates without duplication, send request with filter
+    /// `create_time_epoch_microseconds >
+    /// [first item's create_time of previous request]` and empty page_token.
+    ///
+    /// @Snippet(path: "Conversations_ListMessages")
     public func listMessages(
       byItem: ListMessagesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Message, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listMessages(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -825,12 +604,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Conversations_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -865,12 +666,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Conversations_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

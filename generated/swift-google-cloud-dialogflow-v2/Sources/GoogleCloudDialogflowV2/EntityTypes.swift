@@ -54,21 +54,6 @@
       try await self.inner.listEntityTypes(request: request, options: options)
     }
 
-    /// Returns the list of all entity types in the specified agent.
-    ///
-    /// @Snippet(path: "EntityTypes_ListEntityTypes")
-    public func listEntityTypes(
-      byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EntityType, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listEntityTypes(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Retrieves the specified entity type.
     ///
     /// @Snippet(path: "EntityTypes_GetEntityType")
@@ -459,38 +444,6 @@
       try await self.inner.listLocations(request: request, options: options)
     }
 
-    /// Lists information about the supported locations for this service.
-    ///
-    /// This method lists locations based on the resource scope provided in
-    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    /// **Global locations**: If `name` is empty, the method lists the
-    /// public locations available to all projects. * **Project-specific
-    /// locations**: If `name` follows the format
-    /// `projects/{project}`, the method lists locations visible to that
-    /// specific project. This includes public, private, or other
-    /// project-specific locations enabled for the project.
-    ///
-    /// For gRPC and client library implementations, the resource name is
-    /// passed as the `name` field. For direct service calls, the resource
-    /// name is
-    /// incorporated into the request path based on the specific service
-    /// implementation and version.
-    ///
-    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
-    ///
-    /// @Snippet(path: "EntityTypes_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Gets information about a location.
     ///
     /// @Snippet(path: "EntityTypes_GetLocation")
@@ -509,23 +462,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "EntityTypes_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -557,93 +493,10 @@
     /// To mock `EntityTypesClient` change your functions to receive
     /// `some EntityTypesProtocol` or `any EntityTypesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol EntityTypesProtocol {
-      /// See `EntityTypesClient.listEntityTypes`.
-      func listEntityTypes(request: ListEntityTypesRequest) async throws
-        -> GoogleCloudDialogflowV2.ListEntityTypesResponse
-
-      /// See `EntityTypesClient.listEntityTypes`.
-      func listEntityTypes(
-        byItem: ListEntityTypesRequest
-      ) -> any AsyncSequence<EntityType, Swift.Error>
-
-      /// See `EntityTypesClient.listEntityTypes`.
-      func listEntityTypes(
-        parent: Swift.String,
-      ) -> any AsyncSequence<EntityType, Swift.Error>
-
-      /// See `EntityTypesClient.listEntityTypes`.
-      func listEntityTypes(
-        parent: Swift.String,
-        languageCode: Swift.String,
-      ) -> any AsyncSequence<EntityType, Swift.Error>
-
-      /// See `EntityTypesClient.getEntityType`.
-      func getEntityType(request: GetEntityTypeRequest) async throws
-        -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.getEntityType`.
-      func getEntityType(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.getEntityType`.
-      func getEntityType(
-        name: Swift.String,
-        languageCode: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.createEntityType`.
-      func createEntityType(request: CreateEntityTypeRequest) async throws
-        -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.createEntityType`.
-      func createEntityType(
-        parent: Swift.String,
-        entityType: EntityType?,
-      ) async throws -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.createEntityType`.
-      func createEntityType(
-        parent: Swift.String,
-        entityType: EntityType?,
-        languageCode: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.updateEntityType`.
-      func updateEntityType(request: UpdateEntityTypeRequest) async throws
-        -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.updateEntityType`.
-      func updateEntityType(
-        entityType: EntityType?,
-      ) async throws -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.updateEntityType`.
-      func updateEntityType(
-        entityType: EntityType?,
-        languageCode: Swift.String,
-      ) async throws -> GoogleCloudDialogflowV2.EntityType
-
-      /// See `EntityTypesClient.deleteEntityType`.
-      func deleteEntityType(request: DeleteEntityTypeRequest) async throws
-
-      /// See `EntityTypesClient.deleteEntityType`.
-      func deleteEntityType(
-        name: Swift.String,
-      ) async throws
-
-      /// See `EntityTypesClient.batchUpdateEntityTypes`.
-      func batchUpdateEntityTypes(request: BatchUpdateEntityTypesRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol EntityTypesProtocol: Sendable {
       /// See `EntityTypesClient.batchUpdateEntityTypes`.
       func batchUpdateEntityTypes(withPolling: BatchUpdateEntityTypesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchUpdateEntityTypesResponse>
-
-      /// See `EntityTypesClient.batchDeleteEntityTypes`.
-      func batchDeleteEntityTypes(request: BatchDeleteEntityTypesRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `EntityTypesClient.batchDeleteEntityTypes`.
       func batchDeleteEntityTypes(withPolling: BatchDeleteEntityTypesRequest) async throws
@@ -654,10 +507,6 @@
         parent: Swift.String,
         entityTypeNames: [Swift.String],
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `EntityTypesClient.batchCreateEntities`.
-      func batchCreateEntities(request: BatchCreateEntitiesRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(withPolling: BatchCreateEntitiesRequest) async throws
@@ -677,10 +526,6 @@
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchUpdateEntities`.
-      func batchUpdateEntities(request: BatchUpdateEntitiesRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(withPolling: BatchUpdateEntitiesRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -696,10 +541,6 @@
         entities: [EntityType.Entity],
         languageCode: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `EntityTypesClient.batchDeleteEntities`.
-      func batchDeleteEntities(request: BatchDeleteEntitiesRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(withPolling: BatchDeleteEntitiesRequest) async throws
@@ -718,51 +559,10 @@
         languageCode: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-      /// See `EntityTypesClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `EntityTypesClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `EntityTypesClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `EntityTypesClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `EntityTypesClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `EntityTypesClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `EntityTypesClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `EntityTypesClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
       /// See `EntityTypesClient.listEntityTypes`.
       func listEntityTypes(
         request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse
-
-      /// See `EntityTypesClient.listEntityTypes`.
-      func listEntityTypes(
-        byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<EntityType, Swift.Error>
 
       /// See `EntityTypesClient.getEntityType`.
       func getEntityType(
@@ -839,11 +639,6 @@
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-      /// See `EntityTypesClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
       /// See `EntityTypesClient.getLocation`.
       func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -853,11 +648,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `EntityTypesClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `EntityTypesClient.cancelOperation`.
       func cancelOperation(
@@ -886,12 +676,17 @@
       self.listEntityTypes(byItem: byItem, options: .init())
     }
 
+    /// Returns the list of all entity types in the specified agent.
+    ///
+    /// @Snippet(path: "EntityTypes_ListEntityTypes")
     public func listEntityTypes(
       byItem: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<EntityType, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listEntityTypes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1277,12 +1072,34 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "EntityTypes_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -1317,12 +1134,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EntityTypes_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

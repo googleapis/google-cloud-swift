@@ -54,22 +54,6 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
     try await self.inner.listBlockchainNodes(request: request, options: options)
   }
 
-  /// Lists blockchain nodes in a given project and location.
-  ///
-  /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
-  public func listBlockchainNodes(
-    byItem: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BlockchainNode, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listBlockchainNodes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets details of a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_GetBlockchainNode")
@@ -193,21 +177,6 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_GetLocation")
@@ -226,23 +195,6 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -285,34 +237,7 @@ extension Clients {
   /// To mock `BlockchainNodeEngineClient` change your functions to receive
   /// `some BlockchainNodeEngineProtocol` or `any BlockchainNodeEngineProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol BlockchainNodeEngineProtocol {
-    /// See `BlockchainNodeEngineClient.listBlockchainNodes`.
-    func listBlockchainNodes(request: ListBlockchainNodesRequest) async throws
-      -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse
-
-    /// See `BlockchainNodeEngineClient.listBlockchainNodes`.
-    func listBlockchainNodes(
-      byItem: ListBlockchainNodesRequest
-    ) -> any AsyncSequence<BlockchainNode, Swift.Error>
-
-    /// See `BlockchainNodeEngineClient.listBlockchainNodes`.
-    func listBlockchainNodes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<BlockchainNode, Swift.Error>
-
-    /// See `BlockchainNodeEngineClient.getBlockchainNode`.
-    func getBlockchainNode(request: GetBlockchainNodeRequest) async throws
-      -> GoogleCloudBlockChainNodeEngineV1.BlockchainNode
-
-    /// See `BlockchainNodeEngineClient.getBlockchainNode`.
-    func getBlockchainNode(
-      name: Swift.String,
-    ) async throws -> GoogleCloudBlockChainNodeEngineV1.BlockchainNode
-
-    /// See `BlockchainNodeEngineClient.createBlockchainNode`.
-    func createBlockchainNode(request: CreateBlockchainNodeRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol BlockchainNodeEngineProtocol: Sendable {
     /// See `BlockchainNodeEngineClient.createBlockchainNode`.
     func createBlockchainNode(withPolling: CreateBlockchainNodeRequest) async throws
       -> any GoogleGax.PollableOperation<BlockchainNode>
@@ -325,10 +250,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
-    func updateBlockchainNode(request: UpdateBlockchainNodeRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
     func updateBlockchainNode(withPolling: UpdateBlockchainNodeRequest) async throws
       -> any GoogleGax.PollableOperation<BlockchainNode>
 
@@ -339,10 +260,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
-    func deleteBlockchainNode(request: DeleteBlockchainNodeRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
     func deleteBlockchainNode(withPolling: DeleteBlockchainNodeRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -351,59 +268,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
-    /// See `BlockchainNodeEngineClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `BlockchainNodeEngineClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `BlockchainNodeEngineClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `BlockchainNodeEngineClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BlockchainNodeEngineClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BlockchainNodeEngineClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `BlockchainNodeEngineClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `BlockchainNodeEngineClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `BlockchainNodeEngineClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `BlockchainNodeEngineClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
-
     /// See `BlockchainNodeEngineClient.listBlockchainNodes`.
     func listBlockchainNodes(
       request: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse
-
-    /// See `BlockchainNodeEngineClient.listBlockchainNodes`.
-    func listBlockchainNodes(
-      byItem: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BlockchainNode, Swift.Error>
 
     /// See `BlockchainNodeEngineClient.getBlockchainNode`.
     func getBlockchainNode(
@@ -445,11 +313,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `BlockchainNodeEngineClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `BlockchainNodeEngineClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -459,11 +322,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `BlockchainNodeEngineClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `BlockchainNodeEngineClient.deleteOperation`.
     func deleteOperation(
@@ -497,13 +355,18 @@ extension Clients.BlockchainNodeEngineProtocol {
     self.listBlockchainNodes(byItem: byItem, options: .init())
   }
 
+  /// Lists blockchain nodes in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
   public func listBlockchainNodes(
     byItem: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BlockchainNode, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listBlockchainNodes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -673,12 +536,17 @@ extension Clients.BlockchainNodeEngineProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -713,12 +581,19 @@ extension Clients.BlockchainNodeEngineProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

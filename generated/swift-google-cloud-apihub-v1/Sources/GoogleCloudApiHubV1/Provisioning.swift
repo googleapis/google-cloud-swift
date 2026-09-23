@@ -140,21 +140,6 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
     try await self.inner.listLocations(request: request, options: options)
   }
 
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "Provisioning_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Provisioning_GetLocation")
@@ -173,23 +158,6 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Provisioning_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -232,11 +200,7 @@ extension Clients {
   /// To mock `ProvisioningClient` change your functions to receive
   /// `some ProvisioningProtocol` or `any ProvisioningProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ProvisioningProtocol {
-    /// See `ProvisioningClient.createApiHubInstance`.
-    func createApiHubInstance(request: CreateApiHubInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol ProvisioningProtocol: Sendable {
     /// See `ProvisioningClient.createApiHubInstance`.
     func createApiHubInstance(withPolling: CreateApiHubInstanceRequest) async throws
       -> any GoogleGax.PollableOperation<ApiHubInstance>
@@ -249,10 +213,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ApiHubInstance>
 
     /// See `ProvisioningClient.deleteApiHubInstance`.
-    func deleteApiHubInstance(request: DeleteApiHubInstanceRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `ProvisioningClient.deleteApiHubInstance`.
     func deleteApiHubInstance(withPolling: DeleteApiHubInstanceRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -260,68 +220,6 @@ extension Clients {
     func deleteApiHubInstance(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ProvisioningClient.getApiHubInstance`.
-    func getApiHubInstance(request: GetApiHubInstanceRequest) async throws
-      -> GoogleCloudApiHubV1.ApiHubInstance
-
-    /// See `ProvisioningClient.getApiHubInstance`.
-    func getApiHubInstance(
-      name: Swift.String,
-    ) async throws -> GoogleCloudApiHubV1.ApiHubInstance
-
-    /// See `ProvisioningClient.lookupApiHubInstance`.
-    func lookupApiHubInstance(request: LookupApiHubInstanceRequest) async throws
-      -> GoogleCloudApiHubV1.LookupApiHubInstanceResponse
-
-    /// See `ProvisioningClient.lookupApiHubInstance`.
-    func lookupApiHubInstance(
-      parent: Swift.String,
-    ) async throws -> GoogleCloudApiHubV1.LookupApiHubInstanceResponse
-
-    /// See `ProvisioningClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `ProvisioningClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `ProvisioningClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `ProvisioningClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ProvisioningClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ProvisioningClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `ProvisioningClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `ProvisioningClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ProvisioningClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `ProvisioningClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `ProvisioningClient.createApiHubInstance`.
     func createApiHubInstance(
@@ -358,11 +256,6 @@ extension Clients {
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
 
-    /// See `ProvisioningClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
     /// See `ProvisioningClient.getLocation`.
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
@@ -372,11 +265,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `ProvisioningClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ProvisioningClient.deleteOperation`.
     func deleteOperation(
@@ -530,12 +418,17 @@ extension Clients.ProvisioningProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Provisioning_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -570,12 +463,19 @@ extension Clients.ProvisioningProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Provisioning_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

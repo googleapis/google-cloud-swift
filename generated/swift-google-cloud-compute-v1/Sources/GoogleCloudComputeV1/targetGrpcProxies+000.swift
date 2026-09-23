@@ -157,21 +157,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Lists the TargetGrpcProxies for a project in the given scope.
-    ///
-    /// @Snippet(path: "targetGrpcProxies_list")
-    public func list(
-      byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified TargetGrpcProxy resource with the data included in
     /// the request. This method supports PATCH
     /// semantics and usesJSON merge
@@ -242,43 +227,7 @@
     /// To mock `TargetGrpcProxiesClient` change your functions to receive
     /// `some TargetGrpcProxiesProtocol` or `any TargetGrpcProxiesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol TargetGrpcProxiesProtocol {
-      /// See `TargetGrpcProxiesClient.delete`.
-      func delete(request: TargetGrpcProxiesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `TargetGrpcProxiesClient.`get``.
-      func `get`(request: TargetGrpcProxiesClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.TargetGrpcProxy
-
-      /// See `TargetGrpcProxiesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        targetGrpcProxy: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.TargetGrpcProxy
-
-      /// See `TargetGrpcProxiesClient.insert`.
-      func insert(request: TargetGrpcProxiesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `TargetGrpcProxiesClient.list`.
-      func list(request: TargetGrpcProxiesClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.TargetGrpcProxyList
-
-      /// See `TargetGrpcProxiesClient.list`.
-      func list(
-        byItem: TargetGrpcProxiesClient.ListRequest
-      ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
-
-      /// See `TargetGrpcProxiesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
-
-      /// See `TargetGrpcProxiesClient.patch`.
-      func patch(request: TargetGrpcProxiesClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol TargetGrpcProxiesProtocol: Sendable {
       /// See `TargetGrpcProxiesClient.delete`.
       func delete(
         request: TargetGrpcProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -298,11 +247,6 @@
       func list(
         request: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList
-
-      /// See `TargetGrpcProxiesClient.list`.
-      func list(
-        byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error>
 
       /// See `TargetGrpcProxiesClient.patch`.
       func patch(
@@ -434,12 +378,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Lists the TargetGrpcProxies for a project in the given scope.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_list")
     public func list(
       byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

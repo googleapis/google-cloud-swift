@@ -157,21 +157,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of reservation slots under a single reservation.
-    ///
-    /// @Snippet(path: "reservationSlots_list")
-    public func list(
-      byItem: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ReservationSlot, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationSlotsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Update a reservation slot in the specified sub-block.
     ///
     /// @Snippet(path: "reservationSlots_update")
@@ -237,47 +222,7 @@
     /// To mock `ReservationSlotsClient` change your functions to receive
     /// `some ReservationSlotsProtocol` or `any ReservationSlotsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ReservationSlotsProtocol {
-      /// See `ReservationSlotsClient.`get``.
-      func `get`(request: ReservationSlotsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.ReservationSlotsGetResponse
-
-      /// See `ReservationSlotsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        parentName: Swift.String,
-        reservationSlot: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse
-
-      /// See `ReservationSlotsClient.getHealth`.
-      func getHealth(request: ReservationSlotsClient.GetHealthRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ReservationSlotsClient.getVersion`.
-      func getVersion(request: ReservationSlotsClient.GetVersionRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ReservationSlotsClient.list`.
-      func list(request: ReservationSlotsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.ReservationSlotsListResponse
-
-      /// See `ReservationSlotsClient.list`.
-      func list(
-        byItem: ReservationSlotsClient.ListRequest
-      ) -> any AsyncSequence<ReservationSlot, Swift.Error>
-
-      /// See `ReservationSlotsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-        parentName: Swift.String,
-      ) -> any AsyncSequence<ReservationSlot, Swift.Error>
-
-      /// See `ReservationSlotsClient.update`.
-      func update(request: ReservationSlotsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol ReservationSlotsProtocol: Sendable {
       /// See `ReservationSlotsClient.`get``.
       func `get`(
         request: ReservationSlotsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -297,11 +242,6 @@
       func list(
         request: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationSlotsListResponse
-
-      /// See `ReservationSlotsClient.list`.
-      func list(
-        byItem: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ReservationSlot, Swift.Error>
 
       /// See `ReservationSlotsClient.update`.
       func update(
@@ -447,12 +387,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of reservation slots under a single reservation.
+    ///
+    /// @Snippet(path: "reservationSlots_list")
     public func list(
       byItem: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ReservationSlot, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReservationSlotsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

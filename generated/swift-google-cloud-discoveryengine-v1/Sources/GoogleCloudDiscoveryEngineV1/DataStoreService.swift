@@ -124,24 +124,6 @@
       try await self.inner.listDataStores(request: request, options: options)
     }
 
-    /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
-    /// associated with the project.
-    ///
-    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
-    ///
-    /// @Snippet(path: "DataStoreService_ListDataStores")
-    public func listDataStores(
-      byItem: ListDataStoresRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataStore, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listDataStores(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes a [DataStore][google.cloud.discoveryengine.v1.DataStore].
     ///
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
@@ -207,23 +189,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "DataStoreService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "DataStoreService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -249,11 +214,7 @@
     /// To mock `DataStoreServiceClient` change your functions to receive
     /// `some DataStoreServiceProtocol` or `any DataStoreServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol DataStoreServiceProtocol {
-      /// See `DataStoreServiceClient.createDataStore`.
-      func createDataStore(request: CreateDataStoreRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol DataStoreServiceProtocol: Sendable {
       /// See `DataStoreServiceClient.createDataStore`.
       func createDataStore(withPolling: CreateDataStoreRequest) async throws -> any GoogleGax
         .PollableOperation<DataStore>
@@ -265,33 +226,6 @@
         dataStoreId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<DataStore>
 
-      /// See `DataStoreServiceClient.getDataStore`.
-      func getDataStore(request: GetDataStoreRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.DataStore
-
-      /// See `DataStoreServiceClient.getDataStore`.
-      func getDataStore(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore
-
-      /// See `DataStoreServiceClient.listDataStores`.
-      func listDataStores(request: ListDataStoresRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse
-
-      /// See `DataStoreServiceClient.listDataStores`.
-      func listDataStores(
-        byItem: ListDataStoresRequest
-      ) -> any AsyncSequence<DataStore, Swift.Error>
-
-      /// See `DataStoreServiceClient.listDataStores`.
-      func listDataStores(
-        parent: Swift.String,
-      ) -> any AsyncSequence<DataStore, Swift.Error>
-
-      /// See `DataStoreServiceClient.deleteDataStore`.
-      func deleteDataStore(request: DeleteDataStoreRequest) async throws
-        -> GoogleLongRunning.Operation
-
       /// See `DataStoreServiceClient.deleteDataStore`.
       func deleteDataStore(withPolling: DeleteDataStoreRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
@@ -300,39 +234,6 @@
       func deleteDataStore(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DataStoreServiceClient.updateDataStore`.
-      func updateDataStore(request: UpdateDataStoreRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.DataStore
-
-      /// See `DataStoreServiceClient.updateDataStore`.
-      func updateDataStore(
-        dataStore: DataStore?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore
-
-      /// See `DataStoreServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DataStoreServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DataStoreServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DataStoreServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `DataStoreServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
 
       /// See `DataStoreServiceClient.createDataStore`.
       func createDataStore(
@@ -354,11 +255,6 @@
         request: ListDataStoresRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse
 
-      /// See `DataStoreServiceClient.listDataStores`.
-      func listDataStores(
-        byItem: ListDataStoresRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<DataStore, Swift.Error>
-
       /// See `DataStoreServiceClient.deleteDataStore`.
       func deleteDataStore(
         request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
@@ -378,11 +274,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DataStoreServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DataStoreServiceClient.cancelOperation`.
       func cancelOperation(
@@ -473,12 +364,20 @@
       self.listDataStores(byItem: byItem, options: .init())
     }
 
+    /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_ListDataStores")
     public func listDataStores(
       byItem: ListDataStoresRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<DataStore, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listDataStores(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -570,12 +469,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataStoreService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

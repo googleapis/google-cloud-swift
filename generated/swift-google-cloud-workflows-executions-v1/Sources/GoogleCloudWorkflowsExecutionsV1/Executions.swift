@@ -49,25 +49,6 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
     try await self.inner.listExecutions(request: request, options: options)
   }
 
-  /// Returns a list of executions which belong to the workflow with
-  /// the given name. The method returns executions of all workflow
-  /// revisions. Returned executions are ordered by their start time (newest
-  /// first).
-  ///
-  /// @Snippet(path: "Executions_ListExecutions")
-  public func listExecutions(
-    byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Execution, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listExecutions(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a new execution using the latest revision of the given workflow.
   ///
   /// @Snippet(path: "Executions_CreateExecution")
@@ -102,58 +83,11 @@ extension Clients {
   /// To mock `ExecutionsClient` change your functions to receive
   /// `some ExecutionsProtocol` or `any ExecutionsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ExecutionsProtocol {
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(request: ListExecutionsRequest) async throws
-      -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(
-      byItem: ListExecutionsRequest
-    ) -> any AsyncSequence<Execution, Swift.Error>
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Execution, Swift.Error>
-
-    /// See `ExecutionsClient.createExecution`.
-    func createExecution(request: CreateExecutionRequest) async throws
-      -> GoogleCloudWorkflowsExecutionsV1.Execution
-
-    /// See `ExecutionsClient.createExecution`.
-    func createExecution(
-      parent: Swift.String,
-      execution: Execution?,
-    ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution
-
-    /// See `ExecutionsClient.getExecution`.
-    func getExecution(request: GetExecutionRequest) async throws
-      -> GoogleCloudWorkflowsExecutionsV1.Execution
-
-    /// See `ExecutionsClient.getExecution`.
-    func getExecution(
-      name: Swift.String,
-    ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution
-
-    /// See `ExecutionsClient.cancelExecution`.
-    func cancelExecution(request: CancelExecutionRequest) async throws
-      -> GoogleCloudWorkflowsExecutionsV1.Execution
-
-    /// See `ExecutionsClient.cancelExecution`.
-    func cancelExecution(
-      name: Swift.String,
-    ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution
-
+  public protocol ExecutionsProtocol: Sendable {
     /// See `ExecutionsClient.listExecutions`.
     func listExecutions(
       request: ListExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
-
-    /// See `ExecutionsClient.listExecutions`.
-    func listExecutions(
-      byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Execution, Swift.Error>
 
     /// See `ExecutionsClient.createExecution`.
     func createExecution(
@@ -192,13 +126,21 @@ extension Clients.ExecutionsProtocol {
     self.listExecutions(byItem: byItem, options: .init())
   }
 
+  /// Returns a list of executions which belong to the workflow with
+  /// the given name. The method returns executions of all workflow
+  /// revisions. Returned executions are ordered by their start time (newest
+  /// first).
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
   public func listExecutions(
     byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listExecutions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

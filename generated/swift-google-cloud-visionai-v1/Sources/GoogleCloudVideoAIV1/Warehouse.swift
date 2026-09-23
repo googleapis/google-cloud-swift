@@ -79,20 +79,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.listAssets(request: request, options: options)
   }
 
-  /// Lists an list of assets inside corpus.
-  ///
-  /// @Snippet(path: "Warehouse_ListAssets")
-  public func listAssets(
-    byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Asset, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAssets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes asset inside corpus.
   ///
   /// @Snippet(path: "Warehouse_DeleteAsset")
@@ -311,21 +297,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.viewIndexedAssets(request: request, options: options)
   }
 
-  /// Lists assets inside an index.
-  ///
-  /// @Snippet(path: "Warehouse_ViewIndexedAssets")
-  public func viewIndexedAssets(
-    byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.viewIndexedAssets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates an Index under the corpus.
   ///
   /// @Snippet(path: "Warehouse_CreateIndex")
@@ -414,21 +385,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse {
     try await self.inner.listIndexes(request: request, options: options)
-  }
-
-  /// List all Indexes in a given Corpus.
-  ///
-  /// @Snippet(path: "Warehouse_ListIndexes")
-  public func listIndexes(
-    byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Index, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIndexes(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Delete a single Index. In order to delete an index, the caller must
@@ -529,21 +485,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.listCorpora(request: request, options: options)
   }
 
-  /// Lists all corpora in a project.
-  ///
-  /// @Snippet(path: "Warehouse_ListCorpora")
-  public func listCorpora(
-    byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Corpus, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCorpora(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Deletes a corpus only if its empty.
   /// Returns empty response.
   ///
@@ -634,21 +575,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.listDataSchemas(request: request, options: options)
   }
 
-  /// Lists a list of data schemas inside corpus.
-  ///
-  /// @Snippet(path: "Warehouse_ListDataSchemas")
-  public func listDataSchemas(
-    byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSchema, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDataSchemas(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates annotation inside asset.
   ///
   /// @Snippet(path: "Warehouse_CreateAnnotation")
@@ -674,21 +600,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse {
     try await self.inner.listAnnotations(request: request, options: options)
-  }
-
-  /// Lists a list of annotations inside asset.
-  ///
-  /// @Snippet(path: "Warehouse_ListAnnotations")
-  public func listAnnotations(
-    byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Annotation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listAnnotations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates annotation inside asset.
@@ -848,21 +759,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.listSearchConfigs(request: request, options: options)
   }
 
-  /// Lists all search configurations inside a corpus.
-  ///
-  /// @Snippet(path: "Warehouse_ListSearchConfigs")
-  public func listSearchConfigs(
-    byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchConfig, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSearchConfigs(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Creates a SearchHypernym inside a corpus.
   ///
   /// @Snippet(path: "Warehouse_CreateSearchHypernym")
@@ -908,21 +804,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.listSearchHypernyms(request: request, options: options)
   }
 
-  /// Lists SearchHypernyms inside a corpus.
-  ///
-  /// @Snippet(path: "Warehouse_ListSearchHypernyms")
-  public func listSearchHypernyms(
-    byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listSearchHypernyms(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Search media asset.
   ///
   /// @Snippet(path: "Warehouse_SearchAssets")
@@ -932,21 +813,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.searchAssets(request: request, options: options)
   }
 
-  /// Search media asset.
-  ///
-  /// @Snippet(path: "Warehouse_SearchAssets")
-  public func searchAssets(
-    byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchAssets(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Search a deployed index endpoint (IMAGE corpus type only).
   ///
   /// @Snippet(path: "Warehouse_SearchIndexEndpoint")
@@ -954,21 +820,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     request: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse {
     try await self.inner.searchIndexEndpoint(request: request, options: options)
-  }
-
-  /// Search a deployed index endpoint (IMAGE corpus type only).
-  ///
-  /// @Snippet(path: "Warehouse_SearchIndexEndpoint")
-  public func searchIndexEndpoint(
-    byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.searchIndexEndpoint(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Creates an IndexEndpoint.
@@ -1022,21 +873,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse {
     try await self.inner.listIndexEndpoints(request: request, options: options)
-  }
-
-  /// Lists all IndexEndpoints in a project.
-  ///
-  /// @Snippet(path: "Warehouse_ListIndexEndpoints")
-  public func listIndexEndpoints(
-    byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIndexEndpoints(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Updates an IndexEndpoint.
@@ -1276,21 +1112,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.listCollections(request: request, options: options)
   }
 
-  /// Lists collections inside a corpus.
-  ///
-  /// @Snippet(path: "Warehouse_ListCollections")
-  public func listCollections(
-    byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Collection, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listCollections(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Adds an item into a Collection.
   ///
   /// @Snippet(path: "Warehouse_AddCollectionItem")
@@ -1318,21 +1139,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     try await self.inner.viewCollectionItems(request: request, options: options)
   }
 
-  /// View items inside a collection.
-  ///
-  /// @Snippet(path: "Warehouse_ViewCollectionItems")
-  public func viewCollectionItems(
-    byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CollectionItem, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.viewCollectionItems(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Warehouse_ListLocations")
@@ -1340,21 +1146,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
     try await self.inner.listLocations(request: request, options: options)
-  }
-
-  /// Lists information about the supported locations for this service.
-  ///
-  /// @Snippet(path: "Warehouse_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listLocations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Gets information about a location.
@@ -1375,23 +1166,6 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
-  /// @Snippet(path: "Warehouse_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1434,51 +1208,7 @@ extension Clients {
   /// To mock `WarehouseClient` change your functions to receive
   /// `some WarehouseProtocol` or `any WarehouseProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol WarehouseProtocol {
-    /// See `WarehouseClient.createAsset`.
-    func createAsset(request: CreateAssetRequest) async throws -> GoogleCloudVideoAIV1.Asset
-
-    /// See `WarehouseClient.createAsset`.
-    func createAsset(
-      parent: Swift.String,
-      asset: Asset?,
-      assetId: Swift.String?,
-    ) async throws -> GoogleCloudVideoAIV1.Asset
-
-    /// See `WarehouseClient.updateAsset`.
-    func updateAsset(request: UpdateAssetRequest) async throws -> GoogleCloudVideoAIV1.Asset
-
-    /// See `WarehouseClient.updateAsset`.
-    func updateAsset(
-      asset: Asset?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.Asset
-
-    /// See `WarehouseClient.getAsset`.
-    func getAsset(request: GetAssetRequest) async throws -> GoogleCloudVideoAIV1.Asset
-
-    /// See `WarehouseClient.getAsset`.
-    func getAsset(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Asset
-
-    /// See `WarehouseClient.listAssets`.
-    func listAssets(request: ListAssetsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListAssetsResponse
-
-    /// See `WarehouseClient.listAssets`.
-    func listAssets(
-      byItem: ListAssetsRequest
-    ) -> any AsyncSequence<Asset, Swift.Error>
-
-    /// See `WarehouseClient.listAssets`.
-    func listAssets(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Asset, Swift.Error>
-
-    /// See `WarehouseClient.deleteAsset`.
-    func deleteAsset(request: DeleteAssetRequest) async throws -> GoogleLongRunning.Operation
-
+  public protocol WarehouseProtocol: Sendable {
     /// See `WarehouseClient.deleteAsset`.
     func deleteAsset(withPolling: DeleteAssetRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
@@ -1489,25 +1219,12 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.uploadAsset`.
-    func uploadAsset(request: UploadAssetRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.uploadAsset`.
     func uploadAsset(withPolling: UploadAssetRequest) async throws -> any GoogleGax
       .PollableOperation<UploadAssetResponse>
-
-    /// See `WarehouseClient.generateRetrievalUrl`.
-    func generateRetrievalUrl(request: GenerateRetrievalUrlRequest) async throws
-      -> GoogleCloudVideoAIV1.GenerateRetrievalUrlResponse
-
-    /// See `WarehouseClient.analyzeAsset`.
-    func analyzeAsset(request: AnalyzeAssetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.analyzeAsset`.
     func analyzeAsset(withPolling: AnalyzeAssetRequest) async throws -> any GoogleGax
       .PollableOperation<AnalyzeAssetResponse>
-
-    /// See `WarehouseClient.indexAsset`.
-    func indexAsset(request: IndexAssetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.indexAsset`.
     func indexAsset(withPolling: IndexAssetRequest) async throws -> any GoogleGax.PollableOperation<
@@ -1515,29 +1232,8 @@ extension Clients {
     >
 
     /// See `WarehouseClient.removeIndexAsset`.
-    func removeIndexAsset(request: RemoveIndexAssetRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.removeIndexAsset`.
     func removeIndexAsset(withPolling: RemoveIndexAssetRequest) async throws -> any GoogleGax
       .PollableOperation<RemoveIndexAssetResponse>
-
-    /// See `WarehouseClient.viewIndexedAssets`.
-    func viewIndexedAssets(request: ViewIndexedAssetsRequest) async throws
-      -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse
-
-    /// See `WarehouseClient.viewIndexedAssets`.
-    func viewIndexedAssets(
-      byItem: ViewIndexedAssetsRequest
-    ) -> any AsyncSequence<IndexedAsset, Swift.Error>
-
-    /// See `WarehouseClient.viewIndexedAssets`.
-    func viewIndexedAssets(
-      index: Swift.String,
-    ) -> any AsyncSequence<IndexedAsset, Swift.Error>
-
-    /// See `WarehouseClient.createIndex`.
-    func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createIndex`.
     func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
@@ -1551,9 +1247,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `WarehouseClient.updateIndex`.
-    func updateIndex(request: UpdateIndexRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.updateIndex`.
     func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
@@ -1562,31 +1255,6 @@ extension Clients {
       index: Index?,
       updateMask: GoogleWKT.FieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index>
-
-    /// See `WarehouseClient.getIndex`.
-    func getIndex(request: GetIndexRequest) async throws -> GoogleCloudVideoAIV1.Index
-
-    /// See `WarehouseClient.getIndex`.
-    func getIndex(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Index
-
-    /// See `WarehouseClient.listIndexes`.
-    func listIndexes(request: ListIndexesRequest) async throws
-      -> GoogleCloudVideoAIV1.ListIndexesResponse
-
-    /// See `WarehouseClient.listIndexes`.
-    func listIndexes(
-      byItem: ListIndexesRequest
-    ) -> any AsyncSequence<Index, Swift.Error>
-
-    /// See `WarehouseClient.listIndexes`.
-    func listIndexes(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Index, Swift.Error>
-
-    /// See `WarehouseClient.deleteIndex`.
-    func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.deleteIndex`.
     func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
@@ -1598,9 +1266,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.createCorpus`.
-    func createCorpus(request: CreateCorpusRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.createCorpus`.
     func createCorpus(withPolling: CreateCorpusRequest) async throws -> any GoogleGax
       .PollableOperation<Corpus>
 
@@ -1610,294 +1275,13 @@ extension Clients {
       corpus: Corpus?,
     ) async throws -> any GoogleGax.PollableOperation<Corpus>
 
-    /// See `WarehouseClient.getCorpus`.
-    func getCorpus(request: GetCorpusRequest) async throws -> GoogleCloudVideoAIV1.Corpus
-
-    /// See `WarehouseClient.getCorpus`.
-    func getCorpus(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Corpus
-
-    /// See `WarehouseClient.updateCorpus`.
-    func updateCorpus(request: UpdateCorpusRequest) async throws -> GoogleCloudVideoAIV1.Corpus
-
-    /// See `WarehouseClient.updateCorpus`.
-    func updateCorpus(
-      corpus: Corpus?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.Corpus
-
-    /// See `WarehouseClient.listCorpora`.
-    func listCorpora(request: ListCorporaRequest) async throws
-      -> GoogleCloudVideoAIV1.ListCorporaResponse
-
-    /// See `WarehouseClient.listCorpora`.
-    func listCorpora(
-      byItem: ListCorporaRequest
-    ) -> any AsyncSequence<Corpus, Swift.Error>
-
-    /// See `WarehouseClient.listCorpora`.
-    func listCorpora(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Corpus, Swift.Error>
-
-    /// See `WarehouseClient.deleteCorpus`.
-    func deleteCorpus(request: DeleteCorpusRequest) async throws
-
-    /// See `WarehouseClient.deleteCorpus`.
-    func deleteCorpus(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WarehouseClient.analyzeCorpus`.
-    func analyzeCorpus(request: AnalyzeCorpusRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `WarehouseClient.analyzeCorpus`.
     func analyzeCorpus(withPolling: AnalyzeCorpusRequest) async throws -> any GoogleGax
       .PollableOperation<AnalyzeCorpusResponse>
 
-    /// See `WarehouseClient.createDataSchema`.
-    func createDataSchema(request: CreateDataSchemaRequest) async throws
-      -> GoogleCloudVideoAIV1.DataSchema
-
-    /// See `WarehouseClient.createDataSchema`.
-    func createDataSchema(
-      parent: Swift.String,
-      dataSchema: DataSchema?,
-    ) async throws -> GoogleCloudVideoAIV1.DataSchema
-
-    /// See `WarehouseClient.updateDataSchema`.
-    func updateDataSchema(request: UpdateDataSchemaRequest) async throws
-      -> GoogleCloudVideoAIV1.DataSchema
-
-    /// See `WarehouseClient.updateDataSchema`.
-    func updateDataSchema(
-      dataSchema: DataSchema?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.DataSchema
-
-    /// See `WarehouseClient.getDataSchema`.
-    func getDataSchema(request: GetDataSchemaRequest) async throws
-      -> GoogleCloudVideoAIV1.DataSchema
-
-    /// See `WarehouseClient.getDataSchema`.
-    func getDataSchema(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.DataSchema
-
-    /// See `WarehouseClient.deleteDataSchema`.
-    func deleteDataSchema(request: DeleteDataSchemaRequest) async throws
-
-    /// See `WarehouseClient.deleteDataSchema`.
-    func deleteDataSchema(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WarehouseClient.listDataSchemas`.
-    func listDataSchemas(request: ListDataSchemasRequest) async throws
-      -> GoogleCloudVideoAIV1.ListDataSchemasResponse
-
-    /// See `WarehouseClient.listDataSchemas`.
-    func listDataSchemas(
-      byItem: ListDataSchemasRequest
-    ) -> any AsyncSequence<DataSchema, Swift.Error>
-
-    /// See `WarehouseClient.listDataSchemas`.
-    func listDataSchemas(
-      parent: Swift.String,
-    ) -> any AsyncSequence<DataSchema, Swift.Error>
-
-    /// See `WarehouseClient.createAnnotation`.
-    func createAnnotation(request: CreateAnnotationRequest) async throws
-      -> GoogleCloudVideoAIV1.Annotation
-
-    /// See `WarehouseClient.createAnnotation`.
-    func createAnnotation(
-      parent: Swift.String,
-      annotation: Annotation?,
-      annotationId: Swift.String?,
-    ) async throws -> GoogleCloudVideoAIV1.Annotation
-
-    /// See `WarehouseClient.getAnnotation`.
-    func getAnnotation(request: GetAnnotationRequest) async throws
-      -> GoogleCloudVideoAIV1.Annotation
-
-    /// See `WarehouseClient.getAnnotation`.
-    func getAnnotation(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Annotation
-
-    /// See `WarehouseClient.listAnnotations`.
-    func listAnnotations(request: ListAnnotationsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListAnnotationsResponse
-
-    /// See `WarehouseClient.listAnnotations`.
-    func listAnnotations(
-      byItem: ListAnnotationsRequest
-    ) -> any AsyncSequence<Annotation, Swift.Error>
-
-    /// See `WarehouseClient.listAnnotations`.
-    func listAnnotations(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Annotation, Swift.Error>
-
-    /// See `WarehouseClient.updateAnnotation`.
-    func updateAnnotation(request: UpdateAnnotationRequest) async throws
-      -> GoogleCloudVideoAIV1.Annotation
-
-    /// See `WarehouseClient.updateAnnotation`.
-    func updateAnnotation(
-      annotation: Annotation?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.Annotation
-
-    /// See `WarehouseClient.deleteAnnotation`.
-    func deleteAnnotation(request: DeleteAnnotationRequest) async throws
-
-    /// See `WarehouseClient.deleteAnnotation`.
-    func deleteAnnotation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WarehouseClient.clipAsset`.
-    func clipAsset(request: ClipAssetRequest) async throws -> GoogleCloudVideoAIV1.ClipAssetResponse
-
-    /// See `WarehouseClient.generateHlsUri`.
-    func generateHlsUri(request: GenerateHlsUriRequest) async throws
-      -> GoogleCloudVideoAIV1.GenerateHlsUriResponse
-
-    /// See `WarehouseClient.importAssets`.
-    func importAssets(request: ImportAssetsRequest) async throws -> GoogleLongRunning.Operation
-
     /// See `WarehouseClient.importAssets`.
     func importAssets(withPolling: ImportAssetsRequest) async throws -> any GoogleGax
       .PollableOperation<ImportAssetsResponse>
-
-    /// See `WarehouseClient.createSearchConfig`.
-    func createSearchConfig(request: CreateSearchConfigRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchConfig
-
-    /// See `WarehouseClient.createSearchConfig`.
-    func createSearchConfig(
-      parent: Swift.String,
-      searchConfig: SearchConfig?,
-      searchConfigId: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.SearchConfig
-
-    /// See `WarehouseClient.updateSearchConfig`.
-    func updateSearchConfig(request: UpdateSearchConfigRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchConfig
-
-    /// See `WarehouseClient.updateSearchConfig`.
-    func updateSearchConfig(
-      searchConfig: SearchConfig?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.SearchConfig
-
-    /// See `WarehouseClient.getSearchConfig`.
-    func getSearchConfig(request: GetSearchConfigRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchConfig
-
-    /// See `WarehouseClient.getSearchConfig`.
-    func getSearchConfig(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.SearchConfig
-
-    /// See `WarehouseClient.deleteSearchConfig`.
-    func deleteSearchConfig(request: DeleteSearchConfigRequest) async throws
-
-    /// See `WarehouseClient.deleteSearchConfig`.
-    func deleteSearchConfig(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WarehouseClient.listSearchConfigs`.
-    func listSearchConfigs(request: ListSearchConfigsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListSearchConfigsResponse
-
-    /// See `WarehouseClient.listSearchConfigs`.
-    func listSearchConfigs(
-      byItem: ListSearchConfigsRequest
-    ) -> any AsyncSequence<SearchConfig, Swift.Error>
-
-    /// See `WarehouseClient.listSearchConfigs`.
-    func listSearchConfigs(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SearchConfig, Swift.Error>
-
-    /// See `WarehouseClient.createSearchHypernym`.
-    func createSearchHypernym(request: CreateSearchHypernymRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchHypernym
-
-    /// See `WarehouseClient.createSearchHypernym`.
-    func createSearchHypernym(
-      parent: Swift.String,
-      searchHypernym: SearchHypernym?,
-      searchHypernymId: Swift.String?,
-    ) async throws -> GoogleCloudVideoAIV1.SearchHypernym
-
-    /// See `WarehouseClient.updateSearchHypernym`.
-    func updateSearchHypernym(request: UpdateSearchHypernymRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchHypernym
-
-    /// See `WarehouseClient.updateSearchHypernym`.
-    func updateSearchHypernym(
-      searchHypernym: SearchHypernym?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.SearchHypernym
-
-    /// See `WarehouseClient.getSearchHypernym`.
-    func getSearchHypernym(request: GetSearchHypernymRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchHypernym
-
-    /// See `WarehouseClient.getSearchHypernym`.
-    func getSearchHypernym(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.SearchHypernym
-
-    /// See `WarehouseClient.deleteSearchHypernym`.
-    func deleteSearchHypernym(request: DeleteSearchHypernymRequest) async throws
-
-    /// See `WarehouseClient.deleteSearchHypernym`.
-    func deleteSearchHypernym(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WarehouseClient.listSearchHypernyms`.
-    func listSearchHypernyms(request: ListSearchHypernymsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse
-
-    /// See `WarehouseClient.listSearchHypernyms`.
-    func listSearchHypernyms(
-      byItem: ListSearchHypernymsRequest
-    ) -> any AsyncSequence<SearchHypernym, Swift.Error>
-
-    /// See `WarehouseClient.listSearchHypernyms`.
-    func listSearchHypernyms(
-      parent: Swift.String,
-    ) -> any AsyncSequence<SearchHypernym, Swift.Error>
-
-    /// See `WarehouseClient.searchAssets`.
-    func searchAssets(request: SearchAssetsRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchAssetsResponse
-
-    /// See `WarehouseClient.searchAssets`.
-    func searchAssets(
-      byItem: SearchAssetsRequest
-    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
-
-    /// See `WarehouseClient.searchIndexEndpoint`.
-    func searchIndexEndpoint(request: SearchIndexEndpointRequest) async throws
-      -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse
-
-    /// See `WarehouseClient.searchIndexEndpoint`.
-    func searchIndexEndpoint(
-      byItem: SearchIndexEndpointRequest
-    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
-
-    /// See `WarehouseClient.createIndexEndpoint`.
-    func createIndexEndpoint(request: CreateIndexEndpointRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createIndexEndpoint`.
     func createIndexEndpoint(withPolling: CreateIndexEndpointRequest) async throws -> any GoogleGax
@@ -1910,33 +1294,6 @@ extension Clients {
       indexEndpointId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint>
 
-    /// See `WarehouseClient.getIndexEndpoint`.
-    func getIndexEndpoint(request: GetIndexEndpointRequest) async throws
-      -> GoogleCloudVideoAIV1.IndexEndpoint
-
-    /// See `WarehouseClient.getIndexEndpoint`.
-    func getIndexEndpoint(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.IndexEndpoint
-
-    /// See `WarehouseClient.listIndexEndpoints`.
-    func listIndexEndpoints(request: ListIndexEndpointsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse
-
-    /// See `WarehouseClient.listIndexEndpoints`.
-    func listIndexEndpoints(
-      byItem: ListIndexEndpointsRequest
-    ) -> any AsyncSequence<IndexEndpoint, Swift.Error>
-
-    /// See `WarehouseClient.listIndexEndpoints`.
-    func listIndexEndpoints(
-      parent: Swift.String,
-    ) -> any AsyncSequence<IndexEndpoint, Swift.Error>
-
-    /// See `WarehouseClient.updateIndexEndpoint`.
-    func updateIndexEndpoint(request: UpdateIndexEndpointRequest) async throws
-      -> GoogleLongRunning.Operation
-
     /// See `WarehouseClient.updateIndexEndpoint`.
     func updateIndexEndpoint(withPolling: UpdateIndexEndpointRequest) async throws -> any GoogleGax
       .PollableOperation<IndexEndpoint>
@@ -1948,10 +1305,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.deleteIndexEndpoint`.
-    func deleteIndexEndpoint(request: DeleteIndexEndpointRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.deleteIndexEndpoint`.
     func deleteIndexEndpoint(withPolling: DeleteIndexEndpointRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -1961,22 +1314,12 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deployIndex`.
-    func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.deployIndex`.
     func deployIndex(withPolling: DeployIndexRequest) async throws -> any GoogleGax
       .PollableOperation<DeployIndexResponse>
 
     /// See `WarehouseClient.undeployIndex`.
-    func undeployIndex(request: UndeployIndexRequest) async throws -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.undeployIndex`.
     func undeployIndex(withPolling: UndeployIndexRequest) async throws -> any GoogleGax
       .PollableOperation<UndeployIndexResponse>
-
-    /// See `WarehouseClient.createCollection`.
-    func createCollection(request: CreateCollectionRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createCollection`.
     func createCollection(withPolling: CreateCollectionRequest) async throws -> any GoogleGax
@@ -1990,10 +1333,6 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `WarehouseClient.deleteCollection`.
-    func deleteCollection(request: DeleteCollectionRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `WarehouseClient.deleteCollection`.
     func deleteCollection(withPolling: DeleteCollectionRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
@@ -2001,115 +1340,6 @@ extension Clients {
     func deleteCollection(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WarehouseClient.getCollection`.
-    func getCollection(request: GetCollectionRequest) async throws
-      -> GoogleCloudVideoAIV1.Collection
-
-    /// See `WarehouseClient.getCollection`.
-    func getCollection(
-      name: Swift.String,
-    ) async throws -> GoogleCloudVideoAIV1.Collection
-
-    /// See `WarehouseClient.updateCollection`.
-    func updateCollection(request: UpdateCollectionRequest) async throws
-      -> GoogleCloudVideoAIV1.Collection
-
-    /// See `WarehouseClient.updateCollection`.
-    func updateCollection(
-      collection: Collection?,
-      updateMask: GoogleWKT.FieldMask?,
-    ) async throws -> GoogleCloudVideoAIV1.Collection
-
-    /// See `WarehouseClient.listCollections`.
-    func listCollections(request: ListCollectionsRequest) async throws
-      -> GoogleCloudVideoAIV1.ListCollectionsResponse
-
-    /// See `WarehouseClient.listCollections`.
-    func listCollections(
-      byItem: ListCollectionsRequest
-    ) -> any AsyncSequence<Collection, Swift.Error>
-
-    /// See `WarehouseClient.listCollections`.
-    func listCollections(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Collection, Swift.Error>
-
-    /// See `WarehouseClient.addCollectionItem`.
-    func addCollectionItem(request: AddCollectionItemRequest) async throws
-      -> GoogleCloudVideoAIV1.AddCollectionItemResponse
-
-    /// See `WarehouseClient.addCollectionItem`.
-    func addCollectionItem(
-      item: CollectionItem?,
-    ) async throws -> GoogleCloudVideoAIV1.AddCollectionItemResponse
-
-    /// See `WarehouseClient.removeCollectionItem`.
-    func removeCollectionItem(request: RemoveCollectionItemRequest) async throws
-      -> GoogleCloudVideoAIV1.RemoveCollectionItemResponse
-
-    /// See `WarehouseClient.removeCollectionItem`.
-    func removeCollectionItem(
-      item: CollectionItem?,
-    ) async throws -> GoogleCloudVideoAIV1.RemoveCollectionItemResponse
-
-    /// See `WarehouseClient.viewCollectionItems`.
-    func viewCollectionItems(request: ViewCollectionItemsRequest) async throws
-      -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse
-
-    /// See `WarehouseClient.viewCollectionItems`.
-    func viewCollectionItems(
-      byItem: ViewCollectionItemsRequest
-    ) -> any AsyncSequence<CollectionItem, Swift.Error>
-
-    /// See `WarehouseClient.viewCollectionItems`.
-    func viewCollectionItems(
-      collection: Swift.String,
-    ) -> any AsyncSequence<CollectionItem, Swift.Error>
-
-    /// See `WarehouseClient.listLocations`.
-    func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-      -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `WarehouseClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-    /// See `WarehouseClient.getLocation`.
-    func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-      -> GoogleCloudLocation.Location
-
-    /// See `WarehouseClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `WarehouseClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `WarehouseClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `WarehouseClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-    /// See `WarehouseClient.deleteOperation`.
-    func deleteOperation(
-      name: Swift.String,
-    ) async throws
-
-    /// See `WarehouseClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-    /// See `WarehouseClient.cancelOperation`.
-    func cancelOperation(
-      name: Swift.String,
-    ) async throws
 
     /// See `WarehouseClient.createAsset`.
     func createAsset(
@@ -2130,11 +1360,6 @@ extension Clients {
     func listAssets(
       request: ListAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse
-
-    /// See `WarehouseClient.listAssets`.
-    func listAssets(
-      byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Asset, Swift.Error>
 
     /// See `WarehouseClient.deleteAsset`.
     func deleteAsset(
@@ -2196,11 +1421,6 @@ extension Clients {
       request: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse
 
-    /// See `WarehouseClient.viewIndexedAssets`.
-    func viewIndexedAssets(
-      byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<IndexedAsset, Swift.Error>
-
     /// See `WarehouseClient.createIndex`.
     func createIndex(
       request: CreateIndexRequest, options: GoogleGax.RequestOptions
@@ -2230,11 +1450,6 @@ extension Clients {
     func listIndexes(
       request: ListIndexesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse
-
-    /// See `WarehouseClient.listIndexes`.
-    func listIndexes(
-      byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Index, Swift.Error>
 
     /// See `WarehouseClient.deleteIndex`.
     func deleteIndex(
@@ -2270,11 +1485,6 @@ extension Clients {
     func listCorpora(
       request: ListCorporaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse
-
-    /// See `WarehouseClient.listCorpora`.
-    func listCorpora(
-      byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Corpus, Swift.Error>
 
     /// See `WarehouseClient.deleteCorpus`.
     func deleteCorpus(
@@ -2316,11 +1526,6 @@ extension Clients {
       request: ListDataSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse
 
-    /// See `WarehouseClient.listDataSchemas`.
-    func listDataSchemas(
-      byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataSchema, Swift.Error>
-
     /// See `WarehouseClient.createAnnotation`.
     func createAnnotation(
       request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
@@ -2335,11 +1540,6 @@ extension Clients {
     func listAnnotations(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse
-
-    /// See `WarehouseClient.listAnnotations`.
-    func listAnnotations(
-      byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Annotation, Swift.Error>
 
     /// See `WarehouseClient.updateAnnotation`.
     func updateAnnotation(
@@ -2396,11 +1596,6 @@ extension Clients {
       request: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse
 
-    /// See `WarehouseClient.listSearchConfigs`.
-    func listSearchConfigs(
-      byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchConfig, Swift.Error>
-
     /// See `WarehouseClient.createSearchHypernym`.
     func createSearchHypernym(
       request: CreateSearchHypernymRequest, options: GoogleGax.RequestOptions
@@ -2426,30 +1621,15 @@ extension Clients {
       request: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse
 
-    /// See `WarehouseClient.listSearchHypernyms`.
-    func listSearchHypernyms(
-      byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchHypernym, Swift.Error>
-
     /// See `WarehouseClient.searchAssets`.
     func searchAssets(
       request: SearchAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse
 
-    /// See `WarehouseClient.searchAssets`.
-    func searchAssets(
-      byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
-
     /// See `WarehouseClient.searchIndexEndpoint`.
     func searchIndexEndpoint(
       request: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse
-
-    /// See `WarehouseClient.searchIndexEndpoint`.
-    func searchIndexEndpoint(
-      byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchResultItem, Swift.Error>
 
     /// See `WarehouseClient.createIndexEndpoint`.
     func createIndexEndpoint(
@@ -2470,11 +1650,6 @@ extension Clients {
     func listIndexEndpoints(
       request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse
-
-    /// See `WarehouseClient.listIndexEndpoints`.
-    func listIndexEndpoints(
-      byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<IndexEndpoint, Swift.Error>
 
     /// See `WarehouseClient.updateIndexEndpoint`.
     func updateIndexEndpoint(
@@ -2551,11 +1726,6 @@ extension Clients {
       request: ListCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse
 
-    /// See `WarehouseClient.listCollections`.
-    func listCollections(
-      byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Collection, Swift.Error>
-
     /// See `WarehouseClient.addCollectionItem`.
     func addCollectionItem(
       request: AddCollectionItemRequest, options: GoogleGax.RequestOptions
@@ -2571,20 +1741,10 @@ extension Clients {
       request: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse
 
-    /// See `WarehouseClient.viewCollectionItems`.
-    func viewCollectionItems(
-      byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CollectionItem, Swift.Error>
-
     /// See `WarehouseClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-    /// See `WarehouseClient.listLocations`.
-    func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
     /// See `WarehouseClient.getLocation`.
     func getLocation(
@@ -2595,11 +1755,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `WarehouseClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WarehouseClient.deleteOperation`.
     func deleteOperation(
@@ -2696,11 +1851,16 @@ extension Clients.WarehouseProtocol {
     self.listAssets(byItem: byItem, options: .init())
   }
 
+  /// Lists an list of assets inside corpus.
+  ///
+  /// @Snippet(path: "Warehouse_ListAssets")
   public func listAssets(
     byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -2887,12 +2047,17 @@ extension Clients.WarehouseProtocol {
     self.viewIndexedAssets(byItem: byItem, options: .init())
   }
 
+  /// Lists assets inside an index.
+  ///
+  /// @Snippet(path: "Warehouse_ViewIndexedAssets")
   public func viewIndexedAssets(
     byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.viewIndexedAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3019,12 +2184,17 @@ extension Clients.WarehouseProtocol {
     self.listIndexes(byItem: byItem, options: .init())
   }
 
+  /// List all Indexes in a given Corpus.
+  ///
+  /// @Snippet(path: "Warehouse_ListIndexes")
   public func listIndexes(
     byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listIndexes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3170,12 +2340,17 @@ extension Clients.WarehouseProtocol {
     self.listCorpora(byItem: byItem, options: .init())
   }
 
+  /// Lists all corpora in a project.
+  ///
+  /// @Snippet(path: "Warehouse_ListCorpora")
   public func listCorpora(
     byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Corpus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCorpora(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3340,12 +2515,17 @@ extension Clients.WarehouseProtocol {
     self.listDataSchemas(byItem: byItem, options: .init())
   }
 
+  /// Lists a list of data schemas inside corpus.
+  ///
+  /// @Snippet(path: "Warehouse_ListDataSchemas")
   public func listDataSchemas(
     byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDataSchemas(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3423,12 +2603,17 @@ extension Clients.WarehouseProtocol {
     self.listAnnotations(byItem: byItem, options: .init())
   }
 
+  /// Lists a list of annotations inside asset.
+  ///
+  /// @Snippet(path: "Warehouse_ListAnnotations")
   public func listAnnotations(
     byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Annotation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listAnnotations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3641,12 +2826,17 @@ extension Clients.WarehouseProtocol {
     self.listSearchConfigs(byItem: byItem, options: .init())
   }
 
+  /// Lists all search configurations inside a corpus.
+  ///
+  /// @Snippet(path: "Warehouse_ListSearchConfigs")
   public func listSearchConfigs(
     byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSearchConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3766,12 +2956,17 @@ extension Clients.WarehouseProtocol {
     self.listSearchHypernyms(byItem: byItem, options: .init())
   }
 
+  /// Lists SearchHypernyms inside a corpus.
+  ///
+  /// @Snippet(path: "Warehouse_ListSearchHypernyms")
   public func listSearchHypernyms(
     byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listSearchHypernyms(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3803,12 +2998,17 @@ extension Clients.WarehouseProtocol {
     self.searchAssets(byItem: byItem, options: .init())
   }
 
+  /// Search media asset.
+  ///
+  /// @Snippet(path: "Warehouse_SearchAssets")
   public func searchAssets(
     byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3831,12 +3031,17 @@ extension Clients.WarehouseProtocol {
     self.searchIndexEndpoint(byItem: byItem, options: .init())
   }
 
+  /// Search a deployed index endpoint (IMAGE corpus type only).
+  ///
+  /// @Snippet(path: "Warehouse_SearchIndexEndpoint")
   public func searchIndexEndpoint(
     byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.searchIndexEndpoint(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -3921,12 +3126,17 @@ extension Clients.WarehouseProtocol {
     self.listIndexEndpoints(byItem: byItem, options: .init())
   }
 
+  /// Lists all IndexEndpoints in a project.
+  ///
+  /// @Snippet(path: "Warehouse_ListIndexEndpoints")
   public func listIndexEndpoints(
     byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listIndexEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4210,12 +3420,17 @@ extension Clients.WarehouseProtocol {
     self.listCollections(byItem: byItem, options: .init())
   }
 
+  /// Lists collections inside a corpus.
+  ///
+  /// @Snippet(path: "Warehouse_ListCollections")
   public func listCollections(
     byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listCollections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4289,12 +3504,17 @@ extension Clients.WarehouseProtocol {
     self.viewCollectionItems(byItem: byItem, options: .init())
   }
 
+  /// View items inside a collection.
+  ///
+  /// @Snippet(path: "Warehouse_ViewCollectionItems")
   public func viewCollectionItems(
     byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CollectionItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.viewCollectionItems(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4326,12 +3546,17 @@ extension Clients.WarehouseProtocol {
     self.listLocations(byItem: byItem, options: .init())
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Warehouse_ListLocations")
   public func listLocations(
     byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listLocations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -4366,12 +3591,19 @@ extension Clients.WarehouseProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Warehouse_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

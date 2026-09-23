@@ -53,24 +53,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of VPN gateways.
-    ///
-    /// To prevent failure, Google recommends that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "vpnGateways_aggregatedList")
-    public func aggregatedList(
-      byItem: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Deletes the specified VPN gateway.
     ///
     /// @Snippet(path: "vpnGateways_delete")
@@ -199,21 +181,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves a list of VPN gateways available to the specified
-    /// project and region.
-    ///
-    /// @Snippet(path: "vpnGateways_list")
-    public func list(
-      byItem: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Sets the labels on a VpnGateway. To learn more about labels, read theLabeling
     /// Resources documentation.
     ///
@@ -290,91 +257,11 @@
     /// To mock `VpnGatewaysClient` change your functions to receive
     /// `some VpnGatewaysProtocol` or `any VpnGatewaysProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol VpnGatewaysProtocol {
-      /// See `VpnGatewaysClient.aggregatedList`.
-      func aggregatedList(request: VpnGatewaysClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.VpnGatewayAggregatedList
-
-      /// See `VpnGatewaysClient.aggregatedList`.
-      func aggregatedList(
-        byItem: VpnGatewaysClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
-
-      /// See `VpnGatewaysClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
-
-      /// See `VpnGatewaysClient.delete`.
-      func delete(request: VpnGatewaysClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `VpnGatewaysClient.`get``.
-      func `get`(request: VpnGatewaysClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.VpnGateway
-
-      /// See `VpnGatewaysClient.`get``.
-      func `get`(
-        project: Swift.String,
-        region: Swift.String,
-        vpnGateway: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.VpnGateway
-
-      /// See `VpnGatewaysClient.getStatus`.
-      func getStatus(request: VpnGatewaysClient.GetStatusRequest) async throws
-        -> GoogleCloudComputeV1.VpnGatewaysGetStatusResponse
-
-      /// See `VpnGatewaysClient.getStatus`.
-      func getStatus(
-        project: Swift.String,
-        region: Swift.String,
-        vpnGateway: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.VpnGatewaysGetStatusResponse
-
-      /// See `VpnGatewaysClient.insert`.
-      func insert(request: VpnGatewaysClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `VpnGatewaysClient.list`.
-      func list(request: VpnGatewaysClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.VpnGatewayList
-
-      /// See `VpnGatewaysClient.list`.
-      func list(
-        byItem: VpnGatewaysClient.ListRequest
-      ) -> any AsyncSequence<VpnGateway, Swift.Error>
-
-      /// See `VpnGatewaysClient.list`.
-      func list(
-        project: Swift.String,
-        region: Swift.String,
-      ) -> any AsyncSequence<VpnGateway, Swift.Error>
-
-      /// See `VpnGatewaysClient.setLabels`.
-      func setLabels(request: VpnGatewaysClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `VpnGatewaysClient.testIamPermissions`.
-      func testIamPermissions(request: VpnGatewaysClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `VpnGatewaysClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        region: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol VpnGatewaysProtocol: Sendable {
       /// See `VpnGatewaysClient.aggregatedList`.
       func aggregatedList(
         request: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList
-
-      /// See `VpnGatewaysClient.aggregatedList`.
-      func aggregatedList(
-        byItem: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error>
 
       /// See `VpnGatewaysClient.delete`.
       func delete(
@@ -400,11 +287,6 @@
       func list(
         request: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VpnGatewayList
-
-      /// See `VpnGatewaysClient.list`.
-      func list(
-        byItem: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<VpnGateway, Swift.Error>
 
       /// See `VpnGatewaysClient.setLabels`.
       func setLabels(
@@ -438,12 +320,20 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of VPN gateways.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnGateways_aggregatedList")
     public func aggregatedList(
       byItem: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -609,11 +499,17 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves a list of VPN gateways available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnGateways_list")
     public func list(
       byItem: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<VpnGateway, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

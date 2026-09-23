@@ -116,25 +116,6 @@
       try await self.inner.listConversations(request: request, options: options)
     }
 
-    /// Lists all Conversations by their parent
-    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
-    ///
-    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
-    ///
-    /// @Snippet(path: "ConversationalSearchService_ListConversations")
-    public func listConversations(
-      byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Conversation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
-        in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listConversations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Answer query method.
     ///
     /// @Snippet(path: "ConversationalSearchService_AnswerQuery")
@@ -235,24 +216,6 @@
       try await self.inner.listSessions(request: request, options: options)
     }
 
-    /// Lists all Sessions by their parent
-    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
-    ///
-    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
-    ///
-    /// @Snippet(path: "ConversationalSearchService_ListSessions")
-    public func listSessions(
-      byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Session, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listSessions(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -262,23 +225,6 @@
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
-    /// @Snippet(path: "ConversationalSearchService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -310,158 +256,7 @@
     /// To mock `ConversationalSearchServiceClient` change your functions to receive
     /// `some ConversationalSearchServiceProtocol` or `any ConversationalSearchServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ConversationalSearchServiceProtocol {
-      /// See `ConversationalSearchServiceClient.converseConversation`.
-      func converseConversation(request: ConverseConversationRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse
-
-      /// See `ConversationalSearchServiceClient.converseConversation`.
-      func converseConversation(
-        name: Swift.String,
-        query: TextInput?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse
-
-      /// See `ConversationalSearchServiceClient.createConversation`.
-      func createConversation(request: CreateConversationRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Conversation
-
-      /// See `ConversationalSearchServiceClient.createConversation`.
-      func createConversation(
-        parent: Swift.String,
-        conversation: Conversation?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation
-
-      /// See `ConversationalSearchServiceClient.deleteConversation`.
-      func deleteConversation(request: DeleteConversationRequest) async throws
-
-      /// See `ConversationalSearchServiceClient.deleteConversation`.
-      func deleteConversation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `ConversationalSearchServiceClient.updateConversation`.
-      func updateConversation(request: UpdateConversationRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Conversation
-
-      /// See `ConversationalSearchServiceClient.updateConversation`.
-      func updateConversation(
-        conversation: Conversation?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation
-
-      /// See `ConversationalSearchServiceClient.getConversation`.
-      func getConversation(request: GetConversationRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Conversation
-
-      /// See `ConversationalSearchServiceClient.getConversation`.
-      func getConversation(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation
-
-      /// See `ConversationalSearchServiceClient.listConversations`.
-      func listConversations(request: ListConversationsRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
-
-      /// See `ConversationalSearchServiceClient.listConversations`.
-      func listConversations(
-        byItem: ListConversationsRequest
-      ) -> any AsyncSequence<Conversation, Swift.Error>
-
-      /// See `ConversationalSearchServiceClient.listConversations`.
-      func listConversations(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Conversation, Swift.Error>
-
-      /// See `ConversationalSearchServiceClient.answerQuery`.
-      func answerQuery(request: AnswerQueryRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
-
-      /// See `ConversationalSearchServiceClient.streamAnswerQuery`.
-      func streamAnswerQuery(request: AnswerQueryRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
-
-      /// See `ConversationalSearchServiceClient.getAnswer`.
-      func getAnswer(request: GetAnswerRequest) async throws -> GoogleCloudDiscoveryEngineV1.Answer
-
-      /// See `ConversationalSearchServiceClient.getAnswer`.
-      func getAnswer(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Answer
-
-      /// See `ConversationalSearchServiceClient.createSession`.
-      func createSession(request: CreateSessionRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Session
-
-      /// See `ConversationalSearchServiceClient.createSession`.
-      func createSession(
-        parent: Swift.String,
-        session: Session?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Session
-
-      /// See `ConversationalSearchServiceClient.deleteSession`.
-      func deleteSession(request: DeleteSessionRequest) async throws
-
-      /// See `ConversationalSearchServiceClient.deleteSession`.
-      func deleteSession(
-        name: Swift.String,
-      ) async throws
-
-      /// See `ConversationalSearchServiceClient.updateSession`.
-      func updateSession(request: UpdateSessionRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Session
-
-      /// See `ConversationalSearchServiceClient.updateSession`.
-      func updateSession(
-        session: Session?,
-        updateMask: GoogleWKT.FieldMask?,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Session
-
-      /// See `ConversationalSearchServiceClient.getSession`.
-      func getSession(request: GetSessionRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.Session
-
-      /// See `ConversationalSearchServiceClient.getSession`.
-      func getSession(
-        name: Swift.String,
-      ) async throws -> GoogleCloudDiscoveryEngineV1.Session
-
-      /// See `ConversationalSearchServiceClient.listSessions`.
-      func listSessions(request: ListSessionsRequest) async throws
-        -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse
-
-      /// See `ConversationalSearchServiceClient.listSessions`.
-      func listSessions(
-        byItem: ListSessionsRequest
-      ) -> any AsyncSequence<Session, Swift.Error>
-
-      /// See `ConversationalSearchServiceClient.listSessions`.
-      func listSessions(
-        parent: Swift.String,
-      ) -> any AsyncSequence<Session, Swift.Error>
-
-      /// See `ConversationalSearchServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ConversationalSearchServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ConversationalSearchServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `ConversationalSearchServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `ConversationalSearchServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
+    public protocol ConversationalSearchServiceProtocol: Sendable {
       /// See `ConversationalSearchServiceClient.converseConversation`.
       func converseConversation(
         request: ConverseConversationRequest, options: GoogleGax.RequestOptions
@@ -491,11 +286,6 @@
       func listConversations(
         request: ListConversationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
-
-      /// See `ConversationalSearchServiceClient.listConversations`.
-      func listConversations(
-        byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Conversation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.answerQuery`.
       func answerQuery(
@@ -537,20 +327,10 @@
         request: ListSessionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse
 
-      /// See `ConversationalSearchServiceClient.listSessions`.
-      func listSessions(
-        byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Session, Swift.Error>
-
       /// See `ConversationalSearchServiceClient.listOperations`.
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `ConversationalSearchServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `ConversationalSearchServiceClient.cancelOperation`.
       func cancelOperation(
@@ -688,13 +468,21 @@
       self.listConversations(byItem: byItem, options: .init())
     }
 
+    /// Lists all Conversations by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListConversations")
     public func listConversations(
       byItem: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Conversation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
         in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listConversations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -857,12 +645,20 @@
       self.listSessions(byItem: byItem, options: .init())
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListSessions")
     public func listSessions(
       byItem: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Session, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listSessions(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -894,12 +690,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

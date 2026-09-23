@@ -151,15 +151,7 @@ extension Clients {
   /// To mock `FleetRoutingClient` change your functions to receive
   /// `some FleetRoutingProtocol` or `any FleetRoutingProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol FleetRoutingProtocol {
-    /// See `FleetRoutingClient.optimizeTours`.
-    func optimizeTours(request: OptimizeToursRequest) async throws
-      -> GoogleCloudOptimizationV1.OptimizeToursResponse
-
-    /// See `FleetRoutingClient.batchOptimizeTours`.
-    func batchOptimizeTours(request: BatchOptimizeToursRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol FleetRoutingProtocol: Sendable {
     /// See `FleetRoutingClient.batchOptimizeTours`.
     func batchOptimizeTours(withPolling: BatchOptimizeToursRequest) async throws -> any GoogleGax
       .PollableOperation<BatchOptimizeToursResponse>

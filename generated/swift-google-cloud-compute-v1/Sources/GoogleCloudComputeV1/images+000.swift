@@ -236,26 +236,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of custom images
-    /// available to the specified project. Custom images are images you
-    /// create that belong to your project. This method does not
-    /// get any images that belong to other projects, including publicly-available
-    /// images, like Debian 8. If you want to get a list of publicly-available
-    /// images, use this method to make a request to the respective image project,
-    /// such as debian-cloud or windows-cloud.
-    ///
-    /// @Snippet(path: "images_list")
-    public func list(
-      byItem: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Image, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ImageList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Patches the specified image with the data included in the request.
     /// Only the following fields can be modified: family, description,
     /// deprecation status.
@@ -393,90 +373,7 @@
     /// To mock `ImagesClient` change your functions to receive
     /// `some ImagesProtocol` or `any ImagesProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol ImagesProtocol {
-      /// See `ImagesClient.delete`.
-      func delete(request: ImagesClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ImagesClient.deprecate`.
-      func deprecate(request: ImagesClient.DeprecateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ImagesClient.`get``.
-      func `get`(request: ImagesClient.GetRequest) async throws -> GoogleCloudComputeV1.Image
-
-      /// See `ImagesClient.`get``.
-      func `get`(
-        project: Swift.String,
-        image: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Image
-
-      /// See `ImagesClient.getFromFamily`.
-      func getFromFamily(request: ImagesClient.GetFromFamilyRequest) async throws
-        -> GoogleCloudComputeV1.Image
-
-      /// See `ImagesClient.getFromFamily`.
-      func getFromFamily(
-        project: Swift.String,
-        family: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Image
-
-      /// See `ImagesClient.getIamPolicy`.
-      func getIamPolicy(request: ImagesClient.GetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `ImagesClient.getIamPolicy`.
-      func getIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `ImagesClient.insert`.
-      func insert(request: ImagesClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ImagesClient.list`.
-      func list(request: ImagesClient.ListRequest) async throws -> GoogleCloudComputeV1.ImageList
-
-      /// See `ImagesClient.list`.
-      func list(
-        byItem: ImagesClient.ListRequest
-      ) -> any AsyncSequence<Image, Swift.Error>
-
-      /// See `ImagesClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Image, Swift.Error>
-
-      /// See `ImagesClient.patch`.
-      func patch(request: ImagesClient.PatchRequest) async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `ImagesClient.setIamPolicy`.
-      func setIamPolicy(request: ImagesClient.SetIamPolicyRequest) async throws
-        -> GoogleCloudComputeV1.Policy
-
-      /// See `ImagesClient.setIamPolicy`.
-      func setIamPolicy(
-        project: Swift.String,
-        resource: Swift.String,
-        body: GlobalSetPolicyRequest?,
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      /// See `ImagesClient.setLabels`.
-      func setLabels(request: ImagesClient.SetLabelsRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `ImagesClient.testIamPermissions`.
-      func testIamPermissions(request: ImagesClient.TestIamPermissionsRequest) async throws
-        -> GoogleCloudComputeV1.TestPermissionsResponse
-
-      /// See `ImagesClient.testIamPermissions`.
-      func testIamPermissions(
-        project: Swift.String,
-        resource: Swift.String,
-        body: TestPermissionsRequest?,
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
-
+    public protocol ImagesProtocol: Sendable {
       /// See `ImagesClient.delete`.
       func delete(
         request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -511,11 +408,6 @@
       func list(
         request: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ImageList
-
-      /// See `ImagesClient.list`.
-      func list(
-        byItem: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Image, Swift.Error>
 
       /// See `ImagesClient.patch`.
       func patch(
@@ -748,11 +640,22 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of custom images
+    /// available to the specified project. Custom images are images you
+    /// create that belong to your project. This method does not
+    /// get any images that belong to other projects, including publicly-available
+    /// images, like Debian 8. If you want to get a list of publicly-available
+    /// images, use this method to make a request to the respective image project,
+    /// such as debian-cloud or windows-cloud.
+    ///
+    /// @Snippet(path: "images_list")
     public func list(
       byItem: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Image, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ImageList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

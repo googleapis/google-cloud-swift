@@ -267,20 +267,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// Retrieves the list of networks available to the specified project.
-    ///
-    /// @Snippet(path: "networks_list")
-    public func list(
-      byItem: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Network, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists the peering routes exchanged over peering connection.
     ///
     /// @Snippet(path: "networks_listPeeringRoutes")
@@ -288,21 +274,6 @@
       request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList {
       try await self.inner.listPeeringRoutes(request: request, options: options)
-    }
-
-    /// Lists the peering routes exchanged over peering connection.
-    ///
-    /// @Snippet(path: "networks_listPeeringRoutes")
-    public func listPeeringRoutes(
-      byItem: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listPeeringRoutes(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Patches the specified network with the data included in the request.
@@ -569,91 +540,7 @@
     /// To mock `NetworksClient` change your functions to receive
     /// `some NetworksProtocol` or `any NetworksProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol NetworksProtocol {
-      /// See `NetworksClient.addPeering`.
-      func addPeering(request: NetworksClient.AddPeeringRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.cancelRequestRemovePeering`.
-      func cancelRequestRemovePeering(request: NetworksClient.CancelRequestRemovePeeringRequest)
-        async throws -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.delete`.
-      func delete(request: NetworksClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.`get``.
-      func `get`(request: NetworksClient.GetRequest) async throws -> GoogleCloudComputeV1.Network
-
-      /// See `NetworksClient.`get``.
-      func `get`(
-        project: Swift.String,
-        network: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.Network
-
-      /// See `NetworksClient.getEffectiveFirewalls`.
-      func getEffectiveFirewalls(request: NetworksClient.GetEffectiveFirewallsRequest) async throws
-        -> GoogleCloudComputeV1.NetworksGetEffectiveFirewallsResponse
-
-      /// See `NetworksClient.getEffectiveFirewalls`.
-      func getEffectiveFirewalls(
-        project: Swift.String,
-        network: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.NetworksGetEffectiveFirewallsResponse
-
-      /// See `NetworksClient.insert`.
-      func insert(request: NetworksClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.list`.
-      func list(request: NetworksClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.NetworkList
-
-      /// See `NetworksClient.list`.
-      func list(
-        byItem: NetworksClient.ListRequest
-      ) -> any AsyncSequence<Network, Swift.Error>
-
-      /// See `NetworksClient.list`.
-      func list(
-        project: Swift.String,
-      ) -> any AsyncSequence<Network, Swift.Error>
-
-      /// See `NetworksClient.listPeeringRoutes`.
-      func listPeeringRoutes(request: NetworksClient.ListPeeringRoutesRequest) async throws
-        -> GoogleCloudComputeV1.ExchangedPeeringRoutesList
-
-      /// See `NetworksClient.listPeeringRoutes`.
-      func listPeeringRoutes(
-        byItem: NetworksClient.ListPeeringRoutesRequest
-      ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error>
-
-      /// See `NetworksClient.listPeeringRoutes`.
-      func listPeeringRoutes(
-        project: Swift.String,
-        network: Swift.String,
-      ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error>
-
-      /// See `NetworksClient.patch`.
-      func patch(request: NetworksClient.PatchRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.removePeering`.
-      func removePeering(request: NetworksClient.RemovePeeringRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.requestRemovePeering`.
-      func requestRemovePeering(request: NetworksClient.RequestRemovePeeringRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.switchToCustomMode`.
-      func switchToCustomMode(request: NetworksClient.SwitchToCustomModeRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `NetworksClient.updatePeering`.
-      func updatePeering(request: NetworksClient.UpdatePeeringRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol NetworksProtocol: Sendable {
       /// See `NetworksClient.addPeering`.
       func addPeering(
         request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
@@ -689,20 +576,10 @@
         request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkList
 
-      /// See `NetworksClient.list`.
-      func list(
-        byItem: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<Network, Swift.Error>
-
       /// See `NetworksClient.listPeeringRoutes`.
       func listPeeringRoutes(
         request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList
-
-      /// See `NetworksClient.listPeeringRoutes`.
-      func listPeeringRoutes(
-        byItem: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error>
 
       /// See `NetworksClient.patch`.
       func patch(
@@ -962,11 +839,16 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// Retrieves the list of networks available to the specified project.
+    ///
+    /// @Snippet(path: "networks_list")
     public func list(
       byItem: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Network, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -998,12 +880,17 @@
       self.listPeeringRoutes(byItem: byItem, options: .init())
     }
 
+    /// Lists the peering routes exchanged over peering connection.
+    ///
+    /// @Snippet(path: "networks_listPeeringRoutes")
     public func listPeeringRoutes(
       byItem: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listPeeringRoutes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

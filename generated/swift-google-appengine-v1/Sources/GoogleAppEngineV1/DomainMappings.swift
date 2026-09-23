@@ -50,21 +50,6 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
     try await self.inner.listDomainMappings(request: request, options: options)
   }
 
-  /// Lists the domain mappings on an application.
-  ///
-  /// @Snippet(path: "DomainMappings_ListDomainMappings")
-  public func listDomainMappings(
-    byItem: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DomainMapping, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listDomainMappings(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Gets the specified domain mapping.
   ///
   /// @Snippet(path: "DomainMappings_GetDomainMapping")
@@ -208,23 +193,6 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
-  /// @Snippet(path: "DomainMappings_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listOperations(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
-  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-  ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-  ///
   /// @Snippet(path: "DomainMappings_GetOperation")
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -239,68 +207,23 @@ extension Clients {
   /// To mock `DomainMappingsClient` change your functions to receive
   /// `some DomainMappingsProtocol` or `any DomainMappingsProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol DomainMappingsProtocol {
-    /// See `DomainMappingsClient.listDomainMappings`.
-    func listDomainMappings(request: ListDomainMappingsRequest) async throws
-      -> GoogleAppEngineV1.ListDomainMappingsResponse
-
-    /// See `DomainMappingsClient.listDomainMappings`.
-    func listDomainMappings(
-      byItem: ListDomainMappingsRequest
-    ) -> any AsyncSequence<DomainMapping, Swift.Error>
-
-    /// See `DomainMappingsClient.getDomainMapping`.
-    func getDomainMapping(request: GetDomainMappingRequest) async throws
-      -> GoogleAppEngineV1.DomainMapping
-
-    /// See `DomainMappingsClient.createDomainMapping`.
-    func createDomainMapping(request: CreateDomainMappingRequest) async throws
-      -> GoogleLongRunning.Operation
-
+  public protocol DomainMappingsProtocol: Sendable {
     /// See `DomainMappingsClient.createDomainMapping`.
     func createDomainMapping(withPolling: CreateDomainMappingRequest) async throws -> any GoogleGax
       .PollableOperation<DomainMapping>
-
-    /// See `DomainMappingsClient.updateDomainMapping`.
-    func updateDomainMapping(request: UpdateDomainMappingRequest) async throws
-      -> GoogleLongRunning.Operation
 
     /// See `DomainMappingsClient.updateDomainMapping`.
     func updateDomainMapping(withPolling: UpdateDomainMappingRequest) async throws -> any GoogleGax
       .PollableOperation<DomainMapping>
 
     /// See `DomainMappingsClient.deleteDomainMapping`.
-    func deleteDomainMapping(request: DeleteDomainMappingRequest) async throws
-      -> GoogleLongRunning.Operation
-
-    /// See `DomainMappingsClient.deleteDomainMapping`.
     func deleteDomainMapping(withPolling: DeleteDomainMappingRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
-
-    /// See `DomainMappingsClient.listOperations`.
-    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-      -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DomainMappingsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-    /// See `DomainMappingsClient.listOperations`.
-    func listOperations(
-      name: Swift.String,
-      filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DomainMappingsClient.listDomainMappings`.
     func listDomainMappings(
       request: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse
-
-    /// See `DomainMappingsClient.listDomainMappings`.
-    func listDomainMappings(
-      byItem: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DomainMapping, Swift.Error>
 
     /// See `DomainMappingsClient.getDomainMapping`.
     func getDomainMapping(
@@ -341,11 +264,6 @@ extension Clients {
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-    /// See `DomainMappingsClient.listOperations`.
-    func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -369,12 +287,17 @@ extension Clients.DomainMappingsProtocol {
     self.listDomainMappings(byItem: byItem, options: .init())
   }
 
+  /// Lists the domain mappings on an application.
+  ///
+  /// @Snippet(path: "DomainMappings_ListDomainMappings")
   public func listDomainMappings(
     byItem: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DomainMapping, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listDomainMappings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -493,12 +416,19 @@ extension Clients.DomainMappingsProtocol {
     self.listOperations(byItem: byItem, options: .init())
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DomainMappings_ListOperations")
   public func listOperations(
     byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

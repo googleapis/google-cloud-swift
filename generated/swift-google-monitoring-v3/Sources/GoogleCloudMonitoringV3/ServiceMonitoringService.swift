@@ -69,21 +69,6 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
     try await self.inner.listServices(request: request, options: options)
   }
 
-  /// List `Service`s for this Metrics Scope.
-  ///
-  /// @Snippet(path: "ServiceMonitoringService_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListServicesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServices(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Update this `Service`.
   ///
   /// @Snippet(path: "ServiceMonitoringService_UpdateService")
@@ -129,22 +114,6 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
     try await self.inner.listServiceLevelObjectives(request: request, options: options)
   }
 
-  /// List the `ServiceLevelObjective`s for the given `Service`.
-  ///
-  /// @Snippet(path: "ServiceMonitoringService_ListServiceLevelObjectives")
-  public func listServiceLevelObjectives(
-    byItem: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listServiceLevelObjectives(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Update the given `ServiceLevelObjective`.
   ///
   /// @Snippet(path: "ServiceMonitoringService_UpdateServiceLevelObjective")
@@ -170,106 +139,7 @@ extension Clients {
   /// To mock `ServiceMonitoringServiceClient` change your functions to receive
   /// `some ServiceMonitoringServiceProtocol` or `any ServiceMonitoringServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol ServiceMonitoringServiceProtocol {
-    /// See `ServiceMonitoringServiceClient.createService`.
-    func createService(request: CreateServiceRequest) async throws
-      -> GoogleCloudMonitoringV3.Service
-
-    /// See `ServiceMonitoringServiceClient.createService`.
-    func createService(
-      parent: Swift.String,
-      service: Service?,
-    ) async throws -> GoogleCloudMonitoringV3.Service
-
-    /// See `ServiceMonitoringServiceClient.getService`.
-    func getService(request: GetServiceRequest) async throws -> GoogleCloudMonitoringV3.Service
-
-    /// See `ServiceMonitoringServiceClient.getService`.
-    func getService(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMonitoringV3.Service
-
-    /// See `ServiceMonitoringServiceClient.listServices`.
-    func listServices(request: ListServicesRequest) async throws
-      -> GoogleCloudMonitoringV3.ListServicesResponse
-
-    /// See `ServiceMonitoringServiceClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `ServiceMonitoringServiceClient.listServices`.
-    func listServices(
-      parent: Swift.String,
-    ) -> any AsyncSequence<Service, Swift.Error>
-
-    /// See `ServiceMonitoringServiceClient.updateService`.
-    func updateService(request: UpdateServiceRequest) async throws
-      -> GoogleCloudMonitoringV3.Service
-
-    /// See `ServiceMonitoringServiceClient.updateService`.
-    func updateService(
-      service: Service?,
-    ) async throws -> GoogleCloudMonitoringV3.Service
-
-    /// See `ServiceMonitoringServiceClient.deleteService`.
-    func deleteService(request: DeleteServiceRequest) async throws
-
-    /// See `ServiceMonitoringServiceClient.deleteService`.
-    func deleteService(
-      name: Swift.String,
-    ) async throws
-
-    /// See `ServiceMonitoringServiceClient.createServiceLevelObjective`.
-    func createServiceLevelObjective(request: CreateServiceLevelObjectiveRequest) async throws
-      -> GoogleCloudMonitoringV3.ServiceLevelObjective
-
-    /// See `ServiceMonitoringServiceClient.createServiceLevelObjective`.
-    func createServiceLevelObjective(
-      parent: Swift.String,
-      serviceLevelObjective: ServiceLevelObjective?,
-    ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective
-
-    /// See `ServiceMonitoringServiceClient.getServiceLevelObjective`.
-    func getServiceLevelObjective(request: GetServiceLevelObjectiveRequest) async throws
-      -> GoogleCloudMonitoringV3.ServiceLevelObjective
-
-    /// See `ServiceMonitoringServiceClient.getServiceLevelObjective`.
-    func getServiceLevelObjective(
-      name: Swift.String,
-    ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective
-
-    /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
-    func listServiceLevelObjectives(request: ListServiceLevelObjectivesRequest) async throws
-      -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse
-
-    /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
-    func listServiceLevelObjectives(
-      byItem: ListServiceLevelObjectivesRequest
-    ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
-
-    /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
-    func listServiceLevelObjectives(
-      parent: Swift.String,
-    ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
-
-    /// See `ServiceMonitoringServiceClient.updateServiceLevelObjective`.
-    func updateServiceLevelObjective(request: UpdateServiceLevelObjectiveRequest) async throws
-      -> GoogleCloudMonitoringV3.ServiceLevelObjective
-
-    /// See `ServiceMonitoringServiceClient.updateServiceLevelObjective`.
-    func updateServiceLevelObjective(
-      serviceLevelObjective: ServiceLevelObjective?,
-    ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective
-
-    /// See `ServiceMonitoringServiceClient.deleteServiceLevelObjective`.
-    func deleteServiceLevelObjective(request: DeleteServiceLevelObjectiveRequest) async throws
-
-    /// See `ServiceMonitoringServiceClient.deleteServiceLevelObjective`.
-    func deleteServiceLevelObjective(
-      name: Swift.String,
-    ) async throws
-
+  public protocol ServiceMonitoringServiceProtocol: Sendable {
     /// See `ServiceMonitoringServiceClient.createService`.
     func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
@@ -284,11 +154,6 @@ extension Clients {
     func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListServicesResponse
-
-    /// See `ServiceMonitoringServiceClient.listServices`.
-    func listServices(
-      byItem: ListServicesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Service, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.updateService`.
     func updateService(
@@ -314,11 +179,6 @@ extension Clients {
     func listServiceLevelObjectives(
       request: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse
-
-    /// See `ServiceMonitoringServiceClient.listServiceLevelObjectives`.
-    func listServiceLevelObjectives(
-      byItem: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error>
 
     /// See `ServiceMonitoringServiceClient.updateServiceLevelObjective`.
     func updateServiceLevelObjective(
@@ -395,12 +255,17 @@ extension Clients.ServiceMonitoringServiceProtocol {
     self.listServices(byItem: byItem, options: .init())
   }
 
+  /// List `Service`s for this Metrics Scope.
+  ///
+  /// @Snippet(path: "ServiceMonitoringService_ListServices")
   public func listServices(
     byItem: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListServicesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
@@ -516,13 +381,18 @@ extension Clients.ServiceMonitoringServiceProtocol {
     self.listServiceLevelObjectives(byItem: byItem, options: .init())
   }
 
+  /// List the `ServiceLevelObjective`s for the given `Service`.
+  ///
+  /// @Snippet(path: "ServiceMonitoringService_ListServiceLevelObjectives")
   public func listServiceLevelObjectives(
     byItem: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listServiceLevelObjectives(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }

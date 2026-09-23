@@ -103,22 +103,6 @@
       try await self.inner.listDeploymentResourcePools(request: request, options: options)
     }
 
-    /// List DeploymentResourcePools in a location.
-    ///
-    /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
-    public func listDeploymentResourcePools(
-      byItem: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DeploymentResourcePool, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listDeploymentResourcePools(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Update a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
@@ -201,21 +185,6 @@
       try await self.inner.queryDeployedModels(request: request, options: options)
     }
 
-    /// List DeployedModels that have been deployed on this DeploymentResourcePool.
-    ///
-    /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
-    public func queryDeployedModels(
-      byItem: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DeployedModel, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.queryDeployedModels(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
@@ -223,21 +192,6 @@
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
       try await self.inner.listLocations(request: request, options: options)
-    }
-
-    /// Lists information about the supported locations for this service.
-    ///
-    /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listLocations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
     /// Gets information about a location.
@@ -302,23 +256,6 @@
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
-    /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.listOperations(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
-    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
-    ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
-    ///
     /// @Snippet(path: "DeploymentResourcePoolService_GetOperation")
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
@@ -366,11 +303,7 @@
     /// To mock `DeploymentResourcePoolServiceClient` change your functions to receive
     /// `some DeploymentResourcePoolServiceProtocol` or `any DeploymentResourcePoolServiceProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol DeploymentResourcePoolServiceProtocol {
-      /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
-      func createDeploymentResourcePool(request: CreateDeploymentResourcePoolRequest) async throws
-        -> GoogleLongRunning.Operation
-
+    public protocol DeploymentResourcePoolServiceProtocol: Sendable {
       /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
       func createDeploymentResourcePool(withPolling: CreateDeploymentResourcePoolRequest)
         async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
@@ -381,33 +314,6 @@
         deploymentResourcePool: DeploymentResourcePool?,
         deploymentResourcePoolId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-
-      /// See `DeploymentResourcePoolServiceClient.getDeploymentResourcePool`.
-      func getDeploymentResourcePool(request: GetDeploymentResourcePoolRequest) async throws
-        -> GoogleCloudAIPlatformV1.DeploymentResourcePool
-
-      /// See `DeploymentResourcePoolServiceClient.getDeploymentResourcePool`.
-      func getDeploymentResourcePool(
-        name: Swift.String,
-      ) async throws -> GoogleCloudAIPlatformV1.DeploymentResourcePool
-
-      /// See `DeploymentResourcePoolServiceClient.listDeploymentResourcePools`.
-      func listDeploymentResourcePools(request: ListDeploymentResourcePoolsRequest) async throws
-        -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listDeploymentResourcePools`.
-      func listDeploymentResourcePools(
-        byItem: ListDeploymentResourcePoolsRequest
-      ) -> any AsyncSequence<DeploymentResourcePool, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.listDeploymentResourcePools`.
-      func listDeploymentResourcePools(
-        parent: Swift.String,
-      ) -> any AsyncSequence<DeploymentResourcePool, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
-      func updateDeploymentResourcePool(request: UpdateDeploymentResourcePoolRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
       func updateDeploymentResourcePool(withPolling: UpdateDeploymentResourcePoolRequest)
@@ -420,10 +326,6 @@
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
-      func deleteDeploymentResourcePool(request: DeleteDeploymentResourcePoolRequest) async throws
-        -> GoogleLongRunning.Operation
-
-      /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
       func deleteDeploymentResourcePool(withPolling: DeleteDeploymentResourcePoolRequest)
         async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -431,78 +333,6 @@
       func deleteDeploymentResourcePool(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DeploymentResourcePoolServiceClient.queryDeployedModels`.
-      func queryDeployedModels(request: QueryDeployedModelsRequest) async throws
-        -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.queryDeployedModels`.
-      func queryDeployedModels(
-        byItem: QueryDeployedModelsRequest
-      ) -> any AsyncSequence<DeployedModel, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.queryDeployedModels`.
-      func queryDeployedModels(
-        deploymentResourcePool: Swift.String,
-      ) -> any AsyncSequence<DeployedModel, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.listLocations`.
-      func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
-        -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.getLocation`.
-      func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
-        -> GoogleCloudLocation.Location
-
-      /// See `DeploymentResourcePoolServiceClient.setIamPolicy`.
-      func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `DeploymentResourcePoolServiceClient.getIamPolicy`.
-      func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
-
-      /// See `DeploymentResourcePoolServiceClient.testIamPermissions`.
-      func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
-        -> GoogleIAMV1.TestIamPermissionsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listOperations`.
-      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
-        -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.listOperations`.
-      func listOperations(
-        name: Swift.String,
-        filter: Swift.String,
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
-
-      /// See `DeploymentResourcePoolServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
-
-      /// See `DeploymentResourcePoolServiceClient.deleteOperation`.
-      func deleteOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `DeploymentResourcePoolServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
-
-      /// See `DeploymentResourcePoolServiceClient.cancelOperation`.
-      func cancelOperation(
-        name: Swift.String,
-      ) async throws
-
-      /// See `DeploymentResourcePoolServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
-        -> GoogleLongRunning.Operation
 
       /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
       func createDeploymentResourcePool(
@@ -523,11 +353,6 @@
       func listDeploymentResourcePools(
         request: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listDeploymentResourcePools`.
-      func listDeploymentResourcePools(
-        byItem: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<DeploymentResourcePool, Swift.Error>
 
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
       func updateDeploymentResourcePool(
@@ -554,20 +379,10 @@
         request: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse
 
-      /// See `DeploymentResourcePoolServiceClient.queryDeployedModels`.
-      func queryDeployedModels(
-        byItem: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<DeployedModel, Swift.Error>
-
       /// See `DeploymentResourcePoolServiceClient.listLocations`.
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listLocations`.
-      func listLocations(
-        byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error>
 
       /// See `DeploymentResourcePoolServiceClient.getLocation`.
       func getLocation(
@@ -593,11 +408,6 @@
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse
-
-      /// See `DeploymentResourcePoolServiceClient.listOperations`.
-      func listOperations(
-        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DeploymentResourcePoolServiceClient.deleteOperation`.
       func deleteOperation(
@@ -699,13 +509,18 @@
       self.listDeploymentResourcePools(byItem: byItem, options: .init())
     }
 
+    /// List DeploymentResourcePools in a location.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
     public func listDeploymentResourcePools(
       byItem: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<DeploymentResourcePool, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listDeploymentResourcePools(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -814,12 +629,17 @@
       self.queryDeployedModels(byItem: byItem, options: .init())
     }
 
+    /// List DeployedModels that have been deployed on this DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
     public func queryDeployedModels(
       byItem: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<DeployedModel, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.queryDeployedModels(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -851,12 +671,17 @@
       self.listLocations(byItem: byItem, options: .init())
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
     public func listLocations(
       byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listLocations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -927,12 +752,19 @@
       self.listOperations(byItem: byItem, options: .init())
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
     public func listOperations(
       byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

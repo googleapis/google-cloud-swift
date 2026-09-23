@@ -54,25 +54,6 @@
       try await self.inner.aggregatedList(request: request, options: options)
     }
 
-    /// Retrieves an aggregated list of future reservations.
-    ///
-    /// To prevent failure, it is recommended that you set the
-    /// `returnPartialSuccess` parameter to `true`.
-    ///
-    /// @Snippet(path: "futureReservations_aggregatedList")
-    public func aggregatedList(
-      byItem: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws
-          -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.aggregatedList(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Cancel the specified future reservation.
     ///
     /// @Snippet(path: "futureReservations_cancel")
@@ -239,22 +220,6 @@
       try await self.inner.list(request: request, options: options)
     }
 
-    /// A list of all the future reservations that have been configured for the
-    /// specified project in specified zone.
-    ///
-    /// @Snippet(path: "futureReservations_list")
-    public func list(
-      byItem: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FutureReservation, Swift.Error> {
-      let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.FutureReservationsListResponse in
-        var request = byItem
-        request.pageToken = token
-        return try await self.list(request: request, options: options)
-      }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-    }
-
     /// Updates the specified future reservation.
     ///
     /// @Snippet(path: "futureReservations_update")
@@ -320,72 +285,11 @@
     /// To mock `FutureReservationsClient` change your functions to receive
     /// `some FutureReservationsProtocol` or `any FutureReservationsProtocol`
     /// and pass a mock implementation in your tests.
-    public protocol FutureReservationsProtocol {
-      /// See `FutureReservationsClient.aggregatedList`.
-      func aggregatedList(request: FutureReservationsClient.AggregatedListRequest) async throws
-        -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse
-
-      /// See `FutureReservationsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: FutureReservationsClient.AggregatedListRequest
-      ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
-
-      /// See `FutureReservationsClient.aggregatedList`.
-      func aggregatedList(
-        project: Swift.String,
-      ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
-
-      /// See `FutureReservationsClient.cancel`.
-      func cancel(request: FutureReservationsClient.CancelRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `FutureReservationsClient.delete`.
-      func delete(request: FutureReservationsClient.DeleteRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `FutureReservationsClient.`get``.
-      func `get`(request: FutureReservationsClient.GetRequest) async throws
-        -> GoogleCloudComputeV1.FutureReservation
-
-      /// See `FutureReservationsClient.`get``.
-      func `get`(
-        project: Swift.String,
-        zone: Swift.String,
-        futureReservation: Swift.String,
-      ) async throws -> GoogleCloudComputeV1.FutureReservation
-
-      /// See `FutureReservationsClient.insert`.
-      func insert(request: FutureReservationsClient.InsertRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
-      /// See `FutureReservationsClient.list`.
-      func list(request: FutureReservationsClient.ListRequest) async throws
-        -> GoogleCloudComputeV1.FutureReservationsListResponse
-
-      /// See `FutureReservationsClient.list`.
-      func list(
-        byItem: FutureReservationsClient.ListRequest
-      ) -> any AsyncSequence<FutureReservation, Swift.Error>
-
-      /// See `FutureReservationsClient.list`.
-      func list(
-        project: Swift.String,
-        zone: Swift.String,
-      ) -> any AsyncSequence<FutureReservation, Swift.Error>
-
-      /// See `FutureReservationsClient.update`.
-      func update(request: FutureReservationsClient.UpdateRequest) async throws
-        -> GoogleCloudComputeV1.Operation
-
+    public protocol FutureReservationsProtocol: Sendable {
       /// See `FutureReservationsClient.aggregatedList`.
       func aggregatedList(
         request: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse
-
-      /// See `FutureReservationsClient.aggregatedList`.
-      func aggregatedList(
-        byItem: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error>
 
       /// See `FutureReservationsClient.cancel`.
       func cancel(
@@ -411,11 +315,6 @@
       func list(
         request: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FutureReservationsListResponse
-
-      /// See `FutureReservationsClient.list`.
-      func list(
-        byItem: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-      ) -> any AsyncSequence<FutureReservation, Swift.Error>
 
       /// See `FutureReservationsClient.update`.
       func update(
@@ -444,13 +343,21 @@
       self.aggregatedList(byItem: byItem, options: .init())
     }
 
+    /// Retrieves an aggregated list of future reservations.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "futureReservations_aggregatedList")
     public func aggregatedList(
       byItem: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
@@ -633,12 +540,18 @@
       self.list(byItem: byItem, options: .init())
     }
 
+    /// A list of all the future reservations that have been configured for the
+    /// specified project in specified zone.
+    ///
+    /// @Snippet(path: "futureReservations_list")
     public func list(
       byItem: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<FutureReservation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.FutureReservationsListResponse in
-        throw GoogleGax.RequestError.unimplemented
+        var request = byItem
+        request.pageToken = token
+        return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }

@@ -95,22 +95,6 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
     try await self.inner.listIdentityAwareProxyClients(request: request, options: options)
   }
 
-  /// Lists the existing clients for the brand.
-  ///
-  /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
-  public func listIdentityAwareProxyClients(
-    byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
-    let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
-      in
-      var request = byItem
-      request.pageToken = token
-      return try await self.listIdentityAwareProxyClients(request: request, options: options)
-    }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
-  }
-
   /// Retrieves an Identity Aware Proxy (IAP) OAuth client.
   /// Requires that the client is owned by IAP.
   ///
@@ -149,40 +133,7 @@ extension Clients {
   /// To mock `IdentityAwareProxyOAuthServiceClient` change your functions to receive
   /// `some IdentityAwareProxyOAuthServiceProtocol` or `any IdentityAwareProxyOAuthServiceProtocol`
   /// and pass a mock implementation in your tests.
-  public protocol IdentityAwareProxyOAuthServiceProtocol {
-    /// See `IdentityAwareProxyOAuthServiceClient.listBrands`.
-    func listBrands(request: ListBrandsRequest) async throws -> GoogleCloudIAPV1.ListBrandsResponse
-
-    /// See `IdentityAwareProxyOAuthServiceClient.createBrand`.
-    func createBrand(request: CreateBrandRequest) async throws -> GoogleCloudIAPV1.Brand
-
-    /// See `IdentityAwareProxyOAuthServiceClient.getBrand`.
-    func getBrand(request: GetBrandRequest) async throws -> GoogleCloudIAPV1.Brand
-
-    /// See `IdentityAwareProxyOAuthServiceClient.createIdentityAwareProxyClient`.
-    func createIdentityAwareProxyClient(request: CreateIdentityAwareProxyClientRequest) async throws
-      -> GoogleCloudIAPV1.IdentityAwareProxyClient
-
-    /// See `IdentityAwareProxyOAuthServiceClient.listIdentityAwareProxyClients`.
-    func listIdentityAwareProxyClients(request: ListIdentityAwareProxyClientsRequest) async throws
-      -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
-
-    /// See `IdentityAwareProxyOAuthServiceClient.listIdentityAwareProxyClients`.
-    func listIdentityAwareProxyClients(
-      byItem: ListIdentityAwareProxyClientsRequest
-    ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error>
-
-    /// See `IdentityAwareProxyOAuthServiceClient.getIdentityAwareProxyClient`.
-    func getIdentityAwareProxyClient(request: GetIdentityAwareProxyClientRequest) async throws
-      -> GoogleCloudIAPV1.IdentityAwareProxyClient
-
-    /// See `IdentityAwareProxyOAuthServiceClient.resetIdentityAwareProxyClientSecret`.
-    func resetIdentityAwareProxyClientSecret(request: ResetIdentityAwareProxyClientSecretRequest)
-      async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient
-
-    /// See `IdentityAwareProxyOAuthServiceClient.deleteIdentityAwareProxyClient`.
-    func deleteIdentityAwareProxyClient(request: DeleteIdentityAwareProxyClientRequest) async throws
-
+  public protocol IdentityAwareProxyOAuthServiceProtocol: Sendable {
     /// See `IdentityAwareProxyOAuthServiceClient.listBrands`.
     func listBrands(
       request: ListBrandsRequest, options: GoogleGax.RequestOptions
@@ -207,11 +158,6 @@ extension Clients {
     func listIdentityAwareProxyClients(
       request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
-
-    /// See `IdentityAwareProxyOAuthServiceClient.listIdentityAwareProxyClients`.
-    func listIdentityAwareProxyClients(
-      byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error>
 
     /// See `IdentityAwareProxyOAuthServiceClient.getIdentityAwareProxyClient`.
     func getIdentityAwareProxyClient(
@@ -294,13 +240,18 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     self.listIdentityAwareProxyClients(byItem: byItem, options: .init())
   }
 
+  /// Lists the existing clients for the brand.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
   public func listIdentityAwareProxyClients(
     byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
       in
-      throw GoogleGax.RequestError.unimplemented
+      var request = byItem
+      request.pageToken = token
+      return try await self.listIdentityAwareProxyClients(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
