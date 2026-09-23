@@ -253,7 +253,7 @@ private func updateSecret(
       task: task
     )
   }
-  let items = try client.listSecretVersions(
+  let items = client.listSecretVersions(
     byItem: .init().with { $0.parent = secret },
     options: listOptions
   )
@@ -308,7 +308,7 @@ private func getEnduranceSecrets(
       task: "main"
     )
   }
-  let items = try client.listSecrets(
+  let items = client.listSecrets(
     byItem: .init().with { $0.parent = "projects/\(projectId)" },
     options: options
   )

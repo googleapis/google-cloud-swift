@@ -52,7 +52,7 @@ struct StorageControlClientIntegrationTests: Sendable {
 
     do {
       // List objects with prefix via streaming AsyncSequence
-      let sequence = try controlClient.listObjects(
+      let sequence = controlClient.listObjects(
         byItem: ListObjectsRequest().with {
           $0.parent = bucketResource
           $0.prefix = uniquePrefix
@@ -128,7 +128,7 @@ struct StorageControlClientIntegrationTests: Sendable {
       #expect(!firstPage.nextPageToken.isEmpty)
 
       // Paginated AsyncSequence iteration over all matching items
-      let sequence = try controlClient.listObjects(
+      let sequence = controlClient.listObjects(
         byItem: ListObjectsRequest().with {
           $0.parent = bucketResource
           $0.prefix = uniquePrefix

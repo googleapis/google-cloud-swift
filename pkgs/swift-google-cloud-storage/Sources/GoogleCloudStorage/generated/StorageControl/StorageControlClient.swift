@@ -165,7 +165,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
   public func listBuckets(
     byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Bucket, Swift.Error> {
+  ) -> any AsyncSequence<Bucket, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListBucketsResponse in
       var request = byItem
       request.pageToken = token
@@ -353,7 +353,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// have the `storage.objects.getIamPolicy` permission.
   public func listObjects(
     byItem: ListObjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Object, Swift.Error> {
+  ) -> any AsyncSequence<Object, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListObjectsResponse in
       var request = byItem
       request.pageToken = token
@@ -426,7 +426,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// hierarchical namespace enabled bucket.
   public func listFolders(
     byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
       var request = byItem
       request.pageToken = token
@@ -542,7 +542,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Retrieves a list of managed folders for a given bucket.
   public func listManagedFolders(
     byItem: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error> {
+  ) -> any AsyncSequence<ManagedFolder, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListManagedFoldersResponse in
       var request = byItem
       request.pageToken = token
@@ -664,7 +664,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Lists Anywhere Cache instances for a given bucket.
   public func listAnywhereCaches(
     byItem: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error> {
+  ) -> any AsyncSequence<AnywhereCache, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListAnywhereCachesResponse in
       var request = byItem
       request.pageToken = token
@@ -783,7 +783,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Lists Rapid Cache instances for a given bucket.
   public func listRapidCaches(
     byItem: ListRapidCachesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RapidCache, Swift.Error> {
+  ) -> any AsyncSequence<RapidCache, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListRapidCachesResponse in
       var request = byItem
       request.pageToken = token
@@ -886,7 +886,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Lists the `IntelligenceFinding` resources for the specified the project.
   public func listIntelligenceFindings(
     byItem: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
+  ) -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListIntelligenceFindingsResponse in
       var request = byItem
       request.pageToken = token
@@ -907,7 +907,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// folder or project).
   public func summarizeIntelligenceFindings(
     byItem: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> SummarizeIntelligenceFindingsResponse in
       var request = byItem
       request.pageToken = token
@@ -933,7 +933,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Lists all the revisions of an `IntelligenceFinding` resource.
   public func listIntelligenceFindingRevisions(
     byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
+  ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> ListIntelligenceFindingRevisionsResponse in
       var request = byItem

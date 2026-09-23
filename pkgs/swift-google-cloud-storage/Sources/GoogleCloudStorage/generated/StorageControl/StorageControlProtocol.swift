@@ -173,7 +173,7 @@ public protocol StorageControlProtocol {
   /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
   func listBuckets(
     byItem: ListBucketsRequest
-  ) throws -> any AsyncSequence<Bucket, Swift.Error>
+  ) -> any AsyncSequence<Bucket, Swift.Error>
 
   /// Retrieves a list of buckets for a given project, ordered
   /// lexicographically by name.
@@ -188,7 +188,7 @@ public protocol StorageControlProtocol {
   /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
   func listBuckets(
     byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Bucket, Swift.Error>
+  ) -> any AsyncSequence<Bucket, Swift.Error>
 
   /// Permanently locks the retention
   /// policy that is
@@ -490,7 +490,7 @@ public protocol StorageControlProtocol {
   /// have the `storage.objects.getIamPolicy` permission.
   func listObjects(
     byItem: ListObjectsRequest
-  ) throws -> any AsyncSequence<Object, Swift.Error>
+  ) -> any AsyncSequence<Object, Swift.Error>
 
   /// Retrieves a list of objects matching the criteria.
   ///
@@ -502,7 +502,7 @@ public protocol StorageControlProtocol {
   /// have the `storage.objects.getIamPolicy` permission.
   func listObjects(
     byItem: ListObjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Object, Swift.Error>
+  ) -> any AsyncSequence<Object, Swift.Error>
 
   /// Rewrites a source object to a destination object. Optionally overrides
   /// metadata.
@@ -592,13 +592,13 @@ public protocol StorageControlProtocol {
   /// hierarchical namespace enabled bucket.
   func listFolders(
     byItem: ListFoldersRequest
-  ) throws -> any AsyncSequence<Folder, Swift.Error>
+  ) -> any AsyncSequence<Folder, Swift.Error>
 
   /// Retrieves a list of folders. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
   func listFolders(
     byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error>
+  ) -> any AsyncSequence<Folder, Swift.Error>
 
   /// Renames a source folder to a destination folder. This operation is only
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
@@ -695,12 +695,12 @@ public protocol StorageControlProtocol {
   /// Retrieves a list of managed folders for a given bucket.
   func listManagedFolders(
     byItem: ListManagedFoldersRequest
-  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error>
+  ) -> any AsyncSequence<ManagedFolder, Swift.Error>
 
   /// Retrieves a list of managed folders for a given bucket.
   func listManagedFolders(
     byItem: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error>
+  ) -> any AsyncSequence<ManagedFolder, Swift.Error>
 
   /// Updates a managed folder. Currently, this RPC only supports updating the
   /// `rapid_cache_config` field.
@@ -802,12 +802,12 @@ public protocol StorageControlProtocol {
   /// Lists Anywhere Cache instances for a given bucket.
   func listAnywhereCaches(
     byItem: ListAnywhereCachesRequest
-  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error>
+  ) -> any AsyncSequence<AnywhereCache, Swift.Error>
 
   /// Lists Anywhere Cache instances for a given bucket.
   func listAnywhereCaches(
     byItem: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error>
+  ) -> any AsyncSequence<AnywhereCache, Swift.Error>
 
   /// Creates a Rapid Cache instance.
   func createRapidCache(request: CreateRapidCacheRequest) async throws
@@ -882,12 +882,12 @@ public protocol StorageControlProtocol {
   /// Lists Rapid Cache instances for a given bucket.
   func listRapidCaches(
     byItem: ListRapidCachesRequest
-  ) throws -> any AsyncSequence<RapidCache, Swift.Error>
+  ) -> any AsyncSequence<RapidCache, Swift.Error>
 
   /// Lists Rapid Cache instances for a given bucket.
   func listRapidCaches(
     byItem: ListRapidCachesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RapidCache, Swift.Error>
+  ) -> any AsyncSequence<RapidCache, Swift.Error>
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
   func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest) async throws
@@ -1017,12 +1017,12 @@ public protocol StorageControlProtocol {
   /// Lists the `IntelligenceFinding` resources for the specified the project.
   func listIntelligenceFindings(
     byItem: ListIntelligenceFindingsRequest
-  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error>
+  ) -> any AsyncSequence<IntelligenceFinding, Swift.Error>
 
   /// Lists the `IntelligenceFinding` resources for the specified the project.
   func listIntelligenceFindings(
     byItem: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error>
+  ) -> any AsyncSequence<IntelligenceFinding, Swift.Error>
 
   /// Summarizes the intelligence findings for the specified scope (organization,
   /// folder or project).
@@ -1039,13 +1039,13 @@ public protocol StorageControlProtocol {
   /// folder or project).
   func summarizeIntelligenceFindings(
     byItem: SummarizeIntelligenceFindingsRequest
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+  ) -> any AsyncSequence<FindingSummary, Swift.Error>
 
   /// Summarizes the intelligence findings for the specified scope (organization,
   /// folder or project).
   func summarizeIntelligenceFindings(
     byItem: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+  ) -> any AsyncSequence<FindingSummary, Swift.Error>
 
   /// Gets the `IntelligenceFindingRevision` resource.
   func getIntelligenceFindingRevision(request: GetIntelligenceFindingRevisionRequest) async throws
@@ -1068,12 +1068,12 @@ public protocol StorageControlProtocol {
   /// Lists all the revisions of an `IntelligenceFinding` resource.
   func listIntelligenceFindingRevisions(
     byItem: ListIntelligenceFindingRevisionsRequest
-  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
+  ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
 
   /// Lists all the revisions of an `IntelligenceFinding` resource.
   func listIntelligenceFindingRevisions(
     byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
+  ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
 
   /// Retrieves the full content of an object context, including its key, value,
   /// and any associated extended data for a given context key.
@@ -1161,13 +1161,13 @@ extension StorageControlProtocol {
 
   public func listBuckets(
     byItem: ListBucketsRequest
-  ) throws -> any AsyncSequence<Bucket, Swift.Error> {
-    try self.listBuckets(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Bucket, Swift.Error> {
+    self.listBuckets(byItem: byItem, options: .init())
   }
 
   public func listBuckets(
     byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Bucket, Swift.Error> {
+  ) -> any AsyncSequence<Bucket, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListBucketsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1258,13 +1258,13 @@ extension StorageControlProtocol {
 
   public func listObjects(
     byItem: ListObjectsRequest
-  ) throws -> any AsyncSequence<Object, Swift.Error> {
-    try self.listObjects(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Object, Swift.Error> {
+    self.listObjects(byItem: byItem, options: .init())
   }
 
   public func listObjects(
     byItem: ListObjectsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Object, Swift.Error> {
+  ) -> any AsyncSequence<Object, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListObjectsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1333,13 +1333,13 @@ extension StorageControlProtocol {
 
   public func listFolders(
     byItem: ListFoldersRequest
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
-    try self.listFolders(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<Folder, Swift.Error> {
+    self.listFolders(byItem: byItem, options: .init())
   }
 
   public func listFolders(
     byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1456,13 +1456,13 @@ extension StorageControlProtocol {
 
   public func listManagedFolders(
     byItem: ListManagedFoldersRequest
-  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error> {
-    try self.listManagedFolders(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<ManagedFolder, Swift.Error> {
+    self.listManagedFolders(byItem: byItem, options: .init())
   }
 
   public func listManagedFolders(
     byItem: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error> {
+  ) -> any AsyncSequence<ManagedFolder, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListManagedFoldersResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1593,13 +1593,13 @@ extension StorageControlProtocol {
 
   public func listAnywhereCaches(
     byItem: ListAnywhereCachesRequest
-  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error> {
-    try self.listAnywhereCaches(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<AnywhereCache, Swift.Error> {
+    self.listAnywhereCaches(byItem: byItem, options: .init())
   }
 
   public func listAnywhereCaches(
     byItem: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error> {
+  ) -> any AsyncSequence<AnywhereCache, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListAnywhereCachesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1714,13 +1714,13 @@ extension StorageControlProtocol {
 
   public func listRapidCaches(
     byItem: ListRapidCachesRequest
-  ) throws -> any AsyncSequence<RapidCache, Swift.Error> {
-    try self.listRapidCaches(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<RapidCache, Swift.Error> {
+    self.listRapidCaches(byItem: byItem, options: .init())
   }
 
   public func listRapidCaches(
     byItem: ListRapidCachesRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<RapidCache, Swift.Error> {
+  ) -> any AsyncSequence<RapidCache, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListRapidCachesResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1861,13 +1861,13 @@ extension StorageControlProtocol {
 
   public func listIntelligenceFindings(
     byItem: ListIntelligenceFindingsRequest
-  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
-    try self.listIntelligenceFindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
+    self.listIntelligenceFindings(byItem: byItem, options: .init())
   }
 
   public func listIntelligenceFindings(
     byItem: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
+  ) -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListIntelligenceFindingsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1888,13 +1888,13 @@ extension StorageControlProtocol {
 
   public func summarizeIntelligenceFindings(
     byItem: SummarizeIntelligenceFindingsRequest
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
-    try self.summarizeIntelligenceFindings(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
+    self.summarizeIntelligenceFindings(byItem: byItem, options: .init())
   }
 
   public func summarizeIntelligenceFindings(
     byItem: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+  ) -> any AsyncSequence<FindingSummary, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> SummarizeIntelligenceFindingsResponse in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -1927,13 +1927,13 @@ extension StorageControlProtocol {
 
   public func listIntelligenceFindingRevisions(
     byItem: ListIntelligenceFindingRevisionsRequest
-  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
-    try self.listIntelligenceFindingRevisions(byItem: byItem, options: .init())
+  ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
+    self.listIntelligenceFindingRevisions(byItem: byItem, options: .init())
   }
 
   public func listIntelligenceFindingRevisions(
     byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
-  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
+  ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> ListIntelligenceFindingRevisionsResponse in
       throw GoogleGax.RequestError.unimplemented

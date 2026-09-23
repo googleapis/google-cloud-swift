@@ -144,12 +144,12 @@ two ways to call paginated APIs:
 
 - **Single-page RPC:** Calling `listSecrets(request:options:) async throws -> ListSecretsResponse`
   fetches a single page of results and includes the `nextPageToken`.
-- **Item stream:** Calling `listSecrets(byItem:options:) throws -> any AsyncSequence<Secret, Swift.Error>`
+- **Item stream:** Calling `listSecrets(byItem:options:) -> any AsyncSequence<Secret, Swift.Error>`
   returns an asynchronous sequence that yields individual items across pages.
 
 ```swift
 // Iterate over items directly across all pages
-let stream = try client.listSecrets(
+let stream = client.listSecrets(
     byItem: .init().with { $0.parent = "projects/my-project" }
 )
 for try await secret in stream {
@@ -213,7 +213,7 @@ cases:
   let secret = try await client.getSecret(name: "projects/my-project/secrets/my-secret")
 
   // Stream items using just the parent resource name
-  for try await secret in try client.listSecrets(parent: "projects/my-project") {
+  for try await secret in client.listSecrets(parent: "projects/my-project") {
       print("Found secret: \(secret.name)")
   }
 

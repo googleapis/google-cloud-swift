@@ -18,7 +18,7 @@ import GoogleCloudStorage
 public func listObjectContexts(
   client: StorageControlClient, bucketId: String
 ) async throws {
-  let objects = try client.listObjects(
+  let objects = client.listObjects(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.filter = "contexts.\"example\":*"

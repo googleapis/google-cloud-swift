@@ -23,7 +23,7 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: SecretManagerServiceClient, projectId: String, secretId: String) async throws {
-  let items = try client.listSecretVersions(
+  let items = client.listSecretVersions(
     byItem: ListSecretVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/secrets/\(secretId)"

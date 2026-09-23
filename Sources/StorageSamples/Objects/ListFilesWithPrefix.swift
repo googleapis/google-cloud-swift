@@ -19,7 +19,7 @@ public func listFilesWithPrefix(
   client: StorageControlClient, bucketId: String
 ) async throws {
   let prefix = "prefixes/are-not-always/folders-"
-  let objects = try client.listObjects(
+  let objects = client.listObjects(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.prefix = prefix

@@ -18,7 +18,7 @@ import GoogleCloudStorage
 public func listFiles(
   client: StorageControlClient, bucketId: String
 ) async throws {
-  let objects = try client.listObjects(
+  let objects = client.listObjects(
     byItem: .init().with { $0.parent = "projects/_/buckets/\(bucketId)" }
   )
   print("listing objects in bucket \(bucketId)")

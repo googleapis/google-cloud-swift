@@ -109,7 +109,7 @@ public enum GlobalEndpoint {
     logger.info("update = \(update)")
 
     logger.info("\nTesting listSecrets()")
-    let secrets = try client.listSecrets(
+    let secrets = client.listSecrets(
       byItem: .init().with { $0.parent = "projects/\(projectId)" },
       options: retryOptions
     )
@@ -218,7 +218,7 @@ public enum GlobalEndpoint {
     logger.info("enabledVersion state = \(enabledVersion.state)")
 
     logger.info("\nTesting listSecretVersions()")
-    let versions = try client.listSecretVersions(
+    let versions = client.listSecretVersions(
       byItem: .init().with { $0.parent = secretName },
       options: retryOptions
     )
@@ -322,7 +322,7 @@ public enum GlobalEndpoint {
     logger.info("Testing listLocations()")
     var count: Int64 = 0
     var first: Location? = nil
-    let locations = try client.listLocations(
+    let locations = client.listLocations(
       byItem: .init().with { $0.name = "projects/\(projectId)" },
       options: retryOptions
     )

@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudSecretManagerV1.SecretManagerServiceClient()
-  let items = try client.listSecrets(
+  let items = client.listSecrets(
     byItem: ListSecretsRequest()
       .with {
         $0.parent = "projects/\(projectId)"

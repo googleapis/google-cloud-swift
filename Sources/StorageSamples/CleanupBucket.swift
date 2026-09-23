@@ -26,7 +26,7 @@ public func cleanupStaleTestBuckets(client: StorageControlClient, projectId: Str
   var requesterNames: [String] = []
   do {
     let deadline = Int(Date().timeIntervalSince1970) - maxStaleness
-    let buckets = try client.listBuckets(
+    let buckets = client.listBuckets(
       byItem: .init().with { $0.parent = "projects/\(projectId)" })
     for try await b in buckets {
       guard let v = b.labels[integrationTestMark], v == "true" else {
@@ -130,7 +130,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
         continue
       }
 
-      let objects = try client.listObjects(
+      let objects = client.listObjects(
         byItem: .init().with { $0.parent = bucket.name })
       for try await o in objects {
         try await client.deleteObject(
@@ -141,7 +141,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
           }, options: .init().with { $0.idempotency = true })
       }
 
-      let caches = try client.listAnywhereCaches(
+      let caches = client.listAnywhereCaches(
         byItem: .init().with { $0.parent = bucket.name })
       for try await c in caches {
         let _ = try await client.disableAnywhereCache(
@@ -154,7 +154,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
         continue
       }
 
-      let folders = try client.listManagedFolders(
+      let folders = client.listManagedFolders(
         byItem: .init().with { $0.parent = bucket.name })
       for try await f in folders {
         try await client.deleteFolder(
