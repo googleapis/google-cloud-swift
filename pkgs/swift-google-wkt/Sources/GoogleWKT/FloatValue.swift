@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Wrapper message for float.
 ///
 /// The JSON representation for FloatValue is JSON number.
@@ -38,7 +36,7 @@ extension Swift.Float: _AnyPackable {
   }
 
   public func _pack() throws -> Struct {
-    let rounded = Double(String(format: "%g", self)) ?? Double(self)
+    let rounded = Double(String(self)) ?? Double(self)
     return [`Any`.valueField: Value(number: rounded)]
   }
 }

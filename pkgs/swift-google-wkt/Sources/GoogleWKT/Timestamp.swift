@@ -310,8 +310,8 @@ public struct Timestamp: Codable, Equatable, Sendable {
     let minute = Int((seconds % secondsPerHour) / secondsPerMinute)
     let second = Int(seconds % secondsPerMinute)
 
-    let formatted = String(
-      format: "%04d-%02d-%02dT%02d:%02d:%02d", year, month, day, hour, minute, second)
+    let formatted =
+      "\(year.formatted(fourDigitStyle))-\(month.formatted(twoDigitStyle))-\(day.formatted(twoDigitStyle))T\(hour.formatted(twoDigitStyle)):\(minute.formatted(twoDigitStyle)):\(second.formatted(twoDigitStyle))"
     if self.nanos == 0 {
       return "\(formatted)Z"
     }
@@ -319,6 +319,14 @@ public struct Timestamp: Codable, Equatable, Sendable {
     return "\(formatted).\(frac)Z"
   }
 }
+
+private let fourDigitStyle = IntegerFormatStyle<Int>(locale: Locale(identifier: "en_US_POSIX"))
+  .grouping(.never)
+  .precision(.integerLength(4))
+
+private let twoDigitStyle = IntegerFormatStyle<Int>(locale: Locale(identifier: "en_US_POSIX"))
+  .grouping(.never)
+  .precision(.integerLength(2))
 
 // Makes `Timestamp` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `Any`.
 extension Timestamp: _AnyPackable {

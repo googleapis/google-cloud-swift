@@ -99,9 +99,20 @@ import Testing
     #expect(error == .mismatchedTypeUrl)
   }
 
-  @Test("Pack FloatValue into Any")
-  func floatValueAnyPack() throws {
-    let input = FloatValue(123.45)
+  @Test(
+    "Pack FloatValue into Any",
+    arguments: [
+      (
+        FloatValue(123.45),
+        #"{"content":{"@type":"type.googleapis.com/google.protobuf.FloatValue","value":123.45}}"#
+      ),
+      (
+        FloatValue(123456.75),
+        #"{"content":{"@type":"type.googleapis.com/google.protobuf.FloatValue","value":123456.75}}"#
+      ),
+    ]
+  )
+  func floatValueAnyPack(input: FloatValue, want: String) throws {
     let any = try `Any`(fromMessage: input)
     let wrapped = FloatValueTests.WrappedAny(content: any)
     let encoder = _ProtoJSONEncoder()
@@ -109,8 +120,6 @@ import Testing
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
 
-    let want =
-      #"{"content":{"@type":"type.googleapis.com/google.protobuf.FloatValue","value":123.45}}"#
     #expect(got == want)
   }
 }

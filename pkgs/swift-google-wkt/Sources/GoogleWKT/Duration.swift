@@ -89,13 +89,11 @@ public struct Duration: Codable, Equatable, Sendable {
       return String("\(seconds)s")
     }
     if seconds < 0 || (seconds == 0 && nanos < 0) {
-      let secondsStr = String(format: "%lld", abs(seconds))
       let nanosStr = formatNanos(nanos: abs(nanos))
-      return String("-\(secondsStr).\(nanosStr)s")
+      return "-\(abs(seconds)).\(nanosStr)s"
     }
-    let secondsStr = String(format: "%lld", seconds)
     let nanosStr = formatNanos(nanos: nanos)
-    return String("\(secondsStr).\(nanosStr)s")
+    return "\(seconds).\(nanosStr)s"
   }
 
   static func fromString(string: String) throws -> Self {
@@ -135,8 +133,12 @@ public struct Duration: Codable, Equatable, Sendable {
   }
 }
 
+private let nanosFormatStyle = IntegerFormatStyle<Int64>(locale: Locale(identifier: "en_US_POSIX"))
+  .grouping(.never)
+  .precision(.integerLength(9))
+
 func formatNanos(nanos: Int64) -> String {
-  var result = String(format: "%09d", nanos)
+  var result = nanos.formatted(nanosFormatStyle)
   // ProtoJSON requires either millisecond, microsecond, or nanosecond precision.
   if result.hasSuffix("000") {
     result.removeLast(3)
