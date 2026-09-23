@@ -83,7 +83,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.serviceDefinition = serviceDefinition
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -120,13 +120,13 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. The time to wait for route updates to propagate. The maximum
     /// configurable time is 3 hours, in seconds format. If unspecified, there is
     /// no wait time.
-    public var routeUpdateWaitTime: GoogleWKT.Duration? = nil
+    public var routeUpdateWaitTime: GoogleWKT.WKTDuration? = nil
 
     /// Optional. The amount of time to migrate traffic back from the canary
     /// Service to the original Service during the stable phase deployment. If
     /// specified, must be between 15s and 3600s. If unspecified, there is no
     /// cutback time.
-    public var stableCutbackDuration: GoogleWKT.Duration? = nil
+    public var stableCutbackDuration: GoogleWKT.WKTDuration? = nil
 
     /// Optional. The label to use when selecting Pods for the Deployment and
     /// Service resources. This label must already be present in both resources.
@@ -194,9 +194,9 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.deployment = value
       }
       self.routeUpdateWaitTime = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .routeUpdateWaitTime)
+        GoogleWKT.WKTDuration.self, forKey: .routeUpdateWaitTime)
       self.stableCutbackDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .stableCutbackDuration)
+        GoogleWKT.WKTDuration.self, forKey: .stableCutbackDuration)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podSelectorLabel) {
         self.podSelectorLabel = value
       }
@@ -204,7 +204,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         KubernetesConfig.GatewayServiceMesh.RouteDestinations.self, forKey: .routeDestinations)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -282,7 +282,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -299,10 +299,10 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -310,10 +310,10 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -394,7 +394,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -412,10 +412,10 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -431,10 +431,10 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

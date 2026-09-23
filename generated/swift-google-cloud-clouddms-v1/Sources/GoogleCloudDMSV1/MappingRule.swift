@@ -49,7 +49,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var revisionId: Swift.String = Swift.String()
 
   /// Output only. The timestamp that the revision was created.
-  public var revisionCreateTime: GoogleWKT.Timestamp? = nil
+  public var revisionCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The rule specific details.
   public var details: OneOf_Details? = nil
@@ -143,7 +143,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.revisionId = value
     }
     self.revisionCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .revisionCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .revisionCreateTime)
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -211,7 +211,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
     self.details = details
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -417,10 +417,10 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.MappingRule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

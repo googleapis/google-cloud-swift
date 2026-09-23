@@ -23,7 +23,7 @@ public struct PerformanceSample: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Time the sample was collected.
   /// If omitted, the frame report time will be used.
-  public var sampleTime: GoogleWKT.Timestamp? = nil
+  public var sampleTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Memory usage sample.
   public var memory: MemoryUsageSample? = nil
@@ -78,14 +78,15 @@ public struct PerformanceSample: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sampleTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .sampleTime)
+    self.sampleTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .sampleTime)
     self.memory = try container.decodeIfPresent(MemoryUsageSample.self, forKey: .memory)
     self.cpu = try container.decodeIfPresent(CpuUsageSample.self, forKey: .cpu)
     self.network = try container.decodeIfPresent(NetworkUsageSample.self, forKey: .network)
     self.disk = try container.decodeIfPresent(DiskUsageSample.self, forKey: .disk)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -104,10 +105,10 @@ public struct PerformanceSample: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.PerformanceSample"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -83,7 +83,7 @@
 
     /// Optional. Output only. Timestamp in UTC of when the instance associated
     /// with this backup is deleted.
-    public var instanceDeletionTime: GoogleWKT.Timestamp? = nil
+    public var instanceDeletionTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. Output only. The instance setting of the source instance that's
     /// associated with this backup.
@@ -95,12 +95,12 @@
     /// Output only. This status indicates whether the backup satisfies PZS.
     ///
     /// The status is reserved for future use.
-    public var satisfiesPzs: GoogleWKT.BoolValue? = nil
+    public var satisfiesPzs: GoogleWKT.WKTBoolValue? = nil
 
     /// Output only. This status indicates whether the backup satisfies PZI.
     ///
     /// The status is reserved for future use.
-    public var satisfiesPzi: GoogleWKT.BoolValue? = nil
+    public var satisfiesPzi: GoogleWKT.WKTBoolValue? = nil
 
     public var expiration: OneOf_Expiration? = nil
 
@@ -228,16 +228,16 @@
       self.maxChargeableBytes = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .maxChargeableBytes)
       self.instanceDeletionTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .instanceDeletionTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .instanceDeletionTime)
       self.instanceSettings = try container.decodeIfPresent(
         DatabaseInstance.self, forKey: .instanceSettings)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRun) {
         self.backupRun = value
       }
       self.satisfiesPzs = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .satisfiesPzs)
+        GoogleWKT.WKTBoolValue.self, forKey: .satisfiesPzs)
       self.satisfiesPzi = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .satisfiesPzi)
+        GoogleWKT.WKTBoolValue.self, forKey: .satisfiesPzi)
 
       var expiration: OneOf_Expiration? = nil
       let expirationCheckAndSet = {
@@ -253,14 +253,14 @@
         try expirationCheckAndSet(.ttlDays(ttlDays))
       }
       if let expiryTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp?.self, forKey: .expiryTime)
+        GoogleWKT.WKTTimestamp?.self, forKey: .expiryTime)
       {
         try expirationCheckAndSet(.expiryTime(expiryTime))
       }
       self.expiration = expiration
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -578,16 +578,16 @@
       case ttlDays(Swift.Int64)
       /// Backup expiration time.
       /// A UTC timestamp of when this backup expired.
-      indirect case expiryTime(GoogleWKT.Timestamp?)
+      indirect case expiryTime(GoogleWKT.WKTTimestamp?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Backup"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -986,7 +986,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateBackupPlan`.
     func updateBackupPlan(
       backupPlan: BackupPlan?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BackupPlan>
 
     /// See `BackupForGKEClient.deleteBackupPlan`.
@@ -1016,7 +1016,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateBackupChannel`.
     func updateBackupChannel(
       backupChannel: BackupChannel?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BackupChannel>
 
     /// See `BackupForGKEClient.deleteBackupChannel`.
@@ -1046,7 +1046,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateBackup`.
     func updateBackup(
       backup: Backup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `BackupForGKEClient.deleteBackup`.
@@ -1076,7 +1076,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateRestorePlan`.
     func updateRestorePlan(
       restorePlan: RestorePlan?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<RestorePlan>
 
     /// See `BackupForGKEClient.deleteRestorePlan`.
@@ -1106,7 +1106,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateRestoreChannel`.
     func updateRestoreChannel(
       restoreChannel: RestoreChannel?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<RestoreChannel>
 
     /// See `BackupForGKEClient.deleteRestoreChannel`.
@@ -1136,7 +1136,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateRestore`.
     func updateRestore(
       restore: Restore?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Restore>
 
     /// See `BackupForGKEClient.deleteRestore`.
@@ -1611,7 +1611,7 @@ extension Clients.BackupForGKEProtocol {
 
   public func updateBackupPlan(
     backupPlan: BackupPlan?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
     let request = UpdateBackupPlanRequest().with {
       $0.backupPlan = backupPlan
@@ -1791,7 +1791,7 @@ extension Clients.BackupForGKEProtocol {
 
   public func updateBackupChannel(
     backupChannel: BackupChannel?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
     let request = UpdateBackupChannelRequest().with {
       $0.backupChannel = backupChannel
@@ -2030,7 +2030,7 @@ extension Clients.BackupForGKEProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
@@ -2272,7 +2272,7 @@ extension Clients.BackupForGKEProtocol {
 
   public func updateRestorePlan(
     restorePlan: RestorePlan?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
     let request = UpdateRestorePlanRequest().with {
       $0.restorePlan = restorePlan
@@ -2452,7 +2452,7 @@ extension Clients.BackupForGKEProtocol {
 
   public func updateRestoreChannel(
     restoreChannel: RestoreChannel?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
     let request = UpdateRestoreChannelRequest().with {
       $0.restoreChannel = restoreChannel
@@ -2695,7 +2695,7 @@ extension Clients.BackupForGKEProtocol {
 
   public func updateRestore(
     restore: Restore?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Restore> {
     let request = UpdateRestoreRequest().with {
       $0.restore = restore

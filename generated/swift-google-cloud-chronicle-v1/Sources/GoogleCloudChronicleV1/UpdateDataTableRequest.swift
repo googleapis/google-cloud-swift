@@ -30,7 +30,7 @@ public struct UpdateDataTableRequest: Codable, Equatable, GoogleWKT._AnyPackable
   /// support updating the `description`, `row_time_to_live` and `scope_info`
   /// fields. When no field mask is supplied, all non-empty fields will be
   /// updated. A field mask of "*" will update all fields, whether empty or not.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,10 +68,11 @@ public struct UpdateDataTableRequest: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dataTable = try container.decodeIfPresent(DataTable.self, forKey: .dataTable)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -87,10 +88,10 @@ public struct UpdateDataTableRequest: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.UpdateDataTableRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

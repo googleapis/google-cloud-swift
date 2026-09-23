@@ -31,10 +31,10 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The creation time.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The update time.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// User-defined key/value metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -194,8 +194,10 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
@@ -253,7 +255,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
       AutoTranscriptionConfig.self, forKey: .autoTranscriptionConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -331,7 +333,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -346,10 +348,10 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.Channel.Output"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -514,10 +516,10 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.Channel"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

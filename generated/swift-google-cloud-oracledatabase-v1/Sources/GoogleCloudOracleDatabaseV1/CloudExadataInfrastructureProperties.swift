@@ -98,10 +98,10 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
   public var nextMaintenanceRunId: Swift.String = Swift.String()
 
   /// Output only. The time when the next maintenance run will occur.
-  public var nextMaintenanceRunTime: GoogleWKT.Timestamp? = nil
+  public var nextMaintenanceRunTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the next security maintenance run will occur.
-  public var nextSecurityMaintenanceRunTime: GoogleWKT.Timestamp? = nil
+  public var nextSecurityMaintenanceRunTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The list of customer contacts.
   public var customerContacts: [CustomerContact] = []
@@ -291,9 +291,9 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
       self.nextMaintenanceRunId = value
     }
     self.nextMaintenanceRunTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .nextMaintenanceRunTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .nextMaintenanceRunTime)
     self.nextSecurityMaintenanceRunTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .nextSecurityMaintenanceRunTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .nextSecurityMaintenanceRunTime)
     if let value = try container.decodeIfPresent([CustomerContact].self, forKey: .customerContacts)
     {
       self.customerContacts = value
@@ -320,7 +320,7 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
       ExascaleConfig.self, forKey: .exascaleConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -518,10 +518,10 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

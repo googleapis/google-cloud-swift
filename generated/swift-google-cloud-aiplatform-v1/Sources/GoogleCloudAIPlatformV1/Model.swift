@@ -43,10 +43,10 @@
     public var versionAliases: [Swift.String] = []
 
     /// Output only. Timestamp when this version was created.
-    public var versionCreateTime: GoogleWKT.Timestamp? = nil
+    public var versionCreateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this version was most recently updated.
-    public var versionUpdateTime: GoogleWKT.Timestamp? = nil
+    public var versionUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Required. The display name of the Model.
     /// The name can be up to 128 characters long and can consist of any UTF-8
@@ -90,7 +90,7 @@
     /// Unset if the Model does not have any additional information.
     ///
     /// [google.cloud.aiplatform.v1.Model.metadata_schema_uri]: <doc:Model/metadataSchemaUri>
-    public var metadata: GoogleWKT.Value? = nil
+    public var metadata: GoogleWKT.WKTValue? = nil
 
     /// Output only. The formats in which this Model may be exported. If empty,
     /// this Model is not available for export.
@@ -253,10 +253,10 @@
     public var supportedOutputStorageFormats: [Swift.String] = []
 
     /// Output only. Timestamp when this Model was uploaded into Vertex AI.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this Model was most recently updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The pointers to DeployedModels created from this Model. Note
     /// that Model could have been deployed to Endpoints in different Locations.
@@ -470,9 +470,9 @@
         self.versionAliases = value
       }
       self.versionCreateTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .versionCreateTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .versionCreateTime)
       self.versionUpdateTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .versionUpdateTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .versionUpdateTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
       }
@@ -491,7 +491,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataSchemaUri) {
         self.metadataSchemaUri = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
       if let value = try container.decodeIfPresent(
         [Model.ExportFormat].self, forKey: .supportedExportFormats)
       {
@@ -523,8 +523,10 @@
       {
         self.supportedOutputStorageFormats = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent([DeployedModelRef].self, forKey: .deployedModels)
       {
         self.deployedModels = value
@@ -562,7 +564,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -686,7 +688,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -830,10 +832,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.ExportFormat"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -943,7 +945,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -963,10 +965,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.DataStats"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1018,7 +1020,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1033,10 +1035,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.OriginalModelInfo"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1106,7 +1108,7 @@
         self.source = source
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1136,10 +1138,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.BaseModelSource"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1283,10 +1285,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Model"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

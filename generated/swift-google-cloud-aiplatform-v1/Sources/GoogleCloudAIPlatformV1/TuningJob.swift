@@ -50,28 +50,28 @@
     /// [TuningJob][google.cloud.aiplatform.v1.TuningJob] was created.
     ///
     /// [google.cloud.aiplatform.v1.TuningJob]: <doc:TuningJob>
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the
     /// [TuningJob][google.cloud.aiplatform.v1.TuningJob] for the first time
     /// entered the `JOB_STATE_RUNNING` state.
     ///
     /// [google.cloud.aiplatform.v1.TuningJob]: <doc:TuningJob>
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the TuningJob entered any of the following
     /// [JobStates][google.cloud.aiplatform.v1.JobState]: `JOB_STATE_SUCCEEDED`,
     /// `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`, `JOB_STATE_EXPIRED`.
     ///
     /// [google.cloud.aiplatform.v1.JobState]: <doc:JobState>
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the
     /// [TuningJob][google.cloud.aiplatform.v1.TuningJob] was most recently
     /// updated.
     ///
     /// [google.cloud.aiplatform.v1.TuningJob]: <doc:TuningJob>
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Only populated when job's state is `JOB_STATE_FAILED` or
     /// `JOB_STATE_CANCELLED`.
@@ -215,10 +215,13 @@
       if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
         self.state = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .labels)
@@ -280,7 +283,7 @@
       self.tuningSpec = tuningSpec
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -339,10 +342,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TuningJob"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

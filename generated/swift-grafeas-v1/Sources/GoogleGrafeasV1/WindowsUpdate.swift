@@ -44,7 +44,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   public var supportUrl: Swift.String = Swift.String()
 
   /// The last published timestamp of the update.
-  public var lastPublishedTimestamp: GoogleWKT.Timestamp? = nil
+  public var lastPublishedTimestamp: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,10 +109,10 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.supportUrl = value
     }
     self.lastPublishedTimestamp = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastPublishedTimestamp)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastPublishedTimestamp)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -183,7 +183,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -199,10 +199,10 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.WindowsUpdate.Identity"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -260,7 +260,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -276,10 +276,10 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.WindowsUpdate.Category"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -287,10 +287,10 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.WindowsUpdate"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

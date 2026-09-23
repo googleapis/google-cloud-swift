@@ -137,7 +137,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -173,16 +173,16 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
     public var hexSerialNumber: Swift.String = Swift.String()
 
     /// For convenience, the actual lifetime of an issued certificate.
-    public var lifetime: GoogleWKT.Duration? = nil
+    public var lifetime: GoogleWKT.WKTDuration? = nil
 
     /// The time at which the certificate becomes valid.
-    public var notBeforeTime: GoogleWKT.Timestamp? = nil
+    public var notBeforeTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The time after which the certificate is expired.
     /// Per RFC 5280, the validity period for a certificate is the period of time
     /// from not_before_time through not_after_time, inclusive.
     /// Corresponds to 'not_before_time' + 'lifetime' - 1 second.
-    public var notAfterTime: GoogleWKT.Timestamp? = nil
+    public var notAfterTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -233,14 +233,14 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hexSerialNumber) {
         self.hexSerialNumber = value
       }
-      self.lifetime = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .lifetime)
+      self.lifetime = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .lifetime)
       self.notBeforeTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .notBeforeTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .notBeforeTime)
       self.notAfterTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .notAfterTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .notAfterTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -261,10 +261,10 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -316,7 +316,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -331,10 +331,10 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription.KeyId"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -384,7 +384,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -400,10 +400,10 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription.CertificateFingerprint"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -411,10 +411,10 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

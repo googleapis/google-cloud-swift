@@ -29,12 +29,12 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. The timestamp when this project is created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The timestamp when this project is successfully provisioned.
     /// Empty value means this project is still provisioning and is not ready for
     /// use.
-    public var provisionCompletionTime: GoogleWKT.Timestamp? = nil
+    public var provisionCompletionTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. A map of terms of services. The key is the `id` of
     /// [ServiceTerms][google.cloud.discoveryengine.v1.Project.ServiceTerms].
@@ -84,9 +84,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.provisionCompletionTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .provisionCompletionTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .provisionCompletionTime)
       if let value = try container.decodeIfPresent(
         [Swift.String: Project.ServiceTerms].self, forKey: .serviceTermsMap)
       {
@@ -94,7 +95,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -137,11 +138,11 @@
       public var state: Project.ServiceTerms.State = Project.ServiceTerms.State()
 
       /// The last time when the project agreed to the terms of service.
-      public var acceptTime: GoogleWKT.Timestamp? = nil
+      public var acceptTime: GoogleWKT.WKTTimestamp? = nil
 
       /// The last time when the project declined or revoked the agreement to terms
       /// of service.
-      public var declineTime: GoogleWKT.Timestamp? = nil
+      public var declineTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -196,12 +197,12 @@
           self.state = value
         }
         self.acceptTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .acceptTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .acceptTime)
         self.declineTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .declineTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .declineTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -344,10 +345,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Project.ServiceTerms"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -355,10 +356,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Project"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -25,7 +25,7 @@ public struct RetryAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
   public var attempt: Swift.Int64 = Swift.Int64()
 
   /// Output only. How long the operation will be paused.
-  public var wait: GoogleWKT.Duration? = nil
+  public var wait: GoogleWKT.WKTDuration? = nil
 
   /// Output only. Valid state of this retry action.
   public var state: RepairState = RepairState()
@@ -75,7 +75,7 @@ public struct RetryAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .attempt) {
       self.attempt = value
     }
-    self.wait = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .wait)
+    self.wait = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .wait)
     if let value = try container.decodeIfPresent(RepairState.self, forKey: .state) {
       self.state = value
     }
@@ -84,7 +84,7 @@ public struct RetryAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -102,10 +102,10 @@ public struct RetryAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.RetryAttempt"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

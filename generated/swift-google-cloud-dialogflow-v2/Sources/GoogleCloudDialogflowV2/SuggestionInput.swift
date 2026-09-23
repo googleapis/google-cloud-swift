@@ -29,7 +29,7 @@
 
     /// Optional. Parameters to be used for the tool call.  If not provided, the
     /// tool will be called without any parameters.
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     /// Optional. The type of action to take with the tool.
     public var action: SuggestionInput.Action = SuggestionInput.Action()
@@ -37,7 +37,7 @@
     /// Optional. Time when the current suggest input is sent. For tool calls, this
     /// timestamp (along with the answer record) will be included in the
     /// corresponding tool call result so that it can be identified.
-    public var sendTime: GoogleWKT.Timestamp? = nil
+    public var sendTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,14 +81,14 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerRecord) {
         self.answerRecord = value
       }
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
       if let value = try container.decodeIfPresent(SuggestionInput.Action.self, forKey: .action) {
         self.action = value
       }
-      self.sendTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .sendTime)
+      self.sendTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .sendTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -234,10 +234,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SuggestionInput"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

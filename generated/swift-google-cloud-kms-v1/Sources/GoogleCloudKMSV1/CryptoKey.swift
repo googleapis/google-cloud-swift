@@ -69,7 +69,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
   ///
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// At [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time],
   /// the Key Management Service will automatically:
@@ -94,7 +94,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
   /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:options:)>
   /// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyPrimaryVersion(request:options:)>
-  public var nextRotationTime: GoogleWKT.Timestamp? = nil
+  public var nextRotationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A template describing settings for new
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances. The
@@ -122,7 +122,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyed>
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyScheduled>
-  public var destroyScheduledDuration: GoogleWKT.Duration? = nil
+  public var destroyScheduledDuration: GoogleWKT.WKTDuration? = nil
 
   /// Immutable. The resource name of the backend environment where the key
   /// material for all [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
@@ -228,9 +228,10 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.purpose = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.nextRotationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .nextRotationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .nextRotationTime)
     self.versionTemplate = try container.decodeIfPresent(
       CryptoKeyVersionTemplate.self, forKey: .versionTemplate)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
@@ -241,7 +242,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
       self.importOnly = value
     }
     self.destroyScheduledDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .destroyScheduledDuration)
+      GoogleWKT.WKTDuration.self, forKey: .destroyScheduledDuration)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyBackend) {
       self.cryptoKeyBackend = value
     }
@@ -259,14 +260,14 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
       rotationSchedule = $0
     }
     if let rotationPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration?.self, forKey: .rotationPeriod)
+      GoogleWKT.WKTDuration?.self, forKey: .rotationPeriod)
     {
       try rotationScheduleCheckAndSet(.rotationPeriod(rotationPeriod))
     }
     self.rotationSchedule = rotationSchedule
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -518,16 +519,16 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.kms.v1.CryptoKey.next_rotation_time]: <doc:CryptoKey/nextRotationTime>
     /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
     /// [google.cloud.kms.v1.CryptoKey.rotation_period]: <doc:CryptoKey/OneOf_RotationSchedule/rotationPeriod(_:)>
-    indirect case rotationPeriod(GoogleWKT.Duration?)
+    indirect case rotationPeriod(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.CryptoKey"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

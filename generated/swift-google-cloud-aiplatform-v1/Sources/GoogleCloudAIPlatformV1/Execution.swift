@@ -49,10 +49,10 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Output only. Timestamp when this Execution was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this Execution was last updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The title of the schema describing the metadata.
     ///
@@ -71,7 +71,7 @@
     /// Properties of the Execution.
     /// Top level metadata keys' heading and trailing spaces will be trimmed.
     /// The size of this field should not exceed 200KB.
-    public var metadata: GoogleWKT.Struct? = nil
+    public var metadata: GoogleWKT.WKTStruct? = nil
 
     /// Description of the Execution
     public var description: Swift.String = Swift.String()
@@ -146,21 +146,23 @@
       {
         self.labels = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaTitle) {
         self.schemaTitle = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaVersion) {
         self.schemaVersion = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .metadata)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
         self.description = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -330,10 +332,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Execution"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

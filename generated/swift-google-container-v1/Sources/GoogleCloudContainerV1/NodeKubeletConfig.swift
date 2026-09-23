@@ -53,7 +53,7 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// your pods to be in Guaranteed QoS class by specifying the CPU limits.
   ///
   /// The default value is 'true' if unspecified.
-  public var cpuCfsQuota: GoogleWKT.BoolValue? = nil
+  public var cpuCfsQuota: GoogleWKT.WKTBoolValue? = nil
 
   /// Set the CPU CFS quota period value 'cpu.cfs_period_us'.
   ///
@@ -303,7 +303,8 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.topologyManager = try container.decodeIfPresent(
       TopologyManager.self, forKey: .topologyManager)
     self.memoryManager = try container.decodeIfPresent(MemoryManager.self, forKey: .memoryManager)
-    self.cpuCfsQuota = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .cpuCfsQuota)
+    self.cpuCfsQuota = try container.decodeIfPresent(
+      GoogleWKT.WKTBoolValue.self, forKey: .cpuCfsQuota)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpuCfsQuotaPeriod) {
       self.cpuCfsQuotaPeriod = value
     }
@@ -361,7 +362,7 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Int32.self, forKey: .shutdownGracePeriodCriticalPodsSeconds)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -457,7 +458,7 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -472,10 +473,10 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.NodeKubeletConfig.CrashLoopBackOffConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -483,10 +484,10 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.NodeKubeletConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

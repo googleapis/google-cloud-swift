@@ -28,7 +28,7 @@ func sample(client: CloudBillingClient, billingAccountId: String) async throws {
         $0.account = BillingAccount().with {
           $0.name = "billingAccounts/\(billingAccountId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

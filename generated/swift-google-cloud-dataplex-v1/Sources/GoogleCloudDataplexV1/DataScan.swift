@@ -68,10 +68,10 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: State = State()
 
   /// Output only. The time when the scan was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the scan was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. The data source for DataScan.
   public var data: DataSource? = nil
@@ -192,8 +192,10 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(State.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.data = try container.decodeIfPresent(DataSource.self, forKey: .data)
     self.executionSpec = try container.decodeIfPresent(
       DataScan.ExecutionSpec.self, forKey: .executionSpec)
@@ -270,7 +272,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     self.result = result
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -390,7 +392,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       self.incremental = incremental
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -425,10 +427,10 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScan.ExecutionSpec"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -438,13 +440,13 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Optional. The time when the latest DataScanJob started.
-    public var latestJobStartTime: GoogleWKT.Timestamp? = nil
+    public var latestJobStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. The time when the latest DataScanJob ended.
-    public var latestJobEndTime: GoogleWKT.Timestamp? = nil
+    public var latestJobEndTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. The time when the DataScanJob execution was created.
-    public var latestJobCreateTime: GoogleWKT.Timestamp? = nil
+    public var latestJobCreateTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -484,14 +486,14 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.latestJobStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .latestJobStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .latestJobStartTime)
       self.latestJobEndTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .latestJobEndTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .latestJobEndTime)
       self.latestJobCreateTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .latestJobCreateTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .latestJobCreateTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -508,10 +510,10 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScan.ExecutionStatus"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -546,10 +548,10 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataScan"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

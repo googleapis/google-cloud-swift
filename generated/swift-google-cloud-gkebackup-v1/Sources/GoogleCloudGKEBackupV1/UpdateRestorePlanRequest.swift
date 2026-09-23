@@ -33,7 +33,7 @@ public struct UpdateRestorePlanRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// written to the target RestorePlan resource.
   /// Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored
   /// and are not used to update the target RestorePlan.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,10 +71,11 @@ public struct UpdateRestorePlanRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.restorePlan = try container.decodeIfPresent(RestorePlan.self, forKey: .restorePlan)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -90,10 +91,10 @@ public struct UpdateRestorePlanRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.UpdateRestorePlanRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -312,7 +312,7 @@
 
     public func updateWebhook(
       webhook: Webhook?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Webhook {
       let request = UpdateWebhookRequest().with {
         $0.webhook = webhook

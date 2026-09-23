@@ -75,7 +75,7 @@
     /// * MapValue value: If parameter's entity type is a composite entity then use
     /// map from composite entity property names to property values, otherwise,
     /// use parameter value.
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,10 +120,10 @@
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lifespanCount) {
         self.lifespanCount = value
       }
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -140,10 +140,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Context"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

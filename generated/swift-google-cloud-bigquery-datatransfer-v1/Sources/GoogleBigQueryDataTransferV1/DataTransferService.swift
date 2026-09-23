@@ -433,7 +433,7 @@ extension Clients.DataTransferServiceProtocol {
   #endif
   public func updateTransferConfig(
     transferConfig: TransferConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     let request = UpdateTransferConfigRequest().with {
       $0.transferConfig = transferConfig
@@ -543,8 +543,8 @@ extension Clients.DataTransferServiceProtocol {
   @available(*, deprecated)
   public func scheduleTransferRuns(
     parent: Swift.String,
-    startTime: GoogleWKT.Timestamp?,
-    endTime: GoogleWKT.Timestamp?,
+    startTime: GoogleWKT.WKTTimestamp?,
+    endTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
     let request = ScheduleTransferRunsRequest().with {
       $0.parent = parent

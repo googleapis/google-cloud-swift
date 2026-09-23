@@ -1021,7 +1021,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func updatePluginInstance(
     pluginInstance: PluginInstance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.PluginInstance {
     let request = UpdatePluginInstanceRequest().with {
       $0.pluginInstance = pluginInstance

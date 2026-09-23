@@ -49,10 +49,10 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleWKT._AnyPackable
   public var resourceType: Swift.String? = nil
 
   /// Start time of the job.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// End time of the job.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Full resource name for Backup Plan of the job. Only populated for Scheduled
   /// Backup and Adhoc Backup.
@@ -82,7 +82,7 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleWKT._AnyPackable
   public var errorMessage: Swift.String? = nil
 
   /// Backup consistency time.
-  public var backupConsistencyTime: GoogleWKT.Timestamp? = nil
+  public var backupConsistencyTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Source resource location.
   public var sourceResourceLocation: Swift.String? = nil
@@ -91,7 +91,7 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleWKT._AnyPackable
   public var restoreResourceLocation: Swift.String? = nil
 
   /// Recovery point time.
-  public var recoveryPointTime: GoogleWKT.Timestamp? = nil
+  public var recoveryPointTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Canonical Data Source Name
   public var dataSourceName: Swift.String = Swift.String()
@@ -184,8 +184,8 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleWKT._AnyPackable
       Swift.String.self, forKey: .restoreResourceName)
     self.backupName = try container.decodeIfPresent(Swift.String.self, forKey: .backupName)
     self.resourceType = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     self.backupPlanName = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanName)
     self.backupRule = try container.decodeIfPresent(Swift.String.self, forKey: .backupRule)
     self.backupRetentionDays = try container.decodeIfPresent(
@@ -198,19 +198,19 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleWKT._AnyPackable
     self.errorType = try container.decodeIfPresent(Swift.String.self, forKey: .errorType)
     self.errorMessage = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage)
     self.backupConsistencyTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .backupConsistencyTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .backupConsistencyTime)
     self.sourceResourceLocation = try container.decodeIfPresent(
       Swift.String.self, forKey: .sourceResourceLocation)
     self.restoreResourceLocation = try container.decodeIfPresent(
       Swift.String.self, forKey: .restoreResourceLocation)
     self.recoveryPointTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .recoveryPointTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .recoveryPointTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSourceName) {
       self.dataSourceName = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -247,10 +247,10 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.logging.v1.BDRBackupRestoreJobLog"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

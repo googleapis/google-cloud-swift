@@ -27,7 +27,7 @@ public struct Retry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. How long to wait for the first retry. Default is 0, and the
   /// maximum value is 14d.
-  public var wait: GoogleWKT.Duration? = nil
+  public var wait: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The pattern of how wait time will be increased. Default is
   /// linear. Backoff mode will be ignored if `wait` is 0.
@@ -73,13 +73,13 @@ public struct Retry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .attempts) {
       self.attempts = value
     }
-    self.wait = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .wait)
+    self.wait = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .wait)
     if let value = try container.decodeIfPresent(BackoffMode.self, forKey: .backoffMode) {
       self.backoffMode = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -96,10 +96,10 @@ public struct Retry: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.Retry"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

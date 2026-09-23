@@ -42,7 +42,7 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.secretmanager.v1.Rotation.next_rotation_time]: <doc:Rotation/nextRotationTime>
   /// [google.cloud.secretmanager.v1.Rotation.rotation_period]: <doc:Rotation/rotationPeriod>
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-  public var nextRotationTime: GoogleWKT.Timestamp? = nil
+  public var nextRotationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Input only. The Duration between rotation notifications. Must be in seconds
   /// and at least 3600s (1h) and at most 3153600000s (100 years).
@@ -58,7 +58,7 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.secretmanager.v1.Rotation.next_rotation_time]: <doc:Rotation/nextRotationTime>
   /// [google.cloud.secretmanager.v1.Rotation.rotation_period]: <doc:Rotation/rotationPeriod>
-  public var rotationPeriod: GoogleWKT.Duration? = nil
+  public var rotationPeriod: GoogleWKT.WKTDuration? = nil
 
   /// Output only. The current status of the managed rotation.
   /// This field is only applicable to Typed Secrets.
@@ -103,14 +103,14 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.nextRotationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .nextRotationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .nextRotationTime)
     self.rotationPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .rotationPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .rotationPeriod)
     self.managedRotationStatus = try container.decodeIfPresent(
       Rotation.ManagedRotationStatus.self, forKey: .managedRotationStatus)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -183,7 +183,7 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -316,10 +316,10 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.secretmanager.v1.Rotation.ManagedRotationStatus"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -327,10 +327,10 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.Rotation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

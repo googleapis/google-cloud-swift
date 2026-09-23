@@ -45,11 +45,11 @@
     public var nullable: Swift.Bool = Swift.Bool()
 
     /// Optional. Default value of the data.
-    public var `default`: GoogleWKT.Value? = nil
+    public var `default`: GoogleWKT.WKTValue? = nil
 
     /// Optional. SCHEMA FIELDS FOR TYPE ARRAY
     /// Schema of the elements of Type.ARRAY.
-    public var items: GoogleWKT.Recursive<Schema>? = nil
+    public var items: GoogleWKT.WKTRecursive<Schema>? = nil
 
     /// Optional. Minimum number of the elements for Type.ARRAY.
     public var minItems: Swift.Int64 = Swift.Int64()
@@ -103,7 +103,7 @@
 
     /// Optional. Example of the object. Will only populated when the object is the
     /// root.
-    public var example: GoogleWKT.Value? = nil
+    public var example: GoogleWKT.WKTValue? = nil
 
     /// Optional. The value should be validated against any (one or more) of the
     /// subschemas in the list.
@@ -111,7 +111,7 @@
 
     /// Optional. Can either be a boolean or an object; controls the presence of
     /// additional properties.
-    public var additionalProperties: GoogleWKT.Value? = nil
+    public var additionalProperties: GoogleWKT.WKTValue? = nil
 
     /// Optional. Allows indirect references between schema nodes. The value should
     /// be a valid reference to a child of the root `defs`.
@@ -236,8 +236,9 @@
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
         self.nullable = value
       }
-      self.`default` = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .`default`)
-      self.items = try container.decodeIfPresent(GoogleWKT.Recursive<Schema>.self, forKey: .items)
+      self.`default` = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .`default`)
+      self.items = try container.decodeIfPresent(
+        GoogleWKT.WKTRecursive<Schema>.self, forKey: .items)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minItems) {
         self.minItems = value
       }
@@ -278,12 +279,12 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pattern) {
         self.pattern = value
       }
-      self.example = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .example)
+      self.example = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .example)
       if let value = try container.decodeIfPresent([Schema].self, forKey: .anyOf) {
         self.anyOf = value
       }
       self.additionalProperties = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .additionalProperties)
+        GoogleWKT.WKTValue.self, forKey: .additionalProperties)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
         self.ref = value
       }
@@ -292,7 +293,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -331,10 +332,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Schema"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

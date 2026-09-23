@@ -37,10 +37,10 @@
     public var valueType: TensorboardTimeSeries.ValueType = TensorboardTimeSeries.ValueType()
 
     /// Output only. Timestamp when this TensorboardTimeSeries was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this TensorboardTimeSeries was last updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Used to perform a consistent read-modify-write updates. If not set, a blind
     /// "overwrite" update happens.
@@ -122,8 +122,10 @@
       {
         self.valueType = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
         self.etag = value
       }
@@ -137,7 +139,7 @@
         TensorboardTimeSeries.Metadata.self, forKey: .metadata)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -168,7 +170,7 @@
 
       /// Output only. Max wall clock timestamp of all data points within a
       /// TensorboardTimeSeries.
-      public var maxWallTime: GoogleWKT.Timestamp? = nil
+      public var maxWallTime: GoogleWKT.WKTTimestamp? = nil
 
       /// Output only. The largest blob sequence length (number of blobs) of all
       /// data points in this time series, if its ValueType is BLOB_SEQUENCE.
@@ -215,7 +217,7 @@
           self.maxStep = value
         }
         self.maxWallTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .maxWallTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .maxWallTime)
         if let value = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .maxBlobSequenceLength)
         {
@@ -223,7 +225,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -240,10 +242,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.TensorboardTimeSeries.Metadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -378,10 +380,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TensorboardTimeSeries"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

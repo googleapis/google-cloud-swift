@@ -33,14 +33,14 @@
     public var clicked: Swift.Bool = Swift.Bool()
 
     /// Time when the answer/item was clicked.
-    public var clickTime: GoogleWKT.Timestamp? = nil
+    public var clickTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Indicates whether the answer/item was displayed to the human
     /// agent in the agent desktop UI. Default to false.
     public var displayed: Swift.Bool = Swift.Bool()
 
     /// Time when the answer/item was displayed.
-    public var displayTime: GoogleWKT.Timestamp? = nil
+    public var displayTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Normally, detail feedback is provided when answer is not fully correct.
     public var detailFeedback: OneOf_DetailFeedback? = nil
@@ -97,12 +97,13 @@
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clicked) {
         self.clicked = value
       }
-      self.clickTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .clickTime)
+      self.clickTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .clickTime)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .displayed) {
         self.displayed = value
       }
       self.displayTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .displayTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .displayTime)
 
       var detailFeedback: OneOf_DetailFeedback? = nil
       let detailFeedbackCheckAndSet = {
@@ -122,7 +123,7 @@
       self.detailFeedback = detailFeedback
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -278,10 +279,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AnswerFeedback"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

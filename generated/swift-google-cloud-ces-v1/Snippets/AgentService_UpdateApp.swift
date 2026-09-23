@@ -31,7 +31,7 @@ func sample(client: AgentServiceClient, projectId: String, locationId: String, a
         $0.app = App().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/apps/\(appId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

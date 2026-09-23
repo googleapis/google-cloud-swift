@@ -32,7 +32,7 @@ public struct CloudSqlInstanceDataSourceReferenceProperties: Codable, Equatable,
   public var databaseInstalledVersion: Swift.String = Swift.String()
 
   /// Output only. The instance creation timestamp.
-  public var instanceCreateTime: GoogleWKT.Timestamp? = nil
+  public var instanceCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The tier (or machine type) for this instance. Example:
   /// `db-custom-1-3840`
@@ -86,13 +86,13 @@ public struct CloudSqlInstanceDataSourceReferenceProperties: Codable, Equatable,
       self.databaseInstalledVersion = value
     }
     self.instanceCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .instanceCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .instanceCreateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceTier) {
       self.instanceTier = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -111,10 +111,10 @@ public struct CloudSqlInstanceDataSourceReferenceProperties: Codable, Equatable,
     return
       "type.googleapis.com/google.cloud.backupdr.v1.CloudSqlInstanceDataSourceReferenceProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

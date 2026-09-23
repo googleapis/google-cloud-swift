@@ -22,7 +22,7 @@ public struct MutationRecord: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// When the change occurred.
-  public var mutateTime: GoogleWKT.Timestamp? = nil
+  public var mutateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The email address of the user making the change.
   public var mutatedBy: Swift.String = Swift.String()
@@ -62,13 +62,14 @@ public struct MutationRecord: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.mutateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .mutateTime)
+    self.mutateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .mutateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mutatedBy) {
       self.mutatedBy = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -84,10 +85,10 @@ public struct MutationRecord: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.MutationRecord"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

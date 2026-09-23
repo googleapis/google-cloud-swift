@@ -68,7 +68,7 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// [google.storagetransfer.v1.TransferJob.notification_config]: <doc:TransferJob/notificationConfig>
   /// [google.storagetransfer.v1.TransferJob.status]: <doc:TransferJob/status>
   /// [google.storagetransfer.v1.TransferJob.transfer_spec]: <doc:TransferJob/transferSpec>
-  public var updateTransferJobFieldMask: GoogleWKT.FieldMask? = nil
+  public var updateTransferJobFieldMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -117,10 +117,10 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
     self.transferJob = try container.decodeIfPresent(TransferJob.self, forKey: .transferJob)
     self.updateTransferJobFieldMask = try container.decodeIfPresent(
-      GoogleWKT.FieldMask.self, forKey: .updateTransferJobFieldMask)
+      GoogleWKT.WKTFieldMask.self, forKey: .updateTransferJobFieldMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -139,10 +139,10 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.UpdateTransferJobRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

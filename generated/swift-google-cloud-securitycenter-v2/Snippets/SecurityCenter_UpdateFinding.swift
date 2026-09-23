@@ -31,7 +31,7 @@ func sample(
         $0.finding = Finding().with {
           $0.name = "organizations/\(organizationId)/sources/\(sourceId)/findings/\(findingId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

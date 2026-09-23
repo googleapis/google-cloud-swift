@@ -32,7 +32,7 @@ func sample(
         $0.deployPolicy = DeployPolicy().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/deployPolicies/\(deployPolicyId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

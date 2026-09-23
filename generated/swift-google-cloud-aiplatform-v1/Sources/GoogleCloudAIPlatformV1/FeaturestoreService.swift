@@ -765,7 +765,7 @@
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(
         featurestore: Featurestore?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
@@ -1246,7 +1246,7 @@
 
     public func updateFeaturestore(
       featurestore: Featurestore?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let request = UpdateFeaturestoreRequest().with {
         $0.featurestore = featurestore
@@ -1432,7 +1432,7 @@
 
     public func updateEntityType(
       entityType: EntityType?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.EntityType {
       let request = UpdateEntityTypeRequest().with {
         $0.entityType = entityType
@@ -1658,7 +1658,7 @@
 
     public func updateFeature(
       feature: Feature?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Feature {
       let request = UpdateFeatureRequest().with {
         $0.feature = feature

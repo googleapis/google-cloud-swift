@@ -31,17 +31,17 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
   /// object instance has been detected. Expressed as a number of seconds as
   /// measured from the start of the video, with fractions up to a microsecond
   /// precision, and with "s" appended at the end.
-  public var timeSegmentStart: GoogleWKT.Duration? = nil
+  public var timeSegmentStart: GoogleWKT.WKTDuration? = nil
 
   /// The end, inclusive, of the video's time segment in which the
   /// object instance has been detected. Expressed as a number of seconds as
   /// measured from the start of the video, with fractions up to a microsecond
   /// precision, and with "s" appended at the end.
-  public var timeSegmentEnd: GoogleWKT.Duration? = nil
+  public var timeSegmentEnd: GoogleWKT.WKTDuration? = nil
 
   /// The Model's confidence in correction of this prediction, higher
   /// value means higher confidence.
-  public var confidence: GoogleWKT.FloatValue? = nil
+  public var confidence: GoogleWKT.WKTFloatValue? = nil
 
   /// All of the frames of the video in which a single object instance has been
   /// detected. The bounding boxes in the frames identify the same object.
@@ -97,10 +97,11 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
       self.displayName = value
     }
     self.timeSegmentStart = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .timeSegmentStart)
+      GoogleWKT.WKTDuration.self, forKey: .timeSegmentStart)
     self.timeSegmentEnd = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .timeSegmentEnd)
-    self.confidence = try container.decodeIfPresent(GoogleWKT.FloatValue.self, forKey: .confidence)
+      GoogleWKT.WKTDuration.self, forKey: .timeSegmentEnd)
+    self.confidence = try container.decodeIfPresent(
+      GoogleWKT.WKTFloatValue.self, forKey: .confidence)
     if let value = try container.decodeIfPresent(
       [VideoObjectTrackingPredictionResult.Frame].self, forKey: .frames)
     {
@@ -108,7 +109,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -136,19 +137,19 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     /// Expressed as a number of seconds as measured from the
     /// start of the video, with fractions up to a microsecond precision, and
     /// with "s" appended at the end.
-    public var timeOffset: GoogleWKT.Duration? = nil
+    public var timeOffset: GoogleWKT.WKTDuration? = nil
 
     /// The leftmost coordinate of the bounding box.
-    public var xMin: GoogleWKT.FloatValue? = nil
+    public var xMin: GoogleWKT.WKTFloatValue? = nil
 
     /// The rightmost coordinate of the bounding box.
-    public var xMax: GoogleWKT.FloatValue? = nil
+    public var xMax: GoogleWKT.WKTFloatValue? = nil
 
     /// The topmost coordinate of the bounding box.
-    public var yMin: GoogleWKT.FloatValue? = nil
+    public var yMin: GoogleWKT.WKTFloatValue? = nil
 
     /// The bottommost coordinate of the bounding box.
-    public var yMax: GoogleWKT.FloatValue? = nil
+    public var yMax: GoogleWKT.WKTFloatValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -191,14 +192,15 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.timeOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeOffset)
-      self.xMin = try container.decodeIfPresent(GoogleWKT.FloatValue.self, forKey: .xMin)
-      self.xMax = try container.decodeIfPresent(GoogleWKT.FloatValue.self, forKey: .xMax)
-      self.yMin = try container.decodeIfPresent(GoogleWKT.FloatValue.self, forKey: .yMin)
-      self.yMax = try container.decodeIfPresent(GoogleWKT.FloatValue.self, forKey: .yMax)
+      self.timeOffset = try container.decodeIfPresent(
+        GoogleWKT.WKTDuration.self, forKey: .timeOffset)
+      self.xMin = try container.decodeIfPresent(GoogleWKT.WKTFloatValue.self, forKey: .xMin)
+      self.xMax = try container.decodeIfPresent(GoogleWKT.WKTFloatValue.self, forKey: .xMax)
+      self.yMin = try container.decodeIfPresent(GoogleWKT.WKTFloatValue.self, forKey: .yMin)
+      self.yMax = try container.decodeIfPresent(GoogleWKT.WKTFloatValue.self, forKey: .yMax)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -218,10 +220,10 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.prediction.VideoObjectTrackingPredictionResult.Frame"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -230,10 +232,10 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     return
       "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.prediction.VideoObjectTrackingPredictionResult"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -260,7 +260,7 @@ extension Clients.AlertPolicyServiceProtocol {
   }
 
   public func updateAlertPolicy(
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
     alertPolicy: AlertPolicy?,
   ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
     let request = UpdateAlertPolicyRequest().with {

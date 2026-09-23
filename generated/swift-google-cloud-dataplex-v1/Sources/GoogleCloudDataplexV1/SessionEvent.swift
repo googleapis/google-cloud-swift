@@ -43,7 +43,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var fastStartupEnabled: Swift.Bool = Swift.Bool()
 
   /// The idle duration of a warm pooled session before it is assigned to user.
-  public var unassignedDuration: GoogleWKT.Duration? = nil
+  public var unassignedDuration: GoogleWKT.WKTDuration? = nil
 
   /// Additional information about the Query metadata.
   public var detail: OneOf_Detail? = nil
@@ -114,7 +114,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.fastStartupEnabled = value
     }
     self.unassignedDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .unassignedDuration)
+      GoogleWKT.WKTDuration.self, forKey: .unassignedDuration)
 
     var detail: OneOf_Detail? = nil
     let detailCheckAndSet = {
@@ -132,7 +132,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     self.detail = detail
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -171,7 +171,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public var engine: SessionEvent.QueryDetail.Engine = SessionEvent.QueryDetail.Engine()
 
     /// Time taken for execution of the query.
-    public var duration: GoogleWKT.Duration? = nil
+    public var duration: GoogleWKT.WKTDuration? = nil
 
     /// The size of results the query produced.
     public var resultSizeBytes: Swift.Int64 = Swift.Int64()
@@ -233,7 +233,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         self.engine = value
       }
-      self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+      self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .resultSizeBytes) {
         self.resultSizeBytes = value
       }
@@ -242,7 +242,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -379,10 +379,10 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.SessionEvent.QueryDetail"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -528,10 +528,10 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.SessionEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

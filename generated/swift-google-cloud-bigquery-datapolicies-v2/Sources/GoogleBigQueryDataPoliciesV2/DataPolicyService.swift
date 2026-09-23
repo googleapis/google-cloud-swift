@@ -284,7 +284,7 @@ extension Clients.DataPolicyServiceProtocol {
 
   public func updateDataPolicy(
     dataPolicy: DataPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
     let request = UpdateDataPolicyRequest().with {
       $0.dataPolicy = dataPolicy

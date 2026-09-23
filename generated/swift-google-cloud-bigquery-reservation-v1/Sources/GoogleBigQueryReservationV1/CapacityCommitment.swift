@@ -51,14 +51,14 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// only for ACTIVE capacity commitments. Note after the commitment is renewed,
   /// commitment_start_time won't be changed. It refers to the start time of the
   /// original commitment.
-  public var commitmentStartTime: GoogleWKT.Timestamp? = nil
+  public var commitmentStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The end of the current commitment period. It is applicable
   /// only for ACTIVE capacity commitments. Note after renewal,
   /// commitment_end_time is the time the renewed commitment expires. So itwould
   /// be at a time after commitment_start_time + committed period, because we
   /// don't change commitment_start_time ,
-  public var commitmentEndTime: GoogleWKT.Timestamp? = nil
+  public var commitmentEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. For FAILED commitment plan, provides the reason of failure.
   public var failureStatus: GoogleRpc.Status? = nil
@@ -159,9 +159,9 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
     self.commitmentStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .commitmentStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .commitmentStartTime)
     self.commitmentEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .commitmentEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .commitmentEndTime)
     self.failureStatus = try container.decodeIfPresent(
       GoogleRpc.Status.self, forKey: .failureStatus)
     if let value = try container.decodeIfPresent(
@@ -180,7 +180,7 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -535,10 +535,10 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.reservation.v1.CapacityCommitment"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

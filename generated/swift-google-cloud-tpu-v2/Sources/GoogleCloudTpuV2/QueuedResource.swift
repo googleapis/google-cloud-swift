@@ -27,7 +27,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time when the QueuedResource was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The queueing policy of the QueuedRequest.
   public var queueingPolicy: QueuedResource.QueueingPolicy? = nil
@@ -96,7 +96,8 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.queueingPolicy = try container.decodeIfPresent(
       QueuedResource.QueueingPolicy.self, forKey: .queueingPolicy)
     self.state = try container.decodeIfPresent(QueuedResourceState.self, forKey: .state)
@@ -140,7 +141,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     self.tier = tier
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -219,7 +220,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -311,7 +312,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         self.nameStrategy = nameStrategy
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -394,7 +395,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -411,10 +412,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec.MultisliceParams"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -433,10 +434,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -444,10 +445,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -487,7 +488,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -501,10 +502,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Spot"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -516,7 +517,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. Defines the minimum duration of the guarantee. If specified,
     /// the requested resources will only be provisioned if they can be
     /// allocated for at least the given duration.
-    public var minDuration: GoogleWKT.Duration? = nil
+    public var minDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -552,10 +553,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.minDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minDuration)
+        GoogleWKT.WKTDuration.self, forKey: .minDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -570,10 +571,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Guaranteed"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -638,22 +639,22 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         startTimingConstraints = $0
       }
       if let validUntilDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration?.self, forKey: .validUntilDuration)
+        GoogleWKT.WKTDuration?.self, forKey: .validUntilDuration)
       {
         try startTimingConstraintsCheckAndSet(.validUntilDuration(validUntilDuration))
       }
       if let validUntilTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp?.self, forKey: .validUntilTime)
+        GoogleWKT.WKTTimestamp?.self, forKey: .validUntilTime)
       {
         try startTimingConstraintsCheckAndSet(.validUntilTime(validUntilTime))
       }
       if let validAfterDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration?.self, forKey: .validAfterDuration)
+        GoogleWKT.WKTDuration?.self, forKey: .validAfterDuration)
       {
         try startTimingConstraintsCheckAndSet(.validAfterDuration(validAfterDuration))
       }
       if let validAfterTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp?.self, forKey: .validAfterTime)
+        GoogleWKT.WKTTimestamp?.self, forKey: .validAfterTime)
       {
         try startTimingConstraintsCheckAndSet(.validAfterTime(validAfterTime))
       }
@@ -665,7 +666,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.startTimingConstraints = startTimingConstraints
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -696,15 +697,15 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Optional. A relative time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
-      indirect case validUntilDuration(GoogleWKT.Duration?)
+      indirect case validUntilDuration(GoogleWKT.WKTDuration?)
       /// Optional. An absolute time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
-      indirect case validUntilTime(GoogleWKT.Timestamp?)
+      indirect case validUntilTime(GoogleWKT.WKTTimestamp?)
       /// Optional. A relative time after which resources may be created.
-      indirect case validAfterDuration(GoogleWKT.Duration?)
+      indirect case validAfterDuration(GoogleWKT.WKTDuration?)
       /// Optional. An absolute time after which resources may be created.
-      indirect case validAfterTime(GoogleWKT.Timestamp?)
+      indirect case validAfterTime(GoogleWKT.WKTTimestamp?)
       /// Optional. An absolute time interval within which resources may be
       /// created.
       indirect case validInterval(GoogleType.Interval?)
@@ -713,10 +714,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.QueueingPolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -738,10 +739,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

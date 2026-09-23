@@ -60,7 +60,7 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.speech.v2.RecognizeRequest.config]: <doc:RecognizeRequest/config>
   /// [google.cloud.speech.v2.Recognizer.default_recognition_config]: <doc:Recognizer/defaultRecognitionConfig>
-  public var configMask: GoogleWKT.FieldMask? = nil
+  public var configMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The audio source, which is either inline content or a Google Cloud
   /// Storage URI.
@@ -111,7 +111,8 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.recognizer = value
     }
     self.config = try container.decodeIfPresent(RecognitionConfig.self, forKey: .config)
-    self.configMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .configMask)
+    self.configMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .configMask)
 
     var audioSource: OneOf_AudioSource? = nil
     let audioSourceCheckAndSet = {
@@ -132,7 +133,7 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.audioSource = audioSource
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -181,10 +182,10 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.RecognizeRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -414,7 +414,7 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
 
   public func updateTunnelDestGroup(
     tunnelDestGroup: TunnelDestGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
     let request = UpdateTunnelDestGroupRequest().with {
       $0.tunnelDestGroup = tunnelDestGroup

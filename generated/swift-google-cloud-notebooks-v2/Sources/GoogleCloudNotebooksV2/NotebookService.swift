@@ -512,7 +512,7 @@ extension Clients {
     /// See `NotebookServiceClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.deleteInstance`.
@@ -837,7 +837,7 @@ extension Clients.NotebookServiceProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance

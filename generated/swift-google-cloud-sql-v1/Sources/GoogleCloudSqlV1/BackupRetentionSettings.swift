@@ -30,7 +30,7 @@
     /// Depending on the value of retention_unit, this is used to determine
     /// if a backup needs to be deleted.  If retention_unit is 'COUNT', we will
     /// retain this many backups.
-    public var retainedBackups: GoogleWKT.Int32Value? = nil
+    public var retainedBackups: GoogleWKT.WKTInt32Value? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,10 +73,10 @@
         self.retentionUnit = value
       }
       self.retainedBackups = try container.decodeIfPresent(
-        GoogleWKT.Int32Value.self, forKey: .retainedBackups)
+        GoogleWKT.WKTInt32Value.self, forKey: .retainedBackups)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -202,10 +202,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.BackupRetentionSettings"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

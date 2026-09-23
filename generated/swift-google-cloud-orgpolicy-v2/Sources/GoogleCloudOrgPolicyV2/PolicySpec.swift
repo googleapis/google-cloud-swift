@@ -39,7 +39,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The time stamp this was previously updated. This
   /// represents the last time a call to `CreatePolicy` or `UpdatePolicy` was
   /// made for that policy.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// In policies for boolean constraints, the following requirements apply:
   ///
@@ -111,7 +111,8 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([PolicySpec.PolicyRule].self, forKey: .rules) {
       self.rules = value
     }
@@ -123,7 +124,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -165,7 +166,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   "allowedLocations" : ["us-east1", "us-west1"],
     ///   "allowAll" : true
     /// }
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     public var kind: OneOf_Kind? = nil
 
@@ -213,7 +214,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
 
       var kind: OneOf_Kind? = nil
       let kindCheckAndSet = {
@@ -242,7 +243,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       self.kind = kind
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -337,7 +338,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -353,10 +354,10 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.orgpolicy.v2.PolicySpec.PolicyRule.StringValues"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -380,10 +381,10 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.orgpolicy.v2.PolicySpec.PolicyRule"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -391,10 +392,10 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.orgpolicy.v2.PolicySpec"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

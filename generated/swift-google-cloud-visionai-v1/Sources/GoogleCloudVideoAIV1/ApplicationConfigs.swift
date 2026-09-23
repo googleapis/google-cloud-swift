@@ -69,7 +69,7 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
       ApplicationConfigs.EventDeliveryConfig.self, forKey: .eventDeliveryConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -96,7 +96,7 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
     /// be notified multiple times during this internal event that it is
     /// happening multiple times during the period of time.The same event is
     /// identified by <event_id, app_platform_metadata>.
-    public var minimalDeliveryInterval: GoogleWKT.Duration? = nil
+    public var minimalDeliveryInterval: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,10 +137,10 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
         self.channel = value
       }
       self.minimalDeliveryInterval = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minimalDeliveryInterval)
+        GoogleWKT.WKTDuration.self, forKey: .minimalDeliveryInterval)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -156,10 +156,10 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ApplicationConfigs.EventDeliveryConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -167,10 +167,10 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ApplicationConfigs"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

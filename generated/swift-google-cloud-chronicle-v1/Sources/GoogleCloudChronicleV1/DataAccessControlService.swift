@@ -367,7 +367,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func updateDataAccessLabel(
     dataAccessLabel: DataAccessLabel?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
     let request = UpdateDataAccessLabelRequest().with {
       $0.dataAccessLabel = dataAccessLabel
@@ -497,7 +497,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func updateDataAccessScope(
     dataAccessScope: DataAccessScope?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
     let request = UpdateDataAccessScopeRequest().with {
       $0.dataAccessScope = dataAccessScope

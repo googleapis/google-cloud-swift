@@ -24,7 +24,7 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
 {
   /// Output only. The amount of time, in seconds, that the data of the standby
   /// database lags in comparison to the data of the primary database.
-  public var lagTimeDuration: GoogleWKT.Duration? = nil
+  public var lagTimeDuration: GoogleWKT.WKTDuration? = nil
 
   /// Output only. The additional details about the current lifecycle state of
   /// the Autonomous Database.
@@ -35,11 +35,11 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
 
   /// Output only. The date and time the Autonomous Data Guard role was switched
   /// for the standby Autonomous Database.
-  public var dataGuardRoleChangedTime: GoogleWKT.Timestamp? = nil
+  public var dataGuardRoleChangedTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time the Disaster Recovery role was switched for
   /// the standby Autonomous Database.
-  public var disasterRecoveryRoleChangedTime: GoogleWKT.Timestamp? = nil
+  public var disasterRecoveryRoleChangedTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lagTimeDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .lagTimeDuration)
+      GoogleWKT.WKTDuration.self, forKey: .lagTimeDuration)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
       self.lifecycleDetails = value
     }
@@ -92,12 +92,12 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
       self.state = value
     }
     self.dataGuardRoleChangedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .dataGuardRoleChangedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .dataGuardRoleChangedTime)
     self.disasterRecoveryRoleChangedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .disasterRecoveryRoleChangedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .disasterRecoveryRoleChangedTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -117,10 +117,10 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseStandbySummary"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -34,7 +34,7 @@
     /// [google.cloud.aiplatform.v1.DeployedModel.model]: <doc:DeployedModel/model>
     /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
     /// [google.cloud.aiplatform.v1.PredictSchemata.prediction_schema_uri]: <doc:PredictSchemata/predictionSchemaUri>
-    public var predictions: [GoogleWKT.Value] = []
+    public var predictions: [GoogleWKT.WKTValue] = []
 
     /// ID of the Endpoint's DeployedModel that served this prediction.
     public var deployedModelId: Swift.String = Swift.String()
@@ -56,7 +56,7 @@
 
     /// Output only. Request-level metadata returned by the model. The metadata
     /// type will be dependent upon the model implementation.
-    public var metadata: GoogleWKT.Value? = nil
+    public var metadata: GoogleWKT.WKTValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([GoogleWKT.Value].self, forKey: .predictions) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .predictions)
+      {
         self.predictions = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedModelId) {
@@ -116,10 +117,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelDisplayName) {
         self.modelDisplayName = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -139,10 +140,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PredictResponse"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -440,7 +440,7 @@
       /// See `EnvironmentsClient.updateEnvironment`.
       func updateEnvironment(
         environment: Environment?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Environment>
 
       /// See `EnvironmentsClient.runContinuousTest`.
@@ -675,7 +675,7 @@
 
     public func updateEnvironment(
       environment: Environment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Environment> {
       let request = UpdateEnvironmentRequest().with {
         $0.environment = environment

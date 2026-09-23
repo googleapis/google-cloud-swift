@@ -29,14 +29,14 @@ public struct PropertyChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public var beforeSensitivePaths: [Swift.String] = []
 
   /// Output only. Representations of the object value before the actions.
-  public var before: GoogleWKT.Value? = nil
+  public var before: GoogleWKT.WKTValue? = nil
 
   /// Output only. The paths of sensitive fields in `after`. Paths are relative
   /// to `path`.
   public var afterSensitivePaths: [Swift.String] = []
 
   /// Output only. Representations of the object value after the actions.
-  public var after: GoogleWKT.Value? = nil
+  public var after: GoogleWKT.WKTValue? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,15 +86,15 @@ public struct PropertyChange: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.beforeSensitivePaths = value
     }
-    self.before = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .before)
+    self.before = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .before)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .afterSensitivePaths)
     {
       self.afterSensitivePaths = value
     }
-    self.after = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .after)
+    self.after = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .after)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -113,10 +113,10 @@ public struct PropertyChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.PropertyChange"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -84,7 +84,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
       SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource.self, forKey: .resource)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -111,7 +111,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
     ///
     /// If the custom module evaluates only the IAM allow policy, then you can
     /// omit this field.
-    public var resourceData: GoogleWKT.Struct? = nil
+    public var resourceData: GoogleWKT.WKTStruct? = nil
 
     /// Optional. A representation of the IAM allow policy.
     ///
@@ -160,12 +160,12 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
         self.resourceType = value
       }
       self.resourceData = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .resourceData)
+        GoogleWKT.WKTStruct.self, forKey: .resourceData)
       self.iamPolicyData = try container.decodeIfPresent(
         GoogleIAMV1.Policy.self, forKey: .iamPolicyData)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -183,10 +183,10 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
       return
         "type.googleapis.com/google.cloud.securitycentermanagement.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -195,10 +195,10 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

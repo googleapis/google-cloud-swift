@@ -38,7 +38,8 @@ public struct CustomAPITransferNode: Codable, Equatable, GoogleWKT._AnyPackable,
   public var checkpointing: CustomAPICheckpointConfig? = nil
 
   /// Optional. Configuration for dependent requests (child chaining).
-  public var dependentRequestsConfig: GoogleWKT.Recursive<CustomAPIDependentRequestsConfig>? = nil
+  public var dependentRequestsConfig: GoogleWKT.WKTRecursive<CustomAPIDependentRequestsConfig>? =
+    nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,10 +91,11 @@ public struct CustomAPITransferNode: Codable, Equatable, GoogleWKT._AnyPackable,
     self.checkpointing = try container.decodeIfPresent(
       CustomAPICheckpointConfig.self, forKey: .checkpointing)
     self.dependentRequestsConfig = try container.decodeIfPresent(
-      GoogleWKT.Recursive<CustomAPIDependentRequestsConfig>.self, forKey: .dependentRequestsConfig)
+      GoogleWKT.WKTRecursive<CustomAPIDependentRequestsConfig>.self,
+      forKey: .dependentRequestsConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -112,10 +114,10 @@ public struct CustomAPITransferNode: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.CustomAPITransferNode"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

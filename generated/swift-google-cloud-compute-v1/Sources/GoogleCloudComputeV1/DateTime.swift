@@ -75,7 +75,7 @@
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     /// For example, a UTC offset of -4:00 would be represented as
     /// { seconds: -14400 }.
-    public var utcOffset: GoogleWKT.Duration? = nil
+    public var utcOffset: GoogleWKT.WKTDuration? = nil
 
     /// Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a
     /// datetime without a year.
@@ -137,11 +137,11 @@
       self.nanos = try container.decodeIfPresent(Swift.Int32.self, forKey: .nanos)
       self.seconds = try container.decodeIfPresent(Swift.Int32.self, forKey: .seconds)
       self.timeZone = try container.decodeIfPresent(TimeZone.self, forKey: .timeZone)
-      self.utcOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .utcOffset)
+      self.utcOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .utcOffset)
       self.year = try container.decodeIfPresent(Swift.Int32.self, forKey: .year)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -164,10 +164,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.DateTime"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

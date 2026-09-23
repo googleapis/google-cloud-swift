@@ -191,7 +191,7 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The maximum duration for the nodes to exist.
   /// If unspecified, the nodes can exist indefinitely.
-  public var maxRunDuration: GoogleWKT.Duration? = nil
+  public var maxRunDuration: GoogleWKT.WKTDuration? = nil
 
   /// Flex Start flag for enabling Flex Start VM.
   public var flexStart: Swift.Bool? = nil
@@ -207,7 +207,7 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Consolidation delay defines duration after which the Cluster Autoscaler can
   /// scale down underutilized nodes. If not set, nodes are scaled down by
   /// default behavior, i.e. according to the chosen autoscaling profile.
-  public var consolidationDelay: GoogleWKT.Duration? = nil
+  public var consolidationDelay: GoogleWKT.WKTDuration? = nil
 
   /// The taint configuration for the node pool.
   public var taintConfig: TaintConfig? = nil
@@ -411,19 +411,19 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.storagePools = value
     }
     self.maxRunDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maxRunDuration)
+      GoogleWKT.WKTDuration.self, forKey: .maxRunDuration)
     self.flexStart = try container.decodeIfPresent(Swift.Bool.self, forKey: .flexStart)
     self.bootDisk = try container.decodeIfPresent(BootDisk.self, forKey: .bootDisk)
     self.nodeDrainConfig = try container.decodeIfPresent(
       NodePool.NodeDrainConfig.self, forKey: .nodeDrainConfig)
     self.consolidationDelay = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .consolidationDelay)
+      GoogleWKT.WKTDuration.self, forKey: .consolidationDelay)
     self.taintConfig = try container.decodeIfPresent(TaintConfig.self, forKey: .taintConfig)
     self.maintenancePolicy = try container.decodeIfPresent(
       NodePool.NodePoolMaintenancePolicy.self, forKey: .maintenancePolicy)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -481,10 +481,10 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.UpdateNodePoolRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

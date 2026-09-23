@@ -22,13 +22,13 @@ public struct MessageWithInt32Value: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleWKT.Int32Value? = nil
+  public var singular: GoogleWKT.WKTInt32Value? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleWKT.Int32Value] = []
+  public var repeated: [GoogleWKT.WKTInt32Value] = []
 
   /// Test google.protobuf.Int32Value as map values.
-  public var map: [Swift.String: GoogleWKT.Int32Value] = [:]
+  public var map: [Swift.String: GoogleWKT.WKTInt32Value] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,18 +67,19 @@ public struct MessageWithInt32Value: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decodeIfPresent(GoogleWKT.Int32Value.self, forKey: .singular)
-    if let value = try container.decodeIfPresent([GoogleWKT.Int32Value].self, forKey: .repeated) {
+    self.singular = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .singular)
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTInt32Value].self, forKey: .repeated)
+    {
       self.repeated = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Int32Value].self, forKey: .map)
+      [Swift.String: GoogleWKT.WKTInt32Value].self, forKey: .map)
     {
       self.map = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -95,10 +96,10 @@ public struct MessageWithInt32Value: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithInt32Value"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

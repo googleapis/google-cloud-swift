@@ -123,7 +123,7 @@
     /// replaces the agent-level config in its entirety.
     ///
     /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]: <doc:StreamingDetectIntentRequest/outputAudioConfig>
-    public var outputAudioConfigMask: GoogleWKT.FieldMask? = nil
+    public var outputAudioConfigMask: GoogleWKT.WKTFieldMask? = nil
 
     /// The input audio content to be recognized. Must be sent if
     /// `query_input` was set to a streaming input audio config. The complete audio
@@ -194,7 +194,7 @@
       self.outputAudioConfig = try container.decodeIfPresent(
         OutputAudioConfig.self, forKey: .outputAudioConfig)
       self.outputAudioConfigMask = try container.decodeIfPresent(
-        GoogleWKT.FieldMask.self, forKey: .outputAudioConfigMask)
+        GoogleWKT.WKTFieldMask.self, forKey: .outputAudioConfigMask)
       if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .inputAudio) {
         self.inputAudio = value
       }
@@ -203,7 +203,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -228,10 +228,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.StreamingDetectIntentRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

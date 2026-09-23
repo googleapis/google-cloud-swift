@@ -338,7 +338,7 @@
 
     public func updateCachedContent(
       cachedContent: CachedContent?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
       let request = UpdateCachedContentRequest().with {
         $0.cachedContent = cachedContent

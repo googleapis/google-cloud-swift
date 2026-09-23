@@ -71,7 +71,7 @@ public struct HttpBody: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Application specific response metadata. Must be set in the first response
   /// for streaming APIs.
-  public var extensions: [GoogleWKT.`Any`] = []
+  public var extensions: [GoogleWKT.WKTAny] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,12 +116,12 @@ public struct HttpBody: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
       self.data = value
     }
-    if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .extensions) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .extensions) {
       self.extensions = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -138,10 +138,10 @@ public struct HttpBody: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.HttpBody"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -25,17 +25,17 @@ public struct Attempt: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The time that this attempt was scheduled.
   ///
   /// `schedule_time` will be truncated to the nearest microsecond.
-  public var scheduleTime: GoogleWKT.Timestamp? = nil
+  public var scheduleTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that this attempt was dispatched.
   ///
   /// `dispatch_time` will be truncated to the nearest microsecond.
-  public var dispatchTime: GoogleWKT.Timestamp? = nil
+  public var dispatchTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that this attempt response was received.
   ///
   /// `response_time` will be truncated to the nearest microsecond.
-  public var responseTime: GoogleWKT.Timestamp? = nil
+  public var responseTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The response from the worker for this attempt.
   ///
@@ -83,16 +83,16 @@ public struct Attempt: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.scheduleTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .scheduleTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .scheduleTime)
     self.dispatchTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .dispatchTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .dispatchTime)
     self.responseTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .responseTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .responseTime)
     self.responseStatus = try container.decodeIfPresent(
       GoogleRpc.Status.self, forKey: .responseStatus)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -110,10 +110,10 @@ public struct Attempt: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.Attempt"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -62,12 +62,12 @@ public struct MuteConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The time at which the mute config was created.
   /// This field is set by the server and will be ignored if provided on config
   /// creation.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The most recent time at which the mute config was updated.
   /// This field is set by the server and will be ignored if provided on config
   /// creation or update.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Email address of the user who last edited the mute config.
   /// This field is set by the server and will be ignored if provided on config
@@ -81,7 +81,7 @@ public struct MuteConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The expiry of the mute config. Only applicable for dynamic
   /// configs. If the expiry is set, when the config expires, it is removed from
   /// all findings.
-  public var expiryTime: GoogleWKT.Timestamp? = nil
+  public var expiryTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -139,18 +139,21 @@ public struct MuteConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
       self.filter = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mostRecentEditor) {
       self.mostRecentEditor = value
     }
     if let value = try container.decodeIfPresent(MuteConfig.MuteConfigType.self, forKey: .type) {
       self.type = value
     }
-    self.expiryTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expiryTime)
+    self.expiryTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expiryTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -296,10 +299,10 @@ public struct MuteConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.MuteConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

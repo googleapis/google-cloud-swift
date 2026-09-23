@@ -58,7 +58,7 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.speech.v2.BatchRecognizeRequest.config]: <doc:BatchRecognizeRequest/config>
   /// [google.cloud.speech.v2.Recognizer.default_recognition_config]: <doc:Recognizer/defaultRecognitionConfig>
-  public var configMask: GoogleWKT.FieldMask? = nil
+  public var configMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Audio files with file metadata for ASR.
   /// The maximum number of files allowed to be specified is 15.
@@ -118,7 +118,8 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.recognizer = value
     }
     self.config = try container.decodeIfPresent(RecognitionConfig.self, forKey: .config)
-    self.configMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .configMask)
+    self.configMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .configMask)
     if let value = try container.decodeIfPresent([BatchRecognizeFileMetadata].self, forKey: .files)
     {
       self.files = value
@@ -132,7 +133,7 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -264,10 +265,10 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.BatchRecognizeRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -47,13 +47,13 @@ public struct Recipe: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the target, which is captured in recipe.entryPoint. Since the arguments
   /// field can greatly vary in structure, depending on the builder and recipe
   /// type, this is of form "Any".
-  public var arguments: [GoogleWKT.`Any`] = []
+  public var arguments: [GoogleWKT.WKTAny] = []
 
   /// Any other builder-controlled inputs necessary for correctly evaluating the
   /// recipe. Usually only needed for reproducing the build but not evaluated as
   /// part of policy. Since the environment field can greatly vary in structure,
   /// depending on the builder and recipe type, this is of form "Any".
-  public var environment: [GoogleWKT.`Any`] = []
+  public var environment: [GoogleWKT.WKTAny] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,15 +105,15 @@ public struct Recipe: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entryPoint) {
       self.entryPoint = value
     }
-    if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .arguments) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .arguments) {
       self.arguments = value
     }
-    if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .environment) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .environment) {
       self.environment = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -132,10 +132,10 @@ public struct Recipe: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Recipe"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

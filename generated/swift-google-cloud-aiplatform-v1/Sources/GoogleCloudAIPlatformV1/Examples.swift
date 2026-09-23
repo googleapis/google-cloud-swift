@@ -102,7 +102,7 @@
         config = $0
       }
       if let nearestNeighborSearchConfig = try container.decodeIfPresent(
-        GoogleWKT.Value?.self, forKey: .nearestNeighborSearchConfig)
+        GoogleWKT.WKTValue?.self, forKey: .nearestNeighborSearchConfig)
       {
         try configCheckAndSet(.nearestNeighborSearchConfig(nearestNeighborSearchConfig))
       }
@@ -112,7 +112,7 @@
       self.config = config
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -195,7 +195,7 @@
         self.gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -321,10 +321,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Examples.ExampleGcsSource"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -341,7 +341,7 @@
       /// [NearestNeighborSearchConfig](https://cloud.google.com/vertex-ai/docs/explainable-ai/configuring-explanations-example-based#nearest-neighbor-search-config).
       ///
       /// [google.cloud.aiplatform.v1.Index.metadata]: <doc:Index/metadata>
-      indirect case nearestNeighborSearchConfig(GoogleWKT.Value?)
+      indirect case nearestNeighborSearchConfig(GoogleWKT.WKTValue?)
       /// Simplified preset configuration, which automatically sets configuration
       /// values based on the desired query speed-precision trade-off and modality.
       indirect case presets(Presets?)
@@ -350,10 +350,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Examples"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

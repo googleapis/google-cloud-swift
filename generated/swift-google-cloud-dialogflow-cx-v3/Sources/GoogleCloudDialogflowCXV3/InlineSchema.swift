@@ -26,7 +26,7 @@
     public var type: DataType = DataType()
 
     /// Schema of the elements if this is an ARRAY type.
-    public var items: GoogleWKT.Recursive<TypeSchema>? = nil
+    public var items: GoogleWKT.WKTRecursive<TypeSchema>? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,10 +67,10 @@
         self.type = value
       }
       self.items = try container.decodeIfPresent(
-        GoogleWKT.Recursive<TypeSchema>.self, forKey: .items)
+        GoogleWKT.WKTRecursive<TypeSchema>.self, forKey: .items)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -86,10 +86,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.InlineSchema"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

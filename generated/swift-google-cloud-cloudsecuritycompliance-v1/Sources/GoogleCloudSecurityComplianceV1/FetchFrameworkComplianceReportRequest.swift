@@ -25,7 +25,7 @@ public struct FetchFrameworkComplianceReportRequest: Codable, Equatable, GoogleW
   public var name: Swift.String = Swift.String()
 
   /// Optional. The end time of the report.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The filtering results.
   public var filter: Swift.String = Swift.String()
@@ -70,13 +70,13 @@ public struct FetchFrameworkComplianceReportRequest: Codable, Equatable, GoogleW
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
       self.filter = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -94,10 +94,10 @@ public struct FetchFrameworkComplianceReportRequest: Codable, Equatable, GoogleW
     return
       "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.FetchFrameworkComplianceReportRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

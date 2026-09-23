@@ -38,12 +38,12 @@
     /// primary instance fails, the replica instance will be promoted as the new
     /// primary instance. Only one replica can be specified as failover target, and
     /// the replica has to be in different zone with the primary instance.
-    public var failoverTarget: GoogleWKT.BoolValue? = nil
+    public var failoverTarget: GoogleWKT.WKTBoolValue? = nil
 
     /// Optional. Specifies if a SQL Server replica is a cascadable replica. A
     /// cascadable replica is a SQL Server cross region replica that supports
     /// replica(s) under it.
-    public var cascadableReplica: GoogleWKT.BoolValue? = nil
+    public var cascadableReplica: GoogleWKT.WKTBoolValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,12 +90,12 @@
       self.mysqlReplicaConfiguration = try container.decodeIfPresent(
         MySqlReplicaConfiguration.self, forKey: .mysqlReplicaConfiguration)
       self.failoverTarget = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .failoverTarget)
+        GoogleWKT.WKTBoolValue.self, forKey: .failoverTarget)
       self.cascadableReplica = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .cascadableReplica)
+        GoogleWKT.WKTBoolValue.self, forKey: .cascadableReplica)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -114,10 +114,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.ReplicaConfiguration"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

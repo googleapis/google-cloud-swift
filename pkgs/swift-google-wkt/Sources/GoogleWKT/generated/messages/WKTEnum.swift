@@ -16,34 +16,31 @@
 
 import Foundation
 
-/// Method represents a method of an API interface.
-public struct Method: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Enum type definition.
+public struct WKTEnum: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// The simple name of this method.
+  /// Enum type name.
   public var name: Swift.String = Swift.String()
 
-  /// A URL of the input message type.
-  public var requestTypeUrl: Swift.String = Swift.String()
+  /// Enum value definitions.
+  public var enumvalue: [WKTEnumValue] = []
 
-  /// If true, the request is streamed.
-  public var requestStreaming: Swift.Bool = Swift.Bool()
+  /// Protocol buffer options.
+  public var options: [WKTOption] = []
 
-  /// The URL of the output message type.
-  public var responseTypeUrl: Swift.String = Swift.String()
+  /// The source context.
+  public var sourceContext: WKTSourceContext? = nil
 
-  /// If true, the response is streamed.
-  public var responseStreaming: Swift.Bool = Swift.Bool()
+  /// The source syntax.
+  public var syntax: WKTSyntax = WKTSyntax()
 
-  /// Any metadata attached to the method.
-  public var options: [Option] = []
-
-  /// The source syntax of this method.
-  public var syntax: Syntax = Syntax()
+  /// The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+  public var edition: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `Method`.
+  /// Initialize a new instance of `WKTEnum`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -51,7 +48,7 @@ public struct Method: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Method().with { $0.name = ... }
+  /// let value = WKTEnum().with { $0.name = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -66,21 +63,19 @@ public struct Method: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let name = CodingKeys(stringValue: "name")
-    static let requestTypeUrl = CodingKeys(stringValue: "requestTypeUrl")
-    static let requestStreaming = CodingKeys(stringValue: "requestStreaming")
-    static let responseTypeUrl = CodingKeys(stringValue: "responseTypeUrl")
-    static let responseStreaming = CodingKeys(stringValue: "responseStreaming")
+    static let enumvalue = CodingKeys(stringValue: "enumvalue")
     static let options = CodingKeys(stringValue: "options")
+    static let sourceContext = CodingKeys(stringValue: "sourceContext")
     static let syntax = CodingKeys(stringValue: "syntax")
+    static let edition = CodingKeys(stringValue: "edition")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
-      "requestTypeUrl",
-      "requestStreaming",
-      "responseTypeUrl",
-      "responseStreaming",
+      "enumvalue",
       "options",
+      "sourceContext",
       "syntax",
+      "edition",
     ]
   }
 
@@ -89,51 +84,46 @@ public struct Method: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestTypeUrl) {
-      self.requestTypeUrl = value
+    if let value = try container.decodeIfPresent([WKTEnumValue].self, forKey: .enumvalue) {
+      self.enumvalue = value
     }
-    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requestStreaming) {
-      self.requestStreaming = value
-    }
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseTypeUrl) {
-      self.responseTypeUrl = value
-    }
-    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .responseStreaming) {
-      self.responseStreaming = value
-    }
-    if let value = try container.decodeIfPresent([Option].self, forKey: .options) {
+    if let value = try container.decodeIfPresent([WKTOption].self, forKey: .options) {
       self.options = value
     }
-    if let value = try container.decodeIfPresent(Syntax.self, forKey: .syntax) {
+    self.sourceContext = try container.decodeIfPresent(
+      WKTSourceContext.self, forKey: .sourceContext)
+    if let value = try container.decodeIfPresent(WKTSyntax.self, forKey: .syntax) {
       self.syntax = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .edition) {
+      self.edition = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.requestTypeUrl, forKey: .requestTypeUrl)
-    try container.encode(self.requestStreaming, forKey: .requestStreaming)
-    try container.encode(self.responseTypeUrl, forKey: .responseTypeUrl)
-    try container.encode(self.responseStreaming, forKey: .responseStreaming)
+    try container.encode(self.enumvalue, forKey: .enumvalue)
     try container.encode(self.options, forKey: .options)
+    try container.encodeIfPresent(self.sourceContext, forKey: .sourceContext)
     try container.encode(self.syntax, forKey: .syntax)
+    try container.encode(self.edition, forKey: .edition)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.protobuf.Method"
+    return "type.googleapis.com/google.protobuf.Enum"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

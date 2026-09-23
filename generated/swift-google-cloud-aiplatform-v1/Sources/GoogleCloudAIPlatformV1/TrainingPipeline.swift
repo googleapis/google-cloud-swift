@@ -63,7 +63,7 @@
     /// `inputs`.
     ///
     /// [google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]: <doc:TrainingPipeline/trainingTaskDefinition>
-    public var trainingTaskInputs: GoogleWKT.Value? = nil
+    public var trainingTaskInputs: GoogleWKT.WKTValue? = nil
 
     /// Output only. The metadata information as specified in the
     /// [training_task_definition][google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]'s
@@ -75,7 +75,7 @@
     /// contains `metadata` object.
     ///
     /// [google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]: <doc:TrainingPipeline/trainingTaskDefinition>
-    public var trainingTaskMetadata: GoogleWKT.Value? = nil
+    public var trainingTaskMetadata: GoogleWKT.WKTValue? = nil
 
     /// Describes the Model that may be uploaded (via
     /// [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel])
@@ -119,19 +119,19 @@
     public var error: GoogleRpc.Status? = nil
 
     /// Output only. Time when the TrainingPipeline was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the TrainingPipeline for the first time entered the
     /// `PIPELINE_STATE_RUNNING` state.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the TrainingPipeline entered any of the following
     /// states: `PIPELINE_STATE_SUCCEEDED`, `PIPELINE_STATE_FAILED`,
     /// `PIPELINE_STATE_CANCELLED`.
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the TrainingPipeline was most recently updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The labels with user-defined metadata to organize TrainingPipelines.
     ///
@@ -231,9 +231,9 @@
         self.trainingTaskDefinition = value
       }
       self.trainingTaskInputs = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .trainingTaskInputs)
+        GoogleWKT.WKTValue.self, forKey: .trainingTaskInputs)
       self.trainingTaskMetadata = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .trainingTaskMetadata)
+        GoogleWKT.WKTValue.self, forKey: .trainingTaskMetadata)
       self.modelToUpload = try container.decodeIfPresent(Model.self, forKey: .modelToUpload)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
         self.modelId = value
@@ -245,10 +245,13 @@
         self.state = value
       }
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .labels)
       {
@@ -258,7 +261,7 @@
         EncryptionSpec.self, forKey: .encryptionSpec)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -289,10 +292,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TrainingPipeline"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

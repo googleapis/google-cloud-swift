@@ -787,7 +787,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateReservation(
     reservation: Reservation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
     let request = UpdateReservationRequest().with {
       $0.reservation = reservation
@@ -928,7 +928,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateCapacityCommitment(
     capacityCommitment: CapacityCommitment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
     let request = UpdateCapacityCommitmentRequest().with {
       $0.capacityCommitment = capacityCommitment
@@ -1259,7 +1259,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateAssignment(
     assignment: Assignment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
     let request = UpdateAssignmentRequest().with {
       $0.assignment = assignment
@@ -1303,7 +1303,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateBiReservation(
     biReservation: BiReservation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
     let request = UpdateBiReservationRequest().with {
       $0.biReservation = biReservation
@@ -1477,7 +1477,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateReservationGroup(
     reservationGroup: ReservationGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
     let request = UpdateReservationGroupRequest().with {
       $0.reservationGroup = reservationGroup

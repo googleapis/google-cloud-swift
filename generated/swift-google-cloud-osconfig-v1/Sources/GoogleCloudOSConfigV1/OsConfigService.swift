@@ -503,7 +503,7 @@ extension Clients.OsConfigServiceProtocol {
 
   public func updatePatchDeployment(
     patchDeployment: PatchDeployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
     let request = UpdatePatchDeploymentRequest().with {
       $0.patchDeployment = patchDeployment

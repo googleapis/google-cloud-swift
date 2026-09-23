@@ -260,7 +260,7 @@ extension Clients {
     /// See `HypercomputeClusterClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `HypercomputeClusterClient.deleteCluster`.
@@ -475,7 +475,7 @@ extension Clients.HypercomputeClusterProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster

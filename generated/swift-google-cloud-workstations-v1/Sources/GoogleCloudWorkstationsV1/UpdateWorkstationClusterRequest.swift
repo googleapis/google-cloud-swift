@@ -26,7 +26,7 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
 
   /// Required. Mask that specifies which fields in the workstation cluster
   /// should be updated.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. If set, validate the request and preview the result, but do not
   /// actually apply it.
@@ -78,7 +78,8 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.workstationCluster = try container.decodeIfPresent(
       WorkstationCluster.self, forKey: .workstationCluster)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
     }
@@ -87,7 +88,7 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -105,10 +106,10 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workstations.v1.UpdateWorkstationClusterRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

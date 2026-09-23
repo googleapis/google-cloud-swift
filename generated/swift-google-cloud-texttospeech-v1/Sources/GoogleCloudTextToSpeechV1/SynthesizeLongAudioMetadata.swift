@@ -22,11 +22,11 @@ public struct SynthesizeLongAudioMetadata: Codable, Equatable, GoogleWKT._AnyPac
   Sendable
 {
   /// Time when the request was received.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Deprecated. Do not use.
   @available(*, deprecated)
-  public var lastUpdateTime: GoogleWKT.Timestamp? = nil
+  public var lastUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The progress of the most recent processing update in percentage, ie. 70.0%.
   public var progressPercentage: Swift.Double = Swift.Double()
@@ -71,15 +71,15 @@ public struct SynthesizeLongAudioMetadata: Codable, Equatable, GoogleWKT._AnyPac
   #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.lastUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastUpdateTime)
     if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .progressPercentage) {
       self.progressPercentage = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -99,10 +99,10 @@ public struct SynthesizeLongAudioMetadata: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.texttospeech.v1.SynthesizeLongAudioMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -99,7 +99,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   /// that writes the finding. The key names in the source_properties map must be
   /// between 1 and 255 characters, and must start with a letter and contain
   /// alphanumeric characters or underscores only.
-  public var sourceProperties: [Swift.String: GoogleWKT.Value] = [:]
+  public var sourceProperties: [Swift.String: GoogleWKT.WKTValue] = [:]
 
   /// Output only. User specified security marks. These marks are entirely
   /// managed by the user and come from the SecurityMarks resource that belongs
@@ -113,11 +113,11 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   /// accuracy is determined by the detector. If the finding is later resolved,
   /// then this time reflects when the finding was resolved. This must not
   /// be set to a value greater than the current timestamp.
-  public var eventTime: GoogleWKT.Timestamp? = nil
+  public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the finding was created in Security Command
   /// Center.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The severity of the finding. This field is managed by the source that
   /// writes the finding.
@@ -147,7 +147,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var vulnerability: Vulnerability? = nil
 
   /// Output only. The most recent time this finding was muted or unmuted.
-  public var muteUpdateTime: GoogleWKT.Timestamp? = nil
+  public var muteUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Third party SIEM/SOAR fields within SCC, contains external
   /// system information and external system finding fields.
@@ -505,13 +505,14 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.externalUri = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Value].self, forKey: .sourceProperties)
+      [Swift.String: GoogleWKT.WKTValue].self, forKey: .sourceProperties)
     {
       self.sourceProperties = value
     }
     self.securityMarks = try container.decodeIfPresent(SecurityMarks.self, forKey: .securityMarks)
-    self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.eventTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Finding.Severity.self, forKey: .severity) {
       self.severity = value
     }
@@ -525,7 +526,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     self.indicator = try container.decodeIfPresent(Indicator.self, forKey: .indicator)
     self.vulnerability = try container.decodeIfPresent(Vulnerability.self, forKey: .vulnerability)
     self.muteUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .muteUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .muteUpdateTime)
     if let value = try container.decodeIfPresent(
       [Swift.String: ExternalSystem].self, forKey: .externalSystems)
     {
@@ -633,7 +634,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     self.agentAnomaly = try container.decodeIfPresent(AgentAnomaly.self, forKey: .agentAnomaly)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -764,7 +765,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -788,7 +789,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       public var state: Finding.Mute = Finding.Mute()
 
       /// When the static mute was applied.
-      public var applyTime: GoogleWKT.Timestamp? = nil
+      public var applyTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -828,10 +829,11 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Finding.Mute.self, forKey: .state) {
           self.state = value
         }
-        self.applyTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .applyTime)
+        self.applyTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .applyTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -847,10 +849,10 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -866,7 +868,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       public var muteConfig: Swift.String = Swift.String()
 
       /// When the dynamic mute rule first matched the finding.
-      public var matchTime: GoogleWKT.Timestamp? = nil
+      public var matchTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -906,10 +908,11 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .muteConfig) {
           self.muteConfig = value
         }
-        self.matchTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .matchTime)
+        self.matchTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .matchTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -926,10 +929,10 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -937,10 +940,10 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.Finding.MuteInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1535,10 +1538,10 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Finding"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

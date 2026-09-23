@@ -229,7 +229,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     self.automatedBackupConfig = automatedBackupConfig
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -316,7 +316,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -478,10 +478,10 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Table.ClusterState"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -492,11 +492,11 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Required. How long the automated backups should be retained. Values must
     /// be at least 3 days and at most 90 days.
-    public var retentionPeriod: GoogleWKT.Duration? = nil
+    public var retentionPeriod: GoogleWKT.WKTDuration? = nil
 
     /// How frequently automated backups should occur. The only supported value
     /// at this time is 24 hours. An undefined frequency is treated as 24 hours.
-    public var frequency: GoogleWKT.Duration? = nil
+    public var frequency: GoogleWKT.WKTDuration? = nil
 
     /// Optional. A list of Cloud Bigtable zones where automated backups are
     /// allowed to be created. If empty, automated backups will be created in all
@@ -543,14 +543,14 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.retentionPeriod = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .retentionPeriod)
-      self.frequency = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .frequency)
+        GoogleWKT.WKTDuration.self, forKey: .retentionPeriod)
+      self.frequency = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .frequency)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
         self.locations = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -567,10 +567,10 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Table.AutomatedBackupPolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -842,10 +842,10 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.Table"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -35,10 +35,10 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. The time when the instance was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the instance was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The type of the ManagementServer resource.
   public var type: ManagementServer.InstanceType = ManagementServer.InstanceType()
@@ -78,7 +78,7 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
   public var baProxyUri: [Swift.String] = []
 
   /// Output only. Reserved for future use.
-  public var satisfiesPzs: GoogleWKT.BoolValue? = nil
+  public var satisfiesPzs: GoogleWKT.WKTBoolValue? = nil
 
   /// Output only. Reserved for future use.
   public var satisfiesPzi: Swift.Bool = Swift.Bool()
@@ -158,8 +158,10 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(ManagementServer.InstanceType.self, forKey: .type)
     {
       self.type = value
@@ -187,13 +189,13 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
       self.baProxyUri = value
     }
     self.satisfiesPzs = try container.decodeIfPresent(
-      GoogleWKT.BoolValue.self, forKey: .satisfiesPzs)
+      GoogleWKT.WKTBoolValue.self, forKey: .satisfiesPzs)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
       self.satisfiesPzi = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -490,10 +492,10 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.ManagementServer"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

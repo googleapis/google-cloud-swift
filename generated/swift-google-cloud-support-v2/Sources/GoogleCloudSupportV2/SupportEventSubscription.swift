@@ -50,16 +50,16 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleWKT._AnyPackab
     SupportEventSubscription.FailureReason()
 
   /// Output only. The time at which the subscription was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the subscription was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the subscription was deleted.
-  public var deleteTime: GoogleWKT.Timestamp? = nil
+  public var deleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the subscription will be purged.
-  public var purgeTime: GoogleWKT.Timestamp? = nil
+  public var purgeTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,13 +124,16 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleWKT._AnyPackab
     {
       self.failureReason = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.deleteTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deleteTime)
-    self.purgeTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .purgeTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
+    self.purgeTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .purgeTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -405,10 +408,10 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.support.v2.SupportEventSubscription"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

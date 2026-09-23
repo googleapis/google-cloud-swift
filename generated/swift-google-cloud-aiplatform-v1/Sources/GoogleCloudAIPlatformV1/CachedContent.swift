@@ -53,10 +53,10 @@
     public var toolConfig: ToolConfig? = nil
 
     /// Output only. Creation time of the cache entry.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. When the cache entry was last updated in UTC time.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Metadata on the usage of the cached content.
     public var usageMetadata: CachedContent.UsageMetadata? = nil
@@ -144,8 +144,10 @@
         self.tools = value
       }
       self.toolConfig = try container.decodeIfPresent(ToolConfig.self, forKey: .toolConfig)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       self.usageMetadata = try container.decodeIfPresent(
         CachedContent.UsageMetadata.self, forKey: .usageMetadata)
       self.encryptionSpec = try container.decodeIfPresent(
@@ -162,17 +164,17 @@
         expiration = $0
       }
       if let expireTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp?.self, forKey: .expireTime)
+        GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
       {
         try expirationCheckAndSet(.expireTime(expireTime))
       }
-      if let ttl = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .ttl) {
+      if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
         try expirationCheckAndSet(.ttl(ttl))
       }
       self.expiration = expiration
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -284,7 +286,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -303,10 +305,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.CachedContent.UsageMetadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -316,19 +318,19 @@
       /// Timestamp of when this resource is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.
-      indirect case expireTime(GoogleWKT.Timestamp?)
+      indirect case expireTime(GoogleWKT.WKTTimestamp?)
       /// Input only. The TTL for this resource. The expiration time is computed:
       /// now + TTL.
-      indirect case ttl(GoogleWKT.Duration?)
+      indirect case ttl(GoogleWKT.WKTDuration?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.CachedContent"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

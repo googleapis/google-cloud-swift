@@ -42,16 +42,16 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: CustomClass.State = CustomClass.State()
 
   /// Output only. Creation time.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The most recent time this resource was modified.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which this resource was requested for deletion.
-  public var deleteTime: GoogleWKT.Timestamp? = nil
+  public var deleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which this resource will be purged.
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Allows users to store small amounts of arbitrary data.
   /// Both the key and the value must be 63 characters or less each.
@@ -153,10 +153,14 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(CustomClass.State.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.deleteTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deleteTime)
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .annotations)
     {
@@ -176,7 +180,7 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -246,7 +250,7 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -261,10 +265,10 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.speech.v2.CustomClass.ClassItem"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -390,10 +394,10 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.CustomClass"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

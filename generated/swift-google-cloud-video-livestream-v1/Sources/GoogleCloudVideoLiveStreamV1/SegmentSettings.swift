@@ -33,7 +33,7 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.video.livestream.v1.Manifest.mux_streams]: <doc:Manifest/muxStreams>
   /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration]: <doc:VideoStream/H264CodecSettings/OneOf_GopMode/gopDuration(_:)>
-  public var segmentDuration: GoogleWKT.Duration? = nil
+  public var segmentDuration: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,10 +69,10 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.segmentDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .segmentDuration)
+      GoogleWKT.WKTDuration.self, forKey: .segmentDuration)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -87,10 +87,10 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.SegmentSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

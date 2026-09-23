@@ -878,7 +878,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(
       entryType: EntryType?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EntryType>
 
     /// See `CatalogServiceClient.deleteEntryType`.
@@ -908,7 +908,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(
       aspectType: AspectType?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AspectType>
 
     /// See `CatalogServiceClient.deleteAspectType`.
@@ -938,7 +938,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(
       entryGroup: EntryGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EntryGroup>
 
     /// See `CatalogServiceClient.deleteEntryGroup`.
@@ -988,7 +988,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(
       metadataFeed: MetadataFeed?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MetadataFeed>
 
     /// See `CatalogServiceClient.createEntryType`.
@@ -1361,7 +1361,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateEntryType(
     entryType: EntryType?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<EntryType> {
     let request = UpdateEntryTypeRequest().with {
       $0.entryType = entryType
@@ -1541,7 +1541,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateAspectType(
     aspectType: AspectType?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AspectType> {
     let request = UpdateAspectTypeRequest().with {
       $0.aspectType = aspectType
@@ -1721,7 +1721,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
     let request = UpdateEntryGroupRequest().with {
       $0.entryGroup = entryGroup
@@ -1865,7 +1865,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateEntry(
     entry: Entry?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDataplexV1.Entry {
     let request = UpdateEntryRequest().with {
       $0.entry = entry
@@ -2445,7 +2445,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateMetadataFeed(
     metadataFeed: MetadataFeed?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
     let request = UpdateMetadataFeedRequest().with {
       $0.metadataFeed = metadataFeed

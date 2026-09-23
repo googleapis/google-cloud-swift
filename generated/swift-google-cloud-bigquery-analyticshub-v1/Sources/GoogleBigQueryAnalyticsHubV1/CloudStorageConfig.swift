@@ -49,7 +49,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The maximum duration that can elapse before a new Cloud Storage file is
   /// created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
   /// the subscription's acknowledgement deadline.
-  public var maxDuration: GoogleWKT.Duration? = nil
+  public var maxDuration: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The maximum bytes that can be written to a Cloud Storage file
   /// before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
@@ -135,7 +135,8 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.filenameDatetimeFormat = value
     }
-    self.maxDuration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .maxDuration)
+    self.maxDuration = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .maxDuration)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxBytes) {
       self.maxBytes = value
     }
@@ -169,7 +170,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.outputFormat = outputFormat
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -234,7 +235,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -249,10 +250,10 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.TextConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -317,7 +318,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -334,10 +335,10 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.AvroConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -355,10 +356,10 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.CloudStorageConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

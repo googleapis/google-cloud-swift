@@ -48,13 +48,13 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: MembershipState? = nil
 
   /// Output only. When the Membership was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. When the Membership was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. When the Membership was deleted.
-  public var deleteTime: GoogleWKT.Timestamp? = nil
+  public var deleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. An externally-generated and managed ID for this Membership. This
   /// ID may be modified after creation, but this is not recommended.
@@ -70,7 +70,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   /// several minutes, not continuously. For clusters that do not use GKE
   /// Connect, or that have never connected successfully, this field will be
   /// unset.
-  public var lastConnectionTime: GoogleWKT.Timestamp? = nil
+  public var lastConnectionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Google-generated UUID for this resource. This is unique across
   /// all Membership resources. If a Membership resource is deleted and another
@@ -156,14 +156,17 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
     self.state = try container.decodeIfPresent(MembershipState.self, forKey: .state)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.deleteTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deleteTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalId) {
       self.externalId = value
     }
     self.lastConnectionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastConnectionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastConnectionTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uniqueId) {
       self.uniqueId = value
     }
@@ -187,7 +190,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
     self.type = type
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -226,10 +229,10 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.Membership"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

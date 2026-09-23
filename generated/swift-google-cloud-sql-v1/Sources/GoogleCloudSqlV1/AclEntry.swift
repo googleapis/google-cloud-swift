@@ -28,7 +28,7 @@
     /// The time when this access control entry expires in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var expirationTime: GoogleWKT.Timestamp? = nil
+    public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. A label to identify this entry.
     public var name: Swift.String = Swift.String()
@@ -79,7 +79,7 @@
         self.value = value
       }
       self.expirationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .expirationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
@@ -88,7 +88,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -106,10 +106,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.AclEntry"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

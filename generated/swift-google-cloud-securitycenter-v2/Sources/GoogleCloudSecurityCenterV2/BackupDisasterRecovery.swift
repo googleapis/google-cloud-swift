@@ -77,7 +77,7 @@ public struct BackupDisasterRecovery: Codable, Equatable, GoogleWKT._AnyPackable
   public var backupType: Swift.String = Swift.String()
 
   /// The timestamp at which the Backup and DR backup was created.
-  public var backupCreateTime: GoogleWKT.Timestamp? = nil
+  public var backupCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,10 +158,10 @@ public struct BackupDisasterRecovery: Codable, Equatable, GoogleWKT._AnyPackable
       self.backupType = value
     }
     self.backupCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .backupCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .backupCreateTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -185,10 +185,10 @@ public struct BackupDisasterRecovery: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.BackupDisasterRecovery"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

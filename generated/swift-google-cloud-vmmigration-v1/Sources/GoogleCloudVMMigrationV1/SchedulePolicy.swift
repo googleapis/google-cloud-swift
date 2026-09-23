@@ -22,7 +22,7 @@ public struct SchedulePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The idle duration between replication stages.
-  public var idleDuration: GoogleWKT.Duration? = nil
+  public var idleDuration: GoogleWKT.WKTDuration? = nil
 
   /// A flag to indicate whether to skip OS adaptation during the replication
   /// sync. OS adaptation is a process where the VM's operating system undergoes
@@ -65,13 +65,13 @@ public struct SchedulePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.idleDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .idleDuration)
+      GoogleWKT.WKTDuration.self, forKey: .idleDuration)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipOsAdaptation) {
       self.skipOsAdaptation = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -87,10 +87,10 @@ public struct SchedulePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.SchedulePolicy"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

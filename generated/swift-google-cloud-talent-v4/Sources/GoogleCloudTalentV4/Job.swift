@@ -259,16 +259,16 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The start timestamp of the job in UTC time zone. Typically this field
   /// is used for contracting engagements. Invalid timestamps are ignored.
-  public var jobStartTime: GoogleWKT.Timestamp? = nil
+  public var jobStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The end timestamp of the job. Typically this field is used for contracting
   /// engagements. Invalid timestamps are ignored.
-  public var jobEndTime: GoogleWKT.Timestamp? = nil
+  public var jobEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The timestamp this job posting was most recently published. The default
   /// value is the time the request arrives at the server. Invalid timestamps are
   /// ignored.
-  public var postingPublishTime: GoogleWKT.Timestamp? = nil
+  public var postingPublishTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Strongly recommended for the best service experience.
   ///
@@ -333,13 +333,13 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.talent.v4.JobService.ListJobs]: <doc:JobServiceClient/listJobs(request:options:)>
   /// [google.cloud.talent.v4.JobService.UpdateJob]: <doc:JobServiceClient/updateJob(request:options:)>
   /// [google.cloud.talent.v4.UpdateJobRequest.update_mask]: <doc:UpdateJobRequest/updateMask>
-  public var postingExpireTime: GoogleWKT.Timestamp? = nil
+  public var postingExpireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp when this job posting was created.
-  public var postingCreateTime: GoogleWKT.Timestamp? = nil
+  public var postingCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp when this job posting was last updated.
-  public var postingUpdateTime: GoogleWKT.Timestamp? = nil
+  public var postingUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Display name of the company listing the job.
   public var companyDisplayName: Swift.String = Swift.String()
@@ -508,16 +508,17 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       self.visibility = value
     }
     self.jobStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .jobStartTime)
-    self.jobEndTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .jobEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .jobStartTime)
+    self.jobEndTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .jobEndTime)
     self.postingPublishTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .postingPublishTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .postingPublishTime)
     self.postingExpireTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .postingExpireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .postingExpireTime)
     self.postingCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .postingCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .postingCreateTime)
     self.postingUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .postingUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .postingUpdateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .companyDisplayName) {
       self.companyDisplayName = value
     }
@@ -526,7 +527,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       Job.ProcessingOptions.self, forKey: .processingOptions)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -643,7 +644,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -660,10 +661,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.Job.ApplicationInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -733,7 +734,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -749,10 +750,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.Job.DerivedInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -829,7 +830,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -846,10 +847,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.Job.ProcessingOptions"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -857,10 +858,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.Job"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

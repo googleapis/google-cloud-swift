@@ -90,20 +90,20 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [ImportJob][google.cloud.kms.v1.ImportJob] was created.
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]'s key
   /// material was generated.
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  public var generateTime: GoogleWKT.Timestamp? = nil
+  public var generateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which this
   /// [ImportJob][google.cloud.kms.v1.ImportJob] is scheduled for expiration and
   /// can no longer be used to import key material.
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]
   /// expired. Only present if [state][google.cloud.kms.v1.ImportJob.state] is
@@ -112,7 +112,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
   /// [google.cloud.kms.v1.ImportJob.ImportJobState.EXPIRED]: <doc:ImportJob/ImportJobState/expired>
   /// [google.cloud.kms.v1.ImportJob.state]: <doc:ImportJob/state>
-  public var expireEventTime: GoogleWKT.Timestamp? = nil
+  public var expireEventTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The current state of the
   /// [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can be used.
@@ -225,12 +225,14 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
       self.protectionLevel = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.generateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .generateTime)
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .generateTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     self.expireEventTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expireEventTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expireEventTime)
     if let value = try container.decodeIfPresent(ImportJob.ImportJobState.self, forKey: .state) {
       self.state = value
     }
@@ -248,7 +250,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -348,7 +350,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -364,10 +366,10 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.kms.v1.ImportJob.WrappingPublicKey"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -734,10 +736,10 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ImportJob"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

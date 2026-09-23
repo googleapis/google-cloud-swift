@@ -28,7 +28,7 @@ public struct UpdateMetadataImportRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// metadata import resource by the update.
   /// Fields specified in the `update_mask` are relative to the resource (not
   /// to the full request). A field is overwritten if it is in the mask.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The metadata import to update. The server only merges fields
   /// in the import if they are specified in `update_mask`.
@@ -88,7 +88,8 @@ public struct UpdateMetadataImportRequest: Codable, Equatable, GoogleWKT._AnyPac
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.metadataImport = try container.decodeIfPresent(
       MetadataImport.self, forKey: .metadataImport)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
@@ -96,7 +97,7 @@ public struct UpdateMetadataImportRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -113,10 +114,10 @@ public struct UpdateMetadataImportRequest: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.metastore.v1.UpdateMetadataImportRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

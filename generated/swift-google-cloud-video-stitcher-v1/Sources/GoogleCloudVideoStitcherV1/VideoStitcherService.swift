@@ -721,7 +721,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateCdnKey`.
     func updateCdnKey(
       cdnKey: CdnKey?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.createSlate`.
@@ -742,7 +742,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateSlate`.
     func updateSlate(
       slate: Slate?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.deleteSlate`.
@@ -781,7 +781,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateLiveConfig`.
     func updateLiveConfig(
       liveConfig: LiveConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.createVodConfig`.
@@ -811,7 +811,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateVodConfig`.
     func updateVodConfig(
       vodConfig: VodConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.createCdnKey`.
@@ -1210,7 +1210,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateCdnKey(
     cdnKey: CdnKey?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CdnKey> {
     let request = UpdateCdnKeyRequest().with {
       $0.cdnKey = cdnKey
@@ -1584,7 +1584,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateSlate(
     slate: Slate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Slate> {
     let request = UpdateSlateRequest().with {
       $0.slate = slate
@@ -1844,7 +1844,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateLiveConfig(
     liveConfig: LiveConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LiveConfig> {
     let request = UpdateLiveConfigRequest().with {
       $0.liveConfig = liveConfig
@@ -2025,7 +2025,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateVodConfig(
     vodConfig: VodConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<VodConfig> {
     let request = UpdateVodConfigRequest().with {
       $0.vodConfig = vodConfig

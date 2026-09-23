@@ -115,7 +115,7 @@
     /// method. Timestamp of when the user event happened.
     ///
     /// [google.cloud.discoveryengine.v1.UserEventService.ImportUserEvents]: <doc:UserEventServiceClient/importUserEvents(request:options:)>
-    public var eventTime: GoogleWKT.Timestamp? = nil
+    public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Information about the end user.
     public var userInfo: UserInfo? = nil
@@ -388,7 +388,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
         self.dataStore = value
       }
-      self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
+      self.eventTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
       self.userInfo = try container.decodeIfPresent(UserInfo.self, forKey: .userInfo)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .directUserRequest) {
         self.directUserRequest = value
@@ -429,7 +430,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -465,10 +466,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.UserEvent"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

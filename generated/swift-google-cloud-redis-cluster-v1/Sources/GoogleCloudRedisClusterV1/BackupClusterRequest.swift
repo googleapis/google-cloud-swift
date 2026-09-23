@@ -28,7 +28,7 @@ public struct BackupClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. TTL for the backup to expire. Value range is 1 day to 100 years.
   /// If not specified, the default value is 100 years.
-  public var ttl: GoogleWKT.Duration? = nil
+  public var ttl: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The id of the backup to be created. If not specified, the
   /// default value ([YYYYMMDDHHMMSS]_[Shortened Cluster UID] is used.
@@ -74,11 +74,11 @@ public struct BackupClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.ttl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .ttl)
+    self.ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl)
     self.backupId = try container.decodeIfPresent(Swift.String.self, forKey: .backupId)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -95,10 +95,10 @@ public struct BackupClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.BackupClusterRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

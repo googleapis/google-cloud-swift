@@ -37,14 +37,14 @@
     /// Range: 256-4500 bytes. Query lengths greater than this field value will be
     /// truncated to this value. When unset, query length will be the default
     /// value. Changing query length will restart the database.
-    public var queryStringLength: GoogleWKT.Int32Value? = nil
+    public var queryStringLength: GoogleWKT.WKTInt32Value? = nil
 
     /// Number of query execution plans captured by Insights per minute
     /// for all queries combined. Default is 5.
-    public var queryPlansPerMinute: GoogleWKT.Int32Value? = nil
+    public var queryPlansPerMinute: GoogleWKT.WKTInt32Value? = nil
 
     /// Optional. Whether enhanced query insights feature is enabled.
-    public var enhancedQueryInsightsEnabled: GoogleWKT.BoolValue? = nil
+    public var enhancedQueryInsightsEnabled: GoogleWKT.WKTBoolValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,14 +101,14 @@
         self.recordApplicationTags = value
       }
       self.queryStringLength = try container.decodeIfPresent(
-        GoogleWKT.Int32Value.self, forKey: .queryStringLength)
+        GoogleWKT.WKTInt32Value.self, forKey: .queryStringLength)
       self.queryPlansPerMinute = try container.decodeIfPresent(
-        GoogleWKT.Int32Value.self, forKey: .queryPlansPerMinute)
+        GoogleWKT.WKTInt32Value.self, forKey: .queryPlansPerMinute)
       self.enhancedQueryInsightsEnabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .enhancedQueryInsightsEnabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .enhancedQueryInsightsEnabled)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -129,10 +129,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.InsightsConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

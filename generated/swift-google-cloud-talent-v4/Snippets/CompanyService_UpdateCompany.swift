@@ -30,7 +30,7 @@ func sample(client: CompanyServiceClient, projectId: String, tenantId: String, c
         $0.company = Company().with {
           $0.name = "projects/\(projectId)/tenants/\(tenantId)/companies/\(companyId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

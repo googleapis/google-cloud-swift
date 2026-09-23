@@ -50,7 +50,7 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For the `FieldMask` definition,
   /// see
   /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
-  public var createMask: GoogleWKT.FieldMask? = nil
+  public var createMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,10 +104,11 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.policy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .policy)
     self.cloudAiDocumentOption = try container.decodeIfPresent(
       CloudAIDocumentOption.self, forKey: .cloudAiDocumentOption)
-    self.createMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .createMask)
+    self.createMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .createMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -127,10 +128,10 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.CreateDocumentRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

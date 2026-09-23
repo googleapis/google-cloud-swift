@@ -48,7 +48,7 @@ public struct EvaluateTimeseriesRequest: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The granularity of the time series (time distance between two consecutive
   /// points).
-  public var granularity: GoogleWKT.Duration? = nil
+  public var granularity: GoogleWKT.WKTDuration? = nil
 
   /// The forecast parameters.
   public var forecastParams: ForecastParams? = nil
@@ -96,12 +96,13 @@ public struct EvaluateTimeseriesRequest: Codable, Equatable, GoogleWKT._AnyPacka
       self.parent = value
     }
     self.timeseries = try container.decodeIfPresent(Timeseries.self, forKey: .timeseries)
-    self.granularity = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .granularity)
+    self.granularity = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .granularity)
     self.forecastParams = try container.decodeIfPresent(
       ForecastParams.self, forKey: .forecastParams)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -119,10 +120,10 @@ public struct EvaluateTimeseriesRequest: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.EvaluateTimeseriesRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

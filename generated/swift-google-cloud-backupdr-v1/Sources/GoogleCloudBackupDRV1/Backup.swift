@@ -32,28 +32,28 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String? = nil
 
   /// Output only. The time when the instance was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the instance was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Resource labels to represent user provided metadata.
   /// No labels currently defined.
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Optional. The backup can not be deleted before this time.
-  public var enforcedRetentionEndTime: GoogleWKT.Timestamp? = nil
+  public var enforcedRetentionEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Setting for how the enforced retention end time is inherited.
   /// This value is copied from this backup's BackupVault.
   public var backupRetentionInheritance: BackupVault.BackupRetentionInheritance? = nil
 
   /// Optional. When this backup is automatically expired.
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The point in time when this backup was captured from the
   /// source.
-  public var consistencyTime: GoogleWKT.Timestamp? = nil
+  public var consistencyTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Server specified ETag to prevent updates from overwriting each
   /// other.
@@ -182,19 +182,22 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
     }
     self.enforcedRetentionEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .enforcedRetentionEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .enforcedRetentionEndTime)
     self.backupRetentionInheritance = try container.decodeIfPresent(
       BackupVault.BackupRetentionInheritance.self, forKey: .backupRetentionInheritance)
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     self.consistencyTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .consistencyTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .consistencyTime)
     self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
     if let value = try container.decodeIfPresent(Backup.State.self, forKey: .state) {
       self.state = value
@@ -292,7 +295,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     self.sourceResource = sourceResource
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -432,7 +435,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -450,10 +453,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.backupdr.v1.Backup.GCPBackupPlanInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -750,10 +753,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.Backup"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

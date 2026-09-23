@@ -469,7 +469,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.updateCollection`.
     func updateCollection(
       collection: Collection?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.deleteCollection`.
@@ -499,7 +499,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.updateIndex`.
     func updateIndex(
       index: Index?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.deleteIndex`.
@@ -782,7 +782,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func updateCollection(
     collection: Collection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let request = UpdateCollectionRequest().with {
       $0.collection = collection
@@ -956,7 +956,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func updateIndex(
     index: Index?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let request = UpdateIndexRequest().with {
       $0.index = index

@@ -386,7 +386,7 @@
 
     public func updateEntityType(
       entityType: EntityType?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.EntityType {
       let request = UpdateEntityTypeRequest().with {
         $0.entityType = entityType

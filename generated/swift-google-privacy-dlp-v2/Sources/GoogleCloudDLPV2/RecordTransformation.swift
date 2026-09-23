@@ -25,7 +25,7 @@ public struct RecordTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var fieldId: FieldId? = nil
 
   /// Findings container modification timestamp, if applicable.
-  public var containerTimestamp: GoogleWKT.Timestamp? = nil
+  public var containerTimestamp: GoogleWKT.WKTTimestamp? = nil
 
   /// Container version, if available ("generation" for Cloud Storage).
   public var containerVersion: Swift.String = Swift.String()
@@ -69,13 +69,13 @@ public struct RecordTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.fieldId = try container.decodeIfPresent(FieldId.self, forKey: .fieldId)
     self.containerTimestamp = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .containerTimestamp)
+      GoogleWKT.WKTTimestamp.self, forKey: .containerTimestamp)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerVersion) {
       self.containerVersion = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -92,10 +92,10 @@ public struct RecordTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.RecordTransformation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

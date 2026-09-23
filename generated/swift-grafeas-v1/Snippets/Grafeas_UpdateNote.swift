@@ -27,7 +27,7 @@ func sample(client: GrafeasClient, projectId: String, noteId: String) async thro
         $0.note = Note().with {
           $0.name = "projects/\(projectId)/notes/\(noteId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

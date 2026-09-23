@@ -29,7 +29,7 @@ func sample(client: TagKeysClient, tagKeyId: String) async throws {
         $0.tagKey = TagKey().with {
           $0.name = "tagKeys/\(tagKeyId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

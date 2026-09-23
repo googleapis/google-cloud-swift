@@ -28,7 +28,7 @@ func sample(client: ModelArmorClient, projectId: String, locationId: String) asy
         $0.floorSetting = FloorSetting().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/floorSetting"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

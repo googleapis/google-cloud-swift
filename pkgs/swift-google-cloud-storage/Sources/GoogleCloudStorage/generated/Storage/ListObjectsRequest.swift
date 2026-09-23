@@ -58,7 +58,7 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If no mask is specified, defaults to all fields except `items.acl` and
   /// `items.owner`.
   /// `*` might be used to mean all fields.
-  public var readMask: GoogleWKT.FieldMask? = nil
+  public var readMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. Filter results to objects whose names are lexicographically equal
   /// to or after `lexicographic_start`. If `lexicographic_end` is also set, the
@@ -174,7 +174,7 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .versions) {
       self.versions = value
     }
-    self.readMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .readMask)
+    self.readMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .readMask)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lexicographicStart) {
       self.lexicographicStart = value
     }
@@ -196,7 +196,7 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -224,10 +224,10 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.ListObjectsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -37,13 +37,13 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var jobId: Swift.String = Swift.String()
 
   /// Output only. Time at which the `JobRun` was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the `JobRun` was started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the `JobRun` ended.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The current state of the `JobRun`.
   public var state: JobRun.State = JobRun.State()
@@ -129,9 +129,10 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
       self.jobId = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(JobRun.State.self, forKey: .state) {
       self.state = value
     }
@@ -178,7 +179,7 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
     self.jobRun = jobRun
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -372,10 +373,10 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.JobRun"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

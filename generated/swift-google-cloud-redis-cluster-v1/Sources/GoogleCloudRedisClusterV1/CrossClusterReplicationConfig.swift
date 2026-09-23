@@ -37,7 +37,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
   public var secondaryClusters: [CrossClusterReplicationConfig.RemoteCluster] = []
 
   /// Output only. The last time cross cluster replication config was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. An output only view of all the member clusters participating
   /// in the cross cluster replication. This view will be provided by every
@@ -104,12 +104,13 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
     {
       self.secondaryClusters = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.membership = try container.decodeIfPresent(
       CrossClusterReplicationConfig.Membership.self, forKey: .membership)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -180,7 +181,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -197,10 +198,10 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -262,7 +263,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -279,10 +280,10 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.Membership"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -418,10 +419,10 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -27,7 +27,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
 {
   /// BigQuery table must have been created after this date. Used to avoid
   /// backfilling.
-  public var createdAfter: GoogleWKT.Timestamp? = nil
+  public var createdAfter: GoogleWKT.WKTTimestamp? = nil
 
   /// At least one of the conditions must be true for a table to be scanned.
   public var orConditions: DiscoveryBigQueryConditions.OrConditions? = nil
@@ -77,7 +77,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createdAfter = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .createdAfter)
+      GoogleWKT.WKTTimestamp.self, forKey: .createdAfter)
     self.orConditions = try container.decodeIfPresent(
       DiscoveryBigQueryConditions.OrConditions.self, forKey: .orConditions)
 
@@ -102,7 +102,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
     self.includedTypes = includedTypes
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -135,7 +135,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
 
     /// Minimum age a table must have before Cloud DLP can profile it. Value must
     /// be 1 hour or greater.
-    public var minAge: GoogleWKT.Duration? = nil
+    public var minAge: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -175,10 +175,10 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minRowCount) {
         self.minRowCount = value
       }
-      self.minAge = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .minAge)
+      self.minAge = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .minAge)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -194,10 +194,10 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryBigQueryConditions.OrConditions"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -215,10 +215,10 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryBigQueryConditions"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

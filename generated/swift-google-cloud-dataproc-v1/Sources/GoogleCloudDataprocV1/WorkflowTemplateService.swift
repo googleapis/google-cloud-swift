@@ -89,7 +89,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Empty
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
   public func instantiateWorkflowTemplate(
@@ -121,7 +121,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Empty
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
   public func instantiateWorkflowTemplate(
@@ -178,7 +178,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Empty
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
   public func instantiateInlineWorkflowTemplate(
@@ -218,7 +218,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Empty
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
   public func instantiateInlineWorkflowTemplate(

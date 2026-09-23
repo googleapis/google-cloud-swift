@@ -31,7 +31,7 @@ func sample(client: VmMigrationClient, projectId: String, locationId: String, gr
         $0.group = Group().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/groups/\(groupId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

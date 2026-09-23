@@ -39,15 +39,15 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
   public var relatedUrl: [RelatedUrl] = []
 
   /// Time of expiration for this note. Empty if note does not expire.
-  public var expirationTime: GoogleWKT.Timestamp? = nil
+  public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this note was created. This field can be used as a
   /// filter in list requests.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this note was last updated. This field can be used as
   /// a filter in list requests.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Other notes related to this note.
   public var relatedNoteNames: [Swift.String] = []
@@ -146,9 +146,11 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
       self.relatedUrl = value
     }
     self.expirationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expirationTime)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relatedNoteNames) {
       self.relatedNoteNames = value
     }
@@ -214,7 +216,7 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
     self.type = type
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -298,10 +300,10 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Note"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

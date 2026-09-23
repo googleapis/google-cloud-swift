@@ -28,11 +28,11 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. The time that the recurring schedule becomes effective.
   /// Defaults to `create_time` of the patch deployment.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The end time at which a recurring patch deployment schedule is no
   /// longer active.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. Time of the day to run a recurring deployment.
   public var timeOfDay: GoogleType.TimeOfDay? = nil
@@ -41,10 +41,10 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var frequency: RecurringSchedule.Frequency = RecurringSchedule.Frequency()
 
   /// Output only. The time the last patch job ran successfully.
-  public var lastExecuteTime: GoogleWKT.Timestamp? = nil
+  public var lastExecuteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the next patch job is scheduled to run.
-  public var nextExecuteTime: GoogleWKT.Timestamp? = nil
+  public var nextExecuteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Configurations for this recurring schedule.
   /// Configurations must match frequency.
@@ -100,8 +100,8 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.timeZone = try container.decodeIfPresent(GoogleType.TimeZone.self, forKey: .timeZone)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     self.timeOfDay = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .timeOfDay)
     if let value = try container.decodeIfPresent(
       RecurringSchedule.Frequency.self, forKey: .frequency)
@@ -109,9 +109,9 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.frequency = value
     }
     self.lastExecuteTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastExecuteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastExecuteTime)
     self.nextExecuteTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .nextExecuteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .nextExecuteTime)
 
     var scheduleConfig: OneOf_ScheduleConfig? = nil
     let scheduleConfigCheckAndSet = {
@@ -132,7 +132,7 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     self.scheduleConfig = scheduleConfig
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -298,10 +298,10 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.RecurringSchedule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

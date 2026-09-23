@@ -23,7 +23,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
 {
   /// The average duration of all conversations. The average is calculated using
   /// only conversations that have a time duration.
-  public var averageDuration: GoogleWKT.Duration? = nil
+  public var averageDuration: GoogleWKT.WKTDuration? = nil
 
   /// The average number of turns per conversation.
   public var averageTurnCount: Swift.Int32 = Swift.Int32()
@@ -106,7 +106,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.averageDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .averageDuration)
+      GoogleWKT.WKTDuration.self, forKey: .averageDuration)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .averageTurnCount) {
       self.averageTurnCount = value
     }
@@ -137,7 +137,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       CalculateStatsResponse.TimeSeries.self, forKey: .conversationCountTimeSeries)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -165,7 +165,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// The duration of each interval.
-    public var intervalDuration: GoogleWKT.Duration? = nil
+    public var intervalDuration: GoogleWKT.WKTDuration? = nil
 
     /// An ordered list of intervals from earliest to latest, where each interval
     /// represents the number of conversations that transpired during the time
@@ -208,7 +208,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.intervalDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .intervalDuration)
+        GoogleWKT.WKTDuration.self, forKey: .intervalDuration)
       if let value = try container.decodeIfPresent(
         [CalculateStatsResponse.TimeSeries.Interval].self, forKey: .points)
       {
@@ -216,7 +216,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -234,7 +234,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       Sendable
     {
       /// The start time of this interval.
-      public var startTime: GoogleWKT.Timestamp? = nil
+      public var startTime: GoogleWKT.WKTTimestamp? = nil
 
       /// The number of conversations created in this interval.
       public var conversationCount: Swift.Int32 = Swift.Int32()
@@ -274,13 +274,14 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+        self.startTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .startTime)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .conversationCount) {
           self.conversationCount = value
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -297,10 +298,10 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -309,10 +310,10 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -320,10 +321,10 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

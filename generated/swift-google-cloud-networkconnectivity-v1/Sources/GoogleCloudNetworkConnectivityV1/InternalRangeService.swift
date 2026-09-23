@@ -295,7 +295,7 @@ extension Clients {
     /// See `InternalRangeServiceClient.updateInternalRange`.
     func updateInternalRange(
       internalRange: InternalRange?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<InternalRange>
 
     /// See `InternalRangeServiceClient.deleteInternalRange`.
@@ -526,7 +526,7 @@ extension Clients.InternalRangeServiceProtocol {
 
   public func updateInternalRange(
     internalRange: InternalRange?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<InternalRange> {
     let request = UpdateInternalRangeRequest().with {
       $0.internalRange = internalRange

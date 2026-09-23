@@ -31,10 +31,10 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create time stamp
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. [Output only] Update time stamp
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Labels as key value pairs.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -49,7 +49,7 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// underscores, and hyphens.
   /// The schema must be compliant with
   /// [JSON Schema Draft 7](https://json-schema.org/draft-07/schema).
-  public var dataSchema: GoogleWKT.Struct? = nil
+  public var dataSchema: GoogleWKT.WKTStruct? = nil
 
   /// Optional. Immutable. Specifies the customer-managed encryption key spec for
   /// a Collection. If set, this Collection and all sub-resources of this
@@ -114,8 +114,10 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
@@ -125,12 +127,12 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.vectorSchema = value
     }
-    self.dataSchema = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .dataSchema)
+    self.dataSchema = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .dataSchema)
     self.encryptionSpec = try container.decodeIfPresent(
       EncryptionSpec.self, forKey: .encryptionSpec)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -153,10 +155,10 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.Collection"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

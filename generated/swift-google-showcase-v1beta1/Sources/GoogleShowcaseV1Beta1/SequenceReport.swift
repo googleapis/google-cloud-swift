@@ -70,7 +70,7 @@ public struct SequenceReport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -91,15 +91,15 @@ public struct SequenceReport: Codable, Equatable, GoogleWKT._AnyPackable,
     public var attemptNumber: Swift.Int32 = Swift.Int32()
 
     /// The deadline dictated by the attempt to the server.
-    public var attemptDeadline: GoogleWKT.Timestamp? = nil
+    public var attemptDeadline: GoogleWKT.WKTTimestamp? = nil
 
     /// The time that the server responded to the RPC attempt. Used for
     /// calculating attempt_delay.
-    public var responseTime: GoogleWKT.Timestamp? = nil
+    public var responseTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The server perceived delay between sending the last response and
     /// receiving this attempt. Used for validating attempt delay backoff.
-    public var attemptDelay: GoogleWKT.Duration? = nil
+    public var attemptDelay: GoogleWKT.WKTDuration? = nil
 
     /// The status returned to the attempt.
     public var status: GoogleRpc.Status? = nil
@@ -149,15 +149,15 @@ public struct SequenceReport: Codable, Equatable, GoogleWKT._AnyPackable,
         self.attemptNumber = value
       }
       self.attemptDeadline = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .attemptDeadline)
+        GoogleWKT.WKTTimestamp.self, forKey: .attemptDeadline)
       self.responseTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .responseTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .responseTime)
       self.attemptDelay = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .attemptDelay)
+        GoogleWKT.WKTDuration.self, forKey: .attemptDelay)
       self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -176,10 +176,10 @@ public struct SequenceReport: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.SequenceReport.Attempt"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -187,10 +187,10 @@ public struct SequenceReport: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.SequenceReport"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

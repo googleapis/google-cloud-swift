@@ -37,7 +37,7 @@ public struct SyncState: Codable, Equatable, GoogleWKT._AnyPackable,
   public var lastSync: Swift.String = Swift.String()
 
   /// Timestamp type of when ACM last successfully synced the repo
-  public var lastSyncTime: GoogleWKT.Timestamp? = nil
+  public var lastSyncTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Sync status code
   public var code: SyncState.SyncCode = SyncState.SyncCode()
@@ -108,7 +108,7 @@ public struct SyncState: Codable, Equatable, GoogleWKT._AnyPackable,
       self.lastSync = value
     }
     self.lastSyncTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastSyncTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastSyncTime)
     if let value = try container.decodeIfPresent(SyncState.SyncCode.self, forKey: .code) {
       self.code = value
     }
@@ -117,7 +117,7 @@ public struct SyncState: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -293,10 +293,10 @@ public struct SyncState: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.configmanagement.v1.SyncState"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

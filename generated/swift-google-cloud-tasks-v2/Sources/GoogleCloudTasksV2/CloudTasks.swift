@@ -553,7 +553,7 @@ extension Clients.CloudTasksProtocol {
 
   public func updateQueue(
     queue: Queue?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTasksV2.Queue {
     let request = UpdateQueueRequest().with {
       $0.queue = queue

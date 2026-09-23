@@ -281,7 +281,7 @@
 
     public func updateSecuritySettings(
       securitySettings: SecuritySettings?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
       let request = UpdateSecuritySettingsRequest().with {
         $0.securitySettings = securitySettings

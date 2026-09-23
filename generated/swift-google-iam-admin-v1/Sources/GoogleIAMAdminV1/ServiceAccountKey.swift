@@ -72,13 +72,13 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public var publicKeyData: Foundation.Data = Foundation.Data()
 
   /// The key can be used after this timestamp.
-  public var validAfterTime: GoogleWKT.Timestamp? = nil
+  public var validAfterTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The key can be used before this timestamp.
   /// For system-managed key pairs, this timestamp is the end time for the
   /// private key signing operation. The public key could still be used
   /// for verification for a few hours after this time.
-  public var validBeforeTime: GoogleWKT.Timestamp? = nil
+  public var validBeforeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The key origin.
   public var keyOrigin: ServiceAccountKeyOrigin = ServiceAccountKeyOrigin()
@@ -161,9 +161,9 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleWKT._AnyPackable,
       self.publicKeyData = value
     }
     self.validAfterTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .validAfterTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .validAfterTime)
     self.validBeforeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .validBeforeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .validBeforeTime)
     if let value = try container.decodeIfPresent(ServiceAccountKeyOrigin.self, forKey: .keyOrigin) {
       self.keyOrigin = value
     }
@@ -177,7 +177,7 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -201,10 +201,10 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.ServiceAccountKey"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

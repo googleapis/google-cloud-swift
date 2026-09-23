@@ -231,7 +231,7 @@ extension Clients.LintingServiceProtocol {
 
   public func updateStyleGuide(
     styleGuide: StyleGuide?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.StyleGuide {
     let request = UpdateStyleGuideRequest().with {
       $0.styleGuide = styleGuide

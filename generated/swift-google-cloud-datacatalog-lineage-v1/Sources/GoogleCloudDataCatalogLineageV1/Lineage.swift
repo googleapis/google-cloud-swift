@@ -518,7 +518,7 @@ extension Clients.LineageProtocol {
 
   public func processOpenLineageRunEvent(
     parent: Swift.String,
-    openLineage: GoogleWKT.Struct?,
+    openLineage: GoogleWKT.WKTStruct?,
   ) async throws -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse {
     let request = ProcessOpenLineageRunEventRequest().with {
       $0.parent = parent
@@ -564,7 +564,7 @@ extension Clients.LineageProtocol {
 
   public func updateProcess(
     process: Process?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
     let request = UpdateProcessRequest().with {
       $0.process = process
@@ -711,7 +711,7 @@ extension Clients.LineageProtocol {
 
   public func updateRun(
     run: Run?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDataCatalogLineageV1.Run {
     let request = UpdateRunRequest().with {
       $0.run = run

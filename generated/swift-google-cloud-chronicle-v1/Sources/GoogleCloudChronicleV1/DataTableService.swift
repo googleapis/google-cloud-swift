@@ -421,7 +421,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func updateDataTable(
     dataTable: DataTable?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataTable {
     let request = UpdateDataTableRequest().with {
       $0.dataTable = dataTable
@@ -488,7 +488,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func updateDataTableRow(
     dataTableRow: DataTableRow?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
     let request = UpdateDataTableRowRequest().with {
       $0.dataTableRow = dataTableRow

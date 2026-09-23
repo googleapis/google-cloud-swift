@@ -27,10 +27,10 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var vmResource: [Swift.String] = []
 
   /// Detected start time of the cryptocurrency mining.
-  public var detectedMiningStartTime: GoogleWKT.Timestamp? = nil
+  public var detectedMiningStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Detected end time of the cryptocurrency mining.
-  public var detectedMiningEndTime: GoogleWKT.Timestamp? = nil
+  public var detectedMiningEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The IP address(es) of the VM associated with the cryptocurrency mining.
   /// This field may be empty if this information is not available.
@@ -79,15 +79,15 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.vmResource = value
     }
     self.detectedMiningStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .detectedMiningStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .detectedMiningStartTime)
     self.detectedMiningEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .detectedMiningEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .detectedMiningEndTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .vmIp) {
       self.vmIp = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -105,10 +105,10 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.abuseevent.logging.v1.CryptoMiningEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

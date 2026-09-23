@@ -32,10 +32,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The time when the AspectType was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the AspectType was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Description of the AspectType.
   public var description: Swift.String = Swift.String()
@@ -124,8 +124,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
       self.uid = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
@@ -153,7 +155,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -225,7 +227,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -240,10 +242,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.AspectType.Authorization"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -295,14 +297,14 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// field, you only need to set name and type in the nested
     /// MetadataTemplate. The recommended value for the name field is item, as
     /// this isn't used in the actual payload.
-    public var mapItems: GoogleWKT.Recursive<AspectType.MetadataTemplate>? = nil
+    public var mapItems: GoogleWKT.WKTRecursive<AspectType.MetadataTemplate>? = nil
 
     /// Optional. If the type is array, set array_items. array_items can refer
     /// to a primitive field or a complex (record only) field. To specify a
     /// primitive field, you only need to set name and type in the nested
     /// MetadataTemplate. The recommended value for the name field is item, as
     /// this isn't used in the actual payload.
-    public var arrayItems: GoogleWKT.Recursive<AspectType.MetadataTemplate>? = nil
+    public var arrayItems: GoogleWKT.WKTRecursive<AspectType.MetadataTemplate>? = nil
 
     /// Optional. You can use type id if this definition of the field needs to be
     /// reused later. The type id must be unique across the entire template. You
@@ -394,9 +396,9 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         self.enumValues = value
       }
       self.mapItems = try container.decodeIfPresent(
-        GoogleWKT.Recursive<AspectType.MetadataTemplate>.self, forKey: .mapItems)
+        GoogleWKT.WKTRecursive<AspectType.MetadataTemplate>.self, forKey: .mapItems)
       self.arrayItems = try container.decodeIfPresent(
-        GoogleWKT.Recursive<AspectType.MetadataTemplate>.self, forKey: .arrayItems)
+        GoogleWKT.WKTRecursive<AspectType.MetadataTemplate>.self, forKey: .arrayItems)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .typeId) {
         self.typeId = value
       }
@@ -409,7 +411,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         AspectType.MetadataTemplate.Annotations.self, forKey: .annotations)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -494,7 +496,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -511,10 +513,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -564,7 +566,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -580,10 +582,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate.Constraints"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -681,7 +683,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -702,10 +704,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate.Annotations"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -713,10 +715,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -834,10 +836,10 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.AspectType"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

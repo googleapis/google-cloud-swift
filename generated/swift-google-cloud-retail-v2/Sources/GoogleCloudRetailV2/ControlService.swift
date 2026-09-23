@@ -225,7 +225,7 @@ extension Clients.ControlServiceProtocol {
 
   public func updateControl(
     control: Control?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.Control {
     let request = UpdateControlRequest().with {
       $0.control = control

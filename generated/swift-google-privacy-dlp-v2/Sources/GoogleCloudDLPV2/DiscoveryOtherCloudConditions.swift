@@ -24,7 +24,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
 {
   /// Minimum age a resource must be before Cloud DLP can profile it. Value must
   /// be 1 hour or greater.
-  public var minAge: GoogleWKT.Duration? = nil
+  public var minAge: GoogleWKT.WKTDuration? = nil
 
   /// The conditions to apply.
   public var conditions: OneOf_Conditions? = nil
@@ -64,7 +64,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.minAge = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .minAge)
+    self.minAge = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .minAge)
 
     var conditions: OneOf_Conditions? = nil
     let conditionsCheckAndSet = {
@@ -84,7 +84,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
     self.conditions = conditions
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -112,10 +112,10 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryOtherCloudConditions"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

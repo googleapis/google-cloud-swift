@@ -30,7 +30,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. How long to keep automated backups before the backups are
   /// deleted. The value should be between 1 day and 365 days. If not specified,
   /// the default value is 35 days.
-  public var retention: GoogleWKT.Duration? = nil
+  public var retention: GoogleWKT.WKTDuration? = nil
 
   /// The schedule of automated backups.
   public var schedule: OneOf_Schedule? = nil
@@ -77,7 +77,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.automatedBackupMode = value
     }
-    self.retention = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .retention)
+    self.retention = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .retention)
 
     var schedule: OneOf_Schedule? = nil
     let scheduleCheckAndSet = {
@@ -97,7 +97,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.schedule = schedule
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -162,7 +162,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.startTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .startTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -178,10 +178,10 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.memorystore.v1.AutomatedBackupConfig.FixedFrequencySchedule"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -312,10 +312,10 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memorystore.v1.AutomatedBackupConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

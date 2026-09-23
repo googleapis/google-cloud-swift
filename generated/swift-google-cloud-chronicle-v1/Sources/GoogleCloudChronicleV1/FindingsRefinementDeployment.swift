@@ -38,7 +38,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
 
   /// Output only. The timestamp when the findings refinement deployment was last
   /// updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The resources which the findings refinement is applied to. Corresponds to
   /// the type of the findings refinement.
@@ -95,7 +95,8 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .archived) {
       self.archived = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
     var findingsRefinementApplication: OneOf_FindingsRefinementApplication? = nil
     let findingsRefinementApplicationCheckAndSet = {
@@ -116,7 +117,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
     self.findingsRefinementApplication = findingsRefinementApplication
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -148,10 +149,10 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.FindingsRefinementDeployment"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

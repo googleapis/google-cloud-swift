@@ -26,7 +26,7 @@
     public var locked: Swift.Bool = Swift.Bool()
 
     /// The expiration time of the current password.
-    public var passwordExpirationTime: GoogleWKT.Timestamp? = nil
+    public var passwordExpirationTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,10 +67,10 @@
         self.locked = value
       }
       self.passwordExpirationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .passwordExpirationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .passwordExpirationTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -86,10 +86,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.PasswordStatus"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

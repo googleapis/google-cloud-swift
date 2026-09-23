@@ -35,7 +35,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// The last update timestamp of an asset. update_time is updated when
   /// create/update/delete operation is performed.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The full name of the asset. Example:
   /// `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
@@ -162,7 +162,8 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
@@ -212,7 +213,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     self.accessContextPolicy = accessContextPolicy
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -264,10 +265,10 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.Asset"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

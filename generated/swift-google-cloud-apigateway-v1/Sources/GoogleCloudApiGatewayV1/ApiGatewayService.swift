@@ -477,7 +477,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.updateGateway`.
     func updateGateway(
       gateway: Gateway?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Gateway>
 
     /// See `ApiGatewayServiceClient.deleteGateway`.
@@ -509,7 +509,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.updateApi`.
     func updateApi(
       api: Api?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Api>
 
     /// See `ApiGatewayServiceClient.deleteApi`.
@@ -540,7 +540,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.updateApiConfig`.
     func updateApiConfig(
       apiConfig: ApiConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ApiConfig>
 
     /// See `ApiGatewayServiceClient.deleteApiConfig`.
@@ -824,7 +824,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func updateGateway(
     gateway: Gateway?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
     let request = UpdateGatewayRequest().with {
       $0.gateway = gateway
@@ -998,7 +998,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func updateApi(
     api: Api?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Api> {
     let request = UpdateApiRequest().with {
       $0.api = api
@@ -1176,7 +1176,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func updateApiConfig(
     apiConfig: ApiConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ApiConfig> {
     let request = UpdateApiConfigRequest().with {
       $0.apiConfig = apiConfig

@@ -45,11 +45,11 @@
     public var measurements: [Measurement] = []
 
     /// Output only. Time when the Trial was started.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when the Trial's status changed to `SUCCEEDED` or
     /// `INFEASIBLE`.
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The identifier of the client that originally requested this
     /// Trial. Each client is identified by a unique client_id. When a client asks
@@ -161,8 +161,9 @@
       if let value = try container.decodeIfPresent([Measurement].self, forKey: .measurements) {
         self.measurements = value
       }
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
         self.clientId = value
       }
@@ -179,7 +180,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -218,7 +219,7 @@
       /// in type 'INTEGER', 'DOUBLE' or 'DISCRETE'.
       /// `string_value` will be set if a parameter defined in StudySpec is
       /// in type 'CATEGORICAL'.
-      public var value: GoogleWKT.Value? = nil
+      public var value: GoogleWKT.WKTValue? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -258,10 +259,10 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameterId) {
           self.parameterId = value
         }
-        self.value = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .value)
+        self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -277,10 +278,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Trial.Parameter"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -429,10 +430,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Trial"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -65,7 +65,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -134,7 +134,7 @@
           ApiAuth.ApiKeyConfig.self, forKey: .apiKeyConfig)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -155,10 +155,10 @@
         public var channelId: Swift.String = Swift.String()
 
         /// Optional. The starting timestamp for messages to import.
-        public var startTime: GoogleWKT.Timestamp? = nil
+        public var startTime: GoogleWKT.WKTTimestamp? = nil
 
         /// Optional. The ending timestamp for messages to import.
-        public var endTime: GoogleWKT.Timestamp? = nil
+        public var endTime: GoogleWKT.WKTTimestamp? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -201,11 +201,12 @@
             self.channelId = value
           }
           self.startTime = try container.decodeIfPresent(
-            GoogleWKT.Timestamp.self, forKey: .startTime)
-          self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+            GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+          self.endTime = try container.decodeIfPresent(
+            GoogleWKT.WKTTimestamp.self, forKey: .endTime)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -223,10 +224,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.SlackSource.SlackChannels.SlackChannel"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -234,10 +235,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.SlackSource.SlackChannels"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -245,10 +246,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SlackSource"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

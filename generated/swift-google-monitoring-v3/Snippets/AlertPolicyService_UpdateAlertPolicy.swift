@@ -28,7 +28,7 @@ func sample(client: AlertPolicyServiceClient, projectId: String, alertPolicyId: 
         $0.alertPolicy = AlertPolicy().with {
           $0.name = "projects/\(projectId)/alertPolicies/\(alertPolicyId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

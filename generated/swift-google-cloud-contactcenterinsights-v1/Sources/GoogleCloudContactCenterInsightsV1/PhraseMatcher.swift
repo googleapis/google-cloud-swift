@@ -38,7 +38,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The timestamp of when the revision was created. It is also the
   /// create time when a new matcher is added.
-  public var revisionCreateTime: GoogleWKT.Timestamp? = nil
+  public var revisionCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The human-readable name of the phrase matcher.
   public var displayName: Swift.String = Swift.String()
@@ -54,7 +54,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The most recent time at which the activation status was
   /// updated.
-  public var activationUpdateTime: GoogleWKT.Timestamp? = nil
+  public var activationUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The role whose utterances the phrase matcher should be matched
   /// against. If the role is ROLE_UNSPECIFIED it will be matched against any
@@ -62,7 +62,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   public var roleMatch: ConversationParticipant.Role = ConversationParticipant.Role()
 
   /// Output only. The most recent time at which the phrase matcher was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -127,7 +127,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
       self.versionTag = value
     }
     self.revisionCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .revisionCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .revisionCreateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
     }
@@ -145,16 +145,17 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
       self.phraseMatchRuleGroups = value
     }
     self.activationUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .activationUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .activationUpdateTime)
     if let value = try container.decodeIfPresent(
       ConversationParticipant.Role.self, forKey: .roleMatch)
     {
       self.roleMatch = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -297,10 +298,10 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.PhraseMatcher"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

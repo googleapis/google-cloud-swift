@@ -22,10 +22,10 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The time the operation was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time the operation finished running.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Server-defined resource path for the target of the operation.
   public var target: Swift.String = Swift.String()
@@ -51,7 +51,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var apiVersion: Swift.String = Swift.String()
 
   /// The original request that started the operation.
-  public var requestResource: GoogleWKT.`Any`? = nil
+  public var requestResource: GoogleWKT.WKTAny? = nil
 
   /// Mechanism for reporting in-progress stages
   public var stages: [Stage] = []
@@ -121,8 +121,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
       self.target = value
     }
@@ -139,7 +140,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.apiVersion = value
     }
     self.requestResource = try container.decodeIfPresent(
-      GoogleWKT.`Any`.self, forKey: .requestResource)
+      GoogleWKT.WKTAny.self, forKey: .requestResource)
     if let value = try container.decodeIfPresent([Stage].self, forKey: .stages) {
       self.stages = value
     }
@@ -154,7 +155,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -180,10 +181,10 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.functions.v2.OperationMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

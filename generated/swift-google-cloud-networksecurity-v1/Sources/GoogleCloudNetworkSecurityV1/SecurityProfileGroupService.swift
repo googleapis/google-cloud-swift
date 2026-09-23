@@ -437,7 +437,7 @@ extension Clients {
     /// See `SecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
     func updateSecurityProfileGroup(
       securityProfileGroup: SecurityProfileGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
 
     /// See `SecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
@@ -467,7 +467,7 @@ extension Clients {
     /// See `SecurityProfileGroupServiceClient.updateSecurityProfile`.
     func updateSecurityProfile(
       securityProfile: SecurityProfile?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<SecurityProfile>
 
     /// See `SecurityProfileGroupServiceClient.deleteSecurityProfile`.
@@ -738,7 +738,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func updateSecurityProfileGroup(
     securityProfileGroup: SecurityProfileGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
     let request = UpdateSecurityProfileGroupRequest().with {
       $0.securityProfileGroup = securityProfileGroup
@@ -919,7 +919,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func updateSecurityProfile(
     securityProfile: SecurityProfile?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
     let request = UpdateSecurityProfileRequest().with {
       $0.securityProfile = securityProfile

@@ -28,10 +28,10 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var trigger: BackfillJob.Trigger = BackfillJob.Trigger()
 
   /// Output only. Backfill job's start time.
-  public var lastStartTime: GoogleWKT.Timestamp? = nil
+  public var lastStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Backfill job's end time.
-  public var lastEndTime: GoogleWKT.Timestamp? = nil
+  public var lastEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Errors which caused the backfill job to fail.
   public var errors: [Error] = []
@@ -84,14 +84,15 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.trigger = value
     }
     self.lastStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastStartTime)
-    self.lastEndTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .lastEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastStartTime)
+    self.lastEndTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .lastEndTime)
     if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
       self.errors = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -383,10 +384,10 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.BackfillJob"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

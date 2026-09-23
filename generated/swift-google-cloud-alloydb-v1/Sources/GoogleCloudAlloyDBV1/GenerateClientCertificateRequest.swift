@@ -46,7 +46,7 @@ public struct GenerateClientCertificateRequest: Codable, Equatable, GoogleWKT._A
   /// 24 hours. The endpoint may or may not honor the hint. If the hint is left
   /// unspecified or is not honored, then the endpoint will pick an appropriate
   /// default duration.
-  public var certDuration: GoogleWKT.Duration? = nil
+  public var certDuration: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The public key from the client.
   public var publicKey: Swift.String = Swift.String()
@@ -104,7 +104,7 @@ public struct GenerateClientCertificateRequest: Codable, Equatable, GoogleWKT._A
       self.requestId = value
     }
     self.certDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .certDuration)
+      GoogleWKT.WKTDuration.self, forKey: .certDuration)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicKey) {
       self.publicKey = value
     }
@@ -113,7 +113,7 @@ public struct GenerateClientCertificateRequest: Codable, Equatable, GoogleWKT._A
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -132,10 +132,10 @@ public struct GenerateClientCertificateRequest: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.GenerateClientCertificateRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

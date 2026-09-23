@@ -261,7 +261,7 @@ extension Clients {
     /// See `TagValuesClient.updateTagValue`.
     func updateTagValue(
       tagValue: TagValue?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TagValue>
 
     /// See `TagValuesClient.deleteTagValue`.
@@ -488,7 +488,7 @@ extension Clients.TagValuesProtocol {
 
   public func updateTagValue(
     tagValue: TagValue?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TagValue> {
     let request = UpdateTagValueRequest().with {
       $0.tagValue = tagValue

@@ -29,7 +29,7 @@
 
     /// Optional. Input content provided by users in JSON object format. Examples
     /// include text query, function calling parameters, media bytes, etc.
-    public var input: GoogleWKT.Struct? = nil
+    public var input: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Class method to be used for the query.
     /// It is optional and defaults to "query" if unspecified.
@@ -75,13 +75,13 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      self.input = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .input)
+      self.input = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .input)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .classMethod) {
         self.classMethod = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -98,10 +98,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.QueryReasoningEngineRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

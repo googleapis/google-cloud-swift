@@ -32,7 +32,7 @@ func sample(client: ConfigClient, organizationId: String, locationId: String, fr
           $0.name =
             "organizations/\(organizationId)/locations/\(locationId)/frameworks/\(frameworkId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

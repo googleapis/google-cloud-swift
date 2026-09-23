@@ -378,7 +378,7 @@ extension Clients {
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(
       configuration: Configuration?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Configuration>
 
     /// See `LicenseManagerClient.deleteConfiguration`.
@@ -662,7 +662,7 @@ extension Clients.LicenseManagerProtocol {
 
   public func updateConfiguration(
     configuration: Configuration?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Configuration> {
     let request = UpdateConfigurationRequest().with {
       $0.configuration = configuration
@@ -859,8 +859,8 @@ extension Clients.LicenseManagerProtocol {
 
   public func queryConfigurationLicenseUsage(
     name: Swift.String,
-    startTime: GoogleWKT.Timestamp?,
-    endTime: GoogleWKT.Timestamp?,
+    startTime: GoogleWKT.WKTTimestamp?,
+    endTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> GoogleCloudLicenseManagerV1.QueryConfigurationLicenseUsageResponse {
     let request = QueryConfigurationLicenseUsageRequest().with {
       $0.name = name
@@ -905,8 +905,8 @@ extension Clients.LicenseManagerProtocol {
 
   public func aggregateUsage(
     name: Swift.String,
-    startTime: GoogleWKT.Timestamp?,
-    endTime: GoogleWKT.Timestamp?,
+    startTime: GoogleWKT.WKTTimestamp?,
+    endTime: GoogleWKT.WKTTimestamp?,
   ) -> any AsyncSequence<Usage, Swift.Error> {
     let request = AggregateUsageRequest().with {
       $0.name = name

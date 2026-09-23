@@ -29,7 +29,7 @@ func sample(client: SecurityCenterClient, organizationId: String, assetId: Strin
         $0.securityMarks = SecurityMarks().with {
           $0.name = "organizations/\(organizationId)/assets/\(assetId)/securityMarks"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

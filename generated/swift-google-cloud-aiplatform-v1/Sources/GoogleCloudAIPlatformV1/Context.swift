@@ -43,10 +43,10 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Output only. Timestamp when this Context was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this Context was last updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. A list of resource names of Contexts that are parents of this
     /// Context. A Context may have at most 10 parent_contexts.
@@ -69,7 +69,7 @@
     /// Properties of the Context.
     /// Top level metadata keys' heading and trailing spaces will be trimmed.
     /// The size of this field should not exceed 200KB.
-    public var metadata: GoogleWKT.Struct? = nil
+    public var metadata: GoogleWKT.WKTStruct? = nil
 
     /// Description of the Context
     public var description: Swift.String = Swift.String()
@@ -141,8 +141,10 @@
       {
         self.labels = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .parentContexts) {
         self.parentContexts = value
       }
@@ -152,13 +154,13 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaVersion) {
         self.schemaVersion = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .metadata)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
         self.description = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -183,10 +185,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Context"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

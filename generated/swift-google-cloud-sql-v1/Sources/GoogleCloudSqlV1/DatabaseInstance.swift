@@ -51,7 +51,7 @@
 
     /// The maximum disk size of the instance in bytes.
     @available(*, deprecated)
-    public var maxDiskSize: GoogleWKT.Int64Value? = nil
+    public var maxDiskSize: GoogleWKT.WKTInt64Value? = nil
 
     /// The current disk usage of the instance in bytes. This property has been
     /// deprecated. Use the
@@ -60,7 +60,7 @@
     /// announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ)
     /// for details.
     @available(*, deprecated)
-    public var currentDiskSize: GoogleWKT.Int64Value? = nil
+    public var currentDiskSize: GoogleWKT.WKTInt64Value? = nil
 
     /// The assigned IP addresses for the instance.
     public var ipAddresses: [IpMapping] = []
@@ -149,7 +149,7 @@
     /// This status indicates whether the instance satisfies PZS.
     ///
     /// The status is reserved for future use.
-    public var satisfiesPzs: GoogleWKT.BoolValue? = nil
+    public var satisfiesPzs: GoogleWKT.WKTBoolValue? = nil
 
     /// Output only. Stores the current database version running on the instance
     /// including minor version such as `MYSQL_8_0_18`.
@@ -166,7 +166,7 @@
     /// Output only. The time when the instance was created in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. List all maintenance versions applicable on the instance
     public var availableMaintenanceVersions: [Swift.String] = []
@@ -205,16 +205,16 @@
     /// Output only. This status indicates whether the instance satisfies PZI.
     ///
     /// The status is reserved for future use.
-    public var satisfiesPzi: GoogleWKT.BoolValue? = nil
+    public var satisfiesPzi: GoogleWKT.WKTBoolValue? = nil
 
     /// Input only. Whether Cloud SQL is enabled to switch storing point-in-time
     /// recovery log files from a data disk to Cloud Storage.
-    public var switchTransactionLogsToCloudStorageEnabled: GoogleWKT.BoolValue? = nil
+    public var switchTransactionLogsToCloudStorageEnabled: GoogleWKT.WKTBoolValue? = nil
 
     /// Input only. Determines whether an in-place major version upgrade of
     /// replicas happens when an in-place major version upgrade of a primary
     /// instance is initiated.
-    public var includeReplicasForMajorVersionUpgrade: GoogleWKT.BoolValue? = nil
+    public var includeReplicasForMajorVersionUpgrade: GoogleWKT.WKTBoolValue? = nil
 
     /// Optional. Input only. Immutable. Tag keys and tag values that are bound to
     /// this instance. You must represent each item in the map as:
@@ -242,7 +242,7 @@
 
     /// Optional. If true, instance metadata is sent to the Database Center. If
     /// false, instance metadata is not sent to the Database Center.
-    public var databaseCenterIntegrationEnabled: GoogleWKT.BoolValue? = nil
+    public var databaseCenterIntegrationEnabled: GoogleWKT.WKTBoolValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -413,9 +413,9 @@
         self.replicaNames = value
       }
       self.maxDiskSize = try container.decodeIfPresent(
-        GoogleWKT.Int64Value.self, forKey: .maxDiskSize)
+        GoogleWKT.WKTInt64Value.self, forKey: .maxDiskSize)
       self.currentDiskSize = try container.decodeIfPresent(
-        GoogleWKT.Int64Value.self, forKey: .currentDiskSize)
+        GoogleWKT.WKTInt64Value.self, forKey: .currentDiskSize)
       if let value = try container.decodeIfPresent([IpMapping].self, forKey: .ipAddresses) {
         self.ipAddresses = value
       }
@@ -474,7 +474,7 @@
       self.scheduledMaintenance = try container.decodeIfPresent(
         DatabaseInstance.SqlScheduledMaintenance.self, forKey: .scheduledMaintenance)
       self.satisfiesPzs = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .satisfiesPzs)
+        GoogleWKT.WKTBoolValue.self, forKey: .satisfiesPzs)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .databaseInstalledVersion)
       {
@@ -482,7 +482,8 @@
       }
       self.outOfDiskReport = try container.decodeIfPresent(
         DatabaseInstance.SqlOutOfDiskReport.self, forKey: .outOfDiskReport)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .availableMaintenanceVersions)
       {
@@ -509,11 +510,11 @@
       self.geminiConfig = try container.decodeIfPresent(
         GeminiInstanceConfig.self, forKey: .geminiConfig)
       self.satisfiesPzi = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .satisfiesPzi)
+        GoogleWKT.WKTBoolValue.self, forKey: .satisfiesPzi)
       self.switchTransactionLogsToCloudStorageEnabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .switchTransactionLogsToCloudStorageEnabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .switchTransactionLogsToCloudStorageEnabled)
       self.includeReplicasForMajorVersionUpgrade = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .includeReplicasForMajorVersionUpgrade)
+        GoogleWKT.WKTBoolValue.self, forKey: .includeReplicasForMajorVersionUpgrade)
       if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags)
       {
         self.tags = value
@@ -528,10 +529,10 @@
         self.dnsNames = value
       }
       self.databaseCenterIntegrationEnabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .databaseCenterIntegrationEnabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .databaseCenterIntegrationEnabled)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -614,7 +615,7 @@
       /// The availability status of the failover replica. A false status indicates
       /// that the failover replica is out of sync. The primary instance can only
       /// failover to the failover replica when the status is true.
-      public var available: GoogleWKT.BoolValue? = nil
+      public var available: GoogleWKT.WKTBoolValue? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -654,10 +655,11 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
           self.name = value
         }
-        self.available = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .available)
+        self.available = try container.decodeIfPresent(
+          GoogleWKT.WKTBoolValue.self, forKey: .available)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -673,10 +675,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlFailoverReplica"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -686,7 +688,7 @@
       Sendable
     {
       /// The start time of any upcoming scheduled maintenance for this instance.
-      public var startTime: GoogleWKT.Timestamp? = nil
+      public var startTime: GoogleWKT.WKTTimestamp? = nil
 
       @available(*, deprecated)
       public var canDefer: Swift.Bool = Swift.Bool()
@@ -695,7 +697,7 @@
       public var canReschedule: Swift.Bool = Swift.Bool()
 
       /// Maintenance cannot be rescheduled to start beyond this deadline.
-      public var scheduleDeadlineTime: GoogleWKT.Timestamp? = nil
+      public var scheduleDeadlineTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -739,7 +741,8 @@
       #endif
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+        self.startTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .startTime)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .canDefer) {
           self.canDefer = value
         }
@@ -747,10 +750,10 @@
           self.canReschedule = value
         }
         self.scheduleDeadlineTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .scheduleDeadlineTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .scheduleDeadlineTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -771,10 +774,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlScheduledMaintenance"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -840,7 +843,7 @@
           Swift.Int32.self, forKey: .sqlMinRecommendedIncreaseSizeGb)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -975,10 +978,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1083,7 +1086,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1106,10 +1109,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1401,10 +1404,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

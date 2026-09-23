@@ -30,7 +30,7 @@ func sample(client: LicenseManagementServiceClient, billingAccountId: String, or
         $0.licensePool = LicensePool().with {
           $0.name = "billingAccounts/\(billingAccountId)/orders/\(orderId)/licensePool"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

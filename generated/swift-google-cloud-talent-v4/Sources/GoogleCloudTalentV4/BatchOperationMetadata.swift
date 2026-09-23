@@ -41,21 +41,21 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   public var totalCount: Swift.Int32 = Swift.Int32()
 
   /// The time when the batch operation is created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time when the batch operation status is updated. The metadata and the
   /// [update_time][google.cloud.talent.v4.BatchOperationMetadata.update_time] is
   /// refreshed every minute otherwise cached data is returned.
   ///
   /// [google.cloud.talent.v4.BatchOperationMetadata.update_time]: <doc:BatchOperationMetadata/updateTime>
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time when the batch operation is finished and
   /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
   /// set to `true`.
   ///
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,12 +120,14 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalCount) {
       self.totalCount = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -296,10 +298,10 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.BatchOperationMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

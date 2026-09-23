@@ -28,7 +28,7 @@ public struct UpdateCapacityCommitmentRequest: Codable, Equatable, GoogleWKT._An
   public var capacityCommitment: CapacityCommitment? = nil
 
   /// Standard field mask for the set of fields to be updated.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,10 +67,11 @@ public struct UpdateCapacityCommitmentRequest: Codable, Equatable, GoogleWKT._An
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.capacityCommitment = try container.decodeIfPresent(
       CapacityCommitment.self, forKey: .capacityCommitment)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -87,10 +88,10 @@ public struct UpdateCapacityCommitmentRequest: Codable, Equatable, GoogleWKT._An
     return
       "type.googleapis.com/google.cloud.bigquery.reservation.v1.UpdateCapacityCommitmentRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

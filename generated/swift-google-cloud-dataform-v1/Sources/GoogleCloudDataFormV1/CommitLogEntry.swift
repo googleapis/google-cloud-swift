@@ -22,7 +22,7 @@ public struct CommitLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Commit timestamp.
-  public var commitTime: GoogleWKT.Timestamp? = nil
+  public var commitTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The commit SHA for this commit log entry.
   public var commitSha: Swift.String = Swift.String()
@@ -72,7 +72,8 @@ public struct CommitLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.commitTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .commitTime)
+    self.commitTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .commitTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commitSha) {
       self.commitSha = value
     }
@@ -82,7 +83,7 @@ public struct CommitLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -100,10 +101,10 @@ public struct CommitLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.CommitLogEntry"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

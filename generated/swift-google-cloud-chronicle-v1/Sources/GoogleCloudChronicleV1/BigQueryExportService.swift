@@ -189,7 +189,7 @@ extension Clients.BigQueryExportServiceProtocol {
 
   public func updateBigQueryExport(
     bigQueryExport: BigQueryExport?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
     let request = UpdateBigQueryExportRequest().with {
       $0.bigQueryExport = bigQueryExport

@@ -420,7 +420,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.updateCollector`.
     func updateCollector(
       collector: Collector?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
@@ -768,7 +768,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
 
   public func updateCollector(
     collector: Collector?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let request = UpdateCollectorRequest().with {
       $0.collector = collector

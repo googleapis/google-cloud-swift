@@ -66,16 +66,16 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
   public var results: Results? = nil
 
   /// Output only. Time at which the request to create the build was received.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which execution of the build was started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which execution of the build was finished.
   ///
   /// The difference between finish_time and start_time is the duration of the
   /// build's execution.
-  public var finishTime: GoogleWKT.Timestamp? = nil
+  public var finishTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Amount of time that this build should be allowed to run, to second
   /// granularity. If this amount of time elapses, work on the build will cease
@@ -84,7 +84,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `timeout` starts ticking from `startTime`.
   ///
   /// Default time is 60 minutes.
-  public var timeout: GoogleWKT.Duration? = nil
+  public var timeout: GoogleWKT.WKTDuration? = nil
 
   /// A list of images to be pushed upon the successful completion of all build
   /// steps.
@@ -103,7 +103,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `EXPIRED`.
   ///
   /// The TTL starts ticking from create_time.
-  public var queueTtl: GoogleWKT.Duration? = nil
+  public var queueTtl: GoogleWKT.WKTDuration? = nil
 
   /// Artifacts produced by the build that should be uploaded upon
   /// successful completion of all build steps.
@@ -294,14 +294,16 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
       self.steps = value
     }
     self.results = try container.decodeIfPresent(Results.self, forKey: .results)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.finishTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .finishTime)
-    self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.finishTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .finishTime)
+    self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .images) {
       self.images = value
     }
-    self.queueTtl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .queueTtl)
+    self.queueTtl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .queueTtl)
     self.artifacts = try container.decodeIfPresent(Artifacts.self, forKey: .artifacts)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logsBucket) {
       self.logsBucket = value
@@ -344,7 +346,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -439,7 +441,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -579,10 +581,10 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Build.Warning"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -642,7 +644,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -804,10 +806,10 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Build.FailureInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -982,10 +984,10 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.Build"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

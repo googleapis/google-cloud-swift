@@ -61,7 +61,7 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
     self.error = try container.decodeIfPresent(RestError.Status.self, forKey: .error)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -86,7 +86,7 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
     public var status: GoogleRpc.Code = GoogleRpc.Code()
 
     /// This corresponds to `google.rpc.Status.details`.
-    public var details: [GoogleWKT.`Any`] = []
+    public var details: [GoogleWKT.WKTAny] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,12 +136,12 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(GoogleRpc.Code.self, forKey: .status) {
         self.status = value
       }
-      if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .details) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .details) {
         self.details = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -159,10 +159,10 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.RestError.Status"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -170,10 +170,10 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.RestError"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

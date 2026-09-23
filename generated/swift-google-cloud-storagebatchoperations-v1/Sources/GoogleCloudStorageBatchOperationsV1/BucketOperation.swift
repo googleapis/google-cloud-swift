@@ -30,13 +30,13 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var bucketName: Swift.String = Swift.String()
 
   /// Output only. The time that the BucketOperation was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that the BucketOperation was started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that the BucketOperation was completed.
-  public var completeTime: GoogleWKT.Timestamp? = nil
+  public var completeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Information about the progress of the bucket operation.
   public var counters: Counters? = nil
@@ -120,10 +120,11 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName) {
       self.bucketName = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.completeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .completeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .completeTime)
     self.counters = try container.decodeIfPresent(Counters.self, forKey: .counters)
     if let value = try container.decodeIfPresent([ErrorSummary].self, forKey: .errorSummaries) {
       self.errorSummaries = value
@@ -184,7 +185,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     self.transformation = transformation
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -392,10 +393,10 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storagebatchoperations.v1.BucketOperation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

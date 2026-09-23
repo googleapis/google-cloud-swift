@@ -47,7 +47,7 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Output only. Timestamp when the DeployedModel was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Explanation configuration for this DeployedModel.
     ///
@@ -225,7 +225,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.explanationSpec = try container.decodeIfPresent(
         ExplanationSpec.self, forKey: .explanationSpec)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableExplanations) {
@@ -286,7 +287,7 @@
       self.predictionResources = predictionResources
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -332,7 +333,7 @@
       public var message: Swift.String = Swift.String()
 
       /// Output only. The time at which the status was last updated.
-      public var lastUpdateTime: GoogleWKT.Timestamp? = nil
+      public var lastUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
       /// Output only. The number of available replicas of the deployed model.
       public var availableReplicaCount: Swift.Int32 = Swift.Int32()
@@ -378,7 +379,7 @@
           self.message = value
         }
         self.lastUpdateTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .lastUpdateTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .lastUpdateTime)
         if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .availableReplicaCount)
         {
@@ -386,7 +387,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -403,10 +404,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedModel.Status"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -435,10 +436,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedModel"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -25,16 +25,16 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The start time of the span.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The end time of the span.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The duration of the span.
-  public var duration: GoogleWKT.Duration? = nil
+  public var duration: GoogleWKT.WKTDuration? = nil
 
   /// Output only. Key-value attributes associated with the span.
-  public var attributes: GoogleWKT.Struct? = nil
+  public var attributes: GoogleWKT.WKTStruct? = nil
 
   /// Output only. The child spans that are nested under this span.
   public var childSpans: [Span] = []
@@ -85,16 +85,16 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
-    self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
-    self.attributes = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .attributes)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
+    self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
+    self.attributes = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .attributes)
     if let value = try container.decodeIfPresent([Span].self, forKey: .childSpans) {
       self.childSpans = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -114,10 +114,10 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Span"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

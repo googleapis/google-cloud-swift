@@ -32,7 +32,7 @@ func sample(client: HubServiceClient, projectId: String, locationId: String, spo
         $0.spoke = Spoke().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/spokes/\(spokeId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

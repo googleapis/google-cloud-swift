@@ -205,7 +205,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
   /// type in the map.
   ///
   /// [google.cloud.optimization.v1.Shipment.VisitRequest.duration]: <doc:Shipment/VisitRequest/duration>
-  public var extraVisitDurationForVisitType: [Swift.String: GoogleWKT.Duration] = [:]
+  public var extraVisitDurationForVisitType: [Swift.String: GoogleWKT.WKTDuration] = [:]
 
   /// Describes the break schedule to be enforced on this vehicle.
   /// If empty, no breaks will be scheduled for this vehicle.
@@ -417,7 +417,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     self.routeDistanceLimit = try container.decodeIfPresent(
       DistanceLimit.self, forKey: .routeDistanceLimit)
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Duration].self, forKey: .extraVisitDurationForVisitType)
+      [Swift.String: GoogleWKT.WKTDuration].self, forKey: .extraVisitDurationForVisitType)
     {
       self.extraVisitDurationForVisitType = value
     }
@@ -446,7 +446,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -583,7 +583,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
         Vehicle.LoadLimit.Interval.self, forKey: .endLoadInterval)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -665,7 +665,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
         self.max = try container.decodeIfPresent(Swift.Int64.self, forKey: .max)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -681,10 +681,10 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.optimization.v1.Vehicle.LoadLimit.Interval"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -692,10 +692,10 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.Vehicle.LoadLimit"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -709,7 +709,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// A hard limit constraining the duration to be at most max_duration.
-    public var maxDuration: GoogleWKT.Duration? = nil
+    public var maxDuration: GoogleWKT.WKTDuration? = nil
 
     /// A soft limit not enforcing a maximum duration limit, but when violated
     /// makes the route incur a cost. This cost adds up to other costs defined in
@@ -717,7 +717,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// If defined, `soft_max_duration` must be nonnegative. If max_duration is
     /// also defined, `soft_max_duration` must be less than max_duration.
-    public var softMaxDuration: GoogleWKT.Duration? = nil
+    public var softMaxDuration: GoogleWKT.WKTDuration? = nil
 
     /// Cost per hour incurred if the `soft_max_duration` threshold is violated.
     /// The additional cost is 0 if the duration is under the threshold,
@@ -738,7 +738,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     /// day:
     ///
     ///    `max_duration - quadratic_soft_max_duration <= 86400 seconds`
-    public var quadraticSoftMaxDuration: GoogleWKT.Duration? = nil
+    public var quadraticSoftMaxDuration: GoogleWKT.WKTDuration? = nil
 
     /// Cost per square hour incurred if the
     /// `quadratic_soft_max_duration` threshold is violated.
@@ -797,18 +797,18 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maxDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .maxDuration)
+        GoogleWKT.WKTDuration.self, forKey: .maxDuration)
       self.softMaxDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .softMaxDuration)
+        GoogleWKT.WKTDuration.self, forKey: .softMaxDuration)
       self.costPerHourAfterSoftMax = try container.decodeIfPresent(
         Swift.Double.self, forKey: .costPerHourAfterSoftMax)
       self.quadraticSoftMaxDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .quadraticSoftMaxDuration)
+        GoogleWKT.WKTDuration.self, forKey: .quadraticSoftMaxDuration)
       self.costPerSquareHourAfterQuadraticSoftMax = try container.decodeIfPresent(
         Swift.Double.self, forKey: .costPerSquareHourAfterQuadraticSoftMax)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -830,10 +830,10 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.Vehicle.DurationLimit"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1084,10 +1084,10 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.Vehicle"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

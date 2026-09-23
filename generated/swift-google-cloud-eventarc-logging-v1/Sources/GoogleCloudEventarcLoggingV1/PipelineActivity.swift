@@ -30,7 +30,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   public var attributes: [Swift.String: Swift.String] = [:]
 
   /// The point in time when the activity occurred.
-  public var activityTime: GoogleWKT.Timestamp? = nil
+  public var activityTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Oneof for the different logging activities in a pipeline.
   public var activity: OneOf_Activity? = nil
@@ -91,7 +91,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       self.attributes = value
     }
     self.activityTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .activityTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .activityTime)
 
     var activity: OneOf_Activity? = nil
     let activityCheckAndSet = {
@@ -131,7 +131,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     self.activity = activity
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -223,7 +223,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -240,10 +240,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageReceived"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -300,7 +300,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -317,10 +317,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageTransformed"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -398,7 +398,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -417,10 +417,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageConverted"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -486,7 +486,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -504,10 +504,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageRequestDispatched"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -528,7 +528,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The future time when the message request will be retried. Present if and
     /// only if the `retry_status` is `WILL_RETRY`.
-    public var retryTime: GoogleWKT.Timestamp? = nil
+    public var retryTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The HTTP response code received with the message response.
     public var httpResponseCode: Swift.Int32 = Swift.Int32()
@@ -585,14 +585,15 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         self.retryStatus = value
       }
-      self.retryTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .retryTime)
+      self.retryTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .retryTime)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpResponseCode) {
         self.httpResponseCode = value
       }
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -730,10 +731,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageResponseReceived"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -884,10 +885,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

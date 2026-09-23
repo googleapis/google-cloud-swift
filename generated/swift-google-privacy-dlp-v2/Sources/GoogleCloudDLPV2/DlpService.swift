@@ -1141,7 +1141,7 @@ extension Clients.DlpServiceProtocol {
   public func updateInspectTemplate(
     name: Swift.String,
     inspectTemplate: InspectTemplate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
     let request = UpdateInspectTemplateRequest().with {
       $0.name = name
@@ -1274,7 +1274,7 @@ extension Clients.DlpServiceProtocol {
   public func updateDeidentifyTemplate(
     name: Swift.String,
     deidentifyTemplate: DeidentifyTemplate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
     let request = UpdateDeidentifyTemplateRequest().with {
       $0.name = name
@@ -1407,7 +1407,7 @@ extension Clients.DlpServiceProtocol {
   public func updateJobTrigger(
     name: Swift.String,
     jobTrigger: JobTrigger?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
     let request = UpdateJobTriggerRequest().with {
       $0.name = name
@@ -1573,7 +1573,7 @@ extension Clients.DlpServiceProtocol {
   public func updateDiscoveryConfig(
     name: Swift.String,
     discoveryConfig: DiscoveryConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
     let request = UpdateDiscoveryConfigRequest().with {
       $0.name = name
@@ -1829,7 +1829,7 @@ extension Clients.DlpServiceProtocol {
   public func updateStoredInfoType(
     name: Swift.String,
     config: StoredInfoTypeConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
     let request = UpdateStoredInfoTypeRequest().with {
       $0.name = name
@@ -2452,7 +2452,7 @@ extension Clients.DlpServiceProtocol {
   public func updateContentPolicy(
     name: Swift.String,
     contentPolicy: ContentPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
     let request = UpdateContentPolicyRequest().with {
       $0.name = name

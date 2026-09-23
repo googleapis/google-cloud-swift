@@ -44,13 +44,13 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The timeout for the tool execution. If not set, the default
   /// timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for
   /// `ASYNCHRONOUS` tools.
-  public var timeout: GoogleWKT.Duration? = nil
+  public var timeout: GoogleWKT.WKTDuration? = nil
 
   /// Output only. Timestamp when the tool was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Timestamp when the tool was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Etag used to ensure the object hasn't changed during a read-modify-write
   /// operation. If the etag is empty, the update will overwrite any concurrent
@@ -149,9 +149,11 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ExecutionType.self, forKey: .executionType) {
       self.executionType = value
     }
-    self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -224,7 +226,7 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
     self.toolType = toolType
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -305,10 +307,10 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Tool"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

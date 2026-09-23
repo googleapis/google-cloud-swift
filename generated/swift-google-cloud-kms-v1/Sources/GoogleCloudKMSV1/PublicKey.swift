@@ -57,7 +57,7 @@ public struct PublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// NOTE: This field is in Beta.
   ///
   /// [google.cloud.kms.v1.PublicKey.pem]: <doc:PublicKey/pem>
-  public var pemCrc32C: GoogleWKT.Int64Value? = nil
+  public var pemCrc32C: GoogleWKT.WKTInt64Value? = nil
 
   /// The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
@@ -145,7 +145,7 @@ public struct PublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.algorithm = value
     }
-    self.pemCrc32C = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .pemCrc32C)
+    self.pemCrc32C = try container.decodeIfPresent(GoogleWKT.WKTInt64Value.self, forKey: .pemCrc32C)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
@@ -160,7 +160,7 @@ public struct PublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     self.publicKey = try container.decodeIfPresent(ChecksummedData.self, forKey: .publicKey)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -335,10 +335,10 @@ public struct PublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.PublicKey"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -169,7 +169,7 @@ extension Clients.LicenseManagementServiceProtocol {
 
   public func updateLicensePool(
     licensePool: LicensePool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
     let request = UpdateLicensePoolRequest().with {
       $0.licensePool = licensePool

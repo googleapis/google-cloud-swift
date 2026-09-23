@@ -52,7 +52,7 @@ public struct DockerImage: Codable, Equatable, GoogleWKT._AnyPackable,
   public var imageSizeBytes: Swift.Int64 = Swift.Int64()
 
   /// Time the image was uploaded.
-  public var uploadTime: GoogleWKT.Timestamp? = nil
+  public var uploadTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Media type of this image, e.g.
   /// "application/vnd.docker.distribution.manifest.v2+json".
@@ -65,10 +65,10 @@ public struct DockerImage: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Version resource.
   /// The build time is returned to the client as an RFC 3339 string, which can
   /// be easily used with the JavaScript Date constructor.
-  public var buildTime: GoogleWKT.Timestamp? = nil
+  public var buildTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the docker image was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// ArtifactType of this image, e.g. "application/vnd.example+type".
   /// If the `subject_digest` is set and no `artifact_type` is given, the
@@ -143,12 +143,14 @@ public struct DockerImage: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .imageSizeBytes) {
       self.imageSizeBytes = value
     }
-    self.uploadTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .uploadTime)
+    self.uploadTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .uploadTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mediaType) {
       self.mediaType = value
     }
-    self.buildTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .buildTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.buildTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .buildTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactType) {
       self.artifactType = value
     }
@@ -157,7 +159,7 @@ public struct DockerImage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -181,10 +183,10 @@ public struct DockerImage: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.DockerImage"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

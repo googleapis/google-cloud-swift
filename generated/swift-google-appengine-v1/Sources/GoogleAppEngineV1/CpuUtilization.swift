@@ -22,7 +22,7 @@ public struct CpuUtilization: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Period of time over which CPU utilization is calculated.
-  public var aggregationWindowLength: GoogleWKT.Duration? = nil
+  public var aggregationWindowLength: GoogleWKT.WKTDuration? = nil
 
   /// Target CPU utilization ratio to maintain when scaling. Must be between 0
   /// and 1.
@@ -64,13 +64,13 @@ public struct CpuUtilization: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.aggregationWindowLength = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .aggregationWindowLength)
+      GoogleWKT.WKTDuration.self, forKey: .aggregationWindowLength)
     if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .targetUtilization) {
       self.targetUtilization = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -86,10 +86,10 @@ public struct CpuUtilization: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.CpuUtilization"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -23,7 +23,7 @@
     Sendable
   {
     /// Optional. The maximum job running time. The default is 7 days.
-    public var timeout: GoogleWKT.Duration? = nil
+    public var timeout: GoogleWKT.WKTDuration? = nil
 
     /// Optional. Restarts the entire CustomJob if a worker gets restarted.
     /// This feature can be used by distributed training jobs that are not
@@ -42,7 +42,7 @@
     /// requested resources to be provisioned if the scheduling strategy is set to
     /// [Strategy.DWS_FLEX_START].
     /// If set to 0, the job will wait indefinitely. The default is 24 hours.
-    public var maxWaitDuration: GoogleWKT.Duration? = nil
+    public var maxWaitDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
+      self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .restartJobOnWorkerRestart)
       {
@@ -98,10 +98,10 @@
         self.disableRetries = value
       }
       self.maxWaitDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .maxWaitDuration)
+        GoogleWKT.WKTDuration.self, forKey: .maxWaitDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -270,10 +270,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Scheduling"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

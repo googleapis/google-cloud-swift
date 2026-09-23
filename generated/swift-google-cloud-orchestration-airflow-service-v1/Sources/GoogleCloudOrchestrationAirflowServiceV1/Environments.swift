@@ -551,7 +551,7 @@ extension Clients {
     func updateEnvironment(
       name: Swift.String,
       environment: Environment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.deleteEnvironment`.
@@ -882,7 +882,7 @@ extension Clients.EnvironmentsProtocol {
   public func updateEnvironment(
     name: Swift.String,
     environment: Environment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let request = UpdateEnvironmentRequest().with {
       $0.name = name

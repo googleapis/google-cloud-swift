@@ -442,7 +442,7 @@
 
     public func updateDataStore(
       dataStore: DataStore?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
       let request = UpdateDataStoreRequest().with {
         $0.dataStore = dataStore

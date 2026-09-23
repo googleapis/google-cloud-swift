@@ -45,7 +45,7 @@
     /// Note: The caller ID field (`caller_id`) will be redacted for Trial
     /// Edition agents and populated with the caller ID in [E.164
     /// format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
-    public var payload: GoogleWKT.Struct? = nil
+    public var payload: GoogleWKT.WKTStruct? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,10 +90,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
         self.version = value
       }
-      self.payload = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .payload)
+      self.payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -110,10 +110,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.OriginalDetectIntentRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

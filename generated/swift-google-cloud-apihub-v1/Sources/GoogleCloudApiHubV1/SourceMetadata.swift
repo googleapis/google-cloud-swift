@@ -28,10 +28,10 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var originalResourceId: Swift.String = Swift.String()
 
   /// Output only. The time at which the resource was created at the source.
-  public var originalResourceCreateTime: GoogleWKT.Timestamp? = nil
+  public var originalResourceCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the resource was last updated at the source.
-  public var originalResourceUpdateTime: GoogleWKT.Timestamp? = nil
+  public var originalResourceUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The source of the resource.
   public var source: OneOf_Source? = nil
@@ -86,9 +86,9 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.originalResourceId = value
     }
     self.originalResourceCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .originalResourceCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .originalResourceCreateTime)
     self.originalResourceUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .originalResourceUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .originalResourceUpdateTime)
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -108,7 +108,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     self.source = source
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -187,7 +187,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -203,10 +203,10 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.apihub.v1.SourceMetadata.PluginInstanceActionSource"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -330,10 +330,10 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.SourceMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

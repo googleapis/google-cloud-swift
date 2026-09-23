@@ -38,17 +38,17 @@
     /// The time this operation was enqueued in UTC timezone in [RFC
     /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var insertTime: GoogleWKT.Timestamp? = nil
+    public var insertTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The time this operation actually started in UTC timezone in [RFC
     /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The time this operation finished in UTC timezone in [RFC
     /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     /// If errors occurred during processing of this operation, this field will be
     /// populated.
@@ -194,9 +194,11 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
         self.user = value
       }
-      self.insertTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .insertTime)
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+      self.insertTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .insertTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       self.error = try container.decodeIfPresent(OperationErrors.self, forKey: .error)
       self.apiWarning = try container.decodeIfPresent(ApiWarning.self, forKey: .apiWarning)
       if let value = try container.decodeIfPresent(
@@ -227,7 +229,7 @@
         SqlSubOperationType.self, forKey: .subOperationType)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -892,10 +894,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Operation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -23,12 +23,12 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
 {
   /// The beginning, inclusive, of the video's time segment in which the
   /// actions have been identified.
-  public var segmentStartTime: GoogleWKT.Timestamp? = nil
+  public var segmentStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The end, inclusive, of the video's time segment in which the actions have
   /// been identified. Particularly, if the end is the same as the start, it
   /// means the identification happens on a specific video frame.
-  public var segmentEndTime: GoogleWKT.Timestamp? = nil
+  public var segmentEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// All of the actions identified in the time range.
   public var actions: [VideoActionRecognitionPredictionResult.IdentifiedAction] = []
@@ -71,9 +71,9 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.segmentStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .segmentStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .segmentStartTime)
     self.segmentEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .segmentEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .segmentEndTime)
     if let value = try container.decodeIfPresent(
       [VideoActionRecognitionPredictionResult.IdentifiedAction].self, forKey: .actions)
     {
@@ -81,7 +81,7 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -159,7 +159,7 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -177,10 +177,10 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
       return
         "type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult.IdentifiedAction"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -188,10 +188,10 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

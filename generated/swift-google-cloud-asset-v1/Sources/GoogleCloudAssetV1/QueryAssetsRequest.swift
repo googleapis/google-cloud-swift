@@ -56,7 +56,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// is not complete.
   ///
   /// The field will be ignored when [output_config] is specified.
-  public var timeout: GoogleWKT.Duration? = nil
+  public var timeout: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Destination where the query results will be saved.
   ///
@@ -138,7 +138,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
       self.pageToken = value
     }
-    self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
+    self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
     self.outputConfig = try container.decodeIfPresent(
       QueryAssetsOutputConfig.self, forKey: .outputConfig)
 
@@ -174,13 +174,14 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try timeCheckAndSet(.readTimeWindow(readTimeWindow))
     }
-    if let readTime = try container.decodeIfPresent(GoogleWKT.Timestamp?.self, forKey: .readTime) {
+    if let readTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp?.self, forKey: .readTime)
+    {
       try timeCheckAndSet(.readTime(readTime))
     }
     self.time = time
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -237,16 +238,16 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case readTimeWindow(TimeWindow?)
     /// Optional. Queries cloud assets as they appeared at the specified point in
     /// time.
-    indirect case readTime(GoogleWKT.Timestamp?)
+    indirect case readTime(GoogleWKT.WKTTimestamp?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.QueryAssetsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

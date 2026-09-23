@@ -28,10 +28,10 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   public var sessionUuid: Swift.String = Swift.String()
 
   /// The time when the operation was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time when the operation was finished.
-  public var doneTime: GoogleWKT.Timestamp? = nil
+  public var doneTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The operation type.
   public var operationType: SessionOperationMetadata.SessionOperationType =
@@ -99,8 +99,9 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackab
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionUuid) {
       self.sessionUuid = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.doneTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .doneTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.doneTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .doneTime)
     if let value = try container.decodeIfPresent(
       SessionOperationMetadata.SessionOperationType.self, forKey: .operationType)
     {
@@ -118,7 +119,7 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackab
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -264,10 +265,10 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.SessionOperationMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

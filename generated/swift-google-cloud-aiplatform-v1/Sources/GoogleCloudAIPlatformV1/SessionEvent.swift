@@ -40,7 +40,7 @@
     public var actions: EventActions? = nil
 
     /// Required. Timestamp when the event was created on client side.
-    public var timestamp: GoogleWKT.Timestamp? = nil
+    public var timestamp: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. Error code if the response is an error. Code varies by model.
     public var errorCode: Swift.String = Swift.String()
@@ -52,7 +52,7 @@
     public var eventMetadata: EventMetadata? = nil
 
     /// Optional. Weakly typed raw event data in proto struct format.
-    public var rawEvent: GoogleWKT.Struct? = nil
+    public var rawEvent: GoogleWKT.WKTStruct? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,8 @@
         self.invocationId = value
       }
       self.actions = try container.decodeIfPresent(EventActions.self, forKey: .actions)
-      self.timestamp = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .timestamp)
+      self.timestamp = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .timestamp)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorCode) {
         self.errorCode = value
       }
@@ -124,10 +125,10 @@
         self.errorMessage = value
       }
       self.eventMetadata = try container.decodeIfPresent(EventMetadata.self, forKey: .eventMetadata)
-      self.rawEvent = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .rawEvent)
+      self.rawEvent = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .rawEvent)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -151,10 +152,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SessionEvent"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

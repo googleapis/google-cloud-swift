@@ -27,7 +27,7 @@
     public var metricSpecName: Swift.String = Swift.String()
 
     /// Optional. The parameters needed to run the pre-defined metric.
-    public var metricSpecParameters: GoogleWKT.Struct? = nil
+    public var metricSpecParameters: GoogleWKT.WKTStruct? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,10 +68,10 @@
         self.metricSpecName = value
       }
       self.metricSpecParameters = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .metricSpecParameters)
+        GoogleWKT.WKTStruct.self, forKey: .metricSpecParameters)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -87,10 +87,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PredefinedMetricSpec"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

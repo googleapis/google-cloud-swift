@@ -1030,7 +1030,7 @@ extension Clients.AssetServiceProtocol {
 
   public func updateSavedQuery(
     savedQuery: SavedQuery?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
     let request = UpdateSavedQueryRequest().with {
       $0.savedQuery = savedQuery

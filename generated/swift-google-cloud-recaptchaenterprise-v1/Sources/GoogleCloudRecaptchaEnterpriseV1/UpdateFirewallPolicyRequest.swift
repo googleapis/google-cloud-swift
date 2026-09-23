@@ -26,7 +26,7 @@ public struct UpdateFirewallPolicyRequest: Codable, Equatable, GoogleWKT._AnyPac
 
   /// Optional. The mask to control which fields of the policy get updated. If
   /// the mask is not present, all fields are updated.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,10 +65,11 @@ public struct UpdateFirewallPolicyRequest: Codable, Equatable, GoogleWKT._AnyPac
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.firewallPolicy = try container.decodeIfPresent(
       FirewallPolicy.self, forKey: .firewallPolicy)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -84,10 +85,10 @@ public struct UpdateFirewallPolicyRequest: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.UpdateFirewallPolicyRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

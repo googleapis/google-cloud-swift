@@ -28,12 +28,12 @@
     /// Time offset relative to the beginning of the audio that corresponds to the
     /// start of the spoken word. This is an experimental feature and the accuracy
     /// of the time offset can vary.
-    public var startOffset: GoogleWKT.Duration? = nil
+    public var startOffset: GoogleWKT.WKTDuration? = nil
 
     /// Time offset relative to the beginning of the audio that corresponds to the
     /// end of the spoken word. This is an experimental feature and the accuracy of
     /// the time offset can vary.
-    public var endOffset: GoogleWKT.Duration? = nil
+    public var endOffset: GoogleWKT.WKTDuration? = nil
 
     /// The Speech confidence between 0.0 and 1.0 for this word. A higher number
     /// indicates an estimated greater likelihood that the recognized word is
@@ -87,14 +87,14 @@
         self.word = value
       }
       self.startOffset = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .startOffset)
-      self.endOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .endOffset)
+        GoogleWKT.WKTDuration.self, forKey: .startOffset)
+      self.endOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .endOffset)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
         self.confidence = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -112,10 +112,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SpeechWordInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

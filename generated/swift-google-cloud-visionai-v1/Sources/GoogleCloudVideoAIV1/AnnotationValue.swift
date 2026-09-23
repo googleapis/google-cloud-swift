@@ -104,7 +104,7 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.geoCoordinate(geoCoordinate))
     }
     if let protoAnyValue = try container.decodeIfPresent(
-      GoogleWKT.`Any`?.self, forKey: .protoAnyValue)
+      GoogleWKT.WKTAny?.self, forKey: .protoAnyValue)
     {
       try valueCheckAndSet(.protoAnyValue(protoAnyValue))
     }
@@ -112,7 +112,7 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.boolValue(boolValue))
     }
     if let customizedStructDataValue = try container.decodeIfPresent(
-      GoogleWKT.Struct?.self, forKey: .customizedStructDataValue)
+      GoogleWKT.WKTStruct?.self, forKey: .customizedStructDataValue)
     {
       try valueCheckAndSet(.customizedStructDataValue(customizedStructDataValue))
     }
@@ -127,7 +127,7 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
     self.value = value
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -175,12 +175,12 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Value of geo coordinate type annotation.
     indirect case geoCoordinate(GeoCoordinate?)
     /// Value of any proto value.
-    indirect case protoAnyValue(GoogleWKT.`Any`?)
+    indirect case protoAnyValue(GoogleWKT.WKTAny?)
     /// Value of boolean type annotation.
     case boolValue(Swift.Bool)
     /// Value of customized struct annotation. This field does not have effects.
     /// Use customized_struct_value instead for customized struct annotation.
-    indirect case customizedStructDataValue(GoogleWKT.Struct?)
+    indirect case customizedStructDataValue(GoogleWKT.WKTStruct?)
     /// Value of list type annotation.
     indirect case listValue(AnnotationList?)
     /// Value of custom struct type annotation.
@@ -190,10 +190,10 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AnnotationValue"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

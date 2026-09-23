@@ -39,7 +39,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: ProcessorVersion.State = ProcessorVersion.State()
 
   /// Output only. The time the processor version was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The most recently invoked evaluation for the processor
   /// version.
@@ -141,7 +141,8 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ProcessorVersion.State.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.latestEvaluation = try container.decodeIfPresent(
       EvaluationReference.self, forKey: .latestEvaluation)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
@@ -170,7 +171,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       ProcessorVersion.GenAiModelInfo.self, forKey: .genAiModelInfo)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -200,7 +201,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The time at which this processor version will be deprecated.
-    public var deprecationTime: GoogleWKT.Timestamp? = nil
+    public var deprecationTime: GoogleWKT.WKTTimestamp? = nil
 
     /// If set, the processor version that will be used as a replacement.
     public var replacementProcessorVersion: Swift.String = Swift.String()
@@ -242,7 +243,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.deprecationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .deprecationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .deprecationTime)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .replacementProcessorVersion)
       {
@@ -250,7 +251,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -266,10 +267,10 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -342,7 +343,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       self.modelInfo = modelInfo
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -418,7 +419,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -435,10 +436,10 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -505,7 +506,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -639,10 +640,10 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -660,10 +661,10 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -947,10 +948,10 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.ProcessorVersion"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

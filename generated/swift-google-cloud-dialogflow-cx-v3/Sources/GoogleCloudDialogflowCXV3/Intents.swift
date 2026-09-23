@@ -476,7 +476,7 @@
 
     public func updateIntent(
       intent: Intent?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
       let request = UpdateIntentRequest().with {
         $0.intent = intent

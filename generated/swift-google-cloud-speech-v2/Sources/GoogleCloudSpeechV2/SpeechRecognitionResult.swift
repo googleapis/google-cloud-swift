@@ -34,7 +34,7 @@ public struct SpeechRecognitionResult: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// Time offset of the end of this result relative to the beginning of the
   /// audio.
-  public var resultEndOffset: GoogleWKT.Duration? = nil
+  public var resultEndOffset: GoogleWKT.WKTDuration? = nil
 
   /// Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
   /// language tag of the language in this result. This language code was
@@ -89,13 +89,13 @@ public struct SpeechRecognitionResult: Codable, Equatable, GoogleWKT._AnyPackabl
       self.channelTag = value
     }
     self.resultEndOffset = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .resultEndOffset)
+      GoogleWKT.WKTDuration.self, forKey: .resultEndOffset)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
       self.languageCode = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -113,10 +113,10 @@ public struct SpeechRecognitionResult: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.SpeechRecognitionResult"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

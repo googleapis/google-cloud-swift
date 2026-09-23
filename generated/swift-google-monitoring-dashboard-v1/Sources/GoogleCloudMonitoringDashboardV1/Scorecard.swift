@@ -136,13 +136,13 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try dataViewCheckAndSet(.sparkChartView(sparkChartView))
     }
-    if let blankView = try container.decodeIfPresent(GoogleWKT.Empty?.self, forKey: .blankView) {
+    if let blankView = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .blankView) {
       try dataViewCheckAndSet(.blankView(blankView))
     }
     self.dataView = dataView
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -223,7 +223,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -239,10 +239,10 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.GaugeView"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -262,7 +262,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     /// For example, if the data is published once every 10 minutes it would not
     /// make sense to fetch and align data at one minute intervals. This field is
     /// optional and exists only as a hint.
-    public var minAlignmentPeriod: GoogleWKT.Duration? = nil
+    public var minAlignmentPeriod: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -303,10 +303,10 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
         self.sparkChartType = value
       }
       self.minAlignmentPeriod = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minAlignmentPeriod)
+        GoogleWKT.WKTDuration.self, forKey: .minAlignmentPeriod)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -322,10 +322,10 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.SparkChartView"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -339,16 +339,16 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case sparkChartView(Scorecard.SparkChartView?)
     /// Will cause the `Scorecard` to show only the value, with no indicator to
     /// its value relative to its thresholds.
-    indirect case blankView(GoogleWKT.Empty?)
+    indirect case blankView(GoogleWKT.WKTEmpty?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.Scorecard"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

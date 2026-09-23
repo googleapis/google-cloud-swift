@@ -28,13 +28,13 @@ public struct AuditContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This field should only be filled if audit_log field is present.
   /// Service Control will use this to assemble a complete log for Cloud Audit
   /// Logs and Google internal audit logs.
-  public var scrubbedRequest: GoogleWKT.Struct? = nil
+  public var scrubbedRequest: GoogleWKT.WKTStruct? = nil
 
   /// An API response message that is scrubbed based on the method annotation.
   /// This field should only be filled if audit_log field is present.
   /// Service Control will use this to assemble a complete log for Cloud Audit
   /// Logs and Google internal audit logs.
-  public var scrubbedResponse: GoogleWKT.Struct? = nil
+  public var scrubbedResponse: GoogleWKT.WKTStruct? = nil
 
   /// Number of scrubbed response items.
   public var scrubbedResponseItemCount: Swift.Int32 = Swift.Int32()
@@ -87,9 +87,9 @@ public struct AuditContext: Codable, Equatable, GoogleWKT._AnyPackable,
       self.auditLog = value
     }
     self.scrubbedRequest = try container.decodeIfPresent(
-      GoogleWKT.Struct.self, forKey: .scrubbedRequest)
+      GoogleWKT.WKTStruct.self, forKey: .scrubbedRequest)
     self.scrubbedResponse = try container.decodeIfPresent(
-      GoogleWKT.Struct.self, forKey: .scrubbedResponse)
+      GoogleWKT.WKTStruct.self, forKey: .scrubbedResponse)
     if let value = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .scrubbedResponseItemCount)
     {
@@ -100,7 +100,7 @@ public struct AuditContext: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -119,10 +119,10 @@ public struct AuditContext: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.context.AuditContext"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

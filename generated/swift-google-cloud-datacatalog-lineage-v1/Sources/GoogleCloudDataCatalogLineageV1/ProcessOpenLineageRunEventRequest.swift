@@ -30,7 +30,7 @@ public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleWKT._
 
   /// Required. OpenLineage message following OpenLineage format:
   /// https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json
-  public var openLineage: GoogleWKT.Struct? = nil
+  public var openLineage: GoogleWKT.WKTStruct? = nil
 
   /// Optional. A unique identifier for this request. Restricted to 36 ASCII
   /// characters. A random UUID is recommended. This request is idempotent only
@@ -77,13 +77,13 @@ public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleWKT._
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.openLineage = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .openLineage)
+    self.openLineage = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .openLineage)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -101,10 +101,10 @@ public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleWKT._
     return
       "type.googleapis.com/google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEventRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

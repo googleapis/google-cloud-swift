@@ -332,7 +332,7 @@
 
     public func updateKnowledgeBase(
       knowledgeBase: KnowledgeBase?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
       let request = UpdateKnowledgeBaseRequest().with {
         $0.knowledgeBase = knowledgeBase

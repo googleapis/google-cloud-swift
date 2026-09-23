@@ -113,13 +113,13 @@ public struct TransferJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var status: TransferJob.Status = TransferJob.Status()
 
   /// Output only. The time that the transfer job was created.
-  public var creationTime: GoogleWKT.Timestamp? = nil
+  public var creationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that the transfer job was last modified.
-  public var lastModificationTime: GoogleWKT.Timestamp? = nil
+  public var lastModificationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that the transfer job was deleted.
-  public var deletionTime: GoogleWKT.Timestamp? = nil
+  public var deletionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The name of the most recently started TransferOperation of this JobConfig.
   /// Present if a TransferOperation has been created for this JobConfig.
@@ -210,17 +210,17 @@ public struct TransferJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.status = value
     }
     self.creationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .creationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .creationTime)
     self.lastModificationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastModificationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastModificationTime)
     self.deletionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .deletionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .deletionTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestOperationName) {
       self.latestOperationName = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -376,10 +376,10 @@ public struct TransferJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.TransferJob"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

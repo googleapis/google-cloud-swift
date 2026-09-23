@@ -26,23 +26,23 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Cumulative time taken across all transfers for the replication
   /// relationship.
-  public var totalTransferDuration: GoogleWKT.Duration? = nil
+  public var totalTransferDuration: GoogleWKT.WKTDuration? = nil
 
   /// Last transfer size in bytes.
   public var lastTransferBytes: Swift.Int64? = nil
 
   /// Time taken during last transfer.
-  public var lastTransferDuration: GoogleWKT.Duration? = nil
+  public var lastTransferDuration: GoogleWKT.WKTDuration? = nil
 
   /// Lag duration indicates the duration by which Destination region volume
   /// content lags behind the primary region volume content.
-  public var lagDuration: GoogleWKT.Duration? = nil
+  public var lagDuration: GoogleWKT.WKTDuration? = nil
 
   /// Time when progress was updated last.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Time when last transfer completed.
-  public var lastTransferEndTime: GoogleWKT.Timestamp? = nil
+  public var lastTransferEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A message describing the cause of the last transfer failure.
   public var lastTransferError: Swift.String? = nil
@@ -96,20 +96,22 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.transferBytes = try container.decodeIfPresent(Swift.Int64.self, forKey: .transferBytes)
     self.totalTransferDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .totalTransferDuration)
+      GoogleWKT.WKTDuration.self, forKey: .totalTransferDuration)
     self.lastTransferBytes = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .lastTransferBytes)
     self.lastTransferDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .lastTransferDuration)
-    self.lagDuration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .lagDuration)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      GoogleWKT.WKTDuration.self, forKey: .lastTransferDuration)
+    self.lagDuration = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .lagDuration)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.lastTransferEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastTransferEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastTransferEndTime)
     self.lastTransferError = try container.decodeIfPresent(
       Swift.String.self, forKey: .lastTransferError)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -131,10 +133,10 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.TransferStats"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

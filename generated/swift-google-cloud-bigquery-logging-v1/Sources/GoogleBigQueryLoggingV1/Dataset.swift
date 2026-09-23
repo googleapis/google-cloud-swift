@@ -30,10 +30,10 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
   public var info: DatasetInfo? = nil
 
   /// The time the dataset was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time the dataset was last modified.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The access control list for the dataset.
   public var acl: BigQueryAcl? = nil
@@ -42,7 +42,7 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
   /// expiration time is assigned an expiration time by adding this
   /// duration to the table's `createTime`.  If this field is empty,
   /// there is no default table expiration time.
-  public var defaultTableExpireDuration: GoogleWKT.Duration? = nil
+  public var defaultTableExpireDuration: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,14 +89,16 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.datasetName = try container.decodeIfPresent(DatasetName.self, forKey: .datasetName)
     self.info = try container.decodeIfPresent(DatasetInfo.self, forKey: .info)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.acl = try container.decodeIfPresent(BigQueryAcl.self, forKey: .acl)
     self.defaultTableExpireDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .defaultTableExpireDuration)
+      GoogleWKT.WKTDuration.self, forKey: .defaultTableExpireDuration)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -117,10 +119,10 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.logging.v1.Dataset"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

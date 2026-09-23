@@ -1142,7 +1142,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func updateBlueprint(
     blueprint: Blueprint?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
     let request = UpdateBlueprintRequest().with {
       $0.blueprint = blueprint
@@ -1554,7 +1554,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -1852,7 +1852,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func updateHydratedDeployment(
     hydratedDeployment: HydratedDeployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
     let request = UpdateHydratedDeploymentRequest().with {
       $0.hydratedDeployment = hydratedDeployment

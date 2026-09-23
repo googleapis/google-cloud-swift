@@ -26,7 +26,7 @@
     public var projectDefaultIsGlobalDns: Swift.Bool? = nil
 
     /// The observation window for the query counts.
-    public var queryObservationWindow: GoogleWKT.Duration? = nil
+    public var queryObservationWindow: GoogleWKT.WKTDuration? = nil
 
     /// The number of queries that are risky. This is always less than or
     /// equal to total_query_count.
@@ -77,14 +77,14 @@
       self.projectDefaultIsGlobalDns = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .projectDefaultIsGlobalDns)
       self.queryObservationWindow = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .queryObservationWindow)
+        GoogleWKT.WKTDuration.self, forKey: .queryObservationWindow)
       self.riskyQueryCount = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .riskyQueryCount)
       self.totalQueryCount = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .totalQueryCount)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -103,10 +103,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.RiskDetailsGlobalDnsInsight"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

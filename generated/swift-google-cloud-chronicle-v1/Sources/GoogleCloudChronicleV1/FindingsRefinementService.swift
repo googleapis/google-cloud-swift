@@ -341,7 +341,7 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func updateFindingsRefinement(
     findingsRefinement: FindingsRefinement?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
     let request = UpdateFindingsRefinementRequest().with {
       $0.findingsRefinement = findingsRefinement
@@ -385,7 +385,7 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func updateFindingsRefinementDeployment(
     findingsRefinementDeployment: FindingsRefinementDeployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
     let request = UpdateFindingsRefinementDeploymentRequest().with {
       $0.findingsRefinementDeployment = findingsRefinementDeployment

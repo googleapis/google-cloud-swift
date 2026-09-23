@@ -26,7 +26,7 @@
     /// method to make sure concurrent updates are handled properly. During update,
     /// use the most recent settingsVersion value for this instance and do not try
     /// to update this value.
-    public var settingsVersion: GoogleWKT.Int64Value? = nil
+    public var settingsVersion: GoogleWKT.WKTInt64Value? = nil
 
     /// The App Engine app IDs that can access this instance.
     /// (Deprecated) Applied to First Generation instances only.
@@ -66,7 +66,7 @@
 
     /// The maximum size to which storage capacity can be automatically increased.
     /// The default value is 0, which specifies that there is no limit.
-    public var storageAutoResizeLimit: GoogleWKT.Int64Value? = nil
+    public var storageAutoResizeLimit: GoogleWKT.WKTInt64Value? = nil
 
     /// The activation policy specifies when the instance is activated; it is
     /// applicable only when the instance state is RUNNABLE. Valid values:
@@ -83,7 +83,7 @@
 
     /// Configuration to increase storage size automatically. The default value is
     /// true.
-    public var storageAutoResize: GoogleWKT.BoolValue? = nil
+    public var storageAutoResize: GoogleWKT.WKTBoolValue? = nil
 
     /// The location preference settings. This allows the instance to be located as
     /// near as possible to either an App Engine app or Compute Engine zone for
@@ -108,16 +108,16 @@
     /// Configuration specific to read replica instances. Indicates whether
     /// replication is enabled or not. WARNING: Changing this restarts the
     /// instance.
-    public var databaseReplicationEnabled: GoogleWKT.BoolValue? = nil
+    public var databaseReplicationEnabled: GoogleWKT.WKTBoolValue? = nil
 
     /// Configuration specific to read replica instances. Indicates whether
     /// database flags for crash-safe replication are enabled. This property was
     /// only applicable to First Generation instances.
     @available(*, deprecated)
-    public var crashSafeReplicationEnabled: GoogleWKT.BoolValue? = nil
+    public var crashSafeReplicationEnabled: GoogleWKT.WKTBoolValue? = nil
 
     /// The size of data disk, in GB. The data disk size minimum is 10GB.
-    public var dataDiskSizeGb: GoogleWKT.Int64Value? = nil
+    public var dataDiskSizeGb: GoogleWKT.WKTInt64Value? = nil
 
     /// Active Directory configuration, relevant only for Cloud SQL for SQL Server.
     public var activeDirectoryConfig: SqlActiveDirectoryConfig? = nil
@@ -153,7 +153,7 @@
     public var connectorEnforcement: Settings.ConnectorEnforcement = Settings.ConnectorEnforcement()
 
     /// Configuration to protect against accidental instance deletion.
-    public var deletionProtectionEnabled: GoogleWKT.BoolValue? = nil
+    public var deletionProtectionEnabled: GoogleWKT.WKTBoolValue? = nil
 
     /// Server timezone, relevant only for Cloud SQL for SQL Server.
     public var timeZone: Swift.String = Swift.String()
@@ -167,24 +167,24 @@
 
     /// Optional. Configuration value for recreation of replica after certain
     /// replication lag
-    public var replicationLagMaxSeconds: GoogleWKT.Int32Value? = nil
+    public var replicationLagMaxSeconds: GoogleWKT.WKTInt32Value? = nil
 
     /// Optional. When this parameter is set to true, Cloud SQL instances can
     /// connect to Vertex AI to pass requests for real-time predictions and
     /// insights to the AI. The default value is false. This applies only to Cloud
     /// SQL for MySQL and Cloud SQL for PostgreSQL instances.
-    public var enableGoogleMlIntegration: GoogleWKT.BoolValue? = nil
+    public var enableGoogleMlIntegration: GoogleWKT.WKTBoolValue? = nil
 
     /// Optional. By default, Cloud SQL instances have schema extraction disabled
     /// for Dataplex. When this parameter is set to true, schema extraction for
     /// Dataplex on Cloud SQL instances is activated.
-    public var enableDataplexIntegration: GoogleWKT.BoolValue? = nil
+    public var enableDataplexIntegration: GoogleWKT.WKTBoolValue? = nil
 
     /// Optional. When this parameter is set to true, Cloud SQL retains backups of
     /// the instance even after the instance is deleted. The ON_DEMAND backup will
     /// be retained until customer deletes the backup or the project. The AUTOMATED
     /// backup will be retained based on the backups retention setting.
-    public var retainBackupsOnDelete: GoogleWKT.BoolValue? = nil
+    public var retainBackupsOnDelete: GoogleWKT.WKTBoolValue? = nil
 
     /// Optional. Provisioned number of I/O operations per second for the data
     /// disk. This field is only used for hyperdisk-balanced disk types.
@@ -205,7 +205,7 @@
 
     /// Optional. Whether the replica is in accelerated mode. This feature is in
     /// private preview and requires allowlisting to take effect.
-    public var acceleratedReplicaMode: GoogleWKT.BoolValue? = nil
+    public var acceleratedReplicaMode: GoogleWKT.WKTBoolValue? = nil
 
     /// Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
     /// parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
@@ -352,7 +352,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.settingsVersion = try container.decodeIfPresent(
-        GoogleWKT.Int64Value.self, forKey: .settingsVersion)
+        GoogleWKT.WKTInt64Value.self, forKey: .settingsVersion)
       if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .authorizedGaeApplications)
       {
@@ -383,7 +383,7 @@
         self.replicationType = value
       }
       self.storageAutoResizeLimit = try container.decodeIfPresent(
-        GoogleWKT.Int64Value.self, forKey: .storageAutoResizeLimit)
+        GoogleWKT.WKTInt64Value.self, forKey: .storageAutoResizeLimit)
       if let value = try container.decodeIfPresent(
         Settings.SqlActivationPolicy.self, forKey: .activationPolicy)
       {
@@ -392,7 +392,7 @@
       self.ipConfiguration = try container.decodeIfPresent(
         IpConfiguration.self, forKey: .ipConfiguration)
       self.storageAutoResize = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .storageAutoResize)
+        GoogleWKT.WKTBoolValue.self, forKey: .storageAutoResize)
       self.locationPreference = try container.decodeIfPresent(
         LocationPreference.self, forKey: .locationPreference)
       if let value = try container.decodeIfPresent([DatabaseFlags].self, forKey: .databaseFlags) {
@@ -406,11 +406,11 @@
       self.backupConfiguration = try container.decodeIfPresent(
         BackupConfiguration.self, forKey: .backupConfiguration)
       self.databaseReplicationEnabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .databaseReplicationEnabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .databaseReplicationEnabled)
       self.crashSafeReplicationEnabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .crashSafeReplicationEnabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .crashSafeReplicationEnabled)
       self.dataDiskSizeGb = try container.decodeIfPresent(
-        GoogleWKT.Int64Value.self, forKey: .dataDiskSizeGb)
+        GoogleWKT.WKTInt64Value.self, forKey: .dataDiskSizeGb)
       self.activeDirectoryConfig = try container.decodeIfPresent(
         SqlActiveDirectoryConfig.self, forKey: .activeDirectoryConfig)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collation) {
@@ -436,7 +436,7 @@
         self.connectorEnforcement = value
       }
       self.deletionProtectionEnabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .deletionProtectionEnabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .deletionProtectionEnabled)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
         self.timeZone = value
       }
@@ -445,13 +445,13 @@
       self.dataCacheConfig = try container.decodeIfPresent(
         DataCacheConfig.self, forKey: .dataCacheConfig)
       self.replicationLagMaxSeconds = try container.decodeIfPresent(
-        GoogleWKT.Int32Value.self, forKey: .replicationLagMaxSeconds)
+        GoogleWKT.WKTInt32Value.self, forKey: .replicationLagMaxSeconds)
       self.enableGoogleMlIntegration = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .enableGoogleMlIntegration)
+        GoogleWKT.WKTBoolValue.self, forKey: .enableGoogleMlIntegration)
       self.enableDataplexIntegration = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .enableDataplexIntegration)
+        GoogleWKT.WKTBoolValue.self, forKey: .enableDataplexIntegration)
       self.retainBackupsOnDelete = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .retainBackupsOnDelete)
+        GoogleWKT.WKTBoolValue.self, forKey: .retainBackupsOnDelete)
       self.dataDiskProvisionedIops = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .dataDiskProvisionedIops)
       self.dataDiskProvisionedThroughput = try container.decodeIfPresent(
@@ -463,7 +463,7 @@
       self.readPoolAutoScaleConfig = try container.decodeIfPresent(
         ReadPoolAutoScaleConfig.self, forKey: .readPoolAutoScaleConfig)
       self.acceleratedReplicaMode = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .acceleratedReplicaMode)
+        GoogleWKT.WKTBoolValue.self, forKey: .acceleratedReplicaMode)
       self.autoUpgradeEnabled = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .autoUpgradeEnabled)
       self.entraidConfig = try container.decodeIfPresent(
@@ -474,7 +474,7 @@
         PerformanceCaptureConfig.self, forKey: .performanceCaptureConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1039,10 +1039,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Settings"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -1211,7 +1211,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateApp(
     app: App?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.App {
     let request = UpdateAppRequest().with {
       $0.app = app
@@ -1435,7 +1435,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateAgent(
     agent: Agent?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.Agent {
     let request = UpdateAgentRequest().with {
       $0.agent = agent
@@ -1571,7 +1571,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateExample(
     example: Example?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.Example {
     let request = UpdateExampleRequest().with {
       $0.example = example
@@ -1831,7 +1831,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateTool(
     tool: Tool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.Tool {
     let request = UpdateToolRequest().with {
       $0.tool = tool
@@ -1970,7 +1970,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateGuardrail(
     guardrail: Guardrail?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.Guardrail {
     let request = UpdateGuardrailRequest().with {
       $0.guardrail = guardrail
@@ -2111,7 +2111,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.Deployment {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -2247,7 +2247,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateToolset(
     toolset: Toolset?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudCESV1.Toolset {
     let request = UpdateToolsetRequest().with {
       $0.toolset = toolset

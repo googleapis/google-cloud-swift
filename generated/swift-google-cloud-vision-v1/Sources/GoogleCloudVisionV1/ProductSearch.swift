@@ -719,7 +719,7 @@ extension Clients.ProductSearchProtocol {
 
   public func updateProductSet(
     productSet: ProductSet?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudVisionV1.ProductSet {
     let request = UpdateProductSetRequest().with {
       $0.productSet = productSet
@@ -851,7 +851,7 @@ extension Clients.ProductSearchProtocol {
 
   public func updateProduct(
     product: Product?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudVisionV1.Product {
     let request = UpdateProductRequest().with {
       $0.product = product

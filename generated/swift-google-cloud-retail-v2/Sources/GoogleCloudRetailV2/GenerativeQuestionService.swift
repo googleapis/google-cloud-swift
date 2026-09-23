@@ -166,7 +166,7 @@ extension Clients.GenerativeQuestionServiceProtocol {
 
   public func updateGenerativeQuestionsFeatureConfig(
     generativeQuestionsFeatureConfig: GenerativeQuestionsFeatureConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
     let request = UpdateGenerativeQuestionsFeatureConfigRequest().with {
       $0.generativeQuestionsFeatureConfig = generativeQuestionsFeatureConfig
@@ -231,7 +231,7 @@ extension Clients.GenerativeQuestionServiceProtocol {
 
   public func updateGenerativeQuestionConfig(
     generativeQuestionConfig: GenerativeQuestionConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig {
     let request = UpdateGenerativeQuestionConfigRequest().with {
       $0.generativeQuestionConfig = generativeQuestionConfig

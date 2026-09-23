@@ -686,7 +686,7 @@ extension Clients.IcebergCatalogServiceProtocol {
 
   public func updateIcebergCatalog(
     icebergCatalog: IcebergCatalog?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
     let request = UpdateIcebergCatalogRequest().with {
       $0.icebergCatalog = icebergCatalog

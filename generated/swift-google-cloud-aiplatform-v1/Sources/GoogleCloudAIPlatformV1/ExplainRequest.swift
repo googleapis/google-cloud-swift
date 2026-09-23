@@ -43,7 +43,7 @@
     /// [google.cloud.aiplatform.v1.DeployedModel.model]: <doc:DeployedModel/model>
     /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
-    public var instances: [GoogleWKT.Value] = []
+    public var instances: [GoogleWKT.WKTValue] = []
 
     /// The parameters that govern the prediction. The schema of the parameters may
     /// be specified via Endpoint's DeployedModels' [Model's
@@ -54,7 +54,7 @@
     /// [google.cloud.aiplatform.v1.DeployedModel.model]: <doc:DeployedModel/model>
     /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
     /// [google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]: <doc:PredictSchemata/parametersSchemaUri>
-    public var parameters: GoogleWKT.Value? = nil
+    public var parameters: GoogleWKT.WKTValue? = nil
 
     /// If specified, overrides the
     /// [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
@@ -119,10 +119,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
         self.endpoint = value
       }
-      if let value = try container.decodeIfPresent([GoogleWKT.Value].self, forKey: .instances) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .instances) {
         self.instances = value
       }
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .parameters)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .parameters)
       self.explanationSpecOverride = try container.decodeIfPresent(
         ExplanationSpecOverride.self, forKey: .explanationSpecOverride)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedModelId) {
@@ -130,7 +130,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -149,10 +149,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplainRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

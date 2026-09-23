@@ -454,7 +454,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func updateNamespace(
     namespace: Namespace?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
     let request = UpdateNamespaceRequest().with {
       $0.namespace = namespace
@@ -584,7 +584,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudServiceDirectoryV1.Service {
     let request = UpdateServiceRequest().with {
       $0.service = service
@@ -714,7 +714,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func updateEndpoint(
     endpoint: Endpoint?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
     let request = UpdateEndpointRequest().with {
       $0.endpoint = endpoint

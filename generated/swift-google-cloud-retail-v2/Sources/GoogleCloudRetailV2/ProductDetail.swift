@@ -49,7 +49,7 @@ public struct ProductDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For example, this field will be 2 if two products are added to the shopping
   /// cart for `purchase-complete` event. Required for `add-to-cart` and
   /// `purchase-complete` event types.
-  public var quantity: GoogleWKT.Int32Value? = nil
+  public var quantity: GoogleWKT.WKTInt32Value? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,10 +87,10 @@ public struct ProductDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.product = try container.decodeIfPresent(Product.self, forKey: .product)
-    self.quantity = try container.decodeIfPresent(GoogleWKT.Int32Value.self, forKey: .quantity)
+    self.quantity = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .quantity)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -106,10 +106,10 @@ public struct ProductDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ProductDetail"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

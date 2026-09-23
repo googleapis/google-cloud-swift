@@ -77,7 +77,7 @@ public struct TransitionAttributes: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// This delay always occurs *after* finishing the source visit and *before*
   /// starting the destination visit.
-  public var delay: GoogleWKT.Duration? = nil
+  public var delay: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -145,10 +145,10 @@ public struct TransitionAttributes: Codable, Equatable, GoogleWKT._AnyPackable,
       self.costPerKilometer = value
     }
     self.distanceLimit = try container.decodeIfPresent(DistanceLimit.self, forKey: .distanceLimit)
-    self.delay = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .delay)
+    self.delay = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .delay)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -170,10 +170,10 @@ public struct TransitionAttributes: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.TransitionAttributes"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

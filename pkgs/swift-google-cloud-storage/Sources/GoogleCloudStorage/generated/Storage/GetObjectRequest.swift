@@ -63,7 +63,7 @@ public struct GetObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If no mask is specified, it defaults to all fields except `metadata.
   /// acl` and `metadata.owner`.
   /// `*` might be used to mean "all fields".
-  public var readMask: GoogleWKT.FieldMask? = nil
+  public var readMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. Restore token used to differentiate soft-deleted objects with the
   /// same name and generation. Only applicable for hierarchical namespace
@@ -145,13 +145,13 @@ public struct GetObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Int64.self, forKey: .ifMetagenerationNotMatch)
     self.commonObjectRequestParams = try container.decodeIfPresent(
       CommonObjectRequestParams.self, forKey: .commonObjectRequestParams)
-    self.readMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .readMask)
+    self.readMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .readMask)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .restoreToken) {
       self.restoreToken = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -177,10 +177,10 @@ public struct GetObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.GetObjectRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

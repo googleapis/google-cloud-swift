@@ -46,10 +46,10 @@
     public var labels: [Swift.String] = []
 
     /// Output only. The time the session started.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The time the session finished.
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. Whether the session is pinned, pinned session will be displayed
     /// on the top of the session list.
@@ -122,14 +122,15 @@
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .labels) {
         self.labels = value
       }
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPinned) {
         self.isPinned = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -247,7 +248,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -266,10 +267,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Session.Turn"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -387,10 +388,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Session"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

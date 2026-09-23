@@ -50,7 +50,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The date and time that auto-refreshing will begin for an
   /// Autonomous Database refreshable clone. This value controls only the start
   /// time for the first refresh operation.
-  public var autoRefreshStartTime: GoogleWKT.Timestamp? = nil
+  public var autoRefreshStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The name of the Autonomous Database Backup resource with the
   /// format:
@@ -62,7 +62,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Autonomous Database. This field is only applicable
   /// in case of BACKUP_FROM_TIMESTAMP source type and when
   /// use_latest_available_backup is false.
-  public var backupTime: GoogleWKT.Timestamp? = nil
+  public var backupTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Clone from latest available backup timestamp. This field is only
   /// applicable in case of BACKUP_FROM_TIMESTAMP source type.
@@ -150,20 +150,21 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.autoRefreshPointLagSeconds = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .autoRefreshPointLagSeconds)
     self.autoRefreshStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .autoRefreshStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .autoRefreshStartTime)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .autonomousDatabaseBackup)
     {
       self.autonomousDatabaseBackup = value
     }
-    self.backupTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .backupTime)
+    self.backupTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .backupTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useLatestAvailableBackup)
     {
       self.useLatestAvailableBackup = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -571,10 +572,10 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.SourceConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

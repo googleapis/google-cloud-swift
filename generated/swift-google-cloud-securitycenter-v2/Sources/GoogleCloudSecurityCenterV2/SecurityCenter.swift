@@ -1705,7 +1705,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateBigQueryExport(
     bigQueryExport: BigQueryExport?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
     let request = UpdateBigQueryExportRequest().with {
       $0.bigQueryExport = bigQueryExport
@@ -1728,7 +1728,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateExternalSystem(
     externalSystem: ExternalSystem?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.ExternalSystem {
     let request = UpdateExternalSystemRequest().with {
       $0.externalSystem = externalSystem
@@ -1751,7 +1751,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateFinding(
     finding: Finding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.Finding {
     let request = UpdateFindingRequest().with {
       $0.finding = finding
@@ -1774,7 +1774,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateMuteConfig(
     muteConfig: MuteConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
     let request = UpdateMuteConfigRequest().with {
       $0.muteConfig = muteConfig
@@ -1797,7 +1797,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateNotificationConfig(
     notificationConfig: NotificationConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
     let request = UpdateNotificationConfigRequest().with {
       $0.notificationConfig = notificationConfig
@@ -1820,7 +1820,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateResourceValueConfig(
     resourceValueConfig: ResourceValueConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.ResourceValueConfig {
     let request = UpdateResourceValueConfigRequest().with {
       $0.resourceValueConfig = resourceValueConfig
@@ -1843,7 +1843,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateSecurityMarks(
     securityMarks: SecurityMarks?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.SecurityMarks {
     let request = UpdateSecurityMarksRequest().with {
       $0.securityMarks = securityMarks
@@ -1866,7 +1866,7 @@ extension Clients.SecurityCenterProtocol {
 
   public func updateSource(
     source: Source?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterV2.Source {
     let request = UpdateSourceRequest().with {
       $0.source = source

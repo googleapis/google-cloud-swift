@@ -560,7 +560,7 @@
 
     public func updateSchedule(
       schedule: Schedule?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Schedule {
       let request = UpdateScheduleRequest().with {
         $0.schedule = schedule

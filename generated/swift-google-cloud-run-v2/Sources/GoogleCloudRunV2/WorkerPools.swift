@@ -272,7 +272,7 @@ extension Clients {
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPool(
       workerPool: WorkerPool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `WorkerPoolsClient.deleteWorkerPool`.
@@ -501,7 +501,7 @@ extension Clients.WorkerPoolsProtocol {
 
   public func updateWorkerPool(
     workerPool: WorkerPool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
     let request = UpdateWorkerPoolRequest().with {
       $0.workerPool = workerPool

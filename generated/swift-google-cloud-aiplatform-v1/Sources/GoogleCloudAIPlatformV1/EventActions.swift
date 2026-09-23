@@ -28,7 +28,7 @@
 
     /// Optional. Indicates that the event is updating the state with the given
     /// delta.
-    public var stateDelta: GoogleWKT.Struct? = nil
+    public var stateDelta: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Indicates that the event is updating an artifact. key is the
     /// filename, value is the version.
@@ -41,7 +41,7 @@
     /// Struct key is the function call id since one function call response (from
     /// model) could correspond to multiple function calls. Struct value is the
     /// required auth config, which can be another struct.
-    public var requestedAuthConfigs: GoogleWKT.Struct? = nil
+    public var requestedAuthConfigs: GoogleWKT.WKTStruct? = nil
 
     /// Optional. If set, the event transfers to the specified agent.
     public var transferAgent: Swift.String = Swift.String()
@@ -92,7 +92,7 @@
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipSummarization) {
         self.skipSummarization = value
       }
-      self.stateDelta = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .stateDelta)
+      self.stateDelta = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .stateDelta)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.Int32].self, forKey: .artifactDelta)
       {
@@ -102,13 +102,13 @@
         self.escalate = value
       }
       self.requestedAuthConfigs = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .requestedAuthConfigs)
+        GoogleWKT.WKTStruct.self, forKey: .requestedAuthConfigs)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transferAgent) {
         self.transferAgent = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -128,10 +128,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EventActions"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

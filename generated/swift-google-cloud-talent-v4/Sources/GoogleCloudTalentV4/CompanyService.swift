@@ -188,7 +188,7 @@ extension Clients.CompanyServiceProtocol {
 
   public func updateCompany(
     company: Company?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTalentV4.Company {
     let request = UpdateCompanyRequest().with {
       $0.company = company

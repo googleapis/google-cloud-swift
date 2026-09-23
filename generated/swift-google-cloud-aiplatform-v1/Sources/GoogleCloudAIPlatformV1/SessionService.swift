@@ -550,7 +550,7 @@
 
     public func updateSession(
       session: Session?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Session {
       let request = UpdateSessionRequest().with {
         $0.session = session

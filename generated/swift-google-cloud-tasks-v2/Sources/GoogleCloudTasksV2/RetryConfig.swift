@@ -59,7 +59,7 @@ public struct RetryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
   ///
   /// [google.cloud.tasks.v2.RetryConfig.max_attempts]: <doc:RetryConfig/maxAttempts>
-  public var maxRetryDuration: GoogleWKT.Duration? = nil
+  public var maxRetryDuration: GoogleWKT.WKTDuration? = nil
 
   /// A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
   /// retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
@@ -82,7 +82,7 @@ public struct RetryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.tasks.v2.RetryConfig.max_backoff]: <doc:RetryConfig/maxBackoff>
   /// [google.cloud.tasks.v2.RetryConfig.min_backoff]: <doc:RetryConfig/minBackoff>
   /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
-  public var minBackoff: GoogleWKT.Duration? = nil
+  public var minBackoff: GoogleWKT.WKTDuration? = nil
 
   /// A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
   /// retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
@@ -105,7 +105,7 @@ public struct RetryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.tasks.v2.RetryConfig.max_backoff]: <doc:RetryConfig/maxBackoff>
   /// [google.cloud.tasks.v2.RetryConfig.min_backoff]: <doc:RetryConfig/minBackoff>
   /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
-  public var maxBackoff: GoogleWKT.Duration? = nil
+  public var maxBackoff: GoogleWKT.WKTDuration? = nil
 
   /// The time between retries will double `max_doublings` times.
   ///
@@ -185,15 +185,15 @@ public struct RetryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxAttempts = value
     }
     self.maxRetryDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maxRetryDuration)
-    self.minBackoff = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .minBackoff)
-    self.maxBackoff = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .maxBackoff)
+      GoogleWKT.WKTDuration.self, forKey: .maxRetryDuration)
+    self.minBackoff = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .minBackoff)
+    self.maxBackoff = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .maxBackoff)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDoublings) {
       self.maxDoublings = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -212,10 +212,10 @@ public struct RetryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.RetryConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -70,7 +70,7 @@
     /// ```
     ///
     /// This field is mutually exclusive with `parameters`.
-    public var parametersJsonSchema: GoogleWKT.Value? = nil
+    public var parametersJsonSchema: GoogleWKT.WKTValue? = nil
 
     /// Optional. Describes the output from this function in JSON Schema format.
     /// Reflects the Open API 3.03 Response Object. The Schema defines the type
@@ -81,7 +81,7 @@
     /// The value specified by the schema is the response value of the function.
     ///
     /// This field is mutually exclusive with `response`.
-    public var responseJsonSchema: GoogleWKT.Value? = nil
+    public var responseJsonSchema: GoogleWKT.WKTValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -134,13 +134,13 @@
       }
       self.parameters = try container.decodeIfPresent(Schema.self, forKey: .parameters)
       self.parametersJsonSchema = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .parametersJsonSchema)
+        GoogleWKT.WKTValue.self, forKey: .parametersJsonSchema)
       self.response = try container.decodeIfPresent(Schema.self, forKey: .response)
       self.responseJsonSchema = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .responseJsonSchema)
+        GoogleWKT.WKTValue.self, forKey: .responseJsonSchema)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -160,10 +160,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FunctionDeclaration"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -63,7 +63,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// is used and segment_keep_duration is ignored.
   ///
   /// [google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]: <doc:RetentionConfig/retentionWindowDuration>
-  public var segmentKeepDuration: GoogleWKT.Duration? = nil
+  public var segmentKeepDuration: GoogleWKT.WKTDuration? = nil
 
   /// Whether to use the timecode, as specified in timecode config, when setting:
   ///
@@ -135,7 +135,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxSegmentCount = value
     }
     self.segmentKeepDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .segmentKeepDuration)
+      GoogleWKT.WKTDuration.self, forKey: .segmentKeepDuration)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useTimecodeAsTimeline) {
       self.useTimecodeAsTimeline = value
     }
@@ -144,7 +144,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -282,10 +282,10 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.Manifest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

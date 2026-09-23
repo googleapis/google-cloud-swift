@@ -131,7 +131,7 @@ extension Clients {
       configure(&req)
       req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
-        GoogleWKT.Empty.self, timeout: options.attemptTimeout
+        GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
     }
 
@@ -392,7 +392,7 @@ extension Clients {
       configure(&req)
       req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
-        GoogleWKT.Empty.self, timeout: options.attemptTimeout
+        GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
     }
 
@@ -968,7 +968,7 @@ extension Clients {
       configure(&req)
       req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
-        GoogleWKT.Empty.self, timeout: options.attemptTimeout
+        GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
     }
 
@@ -1018,7 +1018,7 @@ extension Clients {
       configure(&req)
       req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
-        GoogleWKT.Empty.self, timeout: options.attemptTimeout
+        GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
     }
   }

@@ -55,7 +55,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sourceSnapshot: Swift.String? = nil
 
   /// Output only. The time when the backup was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Resource labels to represent user provided metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -79,7 +79,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public var backupRegion: Swift.String = Swift.String()
 
   /// Output only. The time until which the backup is not deletable.
-  public var enforcedRetentionEndTime: GoogleWKT.Timestamp? = nil
+  public var enforcedRetentionEndTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -161,7 +161,8 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sourceVolume = value
     }
     self.sourceSnapshot = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSnapshot)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
@@ -182,10 +183,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupRegion = value
     }
     self.enforcedRetentionEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .enforcedRetentionEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .enforcedRetentionEndTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -480,10 +481,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.Backup"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

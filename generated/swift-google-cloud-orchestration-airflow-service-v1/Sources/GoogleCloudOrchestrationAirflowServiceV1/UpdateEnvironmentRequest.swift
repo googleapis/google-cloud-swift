@@ -152,7 +152,7 @@ public struct UpdateEnvironmentRequest: Codable, Equatable, GoogleWKT._AnyPackab
   ///       It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4
   ///       or composer-n1-webserver-8. Supported for Cloud Composer environments
   ///       in versions composer-1.*.*-airflow-*.*.*.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -195,10 +195,11 @@ public struct UpdateEnvironmentRequest: Codable, Equatable, GoogleWKT._AnyPackab
       self.name = value
     }
     self.environment = try container.decodeIfPresent(Environment.self, forKey: .environment)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -216,10 +217,10 @@ public struct UpdateEnvironmentRequest: Codable, Equatable, GoogleWKT._AnyPackab
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.UpdateEnvironmentRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

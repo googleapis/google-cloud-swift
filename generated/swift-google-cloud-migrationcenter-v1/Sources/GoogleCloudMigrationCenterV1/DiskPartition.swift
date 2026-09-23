@@ -40,7 +40,7 @@ public struct DiskPartition: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uuid: Swift.String = Swift.String()
 
   /// Sub-partitions.
-  public var subPartitions: GoogleWKT.Recursive<DiskPartitionList>? = nil
+  public var subPartitions: GoogleWKT.WKTRecursive<DiskPartitionList>? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,10 +106,10 @@ public struct DiskPartition: Codable, Equatable, GoogleWKT._AnyPackable,
       self.uuid = value
     }
     self.subPartitions = try container.decodeIfPresent(
-      GoogleWKT.Recursive<DiskPartitionList>.self, forKey: .subPartitions)
+      GoogleWKT.WKTRecursive<DiskPartitionList>.self, forKey: .subPartitions)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -130,10 +130,10 @@ public struct DiskPartition: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.DiskPartition"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

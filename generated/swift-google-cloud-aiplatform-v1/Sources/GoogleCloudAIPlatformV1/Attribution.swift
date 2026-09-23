@@ -91,10 +91,10 @@
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]: <doc:ExplanationMetadata/featureAttributionsSchemaUri>
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.inputs]: <doc:ExplanationMetadata/inputs>
     /// [google.cloud.aiplatform.v1.ExplanationSpec]: <doc:ExplanationSpec>
-    /// [google.protobuf.Value.list_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Value/OneOf_Kind/listValue(_:)
-    /// [google.protobuf.Value.number_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Value/OneOf_Kind/numberValue(_:)
-    /// [google.protobuf.Value.struct_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Value/OneOf_Kind/structValue(_:)
-    public var featureAttributions: GoogleWKT.Value? = nil
+    /// [google.protobuf.Value.list_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/OneOf_Kind/listValue(_:)
+    /// [google.protobuf.Value.number_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/OneOf_Kind/numberValue(_:)
+    /// [google.protobuf.Value.struct_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/OneOf_Kind/structValue(_:)
+    public var featureAttributions: GoogleWKT.WKTValue? = nil
 
     /// Output only. The index that locates the explained prediction output.
     ///
@@ -210,7 +210,7 @@
         self.instanceOutputValue = value
       }
       self.featureAttributions = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .featureAttributions)
+        GoogleWKT.WKTValue.self, forKey: .featureAttributions)
       if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .outputIndex) {
         self.outputIndex = value
       }
@@ -225,7 +225,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -246,10 +246,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Attribution"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

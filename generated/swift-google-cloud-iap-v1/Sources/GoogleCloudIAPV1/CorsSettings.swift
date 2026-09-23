@@ -25,7 +25,7 @@ public struct CorsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration to allow HTTP `OPTIONS` calls to skip
   /// authentication and authorization. If undefined, IAP will not apply any
   /// special logic to `OPTIONS` requests.
-  public var allowHttpOptions: GoogleWKT.BoolValue? = nil
+  public var allowHttpOptions: GoogleWKT.WKTBoolValue? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,10 +61,10 @@ public struct CorsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.allowHttpOptions = try container.decodeIfPresent(
-      GoogleWKT.BoolValue.self, forKey: .allowHttpOptions)
+      GoogleWKT.WKTBoolValue.self, forKey: .allowHttpOptions)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -79,10 +79,10 @@ public struct CorsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.CorsSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

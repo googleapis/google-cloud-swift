@@ -31,7 +31,7 @@ public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleWKT._An
   /// Required. The field mask describing which fields to update as a comma-separated list.
   /// For example, if only the registrant contact is being updated, the
   /// `update_mask` is `"registrant_contact"`.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The list of contact notices that the caller acknowledges. The notices
   /// needed here depend on the values specified in `contact_settings`.
@@ -86,7 +86,8 @@ public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleWKT._An
     }
     self.contactSettings = try container.decodeIfPresent(
       ContactSettings.self, forKey: .contactSettings)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent([ContactNotice].self, forKey: .contactNotices) {
       self.contactNotices = value
     }
@@ -95,7 +96,7 @@ public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleWKT._An
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -114,10 +115,10 @@ public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleWKT._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.ConfigureContactSettingsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

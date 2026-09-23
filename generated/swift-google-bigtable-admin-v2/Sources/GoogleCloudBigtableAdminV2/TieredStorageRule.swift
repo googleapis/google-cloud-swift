@@ -69,14 +69,14 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
       rule = $0
     }
     if let includeIfOlderThan = try container.decodeIfPresent(
-      GoogleWKT.Duration?.self, forKey: .includeIfOlderThan)
+      GoogleWKT.WKTDuration?.self, forKey: .includeIfOlderThan)
     {
       try ruleCheckAndSet(.includeIfOlderThan(includeIfOlderThan))
     }
     self.rule = rule
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -98,16 +98,16 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OneOf_Rule: Codable, Equatable, Sendable {
     /// Include cells older than the given age.
     /// For the infrequent access tier, this value must be at least 30 days.
-    indirect case includeIfOlderThan(GoogleWKT.Duration?)
+    indirect case includeIfOlderThan(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.TieredStorageRule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

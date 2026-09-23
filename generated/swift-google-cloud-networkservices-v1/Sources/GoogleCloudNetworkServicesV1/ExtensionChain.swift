@@ -90,7 +90,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -153,7 +153,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -168,10 +168,10 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.ExtensionChain.MatchCondition"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -244,7 +244,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// This field is not supported for plugin extensions. Setting it results in
     /// a validation error.
-    public var timeout: GoogleWKT.Duration? = nil
+    public var timeout: GoogleWKT.WKTDuration? = nil
 
     /// Optional. Determines how the proxy behaves if the call to the extension
     /// fails or times out.
@@ -309,7 +309,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
     /// * The length of each key must be less than 64 characters.
     /// * The length of each value must be less than 1024 characters.
     /// * All values must be strings.
-    public var metadata: GoogleWKT.Struct? = nil
+    public var metadata: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Configures the send mode for request body processing.
     ///
@@ -417,7 +417,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent([EventType].self, forKey: .supportedEvents) {
         self.supportedEvents = value
       }
-      self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
+      self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .failOpen) {
         self.failOpen = value
       }
@@ -428,7 +428,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         self.forwardAttributes = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .metadata)
       if let value = try container.decodeIfPresent(BodySendMode.self, forKey: .requestBodySendMode)
       {
         self.requestBodySendMode = value
@@ -442,7 +442,7 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -468,10 +468,10 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.ExtensionChain.Extension"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -479,10 +479,10 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.ExtensionChain"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

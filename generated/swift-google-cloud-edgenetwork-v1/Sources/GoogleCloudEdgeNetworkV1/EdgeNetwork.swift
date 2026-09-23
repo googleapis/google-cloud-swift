@@ -648,7 +648,7 @@ extension Clients {
     /// See `EdgeNetworkClient.updateSubnet`.
     func updateSubnet(
       subnet: Subnet?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Subnet>
 
     /// See `EdgeNetworkClient.deleteSubnet`.
@@ -698,7 +698,7 @@ extension Clients {
     /// See `EdgeNetworkClient.updateRouter`.
     func updateRouter(
       router: Router?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Router>
 
     /// See `EdgeNetworkClient.deleteRouter`.
@@ -1304,7 +1304,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func updateSubnet(
     subnet: Subnet?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
     let request = UpdateSubnetRequest().with {
       $0.subnet = subnet
@@ -1727,7 +1727,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func updateRouter(
     router: Router?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Router> {
     let request = UpdateRouterRequest().with {
       $0.router = router

@@ -105,12 +105,12 @@ public struct SetInventoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// is returned and the entire update will be ignored.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  public var setMask: GoogleWKT.FieldMask? = nil
+  public var setMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The time when the request is issued, used to prevent
   /// out-of-order updates on inventory fields with the last update time
   /// recorded. If not provided, the internal system time will be used.
-  public var setTime: GoogleWKT.Timestamp? = nil
+  public var setTime: GoogleWKT.WKTTimestamp? = nil
 
   /// If set to true, and the [Product][google.cloud.retail.v2.Product] with name
   /// [Product.name][google.cloud.retail.v2.Product.name] is not found, the
@@ -163,14 +163,14 @@ public struct SetInventoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.inventory = try container.decodeIfPresent(Product.self, forKey: .inventory)
-    self.setMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .setMask)
-    self.setTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .setTime)
+    self.setMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .setMask)
+    self.setTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .setTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
       self.allowMissing = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -188,10 +188,10 @@ public struct SetInventoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.SetInventoryRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

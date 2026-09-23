@@ -490,7 +490,7 @@ extension Clients {
     /// See `SecurityPostureClient.updatePosture`.
     func updatePosture(
       posture: Posture?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Posture>
 
     /// See `SecurityPostureClient.deletePosture`.
@@ -531,7 +531,7 @@ extension Clients {
     /// See `SecurityPostureClient.updatePostureDeployment`.
     func updatePostureDeployment(
       postureDeployment: PostureDeployment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PostureDeployment>
 
     /// See `SecurityPostureClient.deletePostureDeployment`.
@@ -851,7 +851,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func updatePosture(
     posture: Posture?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
     let request = UpdatePostureRequest().with {
       $0.posture = posture
@@ -1074,7 +1074,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func updatePostureDeployment(
     postureDeployment: PostureDeployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PostureDeployment> {
     let request = UpdatePostureDeploymentRequest().with {
       $0.postureDeployment = postureDeployment

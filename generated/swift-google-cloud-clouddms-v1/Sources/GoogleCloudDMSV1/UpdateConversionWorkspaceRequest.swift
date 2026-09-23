@@ -23,7 +23,7 @@ public struct UpdateConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._A
 {
   /// Required. Field mask is used to specify the fields to be overwritten by the
   /// update in the conversion workspace resource.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The conversion workspace parameters to update.
   public var conversionWorkspace: ConversionWorkspace? = nil
@@ -74,7 +74,8 @@ public struct UpdateConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._A
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.conversionWorkspace = try container.decodeIfPresent(
       ConversionWorkspace.self, forKey: .conversionWorkspace)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
@@ -82,7 +83,7 @@ public struct UpdateConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._A
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -99,10 +100,10 @@ public struct UpdateConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.UpdateConversionWorkspaceRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -47,7 +47,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
   /// request. Querying sooner is unlikely to produce a meaningful diff.
   /// Waiting longer is acceptable considering the use case.
   /// If this field is not set clients may update as soon as they want.
-  public var recommendedNextDiff: GoogleWKT.Timestamp? = nil
+  public var recommendedNextDiff: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,10 +105,10 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
     self.checksum = try container.decodeIfPresent(
       ComputeThreatListDiffResponse.Checksum.self, forKey: .checksum)
     self.recommendedNextDiff = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .recommendedNextDiff)
+      GoogleWKT.WKTTimestamp.self, forKey: .recommendedNextDiff)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -171,7 +171,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -186,10 +186,10 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -316,10 +316,10 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

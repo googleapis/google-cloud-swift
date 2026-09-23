@@ -26,7 +26,7 @@
     /// Required. Duration is accurate to the second. In Notebook, Idle Timeout is
     /// accurate to minute so the range of idle_timeout (second) is: 10 * 60 ~ 1440
     /// * 60.
-    public var idleTimeout: GoogleWKT.Duration? = nil
+    public var idleTimeout: GoogleWKT.WKTDuration? = nil
 
     /// Whether Idle Shutdown is disabled in this NotebookRuntimeTemplate.
     public var idleShutdownDisabled: Swift.Bool = Swift.Bool()
@@ -67,13 +67,13 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.idleTimeout = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .idleTimeout)
+        GoogleWKT.WKTDuration.self, forKey: .idleTimeout)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .idleShutdownDisabled) {
         self.idleShutdownDisabled = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -89,10 +89,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookIdleShutdownConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

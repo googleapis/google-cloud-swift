@@ -726,7 +726,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptEndpointGroup`.
     func updateInterceptEndpointGroup(
       interceptEndpointGroup: InterceptEndpointGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup>
 
     /// See `InterceptClient.deleteInterceptEndpointGroup`.
@@ -758,7 +758,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptEndpointGroupAssociation`.
     func updateInterceptEndpointGroupAssociation(
       interceptEndpointGroupAssociation: InterceptEndpointGroupAssociation?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation>
 
     /// See `InterceptClient.deleteInterceptEndpointGroupAssociation`.
@@ -789,7 +789,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptDeploymentGroup`.
     func updateInterceptDeploymentGroup(
       interceptDeploymentGroup: InterceptDeploymentGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup>
 
     /// See `InterceptClient.deleteInterceptDeploymentGroup`.
@@ -819,7 +819,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptDeployment`.
     func updateInterceptDeployment(
       interceptDeployment: InterceptDeployment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment>
 
     /// See `InterceptClient.deleteInterceptDeployment`.
@@ -1173,7 +1173,7 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptEndpointGroup(
     interceptEndpointGroup: InterceptEndpointGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
     let request = UpdateInterceptEndpointGroupRequest().with {
       $0.interceptEndpointGroup = interceptEndpointGroup
@@ -1362,7 +1362,7 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptEndpointGroupAssociation(
     interceptEndpointGroupAssociation: InterceptEndpointGroupAssociation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
     let request = UpdateInterceptEndpointGroupAssociationRequest().with {
       $0.interceptEndpointGroupAssociation = interceptEndpointGroupAssociation
@@ -1547,7 +1547,7 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptDeploymentGroup(
     interceptDeploymentGroup: InterceptDeploymentGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
     let request = UpdateInterceptDeploymentGroupRequest().with {
       $0.interceptDeploymentGroup = interceptDeploymentGroup
@@ -1729,7 +1729,7 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptDeployment(
     interceptDeployment: InterceptDeployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
     let request = UpdateInterceptDeploymentRequest().with {
       $0.interceptDeployment = interceptDeployment

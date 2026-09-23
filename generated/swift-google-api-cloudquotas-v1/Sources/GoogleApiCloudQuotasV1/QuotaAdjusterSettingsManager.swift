@@ -99,7 +99,7 @@ extension Clients.QuotaAdjusterSettingsManagerProtocol {
 
   public func updateQuotaAdjusterSettings(
     quotaAdjusterSettings: QuotaAdjusterSettings?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
     let request = UpdateQuotaAdjusterSettingsRequest().with {
       $0.quotaAdjusterSettings = quotaAdjusterSettings

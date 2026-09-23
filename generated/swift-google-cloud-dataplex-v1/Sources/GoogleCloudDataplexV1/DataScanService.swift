@@ -360,7 +360,7 @@ extension Clients {
     /// See `DataScanServiceClient.updateDataScan`.
     func updateDataScan(
       dataScan: DataScan?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.deleteDataScan`.
@@ -552,7 +552,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func updateDataScan(
     dataScan: DataScan?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataScan> {
     let request = UpdateDataScanRequest().with {
       $0.dataScan = dataScan

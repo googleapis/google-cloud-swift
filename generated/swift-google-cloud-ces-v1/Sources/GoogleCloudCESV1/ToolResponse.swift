@@ -34,7 +34,7 @@ public struct ToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Use "output" key to specify tool response and "error" key to specify
   /// error details (if any). If "output" and "error" keys are not specified,
   /// then whole "response" is treated as tool execution result.
-  public var response: GoogleWKT.Struct? = nil
+  public var response: GoogleWKT.WKTStruct? = nil
 
   /// The identifier of the tool that got executed. It could be either a
   /// persisted tool or a tool from a toolset.
@@ -87,7 +87,7 @@ public struct ToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
     }
-    self.response = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .response)
+    self.response = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .response)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
     let toolIdentifierCheckAndSet = {
@@ -108,7 +108,7 @@ public struct ToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     self.toolIdentifier = toolIdentifier
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -144,10 +144,10 @@ public struct ToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ToolResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

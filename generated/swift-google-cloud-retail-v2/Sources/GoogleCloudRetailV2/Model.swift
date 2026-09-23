@@ -57,12 +57,12 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   public var servingState: Model.ServingState = Model.ServingState()
 
   /// Output only. Timestamp the Recommendation Model was created at.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Timestamp the Recommendation Model was last updated. E.g.
   /// if a Recommendation Model was paused - this would be the time the pause was
   /// initiated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. The type of model e.g. `home-page`.
   ///
@@ -118,7 +118,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   public var periodicTuningState: Model.PeriodicTuningState = Model.PeriodicTuningState()
 
   /// Output only. The timestamp when the latest successful tune finished.
-  public var lastTuneTime: GoogleWKT.Timestamp? = nil
+  public var lastTuneTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The tune operation associated with the model.
   ///
@@ -220,8 +220,10 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Model.ServingState.self, forKey: .servingState) {
       self.servingState = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
       self.type = value
     }
@@ -235,7 +237,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       self.periodicTuningState = value
     }
     self.lastTuneTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastTuneTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastTuneTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tuningOperation) {
       self.tuningOperation = value
     }
@@ -256,7 +258,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       Model.ModelFeaturesConfig.self, forKey: .modelFeaturesConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -329,7 +331,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -344,10 +346,10 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Model.ServingConfigList"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -404,7 +406,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -420,10 +422,10 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       return
         "type.googleapis.com/google.cloud.retail.v2.Model.FrequentlyBoughtTogetherFeaturesConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -488,7 +490,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       self.typeDedicatedConfig = typeDedicatedConfig
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -514,10 +516,10 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Model.ModelFeaturesConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1144,10 +1146,10 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.Model"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

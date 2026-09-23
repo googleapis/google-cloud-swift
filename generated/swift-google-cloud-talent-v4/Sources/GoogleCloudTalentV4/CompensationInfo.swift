@@ -111,7 +111,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       CompensationInfo.CompensationRange.self, forKey: .annualizedTotalCompensationRange)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -184,7 +184,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.unit]: <doc:CompensationInfo/CompensationEntry/unit>
     /// [google.cloud.talent.v4.Job.employment_types]: <doc:Job/employmentTypes>
-    public var expectedUnitsPerYear: GoogleWKT.DoubleValue? = nil
+    public var expectedUnitsPerYear: GoogleWKT.WKTDoubleValue? = nil
 
     /// Compensation amount. It could be a fixed amount or a floating range.
     public var compensationAmount: OneOf_CompensationAmount? = nil
@@ -246,7 +246,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
         self.description = value
       }
       self.expectedUnitsPerYear = try container.decodeIfPresent(
-        GoogleWKT.DoubleValue.self, forKey: .expectedUnitsPerYear)
+        GoogleWKT.WKTDoubleValue.self, forKey: .expectedUnitsPerYear)
 
       var compensationAmount: OneOf_CompensationAmount? = nil
       let compensationAmountCheckAndSet = {
@@ -269,7 +269,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       self.compensationAmount = compensationAmount
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -304,10 +304,10 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.CompensationInfo.CompensationEntry"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -372,7 +372,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
         GoogleType.Money.self, forKey: .minCompensation)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -388,10 +388,10 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.CompensationInfo.CompensationRange"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -744,10 +744,10 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.CompensationInfo"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

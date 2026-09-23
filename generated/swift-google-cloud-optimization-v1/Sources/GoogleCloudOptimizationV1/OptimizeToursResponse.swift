@@ -126,7 +126,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -173,14 +173,14 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
     ///
     /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]: <doc:ShipmentRoute/vehicleStartTime>
-    public var earliestVehicleStartTime: GoogleWKT.Timestamp? = nil
+    public var earliestVehicleStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The latest end time for a used vehicle, computed as the maximum over all
     /// used vehicles of
     /// [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
     ///
     /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]: <doc:ShipmentRoute/vehicleEndTime>
-    public var latestVehicleEndTime: GoogleWKT.Timestamp? = nil
+    public var latestVehicleEndTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Cost of the solution, broken down by cost-related request fields.
     /// The keys are proto paths, relative to the input OptimizeToursRequest,
@@ -253,9 +253,9 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         self.usedVehicleCount = value
       }
       self.earliestVehicleStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .earliestVehicleStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .earliestVehicleStartTime)
       self.latestVehicleEndTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .latestVehicleEndTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .latestVehicleEndTime)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.Double].self, forKey: .costs)
       {
@@ -266,7 +266,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -289,10 +289,10 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursResponse.Metrics"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -300,10 +300,10 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

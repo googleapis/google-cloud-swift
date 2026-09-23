@@ -32,7 +32,7 @@ public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatab
   ///
   /// If you omit this field or set it to the wildcard value `*`, then all
   /// eligible fields are updated.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The resource being updated.
   public var securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule? = nil
@@ -90,7 +90,8 @@ public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatab
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.securityHealthAnalyticsCustomModule = try container.decodeIfPresent(
       SecurityHealthAnalyticsCustomModule.self, forKey: .securityHealthAnalyticsCustomModule)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
@@ -98,7 +99,7 @@ public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatab
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -117,10 +118,10 @@ public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatab
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.UpdateSecurityHealthAnalyticsCustomModuleRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

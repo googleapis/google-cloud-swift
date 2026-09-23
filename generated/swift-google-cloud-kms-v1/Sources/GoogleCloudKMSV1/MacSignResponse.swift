@@ -49,7 +49,7 @@ public struct MacSignResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// languages that support this type.
   ///
   /// [google.cloud.kms.v1.MacSignResponse.mac]: <doc:MacSignResponse/mac>
-  public var macCrc32C: GoogleWKT.Int64Value? = nil
+  public var macCrc32C: GoogleWKT.WKTInt64Value? = nil
 
   /// Integrity verification field. A flag indicating whether
   /// [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
@@ -125,7 +125,7 @@ public struct MacSignResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .mac) {
       self.mac = value
     }
-    self.macCrc32C = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .macCrc32C)
+    self.macCrc32C = try container.decodeIfPresent(GoogleWKT.WKTInt64Value.self, forKey: .macCrc32C)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifiedDataCrc32C) {
       self.verifiedDataCrc32C = value
     }
@@ -134,7 +134,7 @@ public struct MacSignResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -153,10 +153,10 @@ public struct MacSignResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.MacSignResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

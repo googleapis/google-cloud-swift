@@ -521,7 +521,7 @@ extension Clients {
     /// See `TpuClient.updateNode`.
     func updateNode(
       node: Node?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Node>
 
     /// See `TpuClient.createQueuedResource`.
@@ -926,7 +926,7 @@ extension Clients.TpuProtocol {
 
   public func updateNode(
     node: Node?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Node> {
     let request = UpdateNodeRequest().with {
       $0.node = node

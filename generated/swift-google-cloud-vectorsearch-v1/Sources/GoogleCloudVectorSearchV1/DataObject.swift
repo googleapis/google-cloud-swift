@@ -33,13 +33,13 @@ public struct DataObject: Codable, Equatable, GoogleWKT._AnyPackable,
   public var dataObjectId: Swift.String = Swift.String()
 
   /// Output only. Timestamp the dataObject was created at.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Timestamp the dataObject was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The data of the dataObject.
-  public var data: GoogleWKT.Struct? = nil
+  public var data: GoogleWKT.WKTStruct? = nil
 
   /// Optional. The vectors of the dataObject.
   public var vectors: [Swift.String: Vector] = [:]
@@ -98,9 +98,11 @@ public struct DataObject: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataObjectId) {
       self.dataObjectId = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.data = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .data)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.data = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .data)
     if let value = try container.decodeIfPresent([Swift.String: Vector].self, forKey: .vectors) {
       self.vectors = value
     }
@@ -109,7 +111,7 @@ public struct DataObject: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -130,10 +132,10 @@ public struct DataObject: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.DataObject"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

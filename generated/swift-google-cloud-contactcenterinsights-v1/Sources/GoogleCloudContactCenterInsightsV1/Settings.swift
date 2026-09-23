@@ -32,10 +32,10 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time at which the settings was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the settings were last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A language code to be applied to each transcript segment unless the segment
   /// already specifies a language code. Language code defaults to "en-US" if it
@@ -46,7 +46,7 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// specified expiration, that value will be used instead. Changing this
   /// value will not change the expiration of existing conversations.
   /// Conversations with no expire time persist until they are deleted.
-  public var conversationTtl: GoogleWKT.Duration? = nil
+  public var conversationTtl: GoogleWKT.WKTDuration? = nil
 
   /// A map that maps a notification trigger to a Pub/Sub topic. Each time a
   /// specified trigger occurs, Insights will notify the corresponding Pub/Sub
@@ -136,13 +136,15 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
       self.languageCode = value
     }
     self.conversationTtl = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .conversationTtl)
+      GoogleWKT.WKTDuration.self, forKey: .conversationTtl)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .pubsubNotificationSettings)
     {
@@ -155,7 +157,7 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     self.speechConfig = try container.decodeIfPresent(SpeechConfig.self, forKey: .speechConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -244,7 +246,7 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
         AnnotatorSelector.self, forKey: .annotatorSelector)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -263,10 +265,10 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.Settings.AnalysisConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -274,10 +276,10 @@ public struct Settings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.Settings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -72,7 +72,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.ciphertext]: <doc:RawDecryptRequest/ciphertext>
-  public var ciphertextCrc32C: GoogleWKT.Int64Value? = nil
+  public var ciphertextCrc32C: GoogleWKT.WKTInt64Value? = nil
 
   /// Optional. An optional CRC32C checksum of the
   /// [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
@@ -94,7 +94,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data]: <doc:RawDecryptRequest/additionalAuthenticatedData>
-  public var additionalAuthenticatedDataCrc32C: GoogleWKT.Int64Value? = nil
+  public var additionalAuthenticatedDataCrc32C: GoogleWKT.WKTInt64Value? = nil
 
   /// Optional. An optional CRC32C checksum of the
   /// [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
@@ -114,7 +114,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.initialization_vector]: <doc:RawDecryptRequest/initializationVector>
-  public var initializationVectorCrc32C: GoogleWKT.Int64Value? = nil
+  public var initializationVectorCrc32C: GoogleWKT.WKTInt64Value? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -184,14 +184,14 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tagLength = value
     }
     self.ciphertextCrc32C = try container.decodeIfPresent(
-      GoogleWKT.Int64Value.self, forKey: .ciphertextCrc32C)
+      GoogleWKT.WKTInt64Value.self, forKey: .ciphertextCrc32C)
     self.additionalAuthenticatedDataCrc32C = try container.decodeIfPresent(
-      GoogleWKT.Int64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
+      GoogleWKT.WKTInt64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
     self.initializationVectorCrc32C = try container.decodeIfPresent(
-      GoogleWKT.Int64Value.self, forKey: .initializationVectorCrc32C)
+      GoogleWKT.WKTInt64Value.self, forKey: .initializationVectorCrc32C)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -215,10 +215,10 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.RawDecryptRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

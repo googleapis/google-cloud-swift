@@ -37,11 +37,11 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sourceCommitUris: [Swift.String] = []
 
   /// Output only. The time at which the deployment was deployed.
-  public var deployTime: GoogleWKT.Timestamp? = nil
+  public var deployTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the deployment was undeployed, all artifacts
   /// are considered undeployed once this time is set.
-  public var undeployTime: GoogleWKT.Timestamp? = nil
+  public var undeployTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The summary of container status of the artifact deployment.
   /// Format as `ContainerStatusState-Reason : restartCount`
@@ -105,16 +105,17 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceCommitUris) {
       self.sourceCommitUris = value
     }
-    self.deployTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deployTime)
+    self.deployTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .deployTime)
     self.undeployTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .undeployTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .undeployTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerStatusSummary)
     {
       self.containerStatusSummary = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -135,10 +136,10 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.ArtifactDeployment"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -1252,7 +1252,7 @@
 
     public func updateArtifact(
       artifact: Artifact?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
       let request = UpdateArtifactRequest().with {
         $0.artifact = artifact
@@ -1438,7 +1438,7 @@
 
     public func updateContext(
       context: Context?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Context {
       let request = UpdateContextRequest().with {
         $0.context = context
@@ -1716,7 +1716,7 @@
 
     public func updateExecution(
       execution: Execution?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
       let request = UpdateExecutionRequest().with {
         $0.execution = execution

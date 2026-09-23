@@ -76,13 +76,13 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleWKT.
   public var sizeTb: Swift.Float = Swift.Float()
 
   /// Output only. Timestamp until when the backup will be available.
-  public var availableTillTime: GoogleWKT.Timestamp? = nil
+  public var availableTillTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time the backup completed.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time the backup started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The type of the backup.
   public var type: AutonomousDatabaseBackupProperties.Type_ =
@@ -210,9 +210,9 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleWKT.
       self.sizeTb = value
     }
     self.availableTillTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .availableTillTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .availableTillTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     if let value = try container.decodeIfPresent(
       AutonomousDatabaseBackupProperties.Type_.self, forKey: .type)
     {
@@ -223,7 +223,7 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleWKT.
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -526,10 +526,10 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleWKT.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseBackupProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

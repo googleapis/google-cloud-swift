@@ -83,7 +83,7 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: FileStoreDataProfile.State = FileStoreDataProfile.State()
 
   /// The last time the profile was generated.
-  public var profileLastGenerated: GoogleWKT.Timestamp? = nil
+  public var profileLastGenerated: GoogleWKT.WKTTimestamp? = nil
 
   /// How broadly a resource has been shared.
   public var resourceVisibility: ResourceVisibility = ResourceVisibility()
@@ -95,10 +95,10 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var dataRiskLevel: DataRiskLevel? = nil
 
   /// The time the file store was first created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time the file store was last modified.
-  public var lastModifiedTime: GoogleWKT.Timestamp? = nil
+  public var lastModifiedTime: GoogleWKT.WKTTimestamp? = nil
 
   /// FileClusterSummary per each cluster.
   public var fileClusterSummaries: [FileClusterSummary] = []
@@ -253,7 +253,7 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
     self.profileLastGenerated = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .profileLastGenerated)
+      GoogleWKT.WKTTimestamp.self, forKey: .profileLastGenerated)
     if let value = try container.decodeIfPresent(
       ResourceVisibility.self, forKey: .resourceVisibility)
     {
@@ -262,9 +262,10 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     self.sensitivityScore = try container.decodeIfPresent(
       SensitivityScore.self, forKey: .sensitivityScore)
     self.dataRiskLevel = try container.decodeIfPresent(DataRiskLevel.self, forKey: .dataRiskLevel)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.lastModifiedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastModifiedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastModifiedTime)
     if let value = try container.decodeIfPresent(
       [FileClusterSummary].self, forKey: .fileClusterSummaries)
     {
@@ -302,7 +303,7 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -463,10 +464,10 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.FileStoreDataProfile"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

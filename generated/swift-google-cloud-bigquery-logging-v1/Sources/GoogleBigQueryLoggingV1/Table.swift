@@ -41,17 +41,17 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The expiration date for the table, after which the table
   /// is deleted and the storage reclaimed.
   /// If not present, the table persists indefinitely.
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time the table was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time the table was last truncated
   /// by an operation with a `writeDisposition` of `WRITE_TRUNCATE`.
-  public var truncateTime: GoogleWKT.Timestamp? = nil
+  public var truncateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time the table was last modified.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The table encryption information. Set when non-default encryption is used.
   public var encryption: EncryptionInfo? = nil
@@ -111,15 +111,18 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       self.schemaJson = value
     }
     self.view = try container.decodeIfPresent(TableViewDefinition.self, forKey: .view)
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.truncateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .truncateTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .truncateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.encryption = try container.decodeIfPresent(EncryptionInfo.self, forKey: .encryption)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -142,10 +145,10 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.logging.v1.Table"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

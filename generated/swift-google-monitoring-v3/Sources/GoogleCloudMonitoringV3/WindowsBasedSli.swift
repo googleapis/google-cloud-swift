@@ -25,7 +25,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Duration over which window quality is evaluated. Must be an integer
   /// fraction of a day and at least `60s`.
-  public var windowPeriod: GoogleWKT.Duration? = nil
+  public var windowPeriod: GoogleWKT.WKTDuration? = nil
 
   /// The criterion to use for evaluating window goodness.
   public var windowCriterion: OneOf_WindowCriterion? = nil
@@ -72,7 +72,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.windowPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .windowPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .windowPeriod)
 
     var windowCriterion: OneOf_WindowCriterion? = nil
     let windowCriterionCheckAndSet = {
@@ -107,7 +107,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     self.windowCriterion = windowCriterion
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -208,7 +208,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = type
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -241,10 +241,10 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.WindowsBasedSli.PerformanceThreshold"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -305,7 +305,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       self.range = try container.decodeIfPresent(Range.self, forKey: .range)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -321,10 +321,10 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.WindowsBasedSli.MetricRange"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -348,10 +348,10 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.WindowsBasedSli"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

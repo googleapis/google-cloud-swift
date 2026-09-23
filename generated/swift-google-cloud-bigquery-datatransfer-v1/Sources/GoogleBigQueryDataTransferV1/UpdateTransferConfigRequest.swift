@@ -52,7 +52,7 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
   public var authorizationCode: Swift.String = Swift.String()
 
   /// Required. Required list of fields to be updated in this request.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional version info. This parameter replaces `authorization_code` which
   /// is no longer used in any data sources. This is required only if
@@ -131,7 +131,8 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authorizationCode) {
       self.authorizationCode = value
     }
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionInfo) {
       self.versionInfo = value
     }
@@ -140,7 +141,7 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -162,10 +163,10 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

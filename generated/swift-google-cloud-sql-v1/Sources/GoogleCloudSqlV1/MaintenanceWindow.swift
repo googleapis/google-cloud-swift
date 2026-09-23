@@ -24,12 +24,12 @@
     Sendable
   {
     /// Hour of day - 0 to 23. Specify in the UTC time zone.
-    public var hour: GoogleWKT.Int32Value? = nil
+    public var hour: GoogleWKT.WKTInt32Value? = nil
 
     /// Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
     /// `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
     /// Returned in output as an integer, 1 to 7, where `1` equals Monday.
-    public var day: GoogleWKT.Int32Value? = nil
+    public var day: GoogleWKT.WKTInt32Value? = nil
 
     /// Maintenance timing settings: `canary`, `stable`, or `week5`.
     /// For more information, see [About maintenance on Cloud SQL
@@ -78,8 +78,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.hour = try container.decodeIfPresent(GoogleWKT.Int32Value.self, forKey: .hour)
-      self.day = try container.decodeIfPresent(GoogleWKT.Int32Value.self, forKey: .day)
+      self.hour = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .hour)
+      self.day = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .day)
       if let value = try container.decodeIfPresent(SqlUpdateTrack.self, forKey: .updateTrack) {
         self.updateTrack = value
       }
@@ -88,7 +88,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -106,10 +106,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.MaintenanceWindow"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -23,10 +23,10 @@
     Sendable
   {
     /// Optional. The start offset of the video.
-    public var startOffset: GoogleWKT.Duration? = nil
+    public var startOffset: GoogleWKT.WKTDuration? = nil
 
     /// Optional. The end offset of the video.
-    public var endOffset: GoogleWKT.Duration? = nil
+    public var endOffset: GoogleWKT.WKTDuration? = nil
 
     /// Optional. The frame rate of the video sent to the model. If not specified,
     /// the default value is 1.0. The valid range is (0.0, 24.0].
@@ -70,14 +70,14 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startOffset = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .startOffset)
-      self.endOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .endOffset)
+        GoogleWKT.WKTDuration.self, forKey: .startOffset)
+      self.endOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .endOffset)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .fps) {
         self.fps = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -94,10 +94,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.VideoMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

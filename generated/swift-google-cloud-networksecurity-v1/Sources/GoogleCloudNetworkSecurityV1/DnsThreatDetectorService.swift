@@ -385,7 +385,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
 
   public func updateDnsThreatDetector(
     dnsThreatDetector: DnsThreatDetector?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
     let request = UpdateDnsThreatDetectorRequest().with {
       $0.dnsThreatDetector = dnsThreatDetector

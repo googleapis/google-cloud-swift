@@ -37,10 +37,10 @@
     public var password: Swift.String = Swift.String()
 
     /// Seconds to wait between connect retries. MySQL's default is 60 seconds.
-    public var connectRetryInterval: GoogleWKT.Int32Value? = nil
+    public var connectRetryInterval: GoogleWKT.WKTInt32Value? = nil
 
     /// Interval in milliseconds between replication heartbeats.
-    public var masterHeartbeatPeriod: GoogleWKT.Int64Value? = nil
+    public var masterHeartbeatPeriod: GoogleWKT.WKTInt64Value? = nil
 
     /// PEM representation of the trusted CA's x509 certificate.
     public var caCertificate: Swift.String = Swift.String()
@@ -57,7 +57,7 @@
 
     /// Whether or not to check the primary instance's Common Name value in the
     /// certificate that it sends during the SSL handshake.
-    public var verifyServerCertificate: GoogleWKT.BoolValue? = nil
+    public var verifyServerCertificate: GoogleWKT.WKTBoolValue? = nil
 
     /// This is always `sql#mysqlReplicaConfiguration`.
     public var kind: Swift.String = Swift.String()
@@ -125,9 +125,9 @@
         self.password = value
       }
       self.connectRetryInterval = try container.decodeIfPresent(
-        GoogleWKT.Int32Value.self, forKey: .connectRetryInterval)
+        GoogleWKT.WKTInt32Value.self, forKey: .connectRetryInterval)
       self.masterHeartbeatPeriod = try container.decodeIfPresent(
-        GoogleWKT.Int64Value.self, forKey: .masterHeartbeatPeriod)
+        GoogleWKT.WKTInt64Value.self, forKey: .masterHeartbeatPeriod)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
         self.caCertificate = value
       }
@@ -141,13 +141,13 @@
         self.sslCipher = value
       }
       self.verifyServerCertificate = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .verifyServerCertificate)
+        GoogleWKT.WKTBoolValue.self, forKey: .verifyServerCertificate)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -172,10 +172,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.MySqlReplicaConfiguration"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

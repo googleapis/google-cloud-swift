@@ -29,7 +29,7 @@ func sample(client: DirectAccessServiceClient, projectId: String, deviceSessionI
         $0.deviceSession = DeviceSession().with {
           $0.name = "projects/\(projectId)/deviceSessions/\(deviceSessionId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

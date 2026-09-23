@@ -505,7 +505,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `CloudRedisClusterClient.deleteCluster`.
@@ -536,7 +536,7 @@ extension Clients {
     func rescheduleClusterMaintenance(
       name: Swift.String,
       rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleWKT.Timestamp?,
+      scheduleTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `CloudRedisClusterClient.deleteBackup`.
@@ -801,7 +801,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -961,7 +961,7 @@ extension Clients.CloudRedisClusterProtocol {
   public func rescheduleClusterMaintenance(
     name: Swift.String,
     rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleWKT.Timestamp?,
+    scheduleTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = RescheduleClusterMaintenanceRequest().with {
       $0.name = name

@@ -22,7 +22,7 @@ public struct RuntimeNetworkInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Time of the last network scan.
-  public var scanTime: GoogleWKT.Timestamp? = nil
+  public var scanTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Network connections.
   public var connections: NetworkConnectionList? = nil
@@ -62,12 +62,12 @@ public struct RuntimeNetworkInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.scanTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .scanTime)
+    self.scanTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .scanTime)
     self.connections = try container.decodeIfPresent(
       NetworkConnectionList.self, forKey: .connections)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -83,10 +83,10 @@ public struct RuntimeNetworkInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.RuntimeNetworkInfo"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

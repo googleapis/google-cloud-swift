@@ -43,11 +43,11 @@ public struct McpTool: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A JSON Schema object defining the expected parameters for invoking the
   /// tool.
-  public var inputSchema: GoogleWKT.Struct? = nil
+  public var inputSchema: GoogleWKT.WKTStruct? = nil
 
   /// Optional. A JSON Schema object defining the expected structure of the
   /// tool's output.
-  public var outputSchema: GoogleWKT.Struct? = nil
+  public var outputSchema: GoogleWKT.WKTStruct? = nil
 
   /// Optional key-value object that allows developers to provide additional
   /// information regarding tool properties, behavior, and usage best practices.
@@ -65,7 +65,7 @@ public struct McpTool: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   false).
   ///   - openWorldHint: If true, the tool may interact with an "open world" of
   ///   external entities.
-  public var annotations: GoogleWKT.Struct? = nil
+  public var annotations: GoogleWKT.WKTStruct? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,12 +124,13 @@ public struct McpTool: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .mcpServerUrls) {
       self.mcpServerUrls = value
     }
-    self.inputSchema = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .inputSchema)
-    self.outputSchema = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .outputSchema)
-    self.annotations = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .annotations)
+    self.inputSchema = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .inputSchema)
+    self.outputSchema = try container.decodeIfPresent(
+      GoogleWKT.WKTStruct.self, forKey: .outputSchema)
+    self.annotations = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .annotations)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -150,10 +151,10 @@ public struct McpTool: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apiregistry.v1.McpTool"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

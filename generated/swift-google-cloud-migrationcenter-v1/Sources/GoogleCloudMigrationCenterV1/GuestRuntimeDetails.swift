@@ -31,7 +31,7 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public var network: RuntimeNetworkInfo? = nil
 
   /// Last time the OS was booted.
-  public var lastBootTime: GoogleWKT.Timestamp? = nil
+  public var lastBootTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Domain, e.g. c.stratozone-development.internal.
   public var domain: Swift.String = Swift.String()
@@ -96,7 +96,7 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     self.processes = try container.decodeIfPresent(RunningProcessList.self, forKey: .processes)
     self.network = try container.decodeIfPresent(RuntimeNetworkInfo.self, forKey: .network)
     self.lastBootTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastBootTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastBootTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
       self.domain = value
     }
@@ -108,7 +108,7 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     self.openFileList = try container.decodeIfPresent(OpenFileList.self, forKey: .openFileList)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -130,10 +130,10 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.GuestRuntimeDetails"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

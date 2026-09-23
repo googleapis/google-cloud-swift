@@ -344,7 +344,7 @@ extension Clients {
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
     func updateOspolicyAssignment(
       osPolicyAssignment: OSPolicyAssignment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
@@ -511,7 +511,7 @@ extension Clients.OsConfigZonalServiceProtocol {
 
   public func updateOspolicyAssignment(
     osPolicyAssignment: OSPolicyAssignment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment> {
     let request = UpdateOSPolicyAssignmentRequest().with {
       $0.osPolicyAssignment = osPolicyAssignment

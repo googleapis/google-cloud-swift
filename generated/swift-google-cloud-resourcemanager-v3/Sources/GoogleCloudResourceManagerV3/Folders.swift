@@ -507,7 +507,7 @@ extension Clients {
     /// See `FoldersClient.updateFolder`.
     func updateFolder(
       folder: Folder?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.moveFolder`.
@@ -804,7 +804,7 @@ extension Clients.FoldersProtocol {
 
   public func updateFolder(
     folder: Folder?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let request = UpdateFolderRequest().with {
       $0.folder = folder

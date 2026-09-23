@@ -67,7 +67,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
   public var api: AttributeContext.Api? = nil
 
   /// Supports extensions for advanced use cases, such as logs and metrics.
-  public var extensions: [GoogleWKT.`Any`] = []
+  public var extensions: [GoogleWKT.WKTAny] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,12 +124,12 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     self.response = try container.decodeIfPresent(AttributeContext.Response.self, forKey: .response)
     self.resource = try container.decodeIfPresent(AttributeContext.Resource.self, forKey: .resource)
     self.api = try container.decodeIfPresent(AttributeContext.Api.self, forKey: .api)
-    if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .extensions) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .extensions) {
       self.extensions = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -234,7 +234,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -253,10 +253,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.context.AttributeContext.Peer"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -338,7 +338,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -356,10 +356,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.context.AttributeContext.Api"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -414,7 +414,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// SAML assertions are similarly specified, but with an identity provider
     /// dependent structure.
-    public var claims: GoogleWKT.Struct? = nil
+    public var claims: GoogleWKT.WKTStruct? = nil
 
     /// A list of access level resource names that allow resources to be
     /// accessed by authenticated requester. It is part of Secure GCP processing
@@ -475,13 +475,13 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .presenter) {
         self.presenter = value
       }
-      self.claims = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .claims)
+      self.claims = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .claims)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .accessLevels) {
         self.accessLevels = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -500,10 +500,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.context.AttributeContext.Auth"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -542,7 +542,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The timestamp when the `destination` service receives the last byte of
     /// the request.
-    public var time: GoogleWKT.Timestamp? = nil
+    public var time: GoogleWKT.WKTTimestamp? = nil
 
     /// The HTTP request size in bytes. If unknown, it must be -1.
     public var size: Swift.Int64 = Swift.Int64()
@@ -647,7 +647,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
         self.query = value
       }
-      self.time = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .time)
+      self.time = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .time)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .size) {
         self.size = value
       }
@@ -663,7 +663,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -690,10 +690,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.context.AttributeContext.Request"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -716,13 +716,13 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The timestamp when the `destination` service sends the last byte of
     /// the response.
-    public var time: GoogleWKT.Timestamp? = nil
+    public var time: GoogleWKT.WKTTimestamp? = nil
 
     /// The amount of time it takes the backend service to fully respond to a
     /// request. Measured from when the destination service starts to send the
     /// request to the backend until when the destination service receives the
     /// complete response from the backend.
-    public var backendLatency: GoogleWKT.Duration? = nil
+    public var backendLatency: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -776,12 +776,12 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         self.headers = value
       }
-      self.time = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .time)
+      self.time = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .time)
       self.backendLatency = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .backendLatency)
+        GoogleWKT.WKTDuration.self, forKey: .backendLatency)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -800,10 +800,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.context.AttributeContext.Response"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -864,16 +864,16 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Output only. The timestamp when the resource was created. This may
     /// be either the time creation was initiated or when it was completed.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The timestamp when the resource was last updated. Any
     /// change to the resource made by users must refresh this value.
     /// Changes to a resource made by the service should refresh this value.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The timestamp when the resource was deleted.
     /// If the resource is not deleted, this must be empty.
-    public var deleteTime: GoogleWKT.Timestamp? = nil
+    public var deleteTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. An opaque value that uniquely identifies a version or
     /// generation of a resource. It can be used to confirm that the client
@@ -970,9 +970,12 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-      self.deleteTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deleteTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+      self.deleteTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
         self.etag = value
       }
@@ -981,7 +984,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1007,10 +1010,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.context.AttributeContext.Resource"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1018,10 +1021,10 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.context.AttributeContext"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

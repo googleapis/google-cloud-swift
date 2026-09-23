@@ -30,7 +30,7 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleWKT._AnyPack
   Sendable
 {
   /// Timestamp indicating when the event was detected.
-  public var eventDetectionTime: GoogleWKT.Timestamp? = nil
+  public var eventDetectionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Number of objects that violated the policy for this resource. If the number
   /// is less than 1,000, then the value of this field is the exact number. If
@@ -44,7 +44,7 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleWKT._AnyPack
   /// However, an object in that bucket is 100 days old. In this case, a
   /// DataRetentionDeletionEvent will be generated for that Cloud Storage bucket,
   /// and the max_retention_allowed is 90 days.
-  public var maxRetentionAllowed: GoogleWKT.Duration? = nil
+  public var maxRetentionAllowed: GoogleWKT.WKTDuration? = nil
 
   /// Type of the DRD event.
   public var eventType: DataRetentionDeletionEvent.EventType =
@@ -90,12 +90,12 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.eventDetectionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .eventDetectionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .eventDetectionTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataObjectCount) {
       self.dataObjectCount = value
     }
     self.maxRetentionAllowed = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maxRetentionAllowed)
+      GoogleWKT.WKTDuration.self, forKey: .maxRetentionAllowed)
     if let value = try container.decodeIfPresent(
       DataRetentionDeletionEvent.EventType.self, forKey: .eventType)
     {
@@ -103,7 +103,7 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleWKT._AnyPack
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -231,10 +231,10 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.DataRetentionDeletionEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

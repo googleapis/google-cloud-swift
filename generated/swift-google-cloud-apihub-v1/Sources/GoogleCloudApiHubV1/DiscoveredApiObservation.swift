@@ -39,7 +39,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
   public var hostname: Swift.String = Swift.String()
 
   /// Optional. Last event detected time stamp
-  public var lastEventDetectedTime: GoogleWKT.Timestamp? = nil
+  public var lastEventDetectedTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The location of the observation source.
   public var sourceLocations: [Swift.String] = []
@@ -61,10 +61,10 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
   public var unknownOperationsCount: Swift.Int64 = Swift.Int64()
 
   /// Output only. Create time stamp of the observation in API Hub.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Update time stamp of the observation in API Hub.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The metadata of the source from which the observation was
   /// collected.
@@ -144,7 +144,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
       self.hostname = value
     }
     self.lastEventDetectedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastEventDetectedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastEventDetectedTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceLocations) {
       self.sourceLocations = value
     }
@@ -166,13 +166,15 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
     {
       self.unknownOperationsCount = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.sourceMetadata = try container.decodeIfPresent(
       SourceMetadata.self, forKey: .sourceMetadata)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -441,10 +443,10 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.DiscoveredApiObservation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

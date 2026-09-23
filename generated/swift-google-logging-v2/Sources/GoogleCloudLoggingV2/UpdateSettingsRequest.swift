@@ -56,8 +56,8 @@ public struct UpdateSettingsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// For example: `"updateMask=kmsKeyName"`
   ///
-  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.FieldMask
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTFieldMask
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -100,10 +100,11 @@ public struct UpdateSettingsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.settings = try container.decodeIfPresent(Settings.self, forKey: .settings)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -120,10 +121,10 @@ public struct UpdateSettingsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.UpdateSettingsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

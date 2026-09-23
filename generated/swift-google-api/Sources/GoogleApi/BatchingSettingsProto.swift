@@ -34,7 +34,7 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The duration after which a batch should be sent, starting from the addition
   /// of the first message to that batch.
-  public var delayThreshold: GoogleWKT.Duration? = nil
+  public var delayThreshold: GoogleWKT.WKTDuration? = nil
 
   /// The maximum number of elements collected in a batch that could be accepted
   /// by server.
@@ -108,7 +108,7 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleWKT._AnyPackable,
       self.requestByteThreshold = value
     }
     self.delayThreshold = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .delayThreshold)
+      GoogleWKT.WKTDuration.self, forKey: .delayThreshold)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .elementCountLimit) {
       self.elementCountLimit = value
     }
@@ -129,7 +129,7 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -152,10 +152,10 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.BatchingSettingsProto"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

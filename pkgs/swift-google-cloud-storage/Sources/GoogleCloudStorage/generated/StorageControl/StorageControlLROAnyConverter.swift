@@ -43,11 +43,11 @@ internal enum StorageControlLROAnyConverter {
   /// Converts an operation's metadata or response to its native form.
   internal static func fromProto(
     _ proto: SwiftProtobuf.Google_Protobuf_Any
-  ) throws -> GoogleWKT.`Any` {
+  ) throws -> GoogleWKT.WKTAny {
     switch proto.typeURL {
     case "type.googleapis.com/google.protobuf.Empty":
       return try .init(
-        fromMessage: GoogleWKT.Empty(
+        fromMessage: GoogleWKT.WKTEmpty(
           proto: SwiftProtobuf.Google_Protobuf_Empty(serializedBytes: proto.value)))
     case "type.googleapis.com/google.storage.control.v2.AnywhereCache":
       return try .init(
@@ -110,11 +110,11 @@ internal enum StorageControlLROAnyConverter {
 
   /// Converts an operation's metadata or response back to its Protobuf form.
   internal static func toProto(
-    _ any: GoogleWKT.`Any`
+    _ any: GoogleWKT.WKTAny
   ) throws -> SwiftProtobuf.Google_Protobuf_Any {
     switch any.typeUrl {
     case "type.googleapis.com/google.protobuf.Empty":
-      return try .init(message: GoogleWKT.Empty(fromAny: any).toProto())
+      return try .init(message: GoogleWKT.WKTEmpty(fromAny: any).toProto())
     case "type.googleapis.com/google.storage.control.v2.AnywhereCache":
       return try .init(message: AnywhereCache(fromAny: any).toProto())
     case "type.googleapis.com/google.storage.control.v2.CreateAnywhereCacheMetadata":

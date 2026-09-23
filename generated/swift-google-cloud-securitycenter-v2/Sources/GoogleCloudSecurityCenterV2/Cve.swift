@@ -52,10 +52,10 @@ public struct Cve: Codable, Equatable, GoogleWKT._AnyPackable,
   public var zeroDay: Swift.Bool = Swift.Bool()
 
   /// Date the first publicly available exploit or PoC was released.
-  public var exploitReleaseDate: GoogleWKT.Timestamp? = nil
+  public var exploitReleaseDate: GoogleWKT.WKTTimestamp? = nil
 
   /// Date of the earliest known exploitation.
-  public var firstExploitationDate: GoogleWKT.Timestamp? = nil
+  public var firstExploitationDate: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,12 +133,12 @@ public struct Cve: Codable, Equatable, GoogleWKT._AnyPackable,
       self.zeroDay = value
     }
     self.exploitReleaseDate = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .exploitReleaseDate)
+      GoogleWKT.WKTTimestamp.self, forKey: .exploitReleaseDate)
     self.firstExploitationDate = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .firstExploitationDate)
+      GoogleWKT.WKTTimestamp.self, forKey: .firstExploitationDate)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -438,10 +438,10 @@ public struct Cve: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Cve"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -32,7 +32,7 @@ func sample(client: ConnectorsClient, projectId: String, locationId: String, con
         $0.connection = Connection().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

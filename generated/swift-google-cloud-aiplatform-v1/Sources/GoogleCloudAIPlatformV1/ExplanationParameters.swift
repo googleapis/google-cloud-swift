@@ -43,7 +43,7 @@
     ///
     /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
     /// [google.cloud.aiplatform.v1.ExplanationParameters.top_k]: <doc:ExplanationParameters/topK>
-    public var outputIndices: GoogleWKT.ListValue? = nil
+    public var outputIndices: GoogleWKT.WKTListValue? = nil
 
     public var method: OneOf_Method? = nil
 
@@ -95,7 +95,7 @@
         self.topK = value
       }
       self.outputIndices = try container.decodeIfPresent(
-        GoogleWKT.ListValue.self, forKey: .outputIndices)
+        GoogleWKT.WKTListValue.self, forKey: .outputIndices)
 
       var method: OneOf_Method? = nil
       let methodCheckAndSet = {
@@ -128,7 +128,7 @@
       self.method = method
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -182,10 +182,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationParameters"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

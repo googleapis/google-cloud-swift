@@ -22,13 +22,13 @@ public struct PacketHeader: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Input only. The capture time of the packet.
-  public var captureTime: GoogleWKT.Timestamp? = nil
+  public var captureTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Input only. Immutable. The type of the payload.
   public var type: PacketType? = nil
 
   /// Input only. This field is for users to attach user managed metadata.
-  public var metadata: GoogleWKT.Struct? = nil
+  public var metadata: GoogleWKT.WKTStruct? = nil
 
   /// Output only. Metadata that the server appends to each packet before sending
   /// it to receivers. You don't need to set a value for this field when sending
@@ -100,9 +100,10 @@ public struct PacketHeader: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.captureTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .captureTime)
+    self.captureTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .captureTime)
     self.type = try container.decodeIfPresent(PacketType.self, forKey: .type)
-    self.metadata = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .metadata)
+    self.metadata = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .metadata)
     self.serverMetadata = try container.decodeIfPresent(
       ServerMetadata.self, forKey: .serverMetadata)
     self.seriesMetadata = try container.decodeIfPresent(
@@ -115,7 +116,7 @@ public struct PacketHeader: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -136,10 +137,10 @@ public struct PacketHeader: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.PacketHeader"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

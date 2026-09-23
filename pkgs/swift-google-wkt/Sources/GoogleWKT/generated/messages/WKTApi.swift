@@ -25,7 +25,7 @@ import Foundation
 /// sometimes simply referred to as "APIs" in other contexts, such as the name of
 /// this message itself. See https://cloud.google.com/apis/design/glossary for
 /// detailed terminology.
-public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
+public struct WKTApi: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The fully qualified name of this interface, including package name
@@ -33,10 +33,10 @@ public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// The methods of this interface, in unspecified order.
-  public var methods: [Method] = []
+  public var methods: [WKTMethod] = []
 
   /// Any metadata attached to the interface.
-  public var options: [Option] = []
+  public var options: [WKTOption] = []
 
   /// A version string for this interface. If specified, must have the form
   /// `major-version.minor-version`, as in `1.10`. If the minor version is
@@ -62,19 +62,19 @@ public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Source context for the protocol buffer service represented by this
   /// message.
-  public var sourceContext: SourceContext? = nil
+  public var sourceContext: WKTSourceContext? = nil
 
   /// Included interfaces. See [Mixin][].
   ///
-  /// [Mixin]: <doc:Mixin>
-  public var mixins: [Mixin] = []
+  /// [Mixin]: <doc:WKTMixin>
+  public var mixins: [WKTMixin] = []
 
   /// The source syntax of the service.
-  public var syntax: Syntax = Syntax()
+  public var syntax: WKTSyntax = WKTSyntax()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `Api`.
+  /// Initialize a new instance of `WKTApi`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -82,7 +82,7 @@ public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Api().with { $0.name = ... }
+  /// let value = WKTApi().with { $0.name = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -120,25 +120,26 @@ public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    if let value = try container.decodeIfPresent([Method].self, forKey: .methods) {
+    if let value = try container.decodeIfPresent([WKTMethod].self, forKey: .methods) {
       self.methods = value
     }
-    if let value = try container.decodeIfPresent([Option].self, forKey: .options) {
+    if let value = try container.decodeIfPresent([WKTOption].self, forKey: .options) {
       self.options = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
       self.version = value
     }
-    self.sourceContext = try container.decodeIfPresent(SourceContext.self, forKey: .sourceContext)
-    if let value = try container.decodeIfPresent([Mixin].self, forKey: .mixins) {
+    self.sourceContext = try container.decodeIfPresent(
+      WKTSourceContext.self, forKey: .sourceContext)
+    if let value = try container.decodeIfPresent([WKTMixin].self, forKey: .mixins) {
       self.mixins = value
     }
-    if let value = try container.decodeIfPresent(Syntax.self, forKey: .syntax) {
+    if let value = try container.decodeIfPresent(WKTSyntax.self, forKey: .syntax) {
       self.syntax = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -159,10 +160,10 @@ public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.protobuf.Api"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

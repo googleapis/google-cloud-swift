@@ -59,7 +59,7 @@ public struct TextLocator: Codable, Equatable, GoogleWKT._AnyPackable,
   /// some object (e.g. a macro in the time series query language text) and a
   /// location is to be designated in that object's text, `nested_locator`
   /// identifies the location within that object.
-  public var nestedLocator: GoogleWKT.Recursive<TextLocator>? = nil
+  public var nestedLocator: GoogleWKT.WKTRecursive<TextLocator>? = nil
 
   /// When `nested_locator` is set, this field gives the reason for the nesting.
   /// Usually, the reason is a macro invocation. In that case, the macro name
@@ -118,13 +118,13 @@ public struct TextLocator: Codable, Equatable, GoogleWKT._AnyPackable,
     self.endPosition = try container.decodeIfPresent(
       TextLocator.Position.self, forKey: .endPosition)
     self.nestedLocator = try container.decodeIfPresent(
-      GoogleWKT.Recursive<TextLocator>.self, forKey: .nestedLocator)
+      GoogleWKT.WKTRecursive<TextLocator>.self, forKey: .nestedLocator)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nestingReason) {
       self.nestingReason = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -194,7 +194,7 @@ public struct TextLocator: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -210,10 +210,10 @@ public struct TextLocator: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.TextLocator.Position"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -221,10 +221,10 @@ public struct TextLocator: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.TextLocator"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

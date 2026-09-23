@@ -83,7 +83,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.request = request
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -121,7 +121,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The client must either receive a `Packet` or a heart beat message before
     /// this duration expires; otherwise, the client will automatically cancel
     /// the current connection and retry.
-    public var heartbeatInterval: GoogleWKT.Duration? = nil
+    public var heartbeatInterval: GoogleWKT.WKTDuration? = nil
 
     /// The grace period after which a `writes_done_request` is issued, that a
     /// `WritesDone` is expected from the client.
@@ -129,7 +129,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The server is free to cancel the RPC should this expire.
     ///
     /// A system default will be chosen if unset.
-    public var writesDoneGracePeriod: GoogleWKT.Duration? = nil
+    public var writesDoneGracePeriod: GoogleWKT.WKTDuration? = nil
 
     /// The mode in which the consumer reads messages.
     public var consumerMode: OneOf_ConsumerMode? = nil
@@ -182,9 +182,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         self.receiver = value
       }
       self.heartbeatInterval = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .heartbeatInterval)
+        GoogleWKT.WKTDuration.self, forKey: .heartbeatInterval)
       self.writesDoneGracePeriod = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .writesDoneGracePeriod)
+        GoogleWKT.WKTDuration.self, forKey: .writesDoneGracePeriod)
 
       var consumerMode: OneOf_ConsumerMode? = nil
       let consumerModeCheckAndSet = {
@@ -209,7 +209,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.consumerMode = consumerMode
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -244,10 +244,10 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ReceivePacketsRequest.SetupRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -265,10 +265,10 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ReceivePacketsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

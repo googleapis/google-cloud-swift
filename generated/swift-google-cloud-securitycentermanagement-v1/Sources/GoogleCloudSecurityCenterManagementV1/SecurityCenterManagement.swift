@@ -770,7 +770,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func updateSecurityHealthAnalyticsCustomModule(
     securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
     let request = UpdateSecurityHealthAnalyticsCustomModuleRequest().with {
       $0.securityHealthAnalyticsCustomModule = securityHealthAnalyticsCustomModule
@@ -1069,7 +1069,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func updateEventThreatDetectionCustomModule(
     eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
     let request = UpdateEventThreatDetectionCustomModuleRequest().with {
       $0.eventThreatDetectionCustomModule = eventThreatDetectionCustomModule
@@ -1194,7 +1194,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func updateSecurityCenterService(
     securityCenterService: SecurityCenterService?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
     let request = UpdateSecurityCenterServiceRequest().with {
       $0.securityCenterService = securityCenterService

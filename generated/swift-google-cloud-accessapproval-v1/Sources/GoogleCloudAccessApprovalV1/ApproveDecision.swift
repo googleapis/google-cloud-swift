@@ -22,13 +22,13 @@ public struct ApproveDecision: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The time at which approval was granted.
-  public var approveTime: GoogleWKT.Timestamp? = nil
+  public var approveTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time at which the approval expires.
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// If set, denotes the timestamp at which the approval is invalidated.
-  public var invalidateTime: GoogleWKT.Timestamp? = nil
+  public var invalidateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The signature for the ApprovalRequest and details on how it was signed.
   public var signatureInfo: SignatureInfo? = nil
@@ -77,17 +77,19 @@ public struct ApproveDecision: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.approveTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .approveTime)
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+    self.approveTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .approveTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     self.invalidateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .invalidateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .invalidateTime)
     self.signatureInfo = try container.decodeIfPresent(SignatureInfo.self, forKey: .signatureInfo)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoApproved) {
       self.autoApproved = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -106,10 +108,10 @@ public struct ApproveDecision: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.accessapproval.v1.ApproveDecision"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

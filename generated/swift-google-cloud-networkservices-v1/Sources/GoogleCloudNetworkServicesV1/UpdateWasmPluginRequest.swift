@@ -31,7 +31,7 @@ public struct UpdateWasmPluginRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The `update_mask` field supports a special value `*`, which means that
   /// each field in the given `WasmPlugin` resource (including the empty ones)
   /// replaces the current value.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. Updated `WasmPlugin` resource.
   public var wasmPlugin: WasmPlugin? = nil
@@ -71,11 +71,12 @@ public struct UpdateWasmPluginRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.wasmPlugin = try container.decodeIfPresent(WasmPlugin.self, forKey: .wasmPlugin)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -91,10 +92,10 @@ public struct UpdateWasmPluginRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.UpdateWasmPluginRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

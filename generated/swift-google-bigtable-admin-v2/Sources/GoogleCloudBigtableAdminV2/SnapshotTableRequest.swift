@@ -49,7 +49,7 @@ public struct SnapshotTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// created. Once 'ttl' expires, the snapshot will get deleted. The maximum
   /// amount of time a snapshot can stay active is 7 days. If 'ttl' is not
   /// specified, the default value of 24 hours will be used.
-  public var ttl: GoogleWKT.Duration? = nil
+  public var ttl: GoogleWKT.WKTDuration? = nil
 
   /// Description of the snapshot.
   public var description: Swift.String = Swift.String()
@@ -104,13 +104,13 @@ public struct SnapshotTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .snapshotId) {
       self.snapshotId = value
     }
-    self.ttl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .ttl)
+    self.ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -129,10 +129,10 @@ public struct SnapshotTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.SnapshotTableRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -25,7 +25,7 @@
   {
     /// Optional. The duration that the system waits in between waves. This wait starts
     /// after all changes in the wave are rolled out.
-    public var waitDuration: GoogleWKT.Duration? = nil
+    public var waitDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,10 +61,10 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.waitDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .waitDuration)
+        GoogleWKT.WKTDuration.self, forKey: .waitDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -80,10 +80,10 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.RolloutPlanWaveValidationTimeBasedValidationMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

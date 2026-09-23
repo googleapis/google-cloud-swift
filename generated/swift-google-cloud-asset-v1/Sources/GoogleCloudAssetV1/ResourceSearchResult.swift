@@ -174,7 +174,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   ///     - value in date string. Example: `createTime > 2021-01-01`
   ///     - value in date-time string (must be quoted). Example: `createTime >
   ///     "2021-01-01T00:00:00"`
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The last update timestamp of this resource, at which the resource was last
   /// modified or deleted. The granularity is in seconds. Timestamp.nanos will
@@ -188,7 +188,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   ///     - value in date string. Example: `updateTime < 2021-01-01`
   ///     - value in date-time string (must be quoted). Example: `updateTime <
   ///     "2021-01-01T00:00:00"`
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The state of this resource. Different resources types have different state
   /// definitions that are mapped from various fields of different resource
@@ -231,7 +231,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// * Use a free text query to match the attributes values. Example: to search
   ///   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
   ///   `foobar`.
-  public var additionalAttributes: GoogleWKT.Struct? = nil
+  public var additionalAttributes: GoogleWKT.WKTStruct? = nil
 
   /// The full resource name of this resource's parent, if it has one.
   /// To search against the `parent_full_resource_name`:
@@ -528,13 +528,15 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kmsKeys) {
       self.kmsKeys = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .state) {
       self.state = value
     }
     self.additionalAttributes = try container.decodeIfPresent(
-      GoogleWKT.Struct.self, forKey: .additionalAttributes)
+      GoogleWKT.WKTStruct.self, forKey: .additionalAttributes)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentFullResourceName)
     {
       self.parentFullResourceName = value
@@ -583,7 +585,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -628,10 +630,10 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.ResourceSearchResult"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

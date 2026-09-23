@@ -256,7 +256,7 @@ extension Clients {
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
     func updateBlockchainNode(
       blockchainNode: BlockchainNode?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
@@ -472,7 +472,7 @@ extension Clients.BlockchainNodeEngineProtocol {
 
   public func updateBlockchainNode(
     blockchainNode: BlockchainNode?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<BlockchainNode> {
     let request = UpdateBlockchainNodeRequest().with {
       $0.blockchainNode = blockchainNode

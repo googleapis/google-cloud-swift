@@ -88,7 +88,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       filter = $0
     }
-    if let isNull = try container.decodeIfPresent(GoogleWKT.Empty?.self, forKey: .isNull) {
+    if let isNull = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .isNull) {
       try filterCheckAndSet(.isNull(isNull))
     }
     if let valueList = try container.decodeIfPresent(ValueListFilter?.self, forKey: .valueList) {
@@ -116,7 +116,8 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       action = $0
     }
-    if let assignNull = try container.decodeIfPresent(GoogleWKT.Empty?.self, forKey: .assignNull) {
+    if let assignNull = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .assignNull)
+    {
       try actionCheckAndSet(.assignNull(assignNull))
     }
     if let assignSpecificValue = try container.decodeIfPresent(
@@ -125,12 +126,12 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
       try actionCheckAndSet(.assignSpecificValue(assignSpecificValue))
     }
     if let assignMinValue = try container.decodeIfPresent(
-      GoogleWKT.Empty?.self, forKey: .assignMinValue)
+      GoogleWKT.WKTEmpty?.self, forKey: .assignMinValue)
     {
       try actionCheckAndSet(.assignMinValue(assignMinValue))
     }
     if let assignMaxValue = try container.decodeIfPresent(
-      GoogleWKT.Empty?.self, forKey: .assignMaxValue)
+      GoogleWKT.WKTEmpty?.self, forKey: .assignMaxValue)
     {
       try actionCheckAndSet(.assignMaxValue(assignMaxValue))
     }
@@ -143,7 +144,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     self.action = action
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -186,7 +187,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum OneOf_Filter: Codable, Equatable, Sendable {
     /// Optional. Value is null
-    indirect case isNull(GoogleWKT.Empty?)
+    indirect case isNull(GoogleWKT.WKTEmpty?)
     /// Optional. Value is found in the specified list.
     indirect case valueList(ValueListFilter?)
     /// Optional. Filter on relation between source value and compare value of
@@ -199,16 +200,16 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum OneOf_Action: Codable, Equatable, Sendable {
     /// Optional. Set to null
-    indirect case assignNull(GoogleWKT.Empty?)
+    indirect case assignNull(GoogleWKT.WKTEmpty?)
     /// Optional. Set to a specific value (value is converted to fit the target
     /// data type)
     indirect case assignSpecificValue(AssignSpecificValue?)
     /// Optional. Set to min_value - if integer or numeric, will use
     /// int.minvalue, etc
-    indirect case assignMinValue(GoogleWKT.Empty?)
+    indirect case assignMinValue(GoogleWKT.WKTEmpty?)
     /// Optional. Set to max_value - if integer or numeric, will use
     /// int.maxvalue, etc
-    indirect case assignMaxValue(GoogleWKT.Empty?)
+    indirect case assignMaxValue(GoogleWKT.WKTEmpty?)
     /// Optional. Allows the data to change scale
     indirect case roundScale(RoundToScale?)
     /// Optional. Applies a hash function on the data
@@ -218,10 +219,10 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ValueTransformation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

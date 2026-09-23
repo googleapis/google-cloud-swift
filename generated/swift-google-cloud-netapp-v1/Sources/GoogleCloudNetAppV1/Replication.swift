@@ -52,7 +52,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   public var healthy: Swift.Bool? = nil
 
   /// Output only. Replication create time.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Full name of destination volume resource.
   /// Example : "projects/{project}/locations/{location}/volumes/{volume_id}"
@@ -178,7 +178,8 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
       self.mirrorState = value
     }
     self.healthy = try container.decodeIfPresent(Swift.Bool.self, forKey: .healthy)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationVolume) {
       self.destinationVolume = value
     }
@@ -207,7 +208,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
       UserCommands.self, forKey: .hybridReplicationUserCommands)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -948,10 +949,10 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.Replication"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

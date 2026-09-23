@@ -24,7 +24,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Properties associated with the node.
   /// Refer to https://apptopology.googleapis.com/v1/GetSchema for a detailed
   /// list of node properties.
-  public var properties: GoogleWKT.Struct? = nil
+  public var properties: GoogleWKT.WKTStruct? = nil
 
   /// The global unique name of the node.
   /// For standard Google Cloud Platform resources, this MUST be the canonical
@@ -89,7 +89,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.properties = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .properties)
+    self.properties = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .properties)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
@@ -99,7 +99,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     self.context = try container.decodeIfPresent(EntityContext.self, forKey: .context)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -117,10 +117,10 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apptopology.v1.Node"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

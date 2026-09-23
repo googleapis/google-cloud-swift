@@ -761,7 +761,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func updateDataExchange(
     dataExchange: DataExchange?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
     let request = UpdateDataExchangeRequest().with {
       $0.dataExchange = dataExchange
@@ -889,7 +889,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func updateListing(
     listing: Listing?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
     let request = UpdateListingRequest().with {
       $0.listing = listing
@@ -1318,7 +1318,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func updateQueryTemplate(
     queryTemplate: QueryTemplate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
     let request = UpdateQueryTemplateRequest().with {
       $0.queryTemplate = queryTemplate

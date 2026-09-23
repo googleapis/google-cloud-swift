@@ -454,7 +454,7 @@ extension Clients.ModelServiceProtocol {
 
   public func updateModel(
     model: Model?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.Model {
     let request = UpdateModelRequest().with {
       $0.model = model

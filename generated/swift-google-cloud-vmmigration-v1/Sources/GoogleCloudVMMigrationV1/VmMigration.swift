@@ -1689,7 +1689,7 @@ extension Clients {
     /// See `VmMigrationClient.updateSource`.
     func updateSource(
       source: Source?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Source>
 
     /// See `VmMigrationClient.deleteSource`.
@@ -1763,7 +1763,7 @@ extension Clients {
     /// See `VmMigrationClient.updateMigratingVm`.
     func updateMigratingVm(
       migratingVm: MigratingVm?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MigratingVm>
 
     /// See `VmMigrationClient.deleteMigratingVm`.
@@ -1863,7 +1863,7 @@ extension Clients {
     /// See `VmMigrationClient.updateGroup`.
     func updateGroup(
       group: Group?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Group>
 
     /// See `VmMigrationClient.deleteGroup`.
@@ -1911,7 +1911,7 @@ extension Clients {
     /// See `VmMigrationClient.updateTargetProject`.
     func updateTargetProject(
       targetProject: TargetProject?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TargetProject>
 
     /// See `VmMigrationClient.deleteTargetProject`.
@@ -1970,7 +1970,7 @@ extension Clients {
     /// See `VmMigrationClient.updateDiskMigrationJob`.
     func updateDiskMigrationJob(
       diskMigrationJob: DiskMigrationJob?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob>
 
     /// See `VmMigrationClient.deleteDiskMigrationJob`.
@@ -2644,7 +2644,7 @@ extension Clients.VmMigrationProtocol {
 
   public func updateSource(
     source: Source?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Source> {
     let request = UpdateSourceRequest().with {
       $0.source = source
@@ -3207,7 +3207,7 @@ extension Clients.VmMigrationProtocol {
 
   public func updateMigratingVm(
     migratingVm: MigratingVm?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
     let request = UpdateMigratingVmRequest().with {
       $0.migratingVm = migratingVm
@@ -3830,7 +3830,7 @@ extension Clients.VmMigrationProtocol {
 
   public func updateGroup(
     group: Group?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Group> {
     let request = UpdateGroupRequest().with {
       $0.group = group
@@ -4087,7 +4087,7 @@ extension Clients.VmMigrationProtocol {
 
   public func updateTargetProject(
     targetProject: TargetProject?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
     let request = UpdateTargetProjectRequest().with {
       $0.targetProject = targetProject
@@ -4574,7 +4574,7 @@ extension Clients.VmMigrationProtocol {
 
   public func updateDiskMigrationJob(
     diskMigrationJob: DiskMigrationJob?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
     let request = UpdateDiskMigrationJobRequest().with {
       $0.diskMigrationJob = diskMigrationJob

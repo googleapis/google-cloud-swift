@@ -28,7 +28,7 @@ public struct TimestampedObject: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Time-offset, relative to the beginning of the video,
   /// corresponding to the video frame for this object.
-  public var timeOffset: GoogleWKT.Duration? = nil
+  public var timeOffset: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The attributes of the object in the bounding box.
   public var attributes: [DetectedAttribute] = []
@@ -77,7 +77,7 @@ public struct TimestampedObject: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.normalizedBoundingBox = try container.decodeIfPresent(
       NormalizedBoundingBox.self, forKey: .normalizedBoundingBox)
-    self.timeOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeOffset)
+    self.timeOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeOffset)
     if let value = try container.decodeIfPresent([DetectedAttribute].self, forKey: .attributes) {
       self.attributes = value
     }
@@ -86,7 +86,7 @@ public struct TimestampedObject: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -104,10 +104,10 @@ public struct TimestampedObject: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.TimestampedObject"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

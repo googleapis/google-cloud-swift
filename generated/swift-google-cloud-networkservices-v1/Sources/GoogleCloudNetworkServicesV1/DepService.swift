@@ -668,7 +668,7 @@ extension Clients {
     /// See `DepServiceClient.updateLbTrafficExtension`.
     func updateLbTrafficExtension(
       lbTrafficExtension: LbTrafficExtension?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension>
 
     /// See `DepServiceClient.deleteLbTrafficExtension`.
@@ -698,7 +698,7 @@ extension Clients {
     /// See `DepServiceClient.updateLbRouteExtension`.
     func updateLbRouteExtension(
       lbRouteExtension: LbRouteExtension?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension>
 
     /// See `DepServiceClient.deleteLbRouteExtension`.
@@ -728,7 +728,7 @@ extension Clients {
     /// See `DepServiceClient.updateLbEdgeExtension`.
     func updateLbEdgeExtension(
       lbEdgeExtension: LbEdgeExtension?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension>
 
     /// See `DepServiceClient.deleteLbEdgeExtension`.
@@ -758,7 +758,7 @@ extension Clients {
     /// See `DepServiceClient.updateAuthzExtension`.
     func updateAuthzExtension(
       authzExtension: AuthzExtension?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AuthzExtension>
 
     /// See `DepServiceClient.deleteAuthzExtension`.
@@ -1109,7 +1109,7 @@ extension Clients.DepServiceProtocol {
 
   public func updateLbTrafficExtension(
     lbTrafficExtension: LbTrafficExtension?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
     let request = UpdateLbTrafficExtensionRequest().with {
       $0.lbTrafficExtension = lbTrafficExtension
@@ -1290,7 +1290,7 @@ extension Clients.DepServiceProtocol {
 
   public func updateLbRouteExtension(
     lbRouteExtension: LbRouteExtension?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
     let request = UpdateLbRouteExtensionRequest().with {
       $0.lbRouteExtension = lbRouteExtension
@@ -1471,7 +1471,7 @@ extension Clients.DepServiceProtocol {
 
   public func updateLbEdgeExtension(
     lbEdgeExtension: LbEdgeExtension?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
     let request = UpdateLbEdgeExtensionRequest().with {
       $0.lbEdgeExtension = lbEdgeExtension
@@ -1652,7 +1652,7 @@ extension Clients.DepServiceProtocol {
 
   public func updateAuthzExtension(
     authzExtension: AuthzExtension?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
     let request = UpdateAuthzExtensionRequest().with {
       $0.authzExtension = authzExtension

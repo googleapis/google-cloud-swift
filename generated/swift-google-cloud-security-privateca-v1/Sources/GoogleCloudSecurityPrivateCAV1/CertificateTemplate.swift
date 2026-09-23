@@ -53,7 +53,7 @@ public struct CertificateTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.maximum_lifetime]: <doc:CaPool/IssuancePolicy/maximumLifetime>
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public var maximumLifetime: GoogleWKT.Duration? = nil
+  public var maximumLifetime: GoogleWKT.WKTDuration? = nil
 
   /// Optional. A set of X.509 values that will be applied to all issued
   /// certificates that use this template. If the certificate request includes
@@ -114,14 +114,14 @@ public struct CertificateTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// was created.
   ///
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which this
   /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
   /// was updated.
   ///
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -179,7 +179,7 @@ public struct CertificateTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.maximumLifetime = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maximumLifetime)
+      GoogleWKT.WKTDuration.self, forKey: .maximumLifetime)
     self.predefinedValues = try container.decodeIfPresent(
       X509Parameters.self, forKey: .predefinedValues)
     self.identityConstraints = try container.decodeIfPresent(
@@ -189,15 +189,17 @@ public struct CertificateTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -220,10 +222,10 @@ public struct CertificateTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateTemplate"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

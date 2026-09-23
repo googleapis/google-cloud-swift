@@ -77,7 +77,7 @@ public struct CloudControl: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The time that the cloud control was last updated.
   /// `create_time` is used because a new cloud control is created
   /// whenever an existing cloud control is updated.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The target resource types that are supported by the cloud
   /// control.
@@ -188,7 +188,8 @@ public struct CloudControl: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([CloudControlCategory].self, forKey: .categories) {
       self.categories = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(
       [TargetResourceType].self, forKey: .supportedTargetResourceTypes)
     {
@@ -196,7 +197,7 @@ public struct CloudControl: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -342,10 +343,10 @@ public struct CloudControl: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.CloudControl"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

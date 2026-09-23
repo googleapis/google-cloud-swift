@@ -26,12 +26,12 @@ public struct LicensedUser: Codable, Equatable, GoogleWKT._AnyPackable,
   public var username: Swift.String = Swift.String()
 
   /// Output only. Timestamp when the license was assigned.
-  public var assignTime: GoogleWKT.Timestamp? = nil
+  public var assignTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Timestamp when the license was recently used. This may not be
   /// the most recent usage time, and will be updated regularly (within 24
   /// hours).
-  public var recentUsageTime: GoogleWKT.Timestamp? = nil
+  public var recentUsageTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,12 +73,13 @@ public struct LicensedUser: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
       self.username = value
     }
-    self.assignTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .assignTime)
+    self.assignTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .assignTime)
     self.recentUsageTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .recentUsageTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .recentUsageTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -95,10 +96,10 @@ public struct LicensedUser: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.LicensedUser"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

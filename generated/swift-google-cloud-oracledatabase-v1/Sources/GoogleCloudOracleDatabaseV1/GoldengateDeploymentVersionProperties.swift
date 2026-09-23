@@ -40,11 +40,11 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleW
 
   /// Output only. The release time of the Goldengate Deployment Version
   /// resource.
-  public var releaseTime: GoogleWKT.Timestamp? = nil
+  public var releaseTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The support end time of the Goldengate Deployment Version
   /// resource.
-  public var supportEndTime: GoogleWKT.Timestamp? = nil
+  public var supportEndTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,12 +105,13 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleW
     {
       self.releaseType = value
     }
-    self.releaseTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .releaseTime)
+    self.releaseTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .releaseTime)
     self.supportEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .supportEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .supportEndTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -428,10 +429,10 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleW
     return
       "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateDeploymentVersionProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

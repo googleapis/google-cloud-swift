@@ -37,10 +37,10 @@
 
     /// Timestamp when the request to create conversation model is submitted. The
     /// time is measured on server side.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The time when the operation finished.
-    public var doneTime: GoogleWKT.Timestamp? = nil
+    public var doneTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,11 +89,12 @@
       {
         self.state = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.doneTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .doneTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.doneTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .doneTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -259,10 +260,10 @@
       return
         "type.googleapis.com/google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -46,13 +46,13 @@ public struct ConversionWorkspace: Codable, Equatable, GoogleWKT._AnyPackable,
   public var latestCommitId: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the workspace was committed.
-  public var latestCommitTime: GoogleWKT.Timestamp? = nil
+  public var latestCommitTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp when the workspace resource was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp when the workspace resource was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The display name for the workspace.
   public var displayName: Swift.String = Swift.String()
@@ -125,15 +125,17 @@ public struct ConversionWorkspace: Codable, Equatable, GoogleWKT._AnyPackable,
       self.latestCommitId = value
     }
     self.latestCommitTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .latestCommitTime)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .latestCommitTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -157,10 +159,10 @@ public struct ConversionWorkspace: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ConversionWorkspace"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

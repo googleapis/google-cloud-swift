@@ -1028,7 +1028,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.updateCertificateAuthority`.
     func updateCertificateAuthority(
       certificateAuthority: CertificateAuthority?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CertificateAuthority>
 
     /// See `CertificateAuthorityServiceClient.createCaPool`.
@@ -1049,7 +1049,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.updateCaPool`.
     func updateCaPool(
       caPool: CaPool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CaPool>
 
     /// See `CertificateAuthorityServiceClient.deleteCaPool`.
@@ -1068,7 +1068,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.updateCertificateRevocationList`.
     func updateCertificateRevocationList(
       certificateRevocationList: CertificateRevocationList?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CertificateRevocationList>
 
     /// See `CertificateAuthorityServiceClient.createCertificateTemplate`.
@@ -1098,7 +1098,7 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.updateCertificateTemplate`.
     func updateCertificateTemplate(
       certificateTemplate: CertificateTemplate?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CertificateTemplate>
 
     /// See `CertificateAuthorityServiceClient.createCertificate`.
@@ -1486,7 +1486,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func updateCertificate(
     certificate: Certificate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     let request = UpdateCertificateRequest().with {
       $0.certificate = certificate
@@ -1839,7 +1839,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func updateCertificateAuthority(
     certificateAuthority: CertificateAuthority?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CertificateAuthority> {
     let request = UpdateCertificateAuthorityRequest().with {
       $0.certificateAuthority = certificateAuthority
@@ -1917,7 +1917,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func updateCaPool(
     caPool: CaPool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CaPool> {
     let request = UpdateCaPoolRequest().with {
       $0.caPool = caPool
@@ -2146,7 +2146,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func updateCertificateRevocationList(
     certificateRevocationList: CertificateRevocationList?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CertificateRevocationList> {
     let request = UpdateCertificateRevocationListRequest().with {
       $0.certificateRevocationList = certificateRevocationList
@@ -2330,7 +2330,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
 
   public func updateCertificateTemplate(
     certificateTemplate: CertificateTemplate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CertificateTemplate> {
     let request = UpdateCertificateTemplateRequest().with {
       $0.certificateTemplate = certificateTemplate

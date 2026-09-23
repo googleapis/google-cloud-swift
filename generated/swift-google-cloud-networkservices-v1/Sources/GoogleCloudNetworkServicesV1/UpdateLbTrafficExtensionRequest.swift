@@ -26,7 +26,7 @@ public struct UpdateLbTrafficExtensionRequest: Codable, Equatable, GoogleWKT._An
   /// The fields specified in the `update_mask` are relative to the resource, not
   /// the full request. A field is overwritten if it is in the mask. If the
   /// user does not specify a mask, then all fields are overwritten.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. `LbTrafficExtension` resource being updated.
   public var lbTrafficExtension: LbTrafficExtension? = nil
@@ -82,7 +82,8 @@ public struct UpdateLbTrafficExtensionRequest: Codable, Equatable, GoogleWKT._An
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.lbTrafficExtension = try container.decodeIfPresent(
       LbTrafficExtension.self, forKey: .lbTrafficExtension)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
@@ -90,7 +91,7 @@ public struct UpdateLbTrafficExtensionRequest: Codable, Equatable, GoogleWKT._An
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -107,10 +108,10 @@ public struct UpdateLbTrafficExtensionRequest: Codable, Equatable, GoogleWKT._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.UpdateLbTrafficExtensionRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -23,7 +23,7 @@
     Sendable
   {
     /// Whether the instance is assigned a public IP address or not.
-    public var ipv4Enabled: GoogleWKT.BoolValue? = nil
+    public var ipv4Enabled: GoogleWKT.WKTBoolValue? = nil
 
     /// The resource link for the VPC network from which the Cloud SQL instance is
     /// accessible for private IP. For example,
@@ -40,7 +40,7 @@
     /// valid client certificates. If you want to enforce SSL/TLS without enforcing
     /// the requirement for valid client certificates, then use the `ssl_mode` flag
     /// instead of the `require_ssl` flag.
-    public var requireSsl: GoogleWKT.BoolValue? = nil
+    public var requireSsl: GoogleWKT.WKTBoolValue? = nil
 
     /// The list of external networks that are allowed to connect to the instance
     /// using the IP. In 'CIDR' notation, also known as 'slash' notation (for
@@ -57,7 +57,7 @@
 
     /// Controls connectivity to private IP instances from Google services,
     /// such as BigQuery.
-    public var enablePrivatePathForGoogleCloudServices: GoogleWKT.BoolValue? = nil
+    public var enablePrivatePathForGoogleCloudServices: GoogleWKT.WKTBoolValue? = nil
 
     /// Specify how SSL/TLS is enforced in database connections. If you must use
     /// the `require_ssl` flag for backward compatibility, then only the following
@@ -164,11 +164,12 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipv4Enabled = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .ipv4Enabled)
+        GoogleWKT.WKTBoolValue.self, forKey: .ipv4Enabled)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateNetwork) {
         self.privateNetwork = value
       }
-      self.requireSsl = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .requireSsl)
+      self.requireSsl = try container.decodeIfPresent(
+        GoogleWKT.WKTBoolValue.self, forKey: .requireSsl)
       if let value = try container.decodeIfPresent([AclEntry].self, forKey: .authorizedNetworks) {
         self.authorizedNetworks = value
       }
@@ -176,7 +177,7 @@
         self.allocatedIpRange = value
       }
       self.enablePrivatePathForGoogleCloudServices = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .enablePrivatePathForGoogleCloudServices)
+        GoogleWKT.WKTBoolValue.self, forKey: .enablePrivatePathForGoogleCloudServices)
       if let value = try container.decodeIfPresent(IpConfiguration.SslMode.self, forKey: .sslMode) {
         self.sslMode = value
       }
@@ -193,7 +194,7 @@
         IpConfiguration.ServerCertificateRotationMode.self, forKey: .serverCertificateRotationMode)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -624,10 +625,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.IpConfiguration"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

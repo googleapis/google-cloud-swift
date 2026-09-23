@@ -28,8 +28,8 @@
     /// [MediaInfo.media_progress_duration.seconds][google.protobuf.Duration.seconds]
     /// should be set to 90.
     ///
-    /// [google.protobuf.Duration.seconds]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Duration/seconds
-    public var mediaProgressDuration: GoogleWKT.Duration? = nil
+    /// [google.protobuf.Duration.seconds]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTDuration/seconds
+    public var mediaProgressDuration: GoogleWKT.WKTDuration? = nil
 
     /// Media progress should be computed using only the
     /// [media_progress_duration][google.cloud.discoveryengine.v1.MediaInfo.media_progress_duration]
@@ -79,12 +79,12 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.mediaProgressDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .mediaProgressDuration)
+        GoogleWKT.WKTDuration.self, forKey: .mediaProgressDuration)
       self.mediaProgressPercentage = try container.decodeIfPresent(
         Swift.Float.self, forKey: .mediaProgressPercentage)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -100,10 +100,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.MediaInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

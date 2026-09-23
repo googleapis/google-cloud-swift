@@ -44,7 +44,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Execution timeout for a Cloud Build Execution. This must be
   /// between 10m and 24h in seconds format. If unspecified, a default timeout of
   /// 1h is used.
-  public var executionTimeout: GoogleWKT.Duration? = nil
+  public var executionTimeout: GoogleWKT.WKTDuration? = nil
 
   /// Optional. If true, additional logging will be enabled when running builds
   /// in this execution environment.
@@ -115,7 +115,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.artifactStorage = value
     }
     self.executionTimeout = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .executionTimeout)
+      GoogleWKT.WKTDuration.self, forKey: .executionTimeout)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verbose) {
       self.verbose = value
     }
@@ -139,7 +139,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.executionEnvironment = executionEnvironment
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -314,10 +314,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.ExecutionConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -246,7 +246,7 @@
 
     public func updateControl(
       control: Control?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
       let request = UpdateControlRequest().with {
         $0.control = control

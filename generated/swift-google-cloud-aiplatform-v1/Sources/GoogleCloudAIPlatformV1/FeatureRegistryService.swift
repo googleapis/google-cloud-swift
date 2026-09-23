@@ -467,7 +467,7 @@
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
       func updateFeatureGroup(
         featureGroup: FeatureGroup?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
@@ -508,7 +508,7 @@
       /// See `FeatureRegistryServiceClient.updateFeature`.
       func updateFeature(
         feature: Feature?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
@@ -793,7 +793,7 @@
 
     public func updateFeatureGroup(
       featureGroup: FeatureGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<FeatureGroup> {
       let request = UpdateFeatureGroupRequest().with {
         $0.featureGroup = featureGroup
@@ -1015,7 +1015,7 @@
 
     public func updateFeature(
       feature: Feature?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let request = UpdateFeatureRequest().with {
         $0.feature = feature

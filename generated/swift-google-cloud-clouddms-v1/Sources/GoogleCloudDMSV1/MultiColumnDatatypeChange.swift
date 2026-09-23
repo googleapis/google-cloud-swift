@@ -57,7 +57,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
   public var overrideFractionalSecondsPrecision: Swift.Int32 = Swift.Int32()
 
   /// Optional. Custom engine specific features.
-  public var customFeatures: GoogleWKT.Struct? = nil
+  public var customFeatures: GoogleWKT.WKTStruct? = nil
 
   /// Filter on source column parameters.
   public var sourceFilter: OneOf_SourceFilter? = nil
@@ -133,7 +133,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
       self.overrideFractionalSecondsPrecision = value
     }
     self.customFeatures = try container.decodeIfPresent(
-      GoogleWKT.Struct.self, forKey: .customFeatures)
+      GoogleWKT.WKTStruct.self, forKey: .customFeatures)
 
     var sourceFilter: OneOf_SourceFilter? = nil
     let sourceFilterCheckAndSet = {
@@ -158,7 +158,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
     self.sourceFilter = sourceFilter
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -198,10 +198,10 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.MultiColumnDatatypeChange"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

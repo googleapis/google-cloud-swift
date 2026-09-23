@@ -38,7 +38,7 @@ public struct Process: Codable, Equatable, GoogleWKT._AnyPackable,
   /// process).
   ///
   /// Up to 100 attributes are allowed.
-  public var attributes: [Swift.String: GoogleWKT.Value] = [:]
+  public var attributes: [Swift.String: GoogleWKT.WKTValue] = [:]
 
   /// Optional. The origin of this process and its runs and lineage events.
   public var origin: Origin? = nil
@@ -89,14 +89,14 @@ public struct Process: Codable, Equatable, GoogleWKT._AnyPackable,
       self.displayName = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Value].self, forKey: .attributes)
+      [Swift.String: GoogleWKT.WKTValue].self, forKey: .attributes)
     {
       self.attributes = value
     }
     self.origin = try container.decodeIfPresent(Origin.self, forKey: .origin)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -114,10 +114,10 @@ public struct Process: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.Process"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

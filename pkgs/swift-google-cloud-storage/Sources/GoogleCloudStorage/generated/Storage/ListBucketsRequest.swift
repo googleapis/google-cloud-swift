@@ -43,7 +43,7 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If no mask is specified, it defaults to all fields except `items.
   /// owner`, `items.acl`, and `items.default_object_acl`.
   /// `*` might be used to mean "all fields".
-  public var readMask: GoogleWKT.FieldMask? = nil
+  public var readMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. Allows listing of buckets, even if there are buckets that are
   /// unreachable.
@@ -104,13 +104,13 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
       self.`prefix` = value
     }
-    self.readMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .readMask)
+    self.readMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .readMask)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnPartialSuccess) {
       self.returnPartialSuccess = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -130,10 +130,10 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.ListBucketsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

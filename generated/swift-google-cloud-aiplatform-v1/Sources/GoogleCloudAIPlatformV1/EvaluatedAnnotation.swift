@@ -50,7 +50,7 @@
     /// [google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id]: <doc:EvaluatedAnnotation/evaluatedDataItemViewId>
     /// [google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths]: <doc:EvaluatedAnnotation/groundTruths>
     /// [google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]: <doc:ModelEvaluation/annotationSchemaUri>
-    public var predictions: [GoogleWKT.Value] = []
+    public var predictions: [GoogleWKT.WKTValue] = []
 
     /// Output only. The ground truth Annotations, i.e. the Annotations that exist
     /// in the test data the Model is evaluated on.
@@ -72,11 +72,11 @@
     ///
     /// [google.cloud.aiplatform.v1.EvaluatedAnnotation.predictions]: <doc:EvaluatedAnnotation/predictions>
     /// [google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]: <doc:ModelEvaluation/annotationSchemaUri>
-    public var groundTruths: [GoogleWKT.Value] = []
+    public var groundTruths: [GoogleWKT.WKTValue] = []
 
     /// Output only. The data item payload that the Model predicted this
     /// EvaluatedAnnotation on.
-    public var dataItemPayload: GoogleWKT.Value? = nil
+    public var dataItemPayload: GoogleWKT.WKTValue? = nil
 
     /// Output only. ID of the EvaluatedDataItemView under the same ancestor
     /// ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
@@ -155,14 +155,16 @@
       {
         self.type = value
       }
-      if let value = try container.decodeIfPresent([GoogleWKT.Value].self, forKey: .predictions) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .predictions)
+      {
         self.predictions = value
       }
-      if let value = try container.decodeIfPresent([GoogleWKT.Value].self, forKey: .groundTruths) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .groundTruths)
+      {
         self.groundTruths = value
       }
       self.dataItemPayload = try container.decodeIfPresent(
-        GoogleWKT.Value.self, forKey: .dataItemPayload)
+        GoogleWKT.WKTValue.self, forKey: .dataItemPayload)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .evaluatedDataItemViewId)
       {
@@ -180,7 +182,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -328,10 +330,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EvaluatedAnnotation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -42,7 +42,7 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Last time this recommendation was refreshed by the system that created it
   /// in the first place.
-  public var lastRefreshTime: GoogleWKT.Timestamp? = nil
+  public var lastRefreshTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The primary impact that this recommendation can have while trying to
   /// optimize for one category.
@@ -145,7 +145,7 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.recommenderSubtype = value
     }
     self.lastRefreshTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastRefreshTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastRefreshTime)
     self.primaryImpact = try container.decodeIfPresent(Impact.self, forKey: .primaryImpact)
     if let value = try container.decodeIfPresent([Impact].self, forKey: .additionalImpact) {
       self.additionalImpact = value
@@ -171,7 +171,7 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -241,7 +241,7 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -256,10 +256,10 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.recommender.v1.Recommendation.InsightReference"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -398,10 +398,10 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.Recommendation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

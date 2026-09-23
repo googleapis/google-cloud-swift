@@ -311,7 +311,7 @@
                 }, prefix: "finalBackupTtlDays"))
             query.append(
               contentsOf: try encoder.encode(
-                request.expiration.flatMap { (oneof) -> GoogleWKT.Timestamp? in
+                request.expiration.flatMap { (oneof) -> GoogleWKT.WKTTimestamp? in
                   if case let .finalBackupExpiryTime(v) = oneof { v } else { nil }
                 }, prefix: "finalBackupExpiryTime"))
             query.append(

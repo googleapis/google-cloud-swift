@@ -60,7 +60,7 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The content of the resource, in which some sensitive fields are removed
   /// and may not be present.
-  public var data: GoogleWKT.Struct? = nil
+  public var data: GoogleWKT.WKTStruct? = nil
 
   /// The location of the resource in Google Cloud, such as its zone and region.
   /// For more information, see https://cloud.google.com/about/locations/.
@@ -126,13 +126,13 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.data = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .data)
+    self.data = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .data)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
       self.location = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -153,10 +153,10 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.Resource"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

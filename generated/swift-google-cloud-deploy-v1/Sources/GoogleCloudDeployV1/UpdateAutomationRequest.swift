@@ -26,7 +26,7 @@ public struct UpdateAutomationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// update_mask are relative to the resource, not the full request. A field
   /// will be overwritten if it's in the mask. If the user doesn't provide a mask
   /// then all fields are overwritten.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The `Automation` to update.
   public var automation: Automation? = nil
@@ -95,7 +95,8 @@ public struct UpdateAutomationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.automation = try container.decodeIfPresent(Automation.self, forKey: .automation)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
@@ -108,7 +109,7 @@ public struct UpdateAutomationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -127,10 +128,10 @@ public struct UpdateAutomationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.UpdateAutomationRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

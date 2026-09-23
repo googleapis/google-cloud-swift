@@ -34,7 +34,7 @@ public struct RestoreChannelChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public var changeType: ChangeType = ChangeType()
 
   /// Modification details.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The input RestoreChannel resource with the updated fields populated to
   /// update the source RestoreChannel to.
@@ -90,13 +90,14 @@ public struct RestoreChannelChange: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ChangeType.self, forKey: .changeType) {
       self.changeType = value
     }
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.inputRestoreChannel = try container.decodeIfPresent(
       LoggedRestoreChannel.self, forKey: .inputRestoreChannel)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -115,10 +116,10 @@ public struct RestoreChannelChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.logging.v1.RestoreChannelChange"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

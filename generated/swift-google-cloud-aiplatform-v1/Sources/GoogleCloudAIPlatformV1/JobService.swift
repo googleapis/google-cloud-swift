@@ -799,7 +799,7 @@
       /// See `JobServiceClient.updateModelDeploymentMonitoringJob`.
       func updateModelDeploymentMonitoringJob(
         modelDeploymentMonitoringJob: ModelDeploymentMonitoringJob?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob>
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
@@ -2019,7 +2019,7 @@
 
     public func updateModelDeploymentMonitoringJob(
       modelDeploymentMonitoringJob: ModelDeploymentMonitoringJob?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob> {
       let request = UpdateModelDeploymentMonitoringJobRequest().with {
         $0.modelDeploymentMonitoringJob = modelDeploymentMonitoringJob

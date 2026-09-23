@@ -29,7 +29,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uuid: Swift.String = Swift.String()
 
   /// Output only. The time when the batch was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Runtime information about batch execution.
   public var runtimeInfo: RuntimeInfo? = nil
@@ -42,7 +42,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   public var stateMessage: Swift.String = Swift.String()
 
   /// Output only. The time when the batch entered a current state.
-  public var stateTime: GoogleWKT.Timestamp? = nil
+  public var stateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The email address of the user who created the batch.
   public var creator: Swift.String = Swift.String()
@@ -144,7 +144,8 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
       self.uuid = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.runtimeInfo = try container.decodeIfPresent(RuntimeInfo.self, forKey: .runtimeInfo)
     if let value = try container.decodeIfPresent(Batch.State.self, forKey: .state) {
       self.state = value
@@ -152,7 +153,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
       self.stateMessage = value
     }
-    self.stateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .stateTime)
+    self.stateTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .stateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
       self.creator = value
     }
@@ -202,7 +203,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     self.batchConfig = batchConfig
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -252,7 +253,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     public var stateMessage: Swift.String = Swift.String()
 
     /// Output only. The time when the batch entered the historical state.
-    public var stateStartTime: GoogleWKT.Timestamp? = nil
+    public var stateStartTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -298,10 +299,10 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
         self.stateMessage = value
       }
       self.stateStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .stateStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .stateStartTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -318,10 +319,10 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.v1.Batch.StateHistory"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -488,10 +489,10 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.Batch"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

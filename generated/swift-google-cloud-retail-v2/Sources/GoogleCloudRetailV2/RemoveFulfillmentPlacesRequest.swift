@@ -77,7 +77,7 @@ public struct RemoveFulfillmentPlacesRequest: Codable, Equatable, GoogleWKT._Any
   /// The time when the fulfillment updates are issued, used to prevent
   /// out-of-order updates on fulfillment information. If not provided, the
   /// internal system time will be used.
-  public var removeTime: GoogleWKT.Timestamp? = nil
+  public var removeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// If set to true, and the [Product][google.cloud.retail.v2.Product] is not
   /// found, the fulfillment information will still be processed and retained for
@@ -139,13 +139,14 @@ public struct RemoveFulfillmentPlacesRequest: Codable, Equatable, GoogleWKT._Any
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .placeIds) {
       self.placeIds = value
     }
-    self.removeTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .removeTime)
+    self.removeTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .removeTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
       self.allowMissing = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -164,10 +165,10 @@ public struct RemoveFulfillmentPlacesRequest: Codable, Equatable, GoogleWKT._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.RemoveFulfillmentPlacesRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

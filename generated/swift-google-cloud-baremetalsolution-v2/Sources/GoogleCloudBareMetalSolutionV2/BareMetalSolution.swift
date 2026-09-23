@@ -929,7 +929,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BareMetalSolutionClient.resetInstance`.
@@ -995,7 +995,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateVolume`.
     func updateVolume(
       volume: Volume?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Volume>
 
     /// See `BareMetalSolutionClient.evictVolume`.
@@ -1024,7 +1024,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateNetwork`.
     func updateNetwork(
       network: Network?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Network>
 
     /// See `BareMetalSolutionClient.restoreVolumeSnapshot`.
@@ -1053,7 +1053,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateNfsShare`.
     func updateNfsShare(
       nfsShare: NfsShare?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<NfsShare>
 
     /// See `BareMetalSolutionClient.createNfsShare`.
@@ -1482,7 +1482,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -1918,7 +1918,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func updateVolume(
     volume: Volume?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Volume> {
     let request = UpdateVolumeRequest().with {
       $0.volume = volume
@@ -2137,7 +2137,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func updateNetwork(
     network: Network?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Network> {
     let request = UpdateNetworkRequest().with {
       $0.network = network
@@ -2480,7 +2480,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func updateNfsShare(
     nfsShare: NfsShare?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
     let request = UpdateNfsShareRequest().with {
       $0.nfsShare = nfsShare
@@ -2712,7 +2712,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func updateProvisioningConfig(
     provisioningConfig: ProvisioningConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
     let request = UpdateProvisioningConfigRequest().with {
       $0.provisioningConfig = provisioningConfig

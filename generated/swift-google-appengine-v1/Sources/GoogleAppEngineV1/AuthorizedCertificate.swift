@@ -50,7 +50,7 @@ public struct AuthorizedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// using [`AuthorizedCertificates.UpdateAuthorizedCertificate`]().
   ///
   /// @OutputOnly
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The SSL certificate serving the `AuthorizedCertificate` resource. This
   /// must be obtained independently from a certificate authority.
@@ -148,7 +148,8 @@ public struct AuthorizedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .domainNames) {
       self.domainNames = value
     }
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     self.certificateRawData = try container.decodeIfPresent(
       CertificateRawData.self, forKey: .certificateRawData)
     self.managedCertificate = try container.decodeIfPresent(
@@ -163,7 +164,7 @@ public struct AuthorizedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -186,10 +187,10 @@ public struct AuthorizedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.AuthorizedCertificate"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -34,17 +34,17 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Create time stamp.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Update time stamp.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Username of the user who created this grant.
   public var requester: Swift.String = Swift.String()
 
   /// Required. The amount of time access is needed for. This value should be
   /// less than the `max_request_duration` value of the entitlement.
-  public var requestedDuration: GoogleWKT.Duration? = nil
+  public var requestedDuration: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Justification of why this access is needed.
   public var justification: Justification? = nil
@@ -132,13 +132,15 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requester) {
       self.requester = value
     }
     self.requestedDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .requestedDuration)
+      GoogleWKT.WKTDuration.self, forKey: .requestedDuration)
     self.justification = try container.decodeIfPresent(Justification.self, forKey: .justification)
     if let value = try container.decodeIfPresent(Grant.State.self, forKey: .state) {
       self.state = value
@@ -157,7 +159,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -228,7 +230,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -245,7 +247,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Output only. The time (as recorded at server) when this event occurred.
-      public var eventTime: GoogleWKT.Timestamp? = nil
+      public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
       public var event: OneOf_Event? = nil
 
@@ -304,7 +306,8 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
+        self.eventTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
 
         var event: OneOf_Event? = nil
         let eventCheckAndSet = {
@@ -374,7 +377,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         self.event = event
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -419,7 +422,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         /// Output only. The time at which this grant expires unless the approval
         /// workflow completes. If omitted, then the request never expires.
-        public var expireTime: GoogleWKT.Timestamp? = nil
+        public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -455,10 +458,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.expireTime = try container.decodeIfPresent(
-            GoogleWKT.Timestamp.self, forKey: .expireTime)
+            GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -474,10 +477,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Requested"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -536,7 +539,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -553,10 +556,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Approved"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -615,7 +618,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -632,10 +635,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Denied"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -693,7 +696,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -710,10 +713,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Revoked"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -753,7 +756,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -768,10 +771,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Withdrawn"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -782,7 +785,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         Sendable
       {
         /// Output only. The time at which the access is granted.
-        public var scheduledActivationTime: GoogleWKT.Timestamp? = nil
+        public var scheduledActivationTime: GoogleWKT.WKTTimestamp? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -818,10 +821,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.scheduledActivationTime = try container.decodeIfPresent(
-            GoogleWKT.Timestamp.self, forKey: .scheduledActivationTime)
+            GoogleWKT.WKTTimestamp.self, forKey: .scheduledActivationTime)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -838,10 +841,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Scheduled"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -882,7 +885,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -897,10 +900,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Activated"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -948,7 +951,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -964,10 +967,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.ActivationFailed"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1007,7 +1010,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1022,10 +1025,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Expired"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1065,7 +1068,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1080,10 +1083,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Ended"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1124,7 +1127,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1139,10 +1142,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.ExternallyModified"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1177,10 +1180,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1188,10 +1191,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1201,13 +1204,13 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. The time at which access was given.
-    public var accessGrantTime: GoogleWKT.Timestamp? = nil
+    public var accessGrantTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The time at which the system removed access. This could be
     /// because of an automatic expiry or because of a revocation.
     ///
     /// If unspecified, then access hasn't been removed yet.
-    public var accessRemoveTime: GoogleWKT.Timestamp? = nil
+    public var accessRemoveTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1245,12 +1248,12 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.accessGrantTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .accessGrantTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .accessGrantTime)
       self.accessRemoveTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .accessRemoveTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .accessRemoveTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1266,10 +1269,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.AuditTrail"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1470,10 +1473,10 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

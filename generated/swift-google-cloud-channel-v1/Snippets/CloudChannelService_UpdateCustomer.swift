@@ -28,7 +28,7 @@ func sample(client: CloudChannelServiceClient, accountId: String, customerId: St
         $0.customer = Customer().with {
           $0.name = "accounts/\(accountId)/customers/\(customerId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

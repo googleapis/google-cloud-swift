@@ -2072,7 +2072,7 @@ extension Clients {
     /// See `VmwareEngineClient.updatePrivateCloud`.
     func updatePrivateCloud(
       privateCloud: PrivateCloud?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PrivateCloud>
 
     /// See `VmwareEngineClient.deletePrivateCloud`.
@@ -2111,7 +2111,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `VmwareEngineClient.deleteCluster`.
@@ -2141,7 +2141,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateExternalAddress`.
     func updateExternalAddress(
       externalAddress: ExternalAddress?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ExternalAddress>
 
     /// See `VmwareEngineClient.deleteExternalAddress`.
@@ -2160,7 +2160,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateSubnet`.
     func updateSubnet(
       subnet: Subnet?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Subnet>
 
     /// See `VmwareEngineClient.createExternalAccessRule`.
@@ -2181,7 +2181,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateExternalAccessRule`.
     func updateExternalAccessRule(
       externalAccessRule: ExternalAccessRule?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ExternalAccessRule>
 
     /// See `VmwareEngineClient.deleteExternalAccessRule`.
@@ -2211,7 +2211,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateLoggingServer`.
     func updateLoggingServer(
       loggingServer: LoggingServer?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LoggingServer>
 
     /// See `VmwareEngineClient.deleteLoggingServer`.
@@ -2248,7 +2248,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateDnsForwarding`.
     func updateDnsForwarding(
       dnsForwarding: DnsForwarding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DnsForwarding>
 
     /// See `VmwareEngineClient.createNetworkPeering`.
@@ -2278,7 +2278,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateNetworkPeering`.
     func updateNetworkPeering(
       networkPeering: NetworkPeering?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<NetworkPeering>
 
     /// See `VmwareEngineClient.createHcxActivationKey`.
@@ -2310,7 +2310,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateNetworkPolicy`.
     func updateNetworkPolicy(
       networkPolicy: NetworkPolicy?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<NetworkPolicy>
 
     /// See `VmwareEngineClient.deleteNetworkPolicy`.
@@ -2340,7 +2340,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateManagementDnsZoneBinding`.
     func updateManagementDnsZoneBinding(
       managementDnsZoneBinding: ManagementDnsZoneBinding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding>
 
     /// See `VmwareEngineClient.deleteManagementDnsZoneBinding`.
@@ -2379,7 +2379,7 @@ extension Clients {
     /// See `VmwareEngineClient.updateVmwareEngineNetwork`.
     func updateVmwareEngineNetwork(
       vmwareEngineNetwork: VmwareEngineNetwork?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<VmwareEngineNetwork>
 
     /// See `VmwareEngineClient.deleteVmwareEngineNetwork`.
@@ -2409,7 +2409,7 @@ extension Clients {
     /// See `VmwareEngineClient.updatePrivateConnection`.
     func updatePrivateConnection(
       privateConnection: PrivateConnection?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PrivateConnection>
 
     /// See `VmwareEngineClient.deletePrivateConnection`.
@@ -3179,7 +3179,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updatePrivateCloud(
     privateCloud: PrivateCloud?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let request = UpdatePrivateCloudRequest().with {
       $0.privateCloud = privateCloud
@@ -3396,7 +3396,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -3683,7 +3683,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateExternalAddress(
     externalAddress: ExternalAddress?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ExternalAddress> {
     let request = UpdateExternalAddressRequest().with {
       $0.externalAddress = externalAddress
@@ -3820,7 +3820,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateSubnet(
     subnet: Subnet?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
     let request = UpdateSubnetRequest().with {
       $0.subnet = subnet
@@ -3964,7 +3964,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateExternalAccessRule(
     externalAccessRule: ExternalAccessRule?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ExternalAccessRule> {
     let request = UpdateExternalAccessRuleRequest().with {
       $0.externalAccessRule = externalAccessRule
@@ -4145,7 +4145,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateLoggingServer(
     loggingServer: LoggingServer?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LoggingServer> {
     let request = UpdateLoggingServerRequest().with {
       $0.loggingServer = loggingServer
@@ -4421,7 +4421,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateDnsForwarding(
     dnsForwarding: DnsForwarding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DnsForwarding> {
     let request = UpdateDnsForwardingRequest().with {
       $0.dnsForwarding = dnsForwarding
@@ -4602,7 +4602,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateNetworkPeering(
     networkPeering: NetworkPeering?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<NetworkPeering> {
     let request = UpdateNetworkPeeringRequest().with {
       $0.networkPeering = networkPeering
@@ -4893,7 +4893,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateNetworkPolicy(
     networkPolicy: NetworkPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<NetworkPolicy> {
     let request = UpdateNetworkPolicyRequest().with {
       $0.networkPolicy = networkPolicy
@@ -5076,7 +5076,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateManagementDnsZoneBinding(
     managementDnsZoneBinding: ManagementDnsZoneBinding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let request = UpdateManagementDnsZoneBindingRequest().with {
       $0.managementDnsZoneBinding = managementDnsZoneBinding
@@ -5231,7 +5231,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updateVmwareEngineNetwork(
     vmwareEngineNetwork: VmwareEngineNetwork?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<VmwareEngineNetwork> {
     let request = UpdateVmwareEngineNetworkRequest().with {
       $0.vmwareEngineNetwork = vmwareEngineNetwork
@@ -5476,7 +5476,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func updatePrivateConnection(
     privateConnection: PrivateConnection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
     let request = UpdatePrivateConnectionRequest().with {
       $0.privateConnection = privateConnection

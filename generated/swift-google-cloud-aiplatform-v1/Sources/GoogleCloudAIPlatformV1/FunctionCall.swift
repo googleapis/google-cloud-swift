@@ -30,7 +30,7 @@
 
     /// Optional. The function parameters and values in JSON object format.
     /// See [FunctionDeclaration.parameters] for parameter details.
-    public var args: GoogleWKT.Struct? = nil
+    public var args: GoogleWKT.WKTStruct? = nil
 
     /// Optional. The partial argument value of the function call.
     /// If provided, represents the arguments/fields that are streamed
@@ -84,7 +84,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      self.args = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .args)
+      self.args = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .args)
       if let value = try container.decodeIfPresent([PartialArg].self, forKey: .partialArgs) {
         self.partialArgs = value
       }
@@ -93,7 +93,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -111,10 +111,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FunctionCall"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

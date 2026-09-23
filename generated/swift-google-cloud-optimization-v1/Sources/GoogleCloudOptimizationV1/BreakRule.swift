@@ -84,7 +84,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -106,13 +106,13 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Required. Lower bound (inclusive) on the start of the break.
-    public var earliestStartTime: GoogleWKT.Timestamp? = nil
+    public var earliestStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Required. Upper bound (inclusive) on the start of the break.
-    public var latestStartTime: GoogleWKT.Timestamp? = nil
+    public var latestStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Required. Minimum duration of the break. Must be positive.
-    public var minDuration: GoogleWKT.Duration? = nil
+    public var minDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -152,14 +152,14 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.earliestStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .earliestStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .earliestStartTime)
       self.latestStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .latestStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .latestStartTime)
       self.minDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minDuration)
+        GoogleWKT.WKTDuration.self, forKey: .minDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -176,10 +176,10 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.BreakRule.BreakRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -222,12 +222,12 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Required. Minimum break duration for this constraint. Nonnegative.
     /// See description of `FrequencyConstraint`.
-    public var minBreakDuration: GoogleWKT.Duration? = nil
+    public var minBreakDuration: GoogleWKT.WKTDuration? = nil
 
     /// Required. Maximum allowed span of any interval of time in the route that
     /// does not include at least partially a break of `duration >=
     /// min_break_duration`. Must be positive.
-    public var maxInterBreakDuration: GoogleWKT.Duration? = nil
+    public var maxInterBreakDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -265,12 +265,12 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.minBreakDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minBreakDuration)
+        GoogleWKT.WKTDuration.self, forKey: .minBreakDuration)
       self.maxInterBreakDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .maxInterBreakDuration)
+        GoogleWKT.WKTDuration.self, forKey: .maxInterBreakDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -286,10 +286,10 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.BreakRule.FrequencyConstraint"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -297,10 +297,10 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.BreakRule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

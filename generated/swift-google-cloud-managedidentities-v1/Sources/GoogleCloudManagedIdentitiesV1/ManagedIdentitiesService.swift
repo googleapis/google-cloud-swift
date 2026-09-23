@@ -414,7 +414,7 @@ extension Clients {
     /// See `ManagedIdentitiesServiceClient.updateDomain`.
     func updateDomain(
       domain: Domain?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Domain>
 
     /// See `ManagedIdentitiesServiceClient.deleteDomain`.
@@ -725,7 +725,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func updateDomain(
     domain: Domain?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Domain> {
     let request = UpdateDomainRequest().with {
       $0.domain = domain

@@ -42,7 +42,7 @@ public struct AudioProcessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The duration of user inactivity (no speech or interaction) before
   /// the agent prompts the user for reengagement. If not set, the agent will not
   /// prompt the user for reengagement.
-  public var inactivityTimeout: GoogleWKT.Duration? = nil
+  public var inactivityTimeout: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Configuration for the ambient sound to be played with the
   /// synthesized agent response, to enhance the naturalness of the conversation.
@@ -94,12 +94,12 @@ public struct AudioProcessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.bargeInConfig = try container.decodeIfPresent(BargeInConfig.self, forKey: .bargeInConfig)
     self.inactivityTimeout = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .inactivityTimeout)
+      GoogleWKT.WKTDuration.self, forKey: .inactivityTimeout)
     self.ambientSoundConfig = try container.decodeIfPresent(
       AmbientSoundConfig.self, forKey: .ambientSoundConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -117,10 +117,10 @@ public struct AudioProcessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.AudioProcessingConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

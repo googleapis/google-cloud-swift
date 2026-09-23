@@ -51,7 +51,7 @@
     public var testCaseConversationTurns: [ConversationTurn] = []
 
     /// Output only. When the test was created.
-    public var creationTime: GoogleWKT.Timestamp? = nil
+    public var creationTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The latest test result.
     public var lastTestResult: TestCaseResult? = nil
@@ -122,12 +122,12 @@
         self.testCaseConversationTurns = value
       }
       self.creationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .creationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .creationTime)
       self.lastTestResult = try container.decodeIfPresent(
         TestCaseResult.self, forKey: .lastTestResult)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -149,10 +149,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TestCase"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

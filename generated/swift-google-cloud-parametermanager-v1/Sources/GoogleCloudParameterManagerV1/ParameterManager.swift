@@ -505,7 +505,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func updateParameter(
     parameter: Parameter?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
     let request = UpdateParameterRequest().with {
       $0.parameter = parameter
@@ -657,7 +657,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func updateParameterVersion(
     parameterVersion: ParameterVersion?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
     let request = UpdateParameterVersionRequest().with {
       $0.parameterVersion = parameterVersion
@@ -787,7 +787,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func updateTemplate(
     template: Template?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudParameterManagerV1.Template {
     let request = UpdateTemplateRequest().with {
       $0.template = template
@@ -918,7 +918,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func updateTemplateVersion(
     templateVersion: TemplateVersion?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
     let request = UpdateTemplateVersionRequest().with {
       $0.templateVersion = templateVersion

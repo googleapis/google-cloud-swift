@@ -67,7 +67,7 @@
     /// [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
     ///
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. Configuration for advanced site search.
     public var advancedSiteSearchConfig: AdvancedSiteSearchConfig? = nil
@@ -254,7 +254,8 @@
       {
         self.contentConfig = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.advancedSiteSearchConfig = try container.decodeIfPresent(
         AdvancedSiteSearchConfig.self, forKey: .advancedSiteSearchConfig)
       self.naturalLanguageQueryUnderstandingConfig = try container.decodeIfPresent(
@@ -282,7 +283,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -329,13 +330,13 @@
       public var websiteDataSize: Swift.Int64 = Swift.Int64()
 
       /// Last updated timestamp for structured data.
-      public var structuredDataUpdateTime: GoogleWKT.Timestamp? = nil
+      public var structuredDataUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
       /// Last updated timestamp for unstructured data.
-      public var unstructuredDataUpdateTime: GoogleWKT.Timestamp? = nil
+      public var unstructuredDataUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
       /// Last updated timestamp for websites.
-      public var websiteDataUpdateTime: GoogleWKT.Timestamp? = nil
+      public var websiteDataUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -394,14 +395,14 @@
           self.websiteDataSize = value
         }
         self.structuredDataUpdateTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .structuredDataUpdateTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .structuredDataUpdateTime)
         self.unstructuredDataUpdateTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .unstructuredDataUpdateTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .unstructuredDataUpdateTime)
         self.websiteDataUpdateTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .websiteDataUpdateTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .websiteDataUpdateTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -423,10 +424,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.BillingEstimation"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -575,10 +576,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -90,7 +90,7 @@
         schema = $0
       }
       if let structSchema = try container.decodeIfPresent(
-        GoogleWKT.Struct?.self, forKey: .structSchema)
+        GoogleWKT.WKTStruct?.self, forKey: .structSchema)
       {
         try schemaCheckAndSet(.structSchema(structSchema))
       }
@@ -100,7 +100,7 @@
       self.schema = schema
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -130,7 +130,7 @@
     /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
     public enum OneOf_Schema: Codable, Equatable, Sendable {
       /// The structured representation of the schema.
-      indirect case structSchema(GoogleWKT.Struct?)
+      indirect case structSchema(GoogleWKT.WKTStruct?)
       /// The JSON representation of the schema.
       case jsonSchema(Swift.String)
     }
@@ -138,10 +138,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Schema"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

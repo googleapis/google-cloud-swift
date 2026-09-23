@@ -761,7 +761,7 @@ extension Clients {
     /// See `MemorystoreClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteInstance`.
@@ -781,7 +781,7 @@ extension Clients {
     func rescheduleMaintenance(
       name: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleWKT.Timestamp?,
+      scheduleTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteBackup`.
@@ -1211,7 +1211,7 @@ extension Clients.MemorystoreProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -1330,7 +1330,7 @@ extension Clients.MemorystoreProtocol {
   public func rescheduleMaintenance(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleWKT.Timestamp?,
+    scheduleTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = RescheduleMaintenanceRequest().with {
       $0.name = name

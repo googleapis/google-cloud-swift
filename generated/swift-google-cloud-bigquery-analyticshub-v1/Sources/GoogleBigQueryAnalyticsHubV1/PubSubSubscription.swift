@@ -76,7 +76,7 @@ public struct PubSubSubscription: Codable, Equatable, GoogleWKT._AnyPackable,
   /// is true, then this also configures the retention of acknowledged messages,
   /// and thus configures how far back in time a `Seek` can be done. Defaults to
   /// 7 days. Cannot be more than 31 days or less than 10 minutes.
-  public var messageRetentionDuration: GoogleWKT.Duration? = nil
+  public var messageRetentionDuration: GoogleWKT.WKTDuration? = nil
 
   /// Optional. See [Creating and managing
   /// labels](https://cloud.google.com/pubsub/docs/labels).
@@ -234,7 +234,7 @@ public struct PubSubSubscription: Codable, Equatable, GoogleWKT._AnyPackable,
       self.retainAckedMessages = value
     }
     self.messageRetentionDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .messageRetentionDuration)
+      GoogleWKT.WKTDuration.self, forKey: .messageRetentionDuration)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
@@ -268,7 +268,7 @@ public struct PubSubSubscription: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -299,10 +299,10 @@ public struct PubSubSubscription: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.PubSubSubscription"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

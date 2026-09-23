@@ -340,7 +340,7 @@
 
     public func updateTransitionRouteGroup(
       transitionRouteGroup: TransitionRouteGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
       let request = UpdateTransitionRouteGroupRequest().with {
         $0.transitionRouteGroup = transitionRouteGroup

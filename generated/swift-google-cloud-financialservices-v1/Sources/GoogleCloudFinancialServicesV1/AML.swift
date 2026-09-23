@@ -1140,7 +1140,7 @@ extension Clients {
     /// See `AMLClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AMLClient.deleteInstance`.
@@ -1193,7 +1193,7 @@ extension Clients {
     /// See `AMLClient.updateDataset`.
     func updateDataset(
       dataset: Dataset?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Dataset>
 
     /// See `AMLClient.deleteDataset`.
@@ -1223,7 +1223,7 @@ extension Clients {
     /// See `AMLClient.updateModel`.
     func updateModel(
       model: Model?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
     /// See `AMLClient.exportModelMetadata`.
@@ -1263,7 +1263,7 @@ extension Clients {
     /// See `AMLClient.updateEngineConfig`.
     func updateEngineConfig(
       engineConfig: EngineConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EngineConfig>
 
     /// See `AMLClient.exportEngineConfigMetadata`.
@@ -1303,7 +1303,7 @@ extension Clients {
     /// See `AMLClient.updatePredictionResult`.
     func updatePredictionResult(
       predictionResult: PredictionResult?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PredictionResult>
 
     /// See `AMLClient.exportPredictionResultMetadata`.
@@ -1343,7 +1343,7 @@ extension Clients {
     /// See `AMLClient.updateBacktestResult`.
     func updateBacktestResult(
       backtestResult: BacktestResult?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BacktestResult>
 
     /// See `AMLClient.exportBacktestResultMetadata`.
@@ -1838,7 +1838,7 @@ extension Clients.AMLProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -2104,7 +2104,7 @@ extension Clients.AMLProtocol {
 
   public func updateDataset(
     dataset: Dataset?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
     let request = UpdateDatasetRequest().with {
       $0.dataset = dataset
@@ -2280,7 +2280,7 @@ extension Clients.AMLProtocol {
 
   public func updateModel(
     model: Model?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let request = UpdateModelRequest().with {
       $0.model = model
@@ -2499,7 +2499,7 @@ extension Clients.AMLProtocol {
 
   public func updateEngineConfig(
     engineConfig: EngineConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
     let request = UpdateEngineConfigRequest().with {
       $0.engineConfig = engineConfig
@@ -2785,7 +2785,7 @@ extension Clients.AMLProtocol {
 
   public func updatePredictionResult(
     predictionResult: PredictionResult?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
     let request = UpdatePredictionResultRequest().with {
       $0.predictionResult = predictionResult
@@ -3007,7 +3007,7 @@ extension Clients.AMLProtocol {
 
   public func updateBacktestResult(
     backtestResult: BacktestResult?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
     let request = UpdateBacktestResultRequest().with {
       $0.backtestResult = backtestResult

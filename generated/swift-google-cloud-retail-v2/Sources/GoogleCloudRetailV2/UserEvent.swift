@@ -69,7 +69,7 @@ public struct UserEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// method. Timestamp of when the user event happened.
   ///
   /// [google.cloud.retail.v2.UserEventService.ImportUserEvents]: <doc:UserEventServiceClient/importUserEvents(request:options:)>
-  public var eventTime: GoogleWKT.Timestamp? = nil
+  public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A list of identifiers for the independent experiment groups this user event
   /// belongs to. This is used to distinguish between user events associated with
@@ -366,7 +366,7 @@ public struct UserEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionId) {
       self.sessionId = value
     }
-    self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
+    self.eventTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .experimentIds) {
       self.experimentIds = value
     }
@@ -418,7 +418,7 @@ public struct UserEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -453,10 +453,10 @@ public struct UserEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.UserEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

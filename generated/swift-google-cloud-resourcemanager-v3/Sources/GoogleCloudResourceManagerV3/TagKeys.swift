@@ -258,7 +258,7 @@ extension Clients {
     /// See `TagKeysClient.updateTagKey`.
     func updateTagKey(
       tagKey: TagKey?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.deleteTagKey`.
@@ -483,7 +483,7 @@ extension Clients.TagKeysProtocol {
 
   public func updateTagKey(
     tagKey: TagKey?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let request = UpdateTagKeyRequest().with {
       $0.tagKey = tagKey

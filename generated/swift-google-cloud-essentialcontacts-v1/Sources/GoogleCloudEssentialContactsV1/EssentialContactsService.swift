@@ -191,7 +191,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func updateContact(
     contact: Contact?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
     let request = UpdateContactRequest().with {
       $0.contact = contact

@@ -411,7 +411,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.updateGlossary`.
     func updateGlossary(
       glossary: Glossary?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `BusinessGlossaryServiceClient.deleteGlossary`.
@@ -628,7 +628,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func updateGlossary(
     glossary: Glossary?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
     let request = UpdateGlossaryRequest().with {
       $0.glossary = glossary
@@ -776,7 +776,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func updateGlossaryCategory(
     category: GlossaryCategory?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
     let request = UpdateGlossaryCategoryRequest().with {
       $0.category = category
@@ -906,7 +906,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func updateGlossaryTerm(
     term: GlossaryTerm?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
     let request = UpdateGlossaryTermRequest().with {
       $0.term = term

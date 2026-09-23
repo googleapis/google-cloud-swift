@@ -210,7 +210,7 @@ extension Clients.SnoozeServiceProtocol {
 
   public func updateSnooze(
     snooze: Snooze?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
     let request = UpdateSnoozeRequest().with {
       $0.snooze = snooze

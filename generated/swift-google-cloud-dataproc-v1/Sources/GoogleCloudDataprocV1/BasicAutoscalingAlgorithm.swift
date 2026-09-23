@@ -25,7 +25,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
   /// the update operation from the previous event has completed.
   ///
   /// Bounds: [2m, 1d]. Default: 2m.
-  public var cooldownPeriod: GoogleWKT.Duration? = nil
+  public var cooldownPeriod: GoogleWKT.WKTDuration? = nil
 
   public var config: OneOf_Config? = nil
 
@@ -65,7 +65,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cooldownPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .cooldownPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .cooldownPeriod)
 
     var config: OneOf_Config? = nil
     let configCheckAndSet = {
@@ -85,7 +85,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
     self.config = config
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -112,10 +112,10 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.BasicAutoscalingAlgorithm"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -87,14 +87,14 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
   public var lifecycle: Bucket.Lifecycle? = nil
 
   /// Output only. The creation time of the bucket.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The bucket's [CORS](https://www.w3.org/TR/cors/)
   /// configuration.
   public var cors: [Bucket.Cors] = []
 
   /// Output only. The modification time of the bucket.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The default value for event-based hold on newly created objects
   /// in this bucket.  Event-based hold is a way to retain objects indefinitely
@@ -311,11 +311,13 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       self.defaultObjectAcl = value
     }
     self.lifecycle = try container.decodeIfPresent(Bucket.Lifecycle.self, forKey: .lifecycle)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent([Bucket.Cors].self, forKey: .cors) {
       self.cors = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .defaultEventBasedHold) {
       self.defaultEventBasedHold = value
     }
@@ -347,7 +349,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     self.ipFilter = try container.decodeIfPresent(Bucket.IpFilter.self, forKey: .ipFilter)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -435,7 +437,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -450,10 +452,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Billing"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -540,7 +542,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -558,10 +560,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Cors"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -651,7 +653,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         forKey: .customerSuppliedEncryptionEnforcementConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -686,7 +688,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public var restrictionMode: Swift.String? = nil
 
       /// Time from which the config was effective. This is service-provided.
-      public var effectiveTime: GoogleWKT.Timestamp? = nil
+      public var effectiveTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -726,10 +728,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         self.restrictionMode = try container.decodeIfPresent(
           Swift.String.self, forKey: .restrictionMode)
         self.effectiveTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .effectiveTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .effectiveTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -746,10 +748,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.storage.v2.Bucket.Encryption.GoogleManagedEncryptionEnforcementConfig"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -768,7 +770,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public var restrictionMode: Swift.String? = nil
 
       /// Time from which the config was effective. This is service-provided.
-      public var effectiveTime: GoogleWKT.Timestamp? = nil
+      public var effectiveTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -808,10 +810,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         self.restrictionMode = try container.decodeIfPresent(
           Swift.String.self, forKey: .restrictionMode)
         self.effectiveTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .effectiveTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .effectiveTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -828,10 +830,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.storage.v2.Bucket.Encryption.CustomerManagedEncryptionEnforcementConfig"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -851,7 +853,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public var restrictionMode: Swift.String? = nil
 
       /// Time from which the config was effective. This is service-provided.
-      public var effectiveTime: GoogleWKT.Timestamp? = nil
+      public var effectiveTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -891,10 +893,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         self.restrictionMode = try container.decodeIfPresent(
           Swift.String.self, forKey: .restrictionMode)
         self.effectiveTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .effectiveTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .effectiveTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -911,10 +913,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.storage.v2.Bucket.Encryption.CustomerSuppliedEncryptionEnforcementConfig"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -922,10 +924,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Encryption"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -985,7 +987,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1012,7 +1014,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// `iam_config.uniform_bucket_level_access.enabled` from `true` to
       /// `false`. Mutable until the specified deadline is reached, but not
       /// afterward.
-      public var lockTime: GoogleWKT.Timestamp? = nil
+      public var lockTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1052,10 +1054,11 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
           self.enabled = value
         }
-        self.lockTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .lockTime)
+        self.lockTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .lockTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1071,10 +1074,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.IamConfig.UniformBucketLevelAccess"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1082,10 +1085,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.IamConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1138,7 +1141,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1202,7 +1205,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           Bucket.Lifecycle.Rule.Condition.self, forKey: .condition)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1271,7 +1274,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1287,10 +1290,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle.Rule.Action"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1436,7 +1439,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1462,10 +1465,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle.Rule.Condition"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1473,10 +1476,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle.Rule"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1484,10 +1487,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1546,7 +1549,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1562,10 +1565,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Logging"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1616,7 +1619,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1631,10 +1634,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.ObjectRetention"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1645,7 +1648,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Optional. Server-determined value that indicates the time from which
     /// policy was enforced and effective.
-    public var effectiveTime: GoogleWKT.Timestamp? = nil
+    public var effectiveTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. Once locked, an object retention policy cannot be modified.
     public var isLocked: Swift.Bool = Swift.Bool()
@@ -1655,7 +1658,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// enforcement of retention periods less than a day is not guaranteed. Such
     /// periods should only be used for testing purposes. Any `nanos` value
     /// specified is rounded down to the nearest second.
-    public var retentionDuration: GoogleWKT.Duration? = nil
+    public var retentionDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1695,15 +1698,15 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.effectiveTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .effectiveTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .effectiveTime)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isLocked) {
         self.isLocked = value
       }
       self.retentionDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .retentionDuration)
+        GoogleWKT.WKTDuration.self, forKey: .retentionDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1720,10 +1723,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.RetentionPolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1735,10 +1738,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The period of time that soft-deleted objects in the bucket must be
     /// retained and cannot be permanently deleted. The duration must be greater
     /// than or equal to 7 days and less than 1 year.
-    public var retentionDuration: GoogleWKT.Duration? = nil
+    public var retentionDuration: GoogleWKT.WKTDuration? = nil
 
     /// Time from which the policy was effective. This is service-provided.
-    public var effectiveTime: GoogleWKT.Timestamp? = nil
+    public var effectiveTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1776,12 +1779,12 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.retentionDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .retentionDuration)
+        GoogleWKT.WKTDuration.self, forKey: .retentionDuration)
       self.effectiveTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .effectiveTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .effectiveTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1797,10 +1800,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.SoftDeletePolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1852,7 +1855,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1867,10 +1870,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Versioning"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1937,7 +1940,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1953,10 +1956,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Website"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2010,7 +2013,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -2025,10 +2028,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.CustomPlacementConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2044,7 +2047,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// after being disabled/unconfigured or set to false after being enabled. If
     /// Autoclass is enabled when the bucket is created, the value of the
     /// `toggle_time` field is set to the bucket `create_time`.
-    public var toggleTime: GoogleWKT.Timestamp? = nil
+    public var toggleTime: GoogleWKT.WKTTimestamp? = nil
 
     /// An object in an Autoclass bucket eventually cools down to the
     /// terminal storage class if there is no access to the object.
@@ -2053,7 +2056,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Output only. Latest instant at which the autoclass terminal storage class
     /// was updated.
-    public var terminalStorageClassUpdateTime: GoogleWKT.Timestamp? = nil
+    public var terminalStorageClassUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2098,14 +2101,15 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
       }
-      self.toggleTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .toggleTime)
+      self.toggleTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .toggleTime)
       self.terminalStorageClass = try container.decodeIfPresent(
         Swift.String.self, forKey: .terminalStorageClass)
       self.terminalStorageClassUpdateTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .terminalStorageClassUpdateTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .terminalStorageClassUpdateTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -2124,10 +2128,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Autoclass"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2220,7 +2224,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         Swift.Bool.self, forKey: .allowAllServiceAgentAccess)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -2286,7 +2290,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -2301,10 +2305,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.IpFilter.PublicNetworkSource"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -2369,7 +2373,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -2385,10 +2389,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.IpFilter.VpcNetworkSource"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -2396,10 +2400,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.IpFilter"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2449,7 +2453,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -2464,10 +2468,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.HierarchicalNamespace"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2475,10 +2479,10 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.Bucket"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

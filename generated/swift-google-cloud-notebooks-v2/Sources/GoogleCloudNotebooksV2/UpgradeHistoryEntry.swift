@@ -41,7 +41,7 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: UpgradeHistoryEntry.State = UpgradeHistoryEntry.State()
 
   /// Immutable. The time that this instance upgrade history entry is created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Action. Rolloback or Upgrade.
   public var action: UpgradeHistoryEntry.Action = UpgradeHistoryEntry.Action()
@@ -116,7 +116,8 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(UpgradeHistoryEntry.State.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(UpgradeHistoryEntry.Action.self, forKey: .action) {
       self.action = value
     }
@@ -125,7 +126,7 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -389,10 +390,10 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.notebooks.v2.UpgradeHistoryEntry"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

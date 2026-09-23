@@ -28,13 +28,13 @@ public struct BackupApplianceBackupProperties: Codable, Equatable, GoogleWKT._An
 
   /// Output only. The time when this backup object was finalized (if none,
   /// backup is not finalized).
-  public var finalizeTime: GoogleWKT.Timestamp? = nil
+  public var finalizeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The earliest timestamp of data available in this Backup.
-  public var recoveryRangeStartTime: GoogleWKT.Timestamp? = nil
+  public var recoveryRangeStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The latest timestamp of data available in this Backup.
-  public var recoveryRangeEndTime: GoogleWKT.Timestamp? = nil
+  public var recoveryRangeEndTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,14 +77,14 @@ public struct BackupApplianceBackupProperties: Codable, Equatable, GoogleWKT._An
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.generationId = try container.decodeIfPresent(Swift.Int32.self, forKey: .generationId)
     self.finalizeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .finalizeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .finalizeTime)
     self.recoveryRangeStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .recoveryRangeStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .recoveryRangeStartTime)
     self.recoveryRangeEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .recoveryRangeEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .recoveryRangeEndTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -102,10 +102,10 @@ public struct BackupApplianceBackupProperties: Codable, Equatable, GoogleWKT._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupApplianceBackupProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

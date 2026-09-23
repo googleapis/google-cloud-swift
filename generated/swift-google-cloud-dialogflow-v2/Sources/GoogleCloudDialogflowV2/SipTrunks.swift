@@ -331,7 +331,7 @@
 
     public func updateSipTrunk(
       sipTrunk: SipTrunk?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.SipTrunk {
       let request = UpdateSipTrunkRequest().with {
         $0.sipTrunk = sipTrunk

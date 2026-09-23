@@ -393,8 +393,8 @@
 
     public func predict(
       endpoint: Swift.String,
-      instances: [GoogleWKT.Value],
-      parameters: GoogleWKT.Value?,
+      instances: [GoogleWKT.WKTValue],
+      parameters: GoogleWKT.WKTValue?,
     ) async throws -> GoogleCloudAIPlatformV1.PredictResponse {
       let request = PredictRequest().with {
         $0.endpoint = endpoint
@@ -498,8 +498,8 @@
 
     public func explain(
       endpoint: Swift.String,
-      instances: [GoogleWKT.Value],
-      parameters: GoogleWKT.Value?,
+      instances: [GoogleWKT.WKTValue],
+      parameters: GoogleWKT.WKTValue?,
       deployedModelId: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse {
       let request = ExplainRequest().with {

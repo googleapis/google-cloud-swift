@@ -47,20 +47,20 @@
     public var allowedStringValues: [Swift.String] = []
 
     /// For `INTEGER` flags, the minimum allowed value.
-    public var minValue: GoogleWKT.Int64Value? = nil
+    public var minValue: GoogleWKT.WKTInt64Value? = nil
 
     /// For `INTEGER` flags, the maximum allowed value.
-    public var maxValue: GoogleWKT.Int64Value? = nil
+    public var maxValue: GoogleWKT.WKTInt64Value? = nil
 
     /// Indicates whether changing this flag will trigger a database restart. Only
     /// applicable to Second Generation instances.
-    public var requiresRestart: GoogleWKT.BoolValue? = nil
+    public var requiresRestart: GoogleWKT.WKTBoolValue? = nil
 
     /// This is always `sql#flag`.
     public var kind: Swift.String = Swift.String()
 
     /// Whether or not the flag is considered in beta.
-    public var inBeta: GoogleWKT.BoolValue? = nil
+    public var inBeta: GoogleWKT.WKTBoolValue? = nil
 
     /// Use this field if only certain integers are accepted. Can be combined
     /// with min_value and max_value to add additional values.
@@ -143,14 +143,14 @@
       {
         self.allowedStringValues = value
       }
-      self.minValue = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .minValue)
-      self.maxValue = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .maxValue)
+      self.minValue = try container.decodeIfPresent(GoogleWKT.WKTInt64Value.self, forKey: .minValue)
+      self.maxValue = try container.decodeIfPresent(GoogleWKT.WKTInt64Value.self, forKey: .maxValue)
       self.requiresRestart = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .requiresRestart)
+        GoogleWKT.WKTBoolValue.self, forKey: .requiresRestart)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
       }
-      self.inBeta = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .inBeta)
+      self.inBeta = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .inBeta)
       if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .allowedIntValues) {
         self.allowedIntValues = value
       }
@@ -174,14 +174,14 @@
         try recommendedValueCheckAndSet(.recommendedStringValue(recommendedStringValue))
       }
       if let recommendedIntValue = try container.decodeIfPresent(
-        GoogleWKT.Int64Value?.self, forKey: .recommendedIntValue)
+        GoogleWKT.WKTInt64Value?.self, forKey: .recommendedIntValue)
       {
         try recommendedValueCheckAndSet(.recommendedIntValue(recommendedIntValue))
       }
       self.recommendedValue = recommendedValue
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -217,16 +217,16 @@
       /// Recommended string value in string format for UI display.
       case recommendedStringValue(Swift.String)
       /// Recommended int value in integer format for UI display.
-      indirect case recommendedIntValue(GoogleWKT.Int64Value?)
+      indirect case recommendedIntValue(GoogleWKT.WKTInt64Value?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Flag"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

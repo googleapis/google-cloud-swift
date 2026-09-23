@@ -33,7 +33,7 @@ public struct GcipSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Login page URI associated with the GCIP tenants.
   /// Typically, all resources within the same project share the same login page,
   /// though it could be overridden at the sub resource level.
-  public var loginPageUri: GoogleWKT.StringValue? = nil
+  public var loginPageUri: GoogleWKT.WKTStringValue? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,10 +74,10 @@ public struct GcipSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tenantIds = value
     }
     self.loginPageUri = try container.decodeIfPresent(
-      GoogleWKT.StringValue.self, forKey: .loginPageUri)
+      GoogleWKT.WKTStringValue.self, forKey: .loginPageUri)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -93,10 +93,10 @@ public struct GcipSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.GcipSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

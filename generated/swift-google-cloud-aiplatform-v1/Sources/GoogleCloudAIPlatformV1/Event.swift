@@ -30,7 +30,7 @@
     public var execution: Swift.String = Swift.String()
 
     /// Output only. Time the Event occurred.
-    public var eventTime: GoogleWKT.Timestamp? = nil
+    public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Required. The type of the Event.
     public var type: Event.Type_ = Event.Type_()
@@ -95,7 +95,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .execution) {
         self.execution = value
       }
-      self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
+      self.eventTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
       if let value = try container.decodeIfPresent(Event.Type_.self, forKey: .type) {
         self.type = value
       }
@@ -106,7 +107,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -242,10 +243,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Event"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

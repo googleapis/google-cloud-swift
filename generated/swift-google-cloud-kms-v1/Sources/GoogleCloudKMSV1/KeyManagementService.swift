@@ -1605,7 +1605,7 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func updateCryptoKey(
     cryptoKey: CryptoKey?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudKMSV1.CryptoKey {
     let request = UpdateCryptoKeyRequest().with {
       $0.cryptoKey = cryptoKey
@@ -1628,7 +1628,7 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func updateCryptoKeyVersion(
     cryptoKeyVersion: CryptoKeyVersion?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
     let request = UpdateCryptoKeyVersionRequest().with {
       $0.cryptoKeyVersion = cryptoKeyVersion

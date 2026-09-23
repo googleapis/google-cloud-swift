@@ -67,10 +67,10 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// period](https://cloud.google.com/logging/quotas#logs_retention_periods) in
   /// the past, and that don't exceed 24 hours in the future. Log entries outside
   /// those time boundaries aren't ingested by Logging.
-  public var timestamp: GoogleWKT.Timestamp? = nil
+  public var timestamp: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the log entry was received by Logging.
-  public var receiveTimestamp: GoogleWKT.Timestamp? = nil
+  public var receiveTimestamp: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The severity of the log entry. The default value is
   /// `LogSeverity.DEFAULT`.
@@ -246,9 +246,9 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.resource = try container.decodeIfPresent(
       GoogleApi.MonitoredResource.self, forKey: .resource)
-    self.timestamp = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .timestamp)
+    self.timestamp = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .timestamp)
     self.receiveTimestamp = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .receiveTimestamp)
+      GoogleWKT.WKTTimestamp.self, forKey: .receiveTimestamp)
     if let value = try container.decodeIfPresent(
       GoogleCloudLoggingType.LogSeverity.self, forKey: .severity)
     {
@@ -288,21 +288,22 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       payload = $0
     }
     if let protoPayload = try container.decodeIfPresent(
-      GoogleWKT.`Any`?.self, forKey: .protoPayload)
+      GoogleWKT.WKTAny?.self, forKey: .protoPayload)
     {
       try payloadCheckAndSet(.protoPayload(protoPayload))
     }
     if let textPayload = try container.decodeIfPresent(Swift.String.self, forKey: .textPayload) {
       try payloadCheckAndSet(.textPayload(textPayload))
     }
-    if let jsonPayload = try container.decodeIfPresent(GoogleWKT.Struct?.self, forKey: .jsonPayload)
+    if let jsonPayload = try container.decodeIfPresent(
+      GoogleWKT.WKTStruct?.self, forKey: .jsonPayload)
     {
       try payloadCheckAndSet(.jsonPayload(jsonPayload))
     }
     self.payload = payload
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -348,21 +349,21 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     ///   "type.googleapis.com/google.cloud.audit.AuditLog"
     ///   "type.googleapis.com/google.appengine.logging.v1.RequestLog"
-    indirect case protoPayload(GoogleWKT.`Any`?)
+    indirect case protoPayload(GoogleWKT.WKTAny?)
     /// The log entry payload, represented as a Unicode string (UTF-8).
     case textPayload(Swift.String)
     /// The log entry payload, represented as a structure that is
     /// expressed as a JSON object.
-    indirect case jsonPayload(GoogleWKT.Struct?)
+    indirect case jsonPayload(GoogleWKT.WKTStruct?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.LogEntry"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

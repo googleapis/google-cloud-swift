@@ -646,7 +646,7 @@ extension Clients {
     /// See `DeveloperConnectClient.updateConnection`.
     func updateConnection(
       connection: Connection?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Connection>
 
     /// See `DeveloperConnectClient.deleteConnection`.
@@ -696,7 +696,7 @@ extension Clients {
     /// See `DeveloperConnectClient.updateAccountConnector`.
     func updateAccountConnector(
       accountConnector: AccountConnector?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AccountConnector>
 
     /// See `DeveloperConnectClient.deleteAccountConnector`.
@@ -1071,7 +1071,7 @@ extension Clients.DeveloperConnectProtocol {
 
   public func updateConnection(
     connection: Connection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Connection> {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection
@@ -1524,7 +1524,7 @@ extension Clients.DeveloperConnectProtocol {
 
   public func updateAccountConnector(
     accountConnector: AccountConnector?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
     let request = UpdateAccountConnectorRequest().with {
       $0.accountConnector = accountConnector

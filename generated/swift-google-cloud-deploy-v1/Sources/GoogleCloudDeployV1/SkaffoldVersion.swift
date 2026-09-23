@@ -26,10 +26,10 @@ public struct SkaffoldVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public var version: Swift.String = Swift.String()
 
   /// The time at which this version of Skaffold will enter maintenance mode.
-  public var maintenanceModeTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceModeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time at which this version of Skaffold will no longer be supported.
-  public var supportExpirationTime: GoogleWKT.Timestamp? = nil
+  public var supportExpirationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Date when this version is expected to no longer be supported.
   public var supportEndDate: GoogleType.Date? = nil
@@ -77,14 +77,14 @@ public struct SkaffoldVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       self.version = value
     }
     self.maintenanceModeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceModeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceModeTime)
     self.supportExpirationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .supportExpirationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .supportExpirationTime)
     self.supportEndDate = try container.decodeIfPresent(
       GoogleType.Date.self, forKey: .supportEndDate)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -102,10 +102,10 @@ public struct SkaffoldVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.SkaffoldVersion"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

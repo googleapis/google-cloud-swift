@@ -433,7 +433,7 @@ extension Clients.RuleServiceProtocol {
 
   public func updateRule(
     rule: Rule?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.Rule {
     let request = UpdateRuleRequest().with {
       $0.rule = rule
@@ -705,7 +705,7 @@ extension Clients.RuleServiceProtocol {
 
   public func updateRuleDeployment(
     ruleDeployment: RuleDeployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.RuleDeployment {
     let request = UpdateRuleDeploymentRequest().with {
       $0.ruleDeployment = ruleDeployment

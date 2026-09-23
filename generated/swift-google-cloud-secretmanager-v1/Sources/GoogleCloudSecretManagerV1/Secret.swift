@@ -49,7 +49,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [Secret][google.cloud.secretmanager.v1.Secret] was created.
   ///
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The labels assigned to this Secret.
   ///
@@ -114,7 +114,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For secret with TTL>0, version destruction doesn't happen immediately
   /// on calling destroy instead the version goes to a disabled state and
   /// destruction happens after the TTL expires.
-  public var versionDestroyTtl: GoogleWKT.Duration? = nil
+  public var versionDestroyTtl: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The customer-managed encryption configuration of the regionalized
   /// secrets. If no configuration is provided, Google-managed default encryption
@@ -236,7 +236,8 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.replication = try container.decodeIfPresent(Replication.self, forKey: .replication)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
@@ -259,7 +260,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
       self.annotations = value
     }
     self.versionDestroyTtl = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .versionDestroyTtl)
+      GoogleWKT.WKTDuration.self, forKey: .versionDestroyTtl)
     self.customerManagedEncryption = try container.decodeIfPresent(
       CustomerManagedEncryption.self, forKey: .customerManagedEncryption)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
@@ -282,17 +283,17 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -488,21 +489,21 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This is always provided on output, regardless of what was sent on input.
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    indirect case expireTime(GoogleWKT.Timestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp?)
     /// Input only. The TTL for the
     /// [Secret][google.cloud.secretmanager.v1.Secret].
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    indirect case ttl(GoogleWKT.Duration?)
+    indirect case ttl(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.Secret"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

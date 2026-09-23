@@ -598,7 +598,7 @@ extension Clients {
     /// See `CrossNetworkAutomationServiceClient.updateServiceConnectionMap`.
     func updateServiceConnectionMap(
       serviceConnectionMap: ServiceConnectionMap?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionMap>
 
     /// See `CrossNetworkAutomationServiceClient.deleteServiceConnectionMap`.
@@ -628,7 +628,7 @@ extension Clients {
     /// See `CrossNetworkAutomationServiceClient.updateServiceConnectionPolicy`.
     func updateServiceConnectionPolicy(
       serviceConnectionPolicy: ServiceConnectionPolicy?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionPolicy>
 
     /// See `CrossNetworkAutomationServiceClient.deleteServiceConnectionPolicy`.
@@ -647,7 +647,7 @@ extension Clients {
     /// See `CrossNetworkAutomationServiceClient.updateServiceClass`.
     func updateServiceClass(
       serviceClass: ServiceClass?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceClass>
 
     /// See `CrossNetworkAutomationServiceClient.deleteServiceClass`.
@@ -998,7 +998,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func updateServiceConnectionMap(
     serviceConnectionMap: ServiceConnectionMap?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionMap> {
     let request = UpdateServiceConnectionMapRequest().with {
       $0.serviceConnectionMap = serviceConnectionMap
@@ -1181,7 +1181,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func updateServiceConnectionPolicy(
     serviceConnectionPolicy: ServiceConnectionPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionPolicy> {
     let request = UpdateServiceConnectionPolicyRequest().with {
       $0.serviceConnectionPolicy = serviceConnectionPolicy
@@ -1321,7 +1321,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func updateServiceClass(
     serviceClass: ServiceClass?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceClass> {
     let request = UpdateServiceClassRequest().with {
       $0.serviceClass = serviceClass

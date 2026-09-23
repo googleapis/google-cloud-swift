@@ -18,7 +18,7 @@ import Foundation
 
 /// `SourceContext` represents information about the source of a
 /// protobuf element, like the file in which it is defined.
-public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
+public struct WKTSourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The path-qualified name of the .proto file that contained the associated
@@ -27,7 +27,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `SourceContext`.
+  /// Initialize a new instance of `WKTSourceContext`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -35,7 +35,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = SourceContext().with { $0.fileName = ... }
+  /// let value = WKTSourceContext().with { $0.fileName = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -63,7 +63,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -78,10 +78,10 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.protobuf.SourceContext"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

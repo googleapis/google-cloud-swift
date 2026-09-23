@@ -33,7 +33,7 @@
             $0.name =
               "projects/\(projectId)/knowledgeBases/\(knowledgeBaseId)/documents/\(documentId)"
           }
-          $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+          $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
     let response = try await poller.wait()

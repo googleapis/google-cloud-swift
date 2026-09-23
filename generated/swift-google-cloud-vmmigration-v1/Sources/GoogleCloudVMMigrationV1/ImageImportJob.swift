@@ -34,10 +34,10 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The time the image import was created (as an API call, not
   /// when it was actually created in the target).
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the image import was ended.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Provides details on the error that led to the image import
   /// state in case of an error.
@@ -117,8 +117,9 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ImageImportJob.State.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errors) {
       self.errors = value
     }
@@ -169,7 +170,7 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     self.targetDetails = targetDetails
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -367,10 +368,10 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.ImageImportJob"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

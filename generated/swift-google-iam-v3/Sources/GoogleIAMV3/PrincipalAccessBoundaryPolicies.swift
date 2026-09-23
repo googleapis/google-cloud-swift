@@ -226,7 +226,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
     func updatePrincipalAccessBoundaryPolicy(
       principalAccessBoundaryPolicy: PrincipalAccessBoundaryPolicy?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
@@ -382,7 +382,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func updatePrincipalAccessBoundaryPolicy(
     principalAccessBoundaryPolicy: PrincipalAccessBoundaryPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let request = UpdatePrincipalAccessBoundaryPolicyRequest().with {
       $0.principalAccessBoundaryPolicy = principalAccessBoundaryPolicy

@@ -29,7 +29,7 @@ public struct PromoteReleaseRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. How long the release need to be paused until being promoted to
   /// the next target.
-  public var wait: GoogleWKT.Duration? = nil
+  public var wait: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The ID of the stage in the pipeline to which this `Release` is
   /// deploying. If unspecified, default it to the next stage in the promotion
@@ -90,7 +90,7 @@ public struct PromoteReleaseRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
       self.id = value
     }
-    self.wait = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .wait)
+    self.wait = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .wait)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationTargetId) {
       self.destinationTargetId = value
     }
@@ -100,7 +100,7 @@ public struct PromoteReleaseRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -119,10 +119,10 @@ public struct PromoteReleaseRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.PromoteReleaseRule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

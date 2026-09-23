@@ -34,7 +34,7 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPack
   public var windowStartTime: GoogleType.TimeOfDay? = nil
 
   /// Required. Duration of the window.
-  public var windowDuration: GoogleWKT.Duration? = nil
+  public var windowDuration: GoogleWKT.WKTDuration? = nil
 
   /// Required. An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3)
   /// for how this window recurs.
@@ -94,13 +94,13 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPack
     self.windowStartTime = try container.decodeIfPresent(
       GoogleType.TimeOfDay.self, forKey: .windowStartTime)
     self.windowDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .windowDuration)
+      GoogleWKT.WKTDuration.self, forKey: .windowDuration)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recurrence) {
       self.recurrence = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -118,10 +118,10 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.RecurringMaintenanceWindow"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

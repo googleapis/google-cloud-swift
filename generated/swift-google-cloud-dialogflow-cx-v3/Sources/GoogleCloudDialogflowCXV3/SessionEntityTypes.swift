@@ -315,7 +315,7 @@
 
     public func updateSessionEntityType(
       sessionEntityType: SessionEntityType?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
       let request = UpdateSessionEntityTypeRequest().with {
         $0.sessionEntityType = sessionEntityType

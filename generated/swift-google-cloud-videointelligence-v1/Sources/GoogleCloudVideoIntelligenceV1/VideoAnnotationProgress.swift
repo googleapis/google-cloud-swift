@@ -30,10 +30,10 @@ public struct VideoAnnotationProgress: Codable, Equatable, GoogleWKT._AnyPackabl
   public var progressPercent: Swift.Int32 = Swift.Int32()
 
   /// Time when the request was received.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Time of the most recent update.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Specifies which feature is being tracked if the request contains more than
   /// one feature.
@@ -92,15 +92,16 @@ public struct VideoAnnotationProgress: Codable, Equatable, GoogleWKT._AnyPackabl
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
       self.progressPercent = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Feature.self, forKey: .feature) {
       self.feature = value
     }
     self.segment = try container.decodeIfPresent(VideoSegment.self, forKey: .segment)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -120,10 +121,10 @@ public struct VideoAnnotationProgress: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.VideoAnnotationProgress"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

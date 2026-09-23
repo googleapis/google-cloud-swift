@@ -58,10 +58,10 @@ public struct MigrationSubtask: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resourceErrorCount: Swift.Int32 = Swift.Int32()
 
   /// Output only. Time when the subtask was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time when the subtask was last updated.
-  public var lastUpdateTime: GoogleWKT.Timestamp? = nil
+  public var lastUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The metrics for the subtask.
   public var metrics: [TimeSeries] = []
@@ -139,15 +139,16 @@ public struct MigrationSubtask: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourceErrorCount) {
       self.resourceErrorCount = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.lastUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastUpdateTime)
     if let value = try container.decodeIfPresent([TimeSeries].self, forKey: .metrics) {
       self.metrics = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -318,10 +319,10 @@ public struct MigrationSubtask: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.MigrationSubtask"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

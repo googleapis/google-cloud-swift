@@ -173,7 +173,7 @@ extension Clients.BudgetServiceProtocol {
 
   public func updateBudget(
     budget: Budget?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
     let request = UpdateBudgetRequest().with {
       $0.budget = budget

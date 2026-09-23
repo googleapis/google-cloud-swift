@@ -530,7 +530,7 @@
 
     public func updateConversationProfile(
       conversationProfile: ConversationProfile?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
       let request = UpdateConversationProfileRequest().with {
         $0.conversationProfile = conversationProfile

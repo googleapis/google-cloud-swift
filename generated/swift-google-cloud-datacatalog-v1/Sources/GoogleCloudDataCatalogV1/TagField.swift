@@ -115,7 +115,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       try kindCheckAndSet(.boolValue(boolValue))
     }
     if let timestampValue = try container.decodeIfPresent(
-      GoogleWKT.Timestamp?.self, forKey: .timestampValue)
+      GoogleWKT.WKTTimestamp?.self, forKey: .timestampValue)
     {
       try kindCheckAndSet(.timestampValue(timestampValue))
     }
@@ -129,7 +129,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     self.kind = kind
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -204,7 +204,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -219,10 +219,10 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.TagField.EnumValue"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -238,7 +238,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The value of a tag field with a boolean type.
     case boolValue(Swift.Bool)
     /// The value of a tag field with a timestamp type.
-    indirect case timestampValue(GoogleWKT.Timestamp?)
+    indirect case timestampValue(GoogleWKT.WKTTimestamp?)
     /// The value of a tag field with an enum type.
     ///
     /// This value must be one of the allowed values listed in this enum.
@@ -254,10 +254,10 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.TagField"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

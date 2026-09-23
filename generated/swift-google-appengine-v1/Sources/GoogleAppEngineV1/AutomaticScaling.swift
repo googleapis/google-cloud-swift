@@ -28,7 +28,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This prevents the autoscaler from collecting information when the instance
   /// is initializing, during which the collected usage would not be reliable.
   /// Only applicable in the App Engine flexible environment.
-  public var coolDownPeriod: GoogleWKT.Duration? = nil
+  public var coolDownPeriod: GoogleWKT.WKTDuration? = nil
 
   /// Target scaling by CPU usage.
   public var cpuUtilization: CpuUtilization? = nil
@@ -49,7 +49,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Maximum amount of time that a request should wait in the pending queue
   /// before starting a new instance to handle it.
-  public var maxPendingLatency: GoogleWKT.Duration? = nil
+  public var maxPendingLatency: GoogleWKT.WKTDuration? = nil
 
   /// Minimum number of idle instances that should be maintained for
   /// this version. Only applicable for the default version of a service.
@@ -61,7 +61,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Minimum amount of time a request should wait in the pending queue before
   /// starting a new instance to handle it.
-  public var minPendingLatency: GoogleWKT.Duration? = nil
+  public var minPendingLatency: GoogleWKT.WKTDuration? = nil
 
   /// Target scaling by request utilization.
   public var requestUtilization: RequestUtilization? = nil
@@ -133,7 +133,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.coolDownPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .coolDownPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .coolDownPeriod)
     self.cpuUtilization = try container.decodeIfPresent(
       CpuUtilization.self, forKey: .cpuUtilization)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConcurrentRequests) {
@@ -146,7 +146,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxTotalInstances = value
     }
     self.maxPendingLatency = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maxPendingLatency)
+      GoogleWKT.WKTDuration.self, forKey: .maxPendingLatency)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minIdleInstances) {
       self.minIdleInstances = value
     }
@@ -154,7 +154,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
       self.minTotalInstances = value
     }
     self.minPendingLatency = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .minPendingLatency)
+      GoogleWKT.WKTDuration.self, forKey: .minPendingLatency)
     self.requestUtilization = try container.decodeIfPresent(
       RequestUtilization.self, forKey: .requestUtilization)
     self.diskUtilization = try container.decodeIfPresent(
@@ -165,7 +165,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
       StandardSchedulerSettings.self, forKey: .standardSchedulerSettings)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -193,10 +193,10 @@ public struct AutomaticScaling: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.AutomaticScaling"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

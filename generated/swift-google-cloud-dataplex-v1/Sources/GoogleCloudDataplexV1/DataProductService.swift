@@ -456,7 +456,7 @@ extension Clients {
     /// See `DataProductServiceClient.updateDataProduct`.
     func updateDataProduct(
       dataProduct: DataProduct?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataProduct>
 
     /// See `DataProductServiceClient.createDataAsset`.
@@ -477,7 +477,7 @@ extension Clients {
     /// See `DataProductServiceClient.updateDataAsset`.
     func updateDataAsset(
       dataAsset: DataAsset?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataAsset>
 
     /// See `DataProductServiceClient.deleteDataAsset`.
@@ -789,7 +789,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func updateDataProduct(
     dataProduct: DataProduct?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataProduct> {
     let request = UpdateDataProductRequest().with {
       $0.dataProduct = dataProduct
@@ -892,7 +892,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func updateDataAsset(
     dataAsset: DataAsset?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataAsset> {
     let request = UpdateDataAssetRequest().with {
       $0.dataAsset = dataAsset

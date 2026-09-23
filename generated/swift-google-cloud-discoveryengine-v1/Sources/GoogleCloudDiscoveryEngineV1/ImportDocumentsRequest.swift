@@ -40,7 +40,7 @@
 
     /// Indicates which fields in the provided imported documents to update. If
     /// not set, the default is to update all fields.
-    public var updateMask: GoogleWKT.FieldMask? = nil
+    public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
     /// Whether to automatically generate IDs for the documents if absent.
     ///
@@ -210,7 +210,8 @@
       {
         self.reconciliationMode = value
       }
-      self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+      self.updateMask = try container.decodeIfPresent(
+        GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoGenerateIds) {
         self.autoGenerateIds = value
       }
@@ -277,7 +278,7 @@
       self.source = source
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -367,7 +368,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -383,10 +384,10 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.ImportDocumentsRequest.InlineSource"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -535,10 +536,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ImportDocumentsRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -456,7 +456,7 @@ extension Clients.JobServiceProtocol {
 
   public func updateJob(
     job: Job?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTalentV4.Job {
     let request = UpdateJobRequest().with {
       $0.job = job

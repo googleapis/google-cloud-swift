@@ -175,14 +175,14 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
       try recommendedValueCheckAndSet(.recommendedStringValue(recommendedStringValue))
     }
     if let recommendedIntegerValue = try container.decodeIfPresent(
-      GoogleWKT.Int64Value?.self, forKey: .recommendedIntegerValue)
+      GoogleWKT.WKTInt64Value?.self, forKey: .recommendedIntegerValue)
     {
       try recommendedValueCheckAndSet(.recommendedIntegerValue(recommendedIntegerValue))
     }
     self.recommendedValue = recommendedValue
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -264,7 +264,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -279,10 +279,10 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.SupportedDatabaseFlag.StringRestrictions"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -292,10 +292,10 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The minimum value that can be specified, if applicable.
-    public var minValue: GoogleWKT.Int64Value? = nil
+    public var minValue: GoogleWKT.WKTInt64Value? = nil
 
     /// The maximum value that can be specified, if applicable.
-    public var maxValue: GoogleWKT.Int64Value? = nil
+    public var maxValue: GoogleWKT.WKTInt64Value? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -332,11 +332,11 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.minValue = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .minValue)
-      self.maxValue = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .maxValue)
+      self.minValue = try container.decodeIfPresent(GoogleWKT.WKTInt64Value.self, forKey: .minValue)
+      self.maxValue = try container.decodeIfPresent(GoogleWKT.WKTInt64Value.self, forKey: .maxValue)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -352,10 +352,10 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.SupportedDatabaseFlag.IntegerRestrictions"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -623,16 +623,16 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The recommended value for a STRING flag.
     case recommendedStringValue(Swift.String)
     /// The recommended value for an INTEGER flag.
-    indirect case recommendedIntegerValue(GoogleWKT.Int64Value?)
+    indirect case recommendedIntegerValue(GoogleWKT.WKTInt64Value?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.SupportedDatabaseFlag"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

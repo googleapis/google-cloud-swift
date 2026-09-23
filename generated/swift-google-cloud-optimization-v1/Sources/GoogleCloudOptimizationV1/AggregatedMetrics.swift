@@ -36,19 +36,19 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleWKT._AnyPackable,
   public var performedShipmentCount: Swift.Int32 = Swift.Int32()
 
   /// Total travel duration for a route or a solution.
-  public var travelDuration: GoogleWKT.Duration? = nil
+  public var travelDuration: GoogleWKT.WKTDuration? = nil
 
   /// Total wait duration for a route or a solution.
-  public var waitDuration: GoogleWKT.Duration? = nil
+  public var waitDuration: GoogleWKT.WKTDuration? = nil
 
   /// Total delay duration for a route or a solution.
-  public var delayDuration: GoogleWKT.Duration? = nil
+  public var delayDuration: GoogleWKT.WKTDuration? = nil
 
   /// Total break duration for a route or a solution.
-  public var breakDuration: GoogleWKT.Duration? = nil
+  public var breakDuration: GoogleWKT.WKTDuration? = nil
 
   /// Total visit duration for a route or a solution.
-  public var visitDuration: GoogleWKT.Duration? = nil
+  public var visitDuration: GoogleWKT.WKTDuration? = nil
 
   /// The total duration should be equal to the sum of all durations above.
   /// For routes, it also corresponds to:
@@ -58,7 +58,7 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]: <doc:ShipmentRoute/vehicleEndTime>
   /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]: <doc:ShipmentRoute/vehicleStartTime>
-  public var totalDuration: GoogleWKT.Duration? = nil
+  public var totalDuration: GoogleWKT.WKTDuration? = nil
 
   /// Total travel distance for a route or a solution.
   public var travelDistanceMeters: Swift.Double = Swift.Double()
@@ -157,17 +157,17 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleWKT._AnyPackable,
       self.performedShipmentCount = value
     }
     self.travelDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .travelDuration)
+      GoogleWKT.WKTDuration.self, forKey: .travelDuration)
     self.waitDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .waitDuration)
+      GoogleWKT.WKTDuration.self, forKey: .waitDuration)
     self.delayDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .delayDuration)
+      GoogleWKT.WKTDuration.self, forKey: .delayDuration)
     self.breakDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .breakDuration)
+      GoogleWKT.WKTDuration.self, forKey: .breakDuration)
     self.visitDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .visitDuration)
+      GoogleWKT.WKTDuration.self, forKey: .visitDuration)
     self.totalDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .totalDuration)
+      GoogleWKT.WKTDuration.self, forKey: .totalDuration)
     if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .travelDistanceMeters) {
       self.travelDistanceMeters = value
     }
@@ -185,7 +185,7 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -213,10 +213,10 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.AggregatedMetrics"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

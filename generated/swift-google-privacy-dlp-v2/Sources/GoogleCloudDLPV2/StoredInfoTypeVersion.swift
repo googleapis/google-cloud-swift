@@ -27,7 +27,7 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. Create timestamp of the version. Read-only, determined by the
   /// system when the version is created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Stored info type version state. Read-only, updated by the
   /// system during dictionary creation.
@@ -93,7 +93,8 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.config = try container.decodeIfPresent(StoredInfoTypeConfig.self, forKey: .config)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(StoredInfoTypeState.self, forKey: .state) {
       self.state = value
     }
@@ -103,7 +104,7 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     self.stats = try container.decodeIfPresent(StoredInfoTypeStats.self, forKey: .stats)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -122,10 +123,10 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.StoredInfoTypeVersion"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

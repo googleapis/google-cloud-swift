@@ -45,7 +45,7 @@
     /// By default, a Dialogflow CX session remains active and its data is stored
     /// for 30 minutes after the last request is sent for the session.
     /// This value should be no longer than 1 day.
-    public var sessionTtl: GoogleWKT.Duration? = nil
+    public var sessionTtl: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,10 +85,11 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
         self.agent = value
       }
-      self.sessionTtl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .sessionTtl)
+      self.sessionTtl = try container.decodeIfPresent(
+        GoogleWKT.WKTDuration.self, forKey: .sessionTtl)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -104,10 +105,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AutomatedAgentConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -31,7 +31,7 @@ public struct SecretOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   public var statuses: [SecretStatus] = []
 
   /// Scan result of the secret.
-  public var data: GoogleWKT.`Any`? = nil
+  public var data: GoogleWKT.WKTAny? = nil
 
   /// Hash value, typically a digest for the secret data, that allows unique
   /// identification of a specific secret.
@@ -87,11 +87,11 @@ public struct SecretOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([SecretStatus].self, forKey: .statuses) {
       self.statuses = value
     }
-    self.data = try container.decodeIfPresent(GoogleWKT.`Any`.self, forKey: .data)
+    self.data = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .data)
     self.digest = try container.decodeIfPresent(Digest.self, forKey: .digest)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -110,10 +110,10 @@ public struct SecretOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.SecretOccurrence"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

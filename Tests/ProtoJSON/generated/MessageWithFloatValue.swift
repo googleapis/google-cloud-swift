@@ -22,13 +22,13 @@ public struct MessageWithFloatValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleWKT.FloatValue? = nil
+  public var singular: GoogleWKT.WKTFloatValue? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleWKT.FloatValue] = []
+  public var repeated: [GoogleWKT.WKTFloatValue] = []
 
   /// Test google.protobuf.FloatValue as amap values.
-  public var map: [Swift.String: GoogleWKT.FloatValue] = [:]
+  public var map: [Swift.String: GoogleWKT.WKTFloatValue] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,18 +67,19 @@ public struct MessageWithFloatValue: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decodeIfPresent(GoogleWKT.FloatValue.self, forKey: .singular)
-    if let value = try container.decodeIfPresent([GoogleWKT.FloatValue].self, forKey: .repeated) {
+    self.singular = try container.decodeIfPresent(GoogleWKT.WKTFloatValue.self, forKey: .singular)
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTFloatValue].self, forKey: .repeated)
+    {
       self.repeated = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.FloatValue].self, forKey: .map)
+      [Swift.String: GoogleWKT.WKTFloatValue].self, forKey: .map)
     {
       self.map = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -95,10 +96,10 @@ public struct MessageWithFloatValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithFloatValue"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -32,7 +32,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// contains progress information and common metadata such as create time.
   /// Some services might not provide such metadata.  Any method that returns a
   /// long-running operation should document the metadata type, if any.
-  public var metadata: GoogleWKT.`Any`? = nil
+  public var metadata: GoogleWKT.WKTAny? = nil
 
   /// If the value is `false`, it means the operation is still in progress.
   /// If `true`, the operation is completed, and either `error` or `response` is
@@ -89,7 +89,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.metadata = try container.decodeIfPresent(GoogleWKT.`Any`.self, forKey: .metadata)
+    self.metadata = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .metadata)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .done) {
       self.done = value
     }
@@ -107,13 +107,13 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
       try resultCheckAndSet(.error(error))
     }
-    if let response = try container.decodeIfPresent(GoogleWKT.`Any`?.self, forKey: .response) {
+    if let response = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .response) {
       try resultCheckAndSet(.response(response))
     }
     self.result = result
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -151,16 +151,16 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// is the original method name.  For example, if the original method name
     /// is `TakeSnapshot()`, the inferred response type is
     /// `TakeSnapshotResponse`.
-    indirect case response(GoogleWKT.`Any`?)
+    indirect case response(GoogleWKT.WKTAny?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.longrunning.Operation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

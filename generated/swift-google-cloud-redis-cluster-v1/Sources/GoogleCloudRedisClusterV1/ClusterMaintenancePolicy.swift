@@ -23,11 +23,11 @@ public struct ClusterMaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackab
 {
   /// Output only. The time when the policy was created i.e. Maintenance Window
   /// or Deny Period was assigned.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the policy was updated i.e. Maintenance Window
   /// or Deny Period was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Maintenance window that is applied to resources covered by this
   /// policy. Minimum 1. For the current version, the maximum number of
@@ -71,8 +71,10 @@ public struct ClusterMaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackab
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(
       [ClusterWeeklyMaintenanceWindow].self, forKey: .weeklyMaintenanceWindow)
     {
@@ -80,7 +82,7 @@ public struct ClusterMaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackab
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -97,10 +99,10 @@ public struct ClusterMaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.ClusterMaintenancePolicy"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -28,7 +28,7 @@ func sample(client: AssetServiceClient, projectId: String, feedId: String) async
         $0.feed = Feed().with {
           $0.name = "projects/\(projectId)/feeds/\(feedId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

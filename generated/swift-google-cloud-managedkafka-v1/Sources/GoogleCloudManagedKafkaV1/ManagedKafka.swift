@@ -400,7 +400,7 @@ extension Clients {
     /// See `ManagedKafkaClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.deleteCluster`.
@@ -695,7 +695,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -841,7 +841,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateTopic(
     topic: Topic?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.Topic {
     let request = UpdateTopicRequest().with {
       $0.topic = topic
@@ -946,7 +946,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateConsumerGroup(
     consumerGroup: ConsumerGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup {
     let request = UpdateConsumerGroupRequest().with {
       $0.consumerGroup = consumerGroup
@@ -1070,7 +1070,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateAcl(
     acl: Acl?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.Acl {
     let request = UpdateAclRequest().with {
       $0.acl = acl

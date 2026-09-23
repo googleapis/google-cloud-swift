@@ -47,13 +47,13 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public var errors: [Error] = []
 
   /// Output only. The creation timestamp of a triggeredJob.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The last update timestamp of a triggeredJob.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp of the last time this trigger executed.
-  public var lastRunTime: GoogleWKT.Timestamp? = nil
+  public var lastRunTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. A status for this trigger.
   public var status: JobTrigger.Status = JobTrigger.Status()
@@ -127,9 +127,12 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
       self.errors = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.lastRunTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .lastRunTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.lastRunTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .lastRunTime)
     if let value = try container.decodeIfPresent(JobTrigger.Status.self, forKey: .status) {
       self.status = value
     }
@@ -150,7 +153,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     self.job = job
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -239,7 +242,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       self.trigger = trigger
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -270,10 +273,10 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.JobTrigger.Trigger"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -414,10 +417,10 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.JobTrigger"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

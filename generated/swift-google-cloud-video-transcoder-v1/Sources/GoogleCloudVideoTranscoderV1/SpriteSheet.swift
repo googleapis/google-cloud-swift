@@ -79,12 +79,12 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Start time in seconds, relative to the output file timeline. Determines the
   /// first sprite to pick. The default is `0s`.
-  public var startTimeOffset: GoogleWKT.Duration? = nil
+  public var startTimeOffset: GoogleWKT.WKTDuration? = nil
 
   /// End time in seconds, relative to the output file timeline. When
   /// `end_time_offset` is not specified, the sprites are generated until the end
   /// of the output file.
-  public var endTimeOffset: GoogleWKT.Duration? = nil
+  public var endTimeOffset: GoogleWKT.WKTDuration? = nil
 
   /// The quality of the generated sprite sheet. Enter a value between 1
   /// and 100, where 1 is the lowest quality and 100 is the highest quality.
@@ -167,9 +167,9 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
       self.rowCount = value
     }
     self.startTimeOffset = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .startTimeOffset)
+      GoogleWKT.WKTDuration.self, forKey: .startTimeOffset)
     self.endTimeOffset = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .endTimeOffset)
+      GoogleWKT.WKTDuration.self, forKey: .endTimeOffset)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .quality) {
       self.quality = value
     }
@@ -187,13 +187,14 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
     if let totalCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalCount) {
       try extractionStrategyCheckAndSet(.totalCount(totalCount))
     }
-    if let interval = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .interval) {
+    if let interval = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .interval)
+    {
       try extractionStrategyCheckAndSet(.interval(interval))
     }
     self.extractionStrategy = extractionStrategy
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -230,16 +231,16 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
     case totalCount(Swift.Int32)
     /// Starting from `0s`, create sprites at regular intervals. Specify the
     /// interval value in seconds.
-    indirect case interval(GoogleWKT.Duration?)
+    indirect case interval(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.SpriteSheet"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

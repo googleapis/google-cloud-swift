@@ -534,7 +534,7 @@
       /// See `DocumentsClient.updateDocument`.
       func updateDocument(
         document: Document?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Document>
 
       /// See `DocumentsClient.reloadDocument`.
@@ -843,7 +843,7 @@
 
     public func updateDocument(
       document: Document?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Document> {
       let request = UpdateDocumentRequest().with {
         $0.document = document

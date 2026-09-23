@@ -85,7 +85,9 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       timeOffset = $0
     }
-    if let utcOffset = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .utcOffset) {
+    if let utcOffset = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration?.self, forKey: .utcOffset)
+    {
       try timeOffsetCheckAndSet(.utcOffset(utcOffset))
     }
     if let timeZone = try container.decodeIfPresent(GoogleType.TimeZone?.self, forKey: .timeZone) {
@@ -94,7 +96,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.timeOffset = timeOffset
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -237,7 +239,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// and no date). We assume all inputs are live.
   public enum OneOf_TimeOffset: Codable, Equatable, Sendable {
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
-    indirect case utcOffset(GoogleWKT.Duration?)
+    indirect case utcOffset(GoogleWKT.WKTDuration?)
     /// Time zone e.g. "America/Los_Angeles".
     indirect case timeZone(GoogleType.TimeZone?)
   }
@@ -245,10 +247,10 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.TimecodeConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

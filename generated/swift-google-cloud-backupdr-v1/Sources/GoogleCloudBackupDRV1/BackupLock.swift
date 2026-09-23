@@ -24,7 +24,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Required. The time after which this lock is not considered valid and will
   /// no longer protect the Backup from deletion.
-  public var lockUntilTime: GoogleWKT.Timestamp? = nil
+  public var lockUntilTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Metadata about the owner and reason for the lock.
   public var clientLockInfo: OneOf_ClientLockInfo? = nil
@@ -67,7 +67,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lockUntilTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lockUntilTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lockUntilTime)
 
     var clientLockInfo: OneOf_ClientLockInfo? = nil
     let clientLockInfoCheckAndSet = {
@@ -92,7 +92,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
     self.clientLockInfo = clientLockInfo
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -126,10 +126,10 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupLock"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

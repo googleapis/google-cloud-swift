@@ -352,7 +352,7 @@
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
       func updatePersistentResource(
         persistentResource: PersistentResource?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
@@ -635,7 +635,7 @@
 
     public func updatePersistentResource(
       persistentResource: PersistentResource?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let request = UpdatePersistentResourceRequest().with {
         $0.persistentResource = persistentResource

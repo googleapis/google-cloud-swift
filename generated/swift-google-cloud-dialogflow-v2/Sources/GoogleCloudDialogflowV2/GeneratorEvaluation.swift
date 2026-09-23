@@ -35,10 +35,10 @@
     public var generatorEvaluationConfig: GeneratorEvaluationConfig? = nil
 
     /// Output only. Creation time of this generator evaluation.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Completion time of this generator evaluation.
-    public var completeTime: GoogleWKT.Timestamp? = nil
+    public var completeTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Required. The initial generator that was used when creating this
     /// evaluation. This is a copy of the generator read from storage when creating
@@ -124,9 +124,10 @@
       }
       self.generatorEvaluationConfig = try container.decodeIfPresent(
         GeneratorEvaluationConfig.self, forKey: .generatorEvaluationConfig)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.completeTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .completeTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .completeTime)
       self.initialGenerator = try container.decodeIfPresent(
         Generator.self, forKey: .initialGenerator)
       self.evaluationStatus = try container.decodeIfPresent(
@@ -152,7 +153,7 @@
       self.metrics = metrics
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -189,10 +190,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

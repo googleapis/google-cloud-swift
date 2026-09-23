@@ -32,7 +32,7 @@ public struct ExportAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If not specified, the current time will be used. Due to delays in resource
   /// data collection and indexing, there is a volatile window during which
   /// running the same query may get different results.
-  public var readTime: GoogleWKT.Timestamp? = nil
+  public var readTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A list of asset types to take a snapshot for. For example:
   /// "compute.googleapis.com/Disk".
@@ -125,7 +125,7 @@ public struct ExportAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.readTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .readTime)
+    self.readTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .readTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .assetTypes) {
       self.assetTypes = value
     }
@@ -138,7 +138,7 @@ public struct ExportAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -158,10 +158,10 @@ public struct ExportAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.ExportAssetsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

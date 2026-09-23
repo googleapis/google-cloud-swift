@@ -570,7 +570,7 @@
 
     public func updatePlaybook(
       playbook: Playbook?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
       let request = UpdatePlaybookRequest().with {
         $0.playbook = playbook

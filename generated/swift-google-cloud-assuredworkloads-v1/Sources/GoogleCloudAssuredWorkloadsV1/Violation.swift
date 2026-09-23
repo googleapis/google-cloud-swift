@@ -31,14 +31,14 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Time of the event which triggered the Violation.
-  public var beginTime: GoogleWKT.Timestamp? = nil
+  public var beginTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The last time when the Violation record was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time of the event which fixed the Violation.
   /// If the violation is ACTIVE this will be empty.
-  public var resolveTime: GoogleWKT.Timestamp? = nil
+  public var resolveTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Category under which this violation is mapped.
   /// e.g. Location, Service Usage, Access, Encryption, etc.
@@ -72,7 +72,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Timestamp when this violation was acknowledged last.
   /// This will be absent when acknowledged field is marked as false.
-  public var acknowledgementTime: GoogleWKT.Timestamp? = nil
+  public var acknowledgementTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Immutable. Audit Log link to find business justification provided for violation
   /// exception. Format:
@@ -144,9 +144,11 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.beginTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .beginTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.resolveTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .resolveTime)
+    self.beginTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .beginTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.resolveTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .resolveTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
       self.category = value
     }
@@ -169,14 +171,14 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.acknowledged = value
     }
     self.acknowledgementTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .acknowledgementTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .acknowledgementTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exceptionAuditLogLink)
     {
       self.exceptionAuditLogLink = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -267,7 +269,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -332,7 +334,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
           Violation.Remediation.Instructions.Console.self, forKey: .consoleInstructions)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -409,7 +411,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -427,10 +429,10 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions.Gcloud"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -498,7 +500,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -516,10 +518,10 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions.Console"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -528,10 +530,10 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -688,10 +690,10 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -823,10 +825,10 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

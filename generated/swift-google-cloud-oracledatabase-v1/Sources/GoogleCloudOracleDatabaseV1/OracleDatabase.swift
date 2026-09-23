@@ -1856,7 +1856,7 @@ extension Clients {
     /// See `OracleDatabaseClient.updateAutonomousDatabase`.
     func updateAutonomousDatabase(
       autonomousDatabase: AutonomousDatabase?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase>
 
     /// See `OracleDatabaseClient.deleteAutonomousDatabase`.
@@ -1875,7 +1875,7 @@ extension Clients {
     /// See `OracleDatabaseClient.restoreAutonomousDatabase`.
     func restoreAutonomousDatabase(
       name: Swift.String,
-      restoreTime: GoogleWKT.Timestamp?,
+      restoreTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase>
 
     /// See `OracleDatabaseClient.stopAutonomousDatabase`.
@@ -1932,7 +1932,7 @@ extension Clients {
     /// See `OracleDatabaseClient.refreshAutonomousDatabase`.
     func refreshAutonomousDatabase(
       name: Swift.String,
-      refreshCutoffTime: GoogleWKT.Timestamp?,
+      refreshCutoffTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase>
 
     /// See `OracleDatabaseClient.createOdbNetwork`.
@@ -2002,7 +2002,7 @@ extension Clients {
     /// See `OracleDatabaseClient.updateExadbVmCluster`.
     func updateExadbVmCluster(
       exadbVmCluster: ExadbVmCluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster>
 
     /// See `OracleDatabaseClient.removeVirtualMachineExadbVmCluster`.
@@ -3457,7 +3457,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func updateAutonomousDatabase(
     autonomousDatabase: AutonomousDatabase?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let request = UpdateAutonomousDatabaseRequest().with {
       $0.autonomousDatabase = autonomousDatabase
@@ -3533,7 +3533,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func restoreAutonomousDatabase(
     name: Swift.String,
-    restoreTime: GoogleWKT.Timestamp?,
+    restoreTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let request = RestoreAutonomousDatabaseRequest().with {
       $0.name = name
@@ -3918,7 +3918,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func refreshAutonomousDatabase(
     name: Swift.String,
-    refreshCutoffTime: GoogleWKT.Timestamp?,
+    refreshCutoffTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let request = RefreshAutonomousDatabaseRequest().with {
       $0.name = name
@@ -4403,7 +4403,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func updateExadbVmCluster(
     exadbVmCluster: ExadbVmCluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
     let request = UpdateExadbVmClusterRequest().with {
       $0.exadbVmCluster = exadbVmCluster

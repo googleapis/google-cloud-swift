@@ -43,7 +43,7 @@ public struct Status: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A list of messages that carry the error details.  There is a common set of
   /// message types for APIs to use.
-  public var details: [GoogleWKT.`Any`] = []
+  public var details: [GoogleWKT.WKTAny] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,12 +88,12 @@ public struct Status: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
       self.message = value
     }
-    if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .details) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .details) {
       self.details = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -110,10 +110,10 @@ public struct Status: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.Status"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

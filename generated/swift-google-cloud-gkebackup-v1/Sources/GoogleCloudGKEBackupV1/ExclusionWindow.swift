@@ -37,7 +37,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - weekly window:
   ///   - days of week includes all seven days of a week: duration < 24 hours
   ///   - all other weekly window: duration < 168 hours (i.e., 24 * 7 hours)
-  public var duration: GoogleWKT.Duration? = nil
+  public var duration: GoogleWKT.WKTDuration? = nil
 
   /// Required. Specifies the day(s) on which the exclusion window takes
   /// effect. Exactly one of the fields MUST be specified.
@@ -85,7 +85,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.startTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .startTime)
-    self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+    self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
 
     var recurrence: OneOf_Recurrence? = nil
     let recurrenceCheckAndSet = {
@@ -113,7 +113,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     self.recurrence = recurrence
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -183,7 +183,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -198,10 +198,10 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow.DayOfWeekList"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -222,10 +222,10 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -78,7 +78,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   ///  _Currently, multiple entries or multiple values per entry are not
   ///  allowed._
-  public var labels: [Swift.String: GoogleWKT.ListValue] = [:]
+  public var labels: [Swift.String: GoogleWKT.WKTListValue] = [:]
 
   /// Multiple options to choose the budget's time period, specifying that only
   /// usage that occurs during this time period should be included in the budget.
@@ -155,7 +155,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
       self.subaccounts = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.ListValue].self, forKey: .labels)
+      [Swift.String: GoogleWKT.WKTListValue].self, forKey: .labels)
     {
       self.labels = value
     }
@@ -181,7 +181,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
     self.usagePeriod = usagePeriod
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -359,10 +359,10 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.budgets.v1.Filter"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

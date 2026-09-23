@@ -17,14 +17,14 @@
 import Foundation
 
 /// A single field of a message type.
-public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
+public struct WKTField: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The field type.
-  public var kind: Field.Kind = Field.Kind()
+  public var kind: WKTField.Kind = WKTField.Kind()
 
   /// The field cardinality.
-  public var cardinality: Field.Cardinality = Field.Cardinality()
+  public var cardinality: WKTField.Cardinality = WKTField.Cardinality()
 
   /// The field number.
   public var number: Swift.Int32 = Swift.Int32()
@@ -44,7 +44,7 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
   public var packed: Swift.Bool = Swift.Bool()
 
   /// The protocol buffer options.
-  public var options: [Option] = []
+  public var options: [WKTOption] = []
 
   /// The field JSON name.
   public var jsonName: Swift.String = Swift.String()
@@ -54,7 +54,7 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `Field`.
+  /// Initialize a new instance of `WKTField`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -62,7 +62,7 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Field().with { $0.kind = ... }
+  /// let value = WKTField().with { $0.kind = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -103,10 +103,10 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Field.Kind.self, forKey: .kind) {
+    if let value = try container.decodeIfPresent(WKTField.Kind.self, forKey: .kind) {
       self.kind = value
     }
-    if let value = try container.decodeIfPresent(Field.Cardinality.self, forKey: .cardinality) {
+    if let value = try container.decodeIfPresent(WKTField.Cardinality.self, forKey: .cardinality) {
       self.cardinality = value
     }
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .number) {
@@ -124,7 +124,7 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .packed) {
       self.packed = value
     }
-    if let value = try container.decodeIfPresent([Option].self, forKey: .options) {
+    if let value = try container.decodeIfPresent([WKTOption].self, forKey: .options) {
       self.options = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jsonName) {
@@ -135,7 +135,7 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -512,10 +512,10 @@ public struct Field: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.protobuf.Field"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

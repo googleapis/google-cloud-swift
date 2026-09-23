@@ -773,7 +773,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
     func partialUpdateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.createCluster`.
@@ -799,7 +799,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
     func partialUpdateCluster(
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
@@ -809,7 +809,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
     func updateMemoryLayer(
       memoryLayer: MemoryLayer?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MemoryLayer>
 
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
@@ -819,7 +819,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
     func updateAppProfile(
       appProfile: AppProfile?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AppProfile>
 
     /// See `BigtableInstanceAdminClient.createLogicalView`.
@@ -840,7 +840,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
     func updateLogicalView(
       logicalView: LogicalView?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.createMaterializedView`.
@@ -861,7 +861,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
     func updateMaterializedView(
       materializedView: MaterializedView?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.createInstance`.
@@ -1234,7 +1234,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func partialUpdateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = PartialUpdateInstanceRequest().with {
       $0.instance = instance
@@ -1401,7 +1401,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func partialUpdateCluster(
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = PartialUpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1459,7 +1459,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateMemoryLayer(
     memoryLayer: MemoryLayer?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
     let request = UpdateMemoryLayerRequest().with {
       $0.memoryLayer = memoryLayer
@@ -1649,7 +1649,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateAppProfile(
     appProfile: AppProfile?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AppProfile> {
     let request = UpdateAppProfileRequest().with {
       $0.appProfile = appProfile
@@ -1932,7 +1932,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateLogicalView(
     logicalView: LogicalView?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LogicalView> {
     let request = UpdateLogicalViewRequest().with {
       $0.logicalView = logicalView
@@ -2095,7 +2095,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateMaterializedView(
     materializedView: MaterializedView?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MaterializedView> {
     let request = UpdateMaterializedViewRequest().with {
       $0.materializedView = materializedView

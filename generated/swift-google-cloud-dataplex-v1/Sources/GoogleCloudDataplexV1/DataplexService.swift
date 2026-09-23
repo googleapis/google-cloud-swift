@@ -746,7 +746,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateLake`.
     func updateLake(
       lake: Lake?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Lake>
 
     /// See `DataplexServiceClient.deleteLake`.
@@ -779,7 +779,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateZone`.
     func updateZone(
       zone: Zone?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Zone>
 
     /// See `DataplexServiceClient.deleteZone`.
@@ -810,7 +810,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateAsset`.
     func updateAsset(
       asset: Asset?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Asset>
 
     /// See `DataplexServiceClient.deleteAsset`.
@@ -842,7 +842,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateTask`.
     func updateTask(
       task: Task?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Task>
 
     /// See `DataplexServiceClient.deleteTask`.
@@ -1161,7 +1161,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateLake(
     lake: Lake?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Lake> {
     let request = UpdateLakeRequest().with {
       $0.lake = lake
@@ -1374,7 +1374,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateZone(
     zone: Zone?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Zone> {
     let request = UpdateZoneRequest().with {
       $0.zone = zone
@@ -1587,7 +1587,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateAsset(
     asset: Asset?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Asset> {
     let request = UpdateAssetRequest().with {
       $0.asset = asset
@@ -1801,7 +1801,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateTask(
     task: Task?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Task> {
     let request = UpdateTaskRequest().with {
       $0.task = task

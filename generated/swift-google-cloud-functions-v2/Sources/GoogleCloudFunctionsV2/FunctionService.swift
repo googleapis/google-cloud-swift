@@ -328,7 +328,7 @@ extension Clients {
     /// See `FunctionServiceClient.updateFunction`.
     func updateFunction(
       function: Function?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Function>
 
     /// See `FunctionServiceClient.deleteFunction`.
@@ -558,7 +558,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func updateFunction(
     function: Function?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Function> {
     let request = UpdateFunctionRequest().with {
       $0.function = function

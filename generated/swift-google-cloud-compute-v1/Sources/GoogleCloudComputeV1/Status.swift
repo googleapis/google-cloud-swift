@@ -33,7 +33,7 @@
 
     /// A list of messages that carry the error details.  There is a common set of
     /// message types for APIs to use.
-    public var details: [GoogleWKT.`Any`] = []
+    public var details: [GoogleWKT.WKTAny] = []
 
     /// A developer-facing error message, which should be in English. Any
     /// user-facing error message should be localized and sent in the
@@ -78,13 +78,13 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.code = try container.decodeIfPresent(Swift.Int32.self, forKey: .code)
-      if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .details) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .details) {
         self.details = value
       }
       self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -101,10 +101,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Status"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

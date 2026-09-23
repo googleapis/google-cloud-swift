@@ -40,7 +40,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the conditions are treated as `OR` conditions: the workload will be
   /// terminated when it has been idle for `idle_ttl` or when `ttl` has been
   /// exceeded, whichever occurs first.
-  public var idleTtl: GoogleWKT.Duration? = nil
+  public var idleTtl: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The duration after which the workload will be terminated,
   /// specified as the JSON representation for
@@ -56,7 +56,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// are treated as `OR` conditions: the workload will be terminated when it has
   /// been idle for `idle_ttl` or when `ttl` has been exceeded, whichever occurs
   /// first.
-  public var ttl: GoogleWKT.Duration? = nil
+  public var ttl: GoogleWKT.WKTDuration? = nil
 
   /// Optional. A Cloud Storage bucket used to stage workload dependencies,
   /// config files, and store workload output and other ephemeral data, such as
@@ -145,8 +145,8 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
       self.kmsKey = value
     }
-    self.idleTtl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .idleTtl)
-    self.ttl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .ttl)
+    self.idleTtl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .idleTtl)
+    self.ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stagingBucket) {
       self.stagingBucket = value
     }
@@ -178,7 +178,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.network = network
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -217,10 +217,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.ExecutionConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

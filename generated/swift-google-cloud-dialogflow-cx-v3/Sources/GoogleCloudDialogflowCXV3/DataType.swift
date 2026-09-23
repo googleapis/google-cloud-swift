@@ -20,7 +20,7 @@
   /// Defines data types that are supported for inlined schemas. These types are
   /// consistent with [google.protobuf.Value][google.protobuf.Value].
   ///
-  /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.Value
+  /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue
   ///
   /// - Note: Adding cases to this enumeration is not considered a breaking change.
   ///   Always include an `@unknown default:` case when switching over this type.

@@ -461,7 +461,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
       func updateFeatureOnlineStore(
         featureOnlineStore: FeatureOnlineStore?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
@@ -492,7 +492,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
       func updateFeatureView(
         featureView: FeatureView?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
@@ -783,7 +783,7 @@
 
     public func updateFeatureOnlineStore(
       featureOnlineStore: FeatureOnlineStore?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore> {
       let request = UpdateFeatureOnlineStoreRequest().with {
         $0.featureOnlineStore = featureOnlineStore
@@ -965,7 +965,7 @@
 
     public func updateFeatureView(
       featureView: FeatureView?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<FeatureView> {
       let request = UpdateFeatureViewRequest().with {
         $0.featureView = featureView

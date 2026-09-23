@@ -27,7 +27,7 @@ public struct SustainabilityProjection: Codable, Equatable, GoogleWKT._AnyPackab
   public var kgCO2E: Swift.Double = Swift.Double()
 
   /// Duration for which this sustainability applies.
-  public var duration: GoogleWKT.Duration? = nil
+  public var duration: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,10 +67,10 @@ public struct SustainabilityProjection: Codable, Equatable, GoogleWKT._AnyPackab
     if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .kgCO2E) {
       self.kgCO2E = value
     }
-    self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+    self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -86,10 +86,10 @@ public struct SustainabilityProjection: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.SustainabilityProjection"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

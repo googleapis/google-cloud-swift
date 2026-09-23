@@ -611,7 +611,7 @@
 
     public func updateFlow(
       flow: Flow?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Flow {
       let request = UpdateFlowRequest().with {
         $0.flow = flow

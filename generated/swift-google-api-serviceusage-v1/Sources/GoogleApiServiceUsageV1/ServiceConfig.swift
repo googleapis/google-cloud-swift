@@ -33,7 +33,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A list of API interfaces exported by this service. Contains only the names,
   /// versions, and method names of the interfaces.
-  public var apis: [GoogleWKT.Api] = []
+  public var apis: [GoogleWKT.WKTApi] = []
 
   /// Additional API documentation. Contains only the summary and the
   /// documentation URL.
@@ -118,7 +118,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
       self.title = value
     }
-    if let value = try container.decodeIfPresent([GoogleWKT.Api].self, forKey: .apis) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTApi].self, forKey: .apis) {
       self.apis = value
     }
     self.documentation = try container.decodeIfPresent(
@@ -138,7 +138,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.monitoring = try container.decodeIfPresent(GoogleApi.Monitoring.self, forKey: .monitoring)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -162,10 +162,10 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.serviceusage.v1.ServiceConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

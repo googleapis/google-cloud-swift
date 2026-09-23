@@ -26,31 +26,31 @@
     Sendable
   {
     /// Minimum number of characters allowed.
-    public var minLength: GoogleWKT.Int32Value? = nil
+    public var minLength: GoogleWKT.WKTInt32Value? = nil
 
     /// The complexity of the password.
     public var complexity: PasswordValidationPolicy.Complexity =
       PasswordValidationPolicy.Complexity()
 
     /// Number of previous passwords that cannot be reused.
-    public var reuseInterval: GoogleWKT.Int32Value? = nil
+    public var reuseInterval: GoogleWKT.WKTInt32Value? = nil
 
     /// Disallow username as a part of the password.
-    public var disallowUsernameSubstring: GoogleWKT.BoolValue? = nil
+    public var disallowUsernameSubstring: GoogleWKT.WKTBoolValue? = nil
 
     /// Minimum interval after which the password can be changed. This flag is only
     /// supported for PostgreSQL.
-    public var passwordChangeInterval: GoogleWKT.Duration? = nil
+    public var passwordChangeInterval: GoogleWKT.WKTDuration? = nil
 
     /// Whether to enable the password policy or not. When enabled, passwords must
     /// meet complexity requirements. Keep this policy enabled to help prevent
     /// unauthorized access. Disabling this policy allows weak passwords.
-    public var enablePasswordPolicy: GoogleWKT.BoolValue? = nil
+    public var enablePasswordPolicy: GoogleWKT.WKTBoolValue? = nil
 
     /// This field is deprecated and will be removed in a future version of the
     /// API.
     @available(*, deprecated)
-    public var disallowCompromisedCredentials: GoogleWKT.BoolValue? = nil
+    public var disallowCompromisedCredentials: GoogleWKT.WKTBoolValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,25 +101,26 @@
     #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.minLength = try container.decodeIfPresent(GoogleWKT.Int32Value.self, forKey: .minLength)
+      self.minLength = try container.decodeIfPresent(
+        GoogleWKT.WKTInt32Value.self, forKey: .minLength)
       if let value = try container.decodeIfPresent(
         PasswordValidationPolicy.Complexity.self, forKey: .complexity)
       {
         self.complexity = value
       }
       self.reuseInterval = try container.decodeIfPresent(
-        GoogleWKT.Int32Value.self, forKey: .reuseInterval)
+        GoogleWKT.WKTInt32Value.self, forKey: .reuseInterval)
       self.disallowUsernameSubstring = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .disallowUsernameSubstring)
+        GoogleWKT.WKTBoolValue.self, forKey: .disallowUsernameSubstring)
       self.passwordChangeInterval = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .passwordChangeInterval)
+        GoogleWKT.WKTDuration.self, forKey: .passwordChangeInterval)
       self.enablePasswordPolicy = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .enablePasswordPolicy)
+        GoogleWKT.WKTBoolValue.self, forKey: .enablePasswordPolicy)
       self.disallowCompromisedCredentials = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .disallowCompromisedCredentials)
+        GoogleWKT.WKTBoolValue.self, forKey: .disallowCompromisedCredentials)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -256,10 +257,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.PasswordValidationPolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

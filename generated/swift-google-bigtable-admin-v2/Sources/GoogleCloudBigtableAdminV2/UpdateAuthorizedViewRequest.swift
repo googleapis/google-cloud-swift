@@ -37,7 +37,7 @@ public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// empty, all fields set in the request will be overwritten. A special value
   /// `*` means to overwrite all fields (including fields not set in the
   /// request).
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. If true, ignore the safety checks when updating the
   /// AuthorizedView.
@@ -82,13 +82,14 @@ public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleWKT._AnyPac
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.authorizedView = try container.decodeIfPresent(
       AuthorizedView.self, forKey: .authorizedView)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreWarnings) {
       self.ignoreWarnings = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -105,10 +106,10 @@ public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateAuthorizedViewRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

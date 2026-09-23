@@ -322,7 +322,7 @@
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
       func updateDeploymentResourcePool(
         deploymentResourcePool: DeploymentResourcePool?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
@@ -565,7 +565,7 @@
 
     public func updateDeploymentResourcePool(
       deploymentResourcePool: DeploymentResourcePool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
       let request = UpdateDeploymentResourcePoolRequest().with {
         $0.deploymentResourcePool = deploymentResourcePool

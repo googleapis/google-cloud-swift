@@ -51,7 +51,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the form of `{document_field_name}` or `pages.{page_field_name}`.
   ///
   /// [google.cloud.documentai.v1.ProcessResponse.document]: <doc:ProcessResponse/document>
-  public var fieldMask: GoogleWKT.FieldMask? = nil
+  public var fieldMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Inference-time options for the process API
   public var processOptions: ProcessOptions? = nil
@@ -125,7 +125,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipHumanReview) {
       self.skipHumanReview = value
     }
-    self.fieldMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .fieldMask)
+    self.fieldMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .fieldMask)
     self.processOptions = try container.decodeIfPresent(
       ProcessOptions.self, forKey: .processOptions)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
@@ -158,7 +158,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.source = source
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -199,10 +199,10 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.ProcessRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

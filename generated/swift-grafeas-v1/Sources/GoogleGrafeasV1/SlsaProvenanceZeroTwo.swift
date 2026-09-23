@@ -26,7 +26,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public var invocation: SlsaProvenanceZeroTwo.SlsaInvocation? = nil
 
-  public var buildConfig: GoogleWKT.Struct? = nil
+  public var buildConfig: GoogleWKT.WKTStruct? = nil
 
   public var metadata: SlsaProvenanceZeroTwo.SlsaMetadata? = nil
 
@@ -82,7 +82,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.invocation = try container.decodeIfPresent(
       SlsaProvenanceZeroTwo.SlsaInvocation.self, forKey: .invocation)
-    self.buildConfig = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .buildConfig)
+    self.buildConfig = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .buildConfig)
     self.metadata = try container.decodeIfPresent(
       SlsaProvenanceZeroTwo.SlsaMetadata.self, forKey: .metadata)
     if let value = try container.decodeIfPresent(
@@ -92,7 +92,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -154,7 +154,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -169,10 +169,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo.SlsaBuilder"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -231,7 +231,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -247,10 +247,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo.SlsaMaterial"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -261,9 +261,9 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     public var configSource: SlsaProvenanceZeroTwo.SlsaConfigSource? = nil
 
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
-    public var environment: GoogleWKT.Struct? = nil
+    public var environment: GoogleWKT.WKTStruct? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -304,11 +304,12 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.configSource = try container.decodeIfPresent(
         SlsaProvenanceZeroTwo.SlsaConfigSource.self, forKey: .configSource)
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
-      self.environment = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .environment)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
+      self.environment = try container.decodeIfPresent(
+        GoogleWKT.WKTStruct.self, forKey: .environment)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -325,10 +326,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo.SlsaInvocation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -394,7 +395,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -411,10 +412,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo.SlsaConfigSource"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -425,9 +426,9 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     public var buildInvocationId: Swift.String = Swift.String()
 
-    public var buildStartedOn: GoogleWKT.Timestamp? = nil
+    public var buildStartedOn: GoogleWKT.WKTTimestamp? = nil
 
-    public var buildFinishedOn: GoogleWKT.Timestamp? = nil
+    public var buildFinishedOn: GoogleWKT.WKTTimestamp? = nil
 
     public var completeness: SlsaProvenanceZeroTwo.SlsaCompleteness? = nil
 
@@ -478,9 +479,9 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
         self.buildInvocationId = value
       }
       self.buildStartedOn = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .buildStartedOn)
+        GoogleWKT.WKTTimestamp.self, forKey: .buildStartedOn)
       self.buildFinishedOn = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .buildFinishedOn)
+        GoogleWKT.WKTTimestamp.self, forKey: .buildFinishedOn)
       self.completeness = try container.decodeIfPresent(
         SlsaProvenanceZeroTwo.SlsaCompleteness.self, forKey: .completeness)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reproducible) {
@@ -488,7 +489,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -507,10 +508,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo.SlsaMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -574,7 +575,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -591,10 +592,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo.SlsaCompleteness"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -602,10 +603,10 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.SlsaProvenanceZeroTwo"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

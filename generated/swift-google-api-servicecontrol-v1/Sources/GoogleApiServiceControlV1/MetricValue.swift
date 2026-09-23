@@ -38,7 +38,7 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// will be used.
   ///
   /// [google.api.servicecontrol.v1.Operation.start_time]: <doc:Operation/startTime>
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The end of the time period over which this metric value's measurement
   /// applies.  If not specified,
@@ -46,7 +46,7 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// will be used.
   ///
   /// [google.api.servicecontrol.v1.Operation.end_time]: <doc:Operation/endTime>
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The value. The type of value used in the request must
   /// agree with the metric definition in the service configuration, otherwise
@@ -104,8 +104,8 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
     var value: OneOf_Value? = nil
     let valueCheckAndSet = {
@@ -137,7 +137,7 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
     self.value = value
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -185,10 +185,10 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicecontrol.v1.MetricValue"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

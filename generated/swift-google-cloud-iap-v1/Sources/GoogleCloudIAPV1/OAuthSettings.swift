@@ -27,19 +27,19 @@ public struct OAuthSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// https://developers.google.com/identity/protocols/OpenIDConnect#hd-param
   /// Note: IAP does not verify that the id token's hd claim matches this value
   /// since access behavior is managed by IAM policies.
-  public var loginHint: GoogleWKT.StringValue? = nil
+  public var loginHint: GoogleWKT.WKTStringValue? = nil
 
   /// Optional. OAuth 2.0 client ID used in the OAuth flow.
   /// This allows for client sharing. The risks of client sharing
   /// are outlined here:
   /// https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
-  public var clientId: GoogleWKT.StringValue? = nil
+  public var clientId: GoogleWKT.WKTStringValue? = nil
 
   /// Optional. Input only. OAuth secret paired with client ID.
-  public var clientSecret: GoogleWKT.StringValue? = nil
+  public var clientSecret: GoogleWKT.WKTStringValue? = nil
 
   /// Output only. OAuth secret SHA256 paired with client ID.
-  public var clientSecretSha256: GoogleWKT.StringValue? = nil
+  public var clientSecretSha256: GoogleWKT.WKTStringValue? = nil
 
   /// Optional. List of client ids allowed to use IAP programmatically.
   public var programmaticClients: [Swift.String] = []
@@ -85,19 +85,20 @@ public struct OAuthSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.loginHint = try container.decodeIfPresent(GoogleWKT.StringValue.self, forKey: .loginHint)
-    self.clientId = try container.decodeIfPresent(GoogleWKT.StringValue.self, forKey: .clientId)
+    self.loginHint = try container.decodeIfPresent(
+      GoogleWKT.WKTStringValue.self, forKey: .loginHint)
+    self.clientId = try container.decodeIfPresent(GoogleWKT.WKTStringValue.self, forKey: .clientId)
     self.clientSecret = try container.decodeIfPresent(
-      GoogleWKT.StringValue.self, forKey: .clientSecret)
+      GoogleWKT.WKTStringValue.self, forKey: .clientSecret)
     self.clientSecretSha256 = try container.decodeIfPresent(
-      GoogleWKT.StringValue.self, forKey: .clientSecretSha256)
+      GoogleWKT.WKTStringValue.self, forKey: .clientSecretSha256)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .programmaticClients)
     {
       self.programmaticClients = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -116,10 +117,10 @@ public struct OAuthSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.OAuthSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

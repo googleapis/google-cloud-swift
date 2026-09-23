@@ -370,7 +370,7 @@ extension Clients {
     /// See `AttachedClustersClient.updateAttachedCluster`.
     func updateAttachedCluster(
       attachedCluster: AttachedCluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
 
     /// See `AttachedClustersClient.importAttachedCluster`.
@@ -547,7 +547,7 @@ extension Clients.AttachedClustersProtocol {
 
   public func updateAttachedCluster(
     attachedCluster: AttachedCluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AttachedCluster> {
     let request = UpdateAttachedClusterRequest().with {
       $0.attachedCluster = attachedCluster

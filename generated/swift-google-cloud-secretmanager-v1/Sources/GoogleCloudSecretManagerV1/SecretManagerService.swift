@@ -537,7 +537,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func updateSecret(
     secret: Secret?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecretManagerV1.Secret {
     let request = UpdateSecretRequest().with {
       $0.secret = secret

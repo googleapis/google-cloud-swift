@@ -37,19 +37,19 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Scheduled start time of the maintenance. The maintenance will
   /// start at `maintenanceScheduledStartTime` or later, with best effort to
   /// finish before `maintenanceScheduledEndTime`.
-  public var maintenanceScheduledStartTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceScheduledStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. An estimated (best effort, not guaranteed) end time of the
   /// scheduled maintenance.
-  public var maintenanceScheduledEndTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceScheduledEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Actual date when the maintenance started. Field present only
   /// after the state changed to `RUNNING`.
-  public var maintenanceStartTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Actual date when the maintenance successfully completed. Field
   /// present only after the state changed to `SUCCEEDED`.
-  public var maintenanceEndTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Indicates whether the user has some control over that
   /// maintenance, either proactively before maintenance was scheduled with
@@ -132,13 +132,13 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       self.category = value
     }
     self.maintenanceScheduledStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceScheduledStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceScheduledStartTime)
     self.maintenanceScheduledEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceScheduledEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceScheduledEndTime)
     self.maintenanceStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceStartTime)
     self.maintenanceEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceEndTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userControllable) {
       self.userControllable = value
     }
@@ -150,7 +150,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -232,7 +232,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -248,10 +248,10 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Stats"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -311,7 +311,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -327,10 +327,10 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Aggregate"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -338,10 +338,10 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -55,19 +55,19 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Time at which the `Rollout` was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the `Rollout` was approved.
-  public var approveTime: GoogleWKT.Timestamp? = nil
+  public var approveTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the `Rollout` was enqueued.
-  public var enqueueTime: GoogleWKT.Timestamp? = nil
+  public var enqueueTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the `Rollout` started deploying.
-  public var deployStartTime: GoogleWKT.Timestamp? = nil
+  public var deployStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the `Rollout` finished deploying.
-  public var deployEndTime: GoogleWKT.Timestamp? = nil
+  public var deployEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. The ID of Target to which this `Rollout` is deploying.
   public var targetId: Swift.String = Swift.String()
@@ -211,13 +211,16 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.approveTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .approveTime)
-    self.enqueueTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .enqueueTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.approveTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .approveTime)
+    self.enqueueTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .enqueueTime)
     self.deployStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .deployStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .deployStartTime)
     self.deployEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .deployEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .deployEndTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
       self.targetId = value
     }
@@ -263,7 +266,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -769,10 +772,10 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.Rollout"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -30,7 +30,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The maximum duration for which new events are added before a file is
   /// closed and a new file is created. Values within the range of 15-60 seconds
   /// are allowed.
-  public var fileRotationInterval: GoogleWKT.Duration? = nil
+  public var fileRotationInterval: GoogleWKT.WKTDuration? = nil
 
   /// File Format that the data should be written in.
   public var fileFormat: OneOf_FileFormat? = nil
@@ -83,7 +83,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.fileRotationMb = value
     }
     self.fileRotationInterval = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .fileRotationInterval)
+      GoogleWKT.WKTDuration.self, forKey: .fileRotationInterval)
 
     var fileFormat: OneOf_FileFormat? = nil
     let fileFormatCheckAndSet = {
@@ -108,7 +108,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.fileFormat = fileFormat
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -142,10 +142,10 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.GcsDestinationConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

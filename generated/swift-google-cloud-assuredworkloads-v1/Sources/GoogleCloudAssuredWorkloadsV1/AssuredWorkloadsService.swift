@@ -271,7 +271,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
 
   public func updateWorkload(
     workload: Workload?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
     let request = UpdateWorkloadRequest().with {
       $0.workload = workload

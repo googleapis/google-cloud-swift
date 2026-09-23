@@ -312,7 +312,7 @@
 
     public func updateGenerator(
       generator: Generator?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Generator {
       let request = UpdateGeneratorRequest().with {
         $0.generator = generator

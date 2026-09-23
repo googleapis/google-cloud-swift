@@ -48,16 +48,16 @@ public struct Changelog: Codable, Equatable, GoogleWKT._AnyPackable,
   public var action: Swift.String = Swift.String()
 
   /// Output only. The original resource before the change.
-  public var originalResource: GoogleWKT.Struct? = nil
+  public var originalResource: GoogleWKT.WKTStruct? = nil
 
   /// Output only. The new resource after the change.
-  public var newResource: GoogleWKT.Struct? = nil
+  public var newResource: GoogleWKT.WKTStruct? = nil
 
   /// Output only. The dependent resources that were changed.
-  public var dependentResources: [GoogleWKT.Struct] = []
+  public var dependentResources: [GoogleWKT.WKTStruct] = []
 
   /// Output only. The time when the change was made.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The monotonically increasing sequence number of the changelog.
   public var sequenceNumber: Swift.Int64 = Swift.Int64()
@@ -139,20 +139,21 @@ public struct Changelog: Codable, Equatable, GoogleWKT._AnyPackable,
       self.action = value
     }
     self.originalResource = try container.decodeIfPresent(
-      GoogleWKT.Struct.self, forKey: .originalResource)
-    self.newResource = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .newResource)
+      GoogleWKT.WKTStruct.self, forKey: .originalResource)
+    self.newResource = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .newResource)
     if let value = try container.decodeIfPresent(
-      [GoogleWKT.Struct].self, forKey: .dependentResources)
+      [GoogleWKT.WKTStruct].self, forKey: .dependentResources)
     {
       self.dependentResources = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sequenceNumber) {
       self.sequenceNumber = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -178,10 +179,10 @@ public struct Changelog: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Changelog"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

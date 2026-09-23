@@ -25,10 +25,10 @@ public struct WorkloadOnboardingStep: Codable, Equatable, GoogleWKT._AnyPackable
   public var step: WorkloadOnboardingStep.Step = WorkloadOnboardingStep.Step()
 
   /// The starting time of the onboarding step.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The completion time of the onboarding step.
-  public var completionTime: GoogleWKT.Timestamp? = nil
+  public var completionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The completion state of the onboarding step.
   public var completionState: CompletionState = CompletionState()
@@ -75,15 +75,15 @@ public struct WorkloadOnboardingStep: Codable, Equatable, GoogleWKT._AnyPackable
     if let value = try container.decodeIfPresent(WorkloadOnboardingStep.Step.self, forKey: .step) {
       self.step = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.completionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .completionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .completionTime)
     if let value = try container.decodeIfPresent(CompletionState.self, forKey: .completionState) {
       self.completionState = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -219,10 +219,10 @@ public struct WorkloadOnboardingStep: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudcontrolspartner.v1.WorkloadOnboardingStep"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

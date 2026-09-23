@@ -25,7 +25,7 @@ public struct SecurityBulletin: Codable, Equatable, GoogleWKT._AnyPackable,
   public var bulletinId: Swift.String = Swift.String()
 
   /// Submission time of this Security Bulletin.
-  public var submissionTime: GoogleWKT.Timestamp? = nil
+  public var submissionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// This represents a version that the cluster receiving this notification
   /// should be upgraded to, based on its current version. For example, 1.15.0
@@ -72,7 +72,7 @@ public struct SecurityBulletin: Codable, Equatable, GoogleWKT._AnyPackable,
       self.bulletinId = value
     }
     self.submissionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .submissionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .submissionTime)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .suggestedUpgradeVersion)
     {
@@ -80,7 +80,7 @@ public struct SecurityBulletin: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -97,10 +97,10 @@ public struct SecurityBulletin: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.SecurityBulletin"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

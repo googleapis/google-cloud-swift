@@ -60,7 +60,7 @@
     public var fileType: SqlFileType = SqlFileType()
 
     /// Whether to perform a serverless export.
-    public var offload: GoogleWKT.BoolValue? = nil
+    public var offload: GoogleWKT.WKTBoolValue? = nil
 
     /// Options for exporting data as BAK files.
     public var bakExportOptions: ExportContext.SqlBakExportOptions? = nil
@@ -133,14 +133,14 @@
       if let value = try container.decodeIfPresent(SqlFileType.self, forKey: .fileType) {
         self.fileType = value
       }
-      self.offload = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .offload)
+      self.offload = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .offload)
       self.bakExportOptions = try container.decodeIfPresent(
         ExportContext.SqlBakExportOptions.self, forKey: .bakExportOptions)
       self.tdeExportOptions = try container.decodeIfPresent(
         ExportContext.SqlTdeExportOptions.self, forKey: .tdeExportOptions)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -241,7 +241,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -260,10 +260,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.ExportContext.SqlCsvExportOptions"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -277,15 +277,15 @@
       public var tables: [Swift.String] = []
 
       /// Export only schemas.
-      public var schemaOnly: GoogleWKT.BoolValue? = nil
+      public var schemaOnly: GoogleWKT.WKTBoolValue? = nil
 
       public var mysqlExportOptions: ExportContext.SqlExportOptions.MysqlExportOptions? = nil
 
       /// Optional. The number of threads to use for parallel export.
-      public var threads: GoogleWKT.Int32Value? = nil
+      public var threads: GoogleWKT.WKTInt32Value? = nil
 
       /// Optional. Whether or not the export should be parallel.
-      public var parallel: GoogleWKT.BoolValue? = nil
+      public var parallel: GoogleWKT.WKTBoolValue? = nil
 
       /// Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
       public var postgresExportOptions: ExportContext.SqlExportOptions.PostgresExportOptions? = nil
@@ -337,16 +337,17 @@
           self.tables = value
         }
         self.schemaOnly = try container.decodeIfPresent(
-          GoogleWKT.BoolValue.self, forKey: .schemaOnly)
+          GoogleWKT.WKTBoolValue.self, forKey: .schemaOnly)
         self.mysqlExportOptions = try container.decodeIfPresent(
           ExportContext.SqlExportOptions.MysqlExportOptions.self, forKey: .mysqlExportOptions)
-        self.threads = try container.decodeIfPresent(GoogleWKT.Int32Value.self, forKey: .threads)
-        self.parallel = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .parallel)
+        self.threads = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .threads)
+        self.parallel = try container.decodeIfPresent(
+          GoogleWKT.WKTBoolValue.self, forKey: .parallel)
         self.postgresExportOptions = try container.decodeIfPresent(
           ExportContext.SqlExportOptions.PostgresExportOptions.self, forKey: .postgresExportOptions)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -373,7 +374,7 @@
         /// `2`, the CHANGE MASTER TO statement is written as a SQL comment and
         /// has no effect. If set to any value other than `1`, --set-gtid-purged
         /// is set to OFF.
-        public var masterData: GoogleWKT.Int32Value? = nil
+        public var masterData: GoogleWKT.WKTInt32Value? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -409,10 +410,10 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.masterData = try container.decodeIfPresent(
-            GoogleWKT.Int32Value.self, forKey: .masterData)
+            GoogleWKT.WKTInt32Value.self, forKey: .masterData)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -428,10 +429,10 @@
           return
             "type.googleapis.com/google.cloud.sql.v1.ExportContext.SqlExportOptions.MysqlExportOptions"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -443,11 +444,11 @@
         /// Optional. Use this option to include DROP <code>&lt;object&gt;</code>
         /// SQL statements. Use these statements to delete database objects before
         /// running the import operation.
-        public var clean: GoogleWKT.BoolValue? = nil
+        public var clean: GoogleWKT.WKTBoolValue? = nil
 
         /// Optional. Option to include an IF EXISTS SQL statement with each DROP
         /// statement produced by clean.
-        public var ifExists: GoogleWKT.BoolValue? = nil
+        public var ifExists: GoogleWKT.WKTBoolValue? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -484,11 +485,12 @@
 
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.clean = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .clean)
-          self.ifExists = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .ifExists)
+          self.clean = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .clean)
+          self.ifExists = try container.decodeIfPresent(
+            GoogleWKT.WKTBoolValue.self, forKey: .ifExists)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -505,10 +507,10 @@
           return
             "type.googleapis.com/google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -516,10 +518,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.ExportContext.SqlExportOptions"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -529,37 +531,37 @@
       Sendable
     {
       /// Whether or not the export should be striped.
-      public var striped: GoogleWKT.BoolValue? = nil
+      public var striped: GoogleWKT.WKTBoolValue? = nil
 
       /// Option for specifying how many stripes to use for the export.
       /// If blank, and the value of the striped field is true,
       /// the number of stripes is automatically chosen.
-      public var stripeCount: GoogleWKT.Int32Value? = nil
+      public var stripeCount: GoogleWKT.WKTInt32Value? = nil
 
       /// Type of this bak file will be export, FULL or DIFF, SQL Server only
       public var bakType: BakType = BakType()
 
       /// Deprecated: copy_only is deprecated. Use differential_base instead
       @available(*, deprecated)
-      public var copyOnly: GoogleWKT.BoolValue? = nil
+      public var copyOnly: GoogleWKT.WKTBoolValue? = nil
 
       /// Whether or not the backup can be used as a differential base
       /// copy_only backup can not be served as differential base
-      public var differentialBase: GoogleWKT.BoolValue? = nil
+      public var differentialBase: GoogleWKT.WKTBoolValue? = nil
 
       /// Optional. The begin timestamp when transaction log will be included in
       /// the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339)
       /// format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
       /// available logs from the beginning of retention period will be included.
       /// Only applied to Cloud SQL for SQL Server.
-      public var exportLogStartTime: GoogleWKT.Timestamp? = nil
+      public var exportLogStartTime: GoogleWKT.WKTTimestamp? = nil
 
       /// Optional. The end timestamp when transaction log will be included in the
       /// export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format
       /// (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
       /// available logs until current time will be included. Only applied to Cloud
       /// SQL for SQL Server.
-      public var exportLogEndTime: GoogleWKT.Timestamp? = nil
+      public var exportLogEndTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -609,22 +611,23 @@
       #endif
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.striped = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .striped)
+        self.striped = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .striped)
         self.stripeCount = try container.decodeIfPresent(
-          GoogleWKT.Int32Value.self, forKey: .stripeCount)
+          GoogleWKT.WKTInt32Value.self, forKey: .stripeCount)
         if let value = try container.decodeIfPresent(BakType.self, forKey: .bakType) {
           self.bakType = value
         }
-        self.copyOnly = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .copyOnly)
+        self.copyOnly = try container.decodeIfPresent(
+          GoogleWKT.WKTBoolValue.self, forKey: .copyOnly)
         self.differentialBase = try container.decodeIfPresent(
-          GoogleWKT.BoolValue.self, forKey: .differentialBase)
+          GoogleWKT.WKTBoolValue.self, forKey: .differentialBase)
         self.exportLogStartTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .exportLogStartTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .exportLogStartTime)
         self.exportLogEndTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .exportLogEndTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .exportLogEndTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -648,10 +651,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.ExportContext.SqlBakExportOptions"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -732,7 +735,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -750,10 +753,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.ExportContext.SqlTdeExportOptions"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -761,10 +764,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.ExportContext"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

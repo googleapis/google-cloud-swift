@@ -970,7 +970,7 @@
 
     public func updateNotebookRuntimeTemplate(
       notebookRuntimeTemplate: NotebookRuntimeTemplate?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate {
       let request = UpdateNotebookRuntimeTemplateRequest().with {
         $0.notebookRuntimeTemplate = notebookRuntimeTemplate

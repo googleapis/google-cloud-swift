@@ -130,7 +130,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -180,7 +180,7 @@
       /// [google.cloud.aiplatform.v1.ExplainRequest.instances]: <doc:ExplainRequest/instances>
       /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
       /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
-      public var inputBaselines: [GoogleWKT.Value] = []
+      public var inputBaselines: [GoogleWKT.WKTValue] = []
 
       /// Name of the input tensor for this feature. Required and is only
       /// applicable to Vertex AI-provided images for Tensorflow.
@@ -238,7 +238,7 @@
       /// The shape of each baseline should match the shape of the encoded tensor.
       /// If a scalar is provided, Vertex AI broadcasts to the same shape as the
       /// encoded tensor.
-      public var encodedBaselines: [GoogleWKT.Value] = []
+      public var encodedBaselines: [GoogleWKT.WKTValue] = []
 
       /// Visualization configurations for image explanation.
       public var visualization: ExplanationMetadata.InputMetadata.Visualization? = nil
@@ -309,7 +309,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          [GoogleWKT.Value].self, forKey: .inputBaselines)
+          [GoogleWKT.WKTValue].self, forKey: .inputBaselines)
         {
           self.inputBaselines = value
         }
@@ -345,7 +345,7 @@
           self.encodedTensorName = value
         }
         if let value = try container.decodeIfPresent(
-          [GoogleWKT.Value].self, forKey: .encodedBaselines)
+          [GoogleWKT.WKTValue].self, forKey: .encodedBaselines)
         {
           self.encodedBaselines = value
         }
@@ -356,7 +356,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -459,7 +459,7 @@
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -478,10 +478,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.FeatureValueDomain"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -615,7 +615,7 @@
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1165,10 +1165,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1372,10 +1372,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1453,7 +1453,7 @@
           displayNameMapping = $0
         }
         if let indexDisplayNameMapping = try container.decodeIfPresent(
-          GoogleWKT.Value?.self, forKey: .indexDisplayNameMapping)
+          GoogleWKT.WKTValue?.self, forKey: .indexDisplayNameMapping)
         {
           try displayNameMappingCheckAndSet(.indexDisplayNameMapping(indexDisplayNameMapping))
         }
@@ -1465,7 +1465,7 @@
         self.displayNameMapping = displayNameMapping
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1515,7 +1515,7 @@
         ///
         /// [google.cloud.aiplatform.v1.Attribution.output_display_name]: <doc:Attribution/outputDisplayName>
         /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
-        indirect case indexDisplayNameMapping(GoogleWKT.Value?)
+        indirect case indexDisplayNameMapping(GoogleWKT.WKTValue?)
         /// Specify a field name in the prediction to look for the display name.
         ///
         /// Use this if the prediction contains the display names for the outputs.
@@ -1532,10 +1532,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.OutputMetadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1543,10 +1543,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

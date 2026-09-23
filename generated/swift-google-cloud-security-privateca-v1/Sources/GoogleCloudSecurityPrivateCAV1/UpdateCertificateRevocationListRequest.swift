@@ -32,7 +32,7 @@ public struct UpdateCertificateRevocationListRequest: Codable, Equatable, Google
   public var certificateRevocationList: CertificateRevocationList? = nil
 
   /// Required. A list of fields to be updated in this request.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. An ID to identify requests. Specify a unique request ID so that
   /// if you must retry your request, the server will know to ignore the request
@@ -88,13 +88,14 @@ public struct UpdateCertificateRevocationListRequest: Codable, Equatable, Google
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.certificateRevocationList = try container.decodeIfPresent(
       CertificateRevocationList.self, forKey: .certificateRevocationList)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -113,10 +114,10 @@ public struct UpdateCertificateRevocationListRequest: Codable, Equatable, Google
     return
       "type.googleapis.com/google.cloud.security.privateca.v1.UpdateCertificateRevocationListRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

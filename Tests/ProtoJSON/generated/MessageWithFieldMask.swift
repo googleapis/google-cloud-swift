@@ -22,16 +22,16 @@ public struct MessageWithFieldMask: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleWKT.FieldMask? = nil
+  public var singular: GoogleWKT.WKTFieldMask? = nil
 
   /// An optional field.
-  public var `optional`: GoogleWKT.FieldMask? = nil
+  public var `optional`: GoogleWKT.WKTFieldMask? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleWKT.FieldMask] = []
+  public var repeated: [GoogleWKT.WKTFieldMask] = []
 
   /// A map field, messages cannot be keys.
-  public var map: [Swift.String: GoogleWKT.FieldMask] = [:]
+  public var map: [Swift.String: GoogleWKT.WKTFieldMask] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,19 +72,20 @@ public struct MessageWithFieldMask: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .singular)
-    self.`optional` = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .`optional`)
-    if let value = try container.decodeIfPresent([GoogleWKT.FieldMask].self, forKey: .repeated) {
+    self.singular = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .singular)
+    self.`optional` = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .`optional`)
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTFieldMask].self, forKey: .repeated) {
       self.repeated = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.FieldMask].self, forKey: .map)
+      [Swift.String: GoogleWKT.WKTFieldMask].self, forKey: .map)
     {
       self.map = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -102,10 +103,10 @@ public struct MessageWithFieldMask: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithFieldMask"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

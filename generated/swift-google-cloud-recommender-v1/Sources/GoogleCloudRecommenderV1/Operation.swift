@@ -87,7 +87,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// When both path_filters and path_value_matchers are set, an implicit AND
   /// must be performed.
-  public var pathFilters: [Swift.String: GoogleWKT.Value] = [:]
+  public var pathFilters: [Swift.String: GoogleWKT.WKTValue] = [:]
 
   /// Similar to path_filters, this contains set of filters to apply if `path`
   /// field refers to array elements. This is meant to support value matching
@@ -170,7 +170,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sourcePath = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Value].self, forKey: .pathFilters)
+      [Swift.String: GoogleWKT.WKTValue].self, forKey: .pathFilters)
     {
       self.pathFilters = value
     }
@@ -190,7 +190,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       pathValue = $0
     }
-    if let value = try container.decodeIfPresent(GoogleWKT.Value?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue?.self, forKey: .value) {
       try pathValueCheckAndSet(.value(value))
     }
     if let valueMatcher = try container.decodeIfPresent(ValueMatcher?.self, forKey: .valueMatcher) {
@@ -199,7 +199,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     self.pathValue = pathValue
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -233,7 +233,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Value for the `path` field. Will be set for actions:'add'/'replace'.
     /// Maybe set for action: 'test'. Either this or `value_matcher` will be set
     /// for 'test' operation. An exact match must be performed.
-    indirect case value(GoogleWKT.Value?)
+    indirect case value(GoogleWKT.WKTValue?)
     /// Can be set for action 'test' for advanced matching for the value of
     /// 'path' field. Either this or `value` will be set for 'test' operation.
     indirect case valueMatcher(ValueMatcher?)
@@ -242,10 +242,10 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.Operation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

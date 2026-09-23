@@ -543,7 +543,7 @@ extension Clients {
     /// See `EdgeContainerClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.upgradeCluster`.
@@ -584,7 +584,7 @@ extension Clients {
     /// See `EdgeContainerClient.updateNodePool`.
     func updateNodePool(
       nodePool: NodePool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.deleteNodePool`.
@@ -924,7 +924,7 @@ extension Clients.EdgeContainerProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1187,7 +1187,7 @@ extension Clients.EdgeContainerProtocol {
 
   public func updateNodePool(
     nodePool: NodePool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<NodePool> {
     let request = UpdateNodePoolRequest().with {
       $0.nodePool = nodePool

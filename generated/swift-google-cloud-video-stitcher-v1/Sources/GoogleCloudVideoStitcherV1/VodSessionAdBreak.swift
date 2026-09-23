@@ -28,10 +28,10 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleWKT._AnyPackable,
   public var ads: [VodSessionAd] = []
 
   /// Ad break end time in seconds relative to the start of the VOD asset.
-  public var endTimeOffset: GoogleWKT.Duration? = nil
+  public var endTimeOffset: GoogleWKT.WKTDuration? = nil
 
   /// Ad break start time in seconds relative to the start of the VOD asset.
-  public var startTimeOffset: GoogleWKT.Duration? = nil
+  public var startTimeOffset: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,12 +79,12 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleWKT._AnyPackable,
       self.ads = value
     }
     self.endTimeOffset = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .endTimeOffset)
+      GoogleWKT.WKTDuration.self, forKey: .endTimeOffset)
     self.startTimeOffset = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .startTimeOffset)
+      GoogleWKT.WKTDuration.self, forKey: .startTimeOffset)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -102,10 +102,10 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.VodSessionAdBreak"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

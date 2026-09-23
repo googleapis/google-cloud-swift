@@ -58,10 +58,10 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   public var properties: [Property] = []
 
   /// Output only. The time when the document is last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the document is created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// This is used when DocAI was not used to load the document and parsing/
   /// extracting is needed for the inline_raw_document.  For example, if
@@ -91,7 +91,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. If linked to a Collection with RetentionPolicy, the date when
   /// the document becomes mutable.
-  public var dispositionTime: GoogleWKT.Timestamp? = nil
+  public var dispositionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Indicates if the document has a legal hold on it.
   public var legalHold: Swift.Bool = Swift.Bool()
@@ -205,8 +205,10 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Property].self, forKey: .properties) {
       self.properties = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(
       RawDocumentFileType.self, forKey: .rawDocumentFileType)
     {
@@ -231,7 +233,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       self.updater = value
     }
     self.dispositionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .dispositionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .dispositionTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .legalHold) {
       self.legalHold = value
     }
@@ -279,7 +281,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     self.rawDocument = rawDocument
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -348,10 +350,10 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.Document"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

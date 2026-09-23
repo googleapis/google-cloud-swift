@@ -847,7 +847,7 @@ extension Clients {
     /// See `AppPlatformClient.updateApplication`.
     func updateApplication(
       application: Application?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.deleteApplication`.
@@ -950,7 +950,7 @@ extension Clients {
     /// See `AppPlatformClient.updateDraft`.
     func updateDraft(
       draft: Draft?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.deleteDraft`.
@@ -980,7 +980,7 @@ extension Clients {
     /// See `AppPlatformClient.updateProcessor`.
     func updateProcessor(
       processor: Processor?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.deleteProcessor`.
@@ -1368,7 +1368,7 @@ extension Clients.AppPlatformProtocol {
 
   public func updateApplication(
     application: Application?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let request = UpdateApplicationRequest().with {
       $0.application = application
@@ -1913,7 +1913,7 @@ extension Clients.AppPlatformProtocol {
 
   public func updateDraft(
     draft: Draft?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Draft> {
     let request = UpdateDraftRequest().with {
       $0.draft = draft
@@ -2112,7 +2112,7 @@ extension Clients.AppPlatformProtocol {
 
   public func updateProcessor(
     processor: Processor?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Processor> {
     let request = UpdateProcessorRequest().with {
       $0.processor = processor

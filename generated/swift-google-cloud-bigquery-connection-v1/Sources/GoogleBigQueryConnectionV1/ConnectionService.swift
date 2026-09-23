@@ -277,7 +277,7 @@ extension Clients.ConnectionServiceProtocol {
   public func updateConnection(
     name: Swift.String,
     connection: Connection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
     let request = UpdateConnectionRequest().with {
       $0.name = name

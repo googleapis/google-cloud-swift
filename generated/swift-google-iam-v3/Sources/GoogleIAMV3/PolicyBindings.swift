@@ -225,7 +225,7 @@ extension Clients {
     /// See `PolicyBindingsClient.updatePolicyBinding`.
     func updatePolicyBinding(
       policyBinding: PolicyBinding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PolicyBinding>
 
     /// See `PolicyBindingsClient.deletePolicyBinding`.
@@ -378,7 +378,7 @@ extension Clients.PolicyBindingsProtocol {
 
   public func updatePolicyBinding(
     policyBinding: PolicyBinding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
     let request = UpdatePolicyBindingRequest().with {
       $0.policyBinding = policyBinding

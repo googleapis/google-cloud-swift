@@ -1094,8 +1094,8 @@ extension Clients.ServiceManagerProtocol {
   }
 
   public func generateConfigReport(
-    newConfig: GoogleWKT.`Any`?,
-    oldConfig: GoogleWKT.`Any`?,
+    newConfig: GoogleWKT.WKTAny?,
+    oldConfig: GoogleWKT.WKTAny?,
   ) async throws -> GoogleApiServiceManagementV1.GenerateConfigReportResponse {
     let request = GenerateConfigReportRequest().with {
       $0.newConfig = newConfig

@@ -30,7 +30,7 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleWKT._Any
   public var token: Swift.String = Swift.String()
 
   /// The expiration time of the token.
-  public var expirationTime: GoogleWKT.Timestamp? = nil
+  public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,10 +71,10 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleWKT._Any
       self.token = value
     }
     self.expirationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expirationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -90,10 +90,10 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleWKT._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.GenerateStreamHlsTokenResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

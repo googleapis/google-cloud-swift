@@ -42,10 +42,10 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The time the migrating VM was created (this refers to this
   /// resource and not to the time it was installed in the source).
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The last time the migrating VM resource was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The most updated snapshot created time in the source that
   /// finished replication.
@@ -55,7 +55,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: MigratingVm.State = MigratingVm.State()
 
   /// Output only. The last time the migrating VM state was updated.
-  public var stateTime: GoogleWKT.Timestamp? = nil
+  public var stateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Details of the current running replication cycle.
   public var currentSyncInfo: ReplicationCycle? = nil
@@ -203,13 +203,15 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
     self.policy = try container.decodeIfPresent(SchedulePolicy.self, forKey: .policy)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.lastSync = try container.decodeIfPresent(ReplicationSync.self, forKey: .lastSync)
     if let value = try container.decodeIfPresent(MigratingVm.State.self, forKey: .state) {
       self.state = value
     }
-    self.stateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .stateTime)
+    self.stateTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .stateTime)
     self.currentSyncInfo = try container.decodeIfPresent(
       ReplicationCycle.self, forKey: .currentSyncInfo)
     self.lastReplicationCycle = try container.decodeIfPresent(
@@ -284,7 +286,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     self.sourceVmDetails = sourceVmDetails
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -339,7 +341,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. Timestamp of when this resource is considered expired.
-    public var expireTime: GoogleWKT.Timestamp? = nil
+    public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The number of times expiration was extended.
     public var extensionCount: Swift.Int32 = Swift.Int32()
@@ -384,7 +386,8 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+      self.expireTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .extensionCount) {
         self.extensionCount = value
       }
@@ -393,7 +396,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -410,10 +413,10 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vmmigration.v1.MigratingVm.Expiration"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -643,10 +646,10 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.MigratingVm"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

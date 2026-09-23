@@ -823,7 +823,7 @@ extension Clients {
     /// See `TranslationServiceClient.updateGlossary`.
     func updateGlossary(
       glossary: Glossary?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.deleteGlossary`.
@@ -1449,7 +1449,7 @@ extension Clients.TranslationServiceProtocol {
 
   public func updateGlossary(
     glossary: Glossary?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
     let request = UpdateGlossaryRequest().with {
       $0.glossary = glossary

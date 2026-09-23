@@ -35,11 +35,11 @@ public struct ScanRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resultState: ScanRun.ResultState = ScanRun.ResultState()
 
   /// Output only. The time at which the ScanRun started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the ScanRun reached termination state - that the ScanRun
   /// is either finished or stopped by user.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The number of URLs crawled during this ScanRun. If the scan is in progress,
   /// the value represents the number of URLs crawled up to now.
@@ -131,8 +131,8 @@ public struct ScanRun: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ScanRun.ResultState.self, forKey: .resultState) {
       self.resultState = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .urlsCrawledCount) {
       self.urlsCrawledCount = value
     }
@@ -152,7 +152,7 @@ public struct ScanRun: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -427,10 +427,10 @@ public struct ScanRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanRun"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

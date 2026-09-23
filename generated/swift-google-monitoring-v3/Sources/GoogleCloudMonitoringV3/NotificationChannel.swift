@@ -103,7 +103,7 @@ public struct NotificationChannel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the channel. This is a more convenient approach when the change is
   /// temporary and you want to receive notifications from the same set
   /// of alerting policies on the channel at some point in the future.
-  public var enabled: GoogleWKT.BoolValue? = nil
+  public var enabled: GoogleWKT.WKTBoolValue? = nil
 
   /// Record of the creation of this channel.
   public var creationRecord: MutationRecord? = nil
@@ -188,7 +188,7 @@ public struct NotificationChannel: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.verificationStatus = value
     }
-    self.enabled = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .enabled)
+    self.enabled = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .enabled)
     self.creationRecord = try container.decodeIfPresent(
       MutationRecord.self, forKey: .creationRecord)
     if let value = try container.decodeIfPresent([MutationRecord].self, forKey: .mutationRecords) {
@@ -196,7 +196,7 @@ public struct NotificationChannel: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -352,10 +352,10 @@ public struct NotificationChannel: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.NotificationChannel"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

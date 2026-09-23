@@ -413,7 +413,7 @@ extension Clients {
     /// See `RepositoryManagerClient.updateConnection`.
     func updateConnection(
       connection: Connection?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Connection>
 
     /// See `RepositoryManagerClient.deleteConnection`.
@@ -713,7 +713,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func updateConnection(
     connection: Connection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Connection> {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection

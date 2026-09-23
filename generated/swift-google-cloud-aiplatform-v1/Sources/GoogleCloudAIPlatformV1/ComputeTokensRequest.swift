@@ -29,7 +29,7 @@
     /// Optional. The instances that are the input to token computing API call.
     /// Schema is identical to the prediction schema of the text model, even for
     /// the non-text models, like chat models, or Codey models.
-    public var instances: [GoogleWKT.Value] = []
+    public var instances: [GoogleWKT.WKTValue] = []
 
     /// Optional. The name of the publisher model requested to serve the
     /// prediction. Format:
@@ -81,7 +81,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
         self.endpoint = value
       }
-      if let value = try container.decodeIfPresent([GoogleWKT.Value].self, forKey: .instances) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .instances) {
         self.instances = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
@@ -92,7 +92,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -110,10 +110,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ComputeTokensRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

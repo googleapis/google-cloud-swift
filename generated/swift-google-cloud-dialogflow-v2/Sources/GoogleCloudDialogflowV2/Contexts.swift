@@ -328,7 +328,7 @@
 
     public func updateContext(
       context: Context?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Context {
       let request = UpdateContextRequest().with {
         $0.context = context

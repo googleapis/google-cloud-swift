@@ -407,7 +407,7 @@ extension Clients.GrafeasProtocol {
   public func updateOccurrence(
     name: Swift.String,
     occurrence: Occurrence?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleGrafeasV1.Occurrence {
     let request = UpdateOccurrenceRequest().with {
       $0.name = name
@@ -577,7 +577,7 @@ extension Clients.GrafeasProtocol {
   public func updateNote(
     name: Swift.String,
     note: Note?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleGrafeasV1.Note {
     let request = UpdateNoteRequest().with {
       $0.name = name

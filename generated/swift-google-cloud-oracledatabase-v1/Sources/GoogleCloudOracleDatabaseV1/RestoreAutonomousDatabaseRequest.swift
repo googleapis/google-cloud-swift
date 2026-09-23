@@ -26,7 +26,7 @@ public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleWKT._A
   public var name: Swift.String = Swift.String()
 
   /// Required. The time and date to restore the database to.
-  public var restoreTime: GoogleWKT.Timestamp? = nil
+  public var restoreTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,10 +66,11 @@ public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleWKT._A
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.restoreTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .restoreTime)
+    self.restoreTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .restoreTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -85,10 +86,10 @@ public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.RestoreAutonomousDatabaseRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

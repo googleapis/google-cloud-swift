@@ -25,7 +25,7 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleWKT.
   public var quotaAdjusterSettings: QuotaAdjusterSettings? = nil
 
   /// Optional. The list of fields to update.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. If set to true, checks the syntax of the request but doesn't
   /// update the quota adjuster settings value. Note that although a request can
@@ -71,13 +71,14 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleWKT.
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.quotaAdjusterSettings = try container.decodeIfPresent(
       QuotaAdjusterSettings.self, forKey: .quotaAdjusterSettings)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -94,10 +95,10 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleWKT.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.cloudquotas.v1.UpdateQuotaAdjusterSettingsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

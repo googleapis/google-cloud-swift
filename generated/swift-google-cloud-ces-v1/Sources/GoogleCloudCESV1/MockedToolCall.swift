@@ -32,11 +32,11 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. A pattern to match against the args / inputs of all dispatched
   /// tool calls. If the tool call inputs match this pattern, then mock output
   /// will be returned.
-  public var expectedArgsPattern: GoogleWKT.Struct? = nil
+  public var expectedArgsPattern: GoogleWKT.WKTStruct? = nil
 
   /// Optional. The mock response / output to return if the tool call args /
   /// inputs match the pattern.
-  public var mockResponse: GoogleWKT.Struct? = nil
+  public var mockResponse: GoogleWKT.WKTStruct? = nil
 
   /// The identifier of the tool to mock.
   public var toolIdentifier: OneOf_ToolIdentifier? = nil
@@ -89,8 +89,9 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tool = value
     }
     self.expectedArgsPattern = try container.decodeIfPresent(
-      GoogleWKT.Struct.self, forKey: .expectedArgsPattern)
-    self.mockResponse = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .mockResponse)
+      GoogleWKT.WKTStruct.self, forKey: .expectedArgsPattern)
+    self.mockResponse = try container.decodeIfPresent(
+      GoogleWKT.WKTStruct.self, forKey: .mockResponse)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
     let toolIdentifierCheckAndSet = {
@@ -111,7 +112,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     self.toolIdentifier = toolIdentifier
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -149,10 +150,10 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.MockedToolCall"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

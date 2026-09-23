@@ -25,13 +25,13 @@
   public struct FlexibleTimeRange: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var maxDuration: GoogleWKT.Duration? = nil
+    public var maxDuration: GoogleWKT.WKTDuration? = nil
 
-    public var minDuration: GoogleWKT.Duration? = nil
+    public var minDuration: GoogleWKT.WKTDuration? = nil
 
-    public var startTimeNotEarlierThan: GoogleWKT.Timestamp? = nil
+    public var startTimeNotEarlierThan: GoogleWKT.WKTTimestamp? = nil
 
-    public var startTimeNotLaterThan: GoogleWKT.Timestamp? = nil
+    public var startTimeNotLaterThan: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,16 +73,16 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maxDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .maxDuration)
+        GoogleWKT.WKTDuration.self, forKey: .maxDuration)
       self.minDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minDuration)
+        GoogleWKT.WKTDuration.self, forKey: .minDuration)
       self.startTimeNotEarlierThan = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .startTimeNotEarlierThan)
+        GoogleWKT.WKTTimestamp.self, forKey: .startTimeNotEarlierThan)
       self.startTimeNotLaterThan = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .startTimeNotLaterThan)
+        GoogleWKT.WKTTimestamp.self, forKey: .startTimeNotLaterThan)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -100,10 +100,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.FlexibleTimeRange"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

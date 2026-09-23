@@ -622,7 +622,7 @@ extension Clients {
     /// See `WorkstationsClient.updateWorkstationCluster`.
     func updateWorkstationCluster(
       workstationCluster: WorkstationCluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.deleteWorkstationCluster`.
@@ -652,7 +652,7 @@ extension Clients {
     /// See `WorkstationsClient.updateWorkstationConfig`.
     func updateWorkstationConfig(
       workstationConfig: WorkstationConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.deleteWorkstationConfig`.
@@ -682,7 +682,7 @@ extension Clients {
     /// See `WorkstationsClient.updateWorkstation`.
     func updateWorkstation(
       workstation: Workstation?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.deleteWorkstation`.
@@ -1036,7 +1036,7 @@ extension Clients.WorkstationsProtocol {
 
   public func updateWorkstationCluster(
     workstationCluster: WorkstationCluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let request = UpdateWorkstationClusterRequest().with {
       $0.workstationCluster = workstationCluster
@@ -1261,7 +1261,7 @@ extension Clients.WorkstationsProtocol {
 
   public func updateWorkstationConfig(
     workstationConfig: WorkstationConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let request = UpdateWorkstationConfigRequest().with {
       $0.workstationConfig = workstationConfig
@@ -1485,7 +1485,7 @@ extension Clients.WorkstationsProtocol {
 
   public func updateWorkstation(
     workstation: Workstation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let request = UpdateWorkstationRequest().with {
       $0.workstation = workstation

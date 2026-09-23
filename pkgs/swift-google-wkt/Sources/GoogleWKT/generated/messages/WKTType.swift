@@ -16,31 +16,34 @@
 
 import Foundation
 
-/// Enum type definition.
-public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
+/// A protocol buffer message type.
+public struct WKTType: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Enum type name.
+  /// The fully qualified message name.
   public var name: Swift.String = Swift.String()
 
-  /// Enum value definitions.
-  public var enumvalue: [EnumValue] = []
+  /// The list of fields.
+  public var fields: [WKTField] = []
 
-  /// Protocol buffer options.
-  public var options: [Option] = []
+  /// The list of types appearing in `oneof` definitions in this type.
+  public var oneofs: [Swift.String] = []
+
+  /// The protocol buffer options.
+  public var options: [WKTOption] = []
 
   /// The source context.
-  public var sourceContext: SourceContext? = nil
+  public var sourceContext: WKTSourceContext? = nil
 
   /// The source syntax.
-  public var syntax: Syntax = Syntax()
+  public var syntax: WKTSyntax = WKTSyntax()
 
   /// The source edition string, only valid when syntax is SYNTAX_EDITIONS.
   public var edition: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `Enum`.
+  /// Initialize a new instance of `WKTType`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +51,7 @@ public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Enum().with { $0.name = ... }
+  /// let value = WKTType().with { $0.name = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -63,7 +66,8 @@ public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let name = CodingKeys(stringValue: "name")
-    static let enumvalue = CodingKeys(stringValue: "enumvalue")
+    static let fields = CodingKeys(stringValue: "fields")
+    static let oneofs = CodingKeys(stringValue: "oneofs")
     static let options = CodingKeys(stringValue: "options")
     static let sourceContext = CodingKeys(stringValue: "sourceContext")
     static let syntax = CodingKeys(stringValue: "syntax")
@@ -71,7 +75,8 @@ public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
-      "enumvalue",
+      "fields",
+      "oneofs",
       "options",
       "sourceContext",
       "syntax",
@@ -84,14 +89,18 @@ public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    if let value = try container.decodeIfPresent([EnumValue].self, forKey: .enumvalue) {
-      self.enumvalue = value
+    if let value = try container.decodeIfPresent([WKTField].self, forKey: .fields) {
+      self.fields = value
     }
-    if let value = try container.decodeIfPresent([Option].self, forKey: .options) {
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .oneofs) {
+      self.oneofs = value
+    }
+    if let value = try container.decodeIfPresent([WKTOption].self, forKey: .options) {
       self.options = value
     }
-    self.sourceContext = try container.decodeIfPresent(SourceContext.self, forKey: .sourceContext)
-    if let value = try container.decodeIfPresent(Syntax.self, forKey: .syntax) {
+    self.sourceContext = try container.decodeIfPresent(
+      WKTSourceContext.self, forKey: .sourceContext)
+    if let value = try container.decodeIfPresent(WKTSyntax.self, forKey: .syntax) {
       self.syntax = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .edition) {
@@ -99,14 +108,15 @@ public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.enumvalue, forKey: .enumvalue)
+    try container.encode(self.fields, forKey: .fields)
+    try container.encode(self.oneofs, forKey: .oneofs)
     try container.encode(self.options, forKey: .options)
     try container.encodeIfPresent(self.sourceContext, forKey: .sourceContext)
     try container.encode(self.syntax, forKey: .syntax)
@@ -117,12 +127,12 @@ public struct Enum: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.protobuf.Enum"
+    return "type.googleapis.com/google.protobuf.Type"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

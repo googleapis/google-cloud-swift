@@ -560,7 +560,7 @@ extension Clients.StorageTransferServiceProtocol {
 
   public func updateAgentPool(
     agentPool: AgentPool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleStorageTransferV1.AgentPool {
     let request = UpdateAgentPoolRequest().with {
       $0.agentPool = agentPool

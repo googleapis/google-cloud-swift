@@ -31,7 +31,7 @@
     /// The time the run was enqueued in UTC timezone in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var enqueuedTime: GoogleWKT.Timestamp? = nil
+    public var enqueuedTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The identifier for this backup run. Unique only for a specific Cloud SQL
     /// instance.
@@ -40,12 +40,12 @@
     /// The time the backup operation actually started in UTC timezone in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The time the backup operation completed in UTC timezone in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Information about why the backup operation failed. This is only present if
     /// the run has the FAILED status.
@@ -62,7 +62,7 @@
     /// The start time of the backup window during which this the backup was
     /// attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
     /// example `2012-11-15T16:19:00.094Z`.
-    public var windowStartTime: GoogleWKT.Timestamp? = nil
+    public var windowStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Name of the database instance.
     public var instance: Swift.String = Swift.String()
@@ -170,12 +170,13 @@
         self.status = value
       }
       self.enqueuedTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .enqueuedTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .enqueuedTime)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .id) {
         self.id = value
       }
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       self.error = try container.decodeIfPresent(OperationError.self, forKey: .error)
       if let value = try container.decodeIfPresent(SqlBackupRunType.self, forKey: .type) {
         self.type = value
@@ -184,7 +185,7 @@
         self.description = value
       }
       self.windowStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .windowStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .windowStartTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
         self.instance = value
       }
@@ -213,7 +214,7 @@
         Swift.Int64.self, forKey: .maxChargeableBytes)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -247,10 +248,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.BackupRun"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

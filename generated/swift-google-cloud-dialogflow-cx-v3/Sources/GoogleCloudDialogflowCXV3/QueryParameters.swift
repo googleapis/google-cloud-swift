@@ -50,7 +50,7 @@
     ///  }
     /// }
     /// ```
-    public var payload: GoogleWKT.Struct? = nil
+    public var payload: GoogleWKT.WKTStruct? = nil
 
     /// Additional parameters to be put into [session
     /// parameters][SessionInfo.parameters]. To remove a
@@ -74,7 +74,7 @@
     /// use parameter value.
     ///
     /// [SessionInfo.parameters]: <doc:SessionInfo/parameters>
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     /// Scope for the parameters. If not specified, parameters will be treated as
     /// session parameters. Parameters with custom scope will not be put into
@@ -169,7 +169,7 @@
     /// By default, a Dialogflow session remains active and its data is stored for
     /// 30 minutes after the last request is sent for the session.
     /// This value should be no longer than 1 day.
-    public var sessionTtl: GoogleWKT.Duration? = nil
+    public var sessionTtl: GoogleWKT.WKTDuration? = nil
 
     /// Optional. Information about the end-user to improve the relevance and
     /// accuracy of generative answers.
@@ -188,7 +188,7 @@
     ///   ]
     /// }
     /// ```
-    public var endUserMetadata: GoogleWKT.Struct? = nil
+    public var endUserMetadata: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Search configuration for UCS search queries.
     public var searchConfig: SearchConfig? = nil
@@ -280,8 +280,8 @@
       {
         self.sessionEntityTypes = value
       }
-      self.payload = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .payload)
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
+      self.payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameterScope) {
         self.parameterScope = value
       }
@@ -312,9 +312,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channel) {
         self.channel = value
       }
-      self.sessionTtl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .sessionTtl)
+      self.sessionTtl = try container.decodeIfPresent(
+        GoogleWKT.WKTDuration.self, forKey: .sessionTtl)
       self.endUserMetadata = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .endUserMetadata)
+        GoogleWKT.WKTStruct.self, forKey: .endUserMetadata)
       self.searchConfig = try container.decodeIfPresent(SearchConfig.self, forKey: .searchConfig)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .populateDataStoreConnectionSignals)
@@ -323,7 +324,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -359,10 +360,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.QueryParameters"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

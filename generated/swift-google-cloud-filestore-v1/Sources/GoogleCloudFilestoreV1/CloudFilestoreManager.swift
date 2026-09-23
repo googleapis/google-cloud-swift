@@ -639,7 +639,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudFilestoreManagerClient.restoreInstance`.
@@ -686,7 +686,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
     func updateSnapshot(
       snapshot: Snapshot?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Snapshot>
 
     /// See `CloudFilestoreManagerClient.createBackup`.
@@ -716,7 +716,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateBackup`.
     func updateBackup(
       backup: Backup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `CloudFilestoreManagerClient.promoteReplica`.
@@ -1037,7 +1037,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -1311,7 +1311,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func updateSnapshot(
     snapshot: Snapshot?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
     let request = UpdateSnapshotRequest().with {
       $0.snapshot = snapshot
@@ -1487,7 +1487,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let request = UpdateBackupRequest().with {
       $0.backup = backup

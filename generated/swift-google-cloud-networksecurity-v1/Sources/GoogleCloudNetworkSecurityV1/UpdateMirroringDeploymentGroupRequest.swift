@@ -26,7 +26,7 @@ public struct UpdateMirroringDeploymentGroupRequest: Codable, Equatable, GoogleW
   /// (e.g. `description`; *not*
   /// `mirroring_deployment_group.description`). See
   /// https://google.aip.dev/161 for more details.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The deployment group to update.
   public var mirroringDeploymentGroup: MirroringDeploymentGroup? = nil
@@ -73,7 +73,8 @@ public struct UpdateMirroringDeploymentGroupRequest: Codable, Equatable, GoogleW
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.mirroringDeploymentGroup = try container.decodeIfPresent(
       MirroringDeploymentGroup.self, forKey: .mirroringDeploymentGroup)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
@@ -81,7 +82,7 @@ public struct UpdateMirroringDeploymentGroupRequest: Codable, Equatable, GoogleW
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -99,10 +100,10 @@ public struct UpdateMirroringDeploymentGroupRequest: Codable, Equatable, GoogleW
     return
       "type.googleapis.com/google.cloud.networksecurity.v1.UpdateMirroringDeploymentGroupRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

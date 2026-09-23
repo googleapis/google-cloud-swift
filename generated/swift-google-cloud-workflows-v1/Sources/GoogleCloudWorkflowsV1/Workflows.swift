@@ -280,7 +280,7 @@ extension Clients {
     /// See `WorkflowsClient.updateWorkflow`.
     func updateWorkflow(
       workflow: Workflow?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.listWorkflows`.
@@ -524,7 +524,7 @@ extension Clients.WorkflowsProtocol {
 
   public func updateWorkflow(
     workflow: Workflow?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Workflow> {
     let request = UpdateWorkflowRequest().with {
       $0.workflow = workflow

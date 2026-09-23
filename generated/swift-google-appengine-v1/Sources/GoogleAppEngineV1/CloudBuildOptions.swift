@@ -34,7 +34,7 @@ public struct CloudBuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The Cloud Build timeout used as part of any dependent builds performed by
   /// version creation. Defaults to 10 minutes.
-  public var cloudBuildTimeout: GoogleWKT.Duration? = nil
+  public var cloudBuildTimeout: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,10 +75,10 @@ public struct CloudBuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       self.appYamlPath = value
     }
     self.cloudBuildTimeout = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .cloudBuildTimeout)
+      GoogleWKT.WKTDuration.self, forKey: .cloudBuildTimeout)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -94,10 +94,10 @@ public struct CloudBuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.CloudBuildOptions"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

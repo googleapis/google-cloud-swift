@@ -420,7 +420,7 @@
 
     public func updateConversation(
       conversation: Conversation?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
       let request = UpdateConversationRequest().with {
         $0.conversation = conversation
@@ -597,7 +597,7 @@
 
     public func updateSession(
       session: Session?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
       let request = UpdateSessionRequest().with {
         $0.session = session

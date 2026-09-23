@@ -36,12 +36,12 @@ public struct PersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     PersistenceConfig.SnapshotPeriod()
 
   /// Output only. The next time that a snapshot attempt is scheduled to occur.
-  public var rdbNextSnapshotTime: GoogleWKT.Timestamp? = nil
+  public var rdbNextSnapshotTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Date and time that the first snapshot was/will be attempted, and
   /// to which future snapshots will be aligned. If not provided, the current
   /// time will be used.
-  public var rdbSnapshotStartTime: GoogleWKT.Timestamp? = nil
+  public var rdbSnapshotStartTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,12 +93,12 @@ public struct PersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.rdbSnapshotPeriod = value
     }
     self.rdbNextSnapshotTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .rdbNextSnapshotTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .rdbNextSnapshotTime)
     self.rdbSnapshotStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .rdbSnapshotStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .rdbSnapshotStartTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -365,10 +365,10 @@ public struct PersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.v1.PersistenceConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

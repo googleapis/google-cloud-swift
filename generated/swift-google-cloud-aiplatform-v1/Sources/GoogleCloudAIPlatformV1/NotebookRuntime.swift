@@ -39,10 +39,10 @@
     public var proxyUri: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this NotebookRuntime was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this NotebookRuntime was most recently updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The health state of the NotebookRuntime.
     public var healthState: NotebookRuntime.HealthState = NotebookRuntime.HealthState()
@@ -97,7 +97,7 @@
     /// expiration, system predifined runtime will be deleted.
     /// 2. User created NotebookRuntime: 6 months after last upgrade. After
     /// expiration, user created runtime will be stopped and allowed for upgrade.
-    public var expirationTime: GoogleWKT.Timestamp? = nil
+    public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The VM os image version of NotebookRuntime.
     public var version: Swift.String = Swift.String()
@@ -238,8 +238,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .proxyUri) {
         self.proxyUri = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent(
         NotebookRuntime.HealthState.self, forKey: .healthState)
       {
@@ -268,7 +270,7 @@
         self.labels = value
       }
       self.expirationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .expirationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
         self.version = value
       }
@@ -301,7 +303,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -615,10 +617,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookRuntime"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

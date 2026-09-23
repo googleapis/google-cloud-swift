@@ -30,7 +30,7 @@ func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId
         $0.scope = Scope().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

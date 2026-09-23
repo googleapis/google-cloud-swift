@@ -31,7 +31,7 @@ public struct ListSkusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// America/Los_Angeles timezone. Time range as a whole is optional. If not
   /// specified, the latest pricing will be returned (up to 12 hours old at
   /// most).
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional exclusive end time of the time range for which the pricing
   /// versions will be returned. Timestamps in the future are not allowed.
@@ -39,7 +39,7 @@ public struct ListSkusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// America/Los_Angeles timezone. Time range as a whole is optional. If not
   /// specified, the latest pricing will be returned (up to 12 hours old at
   /// most).
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The ISO 4217 currency code for the pricing info in the response proto.
   /// Will use the conversion rate as of start_time.
@@ -100,8 +100,8 @@ public struct ListSkusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
       self.currencyCode = value
     }
@@ -113,7 +113,7 @@ public struct ListSkusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -133,10 +133,10 @@ public struct ListSkusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.v1.ListSkusRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -654,7 +654,7 @@
 
     public func updateIndexEndpoint(
       indexEndpoint: IndexEndpoint?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
       let request = UpdateIndexEndpointRequest().with {
         $0.indexEndpoint = indexEndpoint

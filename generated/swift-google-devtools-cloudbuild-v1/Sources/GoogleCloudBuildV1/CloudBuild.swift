@@ -596,7 +596,7 @@ extension Clients {
     /// See `CloudBuildClient.updateWorkerPool`.
     func updateWorkerPool(
       workerPool: WorkerPool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `CloudBuildClient.createBuild`.
@@ -1317,7 +1317,7 @@ extension Clients.CloudBuildProtocol {
 
   public func updateWorkerPool(
     workerPool: WorkerPool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
     let request = UpdateWorkerPoolRequest().with {
       $0.workerPool = workerPool

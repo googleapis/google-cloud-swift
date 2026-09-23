@@ -65,7 +65,7 @@
     public var inputsSchemaUri: Swift.String = Swift.String()
 
     /// Required. Input config parameters for the DataLabelingJob.
-    public var inputs: GoogleWKT.Value? = nil
+    public var inputs: GoogleWKT.WKTValue? = nil
 
     /// Output only. The detailed state of the job.
     public var state: JobState = JobState()
@@ -79,10 +79,10 @@
     public var currentSpend: GoogleType.Money? = nil
 
     /// Output only. Timestamp when this DataLabelingJob was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this DataLabelingJob was updated most recently.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. DataLabelingJob errors. It is only populated when job's state
     /// is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
@@ -210,7 +210,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputsSchemaUri) {
         self.inputsSchemaUri = value
       }
-      self.inputs = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .inputs)
+      self.inputs = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .inputs)
       if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
         self.state = value
       }
@@ -219,8 +219,10 @@
       }
       self.currentSpend = try container.decodeIfPresent(
         GoogleType.Money.self, forKey: .currentSpend)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .labels)
@@ -236,7 +238,7 @@
         ActiveLearningConfig.self, forKey: .activeLearningConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -268,10 +270,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DataLabelingJob"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

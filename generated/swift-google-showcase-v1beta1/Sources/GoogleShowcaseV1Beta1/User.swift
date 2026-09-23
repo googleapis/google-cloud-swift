@@ -31,10 +31,10 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
   public var email: Swift.String = Swift.String()
 
   /// The timestamp at which the user was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The latest timestamp at which the user was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The age of the user in years.
   public var age: Swift.Int32? = nil
@@ -112,8 +112,10 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
       self.email = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.age = try container.decodeIfPresent(Swift.Int32.self, forKey: .age)
     self.heightFeet = try container.decodeIfPresent(Swift.Double.self, forKey: .heightFeet)
     self.nickname = try container.decodeIfPresent(Swift.String.self, forKey: .nickname)
@@ -121,7 +123,7 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Bool.self, forKey: .enableNotifications)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -144,10 +146,10 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.User"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

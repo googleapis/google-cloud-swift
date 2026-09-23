@@ -23,7 +23,7 @@ public struct InputStreamProperty: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// The time that the current input stream is accepted and the connection is
   /// established.
-  public var lastEstablishTime: GoogleWKT.Timestamp? = nil
+  public var lastEstablishTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Properties of the video streams.
   public var videoStreams: [VideoStreamProperty] = []
@@ -69,7 +69,7 @@ public struct InputStreamProperty: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lastEstablishTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastEstablishTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastEstablishTime)
     if let value = try container.decodeIfPresent([VideoStreamProperty].self, forKey: .videoStreams)
     {
       self.videoStreams = value
@@ -80,7 +80,7 @@ public struct InputStreamProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -97,10 +97,10 @@ public struct InputStreamProperty: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.InputStreamProperty"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

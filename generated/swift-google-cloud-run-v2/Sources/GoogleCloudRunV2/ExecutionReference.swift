@@ -26,14 +26,14 @@ public struct ExecutionReference: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Creation timestamp of the execution.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Creation timestamp of the execution.
-  public var completionTime: GoogleWKT.Timestamp? = nil
+  public var completionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The deletion time of the execution. It is only
   /// populated as a response to a Delete request.
-  public var deleteTime: GoogleWKT.Timestamp? = nil
+  public var deleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Status for the execution completion.
   public var completionStatus: ExecutionReference.CompletionStatus =
@@ -83,10 +83,12 @@ public struct ExecutionReference: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.completionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .completionTime)
-    self.deleteTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deleteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .completionTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
     if let value = try container.decodeIfPresent(
       ExecutionReference.CompletionStatus.self, forKey: .completionStatus)
     {
@@ -94,7 +96,7 @@ public struct ExecutionReference: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -251,10 +253,10 @@ public struct ExecutionReference: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.ExecutionReference"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

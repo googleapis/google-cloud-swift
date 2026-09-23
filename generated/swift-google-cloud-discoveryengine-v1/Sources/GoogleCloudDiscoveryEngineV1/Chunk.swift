@@ -51,13 +51,13 @@
 
     /// Output only. This field is OUTPUT_ONLY.
     /// It contains derived data that are not in the original input document.
-    public var derivedStructData: GoogleWKT.Struct? = nil
+    public var derivedStructData: GoogleWKT.WKTStruct? = nil
 
     /// Page span of the chunk.
     public var pageSpan: Chunk.PageSpan? = nil
 
     /// Output only. Metadata of the current chunk.
-    public var chunkMetadata: GoogleWKT.Recursive<Chunk.ChunkMetadata>? = nil
+    public var chunkMetadata: GoogleWKT.WKTRecursive<Chunk.ChunkMetadata>? = nil
 
     /// Output only. Image Data URLs if the current chunk contains images.
     /// Data URLs are composed of four parts: a prefix (data:), a MIME type
@@ -140,10 +140,10 @@
       self.documentMetadata = try container.decodeIfPresent(
         Chunk.DocumentMetadata.self, forKey: .documentMetadata)
       self.derivedStructData = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .derivedStructData)
+        GoogleWKT.WKTStruct.self, forKey: .derivedStructData)
       self.pageSpan = try container.decodeIfPresent(Chunk.PageSpan.self, forKey: .pageSpan)
       self.chunkMetadata = try container.decodeIfPresent(
-        GoogleWKT.Recursive<Chunk.ChunkMetadata>.self, forKey: .chunkMetadata)
+        GoogleWKT.WKTRecursive<Chunk.ChunkMetadata>.self, forKey: .chunkMetadata)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataUrls) {
         self.dataUrls = value
       }
@@ -158,7 +158,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -197,7 +197,7 @@
       /// `INVALID_ARGUMENT` error is thrown.
       ///
       /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
-      public var structData: GoogleWKT.Struct? = nil
+      public var structData: GoogleWKT.WKTStruct? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -242,10 +242,11 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
           self.title = value
         }
-        self.structData = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .structData)
+        self.structData = try container.decodeIfPresent(
+          GoogleWKT.WKTStruct.self, forKey: .structData)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -262,10 +263,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.DocumentMetadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -323,7 +324,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -339,10 +340,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.PageSpan"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -418,7 +419,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -434,10 +435,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.ChunkMetadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -497,7 +498,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -513,10 +514,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.StructuredContent"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -574,7 +575,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -590,10 +591,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -725,10 +726,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

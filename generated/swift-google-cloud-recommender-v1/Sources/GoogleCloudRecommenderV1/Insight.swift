@@ -37,15 +37,15 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A struct of custom fields to explain the insight.
   /// Example: "grantedPermissionsCount": "1000"
-  public var content: GoogleWKT.Struct? = nil
+  public var content: GoogleWKT.WKTStruct? = nil
 
   /// Timestamp of the latest data used to generate the insight.
-  public var lastRefreshTime: GoogleWKT.Timestamp? = nil
+  public var lastRefreshTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Observation period that led to the insight. The source data used to
   /// generate the insight ends at last_refresh_time and begins at
   /// (last_refresh_time - observation_period).
-  public var observationPeriod: GoogleWKT.Duration? = nil
+  public var observationPeriod: GoogleWKT.WKTDuration? = nil
 
   /// Information state and metadata.
   public var stateInfo: InsightStateInfo? = nil
@@ -130,11 +130,11 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .insightSubtype) {
       self.insightSubtype = value
     }
-    self.content = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .content)
+    self.content = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .content)
     self.lastRefreshTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastRefreshTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastRefreshTime)
     self.observationPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .observationPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .observationPeriod)
     self.stateInfo = try container.decodeIfPresent(InsightStateInfo.self, forKey: .stateInfo)
     if let value = try container.decodeIfPresent(Insight.Category.self, forKey: .category) {
       self.category = value
@@ -152,7 +152,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -221,7 +221,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -236,10 +236,10 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.recommender.v1.Insight.RecommendationReference"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -523,10 +523,10 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.Insight"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

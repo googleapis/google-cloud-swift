@@ -35,10 +35,10 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleWKT._AnyPackab
     DeploymentDiagnosticData.DiagnosticState()
 
   /// Output only. The time diagnostic start.
-  public var diagnosticStartTime: GoogleWKT.Timestamp? = nil
+  public var diagnosticStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time diagnostic end.
-  public var diagnosticEndTime: GoogleWKT.Timestamp? = nil
+  public var diagnosticEndTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,12 +98,12 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleWKT._AnyPackab
       self.diagnosticState = value
     }
     self.diagnosticStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .diagnosticStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .diagnosticStartTime)
     self.diagnosticEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .diagnosticEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .diagnosticEndTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -247,10 +247,10 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.DeploymentDiagnosticData"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

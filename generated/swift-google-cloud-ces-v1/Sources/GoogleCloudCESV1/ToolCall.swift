@@ -33,7 +33,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. The input parameters and values for the tool in JSON object
   /// format.
-  public var args: GoogleWKT.Struct? = nil
+  public var args: GoogleWKT.WKTStruct? = nil
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
@@ -86,7 +86,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
     }
-    self.args = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .args)
+    self.args = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .args)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
     let toolIdentifierCheckAndSet = {
@@ -107,7 +107,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     self.toolIdentifier = toolIdentifier
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -143,10 +143,10 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ToolCall"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

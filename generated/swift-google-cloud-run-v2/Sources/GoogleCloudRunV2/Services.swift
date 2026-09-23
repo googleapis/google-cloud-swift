@@ -273,7 +273,7 @@ extension Clients {
     /// See `ServicesClient.updateService`.
     func updateService(
       service: Service?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `ServicesClient.deleteService`.
@@ -499,7 +499,7 @@ extension Clients.ServicesProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let request = UpdateServiceRequest().with {
       $0.service = service

@@ -34,7 +34,7 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleWKT._A
   /// Optional. Configuration for the module. For the resident module, its
   /// configuration value is defined at this level. For the inherited module, its
   /// configuration value is inherited from the ancestor module.
-  public var config: GoogleWKT.Struct? = nil
+  public var config: GoogleWKT.WKTStruct? = nil
 
   /// Output only. The closest ancestor module that this module inherits the
   /// enablement state from. If empty, indicates that the custom module was
@@ -57,7 +57,7 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleWKT._A
   public var description: Swift.String = Swift.String()
 
   /// Output only. The time the module was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The editor the module was last updated by.
   public var lastEditor: Swift.String = Swift.String()
@@ -114,7 +114,7 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleWKT._A
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.config = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .config)
+    self.config = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .config)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ancestorModule) {
       self.ancestorModule = value
     }
@@ -132,13 +132,14 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleWKT._A
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastEditor) {
       self.lastEditor = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -290,10 +291,10 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleWKT._A
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

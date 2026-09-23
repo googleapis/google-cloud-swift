@@ -497,7 +497,7 @@
 
     public func updateVersion(
       version: Version?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Version {
       let request = UpdateVersionRequest().with {
         $0.version = version

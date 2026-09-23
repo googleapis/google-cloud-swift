@@ -86,10 +86,10 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. If this object is noncurrent, this is the time when the object
   /// became noncurrent.
-  public var deleteTime: GoogleWKT.Timestamp? = nil
+  public var deleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the object was finalized.
-  public var finalizeTime: GoogleWKT.Timestamp? = nil
+  public var finalizeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Content-Type of the object data, matching
   /// [RFC 7231 §3.1.1.5](https://tools.ietf.org/html/rfc7231#section-3.1.1.5).
@@ -98,7 +98,7 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
   public var contentType: Swift.String = Swift.String()
 
   /// Output only. The creation time of the object.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Number of underlying components that make up this object.
   /// Components are accumulated by compose operations.
@@ -117,7 +117,7 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
   /// such as modifying custom metadata, as well as changes made by Cloud Storage
   /// on behalf of a requester, such as changing the storage class based on an
   /// Object Lifecycle Configuration.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Cloud KMS Key used to encrypt this object, if the object is
   /// encrypted by such a key.
@@ -125,7 +125,7 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The time at which the object's storage class was last changed.
   /// When the object is initially created, it is set to `time_created`.
-  public var updateStorageClassTime: GoogleWKT.Timestamp? = nil
+  public var updateStorageClassTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Whether an object is under temporary hold. While this flag is set
   /// to true, the object is protected against deletion and overwrites.  A common
@@ -141,7 +141,7 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
   /// unknown until the hold is removed. Note 2: This value can be provided even
   /// when temporary hold is set (so that the user can reason about policy
   /// without having to first unset the temporary hold).
-  public var retentionExpireTime: GoogleWKT.Timestamp? = nil
+  public var retentionExpireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. User-provided metadata, in key/value pairs.
   public var metadata: [Swift.String: Swift.String] = [:]
@@ -173,19 +173,19 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
   public var customerEncryption: CustomerEncryption? = nil
 
   /// Optional. A user-specified timestamp set on an object.
-  public var customTime: GoogleWKT.Timestamp? = nil
+  public var customTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. This is the time when the object became soft-deleted.
   ///
   /// Soft-deleted objects are only accessible if a soft_delete_policy is
   /// enabled. Also see `hard_delete_time`.
-  public var softDeleteTime: GoogleWKT.Timestamp? = nil
+  public var softDeleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the object is permanently deleted.
   ///
   /// Only set when an object becomes soft-deleted with a `soft_delete_policy`.
   /// Otherwise, the object is not accessible.
-  public var hardDeleteTime: GoogleWKT.Timestamp? = nil
+  public var hardDeleteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Retention configuration of this object.
   /// Might only be configured if the bucket has object retention enabled.
@@ -325,28 +325,31 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentLanguage) {
       self.contentLanguage = value
     }
-    self.deleteTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .deleteTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
     self.finalizeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .finalizeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .finalizeTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentType) {
       self.contentType = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .componentCount) {
       self.componentCount = value
     }
     self.checksums = try container.decodeIfPresent(ObjectChecksums.self, forKey: .checksums)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
       self.kmsKey = value
     }
     self.updateStorageClassTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .updateStorageClassTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .updateStorageClassTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .temporaryHold) {
       self.temporaryHold = value
     }
     self.retentionExpireTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .retentionExpireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .retentionExpireTime)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .metadata)
     {
@@ -357,15 +360,16 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
     self.owner = try container.decodeIfPresent(Owner.self, forKey: .owner)
     self.customerEncryption = try container.decodeIfPresent(
       CustomerEncryption.self, forKey: .customerEncryption)
-    self.customTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .customTime)
+    self.customTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .customTime)
     self.softDeleteTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .softDeleteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .softDeleteTime)
     self.hardDeleteTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .hardDeleteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .hardDeleteTime)
     self.retention = try container.decodeIfPresent(Object.Retention.self, forKey: .retention)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -419,7 +423,7 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Optional. The timestamp that the object needs to be retained until.
     /// Value cannot be set in the past or more than 100 years in the future.
-    public var retainUntilTime: GoogleWKT.Timestamp? = nil
+    public var retainUntilTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -460,10 +464,10 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
         self.mode = value
       }
       self.retainUntilTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .retainUntilTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .retainUntilTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -600,10 +604,10 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Object.Retention"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -611,10 +615,10 @@ public struct Object: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.Object"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

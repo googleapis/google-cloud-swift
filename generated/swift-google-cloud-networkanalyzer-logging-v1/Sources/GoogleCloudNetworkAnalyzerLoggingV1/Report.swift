@@ -34,7 +34,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   public var status: Report.ReportStatus = Report.ReportStatus()
 
   /// The timestamp when the report was first discovered by Network Analyzer.
-  public var firstReportTime: GoogleWKT.Timestamp? = nil
+  public var firstReportTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Cause code of the report.
   public var causeCode: ReportCauseCode = ReportCauseCode()
@@ -123,7 +123,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
       self.status = value
     }
     self.firstReportTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .firstReportTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .firstReportTime)
     if let value = try container.decodeIfPresent(ReportCauseCode.self, forKey: .causeCode) {
       self.causeCode = value
     }
@@ -159,7 +159,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
     self.content = content
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -692,10 +692,10 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkanalyzer.logging.v1.Report"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

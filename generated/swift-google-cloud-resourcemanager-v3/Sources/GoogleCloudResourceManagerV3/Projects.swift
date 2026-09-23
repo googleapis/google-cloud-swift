@@ -501,7 +501,7 @@ extension Clients {
     /// See `ProjectsClient.updateProject`.
     func updateProject(
       project: Project?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Project>
 
     /// See `ProjectsClient.moveProject`.
@@ -804,7 +804,7 @@ extension Clients.ProjectsProtocol {
 
   public func updateProject(
     project: Project?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Project> {
     let request = UpdateProjectRequest().with {
       $0.project = project

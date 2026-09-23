@@ -306,7 +306,7 @@ extension Clients.ModelArmorProtocol {
 
   public func updateTemplate(
     template: Template?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudModelArmorV1.Template {
     let request = UpdateTemplateRequest().with {
       $0.template = template
@@ -369,7 +369,7 @@ extension Clients.ModelArmorProtocol {
 
   public func updateFloorSetting(
     floorSetting: FloorSetting?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
     let request = UpdateFloorSettingRequest().with {
       $0.floorSetting = floorSetting

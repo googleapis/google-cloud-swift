@@ -459,7 +459,7 @@
 
     public func updateDocument(
       document: Document?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
       let request = UpdateDocumentRequest().with {
         $0.document = document

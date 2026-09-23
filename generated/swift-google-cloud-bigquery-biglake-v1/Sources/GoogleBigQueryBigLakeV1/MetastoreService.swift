@@ -436,7 +436,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func updateDatabase(
     database: Database?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
     let request = UpdateDatabaseRequest().with {
       $0.database = database
@@ -565,7 +565,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func updateTable(
     table: Table?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
     let request = UpdateTableRequest().with {
       $0.table = table

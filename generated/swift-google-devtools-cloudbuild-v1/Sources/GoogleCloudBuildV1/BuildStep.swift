@@ -106,7 +106,7 @@ public struct BuildStep: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Time limit for executing this build step. If not defined, the step has no
   /// time limit and will be allowed to continue to run until either it completes
   /// or the build itself times out.
-  public var timeout: GoogleWKT.Duration? = nil
+  public var timeout: GoogleWKT.WKTDuration? = nil
 
   /// Output only. Status of the build step. At this time, build step status is
   /// only updated on build completion; step status is not updated in real-time
@@ -234,7 +234,7 @@ public struct BuildStep: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.timing = try container.decodeIfPresent(TimeSpan.self, forKey: .timing)
     self.pullTiming = try container.decodeIfPresent(TimeSpan.self, forKey: .pullTiming)
-    self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
+    self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
     if let value = try container.decodeIfPresent(Build.Status.self, forKey: .status) {
       self.status = value
     }
@@ -254,7 +254,7 @@ public struct BuildStep: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Bool.self, forKey: .automapSubstitutions)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -286,10 +286,10 @@ public struct BuildStep: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.BuildStep"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

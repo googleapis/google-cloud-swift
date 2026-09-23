@@ -25,7 +25,7 @@ public struct AggregatedComplianceReport: Codable, Equatable, GoogleWKT._AnyPack
   public var controlAssessmentDetails: ControlAssessmentDetails? = nil
 
   /// The report time of the aggregated compliance report.
-  public var reportTime: GoogleWKT.Timestamp? = nil
+  public var reportTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,10 +64,11 @@ public struct AggregatedComplianceReport: Codable, Equatable, GoogleWKT._AnyPack
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.controlAssessmentDetails = try container.decodeIfPresent(
       ControlAssessmentDetails.self, forKey: .controlAssessmentDetails)
-    self.reportTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .reportTime)
+    self.reportTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .reportTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -83,10 +84,10 @@ public struct AggregatedComplianceReport: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.AggregatedComplianceReport"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

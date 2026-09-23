@@ -36,10 +36,10 @@
 
     /// Optional. Optional snapshot read timestamp to trade freshness for
     /// performance.
-    public var readTime: GoogleWKT.Timestamp? = nil
+    public var readTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. If set, it will contain the cert valid duration.
-    public var validDuration: GoogleWKT.Duration? = nil
+    public var validDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,12 +96,12 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accessToken) {
         self.accessToken = value
       }
-      self.readTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .readTime)
+      self.readTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .readTime)
       self.validDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .validDuration)
+        GoogleWKT.WKTDuration.self, forKey: .validDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -121,10 +121,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.GenerateEphemeralCertRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

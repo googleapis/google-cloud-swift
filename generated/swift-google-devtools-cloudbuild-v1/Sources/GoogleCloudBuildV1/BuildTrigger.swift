@@ -68,7 +68,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public var webhookConfig: WebhookConfig? = nil
 
   /// Output only. Time when the trigger was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// If true, the trigger will never automatically execute a build.
   public var disabled: Swift.Bool = Swift.Bool()
@@ -219,7 +219,8 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     self.github = try container.decodeIfPresent(GitHubEventsConfig.self, forKey: .github)
     self.pubsubConfig = try container.decodeIfPresent(PubsubConfig.self, forKey: .pubsubConfig)
     self.webhookConfig = try container.decodeIfPresent(WebhookConfig.self, forKey: .webhookConfig)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
       self.disabled = value
     }
@@ -271,7 +272,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     self.buildTemplate = buildTemplate
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -338,10 +339,10 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.BuildTrigger"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -863,7 +863,7 @@ extension Clients {
     /// See `ProductServiceClient.setInventory`.
     func setInventory(
       inventory: Product?,
-      setMask: GoogleWKT.FieldMask?,
+      setMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<SetInventoryResponse>
 
     /// See `ProductServiceClient.addFulfillmentPlaces`.
@@ -1108,7 +1108,7 @@ extension Clients.ProductServiceProtocol {
 
   public func updateProduct(
     product: Product?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.Product {
     let request = UpdateProductRequest().with {
       $0.product = product
@@ -1222,7 +1222,7 @@ extension Clients.ProductServiceProtocol {
 
   public func setInventory(
     inventory: Product?,
-    setMask: GoogleWKT.FieldMask?,
+    setMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<SetInventoryResponse> {
     let request = SetInventoryRequest().with {
       $0.inventory = inventory

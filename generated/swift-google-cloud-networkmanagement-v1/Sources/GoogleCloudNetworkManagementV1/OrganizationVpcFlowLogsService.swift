@@ -362,7 +362,7 @@ extension Clients {
     /// See `OrganizationVpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
     func updateVpcFlowLogsConfig(
       vpcFlowLogsConfig: VpcFlowLogsConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
 
     /// See `OrganizationVpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
@@ -593,7 +593,7 @@ extension Clients.OrganizationVpcFlowLogsServiceProtocol {
 
   public func updateVpcFlowLogsConfig(
     vpcFlowLogsConfig: VpcFlowLogsConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
     let request = UpdateVpcFlowLogsConfigRequest().with {
       $0.vpcFlowLogsConfig = vpcFlowLogsConfig

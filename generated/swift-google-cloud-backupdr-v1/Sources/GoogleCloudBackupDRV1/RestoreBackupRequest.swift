@@ -52,7 +52,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Compute Instance Disks:
   /// `compute_instance_restore_properties.disks.*.disk_encryption_key`
   /// - Single Disk: `disk_restore_properties.disk_encryption_key`
-  public var clearOverridesFieldMask: GoogleWKT.FieldMask? = nil
+  public var clearOverridesFieldMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The target environment for the restore operation.
   public var targetEnvironment: OneOf_TargetEnvironment? = nil
@@ -116,7 +116,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.requestId = value
     }
     self.clearOverridesFieldMask = try container.decodeIfPresent(
-      GoogleWKT.FieldMask.self, forKey: .clearOverridesFieldMask)
+      GoogleWKT.WKTFieldMask.self, forKey: .clearOverridesFieldMask)
 
     var targetEnvironment: OneOf_TargetEnvironment? = nil
     let targetEnvironmentCheckAndSet = {
@@ -170,7 +170,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.instanceProperties = instanceProperties
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -225,10 +225,10 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.RestoreBackupRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

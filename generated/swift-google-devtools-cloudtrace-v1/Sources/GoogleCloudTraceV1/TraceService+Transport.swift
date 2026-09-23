@@ -185,7 +185,7 @@ extension Clients {
         try req.setBody(json: body)
       }
       _ = try await req.rpc(
-        GoogleWKT.Empty.self, timeout: options.attemptTimeout
+        GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
     }
   }

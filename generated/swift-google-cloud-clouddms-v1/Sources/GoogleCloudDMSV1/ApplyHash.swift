@@ -68,14 +68,14 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
       hashFunction = $0
     }
     if let uuidFromBytes = try container.decodeIfPresent(
-      GoogleWKT.Empty?.self, forKey: .uuidFromBytes)
+      GoogleWKT.WKTEmpty?.self, forKey: .uuidFromBytes)
     {
       try hashFunctionCheckAndSet(.uuidFromBytes(uuidFromBytes))
     }
     self.hashFunction = hashFunction
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -95,16 +95,16 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum OneOf_HashFunction: Codable, Equatable, Sendable {
     /// Optional. Generate UUID from the data's byte array
-    indirect case uuidFromBytes(GoogleWKT.Empty?)
+    indirect case uuidFromBytes(GoogleWKT.WKTEmpty?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ApplyHash"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -22,7 +22,7 @@ public struct EncryptionConfiguration: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// The name of the KMS key used for encrypting BigQuery data.
-  public var kmsKeyName: GoogleWKT.StringValue? = nil
+  public var kmsKeyName: GoogleWKT.WKTStringValue? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,10 +57,11 @@ public struct EncryptionConfiguration: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.kmsKeyName = try container.decodeIfPresent(GoogleWKT.StringValue.self, forKey: .kmsKeyName)
+    self.kmsKeyName = try container.decodeIfPresent(
+      GoogleWKT.WKTStringValue.self, forKey: .kmsKeyName)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -75,10 +76,10 @@ public struct EncryptionConfiguration: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.EncryptionConfiguration"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

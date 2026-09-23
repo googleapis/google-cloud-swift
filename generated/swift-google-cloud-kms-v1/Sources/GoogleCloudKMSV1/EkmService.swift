@@ -391,7 +391,7 @@ extension Clients.EkmServiceProtocol {
 
   public func updateEkmConnection(
     ekmConnection: EkmConnection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudKMSV1.EkmConnection {
     let request = UpdateEkmConnectionRequest().with {
       $0.ekmConnection = ekmConnection
@@ -434,7 +434,7 @@ extension Clients.EkmServiceProtocol {
 
   public func updateEkmConfig(
     ekmConfig: EkmConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudKMSV1.EkmConfig {
     let request = UpdateEkmConfigRequest().with {
       $0.ekmConfig = ekmConfig

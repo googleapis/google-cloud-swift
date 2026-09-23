@@ -1011,7 +1011,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateApi(
     api: Api?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Api {
     let request = UpdateApiRequest().with {
       $0.api = api
@@ -1139,7 +1139,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateVersion(
     version: Version?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Version {
     let request = UpdateVersionRequest().with {
       $0.version = version
@@ -1283,7 +1283,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateSpec(
     spec: Spec?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Spec {
     let request = UpdateSpecRequest().with {
       $0.spec = spec
@@ -1413,7 +1413,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateApiOperation(
     apiOperation: ApiOperation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
     let request = UpdateApiOperationRequest().with {
       $0.apiOperation = apiOperation
@@ -1564,7 +1564,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Deployment {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -1652,7 +1652,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateAttribute(
     attribute: Attribute?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Attribute {
     let request = UpdateAttributeRequest().with {
       $0.attribute = attribute
@@ -1826,7 +1826,7 @@ extension Clients.ApiHubProtocol {
 
   public func updateExternalApi(
     externalApi: ExternalApi?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
     let request = UpdateExternalApiRequest().with {
       $0.externalApi = externalApi

@@ -98,7 +98,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Time that this version was created.
   ///
   /// @OutputOnly
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Total size in bytes of all the files that are included in this version
   /// and currently hosted on the App Engine disk.
@@ -159,7 +159,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   /// does not specify its own expiration time.
   ///
   /// Only returned in `GET` requests if `view=FULL` is set.
-  public var defaultExpiration: GoogleWKT.Duration? = nil
+  public var defaultExpiration: GoogleWKT.WKTDuration? = nil
 
   /// Configures health checking for instances. Unhealthy instances are
   /// stopped and replaced with new instances.
@@ -373,7 +373,8 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .createdBy) {
       self.createdBy = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskUsageBytes) {
       self.diskUsageBytes = value
     }
@@ -409,7 +410,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
       self.buildEnvVariables = value
     }
     self.defaultExpiration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .defaultExpiration)
+      GoogleWKT.WKTDuration.self, forKey: .defaultExpiration)
     self.healthCheck = try container.decodeIfPresent(HealthCheck.self, forKey: .healthCheck)
     self.readinessCheck = try container.decodeIfPresent(
       ReadinessCheck.self, forKey: .readinessCheck)
@@ -453,7 +454,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     self.scaling = scaling
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -534,10 +535,10 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.Version"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

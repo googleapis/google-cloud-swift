@@ -63,7 +63,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
   public var codeBucket: Swift.String = Swift.String()
 
   /// Cookie expiration policy for this application.
-  public var defaultCookieExpiration: GoogleWKT.Duration? = nil
+  public var defaultCookieExpiration: GoogleWKT.WKTDuration? = nil
 
   /// Serving status of this application.
   public var servingStatus: Application.ServingStatus = Application.ServingStatus()
@@ -177,7 +177,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
       self.codeBucket = value
     }
     self.defaultCookieExpiration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .defaultCookieExpiration)
+      GoogleWKT.WKTDuration.self, forKey: .defaultCookieExpiration)
     if let value = try container.decodeIfPresent(
       Application.ServingStatus.self, forKey: .servingStatus)
     {
@@ -205,7 +205,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
       Application.FeatureSettings.self, forKey: .featureSettings)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -314,7 +314,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -332,10 +332,10 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.appengine.v1.Application.IdentityAwareProxy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -402,7 +402,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -418,10 +418,10 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.appengine.v1.Application.FeatureSettings"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -674,10 +674,10 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.Application"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

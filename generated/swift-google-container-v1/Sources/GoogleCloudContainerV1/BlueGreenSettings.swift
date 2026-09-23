@@ -23,7 +23,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Time needed after draining entire blue pool. After this period, blue pool
   /// will be cleaned up.
-  public var nodePoolSoakDuration: GoogleWKT.Duration? = nil
+  public var nodePoolSoakDuration: GoogleWKT.WKTDuration? = nil
 
   /// The rollout policy controls the general rollout progress of blue-green.
   public var rolloutPolicy: OneOf_RolloutPolicy? = nil
@@ -66,7 +66,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.nodePoolSoakDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .nodePoolSoakDuration)
+      GoogleWKT.WKTDuration.self, forKey: .nodePoolSoakDuration)
 
     var rolloutPolicy: OneOf_RolloutPolicy? = nil
     let rolloutPolicyCheckAndSet = {
@@ -91,7 +91,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     self.rolloutPolicy = rolloutPolicy
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -117,7 +117,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Soak time after each batch gets drained. Default to zero.
-    public var batchSoakDuration: GoogleWKT.Duration? = nil
+    public var batchSoakDuration: GoogleWKT.WKTDuration? = nil
 
     /// Blue pool size to drain in a batch.
     public var updateBatchSize: OneOf_UpdateBatchSize? = nil
@@ -160,7 +160,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.batchSoakDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .batchSoakDuration)
+        GoogleWKT.WKTDuration.self, forKey: .batchSoakDuration)
 
       var updateBatchSize: OneOf_UpdateBatchSize? = nil
       let updateBatchSizeCheckAndSet = {
@@ -185,7 +185,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       self.updateBatchSize = updateBatchSize
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -218,10 +218,10 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.BlueGreenSettings.StandardRolloutPolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -234,7 +234,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. Time to wait after cordoning the blue pool before draining the
     /// nodes. Defaults to 3 days. The value can be set between 0 and 7 days,
     /// inclusive.
-    public var waitForDrainDuration: GoogleWKT.Duration? = nil
+    public var waitForDrainDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -270,10 +270,10 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.waitForDrainDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .waitForDrainDuration)
+        GoogleWKT.WKTDuration.self, forKey: .waitForDrainDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -288,10 +288,10 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.BlueGreenSettings.AutoscaledRolloutPolicy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -307,10 +307,10 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.BlueGreenSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

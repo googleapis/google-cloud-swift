@@ -360,7 +360,7 @@
 
     public func updateEngine(
       engine: Engine?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
       let request = UpdateEngineRequest().with {
         $0.engine = engine

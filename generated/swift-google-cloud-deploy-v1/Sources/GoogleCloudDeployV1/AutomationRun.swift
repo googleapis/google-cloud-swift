@@ -29,10 +29,10 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time at which the `AutomationRun` was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the automationRun was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The weak etag of the `AutomationRun` resource.
   /// This checksum is computed by the server based on the value of other
@@ -66,7 +66,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
   /// after 14 days from its creation date.
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The ID of the automation rule that initiated the operation.
   public var ruleId: Swift.String = Swift.String()
@@ -76,7 +76,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. Earliest time the `AutomationRun` will attempt to resume.
   /// Wait-time is configured by `wait` in automation rule.
-  public var waitUntilTime: GoogleWKT.Timestamp? = nil
+  public var waitUntilTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The operation that the `AutomationRun` will perform.
   public var operation: OneOf_Operation? = nil
@@ -152,8 +152,10 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -173,7 +175,8 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.policyViolation = try container.decodeIfPresent(
       PolicyViolation.self, forKey: .policyViolation)
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleId) {
       self.ruleId = value
     }
@@ -181,7 +184,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
       self.automationId = value
     }
     self.waitUntilTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .waitUntilTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .waitUntilTime)
 
     var operation: OneOf_Operation? = nil
     let operationCheckAndSet = {
@@ -216,7 +219,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
     self.operation = operation
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -415,10 +418,10 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.AutomationRun"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

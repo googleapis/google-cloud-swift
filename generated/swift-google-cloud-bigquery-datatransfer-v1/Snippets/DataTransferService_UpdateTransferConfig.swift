@@ -33,7 +33,7 @@ func sample(client: DataTransferServiceClient, projectId: String, transferConfig
         $0.transferConfig = TransferConfig().with {
           $0.name = "projects/\(projectId)/transferConfigs/\(transferConfigId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

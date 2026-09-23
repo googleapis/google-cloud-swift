@@ -25,7 +25,7 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public var token: Swift.String = Swift.String()
 
   /// Expiration timestamp. Can be empty if unknown or non-expiring.
-  public var expirationTime: GoogleWKT.Timestamp? = nil
+  public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The scopes of the access token.
   public var scopes: [Swift.String] = []
@@ -76,14 +76,14 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleWKT._AnyPackab
       self.token = value
     }
     self.expirationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expirationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
       self.scopes = value
     }
     self.exchangeError = try container.decodeIfPresent(ExchangeError.self, forKey: .exchangeError)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -101,10 +101,10 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.FetchAccessTokenResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -727,7 +727,7 @@ extension Clients {
     /// See `AppHubClient.updateService`.
     func updateService(
       service: Service?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `AppHubClient.deleteService`.
@@ -757,7 +757,7 @@ extension Clients {
     /// See `AppHubClient.updateWorkload`.
     func updateWorkload(
       workload: Workload?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Workload>
 
     /// See `AppHubClient.deleteWorkload`.
@@ -787,7 +787,7 @@ extension Clients {
     /// See `AppHubClient.updateApplication`.
     func updateApplication(
       application: Application?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppHubClient.deleteApplication`.
@@ -1437,7 +1437,7 @@ extension Clients.AppHubProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let request = UpdateServiceRequest().with {
       $0.service = service
@@ -1703,7 +1703,7 @@ extension Clients.AppHubProtocol {
 
   public func updateWorkload(
     workload: Workload?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
     let request = UpdateWorkloadRequest().with {
       $0.workload = workload
@@ -1883,7 +1883,7 @@ extension Clients.AppHubProtocol {
 
   public func updateApplication(
     application: Application?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let request = UpdateApplicationRequest().with {
       $0.application = application

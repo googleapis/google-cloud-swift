@@ -94,7 +94,7 @@
 
     /// Time offset of the end of this Speech recognition result relative to the
     /// beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
-    public var speechEndOffset: GoogleWKT.Duration? = nil
+    public var speechEndOffset: GoogleWKT.WKTDuration? = nil
 
     /// Detected language code for the transcript.
     public var languageCode: Swift.String = Swift.String()
@@ -162,13 +162,13 @@
         self.speechWordInfo = value
       }
       self.speechEndOffset = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .speechEndOffset)
+        GoogleWKT.WKTDuration.self, forKey: .speechEndOffset)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
         self.languageCode = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -347,10 +347,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.StreamingRecognitionResult"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

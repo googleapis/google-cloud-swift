@@ -27,7 +27,7 @@ public struct PublishEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The CloudEvents v1.0 events to publish. No other types are allowed.
   /// If this field is set, then the `text_events` fields must not be set.
-  public var events: [GoogleWKT.`Any`] = []
+  public var events: [GoogleWKT.WKTAny] = []
 
   /// The text representation of events to publish.
   /// CloudEvent v1.0 in JSON format is the only allowed type. Refer to
@@ -76,7 +76,7 @@ public struct PublishEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channel) {
       self.channel = value
     }
-    if let value = try container.decodeIfPresent([GoogleWKT.`Any`].self, forKey: .events) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTAny].self, forKey: .events) {
       self.events = value
     }
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .textEvents) {
@@ -84,7 +84,7 @@ public struct PublishEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -101,10 +101,10 @@ public struct PublishEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.publishing.v1.PublishEventsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -408,7 +408,7 @@ extension Clients.NotificationChannelServiceProtocol {
   }
 
   public func updateNotificationChannel(
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
     notificationChannel: NotificationChannel?,
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
     let request = UpdateNotificationChannelRequest().with {

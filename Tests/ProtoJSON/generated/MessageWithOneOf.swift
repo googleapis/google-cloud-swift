@@ -149,13 +149,14 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     if let string = try container.decodeIfPresent(Swift.String.self, forKey: .string) {
       try mixedCheckAndSet(.string(string))
     }
-    if let duration = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .duration) {
+    if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .duration)
+    {
       try mixedCheckAndSet(.duration(duration))
     }
     self.mixed = mixed
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -243,7 +244,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -258,10 +259,10 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.swift.sdk.test.MessageWithOneOf.Message"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -282,16 +283,16 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OneOf_Mixed: Codable, Equatable, Sendable {
     indirect case anotherMessage(MessageWithOneOf.Message?)
     case string(Swift.String)
-    indirect case duration(GoogleWKT.Duration?)
+    indirect case duration(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithOneOf"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

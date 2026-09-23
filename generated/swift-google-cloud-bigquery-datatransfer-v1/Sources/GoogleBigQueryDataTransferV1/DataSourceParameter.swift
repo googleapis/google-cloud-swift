@@ -46,10 +46,10 @@ public struct DataSourceParameter: Codable, Equatable, GoogleWKT._AnyPackable,
   public var allowedValues: [Swift.String] = []
 
   /// For integer and double values specifies minimum allowed value.
-  public var minValue: GoogleWKT.DoubleValue? = nil
+  public var minValue: GoogleWKT.WKTDoubleValue? = nil
 
   /// For integer and double values specifies maximum allowed value.
-  public var maxValue: GoogleWKT.DoubleValue? = nil
+  public var maxValue: GoogleWKT.WKTDoubleValue? = nil
 
   /// Deprecated. This field has no effect.
   public var fields: [DataSourceParameter] = []
@@ -158,8 +158,8 @@ public struct DataSourceParameter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
       self.allowedValues = value
     }
-    self.minValue = try container.decodeIfPresent(GoogleWKT.DoubleValue.self, forKey: .minValue)
-    self.maxValue = try container.decodeIfPresent(GoogleWKT.DoubleValue.self, forKey: .maxValue)
+    self.minValue = try container.decodeIfPresent(GoogleWKT.WKTDoubleValue.self, forKey: .minValue)
+    self.maxValue = try container.decodeIfPresent(GoogleWKT.WKTDoubleValue.self, forKey: .maxValue)
     if let value = try container.decodeIfPresent([DataSourceParameter].self, forKey: .fields) {
       self.fields = value
     }
@@ -181,7 +181,7 @@ public struct DataSourceParameter: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -364,10 +364,10 @@ public struct DataSourceParameter: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.DataSourceParameter"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

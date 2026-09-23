@@ -30,7 +30,7 @@ func sample(
         $0.template = Template().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/templates/\(templateId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

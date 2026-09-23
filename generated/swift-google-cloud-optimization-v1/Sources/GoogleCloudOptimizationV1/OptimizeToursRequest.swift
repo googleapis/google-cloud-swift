@@ -35,7 +35,7 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// For asynchronous requests, the server will generate a solution (if
   /// possible) before the timeout has elapsed.
-  public var timeout: GoogleWKT.Duration? = nil
+  public var timeout: GoogleWKT.WKTDuration? = nil
 
   /// Shipment model to solve.
   public var model: ShipmentModel? = nil
@@ -330,7 +330,7 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.timeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeout)
+    self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
     self.model = try container.decodeIfPresent(ShipmentModel.self, forKey: .model)
     if let value = try container.decodeIfPresent(
       OptimizeToursRequest.SolvingMode.self, forKey: .solvingMode)
@@ -392,7 +392,7 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -694,10 +694,10 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

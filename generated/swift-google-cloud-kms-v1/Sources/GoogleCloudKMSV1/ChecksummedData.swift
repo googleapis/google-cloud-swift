@@ -40,7 +40,7 @@ public struct ChecksummedData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// languages that support this type.
   ///
   /// [google.cloud.kms.v1.ChecksummedData.data]: <doc:ChecksummedData/data>
-  public var crc32CChecksum: GoogleWKT.Int64Value? = nil
+  public var crc32CChecksum: GoogleWKT.WKTInt64Value? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,10 +81,10 @@ public struct ChecksummedData: Codable, Equatable, GoogleWKT._AnyPackable,
       self.data = value
     }
     self.crc32CChecksum = try container.decodeIfPresent(
-      GoogleWKT.Int64Value.self, forKey: .crc32CChecksum)
+      GoogleWKT.WKTInt64Value.self, forKey: .crc32CChecksum)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -100,10 +100,10 @@ public struct ChecksummedData: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ChecksummedData"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

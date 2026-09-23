@@ -45,7 +45,7 @@ public struct TaskSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the actual maximum run time for a job will be limited to the maximum run
   /// time for a job listed at
   /// https://cloud.google.com/batch/quotas#max-job-duration.
-  public var maxRunDuration: GoogleWKT.Duration? = nil
+  public var maxRunDuration: GoogleWKT.WKTDuration? = nil
 
   /// Maximum number of retries on failures.
   /// The default, 0, which means never retry.
@@ -128,7 +128,7 @@ public struct TaskSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     self.computeResource = try container.decodeIfPresent(
       ComputeResource.self, forKey: .computeResource)
     self.maxRunDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maxRunDuration)
+      GoogleWKT.WKTDuration.self, forKey: .maxRunDuration)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxRetryCount) {
       self.maxRetryCount = value
     }
@@ -147,7 +147,7 @@ public struct TaskSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     self.environment = try container.decodeIfPresent(Environment.self, forKey: .environment)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -172,10 +172,10 @@ public struct TaskSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.batch.v1.TaskSpec"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

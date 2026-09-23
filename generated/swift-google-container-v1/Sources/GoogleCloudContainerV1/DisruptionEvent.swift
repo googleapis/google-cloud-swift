@@ -37,7 +37,7 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// After this timeout, pods are forcefully evicted.
   /// This field is only populated when event_type is
   /// POD_PDB_VIOLATION.
-  public var pdbViolationTimeout: GoogleWKT.Duration? = nil
+  public var pdbViolationTimeout: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,10 +92,10 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.pdbBlockedPod = value
     }
     self.pdbViolationTimeout = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .pdbViolationTimeout)
+      GoogleWKT.WKTDuration.self, forKey: .pdbViolationTimeout)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -163,7 +163,7 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -179,10 +179,10 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.DisruptionEvent.PdbBlockedPod"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -309,10 +309,10 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.DisruptionEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

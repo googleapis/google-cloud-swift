@@ -308,7 +308,7 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.updateFederation`.
     func updateFederation(
       federation: Federation?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
@@ -538,7 +538,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func updateFederation(
     federation: Federation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Federation> {
     let request = UpdateFederationRequest().with {
       $0.federation = federation

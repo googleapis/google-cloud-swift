@@ -65,7 +65,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
   public var revisionId: Swift.String = Swift.String()
 
   /// Output only. The timestamp that the revision was created.
-  public var revisionCreateTime: GoogleWKT.Timestamp? = nil
+  public var revisionCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The etag for this OS policy assignment.
   /// If this is provided on update, it must match the server's etag.
@@ -167,7 +167,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
       self.revisionId = value
     }
     self.revisionCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .revisionCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .revisionCreateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -190,7 +190,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -271,7 +271,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -286,10 +286,10 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicyAssignment.LabelSet"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -382,7 +382,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -456,7 +456,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -473,10 +473,10 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.osconfig.v1.OSPolicyAssignment.InstanceFilter.Inventory"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -484,10 +484,10 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicyAssignment.InstanceFilter"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -506,7 +506,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// VM continues to count towards the `disruption_budget` at least
     /// until this duration of time has passed after configuration changes are
     /// applied.
-    public var minWaitDuration: GoogleWKT.Duration? = nil
+    public var minWaitDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -546,10 +546,10 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
       self.disruptionBudget = try container.decodeIfPresent(
         FixedOrPercent.self, forKey: .disruptionBudget)
       self.minWaitDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minWaitDuration)
+        GoogleWKT.WKTDuration.self, forKey: .minWaitDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -565,10 +565,10 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicyAssignment.Rollout"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -707,10 +707,10 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicyAssignment"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

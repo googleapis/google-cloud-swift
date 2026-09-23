@@ -33,7 +33,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: UtilizationReport.State = UtilizationReport.State()
 
   /// Output only. The time the state was last set.
-  public var stateTime: GoogleWKT.Timestamp? = nil
+  public var stateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Provides details on the state of the report in case of an
   /// error.
@@ -41,7 +41,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The time the report was created (this refers to the time of
   /// the request, not the time the report creation completed).
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Time frame of the report.
   public var timeFrame: UtilizationReport.TimeFrame = UtilizationReport.TimeFrame()
@@ -50,7 +50,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// time frame is counted backwards. For instance if the "frame_end_time" value
   /// is 2021/01/20 and the time frame is WEEK then the report covers the week
   /// between 2021/01/20 and 2021/01/14.
-  public var frameEndTime: GoogleWKT.Timestamp? = nil
+  public var frameEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Total number of VMs included in the report.
   public var vmCount: Swift.Int32 = Swift.Int32()
@@ -121,16 +121,17 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(UtilizationReport.State.self, forKey: .state) {
       self.state = value
     }
-    self.stateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .stateTime)
+    self.stateTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .stateTime)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(
       UtilizationReport.TimeFrame.self, forKey: .timeFrame)
     {
       self.timeFrame = value
     }
     self.frameEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .frameEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .frameEndTime)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmCount) {
       self.vmCount = value
     }
@@ -139,7 +140,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -411,10 +412,10 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.UtilizationReport"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

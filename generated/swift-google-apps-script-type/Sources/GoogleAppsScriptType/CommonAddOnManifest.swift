@@ -56,7 +56,7 @@ public struct CommonAddOnManifest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// prefixes specified in this whitelist. If the prefix omits the scheme, HTTPS
   /// is assumed.  Notice that HTTP links are automatically rewritten to HTTPS
   /// links.
-  public var openLinkUrlPrefixes: GoogleWKT.ListValue? = nil
+  public var openLinkUrlPrefixes: GoogleWKT.WKTListValue? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,10 +126,10 @@ public struct CommonAddOnManifest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.universalActions = value
     }
     self.openLinkUrlPrefixes = try container.decodeIfPresent(
-      GoogleWKT.ListValue.self, forKey: .openLinkUrlPrefixes)
+      GoogleWKT.WKTListValue.self, forKey: .openLinkUrlPrefixes)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -151,10 +151,10 @@ public struct CommonAddOnManifest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.apps.script.type.CommonAddOnManifest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

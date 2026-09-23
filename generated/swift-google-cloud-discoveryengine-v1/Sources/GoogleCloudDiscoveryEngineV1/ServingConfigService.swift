@@ -128,7 +128,7 @@
 
     public func updateServingConfig(
       servingConfig: ServingConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
       let request = UpdateServingConfigRequest().with {
         $0.servingConfig = servingConfig

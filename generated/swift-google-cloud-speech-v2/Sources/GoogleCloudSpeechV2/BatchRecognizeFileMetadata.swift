@@ -51,7 +51,7 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
   ///
   /// [google.cloud.speech.v2.BatchRecognizeFileMetadata.config]: <doc:BatchRecognizeFileMetadata/config>
   /// [google.cloud.speech.v2.Recognizer.default_recognition_config]: <doc:Recognizer/defaultRecognitionConfig>
-  public var configMask: GoogleWKT.FieldMask? = nil
+  public var configMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The audio source, which is a Google Cloud Storage URI.
   public var audioSource: OneOf_AudioSource? = nil
@@ -94,7 +94,8 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.config = try container.decodeIfPresent(RecognitionConfig.self, forKey: .config)
-    self.configMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .configMask)
+    self.configMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .configMask)
 
     var audioSource: OneOf_AudioSource? = nil
     let audioSourceCheckAndSet = {
@@ -112,7 +113,7 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
     self.audioSource = audioSource
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -141,10 +142,10 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.BatchRecognizeFileMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

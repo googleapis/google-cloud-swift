@@ -278,7 +278,7 @@
 
     /// Immutable. Deployment timeout.
     /// Limit for deployment timeout is 2 hours.
-    public var deploymentTimeout: GoogleWKT.Duration? = nil
+    public var deploymentTimeout: GoogleWKT.WKTDuration? = nil
 
     /// Immutable. The amount of the VM memory to reserve as the shared memory for
     /// the model in megabytes.
@@ -380,7 +380,7 @@
         self.grpcPorts = value
       }
       self.deploymentTimeout = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .deploymentTimeout)
+        GoogleWKT.WKTDuration.self, forKey: .deploymentTimeout)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sharedMemorySizeMb) {
         self.sharedMemorySizeMb = value
       }
@@ -389,7 +389,7 @@
       self.livenessProbe = try container.decodeIfPresent(Probe.self, forKey: .livenessProbe)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -417,10 +417,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelContainerSpec"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

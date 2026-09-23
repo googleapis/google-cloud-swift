@@ -32,7 +32,7 @@
     /// Output only. Time when this FeatureViewSync is created. Creation of a
     /// FeatureViewSync means that the job is pending / waiting for sufficient
     /// resources but may not have started the actual data transfer yet.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Time when this FeatureViewSync is finished.
     public var runTime: GoogleType.Interval? = nil
@@ -97,7 +97,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.runTime = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .runTime)
       self.finalStatus = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .finalStatus)
       self.syncSummary = try container.decodeIfPresent(
@@ -110,7 +111,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -141,7 +142,7 @@
 
       /// Lower bound of the system time watermark for the sync job. This is only
       /// set for continuously syncing feature views.
-      public var systemWatermarkTime: GoogleWKT.Timestamp? = nil
+      public var systemWatermarkTime: GoogleWKT.WKTTimestamp? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -187,10 +188,10 @@
           self.totalSlot = value
         }
         self.systemWatermarkTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .systemWatermarkTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .systemWatermarkTime)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -207,10 +208,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewSync.SyncSummary"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -218,10 +219,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewSync"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -26,7 +26,7 @@ public struct UpdateConnectorRequest: Codable, Equatable, GoogleWKT._AnyPackable
   /// relative to the resource, not the full request. A field will be overwritten
   /// if it is in the mask. The mask is required and a value of * will update all
   /// fields.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The connector to update. Its `name` field must be populated.
   public var connector: Connector? = nil
@@ -66,11 +66,12 @@ public struct UpdateConnectorRequest: Codable, Equatable, GoogleWKT._AnyPackable
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.connector = try container.decodeIfPresent(Connector.self, forKey: .connector)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -86,10 +87,10 @@ public struct UpdateConnectorRequest: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedkafka.v1.UpdateConnectorRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

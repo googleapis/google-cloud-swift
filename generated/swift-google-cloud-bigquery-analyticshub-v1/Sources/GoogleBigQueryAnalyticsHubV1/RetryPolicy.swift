@@ -33,12 +33,12 @@ public struct RetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Optional. The minimum delay between consecutive deliveries of a given
   /// message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
-  public var minimumBackoff: GoogleWKT.Duration? = nil
+  public var minimumBackoff: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The maximum delay between consecutive deliveries of a given
   /// message. Value should be between 0 and 600 seconds. Defaults to 600
   /// seconds.
-  public var maximumBackoff: GoogleWKT.Duration? = nil
+  public var maximumBackoff: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,12 +76,12 @@ public struct RetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.minimumBackoff = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .minimumBackoff)
+      GoogleWKT.WKTDuration.self, forKey: .minimumBackoff)
     self.maximumBackoff = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maximumBackoff)
+      GoogleWKT.WKTDuration.self, forKey: .maximumBackoff)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -97,10 +97,10 @@ public struct RetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.RetryPolicy"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

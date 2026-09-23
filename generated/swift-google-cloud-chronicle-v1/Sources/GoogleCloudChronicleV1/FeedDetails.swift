@@ -42,7 +42,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     FeedDetails.STSMigrationReadiness()
 
   /// Optional. The time of the last attempt to migrate the feed to STS V2.
-  public var lastV2MigrationAttemptTime: GoogleWKT.Timestamp? = nil
+  public var lastV2MigrationAttemptTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Additional details of the feed. Depends on the feed type.
   public var details: OneOf_Details? = nil
@@ -270,7 +270,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       self.stsMigrationReadiness = value
     }
     self.lastV2MigrationAttemptTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastV2MigrationAttemptTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastV2MigrationAttemptTime)
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -665,7 +665,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     self.details = details
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -1370,10 +1370,10 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.FeedDetails"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

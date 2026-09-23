@@ -95,11 +95,11 @@
     public var eucConfig: NotebookEucConfig? = nil
 
     /// Output only. Timestamp when this NotebookRuntimeTemplate was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp when this NotebookRuntimeTemplate was most recently
     /// updated.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. Immutable. The type of the notebook runtime template.
     public var notebookRuntimeType: NotebookRuntimeType = NotebookRuntimeType()
@@ -219,8 +219,10 @@
       self.idleShutdownConfig = try container.decodeIfPresent(
         NotebookIdleShutdownConfig.self, forKey: .idleShutdownConfig)
       self.eucConfig = try container.decodeIfPresent(NotebookEucConfig.self, forKey: .eucConfig)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       if let value = try container.decodeIfPresent(
         NotebookRuntimeType.self, forKey: .notebookRuntimeType)
       {
@@ -237,7 +239,7 @@
         NotebookSoftwareConfig.self, forKey: .softwareConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -273,10 +275,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookRuntimeTemplate"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

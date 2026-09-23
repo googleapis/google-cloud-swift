@@ -381,7 +381,7 @@ extension Clients {
     /// See `CloudMemcacheClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateParameters`.
@@ -391,7 +391,7 @@ extension Clients {
     /// See `CloudMemcacheClient.updateParameters`.
     func updateParameters(
       name: Swift.String,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
       parameters: MemcacheParameters?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
@@ -423,7 +423,7 @@ extension Clients {
     func rescheduleMaintenance(
       instance: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleWKT.Timestamp?,
+      scheduleTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.listInstances`.
@@ -659,7 +659,7 @@ extension Clients.CloudMemcacheProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -698,7 +698,7 @@ extension Clients.CloudMemcacheProtocol {
 
   public func updateParameters(
     name: Swift.String,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
     parameters: MemcacheParameters?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = UpdateParametersRequest().with {
@@ -818,7 +818,7 @@ extension Clients.CloudMemcacheProtocol {
   public func rescheduleMaintenance(
     instance: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleWKT.Timestamp?,
+    scheduleTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = RescheduleMaintenanceRequest().with {
       $0.instance = instance

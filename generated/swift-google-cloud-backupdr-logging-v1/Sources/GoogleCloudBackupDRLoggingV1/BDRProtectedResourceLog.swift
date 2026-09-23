@@ -44,7 +44,7 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleWKT._AnyPackabl
   public var currentBackupRuleDetails: [BackupRuleDetail] = []
 
   /// Timestamp when the resource was last protected.
-  public var lastProtectedOn: GoogleWKT.Timestamp? = nil
+  public var lastProtectedOn: GoogleWKT.WKTTimestamp? = nil
 
   /// Full Resource Name of the backup vault currently associated with the source
   /// resource.
@@ -117,14 +117,14 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleWKT._AnyPackabl
       self.currentBackupRuleDetails = value
     }
     self.lastProtectedOn = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastProtectedOn)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastProtectedOn)
     self.currentBackupVaultName = try container.decodeIfPresent(
       Swift.String.self, forKey: .currentBackupVaultName)
     self.sourceResourceLocation = try container.decodeIfPresent(
       Swift.String.self, forKey: .sourceResourceLocation)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -148,10 +148,10 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.logging.v1.BDRProtectedResourceLog"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

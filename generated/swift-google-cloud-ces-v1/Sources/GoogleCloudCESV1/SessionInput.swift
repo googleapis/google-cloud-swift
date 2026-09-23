@@ -118,7 +118,8 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let blob = try container.decodeIfPresent(Blob?.self, forKey: .blob) {
       try inputTypeCheckAndSet(.blob(blob))
     }
-    if let variables = try container.decodeIfPresent(GoogleWKT.Struct?.self, forKey: .variables) {
+    if let variables = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .variables)
+    {
       try inputTypeCheckAndSet(.variables(variables))
     }
     if let event = try container.decodeIfPresent(Event?.self, forKey: .event) {
@@ -127,7 +128,7 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
     self.inputType = inputType
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -181,7 +182,7 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
     /// agent][Agent.RemoteDialogflowAgent] as additional session parameters.
     ///
     /// [Agent.RemoteDialogflowAgent]: <doc:Agent/RemoteDialogflowAgent>
-    indirect case variables(GoogleWKT.Struct?)
+    indirect case variables(GoogleWKT.WKTStruct?)
     /// Optional. Event input.
     indirect case event(Event?)
   }
@@ -189,10 +190,10 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.SessionInput"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -431,7 +431,7 @@ extension Clients {
     /// See `ConnectorsClient.updateConnection`.
     func updateConnection(
       connection: Connection?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Connection>
 
     /// See `ConnectorsClient.deleteConnection`.
@@ -735,7 +735,7 @@ extension Clients.ConnectorsProtocol {
 
   public func updateConnection(
     connection: Connection?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Connection> {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection

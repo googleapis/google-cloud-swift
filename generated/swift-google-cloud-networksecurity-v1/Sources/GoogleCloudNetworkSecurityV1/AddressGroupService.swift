@@ -427,7 +427,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.updateAddressGroup`.
     func updateAddressGroup(
       addressGroup: AddressGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
 
     /// See `AddressGroupServiceClient.addAddressGroupItems`.
@@ -723,7 +723,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func updateAddressGroup(
     addressGroup: AddressGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
     let request = UpdateAddressGroupRequest().with {
       $0.addressGroup = addressGroup

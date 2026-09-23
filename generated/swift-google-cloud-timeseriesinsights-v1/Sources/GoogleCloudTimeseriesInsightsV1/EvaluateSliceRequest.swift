@@ -35,7 +35,7 @@ public struct EvaluateSliceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [QueryDataSetRequest.detectionTime][google.cloud.timeseriesinsights.v1.QueryDataSetRequest.detection_time].
   ///
   /// [google.cloud.timeseriesinsights.v1.QueryDataSetRequest.detection_time]: <doc:QueryDataSetRequest/detectionTime>
-  public var detectionTime: GoogleWKT.Timestamp? = nil
+  public var detectionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Parameters controlling how we will build the time series used to predict
   /// the [detectionTime][google.cloud.timeseriesinsights.v1.EvaluateSliceRequest.detection_time] value for this slice.
@@ -96,14 +96,14 @@ public struct EvaluateSliceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.pinnedDimensions = value
     }
     self.detectionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .detectionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .detectionTime)
     self.timeseriesParams = try container.decodeIfPresent(
       TimeseriesParams.self, forKey: .timeseriesParams)
     self.forecastParams = try container.decodeIfPresent(
       ForecastParams.self, forKey: .forecastParams)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -122,10 +122,10 @@ public struct EvaluateSliceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.EvaluateSliceRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -30,7 +30,7 @@ public struct QueryDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
   /// represented as a google.protobuf.Struct.
-  public var filter: GoogleWKT.Struct? = nil
+  public var filter: GoogleWKT.WKTStruct? = nil
 
   /// Optional. Mask specifying which fields to return.
   public var outputFields: OutputFields? = nil
@@ -94,7 +94,7 @@ public struct QueryDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.filter = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .filter)
+    self.filter = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .filter)
     self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
       self.pageSize = value
@@ -104,7 +104,7 @@ public struct QueryDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -123,10 +123,10 @@ public struct QueryDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.QueryDataObjectsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

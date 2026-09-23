@@ -42,10 +42,10 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
   public var type: Definition.Type_ = Definition.Type_()
 
   /// Output only. The time at which the definition was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time at which the definition was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The list of user defined attributes associated with the
   /// definition resource. The key is the attribute name. It will be of the
@@ -109,8 +109,10 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Definition.Type_.self, forKey: .type) {
       self.type = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(
       [Swift.String: AttributeValues].self, forKey: .attributes)
     {
@@ -133,7 +135,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
     self.value = value
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -275,10 +277,10 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Definition"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

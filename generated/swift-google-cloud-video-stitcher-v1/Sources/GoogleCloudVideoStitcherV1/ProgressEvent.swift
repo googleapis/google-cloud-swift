@@ -24,7 +24,7 @@ public struct ProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// The time when the following tracking events occurs. The time is in
   /// seconds relative to the start of the VOD asset.
-  public var timeOffset: GoogleWKT.Duration? = nil
+  public var timeOffset: GoogleWKT.WKTDuration? = nil
 
   /// The list of progress tracking events for the ad break. These can be of
   /// the following IAB types: `BREAK_START`, `BREAK_END`, `IMPRESSION`,
@@ -67,13 +67,13 @@ public struct ProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.timeOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeOffset)
+    self.timeOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeOffset)
     if let value = try container.decodeIfPresent([Event].self, forKey: .events) {
       self.events = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -89,10 +89,10 @@ public struct ProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.ProgressEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -32,7 +32,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: ColumnDataProfile.State = ColumnDataProfile.State()
 
   /// The last time the profile was generated.
-  public var profileLastGenerated: GoogleWKT.Timestamp? = nil
+  public var profileLastGenerated: GoogleWKT.WKTTimestamp? = nil
 
   /// The resource name of the table data profile.
   public var tableDataProfile: Swift.String = Swift.String()
@@ -169,7 +169,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
     self.profileLastGenerated = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .profileLastGenerated)
+      GoogleWKT.WKTTimestamp.self, forKey: .profileLastGenerated)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableDataProfile) {
       self.tableDataProfile = value
     }
@@ -225,7 +225,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -719,10 +719,10 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ColumnDataProfile"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -29,7 +29,7 @@ public struct UpgradeEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var operation: Swift.String = Swift.String()
 
   /// The time when the operation was started.
-  public var operationStartTime: GoogleWKT.Timestamp? = nil
+  public var operationStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The current version before the upgrade.
   public var currentVersion: Swift.String = Swift.String()
@@ -101,7 +101,7 @@ public struct UpgradeEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.operation = value
     }
     self.operationStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .operationStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .operationStartTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentVersion) {
       self.currentVersion = value
     }
@@ -121,7 +121,7 @@ public struct UpgradeEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -143,10 +143,10 @@ public struct UpgradeEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.UpgradeEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

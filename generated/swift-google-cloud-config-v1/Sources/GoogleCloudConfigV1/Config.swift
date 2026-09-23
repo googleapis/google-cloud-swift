@@ -986,7 +986,7 @@ extension Clients {
     /// See `ConfigClient.updateDeployment`.
     func updateDeployment(
       deployment: Deployment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Deployment>
 
     /// See `ConfigClient.deleteDeployment`.
@@ -1043,7 +1043,7 @@ extension Clients {
     /// See `ConfigClient.updateAutoMigrationConfig`.
     func updateAutoMigrationConfig(
       autoMigrationConfig: AutoMigrationConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AutoMigrationConfig>
 
     /// See `ConfigClient.createDeploymentGroup`.
@@ -1064,7 +1064,7 @@ extension Clients {
     /// See `ConfigClient.updateDeploymentGroup`.
     func updateDeploymentGroup(
       deploymentGroup: DeploymentGroup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup>
 
     /// See `ConfigClient.deleteDeploymentGroup`.
@@ -1530,7 +1530,7 @@ extension Clients.ConfigProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Deployment> {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -2262,7 +2262,7 @@ extension Clients.ConfigProtocol {
 
   public func updateAutoMigrationConfig(
     autoMigrationConfig: AutoMigrationConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AutoMigrationConfig> {
     let request = UpdateAutoMigrationConfigRequest().with {
       $0.autoMigrationConfig = autoMigrationConfig
@@ -2363,7 +2363,7 @@ extension Clients.ConfigProtocol {
 
   public func updateDeploymentGroup(
     deploymentGroup: DeploymentGroup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DeploymentGroup> {
     let request = UpdateDeploymentGroupRequest().with {
       $0.deploymentGroup = deploymentGroup

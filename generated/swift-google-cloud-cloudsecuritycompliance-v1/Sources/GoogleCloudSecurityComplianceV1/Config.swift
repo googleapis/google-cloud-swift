@@ -458,7 +458,7 @@ extension Clients.ConfigProtocol {
 
   public func updateFramework(
     framework: Framework?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
     let request = UpdateFrameworkRequest().with {
       $0.framework = framework
@@ -592,7 +592,7 @@ extension Clients.ConfigProtocol {
 
   public func updateCloudControl(
     cloudControl: CloudControl?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
     let request = UpdateCloudControlRequest().with {
       $0.cloudControl = cloudControl

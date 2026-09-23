@@ -69,7 +69,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       AutoscalerRecommendation.Outputs.self, forKey: .outputs)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -151,7 +151,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
         ClusterSize.self, forKey: .maxWorkerCounts)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -169,10 +169,10 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Inputs"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -189,7 +189,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     public var recommendedClusterSize: ClusterSize? = nil
 
     /// The graceful decommission timeout for downscaling operations.
-    public var gracefulDecommissionTimeout: GoogleWKT.Duration? = nil
+    public var gracefulDecommissionTimeout: GoogleWKT.WKTDuration? = nil
 
     /// Reasons why the Autoscaler didn't add or remove more workers.
     public var constraintsReached: [ConstrainingFactor] = []
@@ -258,7 +258,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       self.recommendedClusterSize = try container.decodeIfPresent(
         ClusterSize.self, forKey: .recommendedClusterSize)
       self.gracefulDecommissionTimeout = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .gracefulDecommissionTimeout)
+        GoogleWKT.WKTDuration.self, forKey: .gracefulDecommissionTimeout)
       if let value = try container.decodeIfPresent(
         [ConstrainingFactor].self, forKey: .constraintsReached)
       {
@@ -277,7 +277,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -300,10 +300,10 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Outputs"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -311,10 +311,10 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

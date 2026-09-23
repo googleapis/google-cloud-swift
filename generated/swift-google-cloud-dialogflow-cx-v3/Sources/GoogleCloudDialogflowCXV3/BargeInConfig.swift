@@ -47,10 +47,10 @@
   {
     /// Duration that is not eligible for barge-in at the beginning of the input
     /// audio.
-    public var noBargeInDuration: GoogleWKT.Duration? = nil
+    public var noBargeInDuration: GoogleWKT.WKTDuration? = nil
 
     /// Total duration for the playback at the beginning of the input audio.
-    public var totalDuration: GoogleWKT.Duration? = nil
+    public var totalDuration: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,12 +88,12 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.noBargeInDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .noBargeInDuration)
+        GoogleWKT.WKTDuration.self, forKey: .noBargeInDuration)
       self.totalDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .totalDuration)
+        GoogleWKT.WKTDuration.self, forKey: .totalDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -109,10 +109,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.BargeInConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

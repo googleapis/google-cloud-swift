@@ -296,7 +296,7 @@ extension Clients {
     /// See `ApiKeysClient.updateKey`.
     func updateKey(
       key: Key?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Key>
 
     /// See `ApiKeysClient.deleteKey`.
@@ -528,7 +528,7 @@ extension Clients.ApiKeysProtocol {
 
   public func updateKey(
     key: Key?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Key> {
     let request = UpdateKeyRequest().with {
       $0.key = key

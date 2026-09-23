@@ -31,7 +31,7 @@ func sample(
         $0.appProfile = AppProfile().with {
           $0.name = "projects/\(projectId)/instances/\(instanceId)/appProfiles/\(appProfileId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

@@ -476,7 +476,7 @@
       func mutateDeployedModel(
         endpoint: Swift.String,
         deployedModel: DeployedModel?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
 
       /// See `EndpointServiceClient.createEndpoint`.
@@ -732,7 +732,7 @@
 
     public func updateEndpoint(
       endpoint: Endpoint?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
       let request = UpdateEndpointRequest().with {
         $0.endpoint = endpoint
@@ -929,7 +929,7 @@
     public func mutateDeployedModel(
       endpoint: Swift.String,
       deployedModel: DeployedModel?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse> {
       let request = MutateDeployedModelRequest().with {
         $0.endpoint = endpoint

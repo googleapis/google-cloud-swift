@@ -38,13 +38,13 @@ public struct Run: Codable, Equatable, GoogleWKT._AnyPackable,
   /// non-semantic management (classifying, describing or labeling the run).
   ///
   /// Up to 100 attributes are allowed.
-  public var attributes: [Swift.String: GoogleWKT.Value] = [:]
+  public var attributes: [Swift.String: GoogleWKT.WKTValue] = [:]
 
   /// Required. The timestamp of the start of the run.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The timestamp of the end of the run.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. The state of the run.
   public var state: Run.State = Run.State()
@@ -99,18 +99,18 @@ public struct Run: Codable, Equatable, GoogleWKT._AnyPackable,
       self.displayName = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Value].self, forKey: .attributes)
+      [Swift.String: GoogleWKT.WKTValue].self, forKey: .attributes)
     {
       self.attributes = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Run.State.self, forKey: .state) {
       self.state = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -262,10 +262,10 @@ public struct Run: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.Run"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

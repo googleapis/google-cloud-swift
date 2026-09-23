@@ -32,7 +32,7 @@
     /// future replication failures. Change the value only if you know the reason
     /// for the GTID divergence and are confident that doing so will not cause any
     /// replication issues.
-    public var verifyGtidConsistency: GoogleWKT.BoolValue? = nil
+    public var verifyGtidConsistency: GoogleWKT.WKTBoolValue? = nil
 
     /// The name of the instance which will act as on-premises primary instance
     /// in the replication setup.
@@ -90,7 +90,7 @@
         self.kind = value
       }
       self.verifyGtidConsistency = try container.decodeIfPresent(
-        GoogleWKT.BoolValue.self, forKey: .verifyGtidConsistency)
+        GoogleWKT.WKTBoolValue.self, forKey: .verifyGtidConsistency)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .masterInstanceName) {
         self.masterInstanceName = value
       }
@@ -101,7 +101,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -120,10 +120,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.DemoteMasterContext"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

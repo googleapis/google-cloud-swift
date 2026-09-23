@@ -24,7 +24,7 @@ public struct UserInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Creation time for this account associated with this user. Leave
   /// blank for non logged-in actions, guest checkout, or when there is no
   /// account associated with the current user.
-  public var createAccountTime: GoogleWKT.Timestamp? = nil
+  public var createAccountTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. For logged-in requests or login/registration requests, the unique
   /// account identifier associated with this user. You can use the username if
@@ -74,7 +74,7 @@ public struct UserInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createAccountTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .createAccountTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .createAccountTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
       self.accountId = value
     }
@@ -83,7 +83,7 @@ public struct UserInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -100,10 +100,10 @@ public struct UserInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.UserInfo"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

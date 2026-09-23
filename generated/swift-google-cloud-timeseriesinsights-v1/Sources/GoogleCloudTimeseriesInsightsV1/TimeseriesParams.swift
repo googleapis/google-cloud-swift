@@ -39,7 +39,7 @@ public struct TimeseriesParams: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.timeseriesinsights.v1.EvaluatedSlice.status]: <doc:EvaluatedSlice/status>
   /// [google.cloud.timeseriesinsights.v1.QueryDataSetRequest.detection_time]: <doc:QueryDataSetRequest/detectionTime>
-  public var forecastHistory: GoogleWKT.Duration? = nil
+  public var forecastHistory: GoogleWKT.WKTDuration? = nil
 
   /// Required. The time granularity of the time series (on the x-axis). Each time series
   /// point starting at time T will aggregate all events for a particular slice
@@ -56,7 +56,7 @@ public struct TimeseriesParams: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Currently, the minimal supported granularity is 10 seconds.
   ///
   /// [google.cloud.timeseriesinsights.v1.TimeseriesParams.metric]: <doc:TimeseriesParams/metric>
-  public var granularity: GoogleWKT.Duration? = nil
+  public var granularity: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Denotes the [name][google.cloud.timeseriesinsights.v1.EventDimension.name] of a numerical
   /// dimension that will have its values aggregated to compute the y-axis of the
@@ -189,8 +189,9 @@ public struct TimeseriesParams: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.forecastHistory = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .forecastHistory)
-    self.granularity = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .granularity)
+      GoogleWKT.WKTDuration.self, forKey: .forecastHistory)
+    self.granularity = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .granularity)
     self.metric = try container.decodeIfPresent(Swift.String.self, forKey: .metric)
     if let value = try container.decodeIfPresent(
       TimeseriesParams.AggregationMethod.self, forKey: .metricAggregationMethod)
@@ -199,7 +200,7 @@ public struct TimeseriesParams: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -343,10 +344,10 @@ public struct TimeseriesParams: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.TimeseriesParams"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

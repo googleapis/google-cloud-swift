@@ -60,7 +60,7 @@ public struct GoogleIamV1GetIamPolicyRequest: Codable, Equatable, GoogleWKT._Any
     self.options = try container.decodeIfPresent(GoogleIamV1GetPolicyOptions.self, forKey: .options)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -75,10 +75,10 @@ public struct GoogleIamV1GetIamPolicyRequest: Codable, Equatable, GoogleWKT._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.GoogleIamV1GetIamPolicyRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

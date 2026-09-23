@@ -549,7 +549,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func updateFeed(
     feed: Feed?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.Feed {
     let request = UpdateFeedRequest().with {
       $0.feed = feed

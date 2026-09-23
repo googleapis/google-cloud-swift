@@ -151,7 +151,7 @@
       self.automatedStoppingSpec = automatedStoppingSpec
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -243,7 +243,7 @@
           StudySpec.MetricSpec.SafetyMetricConfig.self, forKey: .safetyConfig)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -317,7 +317,7 @@
             Swift.Double.self, forKey: .desiredMinSafeTrialsFraction)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -335,10 +335,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -463,10 +463,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MetricSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -585,7 +585,7 @@
         self.parameterValueSpec = parameterValueSpec
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -677,7 +677,7 @@
             Swift.Double.self, forKey: .defaultValue)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -695,10 +695,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.DoubleValueSpec"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -767,7 +767,7 @@
           self.defaultValue = try container.decodeIfPresent(Swift.Int64.self, forKey: .defaultValue)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -785,10 +785,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.IntegerValueSpec"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -850,7 +850,7 @@
             Swift.String.self, forKey: .defaultValue)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -867,10 +867,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.CategoricalValueSpec"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -936,7 +936,7 @@
             Swift.Double.self, forKey: .defaultValue)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -953,10 +953,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.DiscreteValueSpec"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -966,7 +966,7 @@
         Sendable
       {
         /// Required. The spec for a conditional parameter.
-        public var parameterSpec: GoogleWKT.Recursive<StudySpec.ParameterSpec>? = nil
+        public var parameterSpec: GoogleWKT.WKTRecursive<StudySpec.ParameterSpec>? = nil
 
         /// A set of parameter values from the parent ParameterSpec's feasible
         /// space.
@@ -1012,7 +1012,7 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.parameterSpec = try container.decodeIfPresent(
-            GoogleWKT.Recursive<StudySpec.ParameterSpec>.self, forKey: .parameterSpec)
+            GoogleWKT.WKTRecursive<StudySpec.ParameterSpec>.self, forKey: .parameterSpec)
 
           var parentValueCondition: OneOf_ParentValueCondition? = nil
           let parentValueConditionCheckAndSet = {
@@ -1045,7 +1045,7 @@
           self.parentValueCondition = parentValueCondition
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1116,7 +1116,7 @@
             }
             for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
               self._unknownFields.json[key.stringValue] = try container.decode(
-                GoogleWKT.Value.self, forKey: key)
+                GoogleWKT.WKTValue.self, forKey: key)
             }
           }
 
@@ -1132,10 +1132,10 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition"
           }
-          public init(fromAny any: GoogleWKT.`Any`) throws {
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleWKT.Struct {
+          public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
@@ -1186,7 +1186,7 @@
             }
             for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
               self._unknownFields.json[key.stringValue] = try container.decode(
-                GoogleWKT.Value.self, forKey: key)
+                GoogleWKT.WKTValue.self, forKey: key)
             }
           }
 
@@ -1202,10 +1202,10 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition"
           }
-          public init(fromAny any: GoogleWKT.`Any`) throws {
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleWKT.Struct {
+          public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
@@ -1257,7 +1257,7 @@
             }
             for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
               self._unknownFields.json[key.stringValue] = try container.decode(
-                GoogleWKT.Value.self, forKey: key)
+                GoogleWKT.WKTValue.self, forKey: key)
             }
           }
 
@@ -1273,10 +1273,10 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition"
           }
-          public init(fromAny any: GoogleWKT.`Any`) throws {
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleWKT.Struct {
+          public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
@@ -1302,10 +1302,10 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1452,10 +1452,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1516,7 +1516,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1532,10 +1532,10 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.DecayCurveAutomatedStoppingSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1595,7 +1595,7 @@
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1611,10 +1611,10 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MedianAutomatedStoppingSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1742,7 +1742,7 @@
           Swift.Bool.self, forKey: .updateAllStoppedTrials)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1763,10 +1763,10 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ConvexAutomatedStoppingSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1782,7 +1782,7 @@
       /// The bottom line is: set to true if you want to interrupt on-going
       /// evaluations of Trials as soon as the study stopping condition is met.
       /// (Please see Study.State documentation for the source of truth).
-      public var shouldStopAsap: GoogleWKT.BoolValue? = nil
+      public var shouldStopAsap: GoogleWKT.WKTBoolValue? = nil
 
       /// Each "stopping rule" in this proto specifies an "if" condition. Before
       /// Vizier would generate a new suggestion, it first checks each specified
@@ -1811,22 +1811,22 @@
 
       /// If there are fewer than this many COMPLETED trials, do not stop the
       /// study.
-      public var minNumTrials: GoogleWKT.Int32Value? = nil
+      public var minNumTrials: GoogleWKT.WKTInt32Value? = nil
 
       /// If there are more than this many trials, stop the study.
-      public var maxNumTrials: GoogleWKT.Int32Value? = nil
+      public var maxNumTrials: GoogleWKT.WKTInt32Value? = nil
 
       /// If the objective value has not improved for this many consecutive
       /// trials, stop the study.
       ///
       /// WARNING: Effective only for single-objective studies.
-      public var maxNumTrialsNoProgress: GoogleWKT.Int32Value? = nil
+      public var maxNumTrialsNoProgress: GoogleWKT.WKTInt32Value? = nil
 
       /// If the objective value has not improved for this much time, stop the
       /// study.
       ///
       /// WARNING: Effective only for single-objective studies.
-      public var maxDurationNoProgress: GoogleWKT.Duration? = nil
+      public var maxDurationNoProgress: GoogleWKT.WKTDuration? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1874,22 +1874,22 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.shouldStopAsap = try container.decodeIfPresent(
-          GoogleWKT.BoolValue.self, forKey: .shouldStopAsap)
+          GoogleWKT.WKTBoolValue.self, forKey: .shouldStopAsap)
         self.minimumRuntimeConstraint = try container.decodeIfPresent(
           StudyTimeConstraint.self, forKey: .minimumRuntimeConstraint)
         self.maximumRuntimeConstraint = try container.decodeIfPresent(
           StudyTimeConstraint.self, forKey: .maximumRuntimeConstraint)
         self.minNumTrials = try container.decodeIfPresent(
-          GoogleWKT.Int32Value.self, forKey: .minNumTrials)
+          GoogleWKT.WKTInt32Value.self, forKey: .minNumTrials)
         self.maxNumTrials = try container.decodeIfPresent(
-          GoogleWKT.Int32Value.self, forKey: .maxNumTrials)
+          GoogleWKT.WKTInt32Value.self, forKey: .maxNumTrials)
         self.maxNumTrialsNoProgress = try container.decodeIfPresent(
-          GoogleWKT.Int32Value.self, forKey: .maxNumTrialsNoProgress)
+          GoogleWKT.WKTInt32Value.self, forKey: .maxNumTrialsNoProgress)
         self.maxDurationNoProgress = try container.decodeIfPresent(
-          GoogleWKT.Duration.self, forKey: .maxDurationNoProgress)
+          GoogleWKT.WKTDuration.self, forKey: .maxDurationNoProgress)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1912,10 +1912,10 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -2304,10 +2304,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

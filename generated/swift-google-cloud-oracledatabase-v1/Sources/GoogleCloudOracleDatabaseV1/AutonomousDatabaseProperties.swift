@@ -147,7 +147,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
 
   /// Output only. This field indicates the number of seconds of data loss during
   /// a Data Guard failover.
-  public var failedDataRecoveryDuration: GoogleWKT.Duration? = nil
+  public var failedDataRecoveryDuration: GoogleWKT.WKTDuration? = nil
 
   /// Output only. The memory assigned to in-memory tables in an Autonomous
   /// Database.
@@ -241,21 +241,21 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   public var totalAutoBackupStorageSizeGbs: Swift.Float = Swift.Float()
 
   /// Output only. The long term backup schedule of the Autonomous Database.
-  public var nextLongTermBackupTime: GoogleWKT.Timestamp? = nil
+  public var nextLongTermBackupTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time the Autonomous Data Guard role was changed
   /// for the standby Autonomous Database.
-  public var dataGuardRoleChangedTime: GoogleWKT.Timestamp? = nil
+  public var dataGuardRoleChangedTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time the Disaster Recovery role was changed for
   /// the standby Autonomous Database.
-  public var disasterRecoveryRoleChangedTime: GoogleWKT.Timestamp? = nil
+  public var disasterRecoveryRoleChangedTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time when maintenance will begin.
-  public var maintenanceBeginTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceBeginTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The date and time when maintenance will end.
-  public var maintenanceEndTime: GoogleWKT.Timestamp? = nil
+  public var maintenanceEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Immutable. The list of allowlisted IP addresses for the
   /// Autonomous Database.
@@ -569,7 +569,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
     self.connectionUrls = try container.decodeIfPresent(
       AutonomousDatabaseConnectionUrls.self, forKey: .connectionUrls)
     self.failedDataRecoveryDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .failedDataRecoveryDuration)
+      GoogleWKT.WKTDuration.self, forKey: .failedDataRecoveryDuration)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryTableGbs) {
       self.memoryTableGbs = value
     }
@@ -667,15 +667,15 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
       self.totalAutoBackupStorageSizeGbs = value
     }
     self.nextLongTermBackupTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .nextLongTermBackupTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .nextLongTermBackupTime)
     self.dataGuardRoleChangedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .dataGuardRoleChangedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .dataGuardRoleChangedTime)
     self.disasterRecoveryRoleChangedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .disasterRecoveryRoleChangedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .disasterRecoveryRoleChangedTime)
     self.maintenanceBeginTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceBeginTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceBeginTime)
     self.maintenanceEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .maintenanceEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .maintenanceEndTime)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowlistedIps) {
       self.allowlistedIps = value
     }
@@ -696,7 +696,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
       Swift.Bool.self, forKey: .refreshableClone)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -2152,10 +2152,10 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

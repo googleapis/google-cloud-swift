@@ -50,7 +50,7 @@
     public var branch: Swift.String = Swift.String()
 
     /// The custom metadata of the LlmResponse.
-    public var customMetadata: GoogleWKT.Struct? = nil
+    public var customMetadata: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Audio transcription of user input.
     public var inputTranscription: Transcription? = nil
@@ -126,14 +126,14 @@
         self.branch = value
       }
       self.customMetadata = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .customMetadata)
+        GoogleWKT.WKTStruct.self, forKey: .customMetadata)
       self.inputTranscription = try container.decodeIfPresent(
         Transcription.self, forKey: .inputTranscription)
       self.outputTranscription = try container.decodeIfPresent(
         Transcription.self, forKey: .outputTranscription)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -156,10 +156,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EventMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -32,7 +32,7 @@ public struct DataSourceReference: Codable, Equatable, GoogleWKT._AnyPackable,
   public var dataSource: Swift.String = Swift.String()
 
   /// Output only. The time when the DataSourceReference was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The backup configuration state of the DataSource.
   public var dataSourceBackupConfigState: BackupConfigState = BackupConfigState()
@@ -103,7 +103,8 @@ public struct DataSourceReference: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSource) {
       self.dataSource = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(
       BackupConfigState.self, forKey: .dataSourceBackupConfigState)
     {
@@ -120,7 +121,7 @@ public struct DataSourceReference: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Int64.self, forKey: .totalStoredBytes)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -144,10 +145,10 @@ public struct DataSourceReference: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.DataSourceReference"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -22,7 +22,7 @@ public struct TimeseriesPoint: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The timestamp of this point.
-  public var time: GoogleWKT.Timestamp? = nil
+  public var time: GoogleWKT.WKTTimestamp? = nil
 
   /// The value for this point.
   ///
@@ -70,11 +70,11 @@ public struct TimeseriesPoint: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.time = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .time)
+    self.time = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .time)
     self.value = try container.decodeIfPresent(Swift.Double.self, forKey: .value)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -90,10 +90,10 @@ public struct TimeseriesPoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.TimeseriesPoint"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -51,7 +51,7 @@ public struct ObjectConditions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.storagetransfer.v1.TransferOperation]: <doc:TransferOperation>
   /// [google.storagetransfer.v1.TransferOperation.start_time]: <doc:TransferOperation/startTime>
-  public var minTimeElapsedSinceLastModification: GoogleWKT.Duration? = nil
+  public var minTimeElapsedSinceLastModification: GoogleWKT.WKTDuration? = nil
 
   /// Ensures that objects are not transferred if a specific maximum time
   /// has elapsed since the "last modification time".
@@ -65,7 +65,7 @@ public struct ObjectConditions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.storagetransfer.v1.TransferOperation]: <doc:TransferOperation>
   /// [google.storagetransfer.v1.TransferOperation.start_time]: <doc:TransferOperation/startTime>
-  public var maxTimeElapsedSinceLastModification: GoogleWKT.Duration? = nil
+  public var maxTimeElapsedSinceLastModification: GoogleWKT.WKTDuration? = nil
 
   /// If you specify `include_prefixes`, Storage Transfer Service uses the items
   /// in the `include_prefixes` array to determine which objects to include in a
@@ -147,12 +147,12 @@ public struct ObjectConditions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// *  `last_modified_since` to the start of the day
   ///
   /// *  `last_modified_before` to the end of the day
-  public var lastModifiedSince: GoogleWKT.Timestamp? = nil
+  public var lastModifiedSince: GoogleWKT.WKTTimestamp? = nil
 
   /// If specified, only objects with a "last modification time" before this
   /// timestamp and objects that don't have a "last modification time" are
   /// transferred.
-  public var lastModifiedBefore: GoogleWKT.Timestamp? = nil
+  public var lastModifiedBefore: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -200,9 +200,9 @@ public struct ObjectConditions: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.minTimeElapsedSinceLastModification = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .minTimeElapsedSinceLastModification)
+      GoogleWKT.WKTDuration.self, forKey: .minTimeElapsedSinceLastModification)
     self.maxTimeElapsedSinceLastModification = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maxTimeElapsedSinceLastModification)
+      GoogleWKT.WKTDuration.self, forKey: .maxTimeElapsedSinceLastModification)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includePrefixes) {
       self.includePrefixes = value
     }
@@ -210,12 +210,12 @@ public struct ObjectConditions: Codable, Equatable, GoogleWKT._AnyPackable,
       self.excludePrefixes = value
     }
     self.lastModifiedSince = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastModifiedSince)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastModifiedSince)
     self.lastModifiedBefore = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastModifiedBefore)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastModifiedBefore)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -237,10 +237,10 @@ public struct ObjectConditions: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.ObjectConditions"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

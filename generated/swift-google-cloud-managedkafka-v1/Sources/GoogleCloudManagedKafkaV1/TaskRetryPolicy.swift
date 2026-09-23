@@ -31,11 +31,11 @@ public struct TaskRetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Optional. The minimum amount of time to wait before retrying a failed task.
   /// This sets a lower bound for the backoff delay.
-  public var minimumBackoff: GoogleWKT.Duration? = nil
+  public var minimumBackoff: GoogleWKT.WKTDuration? = nil
 
   /// Optional. The maximum amount of time to wait before retrying a failed task.
   /// This sets an upper bound for the backoff delay.
-  public var maximumBackoff: GoogleWKT.Duration? = nil
+  public var maximumBackoff: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,12 +73,12 @@ public struct TaskRetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.minimumBackoff = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .minimumBackoff)
+      GoogleWKT.WKTDuration.self, forKey: .minimumBackoff)
     self.maximumBackoff = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .maximumBackoff)
+      GoogleWKT.WKTDuration.self, forKey: .maximumBackoff)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -94,10 +94,10 @@ public struct TaskRetryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedkafka.v1.TaskRetryPolicy"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

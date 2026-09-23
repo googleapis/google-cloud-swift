@@ -44,11 +44,11 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var requestedLocations: AccessLocations? = nil
 
   /// The time at which approval was requested.
-  public var requestTime: GoogleWKT.Timestamp? = nil
+  public var requestTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The requested expiration for the approval. If the request is approved,
   /// access will be granted from the time of approval until the expiration time.
-  public var requestedExpiration: GoogleWKT.Timestamp? = nil
+  public var requestedExpiration: GoogleWKT.WKTTimestamp? = nil
 
   /// The current decision on the approval request.
   public var decision: OneOf_Decision? = nil
@@ -115,9 +115,10 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       AccessReason.self, forKey: .requestedReason)
     self.requestedLocations = try container.decodeIfPresent(
       AccessLocations.self, forKey: .requestedLocations)
-    self.requestTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .requestTime)
+    self.requestTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .requestTime)
     self.requestedExpiration = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .requestedExpiration)
+      GoogleWKT.WKTTimestamp.self, forKey: .requestedExpiration)
 
     var decision: OneOf_Decision? = nil
     let decisionCheckAndSet = {
@@ -138,7 +139,7 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.decision = decision
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -177,10 +178,10 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.accessapproval.v1.ApprovalRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

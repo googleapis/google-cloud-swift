@@ -47,10 +47,10 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   public var version: Swift.Int32 = Swift.Int32()
 
   /// Output only. The time template was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time template was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The labels to associate with this template. These labels
   /// will be propagated to all jobs and clusters created by the workflow
@@ -87,7 +87,7 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [managed
   /// cluster](/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
   /// the cluster is deleted.
-  public var dagTimeout: GoogleWKT.Duration? = nil
+  public var dagTimeout: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Encryption settings for encrypting workflow template job
   /// arguments.
@@ -155,8 +155,10 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .version) {
       self.version = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {
       self.labels = value
@@ -169,12 +171,12 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([TemplateParameter].self, forKey: .parameters) {
       self.parameters = value
     }
-    self.dagTimeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .dagTimeout)
+    self.dagTimeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .dagTimeout)
     self.encryptionConfig = try container.decodeIfPresent(
       WorkflowTemplate.EncryptionConfig.self, forKey: .encryptionConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -268,7 +270,7 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -283,10 +285,10 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.v1.WorkflowTemplate.EncryptionConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -294,10 +296,10 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.WorkflowTemplate"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

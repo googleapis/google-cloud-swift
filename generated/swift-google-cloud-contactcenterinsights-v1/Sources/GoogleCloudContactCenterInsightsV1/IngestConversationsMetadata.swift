@@ -23,10 +23,10 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
   Sendable
 {
   /// Output only. The time the operation was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the operation finished running.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The original request for ingest.
   public var request: IngestConversationsRequest? = nil
@@ -79,8 +79,9 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     self.request = try container.decodeIfPresent(IngestConversationsRequest.self, forKey: .request)
     if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .partialErrors) {
       self.partialErrors = value
@@ -89,7 +90,7 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
       IngestConversationsMetadata.IngestConversationsStats.self, forKey: .ingestConversationsStats)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -181,7 +182,7 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -200,10 +201,10 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.IngestConversationsMetadata.IngestConversationsStats"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -211,10 +212,10 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.IngestConversationsMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

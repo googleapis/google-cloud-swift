@@ -58,16 +58,16 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: ScheduleState = ScheduleState()
 
   /// Output only. Timestamp when the schedule was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Timestamp when the schedule was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Calculated timestamp for the next scheduled run.
-  public var nextRunTime: GoogleWKT.Timestamp? = nil
+  public var nextRunTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Timestamp when the audit run was last triggered.
-  public var lastTriggerTime: GoogleWKT.Timestamp? = nil
+  public var lastTriggerTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Describes the error if the schedule is in an error state.
   public var errorMessage: Swift.String = Swift.String()
@@ -149,17 +149,20 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ScheduleState.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.nextRunTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .nextRunTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.nextRunTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .nextRunTime)
     self.lastTriggerTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastTriggerTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastTriggerTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
       self.errorMessage = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -295,10 +298,10 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.auditmanager.v1.AuditSchedule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

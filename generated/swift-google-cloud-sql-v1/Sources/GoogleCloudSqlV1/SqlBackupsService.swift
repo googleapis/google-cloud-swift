@@ -218,7 +218,7 @@
 
     public func updateBackup(
       backup: Backup?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudSqlV1.Operation {
       let request = UpdateBackupRequest().with {
         $0.backup = backup

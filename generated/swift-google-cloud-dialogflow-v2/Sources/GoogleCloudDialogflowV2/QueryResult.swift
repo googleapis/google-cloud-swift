@@ -67,7 +67,7 @@
     /// * MapValue value: If parameter's entity type is a composite entity then use
     /// map from composite entity property names to property values, otherwise,
     /// use parameter value.
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     /// This field is set to:
     ///
@@ -95,7 +95,7 @@
 
     /// If the query was fulfilled by a webhook call, this field is set to the
     /// value of the `payload` field returned in the webhook response.
-    public var webhookPayload: GoogleWKT.Struct? = nil
+    public var webhookPayload: GoogleWKT.WKTStruct? = nil
 
     /// The collection of output contexts. If applicable,
     /// `output_contexts.parameters` contains entries with name
@@ -125,7 +125,7 @@
     ///
     /// - webhook call latency
     /// - webhook errors
-    public var diagnosticInfo: GoogleWKT.Struct? = nil
+    public var diagnosticInfo: GoogleWKT.WKTStruct? = nil
 
     /// The sentiment analysis result, which depends on the
     /// `sentiment_analysis_request_config` specified in the request.
@@ -209,7 +209,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
         self.action = value
       }
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .allRequiredParamsPresent)
       {
@@ -230,7 +230,7 @@
         self.webhookSource = value
       }
       self.webhookPayload = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .webhookPayload)
+        GoogleWKT.WKTStruct.self, forKey: .webhookPayload)
       if let value = try container.decodeIfPresent([Context].self, forKey: .outputContexts) {
         self.outputContexts = value
       }
@@ -241,12 +241,12 @@
         self.intentDetectionConfidence = value
       }
       self.diagnosticInfo = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .diagnosticInfo)
+        GoogleWKT.WKTStruct.self, forKey: .diagnosticInfo)
       self.sentimentAnalysisResult = try container.decodeIfPresent(
         SentimentAnalysisResult.self, forKey: .sentimentAnalysisResult)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -276,10 +276,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.QueryResult"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

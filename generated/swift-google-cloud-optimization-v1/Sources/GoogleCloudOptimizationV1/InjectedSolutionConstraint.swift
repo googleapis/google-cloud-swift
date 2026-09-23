@@ -87,7 +87,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -173,7 +173,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -231,7 +231,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
         InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level()
 
       /// The time at or after which the relaxation `level` may be applied.
-      public var thresholdTime: GoogleWKT.Timestamp? = nil
+      public var thresholdTime: GoogleWKT.WKTTimestamp? = nil
 
       /// The number of visits at or after which the relaxation `level` may be
       /// applied. If `threshold_visit_count` is 0 (or unset), the `level` may be
@@ -285,14 +285,14 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
           self.level = value
         }
         self.thresholdTime = try container.decodeIfPresent(
-          GoogleWKT.Timestamp.self, forKey: .thresholdTime)
+          GoogleWKT.WKTTimestamp.self, forKey: .thresholdTime)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .thresholdVisitCount)
         {
           self.thresholdVisitCount = value
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -452,10 +452,10 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
         return
           "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -464,10 +464,10 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
       return
         "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -475,10 +475,10 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -28,7 +28,7 @@ public struct GuestInstalledApplication: Codable, Equatable, GoogleWKT._AnyPacka
   public var vendor: Swift.String = Swift.String()
 
   /// The time when the application was installed.
-  public var installTime: GoogleWKT.Timestamp? = nil
+  public var installTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Source path.
   public var path: Swift.String = Swift.String()
@@ -83,7 +83,8 @@ public struct GuestInstalledApplication: Codable, Equatable, GoogleWKT._AnyPacka
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vendor) {
       self.vendor = value
     }
-    self.installTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .installTime)
+    self.installTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .installTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
       self.path = value
     }
@@ -92,7 +93,7 @@ public struct GuestInstalledApplication: Codable, Equatable, GoogleWKT._AnyPacka
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -111,10 +112,10 @@ public struct GuestInstalledApplication: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.GuestInstalledApplication"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

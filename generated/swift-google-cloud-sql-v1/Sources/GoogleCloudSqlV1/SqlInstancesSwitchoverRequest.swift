@@ -31,7 +31,7 @@
     /// Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations
     /// timeout, which is a sum of all database operations. Default value is 10
     /// minutes and can be modified to a maximum value of 24 hours.
-    public var dbTimeout: GoogleWKT.Duration? = nil
+    public var dbTimeout: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,10 +76,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
         self.project = value
       }
-      self.dbTimeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .dbTimeout)
+      self.dbTimeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .dbTimeout)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -96,10 +96,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SqlInstancesSwitchoverRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

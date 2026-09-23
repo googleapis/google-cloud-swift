@@ -58,12 +58,12 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// is returned and the entire update will be ignored.
   ///
   /// [google.cloud.retail.v2.LocalInventory]: <doc:LocalInventory>
-  public var addMask: GoogleWKT.FieldMask? = nil
+  public var addMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The time when the inventory updates are issued. Used to prevent
   /// out-of-order updates on local inventory fields. If not provided, the
   /// internal system time will be used.
-  public var addTime: GoogleWKT.Timestamp? = nil
+  public var addTime: GoogleWKT.WKTTimestamp? = nil
 
   /// If set to true, and the [Product][google.cloud.retail.v2.Product] is not
   /// found, the local inventory will still be processed and retained for at most
@@ -121,14 +121,14 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let value = try container.decodeIfPresent([LocalInventory].self, forKey: .localInventories) {
       self.localInventories = value
     }
-    self.addMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .addMask)
-    self.addTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .addTime)
+    self.addMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .addMask)
+    self.addTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .addTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
       self.allowMissing = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -147,10 +147,10 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.AddLocalInventoriesRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

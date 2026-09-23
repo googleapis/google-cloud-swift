@@ -229,7 +229,7 @@
 
     public func updateAnswerRecord(
       answerRecord: AnswerRecord?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.AnswerRecord {
       let request = UpdateAnswerRecordRequest().with {
         $0.answerRecord = answerRecord

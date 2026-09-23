@@ -40,13 +40,13 @@ public struct RequestLog: Codable, Equatable, GoogleWKT._AnyPackable,
   public var ip: Swift.String = Swift.String()
 
   /// Time when the request started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Time when the request finished.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Latency of the request.
-  public var latency: GoogleWKT.Duration? = nil
+  public var latency: GoogleWKT.WKTDuration? = nil
 
   /// Number of CPU megacycles used to process request.
   public var megaCycles: Swift.Int64 = Swift.Int64()
@@ -104,7 +104,7 @@ public struct RequestLog: Codable, Equatable, GoogleWKT._AnyPackable,
   public var wasLoadingRequest: Swift.Bool = Swift.Bool()
 
   /// Time this request spent in the pending request queue.
-  public var pendingTime: GoogleWKT.Duration? = nil
+  public var pendingTime: GoogleWKT.WKTDuration? = nil
 
   /// If the instance processing this request belongs to a manually scaled
   /// module, then this is the 0-based index of the instance. Otherwise, this
@@ -252,9 +252,9 @@ public struct RequestLog: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ip) {
       self.ip = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
-    self.latency = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .latency)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
+    self.latency = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .latency)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .megaCycles) {
       self.megaCycles = value
     }
@@ -300,7 +300,8 @@ public struct RequestLog: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .wasLoadingRequest) {
       self.wasLoadingRequest = value
     }
-    self.pendingTime = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .pendingTime)
+    self.pendingTime = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .pendingTime)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .instanceIndex) {
       self.instanceIndex = value
     }
@@ -330,7 +331,7 @@ public struct RequestLog: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -377,10 +378,10 @@ public struct RequestLog: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.logging.v1.RequestLog"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

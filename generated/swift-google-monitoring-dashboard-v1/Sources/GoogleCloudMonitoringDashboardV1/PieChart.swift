@@ -79,7 +79,7 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -114,7 +114,7 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
     /// series query. For example, if the data is published once every 10
     /// minutes, the `min_alignment_period` should be at least 10 minutes. It
     /// would not make sense to fetch and align data at one minute intervals.
-    public var minAlignmentPeriod: GoogleWKT.Duration? = nil
+    public var minAlignmentPeriod: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -159,10 +159,10 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
         self.sliceNameTemplate = value
       }
       self.minAlignmentPeriod = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .minAlignmentPeriod)
+        GoogleWKT.WKTDuration.self, forKey: .minAlignmentPeriod)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -179,10 +179,10 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.PieChart.PieChartDataSet"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -307,10 +307,10 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.PieChart"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

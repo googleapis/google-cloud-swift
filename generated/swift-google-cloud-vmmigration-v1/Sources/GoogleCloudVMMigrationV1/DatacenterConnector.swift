@@ -27,10 +27,10 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Output only. The time the connector was created (as an API call, not when
   /// it was actually installed).
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The last time the connector was updated with an API call.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The connector's name.
   public var name: Swift.String = Swift.String()
@@ -57,7 +57,7 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: DatacenterConnector.State = DatacenterConnector.State()
 
   /// Output only. The time the state was last set.
-  public var stateTime: GoogleWKT.Timestamp? = nil
+  public var stateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Provides details on the state of the Datacenter Connector in
   /// case of an error.
@@ -139,8 +139,10 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
@@ -159,7 +161,7 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(DatacenterConnector.State.self, forKey: .state) {
       self.state = value
     }
-    self.stateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .stateTime)
+    self.stateTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .stateTime)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .applianceInfrastructureVersion)
@@ -176,7 +178,7 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     self.upgradeStatus = try container.decodeIfPresent(UpgradeStatus.self, forKey: .upgradeStatus)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -339,10 +341,10 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.DatacenterConnector"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

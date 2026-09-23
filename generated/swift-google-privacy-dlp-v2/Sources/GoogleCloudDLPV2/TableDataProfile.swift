@@ -73,10 +73,10 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var configSnapshot: DataProfileConfigSnapshot? = nil
 
   /// The time when this table was last modified
-  public var lastModifiedTime: GoogleWKT.Timestamp? = nil
+  public var lastModifiedTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The time when this table expires.
-  public var expirationTime: GoogleWKT.Timestamp? = nil
+  public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The number of columns profiled in the table.
   public var scannedColumnCount: Swift.Int64 = Swift.Int64()
@@ -98,13 +98,13 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resourceVisibility: ResourceVisibility = ResourceVisibility()
 
   /// The last time the profile was generated.
-  public var profileLastGenerated: GoogleWKT.Timestamp? = nil
+  public var profileLastGenerated: GoogleWKT.WKTTimestamp? = nil
 
   /// The labels applied to the resource at the time the profile was generated.
   public var resourceLabels: [Swift.String: Swift.String] = [:]
 
   /// The time at which the table was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The BigQuery table to which the sample findings are written.
   public var sampleFindingsTable: BigQueryTable? = nil
@@ -254,9 +254,9 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     self.configSnapshot = try container.decodeIfPresent(
       DataProfileConfigSnapshot.self, forKey: .configSnapshot)
     self.lastModifiedTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastModifiedTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastModifiedTime)
     self.expirationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expirationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .scannedColumnCount) {
       self.scannedColumnCount = value
     }
@@ -278,13 +278,14 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.resourceVisibility = value
     }
     self.profileLastGenerated = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .profileLastGenerated)
+      GoogleWKT.WKTTimestamp.self, forKey: .profileLastGenerated)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .resourceLabels)
     {
       self.resourceLabels = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.sampleFindingsTable = try container.decodeIfPresent(
       BigQueryTable.self, forKey: .sampleFindingsTable)
     if let value = try container.decodeIfPresent([Tag].self, forKey: .tags) {
@@ -299,7 +300,7 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -463,10 +464,10 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.TableDataProfile"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

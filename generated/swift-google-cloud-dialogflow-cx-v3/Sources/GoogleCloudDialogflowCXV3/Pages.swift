@@ -322,7 +322,7 @@
 
     public func updatePage(
       page: Page?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Page {
       let request = UpdatePageRequest().with {
         $0.page = page

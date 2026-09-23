@@ -27,7 +27,7 @@ public struct UpdateClientTlsPolicyRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// the full request. A field will be overwritten if it is in the
   /// mask. If the user does not provide a mask then all fields will be
   /// overwritten.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. Updated ClientTlsPolicy resource.
   public var clientTlsPolicy: ClientTlsPolicy? = nil
@@ -67,12 +67,13 @@ public struct UpdateClientTlsPolicyRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.clientTlsPolicy = try container.decodeIfPresent(
       ClientTlsPolicy.self, forKey: .clientTlsPolicy)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -88,10 +89,10 @@ public struct UpdateClientTlsPolicyRequest: Codable, Equatable, GoogleWKT._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.UpdateClientTlsPolicyRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

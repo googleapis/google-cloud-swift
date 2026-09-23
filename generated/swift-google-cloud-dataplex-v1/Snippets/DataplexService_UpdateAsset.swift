@@ -34,7 +34,7 @@ func sample(
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)/assets/\(assetId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

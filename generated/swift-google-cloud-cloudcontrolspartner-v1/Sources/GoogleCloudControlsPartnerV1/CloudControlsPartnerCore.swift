@@ -486,7 +486,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func updateCustomer(
     customer: Customer?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     let request = UpdateCustomerRequest().with {
       $0.customer = customer

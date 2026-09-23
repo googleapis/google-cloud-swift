@@ -36,7 +36,7 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The time when the Tag Template migration was enabled.
   /// If the Tag Template migration is not enabled, this field is not set.
-  public var templateMigrationEnabledTime: GoogleWKT.Timestamp? = nil
+  public var templateMigrationEnabledTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,10 +87,10 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.catalogUiExperience = value
     }
     self.templateMigrationEnabledTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .templateMigrationEnabledTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .templateMigrationEnabledTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -108,10 +108,10 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.MigrationConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

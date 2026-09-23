@@ -28,7 +28,7 @@ public struct GetDefaultBranchResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public var branch: Swift.String = Swift.String()
 
   /// The time when this branch is set to default.
-  public var setTime: GoogleWKT.Timestamp? = nil
+  public var setTime: GoogleWKT.WKTTimestamp? = nil
 
   /// This corresponds to
   /// [SetDefaultBranchRequest.note][google.cloud.retail.v2.SetDefaultBranchRequest.note]
@@ -77,13 +77,13 @@ public struct GetDefaultBranchResponse: Codable, Equatable, GoogleWKT._AnyPackab
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .branch) {
       self.branch = value
     }
-    self.setTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .setTime)
+    self.setTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .setTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .note) {
       self.note = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -100,10 +100,10 @@ public struct GetDefaultBranchResponse: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.GetDefaultBranchResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

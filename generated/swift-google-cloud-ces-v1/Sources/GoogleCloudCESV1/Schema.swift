@@ -34,7 +34,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Optional. Schema of the elements of Type.ARRAY.
-  public var items: GoogleWKT.Recursive<Schema>? = nil
+  public var items: GoogleWKT.WKTRecursive<Schema>? = nil
 
   /// Optional. Indicates if the value may be null.
   public var nullable: Swift.Bool = Swift.Bool()
@@ -48,7 +48,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Can either be a boolean or an object, controls the presence of
   /// additional properties.
-  public var additionalProperties: GoogleWKT.Recursive<Schema>? = nil
+  public var additionalProperties: GoogleWKT.WKTRecursive<Schema>? = nil
 
   /// Optional. The value should be validated against any (one or more) of the
   /// subschemas in the list.
@@ -63,7 +63,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   public var `enum`: [Swift.String] = []
 
   /// Optional. Default value of the data.
-  public var `default`: GoogleWKT.Value? = nil
+  public var `default`: GoogleWKT.WKTValue? = nil
 
   /// Optional. Allows indirect references between schema nodes. The value should
   /// be a valid reference to a child of the root `defs`.
@@ -190,7 +190,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.items = try container.decodeIfPresent(GoogleWKT.Recursive<Schema>.self, forKey: .items)
+    self.items = try container.decodeIfPresent(GoogleWKT.WKTRecursive<Schema>.self, forKey: .items)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
       self.nullable = value
     }
@@ -201,14 +201,14 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
       self.prefixItems = value
     }
     self.additionalProperties = try container.decodeIfPresent(
-      GoogleWKT.Recursive<Schema>.self, forKey: .additionalProperties)
+      GoogleWKT.WKTRecursive<Schema>.self, forKey: .additionalProperties)
     if let value = try container.decodeIfPresent([Schema].self, forKey: .anyOf) {
       self.anyOf = value
     }
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .`enum`) {
       self.`enum` = value
     }
-    self.`default` = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .`default`)
+    self.`default` = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .`default`)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
       self.ref = value
     }
@@ -228,7 +228,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     self.maximum = try container.decodeIfPresent(Swift.Double.self, forKey: .maximum)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -406,10 +406,10 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Schema"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

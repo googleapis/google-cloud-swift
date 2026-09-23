@@ -329,7 +329,7 @@
 
     public func updateTool(
       tool: Tool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Tool {
       let request = UpdateToolRequest().with {
         $0.tool = tool

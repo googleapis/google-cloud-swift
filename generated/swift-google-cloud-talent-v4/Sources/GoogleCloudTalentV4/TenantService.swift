@@ -185,7 +185,7 @@ extension Clients.TenantServiceProtocol {
 
   public func updateTenant(
     tenant: Tenant?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudTalentV4.Tenant {
     let request = UpdateTenantRequest().with {
       $0.tenant = tenant

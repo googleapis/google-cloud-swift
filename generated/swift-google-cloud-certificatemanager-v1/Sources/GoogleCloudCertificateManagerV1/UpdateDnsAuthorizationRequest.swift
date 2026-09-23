@@ -27,7 +27,7 @@ public struct UpdateDnsAuthorizationRequest: Codable, Equatable, GoogleWKT._AnyP
   /// Required. The update mask applies to the resource. For the `FieldMask`
   /// definition, see
   /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,10 +66,11 @@ public struct UpdateDnsAuthorizationRequest: Codable, Equatable, GoogleWKT._AnyP
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dnsAuthorization = try container.decodeIfPresent(
       DnsAuthorization.self, forKey: .dnsAuthorization)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -85,10 +86,10 @@ public struct UpdateDnsAuthorizationRequest: Codable, Equatable, GoogleWKT._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.certificatemanager.v1.UpdateDnsAuthorizationRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

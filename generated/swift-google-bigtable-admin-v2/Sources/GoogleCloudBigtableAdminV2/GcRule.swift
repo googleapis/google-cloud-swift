@@ -78,7 +78,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try ruleCheckAndSet(.maxNumVersions(maxNumVersions))
     }
-    if let maxAge = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .maxAge) {
+    if let maxAge = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .maxAge) {
       try ruleCheckAndSet(.maxAge(maxAge))
     }
     if let intersection = try container.decodeIfPresent(
@@ -92,7 +92,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     self.rule = rule
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -161,7 +161,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -176,10 +176,10 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.GcRule.Intersection"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -229,7 +229,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -244,10 +244,10 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.GcRule.Union"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -259,7 +259,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Delete cells in a column older than the given age.
     /// Values must be at least one millisecond, and will be truncated to
     /// microsecond granularity.
-    indirect case maxAge(GoogleWKT.Duration?)
+    indirect case maxAge(GoogleWKT.WKTDuration?)
     /// Delete cells that would be deleted by every nested rule.
     indirect case intersection(GcRule.Intersection?)
     /// Delete cells that would be deleted by any nested rule.
@@ -269,10 +269,10 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.GcRule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -25,7 +25,7 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `segmentDuration` must be greater than or equal to
   /// [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
   /// [`gopDuration`](#videostream).
-  public var segmentDuration: GoogleWKT.Duration? = nil
+  public var segmentDuration: GoogleWKT.WKTDuration? = nil
 
   /// Required. Create an individual segment file. The default is `false`.
   public var individualSegments: Swift.Bool = Swift.Bool()
@@ -66,13 +66,13 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.segmentDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .segmentDuration)
+      GoogleWKT.WKTDuration.self, forKey: .segmentDuration)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .individualSegments) {
       self.individualSegments = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -88,10 +88,10 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.SegmentSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

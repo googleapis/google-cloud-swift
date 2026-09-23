@@ -37,7 +37,7 @@ public struct ConfigureDnsSettingsRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// provider's field name as part of the field mask. For example, when changing
   /// from a Google Domains DNS configuration to a Custom DNS configuration, the
   /// `update_mask` is `"custom_dns"`. //
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Validate the request without actually updating the DNS settings.
   public var validateOnly: Swift.Bool = Swift.Bool()
@@ -85,13 +85,14 @@ public struct ConfigureDnsSettingsRequest: Codable, Equatable, GoogleWKT._AnyPac
       self.registration = value
     }
     self.dnsSettings = try container.decodeIfPresent(DnsSettings.self, forKey: .dnsSettings)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -109,10 +110,10 @@ public struct ConfigureDnsSettingsRequest: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.ConfigureDnsSettingsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

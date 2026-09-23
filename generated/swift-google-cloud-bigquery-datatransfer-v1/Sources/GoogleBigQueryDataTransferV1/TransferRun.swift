@@ -29,32 +29,32 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Minimum time after which a transfer run can be started.
-  public var scheduleTime: GoogleWKT.Timestamp? = nil
+  public var scheduleTime: GoogleWKT.WKTTimestamp? = nil
 
   /// For batch transfer runs, specifies the date and time of the data should be
   /// ingested.
-  public var runTime: GoogleWKT.Timestamp? = nil
+  public var runTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Status of the transfer run.
   public var errorStatus: GoogleRpc.Status? = nil
 
   /// Output only. Time when transfer run was started.
   /// Parameter ignored by server for input requests.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time when transfer run ended.
   /// Parameter ignored by server for input requests.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Last time the data transfer run state was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Parameters specific to each data source. For more information
   /// see the bq tab in the 'Setting up a data transfer' section for each data
   /// source. For example the parameters for Cloud Storage transfers are listed
   /// here:
   /// https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
-  public var params: GoogleWKT.Struct? = nil
+  public var params: GoogleWKT.WKTStruct? = nil
 
   /// Output only. Data source id.
   public var dataSourceId: Swift.String = Swift.String()
@@ -152,13 +152,14 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.scheduleTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .scheduleTime)
-    self.runTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .runTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .scheduleTime)
+    self.runTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .runTime)
     self.errorStatus = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .errorStatus)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
-    self.params = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .params)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    self.params = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .params)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSourceId) {
       self.dataSourceId = value
     }
@@ -197,7 +198,7 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
     self.destination = destination
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -238,10 +239,10 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.TransferRun"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

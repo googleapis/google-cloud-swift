@@ -281,7 +281,7 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
 
   public func updateSupportEventSubscription(
     supportEventSubscription: SupportEventSubscription?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
     let request = UpdateSupportEventSubscriptionRequest().with {
       $0.supportEventSubscription = supportEventSubscription

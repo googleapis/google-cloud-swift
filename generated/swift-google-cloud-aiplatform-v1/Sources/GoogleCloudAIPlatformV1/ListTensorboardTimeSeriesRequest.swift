@@ -54,7 +54,7 @@
     public var orderBy: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.
-    public var readMask: GoogleWKT.FieldMask? = nil
+    public var readMask: GoogleWKT.WKTFieldMask? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -114,10 +114,10 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
         self.orderBy = value
       }
-      self.readMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .readMask)
+      self.readMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .readMask)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -137,10 +137,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ListTensorboardTimeSeriesRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

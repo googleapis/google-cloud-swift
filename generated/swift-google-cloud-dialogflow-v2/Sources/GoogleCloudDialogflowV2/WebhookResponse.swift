@@ -76,7 +76,7 @@
     /// format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
     ///
     /// [google.cloud.dialogflow.v2.QueryResult.webhook_payload]: <doc:QueryResult/webhookPayload>
-    public var payload: GoogleWKT.Struct? = nil
+    public var payload: GoogleWKT.WKTStruct? = nil
 
     /// Optional. The collection of output contexts that will overwrite currently
     /// active contexts for the session and reset their lifespans.
@@ -159,7 +159,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
         self.source = value
       }
-      self.payload = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .payload)
+      self.payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload)
       if let value = try container.decodeIfPresent([Context].self, forKey: .outputContexts) {
         self.outputContexts = value
       }
@@ -172,7 +172,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -193,10 +193,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.WebhookResponse"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

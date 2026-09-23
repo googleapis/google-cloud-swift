@@ -104,7 +104,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   public var timeZone: Swift.String = Swift.String()
 
   /// Output only. The creation time of the job.
-  public var userUpdateTime: GoogleWKT.Timestamp? = nil
+  public var userUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. State of the job.
   public var state: Job.State = Job.State()
@@ -115,10 +115,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The next time the job is scheduled. Note that this may be a
   /// retry of a previously failed attempt or the next execution time
   /// according to the schedule.
-  public var scheduleTime: GoogleWKT.Timestamp? = nil
+  public var scheduleTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the last job attempt started.
-  public var lastAttemptTime: GoogleWKT.Timestamp? = nil
+  public var lastAttemptTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Settings that determine the retry behavior.
   public var retryConfig: RetryConfig? = nil
@@ -150,7 +150,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.scheduler.v1.Job.http_target]: <doc:Job/OneOf_Target/httpTarget(_:)>
   /// [google.cloud.scheduler.v1.Job.pubsub_target]: <doc:Job/OneOf_Target/pubsubTarget(_:)>
   /// [google.cloud.scheduler.v1.RetryConfig]: <doc:RetryConfig>
-  public var attemptDeadline: GoogleWKT.Duration? = nil
+  public var attemptDeadline: GoogleWKT.WKTDuration? = nil
 
   /// Required.
   ///
@@ -229,18 +229,18 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       self.timeZone = value
     }
     self.userUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .userUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .userUpdateTime)
     if let value = try container.decodeIfPresent(Job.State.self, forKey: .state) {
       self.state = value
     }
     self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
     self.scheduleTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .scheduleTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .scheduleTime)
     self.lastAttemptTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastAttemptTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastAttemptTime)
     self.retryConfig = try container.decodeIfPresent(RetryConfig.self, forKey: .retryConfig)
     self.attemptDeadline = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .attemptDeadline)
+      GoogleWKT.WKTDuration.self, forKey: .attemptDeadline)
 
     var target: OneOf_Target? = nil
     let targetCheckAndSet = {
@@ -266,7 +266,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     self.target = target
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -456,10 +456,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.scheduler.v1.Job"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

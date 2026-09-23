@@ -81,7 +81,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     self.codecSettings = codecSettings
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -319,14 +319,14 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
       self.gopMode = gopMode
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -377,16 +377,16 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// All video streams in the same channel must have the same GOP size.
       ///
       /// [google.cloud.video.livestream.v1.SegmentSettings.segment_duration]: <doc:SegmentSettings/segmentDuration>
-      indirect case gopDuration(GoogleWKT.Duration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.VideoStream.H264CodecSettings"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -554,14 +554,14 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
       self.gopMode = gopMode
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -608,16 +608,16 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// All video streams in the same channel must have the same GOP size.
       ///
       /// [google.cloud.video.livestream.v1.SegmentSettings.segment_duration]: <doc:SegmentSettings/segmentDuration>
-      indirect case gopDuration(GoogleWKT.Duration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.VideoStream.H265CodecSettings"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -633,10 +633,10 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.VideoStream"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

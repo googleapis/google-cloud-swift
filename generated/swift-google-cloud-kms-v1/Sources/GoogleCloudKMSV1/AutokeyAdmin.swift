@@ -241,7 +241,7 @@ extension Clients.AutokeyAdminProtocol {
 
   public func updateAutokeyConfig(
     autokeyConfig: AutokeyConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
     let request = UpdateAutokeyConfigRequest().with {
       $0.autokeyConfig = autokeyConfig

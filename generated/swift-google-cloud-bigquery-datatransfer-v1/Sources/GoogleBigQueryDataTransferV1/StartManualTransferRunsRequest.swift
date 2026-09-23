@@ -87,14 +87,14 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
       try timeCheckAndSet(.requestedTimeRange(requestedTimeRange))
     }
     if let requestedRunTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp?.self, forKey: .requestedRunTime)
+      GoogleWKT.WKTTimestamp?.self, forKey: .requestedRunTime)
     {
       try timeCheckAndSet(.requestedRunTime(requestedRunTime))
     }
     self.time = time
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -124,13 +124,13 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
     /// `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than
     /// the end_time. Creates transfer runs where run_time is in the range
     /// between start_time (inclusive) and end_time (exclusive).
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// End time of the range of transfer runs. For example,
     /// `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
     /// Creates transfer runs where run_time is in the range between start_time
     /// (inclusive) and end_time (exclusive).
-    public var endTime: GoogleWKT.Timestamp? = nil
+    public var endTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -167,11 +167,12 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -188,10 +189,10 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
       return
         "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.StartManualTransferRunsRequest.TimeRange"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -208,17 +209,17 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
     /// that are scheduled to be transferred by the scheduled transfer run.
     /// requested_run_time must be a past time and cannot include future time
     /// values.
-    indirect case requestedRunTime(GoogleWKT.Timestamp?)
+    indirect case requestedRunTime(GoogleWKT.WKTTimestamp?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.StartManualTransferRunsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

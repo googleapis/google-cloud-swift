@@ -325,7 +325,7 @@ extension Clients.DataObjectServiceProtocol {
 
   public func updateDataObject(
     dataObject: DataObject?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudVectorSearchV1.DataObject {
     let request = UpdateDataObjectRequest().with {
       $0.dataObject = dataObject

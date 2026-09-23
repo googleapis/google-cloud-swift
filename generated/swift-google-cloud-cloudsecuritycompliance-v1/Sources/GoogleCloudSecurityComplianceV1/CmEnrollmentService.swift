@@ -205,7 +205,7 @@ extension Clients.CmEnrollmentServiceProtocol {
 
   public func updateCmEnrollment(
     cmEnrollment: CmEnrollment?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSecurityComplianceV1.CmEnrollment {
     let request = UpdateCmEnrollmentRequest().with {
       $0.cmEnrollment = cmEnrollment

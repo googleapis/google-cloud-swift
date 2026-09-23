@@ -22,7 +22,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
   Sendable
 {
   /// Current timestamp.
-  public var currentTime: GoogleWKT.Timestamp? = nil
+  public var currentTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A list of identified boxes.
   public var identifiedBoxes: [OccupancyCountingPredictionResult.IdentifiedBox] = []
@@ -84,7 +84,8 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.currentTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .currentTime)
+    self.currentTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .currentTime)
     if let value = try container.decodeIfPresent(
       [OccupancyCountingPredictionResult.IdentifiedBox].self, forKey: .identifiedBoxes)
     {
@@ -105,7 +106,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     self.pts = try container.decodeIfPresent(Swift.Int64.self, forKey: .pts)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -175,7 +176,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -191,10 +192,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Entity"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -277,7 +278,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -362,7 +363,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -381,10 +382,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox.NormalizedBoundingBox"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -393,10 +394,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -469,7 +470,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -536,7 +537,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -553,10 +554,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -567,7 +568,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       Sendable
     {
       /// The start time of the accumulated count.
-      public var startTime: GoogleWKT.Timestamp? = nil
+      public var startTime: GoogleWKT.WKTTimestamp? = nil
 
       /// The object count for the accumulated count.
       public var objectCount: OccupancyCountingPredictionResult.Stats.ObjectCount? = nil
@@ -607,12 +608,13 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+        self.startTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .startTime)
         self.objectCount = try container.decodeIfPresent(
           OccupancyCountingPredictionResult.Stats.ObjectCount.self, forKey: .objectCount)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -629,10 +631,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -728,7 +730,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -750,10 +752,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -811,7 +813,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -828,10 +830,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -839,10 +841,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -855,7 +857,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     public var trackId: Swift.String = Swift.String()
 
     /// Start timestamp of this track.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -895,10 +897,11 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackId) {
         self.trackId = value
       }
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -915,10 +918,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -934,10 +937,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     public var zoneId: Swift.String = Swift.String()
 
     /// The beginning time when a dwelling object has been identified in a zone.
-    public var dwellStartTime: GoogleWKT.Timestamp? = nil
+    public var dwellStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The end time when a dwelling object has exited in a zone.
-    public var dwellEndTime: GoogleWKT.Timestamp? = nil
+    public var dwellEndTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -985,12 +988,12 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         self.zoneId = value
       }
       self.dwellStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .dwellStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .dwellStartTime)
       self.dwellEndTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .dwellEndTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .dwellEndTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -1009,10 +1012,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1020,10 +1023,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

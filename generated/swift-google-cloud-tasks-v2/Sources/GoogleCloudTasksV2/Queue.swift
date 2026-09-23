@@ -139,7 +139,7 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.tasks.v2.CloudTasks.PurgeQueue]: <doc:CloudTasksClient/purgeQueue(request:options:)>
   /// [google.cloud.tasks.v2.Task.create_time]: <doc:Task/createTime>
-  public var purgeTime: GoogleWKT.Timestamp? = nil
+  public var purgeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Configuration options for writing logs to
   /// [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
@@ -201,12 +201,12 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Queue.State.self, forKey: .state) {
       self.state = value
     }
-    self.purgeTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .purgeTime)
+    self.purgeTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .purgeTime)
     self.stackdriverLoggingConfig = try container.decodeIfPresent(
       StackdriverLoggingConfig.self, forKey: .stackdriverLoggingConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -375,10 +375,10 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.Queue"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

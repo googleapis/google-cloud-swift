@@ -31,7 +31,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The maximum travel time in seconds. The maximum allowed value is
   /// `3600s` (one hour). Format is `123s`.
-  public var travelDuration: GoogleWKT.Duration? = nil
+  public var travelDuration: GoogleWKT.WKTDuration? = nil
 
   /// If `true`, jobs without street level addresses may also be returned.
   /// For city level addresses, the city center is used. For state and coarser
@@ -92,7 +92,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     self.startCoordinates = try container.decodeIfPresent(
       GoogleType.LatLng.self, forKey: .startCoordinates)
     self.travelDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .travelDuration)
+      GoogleWKT.WKTDuration.self, forKey: .travelDuration)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowImpreciseAddresses)
     {
       self.allowImpreciseAddresses = value
@@ -121,7 +121,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     self.trafficOption = trafficOption
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -278,10 +278,10 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.CommuteFilter"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

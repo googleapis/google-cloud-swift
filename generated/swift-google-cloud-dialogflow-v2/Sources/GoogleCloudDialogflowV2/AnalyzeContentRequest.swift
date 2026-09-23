@@ -49,7 +49,7 @@
     ///
     /// Note: this field should only be used if you are connecting to a Dialogflow
     /// CX agent.
-    public var cxParameters: GoogleWKT.Struct? = nil
+    public var cxParameters: GoogleWKT.WKTStruct? = nil
 
     /// A unique identifier for this request. Restricted to 36 ASCII characters.
     /// A random UUID is recommended.
@@ -119,7 +119,7 @@
       self.assistQueryParams = try container.decodeIfPresent(
         AssistQueryParameters.self, forKey: .assistQueryParams)
       self.cxParameters = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .cxParameters)
+        GoogleWKT.WKTStruct.self, forKey: .cxParameters)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
         self.requestId = value
       }
@@ -151,7 +151,7 @@
       self.input = input
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -196,10 +196,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AnalyzeContentRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

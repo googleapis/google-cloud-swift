@@ -1649,7 +1649,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateEndpointPolicy`.
     func updateEndpointPolicy(
       endpointPolicy: EndpointPolicy?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.deleteEndpointPolicy`.
@@ -1699,7 +1699,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateWasmPlugin`.
     func updateWasmPlugin(
       wasmPlugin: WasmPlugin?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.deleteWasmPlugin`.
@@ -1729,7 +1729,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateGateway`.
     func updateGateway(
       gateway: Gateway?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.deleteGateway`.
@@ -1759,7 +1759,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateGrpcRoute`.
     func updateGrpcRoute(
       grpcRoute: GrpcRoute?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.deleteGrpcRoute`.
@@ -1789,7 +1789,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateHttpRoute`.
     func updateHttpRoute(
       httpRoute: HttpRoute?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.deleteHttpRoute`.
@@ -1819,7 +1819,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateTcpRoute`.
     func updateTcpRoute(
       tcpRoute: TcpRoute?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.deleteTcpRoute`.
@@ -1849,7 +1849,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateTlsRoute`.
     func updateTlsRoute(
       tlsRoute: TlsRoute?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.deleteTlsRoute`.
@@ -1879,7 +1879,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateServiceBinding`.
     func updateServiceBinding(
       serviceBinding: ServiceBinding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.deleteServiceBinding`.
@@ -1911,7 +1911,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateMesh`.
     func updateMesh(
       mesh: Mesh?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.deleteMesh`.
@@ -1942,7 +1942,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateServiceLbPolicy`.
     func updateServiceLbPolicy(
       serviceLbPolicy: ServiceLbPolicy?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.deleteServiceLbPolicy`.
@@ -1972,7 +1972,7 @@ extension Clients {
     /// See `NetworkServicesClient.updateAgentGateway`.
     func updateAgentGateway(
       agentGateway: AgentGateway?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.deleteAgentGateway`.
@@ -2653,7 +2653,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateEndpointPolicy(
     endpointPolicy: EndpointPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy> {
     let request = UpdateEndpointPolicyRequest().with {
       $0.endpointPolicy = endpointPolicy
@@ -2977,7 +2977,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateWasmPlugin(
     wasmPlugin: WasmPlugin?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WasmPlugin> {
     let request = UpdateWasmPluginRequest().with {
       $0.wasmPlugin = wasmPlugin
@@ -3157,7 +3157,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateGateway(
     gateway: Gateway?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
     let request = UpdateGatewayRequest().with {
       $0.gateway = gateway
@@ -3337,7 +3337,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateGrpcRoute(
     grpcRoute: GrpcRoute?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<GrpcRoute> {
     let request = UpdateGrpcRouteRequest().with {
       $0.grpcRoute = grpcRoute
@@ -3517,7 +3517,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateHttpRoute(
     httpRoute: HttpRoute?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<HttpRoute> {
     let request = UpdateHttpRouteRequest().with {
       $0.httpRoute = httpRoute
@@ -3697,7 +3697,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateTcpRoute(
     tcpRoute: TcpRoute?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TcpRoute> {
     let request = UpdateTcpRouteRequest().with {
       $0.tcpRoute = tcpRoute
@@ -3877,7 +3877,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateTlsRoute(
     tlsRoute: TlsRoute?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TlsRoute> {
     let request = UpdateTlsRouteRequest().with {
       $0.tlsRoute = tlsRoute
@@ -4058,7 +4058,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateServiceBinding(
     serviceBinding: ServiceBinding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceBinding> {
     let request = UpdateServiceBindingRequest().with {
       $0.serviceBinding = serviceBinding
@@ -4232,7 +4232,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateMesh(
     mesh: Mesh?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Mesh> {
     let request = UpdateMeshRequest().with {
       $0.mesh = mesh
@@ -4411,7 +4411,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateServiceLbPolicy(
     serviceLbPolicy: ServiceLbPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy> {
     let request = UpdateServiceLbPolicyRequest().with {
       $0.serviceLbPolicy = serviceLbPolicy
@@ -4720,7 +4720,7 @@ extension Clients.NetworkServicesProtocol {
 
   public func updateAgentGateway(
     agentGateway: AgentGateway?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AgentGateway> {
     let request = UpdateAgentGatewayRequest().with {
       $0.agentGateway = agentGateway

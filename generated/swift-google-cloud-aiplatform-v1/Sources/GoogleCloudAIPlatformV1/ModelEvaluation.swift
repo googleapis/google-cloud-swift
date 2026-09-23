@@ -41,10 +41,10 @@
     /// [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
     ///
     /// [google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]: <doc:ModelEvaluation/metricsSchemaUri>
-    public var metrics: GoogleWKT.Value? = nil
+    public var metrics: GoogleWKT.WKTValue? = nil
 
     /// Output only. Timestamp when this ModelEvaluation was created.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// All possible
     /// [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
@@ -99,7 +99,7 @@
     /// For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
     /// structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
     /// "evaluation_dataset_path", "row_based_metrics_path".
-    public var metadata: GoogleWKT.Value? = nil
+    public var metadata: GoogleWKT.WKTValue? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -163,8 +163,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricsSchemaUri) {
         self.metricsSchemaUri = value
       }
-      self.metrics = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .metrics)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.metrics = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metrics)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sliceDimensions) {
         self.sliceDimensions = value
       }
@@ -182,10 +183,10 @@
       {
         self.explanationSpecs = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.Value.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -263,7 +264,7 @@
           ExplanationSpec.self, forKey: .explanationSpec)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -280,10 +281,10 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -291,10 +292,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

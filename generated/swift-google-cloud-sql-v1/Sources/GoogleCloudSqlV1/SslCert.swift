@@ -34,7 +34,7 @@
     /// The time when the certificate was created in [RFC
     /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// User supplied name.  Constrained to [a-zA-Z.-_ ]+.
     public var commonName: Swift.String = Swift.String()
@@ -42,7 +42,7 @@
     /// The time when the certificate expires in [RFC
     /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var expirationTime: GoogleWKT.Timestamp? = nil
+    public var expirationTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Sha1 Fingerprint.
     public var sha1Fingerprint: Swift.String = Swift.String()
@@ -111,12 +111,13 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cert) {
         self.cert = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commonName) {
         self.commonName = value
       }
       self.expirationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .expirationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .expirationTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha1Fingerprint) {
         self.sha1Fingerprint = value
       }
@@ -128,7 +129,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -151,10 +152,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SslCert"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

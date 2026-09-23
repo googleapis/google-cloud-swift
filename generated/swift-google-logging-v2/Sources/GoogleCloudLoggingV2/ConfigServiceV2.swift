@@ -1162,7 +1162,7 @@ extension Clients.ConfigServiceV2Protocol {
   public func updateSink(
     sinkName: Swift.String,
     sink: LogSink?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudLoggingV2.LogSink {
     let request = UpdateSinkRequest().with {
       $0.sinkName = sinkName
@@ -1437,7 +1437,7 @@ extension Clients.ConfigServiceV2Protocol {
   public func updateExclusion(
     name: Swift.String,
     exclusion: LogExclusion?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
     let request = UpdateExclusionRequest().with {
       $0.name = name
@@ -1524,7 +1524,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func updateSettings(
     settings: Settings?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudLoggingV2.Settings {
     let request = UpdateSettingsRequest().with {
       $0.settings = settings

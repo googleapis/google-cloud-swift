@@ -91,7 +91,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
       }
       complex = $0
     }
-    if let null = try container.decodeIfPresent(GoogleWKT.NullValue.self, forKey: .null) {
+    if let null = try container.decodeIfPresent(GoogleWKT.WKTNullValue.self, forKey: .null) {
       try complexCheckAndSet(.null(null))
     }
     if let boolValue = try container.decodeIfPresent(Swift.Bool.self, forKey: .boolValue) {
@@ -125,21 +125,22 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     {
       try complexCheckAndSet(.inner(inner))
     }
-    if let duration = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .duration) {
+    if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .duration)
+    {
       try complexCheckAndSet(.duration(duration))
     }
-    if let value = try container.decodeIfPresent(GoogleWKT.Value?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue?.self, forKey: .value) {
       try complexCheckAndSet(.value(value))
     }
     if let optionalDouble = try container.decodeIfPresent(
-      GoogleWKT.DoubleValue?.self, forKey: .optionalDouble)
+      GoogleWKT.WKTDoubleValue?.self, forKey: .optionalDouble)
     {
       try complexCheckAndSet(.optionalDouble(optionalDouble))
     }
     self.complex = complex
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -224,7 +225,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -239,10 +240,10 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.swift.sdk.test.MessageWithComplexOneOf.Inner"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -354,7 +355,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   public enum OneOf_Complex: Codable, Equatable, Sendable {
-    case null(GoogleWKT.NullValue)
+    case null(GoogleWKT.WKTNullValue)
     case boolValue(Swift.Bool)
     case bytesValue(Foundation.Data)
     case stringValue(Swift.String)
@@ -364,18 +365,18 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     case int64(Swift.Int64)
     case `enum`(MessageWithComplexOneOf.TestEnum)
     indirect case inner(MessageWithComplexOneOf.Inner?)
-    indirect case duration(GoogleWKT.Duration?)
-    indirect case value(GoogleWKT.Value?)
-    indirect case optionalDouble(GoogleWKT.DoubleValue?)
+    indirect case duration(GoogleWKT.WKTDuration?)
+    indirect case value(GoogleWKT.WKTValue?)
+    indirect case optionalDouble(GoogleWKT.WKTDoubleValue?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithComplexOneOf"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

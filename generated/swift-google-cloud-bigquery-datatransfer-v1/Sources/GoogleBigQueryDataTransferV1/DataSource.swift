@@ -89,7 +89,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   public var manualRunsDisabled: Swift.Bool = Swift.Bool()
 
   /// The minimum interval for scheduler to schedule runs.
-  public var minimumScheduleInterval: GoogleWKT.Duration? = nil
+  public var minimumScheduleInterval: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -222,10 +222,10 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.manualRunsDisabled = value
     }
     self.minimumScheduleInterval = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .minimumScheduleInterval)
+      GoogleWKT.WKTDuration.self, forKey: .minimumScheduleInterval)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -508,10 +508,10 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.DataSource"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

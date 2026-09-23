@@ -325,7 +325,7 @@ extension Clients.ApiHubCurateProtocol {
 
   public func updateCuration(
     curation: Curation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Curation {
     let request = UpdateCurationRequest().with {
       $0.curation = curation

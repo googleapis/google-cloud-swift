@@ -26,7 +26,7 @@ public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Each row hold a query result in the format of `Struct`.
-  public var rows: [GoogleWKT.Struct] = []
+  public var rows: [GoogleWKT.WKTStruct] = []
 
   /// Describes the format of the [rows].
   public var schema: TableSchema? = nil
@@ -76,7 +76,7 @@ public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([GoogleWKT.Struct].self, forKey: .rows) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTStruct].self, forKey: .rows) {
       self.rows = value
     }
     self.schema = try container.decodeIfPresent(TableSchema.self, forKey: .schema)
@@ -88,7 +88,7 @@ public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -106,10 +106,10 @@ public struct QueryResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.QueryResult"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

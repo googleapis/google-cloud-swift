@@ -743,7 +743,7 @@ extension Clients {
     /// See `SpeechClient.updateRecognizer`.
     func updateRecognizer(
       recognizer: Recognizer?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Recognizer>
 
     /// See `SpeechClient.deleteRecognizer`.
@@ -772,7 +772,7 @@ extension Clients {
     func batchRecognize(
       recognizer: Swift.String,
       config: RecognitionConfig?,
-      configMask: GoogleWKT.FieldMask?,
+      configMask: GoogleWKT.WKTFieldMask?,
       files: [BatchRecognizeFileMetadata],
     ) async throws -> any GoogleGax.PollableOperation<BatchRecognizeResponse>
 
@@ -794,7 +794,7 @@ extension Clients {
     /// See `SpeechClient.updateCustomClass`.
     func updateCustomClass(
       customClass: CustomClass?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CustomClass>
 
     /// See `SpeechClient.deleteCustomClass`.
@@ -833,7 +833,7 @@ extension Clients {
     /// See `SpeechClient.updatePhraseSet`.
     func updatePhraseSet(
       phraseSet: PhraseSet?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PhraseSet>
 
     /// See `SpeechClient.deletePhraseSet`.
@@ -1192,7 +1192,7 @@ extension Clients.SpeechProtocol {
 
   public func updateRecognizer(
     recognizer: Recognizer?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Recognizer> {
     let request = UpdateRecognizerRequest().with {
       $0.recognizer = recognizer
@@ -1290,7 +1290,7 @@ extension Clients.SpeechProtocol {
   public func recognize(
     recognizer: Swift.String,
     config: RecognitionConfig?,
-    configMask: GoogleWKT.FieldMask?,
+    configMask: GoogleWKT.WKTFieldMask?,
     content: Foundation.Data,
   ) async throws -> GoogleCloudSpeechV2.RecognizeResponse {
     let request = RecognizeRequest().with {
@@ -1305,7 +1305,7 @@ extension Clients.SpeechProtocol {
   public func recognize(
     recognizer: Swift.String,
     config: RecognitionConfig?,
-    configMask: GoogleWKT.FieldMask?,
+    configMask: GoogleWKT.WKTFieldMask?,
     uri: Swift.String,
   ) async throws -> GoogleCloudSpeechV2.RecognizeResponse {
     let request = RecognizeRequest().with {
@@ -1349,7 +1349,7 @@ extension Clients.SpeechProtocol {
   public func batchRecognize(
     recognizer: Swift.String,
     config: RecognitionConfig?,
-    configMask: GoogleWKT.FieldMask?,
+    configMask: GoogleWKT.WKTFieldMask?,
     files: [BatchRecognizeFileMetadata],
   ) async throws -> any GoogleGax.PollableOperation<BatchRecognizeResponse> {
     let request = BatchRecognizeRequest().with {
@@ -1393,7 +1393,7 @@ extension Clients.SpeechProtocol {
 
   public func updateConfig(
     config: Config?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSpeechV2.Config {
     let request = UpdateConfigRequest().with {
       $0.config = config
@@ -1536,7 +1536,7 @@ extension Clients.SpeechProtocol {
 
   public func updateCustomClass(
     customClass: CustomClass?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CustomClass> {
     let request = UpdateCustomClassRequest().with {
       $0.customClass = customClass
@@ -1753,7 +1753,7 @@ extension Clients.SpeechProtocol {
 
   public func updatePhraseSet(
     phraseSet: PhraseSet?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PhraseSet> {
     let request = UpdatePhraseSetRequest().with {
       $0.phraseSet = phraseSet

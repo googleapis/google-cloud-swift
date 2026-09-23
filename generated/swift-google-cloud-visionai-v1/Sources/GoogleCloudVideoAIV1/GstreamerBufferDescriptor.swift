@@ -28,13 +28,13 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleWKT._AnyPacka
   public var isKeyFrame: Swift.Bool = Swift.Bool()
 
   /// PTS of the frame.
-  public var ptsTime: GoogleWKT.Timestamp? = nil
+  public var ptsTime: GoogleWKT.WKTTimestamp? = nil
 
   /// DTS of the frame.
-  public var dtsTime: GoogleWKT.Timestamp? = nil
+  public var dtsTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Duration of the frame.
-  public var duration: GoogleWKT.Duration? = nil
+  public var duration: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,12 +83,12 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleWKT._AnyPacka
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isKeyFrame) {
       self.isKeyFrame = value
     }
-    self.ptsTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .ptsTime)
-    self.dtsTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .dtsTime)
-    self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+    self.ptsTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .ptsTime)
+    self.dtsTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .dtsTime)
+    self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -107,10 +107,10 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.GstreamerBufferDescriptor"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

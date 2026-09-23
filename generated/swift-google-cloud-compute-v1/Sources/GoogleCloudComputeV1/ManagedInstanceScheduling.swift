@@ -23,12 +23,12 @@
   {
     /// Output only. The timestamp at which the underlying instance will be
     /// triggered for graceful shutdown if it is configured. This is in RFC3339 text format.
-    public var gracefulShutdownTimestamp: GoogleWKT.Timestamp? = nil
+    public var gracefulShutdownTimestamp: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The timestamp at which the managed instance will be terminated. This is
     /// in RFC3339 text
     /// format.
-    public var terminationTimestamp: GoogleWKT.Timestamp? = nil
+    public var terminationTimestamp: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,12 +66,12 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.gracefulShutdownTimestamp = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .gracefulShutdownTimestamp)
+        GoogleWKT.WKTTimestamp.self, forKey: .gracefulShutdownTimestamp)
       self.terminationTimestamp = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .terminationTimestamp)
+        GoogleWKT.WKTTimestamp.self, forKey: .terminationTimestamp)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -88,10 +88,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceScheduling"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

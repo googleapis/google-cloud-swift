@@ -281,7 +281,7 @@ extension Clients.ApiHubDependenciesProtocol {
 
   public func updateDependency(
     dependency: Dependency?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Dependency {
     let request = UpdateDependencyRequest().with {
       $0.dependency = dependency

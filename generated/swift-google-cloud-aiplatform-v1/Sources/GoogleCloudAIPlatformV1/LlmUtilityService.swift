@@ -251,7 +251,7 @@
 
     public func countTokens(
       endpoint: Swift.String,
-      instances: [GoogleWKT.Value],
+      instances: [GoogleWKT.WKTValue],
     ) async throws -> GoogleCloudAIPlatformV1.CountTokensResponse {
       let request = CountTokensRequest().with {
         $0.endpoint = endpoint
@@ -274,7 +274,7 @@
 
     public func computeTokens(
       endpoint: Swift.String,
-      instances: [GoogleWKT.Value],
+      instances: [GoogleWKT.WKTValue],
     ) async throws -> GoogleCloudAIPlatformV1.ComputeTokensResponse {
       let request = ComputeTokensRequest().with {
         $0.endpoint = endpoint

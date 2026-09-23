@@ -55,7 +55,7 @@ public struct SimulatedFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   /// that writes the finding. The key names must be between 1 and 255
   /// characters; they must start with a letter and contain alphanumeric
   /// characters or underscores only.
-  public var sourceProperties: [Swift.String: GoogleWKT.Value] = [:]
+  public var sourceProperties: [Swift.String: GoogleWKT.WKTValue] = [:]
 
   /// The time the finding was first detected. If an existing finding is updated,
   /// then this is the time the update occurred. If the finding is later
@@ -67,7 +67,7 @@ public struct SimulatedFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// The event time must not be set to a value greater than the current
   /// timestamp.
-  public var eventTime: GoogleWKT.Timestamp? = nil
+  public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The severity of the finding. This field is managed by the source that
   /// writes the finding.
@@ -141,11 +141,11 @@ public struct SimulatedFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Value].self, forKey: .sourceProperties)
+      [Swift.String: GoogleWKT.WKTValue].self, forKey: .sourceProperties)
     {
       self.sourceProperties = value
     }
-    self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
+    self.eventTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
     if let value = try container.decodeIfPresent(SimulatedFinding.Severity.self, forKey: .severity)
     {
       self.severity = value
@@ -157,7 +157,7 @@ public struct SimulatedFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -622,10 +622,10 @@ public struct SimulatedFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycentermanagement.v1.SimulatedFinding"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -37,10 +37,10 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleWKT
     OSPolicyAssignmentOperationMetadata.RolloutState()
 
   /// Rollout start time
-  public var rolloutStartTime: GoogleWKT.Timestamp? = nil
+  public var rolloutStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Rollout update time
-  public var rolloutUpdateTime: GoogleWKT.Timestamp? = nil
+  public var rolloutUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,12 +97,12 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleWKT
       self.rolloutState = value
     }
     self.rolloutStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .rolloutStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .rolloutStartTime)
     self.rolloutUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .rolloutUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .rolloutUpdateTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -376,10 +376,10 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleWKT
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicyAssignmentOperationMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -374,7 +374,7 @@ extension Clients.AccessApprovalProtocol {
 
   public func updateAccessApprovalSettings(
     settings: AccessApprovalSettings?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
     let request = UpdateAccessApprovalSettingsMessage().with {
       $0.settings = settings

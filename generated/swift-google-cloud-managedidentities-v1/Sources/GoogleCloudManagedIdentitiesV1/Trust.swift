@@ -47,10 +47,10 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   public var trustHandshakeSecret: Swift.String = Swift.String()
 
   /// Output only. The time the instance was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The last update time.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The current state of the trust.
   public var state: Trust.State = Trust.State()
@@ -59,7 +59,7 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   public var stateDescription: Swift.String = Swift.String()
 
   /// Output only. The last heartbeat time when the trust was known to be connected.
-  public var lastTrustHeartbeatTime: GoogleWKT.Timestamp? = nil
+  public var lastTrustHeartbeatTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,8 +135,10 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustHandshakeSecret) {
       self.trustHandshakeSecret = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Trust.State.self, forKey: .state) {
       self.state = value
     }
@@ -144,10 +146,10 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
       self.stateDescription = value
     }
     self.lastTrustHeartbeatTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastTrustHeartbeatTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastTrustHeartbeatTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -554,10 +556,10 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedidentities.v1.Trust"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

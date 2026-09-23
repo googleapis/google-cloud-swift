@@ -282,7 +282,7 @@ extension Clients.EntityServiceProtocol {
 
   public func updateWatchlist(
     watchlist: Watchlist?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
     let request = UpdateWatchlistRequest().with {
       $0.watchlist = watchlist

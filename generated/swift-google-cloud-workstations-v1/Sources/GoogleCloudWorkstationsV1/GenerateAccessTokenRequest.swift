@@ -92,17 +92,17 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -130,20 +130,20 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// be at most 24 hours in the future. If a value is not specified, the
     /// token's expiration time will be set to a default value of 1 hour in the
     /// future.
-    indirect case expireTime(GoogleWKT.Timestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp?)
     /// Desired lifetime duration of the access token. This value must
     /// be at most 24 hours. If a value is not specified, the token's lifetime
     /// will be set to a default value of 1 hour.
-    indirect case ttl(GoogleWKT.Duration?)
+    indirect case ttl(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workstations.v1.GenerateAccessTokenRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

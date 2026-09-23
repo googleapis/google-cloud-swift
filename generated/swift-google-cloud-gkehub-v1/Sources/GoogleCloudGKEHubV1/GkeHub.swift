@@ -1200,7 +1200,7 @@ extension Clients {
     func updateMembership(
       name: Swift.String,
       resource: Membership?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.updateFeature`.
@@ -1211,7 +1211,7 @@ extension Clients {
     func updateFeature(
       name: Swift.String,
       resource: Feature?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Feature>
 
     /// See `GkeHubClient.createFleet`.
@@ -1231,7 +1231,7 @@ extension Clients {
     /// See `GkeHubClient.updateFleet`.
     func updateFleet(
       fleet: Fleet?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Fleet>
 
     /// See `GkeHubClient.deleteFleet`.
@@ -1261,7 +1261,7 @@ extension Clients {
     /// See `GkeHubClient.updateScopeNamespace`.
     func updateScopeNamespace(
       scopeNamespace: Namespace?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.deleteScopeNamespace`.
@@ -1291,7 +1291,7 @@ extension Clients {
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
     func updateScopeRbacroleBinding(
       rbacrolebinding: RBACRoleBinding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
@@ -1321,7 +1321,7 @@ extension Clients {
     /// See `GkeHubClient.updateScope`.
     func updateScope(
       scope: Scope?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.deleteScope`.
@@ -1351,7 +1351,7 @@ extension Clients {
     /// See `GkeHubClient.updateMembershipBinding`.
     func updateMembershipBinding(
       membershipBinding: MembershipBinding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.deleteMembershipBinding`.
@@ -1381,7 +1381,7 @@ extension Clients {
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
     func updateMembershipRbacroleBinding(
       rbacrolebinding: RBACRoleBinding?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
@@ -2106,7 +2106,7 @@ extension Clients.GkeHubProtocol {
   public func updateMembership(
     name: Swift.String,
     resource: Membership?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Membership> {
     let request = UpdateMembershipRequest().with {
       $0.name = name
@@ -2147,7 +2147,7 @@ extension Clients.GkeHubProtocol {
   public func updateFeature(
     name: Swift.String,
     resource: Feature?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Feature> {
     let request = UpdateFeatureRequest().with {
       $0.name = name
@@ -2253,7 +2253,7 @@ extension Clients.GkeHubProtocol {
 
   public func updateFleet(
     fleet: Fleet?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
     let request = UpdateFleetRequest().with {
       $0.fleet = fleet
@@ -2431,7 +2431,7 @@ extension Clients.GkeHubProtocol {
 
   public func updateScopeNamespace(
     scopeNamespace: Namespace?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Namespace> {
     let request = UpdateScopeNamespaceRequest().with {
       $0.scopeNamespace = scopeNamespace
@@ -2611,7 +2611,7 @@ extension Clients.GkeHubProtocol {
 
   public func updateScopeRbacroleBinding(
     rbacrolebinding: RBACRoleBinding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let request = UpdateScopeRBACRoleBindingRequest().with {
       $0.rbacrolebinding = rbacrolebinding
@@ -2785,7 +2785,7 @@ extension Clients.GkeHubProtocol {
 
   public func updateScope(
     scope: Scope?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Scope> {
     let request = UpdateScopeRequest().with {
       $0.scope = scope
@@ -3004,7 +3004,7 @@ extension Clients.GkeHubProtocol {
 
   public func updateMembershipBinding(
     membershipBinding: MembershipBinding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MembershipBinding> {
     let request = UpdateMembershipBindingRequest().with {
       $0.membershipBinding = membershipBinding
@@ -3184,7 +3184,7 @@ extension Clients.GkeHubProtocol {
 
   public func updateMembershipRbacroleBinding(
     rbacrolebinding: RBACRoleBinding?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let request = UpdateMembershipRBACRoleBindingRequest().with {
       $0.rbacrolebinding = rbacrolebinding

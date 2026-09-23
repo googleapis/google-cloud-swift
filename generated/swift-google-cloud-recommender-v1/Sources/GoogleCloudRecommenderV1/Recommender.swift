@@ -570,7 +570,7 @@ extension Clients.RecommenderProtocol {
 
   public func updateRecommenderConfig(
     recommenderConfig: RecommenderConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
     let request = UpdateRecommenderConfigRequest().with {
       $0.recommenderConfig = recommenderConfig
@@ -614,7 +614,7 @@ extension Clients.RecommenderProtocol {
 
   public func updateInsightTypeConfig(
     insightTypeConfig: InsightTypeConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
     let request = UpdateInsightTypeConfigRequest().with {
       $0.insightTypeConfig = insightTypeConfig

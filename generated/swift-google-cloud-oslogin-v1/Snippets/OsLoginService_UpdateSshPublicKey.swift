@@ -28,7 +28,7 @@ func sample(client: OsLoginServiceClient, userId: String, fingerprintId: String)
         $0.sshPublicKey = GoogleCloudOSLoginCommon.SshPublicKey().with {
           $0.name = "users/\(userId)/sshPublicKeys/\(fingerprintId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

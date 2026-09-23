@@ -23,7 +23,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
   Sendable
 {
   /// Current timestamp.
-  public var currentTime: GoogleWKT.Timestamp? = nil
+  public var currentTime: GoogleWKT.WKTTimestamp? = nil
 
   /// A list of DetectedPersons.
   public var detectedPersons: [PersonalProtectiveEquipmentDetectionOutput.DetectedPerson] = []
@@ -63,7 +63,8 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.currentTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .currentTime)
+    self.currentTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .currentTime)
     if let value = try container.decodeIfPresent(
       [PersonalProtectiveEquipmentDetectionOutput.DetectedPerson].self, forKey: .detectedPersons)
     {
@@ -71,7 +72,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -129,7 +130,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -145,10 +146,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PersonEntity"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -226,7 +227,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -245,10 +246,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PPEEntity"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -322,7 +323,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -341,10 +342,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.NormalizedBoundingBox"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -419,7 +420,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
         PersonalProtectiveEquipmentDetectionOutput.PersonEntity.self, forKey: .personEntity)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -438,10 +439,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PersonIdentifiedBox"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -515,7 +516,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
         PersonalProtectiveEquipmentDetectionOutput.PPEEntity.self, forKey: .ppeEntity)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -534,10 +535,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PPEIdentifiedBox"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -653,7 +654,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
         Swift.Float.self, forKey: .feetCoverageScore)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -678,10 +679,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.DetectedPerson"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -689,10 +690,10 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

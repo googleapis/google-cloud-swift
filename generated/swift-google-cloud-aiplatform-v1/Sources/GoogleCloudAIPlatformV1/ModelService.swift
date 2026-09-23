@@ -987,7 +987,7 @@
 
     public func updateModel(
       model: Model?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Model {
       let request = UpdateModelRequest().with {
         $0.model = model

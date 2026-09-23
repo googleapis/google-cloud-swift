@@ -31,7 +31,7 @@ func sample(client: ServicesClient, projectId: String, locationId: String, servi
         $0.service = Service().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

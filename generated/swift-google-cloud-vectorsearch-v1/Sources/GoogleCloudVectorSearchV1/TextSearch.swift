@@ -36,7 +36,7 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
   /// represented as a `google.protobuf.Struct`.
-  public var filter: GoogleWKT.Struct? = nil
+  public var filter: GoogleWKT.WKTStruct? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,10 +87,10 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
     self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
-    self.filter = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .filter)
+    self.filter = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .filter)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -109,10 +109,10 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.TextSearch"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

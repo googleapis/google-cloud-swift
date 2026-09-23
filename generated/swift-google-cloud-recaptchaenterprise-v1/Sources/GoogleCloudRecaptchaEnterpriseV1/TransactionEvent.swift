@@ -37,7 +37,7 @@ public struct TransactionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Timestamp when this transaction event occurred; otherwise assumed
   /// to be the time of the API call.
-  public var eventTime: GoogleWKT.Timestamp? = nil
+  public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,10 +89,10 @@ public struct TransactionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .value) {
       self.value = value
     }
-    self.eventTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .eventTime)
+    self.eventTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -378,10 +378,10 @@ public struct TransactionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.TransactionEvent"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

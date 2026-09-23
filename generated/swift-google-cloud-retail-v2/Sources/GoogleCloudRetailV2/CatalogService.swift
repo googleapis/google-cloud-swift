@@ -379,7 +379,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateCatalog(
     catalog: Catalog?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.Catalog {
     let request = UpdateCatalogRequest().with {
       $0.catalog = catalog
@@ -463,7 +463,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateCompletionConfig(
     completionConfig: CompletionConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
     let request = UpdateCompletionConfigRequest().with {
       $0.completionConfig = completionConfig
@@ -507,7 +507,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateAttributesConfig(
     attributesConfig: AttributesConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
     let request = UpdateAttributesConfigRequest().with {
       $0.attributesConfig = attributesConfig

@@ -34,7 +34,7 @@
 
     /// Optional. The instances that are the input to token counting call.
     /// Schema is identical to the prediction schema of the underlying model.
-    public var instances: [GoogleWKT.Value] = []
+    public var instances: [GoogleWKT.WKTValue] = []
 
     /// Optional. Input content.
     public var contents: [Content] = []
@@ -107,7 +107,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
         self.model = value
       }
-      if let value = try container.decodeIfPresent([GoogleWKT.Value].self, forKey: .instances) {
+      if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .instances) {
         self.instances = value
       }
       if let value = try container.decodeIfPresent([Content].self, forKey: .contents) {
@@ -122,7 +122,7 @@
         GenerationConfig.self, forKey: .generationConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -143,10 +143,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.CountTokensRequest"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

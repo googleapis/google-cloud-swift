@@ -376,7 +376,7 @@
 
     public func updateParticipant(
       participant: Participant?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Participant {
       let request = UpdateParticipantRequest().with {
         $0.participant = participant

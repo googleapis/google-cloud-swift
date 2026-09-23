@@ -31,7 +31,7 @@ func sample(client: ApiHubClient, projectId: String, locationId: String, externa
         $0.externalApi = ExternalApi().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/externalApis/\(externalApiId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

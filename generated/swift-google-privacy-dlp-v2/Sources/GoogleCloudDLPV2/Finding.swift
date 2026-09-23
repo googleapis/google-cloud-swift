@@ -44,7 +44,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var location: Location? = nil
 
   /// Timestamp when finding was detected.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Contains data parsed from quotes. Only populated if include_quote was set
   /// to true and a supported infoType was requested. Currently supported
@@ -74,7 +74,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Time the job started that produced this finding.
-  public var jobCreateTime: GoogleWKT.Timestamp? = nil
+  public var jobCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The job that stored the finding.
   public var jobName: Swift.String = Swift.String()
@@ -150,7 +150,8 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.likelihood = value
     }
     self.location = try container.decodeIfPresent(Location.self, forKey: .location)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.quoteInfo = try container.decodeIfPresent(QuoteInfo.self, forKey: .quoteInfo)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
       self.resourceName = value
@@ -163,7 +164,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
     self.jobCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .jobCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .jobCreateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobName) {
       self.jobName = value
     }
@@ -172,7 +173,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -199,10 +200,10 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Finding"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

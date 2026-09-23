@@ -310,7 +310,7 @@ extension Clients {
     /// See `CmekServiceClient.updateEncryptionConfig`.
     func updateEncryptionConfig(
       encryptionConfig: EncryptionConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
 
     /// See `CmekServiceClient.deleteEncryptionConfig`.
@@ -477,7 +477,7 @@ extension Clients.CmekServiceProtocol {
 
   public func updateEncryptionConfig(
     encryptionConfig: EncryptionConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
     let request = UpdateEncryptionConfigRequest().with {
       $0.encryptionConfig = encryptionConfig

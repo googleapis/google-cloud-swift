@@ -325,7 +325,7 @@ extension Clients.CloudSchedulerProtocol {
 
   public func updateJob(
     job: Job?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSchedulerV1.Job {
     let request = UpdateJobRequest().with {
       $0.job = job

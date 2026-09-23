@@ -26,10 +26,10 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Output only. The time the cutover job was created (as an API call, not when
   /// it was actually created in the target).
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the cutover job had finished.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The name of the cutover job.
   public var name: Swift.String = Swift.String()
@@ -38,7 +38,7 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: CutoverJob.State = CutoverJob.State()
 
   /// Output only. The time the state was last updated.
-  public var stateTime: GoogleWKT.Timestamp? = nil
+  public var stateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The current progress in percentage of the cutover job.
   public var progressPercent: Swift.Int32 = Swift.Int32()
@@ -111,15 +111,16 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
     if let value = try container.decodeIfPresent(CutoverJob.State.self, forKey: .state) {
       self.state = value
     }
-    self.stateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .stateTime)
+    self.stateTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .stateTime)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
       self.progressPercent = value
     }
@@ -155,7 +156,7 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
     self.targetVmDetails = targetVmDetails
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -348,10 +349,10 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.CutoverJob"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

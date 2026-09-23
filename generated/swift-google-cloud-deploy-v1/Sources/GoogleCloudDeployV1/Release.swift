@@ -58,13 +58,13 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
   public var abandoned: Swift.Bool = Swift.Bool()
 
   /// Output only. Time at which the `Release` was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the render began.
-  public var renderStartTime: GoogleWKT.Timestamp? = nil
+  public var renderStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time at which the render completed.
-  public var renderEndTime: GoogleWKT.Timestamp? = nil
+  public var renderEndTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Cloud Storage URI of tar.gz archive containing Skaffold
   /// configuration.
@@ -212,11 +212,12 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .abandoned) {
       self.abandoned = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.renderStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .renderStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .renderStartTime)
     self.renderEndTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .renderEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .renderEndTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skaffoldConfigUri) {
       self.skaffoldConfigUri = value
     }
@@ -264,7 +265,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -381,7 +382,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -687,10 +688,10 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.TargetRender"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -745,7 +746,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -760,10 +761,10 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.ReleaseReadyCondition"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -781,11 +782,11 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The time at which this release's version of Skaffold will enter
     /// maintenance mode.
-    public var maintenanceModeTime: GoogleWKT.Timestamp? = nil
+    public var maintenanceModeTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The time at which this release's version of Skaffold will no longer be
     /// supported.
-    public var supportExpirationTime: GoogleWKT.Timestamp? = nil
+    public var supportExpirationTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -835,12 +836,12 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
         self.skaffoldSupportState = value
       }
       self.maintenanceModeTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .maintenanceModeTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .maintenanceModeTime)
       self.supportExpirationTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .supportExpirationTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .supportExpirationTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -858,10 +859,10 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.SkaffoldSupportedCondition"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -918,7 +919,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
         Release.SkaffoldSupportedCondition.self, forKey: .skaffoldSupportedCondition)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -935,10 +936,10 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.ReleaseCondition"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1070,10 +1071,10 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.Release"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

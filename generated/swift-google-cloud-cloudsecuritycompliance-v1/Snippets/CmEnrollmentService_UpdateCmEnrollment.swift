@@ -31,7 +31,7 @@ func sample(client: CmEnrollmentServiceClient, organizationId: String, locationI
         $0.cmEnrollment = CmEnrollment().with {
           $0.name = "organizations/\(organizationId)/locations/\(locationId)/cmEnrollment"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

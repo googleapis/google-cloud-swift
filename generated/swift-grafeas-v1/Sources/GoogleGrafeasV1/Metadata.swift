@@ -27,10 +27,10 @@ public struct Metadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var buildInvocationId: Swift.String = Swift.String()
 
   /// The timestamp of when the build started.
-  public var buildStartedOn: GoogleWKT.Timestamp? = nil
+  public var buildStartedOn: GoogleWKT.WKTTimestamp? = nil
 
   /// The timestamp of when the build completed.
-  public var buildFinishedOn: GoogleWKT.Timestamp? = nil
+  public var buildFinishedOn: GoogleWKT.WKTTimestamp? = nil
 
   /// Indicates that the builder claims certain fields in this message to be
   /// complete.
@@ -85,16 +85,16 @@ public struct Metadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.buildInvocationId = value
     }
     self.buildStartedOn = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .buildStartedOn)
+      GoogleWKT.WKTTimestamp.self, forKey: .buildStartedOn)
     self.buildFinishedOn = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .buildFinishedOn)
+      GoogleWKT.WKTTimestamp.self, forKey: .buildFinishedOn)
     self.completeness = try container.decodeIfPresent(Completeness.self, forKey: .completeness)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reproducible) {
       self.reproducible = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -113,10 +113,10 @@ public struct Metadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Metadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

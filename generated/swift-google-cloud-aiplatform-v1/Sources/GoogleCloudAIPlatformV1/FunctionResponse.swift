@@ -33,7 +33,7 @@
     /// Use "output" key to specify function output and "error" key to specify
     /// error details (if any). If "output" and "error" keys are not specified,
     /// then whole "response" is treated as function output.
-    public var response: GoogleWKT.Struct? = nil
+    public var response: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Ordered `Parts` that constitute a function response. Parts may
     /// have different IANA MIME types.
@@ -79,13 +79,13 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      self.response = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .response)
+      self.response = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .response)
       if let value = try container.decodeIfPresent([FunctionResponsePart].self, forKey: .parts) {
         self.parts = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -102,10 +102,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FunctionResponse"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

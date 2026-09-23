@@ -331,7 +331,7 @@
 
     public func updateExample(
       example: Example?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
       let request = UpdateExampleRequest().with {
         $0.example = example

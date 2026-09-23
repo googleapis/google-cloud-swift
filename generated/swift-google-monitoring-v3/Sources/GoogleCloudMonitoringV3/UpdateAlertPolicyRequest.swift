@@ -42,7 +42,7 @@ public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackab
   ///     the supplied condition includes the `name` field with that
   ///     `[CONDITION_ID]`. If the supplied condition omits the `name` field,
   ///     then a new `[CONDITION_ID]` is created.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The updated alerting policy or the updated values for the
   /// fields listed in `update_mask`.
@@ -85,11 +85,12 @@ public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackab
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.alertPolicy = try container.decodeIfPresent(AlertPolicy.self, forKey: .alertPolicy)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -105,10 +106,10 @@ public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.UpdateAlertPolicyRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

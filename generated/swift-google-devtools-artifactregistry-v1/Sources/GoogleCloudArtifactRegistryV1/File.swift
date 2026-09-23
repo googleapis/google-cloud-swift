@@ -33,17 +33,17 @@ public struct File: Codable, Equatable, GoogleWKT._AnyPackable,
   public var hashes: [Hash] = []
 
   /// Output only. The time when the File was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time when the File was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The name of the Package or Version that owns this file, if any.
   public var owner: Swift.String = Swift.String()
 
   /// Output only. The time when the last attempt to refresh the file's data was
   /// made. Only set when the repository is remote.
-  public var fetchTime: GoogleWKT.Timestamp? = nil
+  public var fetchTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Client specified annotations.
   public var annotations: [Swift.String: Swift.String] = [:]
@@ -104,12 +104,14 @@ public struct File: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Hash].self, forKey: .hashes) {
       self.hashes = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .owner) {
       self.owner = value
     }
-    self.fetchTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .fetchTime)
+    self.fetchTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .fetchTime)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .annotations)
     {
@@ -117,7 +119,7 @@ public struct File: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -139,10 +141,10 @@ public struct File: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.File"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

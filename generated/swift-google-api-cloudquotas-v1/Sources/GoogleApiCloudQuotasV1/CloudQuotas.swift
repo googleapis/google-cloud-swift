@@ -316,7 +316,7 @@ extension Clients.CloudQuotasProtocol {
 
   public func updateQuotaPreference(
     quotaPreference: QuotaPreference?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
     let request = UpdateQuotaPreferenceRequest().with {
       $0.quotaPreference = quotaPreference

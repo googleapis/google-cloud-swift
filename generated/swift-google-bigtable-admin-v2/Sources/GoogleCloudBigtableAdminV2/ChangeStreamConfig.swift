@@ -26,7 +26,7 @@ public struct ChangeStreamConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// stream from the table.
   /// Values must be at least 1 day and at most 7 days, and will be truncated to
   /// microsecond granularity.
-  public var retentionPeriod: GoogleWKT.Duration? = nil
+  public var retentionPeriod: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,10 +62,10 @@ public struct ChangeStreamConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.retentionPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .retentionPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .retentionPeriod)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -80,10 +80,10 @@ public struct ChangeStreamConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.ChangeStreamConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

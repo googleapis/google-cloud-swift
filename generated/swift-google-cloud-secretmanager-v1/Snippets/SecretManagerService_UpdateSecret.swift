@@ -29,7 +29,7 @@ func sample(client: SecretManagerServiceClient, projectId: String, secretId: Str
         $0.secret = Secret().with {
           $0.name = "projects/\(projectId)/secrets/\(secretId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -24,8 +24,8 @@ public struct UpdateAutoMigrationConfigRequest: Codable, Equatable, GoogleWKT._A
   /// Optional. The update mask applies to the resource. See
   /// [google.protobuf.FieldMask][google.protobuf.FieldMask].
   ///
-  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.FieldMask
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTFieldMask
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The AutoMigrationConfig to update.
   public var autoMigrationConfig: AutoMigrationConfig? = nil
@@ -65,12 +65,13 @@ public struct UpdateAutoMigrationConfigRequest: Codable, Equatable, GoogleWKT._A
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.autoMigrationConfig = try container.decodeIfPresent(
       AutoMigrationConfig.self, forKey: .autoMigrationConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -86,10 +87,10 @@ public struct UpdateAutoMigrationConfigRequest: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.UpdateAutoMigrationConfigRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

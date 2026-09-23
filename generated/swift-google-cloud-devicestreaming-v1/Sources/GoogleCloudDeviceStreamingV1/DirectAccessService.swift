@@ -249,7 +249,7 @@ extension Clients.DirectAccessServiceProtocol {
 
   public func updateDeviceSession(
     deviceSession: DeviceSession?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
     let request = UpdateDeviceSessionRequest().with {
       $0.deviceSession = deviceSession

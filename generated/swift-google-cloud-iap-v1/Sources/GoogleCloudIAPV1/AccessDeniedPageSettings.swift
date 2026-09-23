@@ -25,15 +25,15 @@ public struct AccessDeniedPageSettings: Codable, Equatable, GoogleWKT._AnyPackab
   Sendable
 {
   /// The URI to be redirected to when access is denied.
-  public var accessDeniedPageUri: GoogleWKT.StringValue? = nil
+  public var accessDeniedPageUri: GoogleWKT.WKTStringValue? = nil
 
   /// Whether to generate a troubleshooting URL on access denied events to this
   /// application.
-  public var generateTroubleshootingUri: GoogleWKT.BoolValue? = nil
+  public var generateTroubleshootingUri: GoogleWKT.WKTBoolValue? = nil
 
   /// Whether to generate remediation token on access denied events to this
   /// application.
-  public var remediationTokenGenerationEnabled: GoogleWKT.BoolValue? = nil
+  public var remediationTokenGenerationEnabled: GoogleWKT.WKTBoolValue? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,14 +74,14 @@ public struct AccessDeniedPageSettings: Codable, Equatable, GoogleWKT._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.accessDeniedPageUri = try container.decodeIfPresent(
-      GoogleWKT.StringValue.self, forKey: .accessDeniedPageUri)
+      GoogleWKT.WKTStringValue.self, forKey: .accessDeniedPageUri)
     self.generateTroubleshootingUri = try container.decodeIfPresent(
-      GoogleWKT.BoolValue.self, forKey: .generateTroubleshootingUri)
+      GoogleWKT.WKTBoolValue.self, forKey: .generateTroubleshootingUri)
     self.remediationTokenGenerationEnabled = try container.decodeIfPresent(
-      GoogleWKT.BoolValue.self, forKey: .remediationTokenGenerationEnabled)
+      GoogleWKT.WKTBoolValue.self, forKey: .remediationTokenGenerationEnabled)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -100,10 +100,10 @@ public struct AccessDeniedPageSettings: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.AccessDeniedPageSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

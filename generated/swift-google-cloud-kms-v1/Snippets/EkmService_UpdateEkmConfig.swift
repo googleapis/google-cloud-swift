@@ -30,7 +30,7 @@ func sample(client: EkmServiceClient, projectId: String, locationId: String) asy
         $0.ekmConfig = EkmConfig().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/ekmConfig"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

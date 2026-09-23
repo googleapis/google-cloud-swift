@@ -29,7 +29,7 @@ func sample(client: FoldersClient, folderId: String) async throws {
         $0.folder = Folder().with {
           $0.name = "folders/\(folderId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

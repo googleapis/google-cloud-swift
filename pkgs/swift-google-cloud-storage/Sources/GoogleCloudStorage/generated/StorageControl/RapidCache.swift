@@ -38,7 +38,7 @@ public struct RapidCache: Codable, Equatable, GoogleWKT._AnyPackable,
   /// that defines how long a cache entry can live. Default ttl value (24hrs)
   /// is applied if not specified in the create request. TTL must be in whole
   /// seconds.
-  public var ttl: GoogleWKT.Duration? = nil
+  public var ttl: GoogleWKT.WKTDuration? = nil
 
   /// Cache admission policy. Valid policies includes:
   /// no_read_admission, admit-on-first-miss and admit-on-second-miss. Defaults
@@ -50,11 +50,11 @@ public struct RapidCache: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: Swift.String = Swift.String()
 
   /// Output only. Time when Rapid cache instance is allocated.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time when Rapid cache instance is last updated, including
   /// creation.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. True if there is an active update operation against this cache
   /// instance. Subsequential update requests will be rejected if this field is
@@ -119,21 +119,23 @@ public struct RapidCache: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cacheType) {
       self.cacheType = value
     }
-    self.ttl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .ttl)
+    self.ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .admissionPolicy) {
       self.admissionPolicy = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .pendingUpdate) {
       self.pendingUpdate = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -156,10 +158,10 @@ public struct RapidCache: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.RapidCache"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

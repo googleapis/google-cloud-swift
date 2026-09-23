@@ -680,7 +680,7 @@ extension Clients {
     /// See `HubServiceClient.updateHub`.
     func updateHub(
       hub: Hub?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.deleteHub`.
@@ -711,7 +711,7 @@ extension Clients {
     /// See `HubServiceClient.updateSpoke`.
     func updateSpoke(
       spoke: Spoke?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.rejectHubSpoke`.
@@ -772,7 +772,7 @@ extension Clients {
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(
       group: Group?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Group>
 
     /// See `HubServiceClient.listHubs`.
@@ -1117,7 +1117,7 @@ extension Clients.HubServiceProtocol {
 
   public func updateHub(
     hub: Hub?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Hub> {
     let request = UpdateHubRequest().with {
       $0.hub = hub
@@ -1381,7 +1381,7 @@ extension Clients.HubServiceProtocol {
 
   public func updateSpoke(
     spoke: Spoke?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Spoke> {
     let request = UpdateSpokeRequest().with {
       $0.spoke = spoke
@@ -1807,7 +1807,7 @@ extension Clients.HubServiceProtocol {
 
   public func updateGroup(
     group: Group?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Group> {
     let request = UpdateGroupRequest().with {
       $0.group = group

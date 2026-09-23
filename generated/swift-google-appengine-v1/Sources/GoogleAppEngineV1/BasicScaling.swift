@@ -26,7 +26,7 @@ public struct BasicScaling: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Duration of time after the last request that an instance must wait before
   /// the instance is shut down.
-  public var idleTimeout: GoogleWKT.Duration? = nil
+  public var idleTimeout: GoogleWKT.WKTDuration? = nil
 
   /// Maximum number of instances to create for this version.
   public var maxInstances: Swift.Int32 = Swift.Int32()
@@ -66,13 +66,14 @@ public struct BasicScaling: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.idleTimeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .idleTimeout)
+    self.idleTimeout = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .idleTimeout)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxInstances) {
       self.maxInstances = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -88,10 +89,10 @@ public struct BasicScaling: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.BasicScaling"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

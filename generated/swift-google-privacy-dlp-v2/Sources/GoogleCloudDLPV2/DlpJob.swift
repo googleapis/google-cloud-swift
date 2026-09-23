@@ -31,16 +31,16 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: DlpJob.JobState = DlpJob.JobState()
 
   /// Output only. Time when the job was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time when the job started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time when the job finished.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time when the job was last modified by the system.
-  public var lastModified: GoogleWKT.Timestamp? = nil
+  public var lastModified: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. If created by a job trigger, the resource name of the trigger
   /// that instantiated the job.
@@ -119,11 +119,12 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(DlpJob.JobState.self, forKey: .state) {
       self.state = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     self.lastModified = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastModified)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastModified)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobTriggerName) {
       self.jobTriggerName = value
     }
@@ -157,7 +158,7 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
     self.details = details
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -347,10 +348,10 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DlpJob"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

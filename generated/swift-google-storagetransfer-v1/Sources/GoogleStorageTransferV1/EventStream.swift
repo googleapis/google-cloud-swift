@@ -32,12 +32,12 @@ public struct EventStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// listening for events from this stream. If no start time is specified or
   /// start time is in the past, Storage Transfer Service starts listening
   /// immediately.
-  public var eventStreamStartTime: GoogleWKT.Timestamp? = nil
+  public var eventStreamStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Specifies the data and time at which Storage Transfer Service stops
   /// listening for events from this stream. After this time, any transfers in
   /// progress will complete, but no new transfers are initiated.
-  public var eventStreamExpirationTime: GoogleWKT.Timestamp? = nil
+  public var eventStreamExpirationTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,12 +80,12 @@ public struct EventStream: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.eventStreamStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .eventStreamStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .eventStreamStartTime)
     self.eventStreamExpirationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .eventStreamExpirationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .eventStreamExpirationTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -103,10 +103,10 @@ public struct EventStream: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.EventStream"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -42,11 +42,11 @@
     public var participantRole: Participant.Role = Participant.Role()
 
     /// Output only. The time when the message was created in Contact Center AI.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. The time when the message was sent. For voice messages, this is
     /// the time when an utterance started.
-    public var sendTime: GoogleWKT.Timestamp? = nil
+    public var sendTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The annotation for the message.
     public var messageAnnotation: MessageAnnotation? = nil
@@ -119,15 +119,16 @@
       {
         self.participantRole = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-      self.sendTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .sendTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.sendTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .sendTime)
       self.messageAnnotation = try container.decodeIfPresent(
         MessageAnnotation.self, forKey: .messageAnnotation)
       self.sentimentAnalysis = try container.decodeIfPresent(
         SentimentAnalysisResult.self, forKey: .sentimentAnalysis)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -150,10 +151,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Message"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -56,7 +56,7 @@ public struct MacSignRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacSignRequest.data]: <doc:MacSignRequest/data>
   /// [google.cloud.kms.v1.MacSignRequest.data_crc32c]: <doc:MacSignRequest/dataCrc32C>
-  public var dataCrc32C: GoogleWKT.Int64Value? = nil
+  public var dataCrc32C: GoogleWKT.WKTInt64Value? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,10 +101,11 @@ public struct MacSignRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
       self.data = value
     }
-    self.dataCrc32C = try container.decodeIfPresent(GoogleWKT.Int64Value.self, forKey: .dataCrc32C)
+    self.dataCrc32C = try container.decodeIfPresent(
+      GoogleWKT.WKTInt64Value.self, forKey: .dataCrc32C)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -121,10 +122,10 @@ public struct MacSignRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.MacSignRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

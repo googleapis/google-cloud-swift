@@ -27,7 +27,7 @@ public struct UpdatePullRequestCommentRequest: Codable, Equatable, GoogleWKT._An
   /// Optional. Field mask is used to specify the fields to be overwritten in the
   /// pull request comment resource by the update. Updatable fields are
   /// `body`.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,10 +66,11 @@ public struct UpdatePullRequestCommentRequest: Codable, Equatable, GoogleWKT._An
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.pullRequestComment = try container.decodeIfPresent(
       PullRequestComment.self, forKey: .pullRequestComment)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -85,10 +86,10 @@ public struct UpdatePullRequestCommentRequest: Codable, Equatable, GoogleWKT._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securesourcemanager.v1.UpdatePullRequestCommentRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -32,10 +32,10 @@
     public var action: Swift.String = Swift.String()
 
     /// Optional. The action's input parameters.
-    public var inputParameters: GoogleWKT.Struct? = nil
+    public var inputParameters: GoogleWKT.WKTStruct? = nil
 
     /// Output only. Create time of the tool call.
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. The answer record associated with this tool call.
     public var answerRecord: Swift.String = Swift.String()
@@ -109,8 +109,9 @@
         self.action = value
       }
       self.inputParameters = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .inputParameters)
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+        GoogleWKT.WKTStruct.self, forKey: .inputParameters)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerRecord) {
         self.answerRecord = value
       }
@@ -143,7 +144,7 @@
       self.source = source
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -316,10 +317,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.ToolCall"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

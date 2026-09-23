@@ -52,7 +52,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Create sprites at regular intervals. Valid range is [1 second, 1 hour] and
   /// the default value is `10s`.
-  public var interval: GoogleWKT.Duration? = nil
+  public var interval: GoogleWKT.WKTDuration? = nil
 
   /// The quality of the generated sprite sheet. Enter a value between 1
   /// and 100, where 1 is the lowest quality and 100 is the highest quality.
@@ -125,13 +125,13 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rowCount) {
       self.rowCount = value
     }
-    self.interval = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .interval)
+    self.interval = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .interval)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .quality) {
       self.quality = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -153,10 +153,10 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.SpriteSheet"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

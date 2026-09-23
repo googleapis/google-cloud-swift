@@ -330,7 +330,7 @@
       /// See `IndexServiceClient.updateIndex`.
       func updateIndex(
         index: Index?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.deleteIndex`.
@@ -569,7 +569,7 @@
 
     public func updateIndex(
       index: Index?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index> {
       let request = UpdateIndexRequest().with {
         $0.index = index

@@ -389,7 +389,7 @@ extension Clients {
     /// See `StorageInsightsClient.updateDatasetConfig`.
     func updateDatasetConfig(
       datasetConfig: DatasetConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DatasetConfig>
 
     /// See `StorageInsightsClient.deleteDatasetConfig`.
@@ -644,7 +644,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func updateReportConfig(
     reportConfig: ReportConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
     let request = UpdateReportConfigRequest().with {
       $0.reportConfig = reportConfig
@@ -871,7 +871,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func updateDatasetConfig(
     datasetConfig: DatasetConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DatasetConfig> {
     let request = UpdateDatasetConfigRequest().with {
       $0.datasetConfig = datasetConfig

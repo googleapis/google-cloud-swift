@@ -708,7 +708,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAzureCluster(
       azureCluster: AzureCluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AzureCluster>
 
     /// See `AzureClustersClient.deleteAzureCluster`.
@@ -744,7 +744,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAzureNodePool(
       azureNodePool: AzureNodePool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AzureNodePool>
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
@@ -1183,7 +1183,7 @@ extension Clients.AzureClustersProtocol {
   @available(*, deprecated)
   public func updateAzureCluster(
     azureCluster: AzureCluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AzureCluster> {
     let request = UpdateAzureClusterRequest().with {
       $0.azureCluster = azureCluster
@@ -1417,7 +1417,7 @@ extension Clients.AzureClustersProtocol {
   @available(*, deprecated)
   public func updateAzureNodePool(
     azureNodePool: AzureNodePool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AzureNodePool> {
     let request = UpdateAzureNodePoolRequest().with {
       $0.azureNodePool = azureNodePool

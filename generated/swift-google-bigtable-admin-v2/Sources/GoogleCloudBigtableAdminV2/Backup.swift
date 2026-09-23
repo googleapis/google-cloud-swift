@@ -51,7 +51,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - At most 90 days
   ///
   /// Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
-  public var expireTime: GoogleWKT.Timestamp? = nil
+  public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. `start_time` is the time that the backup was started
   /// (i.e. approximately the time the
@@ -60,11 +60,11 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// this timestamp.
   ///
   /// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdminClient/createBackup(request:options:)>
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. `end_time` is the time that the backup was finished. The row
   /// data in the backup will be no newer than this timestamp.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Size of the backup in bytes.
   public var sizeBytes: Swift.Int64 = Swift.Int64()
@@ -86,7 +86,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// This field only applies for hot backups. When creating or updating a
   /// standard backup, attempting to set this field will fail the request.
-  public var hotToStandardTime: GoogleWKT.Timestamp? = nil
+  public var hotToStandardTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -150,9 +150,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceBackup) {
       self.sourceBackup = value
     }
-    self.expireTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .expireTime)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
       self.sizeBytes = value
     }
@@ -165,10 +166,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupType = value
     }
     self.hotToStandardTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .hotToStandardTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .hotToStandardTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -433,10 +434,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.Backup"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -28,7 +28,7 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The times the error occurred. List includes the oldest timestamp and the
   /// last 9 timestamps.
-  public var timestamps: [GoogleWKT.Timestamp] = []
+  public var timestamps: [GoogleWKT.WKTTimestamp] = []
 
   /// Additional information about the error.
   public var extraInfo: Error.ErrorExtraInfo = Error.ErrorExtraInfo()
@@ -71,7 +71,8 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.details = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .details)
-    if let value = try container.decodeIfPresent([GoogleWKT.Timestamp].self, forKey: .timestamps) {
+    if let value = try container.decodeIfPresent([GoogleWKT.WKTTimestamp].self, forKey: .timestamps)
+    {
       self.timestamps = value
     }
     if let value = try container.decodeIfPresent(Error.ErrorExtraInfo.self, forKey: .extraInfo) {
@@ -79,7 +80,7 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -215,10 +216,10 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Error"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

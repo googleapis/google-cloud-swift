@@ -342,7 +342,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.updateAppConnector`.
     func updateAppConnector(
       appConnector: AppConnector?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AppConnector>
 
     /// See `AppConnectorsServiceClient.deleteAppConnector`.
@@ -593,7 +593,7 @@ extension Clients.AppConnectorsServiceProtocol {
 
   public func updateAppConnector(
     appConnector: AppConnector?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AppConnector> {
     let request = UpdateAppConnectorRequest().with {
       $0.appConnector = appConnector

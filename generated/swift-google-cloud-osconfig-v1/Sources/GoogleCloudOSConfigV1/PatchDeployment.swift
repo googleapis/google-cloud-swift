@@ -43,20 +43,20 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Duration of the patch. After the duration ends, the patch times
   /// out.
-  public var duration: GoogleWKT.Duration? = nil
+  public var duration: GoogleWKT.WKTDuration? = nil
 
   /// Output only. Time the patch deployment was created. Timestamp is in
   /// [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Time the patch deployment was last updated. Timestamp is in
   /// [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The last time a patch job was started by this deployment.
   /// Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text
   /// format.
-  public var lastExecuteTime: GoogleWKT.Timestamp? = nil
+  public var lastExecuteTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. Rollout strategy of the patch job.
   public var rollout: PatchRollout? = nil
@@ -131,11 +131,13 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     self.instanceFilter = try container.decodeIfPresent(
       PatchInstanceFilter.self, forKey: .instanceFilter)
     self.patchConfig = try container.decodeIfPresent(PatchConfig.self, forKey: .patchConfig)
-    self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.lastExecuteTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastExecuteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastExecuteTime)
     self.rollout = try container.decodeIfPresent(PatchRollout.self, forKey: .rollout)
     if let value = try container.decodeIfPresent(PatchDeployment.State.self, forKey: .state) {
       self.state = value
@@ -164,7 +166,7 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     self.schedule = schedule
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -323,10 +325,10 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.PatchDeployment"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

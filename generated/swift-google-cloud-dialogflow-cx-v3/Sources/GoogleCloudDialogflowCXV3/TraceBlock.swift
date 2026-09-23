@@ -27,16 +27,16 @@
     public var actions: [Action] = []
 
     /// Output only. Timestamp of the start of the trace block.
-    public var startTime: GoogleWKT.Timestamp? = nil
+    public var startTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. Timestamp of the end of the trace block.
-    public var completeTime: GoogleWKT.Timestamp? = nil
+    public var completeTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Optional. A list of input parameters of the trace block.
-    public var inputParameters: GoogleWKT.Struct? = nil
+    public var inputParameters: GoogleWKT.WKTStruct? = nil
 
     /// Optional. A list of output parameters of the trace block.
-    public var outputParameters: GoogleWKT.Struct? = nil
+    public var outputParameters: GoogleWKT.WKTStruct? = nil
 
     /// Optional. Output only. The end state of the trace block.
     public var endState: OutputState = OutputState()
@@ -96,13 +96,14 @@
       if let value = try container.decodeIfPresent([Action].self, forKey: .actions) {
         self.actions = value
       }
-      self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .startTime)
       self.completeTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .completeTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .completeTime)
       self.inputParameters = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .inputParameters)
+        GoogleWKT.WKTStruct.self, forKey: .inputParameters)
       self.outputParameters = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .outputParameters)
+        GoogleWKT.WKTStruct.self, forKey: .outputParameters)
       if let value = try container.decodeIfPresent(OutputState.self, forKey: .endState) {
         self.endState = value
       }
@@ -135,7 +136,7 @@
       self.traceMetadata = traceMetadata
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -176,10 +177,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TraceBlock"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

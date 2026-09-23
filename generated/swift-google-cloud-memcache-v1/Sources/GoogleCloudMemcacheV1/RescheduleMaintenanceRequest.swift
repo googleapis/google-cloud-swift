@@ -35,7 +35,7 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// Timestamp when the maintenance shall be rescheduled to if
   /// reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
   /// example `2012-11-15T16:19:00.094Z`.
-  public var scheduleTime: GoogleWKT.Timestamp? = nil
+  public var scheduleTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,10 +83,10 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPa
       self.rescheduleType = value
     }
     self.scheduleTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .scheduleTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .scheduleTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -228,10 +228,10 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memcache.v1.RescheduleMaintenanceRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

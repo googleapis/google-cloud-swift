@@ -32,7 +32,7 @@ func sample(client: BackupDRClient, projectId: String, locationId: String, backu
         $0.backupPlan = BackupPlan().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/backupPlans/\(backupPlanId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

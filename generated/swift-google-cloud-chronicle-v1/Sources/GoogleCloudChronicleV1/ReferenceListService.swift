@@ -282,7 +282,7 @@ extension Clients.ReferenceListServiceProtocol {
 
   public func updateReferenceList(
     referenceList: ReferenceList?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
     let request = UpdateReferenceListRequest().with {
       $0.referenceList = referenceList

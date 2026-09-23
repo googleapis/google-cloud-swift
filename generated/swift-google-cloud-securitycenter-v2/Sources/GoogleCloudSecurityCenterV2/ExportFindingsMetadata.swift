@@ -22,7 +22,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   Sendable
 {
   /// Optional. Timestamp at which export was started
-  public var exportStartTime: GoogleWKT.Timestamp? = nil
+  public var exportStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The destination to export findings to.
   public var destination: OneOf_Destination? = nil
@@ -63,7 +63,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.exportStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .exportStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .exportStartTime)
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -83,7 +83,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     self.destination = destination
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -111,10 +111,10 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ExportFindingsMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -30,7 +30,7 @@ func sample(client: ProductSearchClient, projectId: String, locationId: String, 
         $0.product = Product().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/products/\(productId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

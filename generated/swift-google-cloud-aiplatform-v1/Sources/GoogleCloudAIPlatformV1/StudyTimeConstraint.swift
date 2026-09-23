@@ -71,17 +71,18 @@
         constraint = $0
       }
       if let maxDuration = try container.decodeIfPresent(
-        GoogleWKT.Duration?.self, forKey: .maxDuration)
+        GoogleWKT.WKTDuration?.self, forKey: .maxDuration)
       {
         try constraintCheckAndSet(.maxDuration(maxDuration))
       }
-      if let endTime = try container.decodeIfPresent(GoogleWKT.Timestamp?.self, forKey: .endTime) {
+      if let endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp?.self, forKey: .endTime)
+      {
         try constraintCheckAndSet(.endTime(endTime))
       }
       self.constraint = constraint
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -103,18 +104,18 @@
 
     public enum OneOf_Constraint: Codable, Equatable, Sendable {
       /// Counts the wallclock time passed since the creation of this Study.
-      indirect case maxDuration(GoogleWKT.Duration?)
+      indirect case maxDuration(GoogleWKT.WKTDuration?)
       /// Compares the wallclock time to this time. Must use UTC timezone.
-      indirect case endTime(GoogleWKT.Timestamp?)
+      indirect case endTime(GoogleWKT.WKTTimestamp?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.StudyTimeConstraint"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

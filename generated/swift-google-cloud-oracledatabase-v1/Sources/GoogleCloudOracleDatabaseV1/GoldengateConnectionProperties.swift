@@ -45,7 +45,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   public var lifecycleDetails: Swift.String = Swift.String()
 
   /// Output only. The time the resource was last updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Optional. The routing method for the GoldengateConnection.
   public var routingMethod: GoldengateConnectionProperties.GoldengateConnectionRoutingMethod =
@@ -207,7 +207,8 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
       self.lifecycleDetails = value
     }
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(
       GoldengateConnectionProperties.GoldengateConnectionRoutingMethod.self, forKey: .routingMethod)
     {
@@ -405,7 +406,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
     self.connectionDetails = connectionDetails
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -1134,10 +1135,10 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateConnectionProperties"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

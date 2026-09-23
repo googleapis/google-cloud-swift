@@ -414,7 +414,7 @@ extension Clients {
 
     /// See `ReachabilityServiceClient.updateConnectivityTest`.
     func updateConnectivityTest(
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
       resource: ConnectivityTest?,
     ) async throws -> any GoogleGax.PollableOperation<ConnectivityTest>
 
@@ -659,7 +659,7 @@ extension Clients.ReachabilityServiceProtocol {
   }
 
   public func updateConnectivityTest(
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
     resource: ConnectivityTest?,
   ) async throws -> any GoogleGax.PollableOperation<ConnectivityTest> {
     let request = UpdateConnectivityTestRequest().with {

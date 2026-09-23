@@ -128,7 +128,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
       period = $0
     }
     if let rollingPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration?.self, forKey: .rollingPeriod)
+      GoogleWKT.WKTDuration?.self, forKey: .rollingPeriod)
     {
       try periodCheckAndSet(.rollingPeriod(rollingPeriod))
     }
@@ -140,7 +140,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
     self.period = period
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -293,7 +293,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OneOf_Period: Codable, Equatable, Sendable {
     /// A rolling time period, semantically "in the past `<rolling_period>`".
     /// Must be an integer multiple of 1 day no larger than 30 days.
-    indirect case rollingPeriod(GoogleWKT.Duration?)
+    indirect case rollingPeriod(GoogleWKT.WKTDuration?)
     /// A calendar period, semantically "since the start of the current
     /// `<calendar_period>`". At this time, only `DAY`, `WEEK`, `FORTNIGHT`, and
     /// `MONTH` are supported.
@@ -303,10 +303,10 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.ServiceLevelObjective"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

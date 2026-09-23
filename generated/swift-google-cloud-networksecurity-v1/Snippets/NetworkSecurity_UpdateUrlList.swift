@@ -32,7 +32,7 @@ func sample(client: NetworkSecurityClient, projectId: String, locationId: String
         $0.urlList = UrlList().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/urlLists/\(urlListId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

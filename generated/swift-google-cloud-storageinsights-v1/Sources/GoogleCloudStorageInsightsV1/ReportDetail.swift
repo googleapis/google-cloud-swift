@@ -31,7 +31,7 @@ public struct ReportDetail: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The snapshot time.
   /// All the report data is referenced at this point of time.
-  public var snapshotTime: GoogleWKT.Timestamp? = nil
+  public var snapshotTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Prefix of the object name of each report's shard. This will have full
   /// prefix except the "extension" and "shard_id".
@@ -109,7 +109,7 @@ public struct ReportDetail: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
     self.snapshotTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .snapshotTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .snapshotTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reportPathPrefix) {
       self.reportPathPrefix = value
     }
@@ -127,7 +127,7 @@ public struct ReportDetail: Codable, Equatable, GoogleWKT._AnyPackable,
       ReportDetail.Metrics.self, forKey: .reportMetrics)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -192,7 +192,7 @@ public struct ReportDetail: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -207,10 +207,10 @@ public struct ReportDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.ReportDetail.Metrics"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -218,10 +218,10 @@ public struct ReportDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storageinsights.v1.ReportDetail"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

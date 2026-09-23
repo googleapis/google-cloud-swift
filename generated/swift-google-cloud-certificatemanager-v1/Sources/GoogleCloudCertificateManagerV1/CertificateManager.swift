@@ -866,7 +866,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateCertificate`.
     func updateCertificate(
       certificate: Certificate?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Certificate>
 
     /// See `CertificateManagerClient.deleteCertificate`.
@@ -896,7 +896,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateCertificateMap`.
     func updateCertificateMap(
       certificateMap: CertificateMap?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CertificateMap>
 
     /// See `CertificateManagerClient.deleteCertificateMap`.
@@ -926,7 +926,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateCertificateMapEntry`.
     func updateCertificateMapEntry(
       certificateMapEntry: CertificateMapEntry?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CertificateMapEntry>
 
     /// See `CertificateManagerClient.deleteCertificateMapEntry`.
@@ -956,7 +956,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateDnsAuthorization`.
     func updateDnsAuthorization(
       dnsAuthorization: DnsAuthorization?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DnsAuthorization>
 
     /// See `CertificateManagerClient.deleteDnsAuthorization`.
@@ -1006,7 +1006,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateTrustConfig`.
     func updateTrustConfig(
       trustConfig: TrustConfig?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TrustConfig>
 
     /// See `CertificateManagerClient.deleteTrustConfig`.
@@ -1412,7 +1412,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func updateCertificate(
     certificate: Certificate?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Certificate> {
     let request = UpdateCertificateRequest().with {
       $0.certificate = certificate
@@ -1593,7 +1593,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func updateCertificateMap(
     certificateMap: CertificateMap?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CertificateMap> {
     let request = UpdateCertificateMapRequest().with {
       $0.certificateMap = certificateMap
@@ -1774,7 +1774,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func updateCertificateMapEntry(
     certificateMapEntry: CertificateMapEntry?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CertificateMapEntry> {
     let request = UpdateCertificateMapEntryRequest().with {
       $0.certificateMapEntry = certificateMapEntry
@@ -1955,7 +1955,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func updateDnsAuthorization(
     dnsAuthorization: DnsAuthorization?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DnsAuthorization> {
     let request = UpdateDnsAuthorizationRequest().with {
       $0.dnsAuthorization = dnsAuthorization
@@ -2279,7 +2279,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func updateTrustConfig(
     trustConfig: TrustConfig?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TrustConfig> {
     let request = UpdateTrustConfigRequest().with {
       $0.trustConfig = trustConfig

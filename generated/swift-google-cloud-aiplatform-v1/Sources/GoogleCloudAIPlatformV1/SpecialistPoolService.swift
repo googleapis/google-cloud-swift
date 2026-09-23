@@ -319,7 +319,7 @@
       /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
       func updateSpecialistPool(
         specialistPool: SpecialistPool?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.createSpecialistPool`.
@@ -580,7 +580,7 @@
 
     public func updateSpecialistPool(
       specialistPool: SpecialistPool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
       let request = UpdateSpecialistPoolRequest().with {
         $0.specialistPool = specialistPool

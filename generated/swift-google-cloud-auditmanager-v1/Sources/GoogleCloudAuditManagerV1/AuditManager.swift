@@ -430,7 +430,7 @@ extension Clients.AuditManagerProtocol {
 
   public func updateAuditSchedule(
     auditSchedule: AuditSchedule?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
     let request = UpdateAuditScheduleRequest().with {
       $0.auditSchedule = auditSchedule

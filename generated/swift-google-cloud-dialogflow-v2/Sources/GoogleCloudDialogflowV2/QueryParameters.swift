@@ -50,7 +50,7 @@
     /// If supplied, the value is used to populate the
     /// `WebhookRequest.original_detect_intent_request.payload`
     /// field sent to your webhook.
-    public var payload: GoogleWKT.Struct? = nil
+    public var payload: GoogleWKT.WKTStruct? = nil
 
     /// Configures the type of sentiment analysis to perform. If not
     /// provided, sentiment analysis is not performed.
@@ -141,7 +141,7 @@
       {
         self.sessionEntityTypes = value
       }
-      self.payload = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .payload)
+      self.payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload)
       self.sentimentAnalysisRequestConfig = try container.decodeIfPresent(
         SentimentAnalysisRequestConfig.self, forKey: .sentimentAnalysisRequestConfig)
       if let value = try container.decodeIfPresent(
@@ -154,7 +154,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -178,10 +178,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.QueryParameters"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

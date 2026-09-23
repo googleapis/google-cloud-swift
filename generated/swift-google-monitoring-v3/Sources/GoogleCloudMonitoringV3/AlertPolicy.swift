@@ -97,7 +97,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// any assumption about the state if it has not been populated. The
   /// field should always be populated on List and Get operations, unless
   /// a field projection has been specified that strips it out.
-  public var enabled: GoogleWKT.BoolValue? = nil
+  public var enabled: GoogleWKT.WKTBoolValue? = nil
 
   /// Read-only description of how the alerting policy is invalid. This field is
   /// only set when the alerting policy is invalid. An invalid alerting policy
@@ -213,7 +213,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.combiner = value
     }
-    self.enabled = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .enabled)
+    self.enabled = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .enabled)
     self.validity = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .validity)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .notificationChannels)
     {
@@ -230,7 +230,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -345,7 +345,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -418,7 +418,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -434,10 +434,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Documentation.Link"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -445,10 +445,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Documentation"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -600,7 +600,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.condition = condition
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -693,7 +693,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.type = type
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -726,10 +726,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.Trigger"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -816,7 +816,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// `aggregations` field); a good duration is long enough so that a single
       /// outlier does not generate spurious alerts, but short enough that
       /// unhealthy states are detected and alerted on quickly.
-      public var duration: GoogleWKT.Duration? = nil
+      public var duration: GoogleWKT.WKTDuration? = nil
 
       /// The number/percent of time series for which the comparison must hold
       /// in order for the condition to trigger. If unspecified, then the
@@ -906,7 +906,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .thresholdValue) {
           self.thresholdValue = value
         }
-        self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+        self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
         self.trigger = try container.decodeIfPresent(
           AlertPolicy.Condition.Trigger.self, forKey: .trigger)
         if let value = try container.decodeIfPresent(
@@ -916,7 +916,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -948,7 +948,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// forecasts made for the configured `duration`, then the time series is
         /// considered to be failing.
         /// The forecast horizon can range from 1 hour to 60 hours.
-        public var forecastHorizon: GoogleWKT.Duration? = nil
+        public var forecastHorizon: GoogleWKT.WKTDuration? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -984,10 +984,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.forecastHorizon = try container.decodeIfPresent(
-            GoogleWKT.Duration.self, forKey: .forecastHorizon)
+            GoogleWKT.WKTDuration.self, forKey: .forecastHorizon)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1003,10 +1003,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.MetricThreshold.ForecastOptions"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1014,10 +1014,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.MetricThreshold"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1063,7 +1063,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// If an invalid value is given, an
       /// error will be returned. The `Duration.nanos` field is
       /// ignored.
-      public var duration: GoogleWKT.Duration? = nil
+      public var duration: GoogleWKT.WKTDuration? = nil
 
       /// The number/percent of time series for which the comparison must hold
       /// in order for the condition to trigger. If unspecified, then the
@@ -1116,12 +1116,12 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent([Aggregation].self, forKey: .aggregations) {
           self.aggregations = value
         }
-        self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+        self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
         self.trigger = try container.decodeIfPresent(
           AlertPolicy.Condition.Trigger.self, forKey: .trigger)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1139,10 +1139,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.MetricAbsence"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1217,7 +1217,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1233,10 +1233,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.LogMatch"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1260,7 +1260,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// `aggregations` field); a good duration is long enough so that a single
       /// outlier does not generate spurious alerts, but short enough that
       /// unhealthy states are detected and alerted on quickly.
-      public var duration: GoogleWKT.Duration? = nil
+      public var duration: GoogleWKT.WKTDuration? = nil
 
       /// The number/percent of time series for which the comparison must hold
       /// in order for the condition to trigger. If unspecified, then the
@@ -1317,7 +1317,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
           self.query = value
         }
-        self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+        self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
         self.trigger = try container.decodeIfPresent(
           AlertPolicy.Condition.Trigger.self, forKey: .trigger)
         if let value = try container.decodeIfPresent(
@@ -1327,7 +1327,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1346,10 +1346,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.MonitoringQueryLanguageCondition"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1399,7 +1399,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// long enough are considered pending.
       /// Must be a non-negative duration or missing.
       /// This field is optional. Its default value is zero.
-      public var duration: GoogleWKT.Duration? = nil
+      public var duration: GoogleWKT.WKTDuration? = nil
 
       /// Optional. How often this rule should be evaluated.
       /// Must be a positive multiple of 30 seconds or missing.
@@ -1407,7 +1407,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// If this PrometheusQueryLanguageCondition was generated from a
       /// Prometheus alerting rule, then this value should be taken from the
       /// enclosing rule group.
-      public var evaluationInterval: GoogleWKT.Duration? = nil
+      public var evaluationInterval: GoogleWKT.WKTDuration? = nil
 
       /// Optional. Labels to add to or overwrite in the PromQL query result.
       /// Label names [must be
@@ -1506,9 +1506,9 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
           self.query = value
         }
-        self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+        self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
         self.evaluationInterval = try container.decodeIfPresent(
-          GoogleWKT.Duration.self, forKey: .evaluationInterval)
+          GoogleWKT.WKTDuration.self, forKey: .evaluationInterval)
         if let value = try container.decodeIfPresent(
           [Swift.String: Swift.String].self, forKey: .labels)
         {
@@ -1527,7 +1527,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1549,10 +1549,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.PrometheusQueryLanguageCondition"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -1683,7 +1683,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.evaluate = evaluate
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -1762,7 +1762,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1778,10 +1778,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.SqlCondition.Minutes"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1841,7 +1841,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.minuteOffset = try container.decodeIfPresent(Swift.Int32.self, forKey: .minuteOffset)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1858,10 +1858,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.SqlCondition.Hourly"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -1921,7 +1921,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
             GoogleType.TimeOfDay.self, forKey: .executionTime)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -1937,10 +1937,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.SqlCondition.Daily"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -2000,7 +2000,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -2017,10 +2017,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.SqlCondition.RowCountTest"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -2072,7 +2072,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
-              GoogleWKT.Value.self, forKey: key)
+              GoogleWKT.WKTValue.self, forKey: key)
           }
         }
 
@@ -2088,10 +2088,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           return
             "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.SqlCondition.BooleanTest"
         }
-        public init(fromAny any: GoogleWKT.`Any`) throws {
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleWKT.Struct {
+        public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
@@ -2117,10 +2117,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition.SqlCondition"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -2278,10 +2278,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.AlertPolicy.Condition"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2305,7 +2305,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// If an alerting policy that was active has no data for this long, any open
     /// incidents will close
-    public var autoClose: GoogleWKT.Duration? = nil
+    public var autoClose: GoogleWKT.WKTDuration? = nil
 
     /// Control how notifications will be sent out, on a per-channel basis.
     public var notificationChannelStrategy:
@@ -2358,7 +2358,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         self.notificationPrompts = value
       }
-      self.autoClose = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .autoClose)
+      self.autoClose = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .autoClose)
       if let value = try container.decodeIfPresent(
         [AlertPolicy.AlertStrategy.NotificationChannelStrategy].self,
         forKey: .notificationChannelStrategy)
@@ -2367,7 +2367,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -2388,7 +2388,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Not more than one notification per `period`.
-      public var period: GoogleWKT.Duration? = nil
+      public var period: GoogleWKT.WKTDuration? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2423,10 +2423,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.period = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .period)
+        self.period = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .period)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -2442,10 +2442,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationRateLimit"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -2466,7 +2466,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The frequency at which to send reminder notifications for open
       /// incidents.
-      public var renotifyInterval: GoogleWKT.Duration? = nil
+      public var renotifyInterval: GoogleWKT.WKTDuration? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2509,10 +2509,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.notificationChannelNames = value
         }
         self.renotifyInterval = try container.decodeIfPresent(
-          GoogleWKT.Duration.self, forKey: .renotifyInterval)
+          GoogleWKT.WKTDuration.self, forKey: .renotifyInterval)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -2529,10 +2529,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationChannelStrategy"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -2657,10 +2657,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.AlertPolicy.AlertStrategy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -2926,10 +2926,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.AlertPolicy"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

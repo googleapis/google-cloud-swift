@@ -29,7 +29,7 @@ public struct FaceFrame: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Time-offset, relative to the beginning of the video,
   /// corresponding to the video frame for this location.
-  public var timeOffset: GoogleWKT.Duration? = nil
+  public var timeOffset: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,10 +71,10 @@ public struct FaceFrame: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.normalizedBoundingBoxes = value
     }
-    self.timeOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .timeOffset)
+    self.timeOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeOffset)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -90,10 +90,10 @@ public struct FaceFrame: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.FaceFrame"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

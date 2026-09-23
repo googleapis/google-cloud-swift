@@ -41,7 +41,7 @@ public struct ImportProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Indicates which fields in the provided imported `products` to update. If
   /// not set, all fields are updated. If provided, only the existing product
   /// fields are updated. Missing products will not be created.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The mode of reconciliation between existing products and the products to be
   /// imported. Defaults to
@@ -130,7 +130,8 @@ public struct ImportProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.inputConfig = try container.decodeIfPresent(ProductInputConfig.self, forKey: .inputConfig)
     self.errorsConfig = try container.decodeIfPresent(
       ImportErrorsConfig.self, forKey: .errorsConfig)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(
       ImportProductsRequest.ReconciliationMode.self, forKey: .reconciliationMode)
     {
@@ -143,7 +144,7 @@ public struct ImportProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -286,10 +287,10 @@ public struct ImportProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ImportProductsRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -877,7 +877,7 @@
 
     public func updateDataset(
       dataset: Dataset?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
       let request = UpdateDatasetRequest().with {
         $0.dataset = dataset
@@ -1092,7 +1092,7 @@
 
     public func updateDatasetVersion(
       datasetVersion: DatasetVersion?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
       let request = UpdateDatasetVersionRequest().with {
         $0.datasetVersion = datasetVersion

@@ -27,7 +27,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// Output only. Timestamp of the last successful verification for the
   /// endpoint, if any.
-  public var lastVerificationTime: GoogleWKT.Timestamp? = nil
+  public var lastVerificationTime: GoogleWKT.WKTTimestamp? = nil
 
   public var endpoint: OneOf_Endpoint? = nil
 
@@ -74,7 +74,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
       self.requestToken = value
     }
     self.lastVerificationTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastVerificationTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastVerificationTime)
 
     var endpoint: OneOf_Endpoint? = nil
     let endpointCheckAndSet = {
@@ -95,7 +95,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
     self.endpoint = endpoint
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -128,10 +128,10 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

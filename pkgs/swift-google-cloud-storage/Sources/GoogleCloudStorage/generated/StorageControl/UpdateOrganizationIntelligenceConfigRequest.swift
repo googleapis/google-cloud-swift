@@ -29,7 +29,7 @@ public struct UpdateOrganizationIntelligenceConfigRequest: Codable, Equatable, G
   /// Required. The `update_mask` that specifies the fields within the
   /// `IntelligenceConfig` resource that should be modified by this update. Only
   /// the listed fields are updated.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. The ID that uniquely identifies the request, preventing duplicate
   /// processing.
@@ -74,13 +74,14 @@ public struct UpdateOrganizationIntelligenceConfigRequest: Codable, Equatable, G
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.intelligenceConfig = try container.decodeIfPresent(
       IntelligenceConfig.self, forKey: .intelligenceConfig)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -98,10 +99,10 @@ public struct UpdateOrganizationIntelligenceConfigRequest: Codable, Equatable, G
     return
       "type.googleapis.com/google.storage.control.v2.UpdateOrganizationIntelligenceConfigRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

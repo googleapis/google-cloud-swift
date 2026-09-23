@@ -33,7 +33,7 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleWKT._A
   /// the full request. A field will be overwritten if it is in the mask. If the
   /// user does not provide a mask then all fields will be overwritten. Only the
   /// following fields can be updated: `description`.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. A request ID to identify requests. Specify a unique request ID
   /// so that if you must retry your request, the server will know to ignore
@@ -90,13 +90,14 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleWKT._A
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.vmwareEngineNetwork = try container.decodeIfPresent(
       VmwareEngineNetwork.self, forKey: .vmwareEngineNetwork)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -113,10 +114,10 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.UpdateVmwareEngineNetworkRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

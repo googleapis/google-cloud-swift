@@ -119,7 +119,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
     if let text = try container.decodeIfPresent(Text?.self, forKey: .text) {
       try contentCheckAndSet(.text(text))
     }
-    if let blank = try container.decodeIfPresent(GoogleWKT.Empty?.self, forKey: .blank) {
+    if let blank = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .blank) {
       try contentCheckAndSet(.blank(blank))
     }
     if let alertChart = try container.decodeIfPresent(AlertChart?.self, forKey: .alertChart) {
@@ -162,7 +162,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
     self.content = content
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -215,7 +215,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A raw string or markdown displaying textual content.
     indirect case text(Text?)
     /// A blank space.
-    indirect case blank(GoogleWKT.Empty?)
+    indirect case blank(GoogleWKT.WKTEmpty?)
     /// A chart of alert policy data.
     indirect case alertChart(AlertChart?)
     /// A widget that displays time series data in a tabular format.
@@ -241,10 +241,10 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.Widget"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

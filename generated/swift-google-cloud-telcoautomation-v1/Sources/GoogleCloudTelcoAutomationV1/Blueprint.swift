@@ -41,7 +41,7 @@ public struct Blueprint: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sourceBlueprint: Swift.String = Swift.String()
 
   /// Output only. The timestamp that the revision was created.
-  public var revisionCreateTime: GoogleWKT.Timestamp? = nil
+  public var revisionCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Approval state of the blueprint (DRAFT, PROPOSED, APPROVED)
   public var approvalState: Blueprint.ApprovalState = Blueprint.ApprovalState()
@@ -63,10 +63,10 @@ public struct Blueprint: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Blueprint creation time.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp when the blueprint was updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Source provider is the author of a public blueprint, from
   /// which this blueprint is created.
@@ -149,7 +149,7 @@ public struct Blueprint: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sourceBlueprint = value
     }
     self.revisionCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .revisionCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .revisionCreateTime)
     if let value = try container.decodeIfPresent(
       Blueprint.ApprovalState.self, forKey: .approvalState)
     {
@@ -168,8 +168,10 @@ public struct Blueprint: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceProvider) {
       self.sourceProvider = value
     }
@@ -181,7 +183,7 @@ public struct Blueprint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -340,10 +342,10 @@ public struct Blueprint: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.Blueprint"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

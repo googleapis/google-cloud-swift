@@ -35,7 +35,7 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public var appId: Swift.Int64 = Swift.Int64()
 
   /// Output only. Time when the installation was associated with the project.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The key that should be attached to webhook calls to the ReceiveWebhook
   /// endpoint.
@@ -120,7 +120,8 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleWKT._AnyPackable
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .appId) {
       self.appId = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webhookKey) {
       self.webhookKey = value
     }
@@ -136,7 +137,7 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -159,10 +160,10 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.GitHubEnterpriseConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

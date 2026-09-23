@@ -94,7 +94,8 @@
         }
         delta = $0
       }
-      if let nullValue = try container.decodeIfPresent(GoogleWKT.NullValue.self, forKey: .nullValue)
+      if let nullValue = try container.decodeIfPresent(
+        GoogleWKT.WKTNullValue.self, forKey: .nullValue)
       {
         try deltaCheckAndSet(.nullValue(nullValue))
       }
@@ -110,7 +111,7 @@
       self.delta = delta
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -139,7 +140,7 @@
     /// The delta of field value being streamed.
     public enum OneOf_Delta: Codable, Equatable, Sendable {
       /// Optional. Represents a null value.
-      case nullValue(GoogleWKT.NullValue)
+      case nullValue(GoogleWKT.WKTNullValue)
       /// Optional. Represents a double value.
       case numberValue(Swift.Double)
       /// Optional. Represents a string value.
@@ -151,10 +152,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PartialArg"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

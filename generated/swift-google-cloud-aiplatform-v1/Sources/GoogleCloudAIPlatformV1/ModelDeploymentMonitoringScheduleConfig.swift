@@ -25,7 +25,7 @@
     /// Required. The model monitoring job scheduling interval. It will be rounded
     /// up to next full hour. This defines how often the monitoring jobs are
     /// triggered.
-    public var monitorInterval: GoogleWKT.Duration? = nil
+    public var monitorInterval: GoogleWKT.WKTDuration? = nil
 
     /// The time window of the prediction data being included in each prediction
     /// dataset. This window specifies how long the data should be collected from
@@ -37,7 +37,7 @@
     /// monitoring statistics.
     ///
     /// [google.cloud.aiplatform.v1.ModelDeploymentMonitoringScheduleConfig.monitor_interval]: <doc:ModelDeploymentMonitoringScheduleConfig/monitorInterval>
-    public var monitorWindow: GoogleWKT.Duration? = nil
+    public var monitorWindow: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,12 +75,12 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.monitorInterval = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .monitorInterval)
+        GoogleWKT.WKTDuration.self, forKey: .monitorInterval)
       self.monitorWindow = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .monitorWindow)
+        GoogleWKT.WKTDuration.self, forKey: .monitorWindow)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -97,10 +97,10 @@
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.ModelDeploymentMonitoringScheduleConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

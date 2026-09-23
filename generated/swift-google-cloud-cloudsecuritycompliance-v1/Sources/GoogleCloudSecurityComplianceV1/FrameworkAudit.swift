@@ -37,10 +37,10 @@ public struct FrameworkAudit: Codable, Equatable, GoogleWKT._AnyPackable,
   public var frameworkAuditDestination: FrameworkAuditDestination? = nil
 
   /// Output only. The time that the audit started.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time that the audit finished.
-  public var finishTime: GoogleWKT.Timestamp? = nil
+  public var finishTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The overall compliance state of the audit.
   public var complianceState: ComplianceState = ComplianceState()
@@ -132,8 +132,9 @@ public struct FrameworkAudit: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.frameworkAuditDestination = try container.decodeIfPresent(
       FrameworkAuditDestination.self, forKey: .frameworkAuditDestination)
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.finishTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .finishTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.finishTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .finishTime)
     if let value = try container.decodeIfPresent(ComplianceState.self, forKey: .complianceState) {
       self.complianceState = value
     }
@@ -156,7 +157,7 @@ public struct FrameworkAudit: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -322,10 +323,10 @@ public struct FrameworkAudit: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.FrameworkAudit"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

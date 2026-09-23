@@ -1171,7 +1171,7 @@ extension Clients {
     /// See `DataMigrationServiceClient.updateMigrationJob`.
     func updateMigrationJob(
       migrationJob: MigrationJob?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MigrationJob>
 
     /// See `DataMigrationServiceClient.deleteMigrationJob`.
@@ -1225,7 +1225,7 @@ extension Clients {
     /// See `DataMigrationServiceClient.updateConnectionProfile`.
     func updateConnectionProfile(
       connectionProfile: ConnectionProfile?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile>
 
     /// See `DataMigrationServiceClient.deleteConnectionProfile`.
@@ -1275,7 +1275,7 @@ extension Clients {
     /// See `DataMigrationServiceClient.updateConversionWorkspace`.
     func updateConversionWorkspace(
       conversionWorkspace: ConversionWorkspace?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ConversionWorkspace>
 
     /// See `DataMigrationServiceClient.deleteConversionWorkspace`.
@@ -1809,7 +1809,7 @@ extension Clients.DataMigrationServiceProtocol {
 
   public func updateMigrationJob(
     migrationJob: MigrationJob?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MigrationJob> {
     let request = UpdateMigrationJobRequest().with {
       $0.migrationJob = migrationJob
@@ -2182,7 +2182,7 @@ extension Clients.DataMigrationServiceProtocol {
 
   public func updateConnectionProfile(
     connectionProfile: ConnectionProfile?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile> {
     let request = UpdateConnectionProfileRequest().with {
       $0.connectionProfile = connectionProfile
@@ -2503,7 +2503,7 @@ extension Clients.DataMigrationServiceProtocol {
 
   public func updateConversionWorkspace(
     conversionWorkspace: ConversionWorkspace?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ConversionWorkspace> {
     let request = UpdateConversionWorkspaceRequest().with {
       $0.conversionWorkspace = conversionWorkspace

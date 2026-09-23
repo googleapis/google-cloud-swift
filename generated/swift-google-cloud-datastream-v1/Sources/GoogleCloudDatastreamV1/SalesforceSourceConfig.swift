@@ -30,7 +30,7 @@ public struct SalesforceSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// Required. Salesforce objects polling interval. The interval at which new
   /// changes will be polled for each object. The duration must be between 5
   /// minutes and 24 hours.
-  public var pollingInterval: GoogleWKT.Duration? = nil
+  public var pollingInterval: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,10 +72,10 @@ public struct SalesforceSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable
     self.includeObjects = try container.decodeIfPresent(SalesforceOrg.self, forKey: .includeObjects)
     self.excludeObjects = try container.decodeIfPresent(SalesforceOrg.self, forKey: .excludeObjects)
     self.pollingInterval = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .pollingInterval)
+      GoogleWKT.WKTDuration.self, forKey: .pollingInterval)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -92,10 +92,10 @@ public struct SalesforceSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.SalesforceSourceConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

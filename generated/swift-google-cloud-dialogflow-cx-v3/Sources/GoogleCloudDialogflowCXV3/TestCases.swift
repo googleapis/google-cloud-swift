@@ -681,7 +681,7 @@
 
     public func updateTestCase(
       testCase: TestCase?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
       let request = UpdateTestCaseRequest().with {
         $0.testCase = testCase

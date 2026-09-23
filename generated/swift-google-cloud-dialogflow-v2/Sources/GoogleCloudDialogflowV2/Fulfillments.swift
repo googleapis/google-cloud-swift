@@ -205,7 +205,7 @@
 
     public func updateFulfillment(
       fulfillment: Fulfillment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Fulfillment {
       let request = UpdateFulfillmentRequest().with {
         $0.fulfillment = fulfillment

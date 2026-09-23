@@ -33,7 +33,7 @@ func sample(client: ConfigClient, projectId: String, locationId: String, deploym
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/deploymentGroups/\(deploymentGroupId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

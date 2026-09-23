@@ -38,7 +38,7 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   ///     { "name": "my-test-instance",
   ///       "security_group": ["a", "b", "c"],
   ///       "spot_instance": false }
-  public var systemLabels: GoogleWKT.Struct? = nil
+  public var systemLabels: GoogleWKT.WKTStruct? = nil
 
   /// Output only. A map of user-defined metadata labels.
   public var userLabels: [Swift.String: Swift.String] = [:]
@@ -78,7 +78,8 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleWKT._AnyPacka
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.systemLabels = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .systemLabels)
+    self.systemLabels = try container.decodeIfPresent(
+      GoogleWKT.WKTStruct.self, forKey: .systemLabels)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .userLabels)
     {
@@ -86,7 +87,7 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleWKT._AnyPacka
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -102,10 +103,10 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.MonitoredResourceMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

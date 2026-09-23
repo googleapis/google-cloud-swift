@@ -94,7 +94,7 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -124,7 +124,7 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   `returnProduct` is set to true in `PredictRequest.params`.
     /// * `score`: Prediction score in double value. Is set if
     ///   `returnScore` is set to true in `PredictRequest.params`.
-    public var metadata: [Swift.String: GoogleWKT.Value] = [:]
+    public var metadata: [Swift.String: GoogleWKT.WKTValue] = [:]
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -165,13 +165,13 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         self.id = value
       }
       if let value = try container.decodeIfPresent(
-        [Swift.String: GoogleWKT.Value].self, forKey: .metadata)
+        [Swift.String: GoogleWKT.WKTValue].self, forKey: .metadata)
       {
         self.metadata = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -187,10 +187,10 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.PredictResponse.PredictionResult"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -198,10 +198,10 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.PredictResponse"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

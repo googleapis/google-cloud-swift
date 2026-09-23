@@ -34,7 +34,7 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// `rapid_cache_config.policies.<key>`, but patching is not supported for
   /// a field within `RapidCachePolicy.policies.<key>`, like
   /// rapid_cache_config.policies.[key].ingest_on_write.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. The operation succeeds conditional on the managed folder's
   /// current metageneration matching the value here specified.
@@ -90,7 +90,8 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.managedFolder = try container.decodeIfPresent(ManagedFolder.self, forKey: .managedFolder)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.ifMetagenerationMatch = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .ifMetagenerationMatch)
     self.ifMetagenerationNotMatch = try container.decodeIfPresent(
@@ -100,7 +101,7 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -119,10 +120,10 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleWKT._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.UpdateManagedFolderRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

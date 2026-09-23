@@ -26,7 +26,7 @@ public struct UpdateExadbVmClusterRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// Optional. A mask specifying which fields in th VM Cluster should be
   /// updated. A field specified in the mask is overwritten. If a mask isn't
   /// provided then all the fields in the VM Cluster are overwritten.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The resource being updated.
   public var exadbVmCluster: ExadbVmCluster? = nil
@@ -78,7 +78,8 @@ public struct UpdateExadbVmClusterRequest: Codable, Equatable, GoogleWKT._AnyPac
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.exadbVmCluster = try container.decodeIfPresent(
       ExadbVmCluster.self, forKey: .exadbVmCluster)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
@@ -86,7 +87,7 @@ public struct UpdateExadbVmClusterRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -103,10 +104,10 @@ public struct UpdateExadbVmClusterRequest: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.UpdateExadbVmClusterRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

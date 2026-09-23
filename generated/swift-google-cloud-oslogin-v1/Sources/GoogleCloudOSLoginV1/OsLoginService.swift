@@ -320,7 +320,7 @@ extension Clients.OsLoginServiceProtocol {
   public func updateSshPublicKey(
     name: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
     let request = UpdateSshPublicKeyRequest().with {
       $0.name = name

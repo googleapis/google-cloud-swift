@@ -587,7 +587,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAwsCluster(
       awsCluster: AwsCluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AwsCluster>
 
     /// See `AwsClustersClient.deleteAwsCluster`.
@@ -623,7 +623,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAwsNodePool(
       awsNodePool: AwsNodePool?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AwsNodePool>
 
     /// See `AwsClustersClient.rollbackAwsNodePoolUpdate`.
@@ -887,7 +887,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func updateAwsCluster(
     awsCluster: AwsCluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AwsCluster> {
     let request = UpdateAwsClusterRequest().with {
       $0.awsCluster = awsCluster
@@ -1121,7 +1121,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func updateAwsNodePool(
     awsNodePool: AwsNodePool?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
     let request = UpdateAwsNodePoolRequest().with {
       $0.awsNodePool = awsNodePool

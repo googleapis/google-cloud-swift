@@ -30,7 +30,7 @@ func sample(client: SecurityCenterClient, organizationId: String, muteConfigId: 
         $0.muteConfig = MuteConfig().with {
           $0.name = "organizations/\(organizationId)/muteConfigs/\(muteConfigId)"
         }
-        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -30,7 +30,7 @@ public struct ServerMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// this timestamp is not comparable across packets sent to the same stream
   /// different sessions. Session here refers to one individual gRPC streaming
   /// request to the stream server.
-  public var ingestTime: GoogleWKT.Timestamp? = nil
+  public var ingestTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,10 +70,11 @@ public struct ServerMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .offset) {
       self.offset = value
     }
-    self.ingestTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .ingestTime)
+    self.ingestTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .ingestTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -89,10 +90,10 @@ public struct ServerMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ServerMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

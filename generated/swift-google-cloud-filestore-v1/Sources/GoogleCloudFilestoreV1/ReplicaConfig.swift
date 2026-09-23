@@ -33,7 +33,7 @@ public struct ReplicaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The timestamp of the latest replication snapshot taken on the
   /// active instance and is already replicated safely.
-  public var lastActiveSyncTime: GoogleWKT.Timestamp? = nil
+  public var lastActiveSyncTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,10 +86,10 @@ public struct ReplicaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.peerInstance = value
     }
     self.lastActiveSyncTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .lastActiveSyncTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .lastActiveSyncTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -357,10 +357,10 @@ public struct ReplicaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.filestore.v1.ReplicaConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

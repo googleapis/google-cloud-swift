@@ -129,7 +129,7 @@ extension Clients.IAMCredentialsProtocol {
     name: Swift.String,
     delegates: [Swift.String],
     scope: [Swift.String],
-    lifetime: GoogleWKT.Duration?,
+    lifetime: GoogleWKT.WKTDuration?,
   ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse {
     let request = GenerateAccessTokenRequest().with {
       $0.name = name

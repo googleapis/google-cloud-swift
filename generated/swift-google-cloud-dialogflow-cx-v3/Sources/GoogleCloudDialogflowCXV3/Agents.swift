@@ -533,7 +533,7 @@
 
     public func updateAgent(
       agent: Agent?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Agent {
       let request = UpdateAgentRequest().with {
         $0.agent = agent
@@ -686,7 +686,7 @@
 
     public func updateGenerativeSettings(
       generativeSettings: GenerativeSettings?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings {
       let request = UpdateGenerativeSettingsRequest().with {
         $0.generativeSettings = generativeSettings

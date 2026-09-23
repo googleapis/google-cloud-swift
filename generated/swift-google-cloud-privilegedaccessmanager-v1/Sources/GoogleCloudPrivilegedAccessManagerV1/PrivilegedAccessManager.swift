@@ -434,7 +434,7 @@ extension Clients {
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
     func updateEntitlement(
       entitlement: Entitlement?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.revokeGrant`.
@@ -774,7 +774,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
 
   public func updateEntitlement(
     entitlement: Entitlement?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let request = UpdateEntitlementRequest().with {
       $0.entitlement = entitlement

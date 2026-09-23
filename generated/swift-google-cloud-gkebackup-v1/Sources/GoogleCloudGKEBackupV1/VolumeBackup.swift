@@ -33,11 +33,11 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The timestamp when this VolumeBackup resource was
   /// created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The timestamp when this VolumeBackup resource was last
   /// updated.
-  public var updateTime: GoogleWKT.Timestamp? = nil
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. A reference to the source Kubernetes PVC from which this
   /// VolumeBackup was created.
@@ -63,7 +63,7 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The timestamp when the associated underlying volume backup
   /// operation completed.
-  public var completeTime: GoogleWKT.Timestamp? = nil
+  public var completeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The current state of this VolumeBackup.
   public var state: VolumeBackup.State = VolumeBackup.State()
@@ -154,8 +154,10 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
       self.uid = value
     }
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.sourcePvc = try container.decodeIfPresent(NamespacedName.self, forKey: .sourcePvc)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeBackupHandle) {
       self.volumeBackupHandle = value
@@ -172,7 +174,7 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.diskSizeBytes = value
     }
     self.completeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .completeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .completeTime)
     if let value = try container.decodeIfPresent(VolumeBackup.State.self, forKey: .state) {
       self.state = value
     }
@@ -190,7 +192,7 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -488,10 +490,10 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.VolumeBackup"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

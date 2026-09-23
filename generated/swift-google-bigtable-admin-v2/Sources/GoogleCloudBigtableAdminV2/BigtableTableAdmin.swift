@@ -827,7 +827,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateTable`.
     func updateTable(
       table: Table?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Table>
 
     /// See `BigtableTableAdminClient.undeleteTable`.
@@ -857,7 +857,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateAuthorizedView`.
     func updateAuthorizedView(
       authorizedView: AuthorizedView?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AuthorizedView>
 
     /// See `BigtableTableAdminClient.snapshotTable`.
@@ -897,7 +897,7 @@ extension Clients {
       parent: Swift.String,
       backupId: Swift.String,
       sourceBackup: Swift.String,
-      expireTime: GoogleWKT.Timestamp?,
+      expireTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `BigtableTableAdminClient.createSchemaBundle`.
@@ -918,7 +918,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateSchemaBundle`.
     func updateSchemaBundle(
       schemaBundle: SchemaBundle?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<SchemaBundle>
 
     /// See `BigtableTableAdminClient.createTable`.
@@ -1325,7 +1325,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateTable(
     table: Table?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Table> {
     let request = UpdateTableRequest().with {
       $0.table = table
@@ -1525,7 +1525,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateAuthorizedView(
     authorizedView: AuthorizedView?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AuthorizedView> {
     let request = UpdateAuthorizedViewRequest().with {
       $0.authorizedView = authorizedView
@@ -1835,7 +1835,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudBigtableAdminV2.Backup {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
@@ -1963,7 +1963,7 @@ extension Clients.BigtableTableAdminProtocol {
     parent: Swift.String,
     backupId: Swift.String,
     sourceBackup: Swift.String,
-    expireTime: GoogleWKT.Timestamp?,
+    expireTime: GoogleWKT.WKTTimestamp?,
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let request = CopyBackupRequest().with {
       $0.parent = parent
@@ -2112,7 +2112,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateSchemaBundle(
     schemaBundle: SchemaBundle?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<SchemaBundle> {
     let request = UpdateSchemaBundleRequest().with {
       $0.schemaBundle = schemaBundle

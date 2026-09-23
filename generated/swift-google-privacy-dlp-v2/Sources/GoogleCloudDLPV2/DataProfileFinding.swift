@@ -43,7 +43,7 @@ public struct DataProfileFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var findingId: Swift.String = Swift.String()
 
   /// Timestamp when the finding was detected.
-  public var timestamp: GoogleWKT.Timestamp? = nil
+  public var timestamp: GoogleWKT.WKTTimestamp? = nil
 
   /// Where the content was found.
   public var location: DataProfileFindingLocation? = nil
@@ -123,7 +123,7 @@ public struct DataProfileFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingId) {
       self.findingId = value
     }
-    self.timestamp = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .timestamp)
+    self.timestamp = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .timestamp)
     self.location = try container.decodeIfPresent(
       DataProfileFindingLocation.self, forKey: .location)
     if let value = try container.decodeIfPresent(
@@ -138,7 +138,7 @@ public struct DataProfileFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       DataSourceType.self, forKey: .dataSourceType)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -162,10 +162,10 @@ public struct DataProfileFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DataProfileFinding"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

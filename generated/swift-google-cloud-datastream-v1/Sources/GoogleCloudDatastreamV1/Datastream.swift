@@ -658,7 +658,7 @@ extension Clients {
     /// See `DatastreamClient.updateConnectionProfile`.
     func updateConnectionProfile(
       connectionProfile: ConnectionProfile?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile>
 
     /// See `DatastreamClient.deleteConnectionProfile`.
@@ -688,7 +688,7 @@ extension Clients {
     /// See `DatastreamClient.updateStream`.
     func updateStream(
       stream: Stream?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Stream>
 
     /// See `DatastreamClient.deleteStream`.
@@ -1095,7 +1095,7 @@ extension Clients.DatastreamProtocol {
 
   public func updateConnectionProfile(
     connectionProfile: ConnectionProfile?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile> {
     let request = UpdateConnectionProfileRequest().with {
       $0.connectionProfile = connectionProfile
@@ -1283,7 +1283,7 @@ extension Clients.DatastreamProtocol {
 
   public func updateStream(
     stream: Stream?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
     let request = UpdateStreamRequest().with {
       $0.stream = stream

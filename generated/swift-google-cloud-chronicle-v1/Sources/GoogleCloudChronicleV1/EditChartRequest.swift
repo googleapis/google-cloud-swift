@@ -44,7 +44,7 @@ public struct EditChartRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Supported paths in query are -
   /// dashboard_query.query
   /// dashboard_query.input
-  public var editMask: GoogleWKT.FieldMask? = nil
+  public var editMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Optional. Language Features present in the query.
   public var languageFeatures: [LanguageFeature] = []
@@ -97,14 +97,14 @@ public struct EditChartRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       DashboardQuery.self, forKey: .dashboardQuery)
     self.dashboardChart = try container.decodeIfPresent(
       DashboardChart.self, forKey: .dashboardChart)
-    self.editMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .editMask)
+    self.editMask = try container.decodeIfPresent(GoogleWKT.WKTFieldMask.self, forKey: .editMask)
     if let value = try container.decodeIfPresent([LanguageFeature].self, forKey: .languageFeatures)
     {
       self.languageFeatures = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -123,10 +123,10 @@ public struct EditChartRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.EditChartRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

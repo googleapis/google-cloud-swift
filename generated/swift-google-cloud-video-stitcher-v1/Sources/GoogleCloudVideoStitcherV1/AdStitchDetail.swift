@@ -28,13 +28,13 @@ public struct AdStitchDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public var adId: Swift.String = Swift.String()
 
   /// Required. The time offset of the processed ad.
-  public var adTimeOffset: GoogleWKT.Duration? = nil
+  public var adTimeOffset: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Indicates the reason why the ad has been skipped.
   public var skipReason: Swift.String = Swift.String()
 
   /// Optional. The metadata of the chosen media file for the ad.
-  public var media: [Swift.String: GoogleWKT.Value] = [:]
+  public var media: [Swift.String: GoogleWKT.WKTValue] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,18 +84,18 @@ public struct AdStitchDetail: Codable, Equatable, GoogleWKT._AnyPackable,
       self.adId = value
     }
     self.adTimeOffset = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .adTimeOffset)
+      GoogleWKT.WKTDuration.self, forKey: .adTimeOffset)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skipReason) {
       self.skipReason = value
     }
     if let value = try container.decodeIfPresent(
-      [Swift.String: GoogleWKT.Value].self, forKey: .media)
+      [Swift.String: GoogleWKT.WKTValue].self, forKey: .media)
     {
       self.media = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -114,10 +114,10 @@ public struct AdStitchDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.AdStitchDetail"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

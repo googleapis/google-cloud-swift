@@ -377,7 +377,7 @@ extension Clients {
     /// See `WorkloadManagerClient.updateEvaluation`.
     func updateEvaluation(
       evaluation: Evaluation?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Evaluation>
 
     /// See `WorkloadManagerClient.deleteEvaluation`.
@@ -657,7 +657,7 @@ extension Clients.WorkloadManagerProtocol {
 
   public func updateEvaluation(
     evaluation: Evaluation?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
     let request = UpdateEvaluationRequest().with {
       $0.evaluation = evaluation

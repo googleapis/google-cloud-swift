@@ -25,7 +25,7 @@ public struct ResponseMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var error: Swift.String = Swift.String()
 
   /// Headers from the response.
-  public var headers: GoogleWKT.Struct? = nil
+  public var headers: GoogleWKT.WKTStruct? = nil
 
   /// Status code for the response.
   public var statusCode: Swift.String = Swift.String()
@@ -34,7 +34,7 @@ public struct ResponseMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sizeBytes: Swift.Int32 = Swift.Int32()
 
   /// Total time elapsed for the response.
-  public var duration: GoogleWKT.Duration? = nil
+  public var duration: GoogleWKT.WKTDuration? = nil
 
   /// The body of the response.
   public var body: Swift.String = Swift.String()
@@ -85,20 +85,20 @@ public struct ResponseMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .error) {
       self.error = value
     }
-    self.headers = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .headers)
+    self.headers = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .headers)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusCode) {
       self.statusCode = value
     }
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeBytes) {
       self.sizeBytes = value
     }
-    self.duration = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .duration)
+    self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .body) {
       self.body = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -118,10 +118,10 @@ public struct ResponseMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.ResponseMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

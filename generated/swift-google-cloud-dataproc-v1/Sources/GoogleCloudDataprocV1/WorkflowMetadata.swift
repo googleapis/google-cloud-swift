@@ -56,10 +56,10 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var parameters: [Swift.String: Swift.String] = [:]
 
   /// Output only. Workflow start time.
-  public var startTime: GoogleWKT.Timestamp? = nil
+  public var startTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Workflow end time.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The UUID of target cluster.
   public var clusterUuid: Swift.String = Swift.String()
@@ -67,21 +67,21 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The timeout duration for the DAG of jobs, expressed in seconds
   /// (see [JSON representation of
   /// duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-  public var dagTimeout: GoogleWKT.Duration? = nil
+  public var dagTimeout: GoogleWKT.WKTDuration? = nil
 
   /// Output only. DAG start time, only set for workflows with
   /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
   /// DAG begins.
   ///
   /// [google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout]: <doc:WorkflowMetadata/dagTimeout>
-  public var dagStartTime: GoogleWKT.Timestamp? = nil
+  public var dagStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. DAG end time, only set for workflows with
   /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
   /// DAG ends.
   ///
   /// [google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout]: <doc:WorkflowMetadata/dagTimeout>
-  public var dagEndTime: GoogleWKT.Timestamp? = nil
+  public var dagEndTime: GoogleWKT.WKTTimestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -164,18 +164,19 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.parameters = value
     }
-    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUuid) {
       self.clusterUuid = value
     }
-    self.dagTimeout = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .dagTimeout)
+    self.dagTimeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .dagTimeout)
     self.dagStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .dagStartTime)
-    self.dagEndTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .dagEndTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .dagStartTime)
+    self.dagEndTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .dagEndTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -327,10 +328,10 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.WorkflowMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

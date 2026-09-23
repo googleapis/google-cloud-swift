@@ -24,7 +24,7 @@ public struct UpdateDataExchangeRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// Required. Field mask specifies the fields to update in the data exchange
   /// resource. The fields specified in the
   /// `updateMask` are relative to the resource and are not a full request.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. The data exchange to update.
   public var dataExchange: DataExchange? = nil
@@ -64,11 +64,12 @@ public struct UpdateDataExchangeRequest: Codable, Equatable, GoogleWKT._AnyPacka
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.dataExchange = try container.decodeIfPresent(DataExchange.self, forKey: .dataExchange)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -84,10 +85,10 @@ public struct UpdateDataExchangeRequest: Codable, Equatable, GoogleWKT._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.UpdateDataExchangeRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

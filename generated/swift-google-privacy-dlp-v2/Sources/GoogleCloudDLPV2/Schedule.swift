@@ -69,14 +69,14 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
       option = $0
     }
     if let recurrencePeriodDuration = try container.decodeIfPresent(
-      GoogleWKT.Duration?.self, forKey: .recurrencePeriodDuration)
+      GoogleWKT.WKTDuration?.self, forKey: .recurrencePeriodDuration)
     {
       try optionCheckAndSet(.recurrencePeriodDuration(recurrencePeriodDuration))
     }
     self.option = option
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -104,16 +104,16 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// This value must be set to a time duration greater than or equal
     /// to 1 day and can be no longer than 60 days.
-    indirect case recurrencePeriodDuration(GoogleWKT.Duration?)
+    indirect case recurrencePeriodDuration(GoogleWKT.WKTDuration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Schedule"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

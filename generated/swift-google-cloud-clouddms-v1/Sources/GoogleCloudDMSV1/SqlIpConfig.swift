@@ -22,7 +22,7 @@ public struct SqlIpConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Whether the instance should be assigned an IPv4 address or not.
-  public var enableIpv4: GoogleWKT.BoolValue? = nil
+  public var enableIpv4: GoogleWKT.WKTBoolValue? = nil
 
   /// The resource link for the VPC network from which the Cloud SQL instance is
   /// accessible for private IP. For example,
@@ -39,7 +39,7 @@ public struct SqlIpConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var allocatedIpRange: Swift.String = Swift.String()
 
   /// Whether SSL connections over IP should be enforced or not.
-  public var requireSsl: GoogleWKT.BoolValue? = nil
+  public var requireSsl: GoogleWKT.WKTBoolValue? = nil
 
   /// The list of external networks that are allowed to connect to the instance
   /// using the IP. See
@@ -88,20 +88,22 @@ public struct SqlIpConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.enableIpv4 = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .enableIpv4)
+    self.enableIpv4 = try container.decodeIfPresent(
+      GoogleWKT.WKTBoolValue.self, forKey: .enableIpv4)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateNetwork) {
       self.privateNetwork = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allocatedIpRange) {
       self.allocatedIpRange = value
     }
-    self.requireSsl = try container.decodeIfPresent(GoogleWKT.BoolValue.self, forKey: .requireSsl)
+    self.requireSsl = try container.decodeIfPresent(
+      GoogleWKT.WKTBoolValue.self, forKey: .requireSsl)
     if let value = try container.decodeIfPresent([SqlAclEntry].self, forKey: .authorizedNetworks) {
       self.authorizedNetworks = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -120,10 +122,10 @@ public struct SqlIpConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SqlIpConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,26 +16,22 @@
 
 import Foundation
 
-/// A protocol buffer option, which can be attached to a message, field,
-/// enumeration, etc.
-public struct Option: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Enum value definition.
+public struct WKTEnumValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// The option's name. For protobuf built-in options (options defined in
-  /// descriptor.proto), this is the short name. For example, `"map_entry"`.
-  /// For custom options, it should be the fully-qualified name. For example,
-  /// `"google.api.http"`.
+  /// Enum value name.
   public var name: Swift.String = Swift.String()
 
-  /// The option's value packed in an Any message. If the value is a primitive,
-  /// the corresponding wrapper type defined in google/protobuf/wrappers.proto
-  /// should be used. If the value is an enum, it should be stored as an int32
-  /// value using the google.protobuf.Int32Value type.
-  public var value: `Any`? = nil
+  /// Enum value number.
+  public var number: Swift.Int32 = Swift.Int32()
+
+  /// Protocol buffer options.
+  public var options: [WKTOption] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `Option`.
+  /// Initialize a new instance of `WKTEnumValue`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -43,7 +39,7 @@ public struct Option: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Option().with { $0.name = ... }
+  /// let value = WKTEnumValue().with { $0.name = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -58,11 +54,13 @@ public struct Option: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let name = CodingKeys(stringValue: "name")
-    static let value = CodingKeys(stringValue: "value")
+    static let number = CodingKeys(stringValue: "number")
+    static let options = CodingKeys(stringValue: "options")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
-      "value",
+      "number",
+      "options",
     ]
   }
 
@@ -71,29 +69,35 @@ public struct Option: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.value = try container.decodeIfPresent(`Any`.self, forKey: .value)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .number) {
+      self.number = value
+    }
+    if let value = try container.decodeIfPresent([WKTOption].self, forKey: .options) {
+      self.options = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encodeIfPresent(self.value, forKey: .value)
+    try container.encode(self.number, forKey: .number)
+    try container.encode(self.options, forKey: .options)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.protobuf.Option"
+    return "type.googleapis.com/google.protobuf.EnumValue"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

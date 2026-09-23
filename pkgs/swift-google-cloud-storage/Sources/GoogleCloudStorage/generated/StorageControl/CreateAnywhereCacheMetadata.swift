@@ -35,7 +35,7 @@ public struct CreateAnywhereCacheMetadata: Codable, Equatable, GoogleWKT._AnyPac
   /// Anywhere Cache entry's TTL. A cache-level config that is applied to all new
   /// cache entries on admission. Default ttl value (24hrs) is applied if not
   /// specified in the create request.
-  public var ttl: GoogleWKT.Duration? = nil
+  public var ttl: GoogleWKT.WKTDuration? = nil
 
   /// Anywhere Cache entry Admission Policy in kebab-case (e.g.,
   /// "admit-on-first-miss"). Default admission policy (admit-on-first-miss) is
@@ -94,13 +94,13 @@ public struct CreateAnywhereCacheMetadata: Codable, Equatable, GoogleWKT._AnyPac
     self.anywhereCacheId = try container.decodeIfPresent(
       Swift.String.self, forKey: .anywhereCacheId)
     self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
-    self.ttl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .ttl)
+    self.ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl)
     self.admissionPolicy = try container.decodeIfPresent(
       Swift.String.self, forKey: .admissionPolicy)
     self.ingestOnWrite = try container.decodeIfPresent(Swift.Bool.self, forKey: .ingestOnWrite)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -120,10 +120,10 @@ public struct CreateAnywhereCacheMetadata: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.CreateAnywhereCacheMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

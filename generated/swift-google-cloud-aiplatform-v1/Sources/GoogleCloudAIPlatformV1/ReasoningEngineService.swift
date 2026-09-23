@@ -306,7 +306,7 @@
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEngine(
         reasoningEngine: ReasoningEngine?,
-        updateMask: GoogleWKT.FieldMask?,
+        updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
 
       /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
@@ -540,7 +540,7 @@
 
     public func updateReasoningEngine(
       reasoningEngine: ReasoningEngine?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
       let request = UpdateReasoningEngineRequest().with {
         $0.reasoningEngine = reasoningEngine

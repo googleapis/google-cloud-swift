@@ -314,7 +314,7 @@ extension Clients.CaseServiceProtocol {
 
   public func updateCase(
     `case`: Case?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudSupportV2.Case {
     let request = UpdateCaseRequest().with {
       $0.`case` = `case`

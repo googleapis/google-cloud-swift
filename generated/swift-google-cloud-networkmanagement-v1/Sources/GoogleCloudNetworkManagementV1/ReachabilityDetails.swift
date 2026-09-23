@@ -26,7 +26,7 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public var result: ReachabilityDetails.Result = ReachabilityDetails.Result()
 
   /// The time of the configuration analysis.
-  public var verifyTime: GoogleWKT.Timestamp? = nil
+  public var verifyTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The details of a failure or a cancellation of reachability analysis.
   public var error: GoogleRpc.Status? = nil
@@ -78,14 +78,15 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ReachabilityDetails.Result.self, forKey: .result) {
       self.result = value
     }
-    self.verifyTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .verifyTime)
+    self.verifyTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .verifyTime)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     if let value = try container.decodeIfPresent([Trace].self, forKey: .traces) {
       self.traces = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -252,10 +253,10 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkmanagement.v1.ReachabilityDetails"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

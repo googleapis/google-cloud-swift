@@ -32,7 +32,7 @@ public struct DataSourceExportSettings: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// Output only. The data freshness of the given export which represents the
   /// time bucket at which the latest event was exported.
-  public var dataFreshnessTime: GoogleWKT.Timestamp? = nil
+  public var dataFreshnessTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The stored data volume of all the exports.
   public var dataVolume: Swift.Int64 = Swift.Int64()
@@ -90,13 +90,13 @@ public struct DataSourceExportSettings: Codable, Equatable, GoogleWKT._AnyPackab
       self.latestExportJobState = value
     }
     self.dataFreshnessTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .dataFreshnessTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .dataFreshnessTime)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataVolume) {
       self.dataVolume = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -115,10 +115,10 @@ public struct DataSourceExportSettings: Codable, Equatable, GoogleWKT._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DataSourceExportSettings"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

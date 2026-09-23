@@ -61,7 +61,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// charts, and 90,000 seconds (25 hours) for alerting policies.
   ///
   /// [google.monitoring.v3.TimeSeries]: <doc:TimeSeries>
-  public var alignmentPeriod: GoogleWKT.Duration? = nil
+  public var alignmentPeriod: GoogleWKT.WKTDuration? = nil
 
   /// An `Aligner` describes how to bring the data points in a single
   /// time series into temporal alignment. Except for `ALIGN_NONE`, all
@@ -153,7 +153,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.alignmentPeriod = try container.decodeIfPresent(
-      GoogleWKT.Duration.self, forKey: .alignmentPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .alignmentPeriod)
     if let value = try container.decodeIfPresent(
       Aggregation.Aligner.self, forKey: .perSeriesAligner)
     {
@@ -169,7 +169,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -766,10 +766,10 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.Aggregation"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

@@ -29,7 +29,7 @@ public struct WordInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// and the accuracy of the time offset can vary.
   ///
   /// [google.cloud.speech.v2.RecognitionFeatures.enable_word_time_offsets]: <doc:RecognitionFeatures/enableWordTimeOffsets>
-  public var startOffset: GoogleWKT.Duration? = nil
+  public var startOffset: GoogleWKT.WKTDuration? = nil
 
   /// Time offset relative to the beginning of the audio,
   /// and corresponding to the end of the spoken word.
@@ -39,7 +39,7 @@ public struct WordInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// and the accuracy of the time offset can vary.
   ///
   /// [google.cloud.speech.v2.RecognitionFeatures.enable_word_time_offsets]: <doc:RecognitionFeatures/enableWordTimeOffsets>
-  public var endOffset: GoogleWKT.Duration? = nil
+  public var endOffset: GoogleWKT.WKTDuration? = nil
 
   /// The word corresponding to this set of information.
   public var word: Swift.String = Swift.String()
@@ -106,8 +106,9 @@ public struct WordInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.startOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .startOffset)
-    self.endOffset = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .endOffset)
+    self.startOffset = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration.self, forKey: .startOffset)
+    self.endOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .endOffset)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .word) {
       self.word = value
     }
@@ -119,7 +120,7 @@ public struct WordInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -138,10 +139,10 @@ public struct WordInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.WordInfo"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

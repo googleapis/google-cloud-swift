@@ -80,14 +80,14 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
   /// generated.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  public var generateTime: GoogleWKT.Timestamp? = nil
+  public var generateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
@@ -98,7 +98,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyScheduled>
   /// [google.cloud.kms.v1.CryptoKeyVersion.state]: <doc:CryptoKeyVersion/state>
-  public var destroyTime: GoogleWKT.Timestamp? = nil
+  public var destroyTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time this CryptoKeyVersion's key material was
   /// destroyed. Only present if
@@ -107,7 +107,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyed>
   /// [google.cloud.kms.v1.CryptoKeyVersion.state]: <doc:CryptoKeyVersion/state>
-  public var destroyEventTime: GoogleWKT.Timestamp? = nil
+  public var destroyEventTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob]
   /// used in the most recent import of this
@@ -123,7 +123,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// most recently imported.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  public var importTime: GoogleWKT.Timestamp? = nil
+  public var importTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The root cause of the most recent import failure. Only present
   /// if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
@@ -281,16 +281,19 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.attestation = try container.decodeIfPresent(
       KeyOperationAttestation.self, forKey: .attestation)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.generateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .generateTime)
-    self.destroyTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .destroyTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .generateTime)
+    self.destroyTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .destroyTime)
     self.destroyEventTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .destroyEventTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .destroyEventTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importJob) {
       self.importJob = value
     }
-    self.importTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .importTime)
+    self.importTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .importTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importFailureReason) {
       self.importFailureReason = value
     }
@@ -317,7 +320,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -1218,10 +1221,10 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.CryptoKeyVersion"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

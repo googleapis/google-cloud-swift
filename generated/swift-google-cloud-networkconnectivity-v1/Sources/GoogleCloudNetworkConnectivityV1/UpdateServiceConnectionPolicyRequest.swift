@@ -26,7 +26,7 @@ public struct UpdateServiceConnectionPolicyRequest: Codable, Equatable, GoogleWK
   /// The fields specified in the update_mask are relative to the resource, not
   /// the full request. A field will be overwritten if it is in the mask. If the
   /// user does not provide a mask then all fields will be overwritten.
-  public var updateMask: GoogleWKT.FieldMask? = nil
+  public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
   /// Required. New values to be patched into the resource.
   public var serviceConnectionPolicy: ServiceConnectionPolicy? = nil
@@ -83,7 +83,8 @@ public struct UpdateServiceConnectionPolicyRequest: Codable, Equatable, GoogleWK
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     self.serviceConnectionPolicy = try container.decodeIfPresent(
       ServiceConnectionPolicy.self, forKey: .serviceConnectionPolicy)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
@@ -91,7 +92,7 @@ public struct UpdateServiceConnectionPolicyRequest: Codable, Equatable, GoogleWK
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -109,10 +110,10 @@ public struct UpdateServiceConnectionPolicyRequest: Codable, Equatable, GoogleWK
     return
       "type.googleapis.com/google.cloud.networkconnectivity.v1.UpdateServiceConnectionPolicyRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

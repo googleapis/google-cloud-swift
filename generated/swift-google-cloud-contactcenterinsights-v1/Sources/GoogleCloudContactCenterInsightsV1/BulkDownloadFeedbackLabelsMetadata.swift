@@ -23,10 +23,10 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT.
   Sendable
 {
   /// Output only. The time the operation was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The time the operation finished running.
-  public var endTime: GoogleWKT.Timestamp? = nil
+  public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The original request for download.
   public var request: BulkDownloadFeedbackLabelsRequest? = nil
@@ -79,8 +79,9 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT.
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
     self.request = try container.decodeIfPresent(
       BulkDownloadFeedbackLabelsRequest.self, forKey: .request)
     if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .partialErrors) {
@@ -90,7 +91,7 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT.
       BulkDownloadFeedbackLabelsMetadata.DownloadStats.self, forKey: .downloadStats)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -180,7 +181,7 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT.
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -199,10 +200,10 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT.
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsMetadata.DownloadStats"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -211,10 +212,10 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT.
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsMetadata"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

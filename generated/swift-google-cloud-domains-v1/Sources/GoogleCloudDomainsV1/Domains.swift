@@ -591,7 +591,7 @@ extension Clients {
     /// See `DomainsClient.updateRegistration`.
     func updateRegistration(
       registration: Registration?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureManagementSettings`.
@@ -602,7 +602,7 @@ extension Clients {
     func configureManagementSettings(
       registration: Swift.String,
       managementSettings: ManagementSettings?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureDnsSettings`.
@@ -613,7 +613,7 @@ extension Clients {
     func configureDnsSettings(
       registration: Swift.String,
       dnsSettings: DnsSettings?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureContactSettings`.
@@ -624,7 +624,7 @@ extension Clients {
     func configureContactSettings(
       registration: Swift.String,
       contactSettings: ContactSettings?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.exportRegistration`.
@@ -1015,7 +1015,7 @@ extension Clients.DomainsProtocol {
 
   public func updateRegistration(
     registration: Registration?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let request = UpdateRegistrationRequest().with {
       $0.registration = registration
@@ -1055,7 +1055,7 @@ extension Clients.DomainsProtocol {
   public func configureManagementSettings(
     registration: Swift.String,
     managementSettings: ManagementSettings?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let request = ConfigureManagementSettingsRequest().with {
       $0.registration = registration
@@ -1096,7 +1096,7 @@ extension Clients.DomainsProtocol {
   public func configureDnsSettings(
     registration: Swift.String,
     dnsSettings: DnsSettings?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let request = ConfigureDnsSettingsRequest().with {
       $0.registration = registration
@@ -1137,7 +1137,7 @@ extension Clients.DomainsProtocol {
   public func configureContactSettings(
     registration: Swift.String,
     contactSettings: ContactSettings?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let request = ConfigureContactSettingsRequest().with {
       $0.registration = registration

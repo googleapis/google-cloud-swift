@@ -366,7 +366,7 @@
 
     public func updateExperiment(
       experiment: Experiment?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
       let request = UpdateExperimentRequest().with {
         $0.experiment = experiment

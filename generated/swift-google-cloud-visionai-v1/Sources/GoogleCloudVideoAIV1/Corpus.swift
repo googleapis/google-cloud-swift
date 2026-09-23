@@ -39,7 +39,7 @@ public struct Corpus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// asset level user-defined TTL. For STREAM_VIDEO type corpora, this is
   /// required and the maximum allowed
   ///   default_ttl is 10 years.
-  public var defaultTtl: GoogleWKT.Duration? = nil
+  public var defaultTtl: GoogleWKT.WKTDuration? = nil
 
   /// Optional. Type of the asset inside corpus.
   public var type: Corpus.Type_ = Corpus.Type_()
@@ -113,7 +113,7 @@ public struct Corpus: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.defaultTtl = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .defaultTtl)
+    self.defaultTtl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .defaultTtl)
     if let value = try container.decodeIfPresent(Corpus.Type_.self, forKey: .type) {
       self.type = value
     }
@@ -123,7 +123,7 @@ public struct Corpus: Codable, Equatable, GoogleWKT._AnyPackable,
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -270,10 +270,10 @@ public struct Corpus: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.Corpus"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

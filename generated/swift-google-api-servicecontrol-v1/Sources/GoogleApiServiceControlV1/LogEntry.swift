@@ -28,7 +28,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The time the event described by the log entry occurred. If
   /// omitted, defaults to operation start time.
-  public var timestamp: GoogleWKT.Timestamp? = nil
+  public var timestamp: GoogleWKT.WKTTimestamp? = nil
 
   /// The severity of the log entry. The default value is
   /// `LogSeverity.DEFAULT`.
@@ -121,7 +121,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.timestamp = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .timestamp)
+    self.timestamp = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .timestamp)
     if let value = try container.decodeIfPresent(
       GoogleCloudLoggingType.LogSeverity.self, forKey: .severity)
     {
@@ -153,7 +153,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       payload = $0
     }
     if let protoPayload = try container.decodeIfPresent(
-      GoogleWKT.`Any`?.self, forKey: .protoPayload)
+      GoogleWKT.WKTAny?.self, forKey: .protoPayload)
     {
       try payloadCheckAndSet(.protoPayload(protoPayload))
     }
@@ -161,14 +161,14 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       try payloadCheckAndSet(.textPayload(textPayload))
     }
     if let structPayload = try container.decodeIfPresent(
-      GoogleWKT.Struct?.self, forKey: .structPayload)
+      GoogleWKT.WKTStruct?.self, forKey: .structPayload)
     {
       try payloadCheckAndSet(.structPayload(structPayload))
     }
     self.payload = payload
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -204,21 +204,21 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The log entry payload, represented as a protocol buffer that is
     /// expressed as a JSON object. The only accepted type currently is
     /// [AuditLog][google.cloud.audit.AuditLog].
-    indirect case protoPayload(GoogleWKT.`Any`?)
+    indirect case protoPayload(GoogleWKT.WKTAny?)
     /// The log entry payload, represented as a Unicode string (UTF-8).
     case textPayload(Swift.String)
     /// The log entry payload, represented as a structure that
     /// is expressed as a JSON object.
-    indirect case structPayload(GoogleWKT.Struct?)
+    indirect case structPayload(GoogleWKT.WKTStruct?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicecontrol.v1.LogEntry"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

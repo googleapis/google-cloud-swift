@@ -378,7 +378,7 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func updateNativeDashboard(
     nativeDashboard: NativeDashboard?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
     let request = UpdateNativeDashboardRequest().with {
       $0.nativeDashboard = nativeDashboard
@@ -491,7 +491,7 @@ extension Clients.NativeDashboardServiceProtocol {
     name: Swift.String,
     dashboardQuery: DashboardQuery?,
     dashboardChart: DashboardChart?,
-    editMask: GoogleWKT.FieldMask?,
+    editMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudChronicleV1.EditChartResponse {
     let request = EditChartRequest().with {
       $0.name = name

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum Syntax: Codable, Equatable, Sendable {
+public enum WKTSyntax: Codable, Equatable, Sendable {
   /// Syntax `proto2`.
   case proto2
   /// Syntax `proto3`.
@@ -81,7 +81,7 @@ public enum Syntax: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Syntax/unknownStringValue(_:)).
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WKTSyntax/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "SYNTAX_PROTO2": self = .proto2
@@ -93,7 +93,7 @@ public enum Syntax: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Syntax/unknownIntValue(_:)).
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WKTSyntax/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .proto2

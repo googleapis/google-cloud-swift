@@ -48,7 +48,7 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The time when the case was last updated, as reported by the external
   /// system.
-  public var externalSystemUpdateTime: GoogleWKT.Timestamp? = nil
+  public var externalSystemUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The link to the finding's corresponding case in the external system.
   public var caseUri: Swift.String = Swift.String()
@@ -57,13 +57,13 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
   public var casePriority: Swift.String = Swift.String()
 
   /// The SLA of the finding's corresponding case in the external system.
-  public var caseSla: GoogleWKT.Timestamp? = nil
+  public var caseSla: GoogleWKT.WKTTimestamp? = nil
 
   /// The time when the case was created, as reported by the external system.
-  public var caseCreateTime: GoogleWKT.Timestamp? = nil
+  public var caseCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The time when the case was closed, as reported by the external system.
-  public var caseCloseTime: GoogleWKT.Timestamp? = nil
+  public var caseCloseTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Information about the ticket, if any, that is being used to track the
   /// resolution of the issue that is identified by this finding.
@@ -135,23 +135,23 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
       self.status = value
     }
     self.externalSystemUpdateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .externalSystemUpdateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .externalSystemUpdateTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caseUri) {
       self.caseUri = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .casePriority) {
       self.casePriority = value
     }
-    self.caseSla = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .caseSla)
+    self.caseSla = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .caseSla)
     self.caseCreateTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .caseCreateTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .caseCreateTime)
     self.caseCloseTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .caseCloseTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .caseCloseTime)
     self.ticketInfo = try container.decodeIfPresent(
       ExternalSystem.TicketInfo.self, forKey: .ticketInfo)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -195,7 +195,7 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The time when the ticket was last updated, as reported by the ticket
     /// system.
-    public var updateTime: GoogleWKT.Timestamp? = nil
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -255,10 +255,11 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .status) {
         self.status = value
       }
-      self.updateTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .updateTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -278,10 +279,10 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.ExternalSystem.TicketInfo"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -289,10 +290,10 @@ public struct ExternalSystem: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ExternalSystem"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

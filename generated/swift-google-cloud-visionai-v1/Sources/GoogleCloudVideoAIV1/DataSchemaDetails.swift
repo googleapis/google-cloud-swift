@@ -29,11 +29,11 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public var protoAnyConfig: DataSchemaDetails.ProtoAnyConfig? = nil
 
   /// Config for List data type.
-  public var listConfig: GoogleWKT.Recursive<DataSchemaDetails.ListConfig>? = nil
+  public var listConfig: GoogleWKT.WKTRecursive<DataSchemaDetails.ListConfig>? = nil
 
   /// Config for CustomizedStruct data type.
   public var customizedStructConfig:
-    GoogleWKT.Recursive<DataSchemaDetails.CustomizedStructConfig>? = nil
+    GoogleWKT.WKTRecursive<DataSchemaDetails.CustomizedStructConfig>? = nil
 
   /// The granularity associated with this DataSchema.
   public var granularity: DataSchemaDetails.Granularity? = nil
@@ -88,9 +88,9 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     self.protoAnyConfig = try container.decodeIfPresent(
       DataSchemaDetails.ProtoAnyConfig.self, forKey: .protoAnyConfig)
     self.listConfig = try container.decodeIfPresent(
-      GoogleWKT.Recursive<DataSchemaDetails.ListConfig>.self, forKey: .listConfig)
+      GoogleWKT.WKTRecursive<DataSchemaDetails.ListConfig>.self, forKey: .listConfig)
     self.customizedStructConfig = try container.decodeIfPresent(
-      GoogleWKT.Recursive<DataSchemaDetails.CustomizedStructConfig>.self,
+      GoogleWKT.WKTRecursive<DataSchemaDetails.CustomizedStructConfig>.self,
       forKey: .customizedStructConfig)
     self.granularity = try container.decodeIfPresent(
       DataSchemaDetails.Granularity.self, forKey: .granularity)
@@ -98,7 +98,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       DataSchemaDetails.SearchStrategy.self, forKey: .searchStrategy)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -160,7 +160,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -175,10 +175,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.ProtoAnyConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -188,7 +188,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The value's data schema in the list.
-    public var valueSchema: GoogleWKT.Recursive<DataSchemaDetails>? = nil
+    public var valueSchema: GoogleWKT.WKTRecursive<DataSchemaDetails>? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -224,10 +224,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.valueSchema = try container.decodeIfPresent(
-        GoogleWKT.Recursive<DataSchemaDetails>.self, forKey: .valueSchema)
+        GoogleWKT.WKTRecursive<DataSchemaDetails>.self, forKey: .valueSchema)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -242,10 +242,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.ListConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -297,7 +297,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -312,10 +312,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.CustomizedStructConfig"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -380,7 +380,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         forKey: .confidenceScoreIndexConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -505,7 +505,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
-            GoogleWKT.Value.self, forKey: key)
+            GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
@@ -522,10 +522,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         return
           "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.SearchStrategy.ConfidenceScoreIndexConfig"
       }
-      public init(fromAny any: GoogleWKT.`Any`) throws {
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleWKT.Struct {
+      public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
@@ -652,10 +652,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.SearchStrategy"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -1008,10 +1008,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

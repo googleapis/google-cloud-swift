@@ -52,13 +52,13 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
   ///
   /// [google.cloud.kms.v1.Certificate.parsed]: <doc:Certificate/parsed>
-  public var notBeforeTime: GoogleWKT.Timestamp? = nil
+  public var notBeforeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The certificate is not valid after this time. Only present if
   /// [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
   ///
   /// [google.cloud.kms.v1.Certificate.parsed]: <doc:Certificate/parsed>
-  public var notAfterTime: GoogleWKT.Timestamp? = nil
+  public var notAfterTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The certificate serial number as a hex string. Only present if
   /// [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
@@ -139,9 +139,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.subjectAlternativeDnsNames = value
     }
     self.notBeforeTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .notBeforeTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .notBeforeTime)
     self.notAfterTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .notAfterTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .notAfterTime)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serialNumber) {
       self.serialNumber = value
     }
@@ -150,7 +150,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -173,10 +173,10 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.Certificate"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

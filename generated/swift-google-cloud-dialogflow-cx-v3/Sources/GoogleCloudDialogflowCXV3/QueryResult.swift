@@ -46,7 +46,7 @@
     /// use parameter value.
     ///
     /// [google.cloud.dialogflow.cx.v3.SessionInfo.parameters]: <doc:SessionInfo/parameters>
-    public var parameters: GoogleWKT.Struct? = nil
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     /// The list of rich messages returned to the client. Responses vary from
     /// simple text messages to more sophisticated, structured payloads used
@@ -62,7 +62,7 @@
     /// any payload, an empty `Struct` would be used instead.
     ///
     /// [google.cloud.dialogflow.cx.v3.WebhookResponse.payload]: <doc:WebhookResponse/payload>
-    public var webhookPayloads: [GoogleWKT.Struct] = []
+    public var webhookPayloads: [GoogleWKT.WKTStruct] = []
 
     /// The current [Page][google.cloud.dialogflow.cx.v3.Page]. Some, not all
     /// fields are filled in this message, including but not limited to `name` and
@@ -124,7 +124,7 @@
     ///   are included.
     /// - Other intents referenced by intent routes in scope that matched end-user
     ///   input, but had a lower confidence score.
-    public var diagnosticInfo: GoogleWKT.Struct? = nil
+    public var diagnosticInfo: GoogleWKT.WKTStruct? = nil
 
     /// The sentiment analyss result, which depends on
     /// [`analyze_query_text_sentiment`]
@@ -235,7 +235,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
         self.languageCode = value
       }
-      self.parameters = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .parameters)
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
       if let value = try container.decodeIfPresent(
         [ResponseMessage].self, forKey: .responseMessages)
       {
@@ -247,7 +247,7 @@
         self.webhookStatuses = value
       }
       if let value = try container.decodeIfPresent(
-        [GoogleWKT.Struct].self, forKey: .webhookPayloads)
+        [GoogleWKT.WKTStruct].self, forKey: .webhookPayloads)
       {
         self.webhookPayloads = value
       }
@@ -261,7 +261,7 @@
       }
       self.match = try container.decodeIfPresent(Match.self, forKey: .match)
       self.diagnosticInfo = try container.decodeIfPresent(
-        GoogleWKT.Struct.self, forKey: .diagnosticInfo)
+        GoogleWKT.WKTStruct.self, forKey: .diagnosticInfo)
       self.sentimentAnalysisResult = try container.decodeIfPresent(
         SentimentAnalysisResult.self, forKey: .sentimentAnalysisResult)
       self.advancedSettings = try container.decodeIfPresent(
@@ -306,7 +306,7 @@
       self.query = query
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -387,10 +387,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.QueryResult"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

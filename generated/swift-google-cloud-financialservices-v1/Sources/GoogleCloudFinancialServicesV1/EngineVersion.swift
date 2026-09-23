@@ -32,12 +32,12 @@ public struct EngineVersion: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. Planned time to stop allowing training/tuning using this
   /// version. Existing trained models can still be used for prediction/backtest.
-  public var expectedLimitationStartTime: GoogleWKT.Timestamp? = nil
+  public var expectedLimitationStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. Planned time to stop supporting the version, in addition
   /// to no training or tuning, models trained on this version
   /// can no longer be used for prediction/backtest.
-  public var expectedDecommissionTime: GoogleWKT.Timestamp? = nil
+  public var expectedDecommissionTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. The line of business (Retail/Commercial) this engine version
   /// is used for.
@@ -91,15 +91,15 @@ public struct EngineVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
     self.expectedLimitationStartTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expectedLimitationStartTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expectedLimitationStartTime)
     self.expectedDecommissionTime = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .expectedDecommissionTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expectedDecommissionTime)
     if let value = try container.decodeIfPresent(LineOfBusiness.self, forKey: .lineOfBusiness) {
       self.lineOfBusiness = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -245,10 +245,10 @@ public struct EngineVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.EngineVersion"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

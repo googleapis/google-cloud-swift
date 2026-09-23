@@ -66,7 +66,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   public var serviceAccount: ServiceAccount? = nil
 
   /// Output only. The time when the node was created.
-  public var createTime: GoogleWKT.Timestamp? = nil
+  public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The scheduling options for this node.
   public var schedulingConfig: SchedulingConfig? = nil
@@ -223,7 +223,8 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.serviceAccount = try container.decodeIfPresent(
       ServiceAccount.self, forKey: .serviceAccount)
-    self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.schedulingConfig = try container.decodeIfPresent(
       SchedulingConfig.self, forKey: .schedulingConfig)
     if let value = try container.decodeIfPresent([NetworkEndpoint].self, forKey: .networkEndpoints)
@@ -269,7 +270,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -782,10 +783,10 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tpu.v2.Node"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

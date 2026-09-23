@@ -430,7 +430,7 @@ extension Clients {
       region: Swift.String,
       clusterName: Swift.String,
       cluster: Cluster?,
-      updateMask: GoogleWKT.FieldMask?,
+      updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.stopCluster`.
@@ -641,7 +641,7 @@ extension Clients.ClusterControllerProtocol {
     region: Swift.String,
     clusterName: Swift.String,
     cluster: Cluster?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.projectId = projectId

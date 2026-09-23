@@ -275,7 +275,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -313,12 +313,12 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     /// periodically, consecutive data points are stored at this time interval,
     /// excluding data loss due to errors. Metrics with a higher granularity have
     /// a smaller sampling period.
-    public var samplePeriod: GoogleWKT.Duration? = nil
+    public var samplePeriod: GoogleWKT.WKTDuration? = nil
 
     /// The delay of data points caused by ingestion. Data points older than this
     /// age are guaranteed to be ingested and available to be read, excluding
     /// data loss due to errors.
-    public var ingestDelay: GoogleWKT.Duration? = nil
+    public var ingestDelay: GoogleWKT.WKTDuration? = nil
 
     /// The scope of the timeseries data of the metric.
     public var timeSeriesResourceHierarchyLevel:
@@ -371,9 +371,9 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
         self.launchStage = value
       }
       self.samplePeriod = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .samplePeriod)
+        GoogleWKT.WKTDuration.self, forKey: .samplePeriod)
       self.ingestDelay = try container.decodeIfPresent(
-        GoogleWKT.Duration.self, forKey: .ingestDelay)
+        GoogleWKT.WKTDuration.self, forKey: .ingestDelay)
       if let value = try container.decodeIfPresent(
         [MetricDescriptor.MetricDescriptorMetadata.TimeSeriesResourceHierarchyLevel].self,
         forKey: .timeSeriesResourceHierarchyLevel)
@@ -382,7 +382,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -529,10 +529,10 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.MetricDescriptor.MetricDescriptorMetadata"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
@@ -819,10 +819,10 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.MetricDescriptor"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

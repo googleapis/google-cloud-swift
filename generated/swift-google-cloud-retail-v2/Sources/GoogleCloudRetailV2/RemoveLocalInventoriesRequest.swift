@@ -43,7 +43,7 @@ public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleWKT._AnyP
   /// The time when the inventory deletions are issued. Used to prevent
   /// out-of-order updates and deletions on local inventory fields. If not
   /// provided, the internal system time will be used.
-  public var removeTime: GoogleWKT.Timestamp? = nil
+  public var removeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// If set to true, and the [Product][google.cloud.retail.v2.Product] is not
   /// found, the local inventory removal request will still be processed and
@@ -100,13 +100,14 @@ public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleWKT._AnyP
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .placeIds) {
       self.placeIds = value
     }
-    self.removeTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .removeTime)
+    self.removeTime = try container.decodeIfPresent(
+      GoogleWKT.WKTTimestamp.self, forKey: .removeTime)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
       self.allowMissing = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -124,10 +125,10 @@ public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleWKT._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.RemoveLocalInventoriesRequest"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

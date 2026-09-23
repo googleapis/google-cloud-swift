@@ -24,11 +24,11 @@ public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleWKT._A
 {
   /// Vertex AI dataset must have been created after this date. Used to avoid
   /// backfilling.
-  public var createdAfter: GoogleWKT.Timestamp? = nil
+  public var createdAfter: GoogleWKT.WKTTimestamp? = nil
 
   /// Minimum age a Vertex AI dataset must have. If set, the value must be 1 hour
   /// or greater.
-  public var minAge: GoogleWKT.Duration? = nil
+  public var minAge: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,11 +66,11 @@ public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleWKT._A
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createdAfter = try container.decodeIfPresent(
-      GoogleWKT.Timestamp.self, forKey: .createdAfter)
-    self.minAge = try container.decodeIfPresent(GoogleWKT.Duration.self, forKey: .minAge)
+      GoogleWKT.WKTTimestamp.self, forKey: .createdAfter)
+    self.minAge = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .minAge)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -86,10 +86,10 @@ public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleWKT._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryVertexDatasetConditions"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

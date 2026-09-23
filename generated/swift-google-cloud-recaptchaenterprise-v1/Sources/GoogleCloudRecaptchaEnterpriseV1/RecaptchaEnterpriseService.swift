@@ -571,7 +571,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func updateKey(
     key: Key?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
     let request = UpdateKeyRequest().with {
       $0.key = key
@@ -756,7 +756,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func updatePolicy(
     policy: Policy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
     let request = UpdatePolicyRequest().with {
       $0.policy = policy
@@ -866,7 +866,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func updateFirewallPolicy(
     firewallPolicy: FirewallPolicy?,
-    updateMask: GoogleWKT.FieldMask?,
+    updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
     let request = UpdateFirewallPolicyRequest().with {
       $0.firewallPolicy = firewallPolicy

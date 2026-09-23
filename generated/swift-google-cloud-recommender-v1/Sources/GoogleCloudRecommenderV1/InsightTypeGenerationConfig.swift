@@ -25,7 +25,7 @@ public struct InsightTypeGenerationConfig: Codable, Equatable, GoogleWKT._AnyPac
 {
   /// Parameters for this InsightTypeGenerationConfig. These configs can be used
   /// by or are applied to all subtypes.
-  public var params: GoogleWKT.Struct? = nil
+  public var params: GoogleWKT.WKTStruct? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,10 +60,10 @@ public struct InsightTypeGenerationConfig: Codable, Equatable, GoogleWKT._AnyPac
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.params = try container.decodeIfPresent(GoogleWKT.Struct.self, forKey: .params)
+    self.params = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .params)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -78,10 +78,10 @@ public struct InsightTypeGenerationConfig: Codable, Equatable, GoogleWKT._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.InsightTypeGenerationConfig"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }

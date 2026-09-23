@@ -41,10 +41,10 @@
 
     /// Deprecated: Timestamp the Model was created at.
     @available(*, deprecated)
-    public var createTime: GoogleWKT.Timestamp? = nil
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Timestamp the model training was initiated.
-    public var trainingStartTime: GoogleWKT.Timestamp? = nil
+    public var trainingStartTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The metrics of the trained model.
     public var metrics: [Swift.String: Swift.Double] = [:]
@@ -117,9 +117,10 @@
       {
         self.modelState = value
       }
-      self.createTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .createTime)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.trainingStartTime = try container.decodeIfPresent(
-        GoogleWKT.Timestamp.self, forKey: .trainingStartTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .trainingStartTime)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.Double].self, forKey: .metrics)
       {
@@ -130,7 +131,7 @@
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.Value.self, forKey: key)
+          GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
@@ -307,10 +308,10 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.CustomTuningModel"
     }
-    public init(fromAny any: GoogleWKT.`Any`) throws {
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleWKT.Struct {
+    public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }

@@ -160,7 +160,9 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       timeOffset = $0
     }
-    if let utcOffset = try container.decodeIfPresent(GoogleWKT.Duration?.self, forKey: .utcOffset) {
+    if let utcOffset = try container.decodeIfPresent(
+      GoogleWKT.WKTDuration?.self, forKey: .utcOffset)
+    {
       try timeOffsetCheckAndSet(.utcOffset(utcOffset))
     }
     if let timeZone = try container.decodeIfPresent(TimeZone?.self, forKey: .timeZone) {
@@ -169,7 +171,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
     self.timeOffset = timeOffset
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
-        GoogleWKT.Value.self, forKey: key)
+        GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
@@ -205,7 +207,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     /// For example, a UTC offset of -4:00 would be represented as
     /// { seconds: -14400 }.
-    indirect case utcOffset(GoogleWKT.Duration?)
+    indirect case utcOffset(GoogleWKT.WKTDuration?)
     /// Time zone.
     indirect case timeZone(TimeZone?)
   }
@@ -213,10 +215,10 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.DateTime"
   }
-  public init(fromAny any: GoogleWKT.`Any`) throws {
+  public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleWKT.Struct {
+  public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
 }
