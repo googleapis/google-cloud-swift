@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.45.1-0.20260923225732-b53e04f3d8c3
+version: v0.45.1-0.20260924041530-4dbe62380361
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
