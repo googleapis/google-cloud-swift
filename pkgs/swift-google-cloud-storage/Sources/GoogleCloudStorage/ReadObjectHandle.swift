@@ -351,11 +351,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   private func updateChecksums(with chunk: ByteChunk) {
-    guard crc32cCalculator != nil || md5Calculator != nil else { return }
-    chunk.withUnsafeBytes { buffer in
-      crc32cCalculator?.update(buffer)
-      md5Calculator?.update(buffer)
-    }
+    crc32cCalculator?.update(chunk)
+    md5Calculator?.update(chunk)
   }
 
   private func validateChecksumsAtEOF() throws {
