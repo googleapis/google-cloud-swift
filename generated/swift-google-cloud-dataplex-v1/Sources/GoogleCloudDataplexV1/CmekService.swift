@@ -293,36 +293,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol CmekServiceProtocol: Sendable {
     /// See `CmekServiceClient.createEncryptionConfig`.
-    func createEncryptionConfigPollingUntilDone(request: CreateEncryptionConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<EncryptionConfig>
-
-    /// See `CmekServiceClient.createEncryptionConfig`.
-    func createEncryptionConfigPollingUntilDone(
-      parent: Swift.String,
-      encryptionConfig: EncryptionConfig?,
-      encryptionConfigId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
-
-    /// See `CmekServiceClient.updateEncryptionConfig`.
-    func updateEncryptionConfigPollingUntilDone(request: UpdateEncryptionConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<EncryptionConfig>
-
-    /// See `CmekServiceClient.updateEncryptionConfig`.
-    func updateEncryptionConfigPollingUntilDone(
-      encryptionConfig: EncryptionConfig?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
-
-    /// See `CmekServiceClient.deleteEncryptionConfig`.
-    func deleteEncryptionConfigPollingUntilDone(request: DeleteEncryptionConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CmekServiceClient.deleteEncryptionConfig`.
-    func deleteEncryptionConfigPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CmekServiceClient.createEncryptionConfig`.
     func createEncryptionConfig(
       request: CreateEncryptionConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

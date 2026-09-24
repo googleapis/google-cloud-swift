@@ -207,39 +207,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PrincipalAccessBoundaryPoliciesProtocol: Sendable {
     /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
-    func createPrincipalAccessBoundaryPolicyPollingUntilDone(
-      request: CreatePrincipalAccessBoundaryPolicyRequest
-    ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy>
-
-    /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
-    func createPrincipalAccessBoundaryPolicyPollingUntilDone(
-      parent: Swift.String,
-      principalAccessBoundaryPolicy: PrincipalAccessBoundaryPolicy?,
-      principalAccessBoundaryPolicyId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy>
-
-    /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
-    func updatePrincipalAccessBoundaryPolicyPollingUntilDone(
-      request: UpdatePrincipalAccessBoundaryPolicyRequest
-    ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy>
-
-    /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
-    func updatePrincipalAccessBoundaryPolicyPollingUntilDone(
-      principalAccessBoundaryPolicy: PrincipalAccessBoundaryPolicy?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy>
-
-    /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
-    func deletePrincipalAccessBoundaryPolicyPollingUntilDone(
-      request: DeletePrincipalAccessBoundaryPolicyRequest
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
-    func deletePrincipalAccessBoundaryPolicyPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
     func createPrincipalAccessBoundaryPolicy(
       request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

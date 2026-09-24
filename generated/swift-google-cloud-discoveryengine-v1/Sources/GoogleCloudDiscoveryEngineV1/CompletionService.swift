@@ -272,24 +272,6 @@
     /// `some CompletionServiceProtocol` or `any CompletionServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol CompletionServiceProtocol: Sendable {
-      /// See `CompletionServiceClient.importSuggestionDenyListEntries`.
-      func importSuggestionDenyListEntriesPollingUntilDone(
-        request: ImportSuggestionDenyListEntriesRequest
-      ) async throws -> any GoogleGax.PollableOperation<ImportSuggestionDenyListEntriesResponse>
-
-      /// See `CompletionServiceClient.purgeSuggestionDenyListEntries`.
-      func purgeSuggestionDenyListEntriesPollingUntilDone(
-        request: PurgeSuggestionDenyListEntriesRequest
-      ) async throws -> any GoogleGax.PollableOperation<PurgeSuggestionDenyListEntriesResponse>
-
-      /// See `CompletionServiceClient.importCompletionSuggestions`.
-      func importCompletionSuggestionsPollingUntilDone(request: ImportCompletionSuggestionsRequest)
-        async throws -> any GoogleGax.PollableOperation<ImportCompletionSuggestionsResponse>
-
-      /// See `CompletionServiceClient.purgeCompletionSuggestions`.
-      func purgeCompletionSuggestionsPollingUntilDone(request: PurgeCompletionSuggestionsRequest)
-        async throws -> any GoogleGax.PollableOperation<PurgeCompletionSuggestionsResponse>
-
       /// See `CompletionServiceClient.completeQuery`.
       func completeQuery(
         request: CompleteQueryRequest, options: GoogleGax.RequestOptions

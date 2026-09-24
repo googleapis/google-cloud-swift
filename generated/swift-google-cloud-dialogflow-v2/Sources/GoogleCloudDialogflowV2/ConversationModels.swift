@@ -436,44 +436,6 @@
     /// and pass a mock implementation in your tests.
     public protocol ConversationModelsProtocol: Sendable {
       /// See `ConversationModelsClient.createConversationModel`.
-      func createConversationModelPollingUntilDone(request: CreateConversationModelRequest)
-        async throws -> any GoogleGax.PollableOperation<ConversationModel>
-
-      /// See `ConversationModelsClient.createConversationModel`.
-      func createConversationModelPollingUntilDone(
-        parent: Swift.String,
-        conversationModel: ConversationModel?,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationModel>
-
-      /// See `ConversationModelsClient.deleteConversationModel`.
-      func deleteConversationModelPollingUntilDone(request: DeleteConversationModelRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ConversationModelsClient.deleteConversationModel`.
-      func deleteConversationModelPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ConversationModelsClient.deployConversationModel`.
-      func deployConversationModelPollingUntilDone(request: DeployConversationModelRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ConversationModelsClient.undeployConversationModel`.
-      func undeployConversationModelPollingUntilDone(request: UndeployConversationModelRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ConversationModelsClient.createConversationModelEvaluation`.
-      func createConversationModelEvaluationPollingUntilDone(
-        request: CreateConversationModelEvaluationRequest
-      ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation>
-
-      /// See `ConversationModelsClient.createConversationModelEvaluation`.
-      func createConversationModelEvaluationPollingUntilDone(
-        parent: Swift.String,
-        conversationModelEvaluation: ConversationModelEvaluation?,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation>
-
-      /// See `ConversationModelsClient.createConversationModel`.
       func createConversationModel(
         request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

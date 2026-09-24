@@ -208,36 +208,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PolicyBindingsProtocol: Sendable {
     /// See `PolicyBindingsClient.createPolicyBinding`.
-    func createPolicyBindingPollingUntilDone(request: CreatePolicyBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<PolicyBinding>
-
-    /// See `PolicyBindingsClient.createPolicyBinding`.
-    func createPolicyBindingPollingUntilDone(
-      parent: Swift.String,
-      policyBinding: PolicyBinding?,
-      policyBindingId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PolicyBinding>
-
-    /// See `PolicyBindingsClient.updatePolicyBinding`.
-    func updatePolicyBindingPollingUntilDone(request: UpdatePolicyBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<PolicyBinding>
-
-    /// See `PolicyBindingsClient.updatePolicyBinding`.
-    func updatePolicyBindingPollingUntilDone(
-      policyBinding: PolicyBinding?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<PolicyBinding>
-
-    /// See `PolicyBindingsClient.deletePolicyBinding`.
-    func deletePolicyBindingPollingUntilDone(request: DeletePolicyBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `PolicyBindingsClient.deletePolicyBinding`.
-    func deletePolicyBindingPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `PolicyBindingsClient.createPolicyBinding`.
     func createPolicyBinding(
       request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

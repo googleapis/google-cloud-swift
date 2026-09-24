@@ -419,66 +419,6 @@ extension Clients {
   /// `some SecurityProfileGroupServiceProtocol` or `any SecurityProfileGroupServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol SecurityProfileGroupServiceProtocol: Sendable {
-    /// See `SecurityProfileGroupServiceClient.createSecurityProfileGroup`.
-    func createSecurityProfileGroupPollingUntilDone(request: CreateSecurityProfileGroupRequest)
-      async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
-
-    /// See `SecurityProfileGroupServiceClient.createSecurityProfileGroup`.
-    func createSecurityProfileGroupPollingUntilDone(
-      parent: Swift.String,
-      securityProfileGroup: SecurityProfileGroup?,
-      securityProfileGroupId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
-
-    /// See `SecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
-    func updateSecurityProfileGroupPollingUntilDone(request: UpdateSecurityProfileGroupRequest)
-      async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
-
-    /// See `SecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
-    func updateSecurityProfileGroupPollingUntilDone(
-      securityProfileGroup: SecurityProfileGroup?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
-
-    /// See `SecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
-    func deleteSecurityProfileGroupPollingUntilDone(request: DeleteSecurityProfileGroupRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
-    func deleteSecurityProfileGroupPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SecurityProfileGroupServiceClient.createSecurityProfile`.
-    func createSecurityProfilePollingUntilDone(request: CreateSecurityProfileRequest) async throws
-      -> any GoogleGax.PollableOperation<SecurityProfile>
-
-    /// See `SecurityProfileGroupServiceClient.createSecurityProfile`.
-    func createSecurityProfilePollingUntilDone(
-      parent: Swift.String,
-      securityProfile: SecurityProfile?,
-      securityProfileId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfile>
-
-    /// See `SecurityProfileGroupServiceClient.updateSecurityProfile`.
-    func updateSecurityProfilePollingUntilDone(request: UpdateSecurityProfileRequest) async throws
-      -> any GoogleGax.PollableOperation<SecurityProfile>
-
-    /// See `SecurityProfileGroupServiceClient.updateSecurityProfile`.
-    func updateSecurityProfilePollingUntilDone(
-      securityProfile: SecurityProfile?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfile>
-
-    /// See `SecurityProfileGroupServiceClient.deleteSecurityProfile`.
-    func deleteSecurityProfilePollingUntilDone(request: DeleteSecurityProfileRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SecurityProfileGroupServiceClient.deleteSecurityProfile`.
-    func deleteSecurityProfilePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `SecurityProfileGroupServiceClient.listSecurityProfileGroups`.
     func listSecurityProfileGroups(
       request: ListSecurityProfileGroupsRequest, options: GoogleGax.RequestOptions

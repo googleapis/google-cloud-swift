@@ -138,16 +138,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol VideoIntelligenceServiceProtocol: Sendable {
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
-    func annotateVideoPollingUntilDone(request: AnnotateVideoRequest) async throws -> any GoogleGax
-      .PollableOperation<AnnotateVideoResponse>
-
-    /// See `VideoIntelligenceServiceClient.annotateVideo`.
-    func annotateVideoPollingUntilDone(
-      inputUri: Swift.String,
-      features: [Feature],
-    ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
-
-    /// See `VideoIntelligenceServiceClient.annotateVideo`.
     func annotateVideo(
       request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

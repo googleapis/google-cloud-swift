@@ -602,38 +602,6 @@ extension Clients {
   /// `some ConfigServiceV2Protocol` or `any ConfigServiceV2Protocol`
   /// and pass a mock implementation in your tests.
   public protocol ConfigServiceV2Protocol: Sendable {
-    /// See `ConfigServiceV2Client.createBucketAsync`.
-    func createBucketAsyncPollingUntilDone(request: CreateBucketRequest) async throws
-      -> any GoogleGax.PollableOperation<LogBucket>
-
-    /// See `ConfigServiceV2Client.updateBucketAsync`.
-    func updateBucketAsyncPollingUntilDone(request: UpdateBucketRequest) async throws
-      -> any GoogleGax.PollableOperation<LogBucket>
-
-    /// See `ConfigServiceV2Client.createLink`.
-    func createLinkPollingUntilDone(request: CreateLinkRequest) async throws -> any GoogleGax
-      .PollableOperation<Link>
-
-    /// See `ConfigServiceV2Client.createLink`.
-    func createLinkPollingUntilDone(
-      parent: Swift.String,
-      link: Link?,
-      linkId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Link>
-
-    /// See `ConfigServiceV2Client.deleteLink`.
-    func deleteLinkPollingUntilDone(request: DeleteLinkRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `ConfigServiceV2Client.deleteLink`.
-    func deleteLinkPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConfigServiceV2Client.copyLogEntries`.
-    func copyLogEntriesPollingUntilDone(request: CopyLogEntriesRequest) async throws
-      -> any GoogleGax.PollableOperation<CopyLogEntriesResponse>
-
     /// See `ConfigServiceV2Client.listBuckets`.
     func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions

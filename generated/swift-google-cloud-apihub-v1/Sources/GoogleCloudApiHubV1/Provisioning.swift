@@ -202,26 +202,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ProvisioningProtocol: Sendable {
     /// See `ProvisioningClient.createApiHubInstance`.
-    func createApiHubInstancePollingUntilDone(request: CreateApiHubInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<ApiHubInstance>
-
-    /// See `ProvisioningClient.createApiHubInstance`.
-    func createApiHubInstancePollingUntilDone(
-      parent: Swift.String,
-      apiHubInstance: ApiHubInstance?,
-      apiHubInstanceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ApiHubInstance>
-
-    /// See `ProvisioningClient.deleteApiHubInstance`.
-    func deleteApiHubInstancePollingUntilDone(request: DeleteApiHubInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ProvisioningClient.deleteApiHubInstance`.
-    func deleteApiHubInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ProvisioningClient.createApiHubInstance`.
     func createApiHubInstance(
       request: CreateApiHubInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

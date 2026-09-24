@@ -252,16 +252,6 @@
     /// `some GenAiTuningServiceProtocol` or `any GenAiTuningServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol GenAiTuningServiceProtocol: Sendable {
-      /// See `GenAiTuningServiceClient.rebaseTunedModel`.
-      func rebaseTunedModelPollingUntilDone(request: RebaseTunedModelRequest) async throws
-        -> any GoogleGax.PollableOperation<TuningJob>
-
-      /// See `GenAiTuningServiceClient.rebaseTunedModel`.
-      func rebaseTunedModelPollingUntilDone(
-        parent: Swift.String,
-        tunedModelRef: TunedModelRef?,
-      ) async throws -> any GoogleGax.PollableOperation<TuningJob>
-
       /// See `GenAiTuningServiceClient.createTuningJob`.
       func createTuningJob(
         request: CreateTuningJobRequest, options: GoogleGax.RequestOptions

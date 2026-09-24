@@ -138,10 +138,6 @@ extension Clients {
   /// `some CompletionServiceProtocol` or `any CompletionServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol CompletionServiceProtocol: Sendable {
-    /// See `CompletionServiceClient.importCompletionData`.
-    func importCompletionDataPollingUntilDone(request: ImportCompletionDataRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportCompletionDataResponse>
-
     /// See `CompletionServiceClient.completeQuery`.
     func completeQuery(
       request: CompleteQueryRequest, options: GoogleGax.RequestOptions

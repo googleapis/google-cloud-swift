@@ -252,43 +252,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol InstancesProtocol: Sendable {
     /// See `InstancesClient.createInstance`.
-    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `InstancesClient.createInstance`.
-    func createInstancePollingUntilDone(
-      parent: Swift.String,
-      instance: Instance?,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `InstancesClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `InstancesClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `InstancesClient.stopInstance`.
-    func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
-
-    /// See `InstancesClient.stopInstance`.
-    func stopInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `InstancesClient.startInstance`.
-    func startInstancePollingUntilDone(request: StartInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
-
-    /// See `InstancesClient.startInstance`.
-    func startInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `InstancesClient.createInstance`.
     func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

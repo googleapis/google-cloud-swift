@@ -266,40 +266,6 @@ extension Clients {
   /// `some DataFusionProtocol` or `any DataFusionProtocol`
   /// and pass a mock implementation in your tests.
   public protocol DataFusionProtocol: Sendable {
-    /// See `DataFusionClient.createInstance`.
-    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `DataFusionClient.createInstance`.
-    func createInstancePollingUntilDone(
-      parent: Swift.String,
-      instance: Instance?,
-      instanceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `DataFusionClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataFusionClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataFusionClient.updateInstance`.
-    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `DataFusionClient.updateInstance`.
-    func updateInstancePollingUntilDone(
-      instance: Instance?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `DataFusionClient.restartInstance`.
-    func restartInstancePollingUntilDone(request: RestartInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
     /// See `DataFusionClient.listAvailableVersions`.
     func listAvailableVersions(
       request: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions

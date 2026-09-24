@@ -551,46 +551,6 @@ extension Clients {
   /// `some TelcoAutomationProtocol` or `any TelcoAutomationProtocol`
   /// and pass a mock implementation in your tests.
   public protocol TelcoAutomationProtocol: Sendable {
-    /// See `TelcoAutomationClient.createOrchestrationCluster`.
-    func createOrchestrationClusterPollingUntilDone(request: CreateOrchestrationClusterRequest)
-      async throws -> any GoogleGax.PollableOperation<OrchestrationCluster>
-
-    /// See `TelcoAutomationClient.createOrchestrationCluster`.
-    func createOrchestrationClusterPollingUntilDone(
-      parent: Swift.String,
-      orchestrationCluster: OrchestrationCluster?,
-      orchestrationClusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster>
-
-    /// See `TelcoAutomationClient.deleteOrchestrationCluster`.
-    func deleteOrchestrationClusterPollingUntilDone(request: DeleteOrchestrationClusterRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `TelcoAutomationClient.deleteOrchestrationCluster`.
-    func deleteOrchestrationClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `TelcoAutomationClient.createEdgeSlm`.
-    func createEdgeSlmPollingUntilDone(request: CreateEdgeSlmRequest) async throws -> any GoogleGax
-      .PollableOperation<EdgeSlm>
-
-    /// See `TelcoAutomationClient.createEdgeSlm`.
-    func createEdgeSlmPollingUntilDone(
-      parent: Swift.String,
-      edgeSlm: EdgeSlm?,
-      edgeSlmId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<EdgeSlm>
-
-    /// See `TelcoAutomationClient.deleteEdgeSlm`.
-    func deleteEdgeSlmPollingUntilDone(request: DeleteEdgeSlmRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `TelcoAutomationClient.deleteEdgeSlm`.
-    func deleteEdgeSlmPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `TelcoAutomationClient.listOrchestrationClusters`.
     func listOrchestrationClusters(
       request: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions

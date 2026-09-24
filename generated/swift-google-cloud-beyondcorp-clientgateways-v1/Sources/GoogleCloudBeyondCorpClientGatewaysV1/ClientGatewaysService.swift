@@ -250,26 +250,6 @@ extension Clients {
   /// `some ClientGatewaysServiceProtocol` or `any ClientGatewaysServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ClientGatewaysServiceProtocol: Sendable {
-    /// See `ClientGatewaysServiceClient.createClientGateway`.
-    func createClientGatewayPollingUntilDone(request: CreateClientGatewayRequest) async throws
-      -> any GoogleGax.PollableOperation<ClientGateway>
-
-    /// See `ClientGatewaysServiceClient.createClientGateway`.
-    func createClientGatewayPollingUntilDone(
-      parent: Swift.String,
-      clientGateway: ClientGateway?,
-      clientGatewayId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ClientGateway>
-
-    /// See `ClientGatewaysServiceClient.deleteClientGateway`.
-    func deleteClientGatewayPollingUntilDone(request: DeleteClientGatewayRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ClientGatewaysServiceClient.deleteClientGateway`.
-    func deleteClientGatewayPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ClientGatewaysServiceClient.listClientGateways`.
     func listClientGateways(
       request: ListClientGatewaysRequest, options: GoogleGax.RequestOptions

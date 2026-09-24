@@ -353,46 +353,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AttachedClustersProtocol: Sendable {
     /// See `AttachedClustersClient.createAttachedCluster`.
-    func createAttachedClusterPollingUntilDone(request: CreateAttachedClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.createAttachedCluster`.
-    func createAttachedClusterPollingUntilDone(
-      parent: Swift.String,
-      attachedCluster: AttachedCluster?,
-      attachedClusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.updateAttachedCluster`.
-    func updateAttachedClusterPollingUntilDone(request: UpdateAttachedClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.updateAttachedCluster`.
-    func updateAttachedClusterPollingUntilDone(
-      attachedCluster: AttachedCluster?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.importAttachedCluster`.
-    func importAttachedClusterPollingUntilDone(request: ImportAttachedClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.importAttachedCluster`.
-    func importAttachedClusterPollingUntilDone(
-      parent: Swift.String,
-      fleetMembership: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AttachedCluster>
-
-    /// See `AttachedClustersClient.deleteAttachedCluster`.
-    func deleteAttachedClusterPollingUntilDone(request: DeleteAttachedClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AttachedClustersClient.deleteAttachedCluster`.
-    func deleteAttachedClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AttachedClustersClient.createAttachedCluster`.
     func createAttachedCluster(
       request: CreateAttachedClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -283,14 +283,6 @@
     /// `some DocumentServiceProtocol` or `any DocumentServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol DocumentServiceProtocol: Sendable {
-      /// See `DocumentServiceClient.importDocuments`.
-      func importDocumentsPollingUntilDone(request: ImportDocumentsRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportDocumentsResponse>
-
-      /// See `DocumentServiceClient.purgeDocuments`.
-      func purgeDocumentsPollingUntilDone(request: PurgeDocumentsRequest) async throws
-        -> any GoogleGax.PollableOperation<PurgeDocumentsResponse>
-
       /// See `DocumentServiceClient.getDocument`.
       func getDocument(
         request: GetDocumentRequest, options: GoogleGax.RequestOptions

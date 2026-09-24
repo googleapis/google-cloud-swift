@@ -244,22 +244,6 @@ extension Clients {
   /// `some CloudShellServiceProtocol` or `any CloudShellServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol CloudShellServiceProtocol: Sendable {
-    /// See `CloudShellServiceClient.startEnvironment`.
-    func startEnvironmentPollingUntilDone(request: StartEnvironmentRequest) async throws
-      -> any GoogleGax.PollableOperation<StartEnvironmentResponse>
-
-    /// See `CloudShellServiceClient.authorizeEnvironment`.
-    func authorizeEnvironmentPollingUntilDone(request: AuthorizeEnvironmentRequest) async throws
-      -> any GoogleGax.PollableOperation<AuthorizeEnvironmentResponse>
-
-    /// See `CloudShellServiceClient.addPublicKey`.
-    func addPublicKeyPollingUntilDone(request: AddPublicKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<AddPublicKeyResponse>
-
-    /// See `CloudShellServiceClient.removePublicKey`.
-    func removePublicKeyPollingUntilDone(request: RemovePublicKeyRequest) async throws
-      -> any GoogleGax.PollableOperation<RemovePublicKeyResponse>
-
     /// See `CloudShellServiceClient.getEnvironment`.
     func getEnvironment(
       request: GetEnvironmentRequest, options: GoogleGax.RequestOptions

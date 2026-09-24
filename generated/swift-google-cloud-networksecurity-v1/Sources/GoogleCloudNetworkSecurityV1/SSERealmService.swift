@@ -344,46 +344,6 @@ extension Clients {
   /// `some SSERealmServiceProtocol` or `any SSERealmServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol SSERealmServiceProtocol: Sendable {
-    /// See `SSERealmServiceClient.createSacrealm`.
-    func createSacrealmPollingUntilDone(request: CreateSACRealmRequest) async throws
-      -> any GoogleGax.PollableOperation<SACRealm>
-
-    /// See `SSERealmServiceClient.createSacrealm`.
-    func createSacrealmPollingUntilDone(
-      parent: Swift.String,
-      sacRealm: SACRealm?,
-      sacRealmId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SACRealm>
-
-    /// See `SSERealmServiceClient.deleteSacrealm`.
-    func deleteSacrealmPollingUntilDone(request: DeleteSACRealmRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SSERealmServiceClient.deleteSacrealm`.
-    func deleteSacrealmPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SSERealmServiceClient.createSacattachment`.
-    func createSacattachmentPollingUntilDone(request: CreateSACAttachmentRequest) async throws
-      -> any GoogleGax.PollableOperation<SACAttachment>
-
-    /// See `SSERealmServiceClient.createSacattachment`.
-    func createSacattachmentPollingUntilDone(
-      parent: Swift.String,
-      sacAttachment: SACAttachment?,
-      sacAttachmentId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SACAttachment>
-
-    /// See `SSERealmServiceClient.deleteSacattachment`.
-    func deleteSacattachmentPollingUntilDone(request: DeleteSACAttachmentRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SSERealmServiceClient.deleteSacattachment`.
-    func deleteSacattachmentPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `SSERealmServiceClient.listSacrealms`.
     func listSacrealms(
       request: ListSACRealmsRequest, options: GoogleGax.RequestOptions

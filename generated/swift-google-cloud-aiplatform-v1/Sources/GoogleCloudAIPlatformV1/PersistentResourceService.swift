@@ -326,45 +326,6 @@
     /// and pass a mock implementation in your tests.
     public protocol PersistentResourceServiceProtocol: Sendable {
       /// See `PersistentResourceServiceClient.createPersistentResource`.
-      func createPersistentResourcePollingUntilDone(request: CreatePersistentResourceRequest)
-        async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.createPersistentResource`.
-      func createPersistentResourcePollingUntilDone(
-        parent: Swift.String,
-        persistentResource: PersistentResource?,
-        persistentResourceId: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.deletePersistentResource`.
-      func deletePersistentResourcePollingUntilDone(request: DeletePersistentResourceRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PersistentResourceServiceClient.deletePersistentResource`.
-      func deletePersistentResourcePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PersistentResourceServiceClient.updatePersistentResource`.
-      func updatePersistentResourcePollingUntilDone(request: UpdatePersistentResourceRequest)
-        async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.updatePersistentResource`.
-      func updatePersistentResourcePollingUntilDone(
-        persistentResource: PersistentResource?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.rebootPersistentResource`.
-      func rebootPersistentResourcePollingUntilDone(request: RebootPersistentResourceRequest)
-        async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.rebootPersistentResource`.
-      func rebootPersistentResourcePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
-
-      /// See `PersistentResourceServiceClient.createPersistentResource`.
       func createPersistentResource(
         request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

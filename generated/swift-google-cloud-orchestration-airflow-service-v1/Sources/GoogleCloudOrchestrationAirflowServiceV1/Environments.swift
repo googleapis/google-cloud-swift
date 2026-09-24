@@ -534,52 +534,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol EnvironmentsProtocol: Sendable {
     /// See `EnvironmentsClient.createEnvironment`.
-    func createEnvironmentPollingUntilDone(request: CreateEnvironmentRequest) async throws
-      -> any GoogleGax.PollableOperation<Environment>
-
-    /// See `EnvironmentsClient.createEnvironment`.
-    func createEnvironmentPollingUntilDone(
-      parent: Swift.String,
-      environment: Environment?,
-    ) async throws -> any GoogleGax.PollableOperation<Environment>
-
-    /// See `EnvironmentsClient.updateEnvironment`.
-    func updateEnvironmentPollingUntilDone(request: UpdateEnvironmentRequest) async throws
-      -> any GoogleGax.PollableOperation<Environment>
-
-    /// See `EnvironmentsClient.updateEnvironment`.
-    func updateEnvironmentPollingUntilDone(
-      name: Swift.String,
-      environment: Environment?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Environment>
-
-    /// See `EnvironmentsClient.deleteEnvironment`.
-    func deleteEnvironmentPollingUntilDone(request: DeleteEnvironmentRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `EnvironmentsClient.deleteEnvironment`.
-    func deleteEnvironmentPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `EnvironmentsClient.checkUpgrade`.
-    func checkUpgradePollingUntilDone(request: CheckUpgradeRequest) async throws -> any GoogleGax
-      .PollableOperation<CheckUpgradeResponse>
-
-    /// See `EnvironmentsClient.saveSnapshot`.
-    func saveSnapshotPollingUntilDone(request: SaveSnapshotRequest) async throws -> any GoogleGax
-      .PollableOperation<SaveSnapshotResponse>
-
-    /// See `EnvironmentsClient.loadSnapshot`.
-    func loadSnapshotPollingUntilDone(request: LoadSnapshotRequest) async throws -> any GoogleGax
-      .PollableOperation<LoadSnapshotResponse>
-
-    /// See `EnvironmentsClient.databaseFailover`.
-    func databaseFailoverPollingUntilDone(request: DatabaseFailoverRequest) async throws
-      -> any GoogleGax.PollableOperation<DatabaseFailoverResponse>
-
-    /// See `EnvironmentsClient.createEnvironment`.
     func createEnvironment(
       request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

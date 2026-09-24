@@ -245,34 +245,6 @@ extension Clients {
   /// `some TagValuesProtocol` or `any TagValuesProtocol`
   /// and pass a mock implementation in your tests.
   public protocol TagValuesProtocol: Sendable {
-    /// See `TagValuesClient.createTagValue`.
-    func createTagValuePollingUntilDone(request: CreateTagValueRequest) async throws
-      -> any GoogleGax.PollableOperation<TagValue>
-
-    /// See `TagValuesClient.createTagValue`.
-    func createTagValuePollingUntilDone(
-      tagValue: TagValue?,
-    ) async throws -> any GoogleGax.PollableOperation<TagValue>
-
-    /// See `TagValuesClient.updateTagValue`.
-    func updateTagValuePollingUntilDone(request: UpdateTagValueRequest) async throws
-      -> any GoogleGax.PollableOperation<TagValue>
-
-    /// See `TagValuesClient.updateTagValue`.
-    func updateTagValuePollingUntilDone(
-      tagValue: TagValue?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<TagValue>
-
-    /// See `TagValuesClient.deleteTagValue`.
-    func deleteTagValuePollingUntilDone(request: DeleteTagValueRequest) async throws
-      -> any GoogleGax.PollableOperation<TagValue>
-
-    /// See `TagValuesClient.deleteTagValue`.
-    func deleteTagValuePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<TagValue>
-
     /// See `TagValuesClient.listTagValues`.
     func listTagValues(
       request: ListTagValuesRequest, options: GoogleGax.RequestOptions

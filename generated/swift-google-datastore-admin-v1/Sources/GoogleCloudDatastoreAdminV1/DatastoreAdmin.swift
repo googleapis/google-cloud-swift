@@ -381,38 +381,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DatastoreAdminProtocol: Sendable {
     /// See `DatastoreAdminClient.exportEntities`.
-    func exportEntitiesPollingUntilDone(request: ExportEntitiesRequest) async throws
-      -> any GoogleGax.PollableOperation<ExportEntitiesResponse>
-
-    /// See `DatastoreAdminClient.exportEntities`.
-    func exportEntitiesPollingUntilDone(
-      projectId: Swift.String,
-      labels: [Swift.String: Swift.String],
-      entityFilter: EntityFilter?,
-      outputUrlPrefix: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse>
-
-    /// See `DatastoreAdminClient.importEntities`.
-    func importEntitiesPollingUntilDone(request: ImportEntitiesRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DatastoreAdminClient.importEntities`.
-    func importEntitiesPollingUntilDone(
-      projectId: Swift.String,
-      labels: [Swift.String: Swift.String],
-      inputUrl: Swift.String,
-      entityFilter: EntityFilter?,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DatastoreAdminClient.createIndex`.
-    func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
-      .PollableOperation<Index>
-
-    /// See `DatastoreAdminClient.deleteIndex`.
-    func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
-      .PollableOperation<Index>
-
-    /// See `DatastoreAdminClient.exportEntities`.
     func exportEntities(
       request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

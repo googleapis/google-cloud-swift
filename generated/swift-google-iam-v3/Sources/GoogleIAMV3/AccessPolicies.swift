@@ -194,30 +194,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AccessPoliciesProtocol: Sendable {
     /// See `AccessPoliciesClient.createAccessPolicy`.
-    func createAccessPolicyPollingUntilDone(request: CreateAccessPolicyRequest) async throws
-      -> any GoogleGax.PollableOperation<AccessPolicy>
-
-    /// See `AccessPoliciesClient.createAccessPolicy`.
-    func createAccessPolicyPollingUntilDone(
-      parent: Swift.String,
-      accessPolicy: AccessPolicy?,
-      accessPolicyId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AccessPolicy>
-
-    /// See `AccessPoliciesClient.updateAccessPolicy`.
-    func updateAccessPolicyPollingUntilDone(request: UpdateAccessPolicyRequest) async throws
-      -> any GoogleGax.PollableOperation<AccessPolicy>
-
-    /// See `AccessPoliciesClient.deleteAccessPolicy`.
-    func deleteAccessPolicyPollingUntilDone(request: DeleteAccessPolicyRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AccessPoliciesClient.deleteAccessPolicy`.
-    func deleteAccessPolicyPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AccessPoliciesClient.createAccessPolicy`.
     func createAccessPolicy(
       request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

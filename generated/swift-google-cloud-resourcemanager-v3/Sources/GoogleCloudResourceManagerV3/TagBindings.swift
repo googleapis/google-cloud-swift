@@ -154,24 +154,6 @@ extension Clients {
   /// `some TagBindingsProtocol` or `any TagBindingsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol TagBindingsProtocol: Sendable {
-    /// See `TagBindingsClient.createTagBinding`.
-    func createTagBindingPollingUntilDone(request: CreateTagBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<TagBinding>
-
-    /// See `TagBindingsClient.createTagBinding`.
-    func createTagBindingPollingUntilDone(
-      tagBinding: TagBinding?,
-    ) async throws -> any GoogleGax.PollableOperation<TagBinding>
-
-    /// See `TagBindingsClient.deleteTagBinding`.
-    func deleteTagBindingPollingUntilDone(request: DeleteTagBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `TagBindingsClient.deleteTagBinding`.
-    func deleteTagBindingPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `TagBindingsClient.listTagBindings`.
     func listTagBindings(
       request: ListTagBindingsRequest, options: GoogleGax.RequestOptions

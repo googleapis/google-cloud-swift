@@ -430,62 +430,6 @@
     /// and pass a mock implementation in your tests.
     public protocol VertexRagDataServiceProtocol: Sendable {
       /// See `VertexRagDataServiceClient.createRagCorpus`.
-      func createRagCorpusPollingUntilDone(request: CreateRagCorpusRequest) async throws
-        -> any GoogleGax.PollableOperation<RagCorpus>
-
-      /// See `VertexRagDataServiceClient.createRagCorpus`.
-      func createRagCorpusPollingUntilDone(
-        parent: Swift.String,
-        ragCorpus: RagCorpus?,
-      ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
-
-      /// See `VertexRagDataServiceClient.updateRagCorpus`.
-      func updateRagCorpusPollingUntilDone(request: UpdateRagCorpusRequest) async throws
-        -> any GoogleGax.PollableOperation<RagCorpus>
-
-      /// See `VertexRagDataServiceClient.updateRagCorpus`.
-      func updateRagCorpusPollingUntilDone(
-        ragCorpus: RagCorpus?,
-      ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
-
-      /// See `VertexRagDataServiceClient.deleteRagCorpus`.
-      func deleteRagCorpusPollingUntilDone(request: DeleteRagCorpusRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `VertexRagDataServiceClient.deleteRagCorpus`.
-      func deleteRagCorpusPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `VertexRagDataServiceClient.importRagFiles`.
-      func importRagFilesPollingUntilDone(request: ImportRagFilesRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
-
-      /// See `VertexRagDataServiceClient.importRagFiles`.
-      func importRagFilesPollingUntilDone(
-        parent: Swift.String,
-        importRagFilesConfig: ImportRagFilesConfig?,
-      ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
-
-      /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFilePollingUntilDone(request: DeleteRagFileRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFilePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
-      func updateRagEngineConfigPollingUntilDone(request: UpdateRagEngineConfigRequest) async throws
-        -> any GoogleGax.PollableOperation<RagEngineConfig>
-
-      /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
-      func updateRagEngineConfigPollingUntilDone(
-        ragEngineConfig: RagEngineConfig?,
-      ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig>
-
-      /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(
         request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

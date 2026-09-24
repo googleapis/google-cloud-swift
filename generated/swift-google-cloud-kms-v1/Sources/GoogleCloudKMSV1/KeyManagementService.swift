@@ -811,24 +811,6 @@ extension Clients {
   /// `some KeyManagementServiceProtocol` or `any KeyManagementServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol KeyManagementServiceProtocol: Sendable {
-    /// See `KeyManagementServiceClient.deleteCryptoKey`.
-    func deleteCryptoKeyPollingUntilDone(request: DeleteCryptoKeyRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `KeyManagementServiceClient.deleteCryptoKey`.
-    func deleteCryptoKeyPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
-    func deleteCryptoKeyVersionPollingUntilDone(request: DeleteCryptoKeyVersionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
-    func deleteCryptoKeyVersionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `KeyManagementServiceClient.listKeyRings`.
     func listKeyRings(
       request: ListKeyRingsRequest, options: GoogleGax.RequestOptions

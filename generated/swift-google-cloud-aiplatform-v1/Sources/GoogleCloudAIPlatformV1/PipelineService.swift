@@ -433,44 +433,6 @@
     /// `some PipelineServiceProtocol` or `any PipelineServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol PipelineServiceProtocol: Sendable {
-      /// See `PipelineServiceClient.deleteTrainingPipeline`.
-      func deleteTrainingPipelinePollingUntilDone(request: DeleteTrainingPipelineRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PipelineServiceClient.deleteTrainingPipeline`.
-      func deleteTrainingPipelinePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PipelineServiceClient.deletePipelineJob`.
-      func deletePipelineJobPollingUntilDone(request: DeletePipelineJobRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PipelineServiceClient.deletePipelineJob`.
-      func deletePipelineJobPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `PipelineServiceClient.batchDeletePipelineJobs`.
-      func batchDeletePipelineJobsPollingUntilDone(request: BatchDeletePipelineJobsRequest)
-        async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
-
-      /// See `PipelineServiceClient.batchDeletePipelineJobs`.
-      func batchDeletePipelineJobsPollingUntilDone(
-        parent: Swift.String,
-        names: [Swift.String],
-      ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
-
-      /// See `PipelineServiceClient.batchCancelPipelineJobs`.
-      func batchCancelPipelineJobsPollingUntilDone(request: BatchCancelPipelineJobsRequest)
-        async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
-
-      /// See `PipelineServiceClient.batchCancelPipelineJobs`.
-      func batchCancelPipelineJobsPollingUntilDone(
-        parent: Swift.String,
-        names: [Swift.String],
-      ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
-
       /// See `PipelineServiceClient.createTrainingPipeline`.
       func createTrainingPipeline(
         request: CreateTrainingPipelineRequest, options: GoogleGax.RequestOptions

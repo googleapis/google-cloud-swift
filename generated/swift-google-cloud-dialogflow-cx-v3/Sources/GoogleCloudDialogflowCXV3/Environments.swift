@@ -423,34 +423,6 @@
     /// `some EnvironmentsProtocol` or `any EnvironmentsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol EnvironmentsProtocol: Sendable {
-      /// See `EnvironmentsClient.createEnvironment`.
-      func createEnvironmentPollingUntilDone(request: CreateEnvironmentRequest) async throws
-        -> any GoogleGax.PollableOperation<Environment>
-
-      /// See `EnvironmentsClient.createEnvironment`.
-      func createEnvironmentPollingUntilDone(
-        parent: Swift.String,
-        environment: Environment?,
-      ) async throws -> any GoogleGax.PollableOperation<Environment>
-
-      /// See `EnvironmentsClient.updateEnvironment`.
-      func updateEnvironmentPollingUntilDone(request: UpdateEnvironmentRequest) async throws
-        -> any GoogleGax.PollableOperation<Environment>
-
-      /// See `EnvironmentsClient.updateEnvironment`.
-      func updateEnvironmentPollingUntilDone(
-        environment: Environment?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<Environment>
-
-      /// See `EnvironmentsClient.runContinuousTest`.
-      func runContinuousTestPollingUntilDone(request: RunContinuousTestRequest) async throws
-        -> any GoogleGax.PollableOperation<RunContinuousTestResponse>
-
-      /// See `EnvironmentsClient.deployFlow`.
-      func deployFlowPollingUntilDone(request: DeployFlowRequest) async throws -> any GoogleGax
-        .PollableOperation<DeployFlowResponse>
-
       /// See `EnvironmentsClient.listEnvironments`.
       func listEnvironments(
         request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions

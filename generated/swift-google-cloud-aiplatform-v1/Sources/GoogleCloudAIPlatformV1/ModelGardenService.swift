@@ -208,10 +208,6 @@
     /// `some ModelGardenServiceProtocol` or `any ModelGardenServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol ModelGardenServiceProtocol: Sendable {
-      /// See `ModelGardenServiceClient.deploy`.
-      func deployPollingUntilDone(request: DeployRequest) async throws -> any GoogleGax
-        .PollableOperation<DeployResponse>
-
       /// See `ModelGardenServiceClient.getPublisherModel`.
       func getPublisherModel(
         request: GetPublisherModelRequest, options: GoogleGax.RequestOptions

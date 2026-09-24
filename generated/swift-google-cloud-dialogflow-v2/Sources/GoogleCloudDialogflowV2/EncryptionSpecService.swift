@@ -174,15 +174,6 @@
     /// `some EncryptionSpecServiceProtocol` or `any EncryptionSpecServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol EncryptionSpecServiceProtocol: Sendable {
-      /// See `EncryptionSpecServiceClient.initializeEncryptionSpec`.
-      func initializeEncryptionSpecPollingUntilDone(request: InitializeEncryptionSpecRequest)
-        async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
-
-      /// See `EncryptionSpecServiceClient.initializeEncryptionSpec`.
-      func initializeEncryptionSpecPollingUntilDone(
-        encryptionSpec: EncryptionSpec?,
-      ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
-
       /// See `EncryptionSpecServiceClient.getEncryptionSpec`.
       func getEncryptionSpec(
         request: GetEncryptionSpecRequest, options: GoogleGax.RequestOptions

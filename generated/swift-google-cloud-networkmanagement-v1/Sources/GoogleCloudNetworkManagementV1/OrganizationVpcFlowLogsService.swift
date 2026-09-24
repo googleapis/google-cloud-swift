@@ -344,36 +344,6 @@ extension Clients {
   /// `some OrganizationVpcFlowLogsServiceProtocol` or `any OrganizationVpcFlowLogsServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol OrganizationVpcFlowLogsServiceProtocol: Sendable {
-    /// See `OrganizationVpcFlowLogsServiceClient.createVpcFlowLogsConfig`.
-    func createVpcFlowLogsConfigPollingUntilDone(request: CreateVpcFlowLogsConfigRequest)
-      async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
-
-    /// See `OrganizationVpcFlowLogsServiceClient.createVpcFlowLogsConfig`.
-    func createVpcFlowLogsConfigPollingUntilDone(
-      parent: Swift.String,
-      vpcFlowLogsConfig: VpcFlowLogsConfig?,
-      vpcFlowLogsConfigId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
-
-    /// See `OrganizationVpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
-    func updateVpcFlowLogsConfigPollingUntilDone(request: UpdateVpcFlowLogsConfigRequest)
-      async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
-
-    /// See `OrganizationVpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
-    func updateVpcFlowLogsConfigPollingUntilDone(
-      vpcFlowLogsConfig: VpcFlowLogsConfig?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
-
-    /// See `OrganizationVpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
-    func deleteVpcFlowLogsConfigPollingUntilDone(request: DeleteVpcFlowLogsConfigRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `OrganizationVpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
-    func deleteVpcFlowLogsConfigPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `OrganizationVpcFlowLogsServiceClient.listVpcFlowLogsConfigs`.
     func listVpcFlowLogsConfigs(
       request: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions

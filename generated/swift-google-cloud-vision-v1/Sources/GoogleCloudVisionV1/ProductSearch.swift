@@ -484,25 +484,6 @@ extension Clients {
   /// `some ProductSearchProtocol` or `any ProductSearchProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ProductSearchProtocol: Sendable {
-    /// See `ProductSearchClient.importProductSets`.
-    func importProductSetsPollingUntilDone(request: ImportProductSetsRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportProductSetsResponse>
-
-    /// See `ProductSearchClient.importProductSets`.
-    func importProductSetsPollingUntilDone(
-      parent: Swift.String,
-      inputConfig: ImportProductSetsInputConfig?,
-    ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse>
-
-    /// See `ProductSearchClient.purgeProducts`.
-    func purgeProductsPollingUntilDone(request: PurgeProductsRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `ProductSearchClient.purgeProducts`.
-    func purgeProductsPollingUntilDone(
-      parent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ProductSearchClient.createProductSet`.
     func createProductSet(
       request: CreateProductSetRequest, options: GoogleGax.RequestOptions

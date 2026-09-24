@@ -246,24 +246,6 @@ extension Clients {
   /// `some BatchServiceProtocol` or `any BatchServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol BatchServiceProtocol: Sendable {
-    /// See `BatchServiceClient.deleteJob`.
-    func deleteJobPollingUntilDone(request: DeleteJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `BatchServiceClient.deleteJob`.
-    func deleteJobPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `BatchServiceClient.cancelJob`.
-    func cancelJobPollingUntilDone(request: CancelJobRequest) async throws -> any GoogleGax
-      .PollableOperation<CancelJobResponse>
-
-    /// See `BatchServiceClient.cancelJob`.
-    func cancelJobPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<CancelJobResponse>
-
     /// See `BatchServiceClient.createJob`.
     func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions

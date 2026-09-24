@@ -135,11 +135,25 @@ import Testing
   final class MockStorageControl: StorageControlProtocol, @unchecked Sendable {
     var listBucketsHandler:
       ((ListBucketsRequest, GoogleGax.RequestOptions) async throws -> ListBucketsResponse)?
+    var renameFolderHandler:
+      (
+        (RenameFolderRequest, GoogleGax.RequestOptions) async throws -> any GoogleGax
+          .PollableOperation<Folder>
+      )?
 
     func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListBucketsResponse {
       if let handler = listBucketsHandler {
+        return try await handler(request, options)
+      }
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    func renameFolderPollingUntilDone(
+      request: RenameFolderRequest, options: GoogleGax.RequestOptions
+    ) async throws -> any GoogleGax.PollableOperation<Folder> {
+      if let handler = renameFolderHandler {
         return try await handler(request, options)
       }
       throw GoogleGax.RequestError.unimplemented
@@ -230,5 +244,27 @@ import Testing
     let task = await model.streamBucketNamesInBackground()
     let names = try await task.value
     #expect(names == ["bucket-1", "bucket-2"])
+  }
+
+  struct MockPollableOperation<ResponseType>: PollableOperation {
+    let result: Result<ResponseType, any Error>
+    func wait() async throws -> ResponseType {
+      try result.get()
+    }
+  }
+
+  @Test func mockLROConvenienceOverloadDelegation() async throws {
+    let mock = MockStorageControl()
+    mock.renameFolderHandler = { req, opts in
+      #expect(req.name == "projects/_/buckets/b/folders/f1")
+      let folder = Folder().with { $0.name = "projects/_/buckets/b/folders/f2" }
+      return MockPollableOperation(result: .success(folder))
+    }
+
+    let client: any StorageControlProtocol = mock
+    let op = try await client.renameFolderPollingUntilDone(
+      request: .init().with { $0.name = "projects/_/buckets/b/folders/f1" })
+    let folder = try await op.wait()
+    #expect(folder.name == "projects/_/buckets/b/folders/f2")
   }
 }

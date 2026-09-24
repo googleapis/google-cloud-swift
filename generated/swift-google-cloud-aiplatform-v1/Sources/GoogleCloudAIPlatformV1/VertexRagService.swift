@@ -238,16 +238,6 @@
     /// `some VertexRagServiceProtocol` or `any VertexRagServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol VertexRagServiceProtocol: Sendable {
-      /// See `VertexRagServiceClient.asyncRetrieveContexts`.
-      func asyncRetrieveContextsPollingUntilDone(request: AsyncRetrieveContextsRequest) async throws
-        -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
-
-      /// See `VertexRagServiceClient.asyncRetrieveContexts`.
-      func asyncRetrieveContextsPollingUntilDone(
-        parent: Swift.String,
-        query: RagQuery?,
-      ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
-
       /// See `VertexRagServiceClient.retrieveContexts`.
       func retrieveContexts(
         request: RetrieveContextsRequest, options: GoogleGax.RequestOptions

@@ -494,66 +494,6 @@ extension Clients {
   /// `some NotebookServiceProtocol` or `any NotebookServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol NotebookServiceProtocol: Sendable {
-    /// See `NotebookServiceClient.createInstance`.
-    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.createInstance`.
-    func createInstancePollingUntilDone(
-      parent: Swift.String,
-      instance: Instance?,
-      instanceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.updateInstance`.
-    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.updateInstance`.
-    func updateInstancePollingUntilDone(
-      instance: Instance?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `NotebookServiceClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `NotebookServiceClient.startInstance`.
-    func startInstancePollingUntilDone(request: StartInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.stopInstance`.
-    func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.resetInstance`.
-    func resetInstancePollingUntilDone(request: ResetInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.upgradeInstance`.
-    func upgradeInstancePollingUntilDone(request: UpgradeInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.rollbackInstance`.
-    func rollbackInstancePollingUntilDone(request: RollbackInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.diagnoseInstance`.
-    func diagnoseInstancePollingUntilDone(request: DiagnoseInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `NotebookServiceClient.diagnoseInstance`.
-    func diagnoseInstancePollingUntilDone(
-      name: Swift.String,
-      diagnosticConfig: DiagnosticConfig?,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
     /// See `NotebookServiceClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions

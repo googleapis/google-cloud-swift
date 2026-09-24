@@ -230,23 +230,6 @@
     /// `some IdentityMappingStoreServiceProtocol` or `any IdentityMappingStoreServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol IdentityMappingStoreServiceProtocol: Sendable {
-      /// See `IdentityMappingStoreServiceClient.deleteIdentityMappingStore`.
-      func deleteIdentityMappingStorePollingUntilDone(request: DeleteIdentityMappingStoreRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `IdentityMappingStoreServiceClient.deleteIdentityMappingStore`.
-      func deleteIdentityMappingStorePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `IdentityMappingStoreServiceClient.importIdentityMappings`.
-      func importIdentityMappingsPollingUntilDone(request: ImportIdentityMappingsRequest)
-        async throws -> any GoogleGax.PollableOperation<ImportIdentityMappingsResponse>
-
-      /// See `IdentityMappingStoreServiceClient.purgeIdentityMappings`.
-      func purgeIdentityMappingsPollingUntilDone(request: PurgeIdentityMappingsRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
       /// See `IdentityMappingStoreServiceClient.createIdentityMappingStore`.
       func createIdentityMappingStore(
         request: CreateIdentityMappingStoreRequest, options: GoogleGax.RequestOptions

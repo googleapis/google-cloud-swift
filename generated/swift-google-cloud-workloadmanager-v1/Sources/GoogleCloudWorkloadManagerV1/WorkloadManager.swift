@@ -359,56 +359,6 @@ extension Clients {
   /// `some WorkloadManagerProtocol` or `any WorkloadManagerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol WorkloadManagerProtocol: Sendable {
-    /// See `WorkloadManagerClient.createEvaluation`.
-    func createEvaluationPollingUntilDone(request: CreateEvaluationRequest) async throws
-      -> any GoogleGax.PollableOperation<Evaluation>
-
-    /// See `WorkloadManagerClient.createEvaluation`.
-    func createEvaluationPollingUntilDone(
-      parent: Swift.String,
-      evaluation: Evaluation?,
-      evaluationId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Evaluation>
-
-    /// See `WorkloadManagerClient.updateEvaluation`.
-    func updateEvaluationPollingUntilDone(request: UpdateEvaluationRequest) async throws
-      -> any GoogleGax.PollableOperation<Evaluation>
-
-    /// See `WorkloadManagerClient.updateEvaluation`.
-    func updateEvaluationPollingUntilDone(
-      evaluation: Evaluation?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Evaluation>
-
-    /// See `WorkloadManagerClient.deleteEvaluation`.
-    func deleteEvaluationPollingUntilDone(request: DeleteEvaluationRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkloadManagerClient.deleteEvaluation`.
-    func deleteEvaluationPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkloadManagerClient.runEvaluation`.
-    func runEvaluationPollingUntilDone(request: RunEvaluationRequest) async throws -> any GoogleGax
-      .PollableOperation<Execution>
-
-    /// See `WorkloadManagerClient.runEvaluation`.
-    func runEvaluationPollingUntilDone(
-      name: Swift.String,
-      execution: Execution?,
-      executionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Execution>
-
-    /// See `WorkloadManagerClient.deleteExecution`.
-    func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkloadManagerClient.deleteExecution`.
-    func deleteExecutionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `WorkloadManagerClient.listEvaluations`.
     func listEvaluations(
       request: ListEvaluationsRequest, options: GoogleGax.RequestOptions

@@ -264,18 +264,6 @@ extension Clients {
   /// `some VersionsProtocol` or `any VersionsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol VersionsProtocol: Sendable {
-    /// See `VersionsClient.createVersion`.
-    func createVersionPollingUntilDone(request: CreateVersionRequest) async throws -> any GoogleGax
-      .PollableOperation<Version>
-
-    /// See `VersionsClient.updateVersion`.
-    func updateVersionPollingUntilDone(request: UpdateVersionRequest) async throws -> any GoogleGax
-      .PollableOperation<Version>
-
-    /// See `VersionsClient.deleteVersion`.
-    func deleteVersionPollingUntilDone(request: DeleteVersionRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
     /// See `VersionsClient.listVersions`.
     func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions

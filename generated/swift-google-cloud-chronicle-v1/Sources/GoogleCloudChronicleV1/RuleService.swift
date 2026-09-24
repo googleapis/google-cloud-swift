@@ -240,16 +240,6 @@ extension Clients {
   /// `some RuleServiceProtocol` or `any RuleServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol RuleServiceProtocol: Sendable {
-    /// See `RuleServiceClient.createRetrohunt`.
-    func createRetrohuntPollingUntilDone(request: CreateRetrohuntRequest) async throws
-      -> any GoogleGax.PollableOperation<Retrohunt>
-
-    /// See `RuleServiceClient.createRetrohunt`.
-    func createRetrohuntPollingUntilDone(
-      parent: Swift.String,
-      retrohunt: Retrohunt?,
-    ) async throws -> any GoogleGax.PollableOperation<Retrohunt>
-
     /// See `RuleServiceClient.createRule`.
     func createRule(
       request: CreateRuleRequest, options: GoogleGax.RequestOptions

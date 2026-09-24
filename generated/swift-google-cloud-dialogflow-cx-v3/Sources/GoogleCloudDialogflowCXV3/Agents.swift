@@ -338,14 +338,6 @@
     /// `some AgentsProtocol` or `any AgentsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol AgentsProtocol: Sendable {
-      /// See `AgentsClient.exportAgent`.
-      func exportAgentPollingUntilDone(request: ExportAgentRequest) async throws -> any GoogleGax
-        .PollableOperation<ExportAgentResponse>
-
-      /// See `AgentsClient.restoreAgent`.
-      func restoreAgentPollingUntilDone(request: RestoreAgentRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
       /// See `AgentsClient.listAgents`.
       func listAgents(
         request: ListAgentsRequest, options: GoogleGax.RequestOptions

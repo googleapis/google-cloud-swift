@@ -360,54 +360,6 @@ extension Clients {
   /// `some LicenseManagerProtocol` or `any LicenseManagerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol LicenseManagerProtocol: Sendable {
-    /// See `LicenseManagerClient.createConfiguration`.
-    func createConfigurationPollingUntilDone(request: CreateConfigurationRequest) async throws
-      -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.createConfiguration`.
-    func createConfigurationPollingUntilDone(
-      parent: Swift.String,
-      configuration: Configuration?,
-      configurationId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.updateConfiguration`.
-    func updateConfigurationPollingUntilDone(request: UpdateConfigurationRequest) async throws
-      -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.updateConfiguration`.
-    func updateConfigurationPollingUntilDone(
-      configuration: Configuration?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.deleteConfiguration`.
-    func deleteConfigurationPollingUntilDone(request: DeleteConfigurationRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `LicenseManagerClient.deleteConfiguration`.
-    func deleteConfigurationPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `LicenseManagerClient.deactivateConfiguration`.
-    func deactivateConfigurationPollingUntilDone(request: DeactivateConfigurationRequest)
-      async throws -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.deactivateConfiguration`.
-    func deactivateConfigurationPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.reactivateConfiguration`.
-    func reactivateConfigurationPollingUntilDone(request: ReactivateConfigurationRequest)
-      async throws -> any GoogleGax.PollableOperation<Configuration>
-
-    /// See `LicenseManagerClient.reactivateConfiguration`.
-    func reactivateConfigurationPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
-
     /// See `LicenseManagerClient.listConfigurations`.
     func listConfigurations(
       request: ListConfigurationsRequest, options: GoogleGax.RequestOptions

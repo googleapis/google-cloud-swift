@@ -111,10 +111,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol TextToSpeechLongAudioSynthesizeProtocol: Sendable {
     /// See `TextToSpeechLongAudioSynthesizeClient.synthesizeLongAudio`.
-    func synthesizeLongAudioPollingUntilDone(request: SynthesizeLongAudioRequest) async throws
-      -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse>
-
-    /// See `TextToSpeechLongAudioSynthesizeClient.synthesizeLongAudio`.
     func synthesizeLongAudio(
       request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

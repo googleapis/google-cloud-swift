@@ -504,53 +504,6 @@
     /// `some DocumentsProtocol` or `any DocumentsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol DocumentsProtocol: Sendable {
-      /// See `DocumentsClient.createDocument`.
-      func createDocumentPollingUntilDone(request: CreateDocumentRequest) async throws
-        -> any GoogleGax.PollableOperation<Document>
-
-      /// See `DocumentsClient.createDocument`.
-      func createDocumentPollingUntilDone(
-        parent: Swift.String,
-        document: Document?,
-      ) async throws -> any GoogleGax.PollableOperation<Document>
-
-      /// See `DocumentsClient.importDocuments`.
-      func importDocumentsPollingUntilDone(request: ImportDocumentsRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportDocumentsResponse>
-
-      /// See `DocumentsClient.deleteDocument`.
-      func deleteDocumentPollingUntilDone(request: DeleteDocumentRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DocumentsClient.deleteDocument`.
-      func deleteDocumentPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DocumentsClient.updateDocument`.
-      func updateDocumentPollingUntilDone(request: UpdateDocumentRequest) async throws
-        -> any GoogleGax.PollableOperation<Document>
-
-      /// See `DocumentsClient.updateDocument`.
-      func updateDocumentPollingUntilDone(
-        document: Document?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<Document>
-
-      /// See `DocumentsClient.reloadDocument`.
-      func reloadDocumentPollingUntilDone(request: ReloadDocumentRequest) async throws
-        -> any GoogleGax.PollableOperation<Document>
-
-      /// See `DocumentsClient.reloadDocument`.
-      func reloadDocumentPollingUntilDone(
-        name: Swift.String,
-        contentUri: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Document>
-
-      /// See `DocumentsClient.exportDocument`.
-      func exportDocumentPollingUntilDone(request: ExportDocumentRequest) async throws
-        -> any GoogleGax.PollableOperation<Document>
-
       /// See `DocumentsClient.listDocuments`.
       func listDocuments(
         request: ListDocumentsRequest, options: GoogleGax.RequestOptions

@@ -491,53 +491,6 @@ extension Clients {
   /// `some FoldersProtocol` or `any FoldersProtocol`
   /// and pass a mock implementation in your tests.
   public protocol FoldersProtocol: Sendable {
-    /// See `FoldersClient.createFolder`.
-    func createFolderPollingUntilDone(request: CreateFolderRequest) async throws -> any GoogleGax
-      .PollableOperation<Folder>
-
-    /// See `FoldersClient.createFolder`.
-    func createFolderPollingUntilDone(
-      folder: Folder?,
-    ) async throws -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.updateFolder`.
-    func updateFolderPollingUntilDone(request: UpdateFolderRequest) async throws -> any GoogleGax
-      .PollableOperation<Folder>
-
-    /// See `FoldersClient.updateFolder`.
-    func updateFolderPollingUntilDone(
-      folder: Folder?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.moveFolder`.
-    func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws -> any GoogleGax
-      .PollableOperation<Folder>
-
-    /// See `FoldersClient.moveFolder`.
-    func moveFolderPollingUntilDone(
-      name: Swift.String,
-      destinationParent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.deleteFolder`.
-    func deleteFolderPollingUntilDone(request: DeleteFolderRequest) async throws -> any GoogleGax
-      .PollableOperation<Folder>
-
-    /// See `FoldersClient.deleteFolder`.
-    func deleteFolderPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.undeleteFolder`.
-    func undeleteFolderPollingUntilDone(request: UndeleteFolderRequest) async throws
-      -> any GoogleGax.PollableOperation<Folder>
-
-    /// See `FoldersClient.undeleteFolder`.
-    func undeleteFolderPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Folder>
-
     /// See `FoldersClient.getFolder`.
     func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions

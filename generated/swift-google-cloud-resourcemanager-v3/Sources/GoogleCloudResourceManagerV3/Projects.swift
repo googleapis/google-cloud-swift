@@ -485,53 +485,6 @@ extension Clients {
   /// `some ProjectsProtocol` or `any ProjectsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ProjectsProtocol: Sendable {
-    /// See `ProjectsClient.createProject`.
-    func createProjectPollingUntilDone(request: CreateProjectRequest) async throws -> any GoogleGax
-      .PollableOperation<Project>
-
-    /// See `ProjectsClient.createProject`.
-    func createProjectPollingUntilDone(
-      project: Project?,
-    ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.updateProject`.
-    func updateProjectPollingUntilDone(request: UpdateProjectRequest) async throws -> any GoogleGax
-      .PollableOperation<Project>
-
-    /// See `ProjectsClient.updateProject`.
-    func updateProjectPollingUntilDone(
-      project: Project?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.moveProject`.
-    func moveProjectPollingUntilDone(request: MoveProjectRequest) async throws -> any GoogleGax
-      .PollableOperation<Project>
-
-    /// See `ProjectsClient.moveProject`.
-    func moveProjectPollingUntilDone(
-      name: Swift.String,
-      destinationParent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.deleteProject`.
-    func deleteProjectPollingUntilDone(request: DeleteProjectRequest) async throws -> any GoogleGax
-      .PollableOperation<Project>
-
-    /// See `ProjectsClient.deleteProject`.
-    func deleteProjectPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.undeleteProject`.
-    func undeleteProjectPollingUntilDone(request: UndeleteProjectRequest) async throws
-      -> any GoogleGax.PollableOperation<Project>
-
-    /// See `ProjectsClient.undeleteProject`.
-    func undeleteProjectPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Project>
-
     /// See `ProjectsClient.getProject`.
     func getProject(
       request: GetProjectRequest, options: GoogleGax.RequestOptions

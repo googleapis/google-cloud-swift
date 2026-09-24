@@ -409,66 +409,6 @@ extension Clients {
   /// `some AddressGroupServiceProtocol` or `any AddressGroupServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AddressGroupServiceProtocol: Sendable {
-    /// See `AddressGroupServiceClient.createAddressGroup`.
-    func createAddressGroupPollingUntilDone(request: CreateAddressGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.createAddressGroup`.
-    func createAddressGroupPollingUntilDone(
-      parent: Swift.String,
-      addressGroup: AddressGroup?,
-      addressGroupId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.updateAddressGroup`.
-    func updateAddressGroupPollingUntilDone(request: UpdateAddressGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.updateAddressGroup`.
-    func updateAddressGroupPollingUntilDone(
-      addressGroup: AddressGroup?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.addAddressGroupItems`.
-    func addAddressGroupItemsPollingUntilDone(request: AddAddressGroupItemsRequest) async throws
-      -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.addAddressGroupItems`.
-    func addAddressGroupItemsPollingUntilDone(
-      addressGroup: Swift.String,
-      items: [Swift.String],
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.removeAddressGroupItems`.
-    func removeAddressGroupItemsPollingUntilDone(request: RemoveAddressGroupItemsRequest)
-      async throws -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.removeAddressGroupItems`.
-    func removeAddressGroupItemsPollingUntilDone(
-      addressGroup: Swift.String,
-      items: [Swift.String],
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.cloneAddressGroupItems`.
-    func cloneAddressGroupItemsPollingUntilDone(request: CloneAddressGroupItemsRequest) async throws
-      -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.cloneAddressGroupItems`.
-    func cloneAddressGroupItemsPollingUntilDone(
-      addressGroup: Swift.String,
-      sourceAddressGroup: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
-
-    /// See `AddressGroupServiceClient.deleteAddressGroup`.
-    func deleteAddressGroupPollingUntilDone(request: DeleteAddressGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AddressGroupServiceClient.deleteAddressGroup`.
-    func deleteAddressGroupPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `AddressGroupServiceClient.listAddressGroups`.
     func listAddressGroups(
       request: ListAddressGroupsRequest, options: GoogleGax.RequestOptions

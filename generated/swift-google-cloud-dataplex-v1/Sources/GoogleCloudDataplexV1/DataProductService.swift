@@ -430,66 +430,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataProductServiceProtocol: Sendable {
     /// See `DataProductServiceClient.createDataProduct`.
-    func createDataProductPollingUntilDone(request: CreateDataProductRequest) async throws
-      -> any GoogleGax.PollableOperation<DataProduct>
-
-    /// See `DataProductServiceClient.createDataProduct`.
-    func createDataProductPollingUntilDone(
-      parent: Swift.String,
-      dataProduct: DataProduct?,
-      dataProductId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<DataProduct>
-
-    /// See `DataProductServiceClient.deleteDataProduct`.
-    func deleteDataProductPollingUntilDone(request: DeleteDataProductRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataProductServiceClient.deleteDataProduct`.
-    func deleteDataProductPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataProductServiceClient.updateDataProduct`.
-    func updateDataProductPollingUntilDone(request: UpdateDataProductRequest) async throws
-      -> any GoogleGax.PollableOperation<DataProduct>
-
-    /// See `DataProductServiceClient.updateDataProduct`.
-    func updateDataProductPollingUntilDone(
-      dataProduct: DataProduct?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<DataProduct>
-
-    /// See `DataProductServiceClient.createDataAsset`.
-    func createDataAssetPollingUntilDone(request: CreateDataAssetRequest) async throws
-      -> any GoogleGax.PollableOperation<DataAsset>
-
-    /// See `DataProductServiceClient.createDataAsset`.
-    func createDataAssetPollingUntilDone(
-      parent: Swift.String,
-      dataAsset: DataAsset?,
-      dataAssetId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<DataAsset>
-
-    /// See `DataProductServiceClient.updateDataAsset`.
-    func updateDataAssetPollingUntilDone(request: UpdateDataAssetRequest) async throws
-      -> any GoogleGax.PollableOperation<DataAsset>
-
-    /// See `DataProductServiceClient.updateDataAsset`.
-    func updateDataAssetPollingUntilDone(
-      dataAsset: DataAsset?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<DataAsset>
-
-    /// See `DataProductServiceClient.deleteDataAsset`.
-    func deleteDataAssetPollingUntilDone(request: DeleteDataAssetRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataProductServiceClient.deleteDataAsset`.
-    func deleteDataAssetPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataProductServiceClient.createDataProduct`.
     func createDataProduct(
       request: CreateDataProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

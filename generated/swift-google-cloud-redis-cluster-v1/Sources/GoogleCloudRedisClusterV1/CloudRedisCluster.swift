@@ -498,69 +498,6 @@ extension Clients {
   /// `some CloudRedisClusterProtocol` or `any CloudRedisClusterProtocol`
   /// and pass a mock implementation in your tests.
   public protocol CloudRedisClusterProtocol: Sendable {
-    /// See `CloudRedisClusterClient.updateCluster`.
-    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.updateCluster`.
-    func updateClusterPollingUntilDone(
-      cluster: Cluster?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `CloudRedisClusterClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CloudRedisClusterClient.createCluster`.
-    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.createCluster`.
-    func createClusterPollingUntilDone(
-      parent: Swift.String,
-      cluster: Cluster?,
-      clusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.rescheduleClusterMaintenance`.
-    func rescheduleClusterMaintenancePollingUntilDone(request: RescheduleClusterMaintenanceRequest)
-      async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.rescheduleClusterMaintenance`.
-    func rescheduleClusterMaintenancePollingUntilDone(
-      name: Swift.String,
-      rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleWKT.WKTTimestamp?,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.deleteBackup`.
-    func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `CloudRedisClusterClient.deleteBackup`.
-    func deleteBackupPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CloudRedisClusterClient.exportBackup`.
-    func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws -> any GoogleGax
-      .PollableOperation<Backup>
-
-    /// See `CloudRedisClusterClient.backupCluster`.
-    func backupClusterPollingUntilDone(request: BackupClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `CloudRedisClusterClient.backupCluster`.
-    func backupClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
     /// See `CloudRedisClusterClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions

@@ -225,17 +225,6 @@ extension Clients {
   /// `some JobControllerProtocol` or `any JobControllerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol JobControllerProtocol: Sendable {
-    /// See `JobControllerClient.submitJobAsOperation`.
-    func submitJobAsOperationPollingUntilDone(request: SubmitJobRequest) async throws
-      -> any GoogleGax.PollableOperation<Job>
-
-    /// See `JobControllerClient.submitJobAsOperation`.
-    func submitJobAsOperationPollingUntilDone(
-      projectId: Swift.String,
-      region: Swift.String,
-      job: Job?,
-    ) async throws -> any GoogleGax.PollableOperation<Job>
-
     /// See `JobControllerClient.submitJob`.
     func submitJob(
       request: SubmitJobRequest, options: GoogleGax.RequestOptions

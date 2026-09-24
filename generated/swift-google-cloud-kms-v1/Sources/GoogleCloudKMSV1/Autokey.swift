@@ -233,17 +233,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AutokeyProtocol: Sendable {
     /// See `AutokeyClient.createKeyHandle`.
-    func createKeyHandlePollingUntilDone(request: CreateKeyHandleRequest) async throws
-      -> any GoogleGax.PollableOperation<KeyHandle>
-
-    /// See `AutokeyClient.createKeyHandle`.
-    func createKeyHandlePollingUntilDone(
-      parent: Swift.String,
-      keyHandle: KeyHandle?,
-      keyHandleId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<KeyHandle>
-
-    /// See `AutokeyClient.createKeyHandle`.
     func createKeyHandle(
       request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

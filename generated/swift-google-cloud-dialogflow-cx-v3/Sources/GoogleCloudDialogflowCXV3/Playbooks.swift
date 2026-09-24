@@ -291,14 +291,6 @@
     /// `some PlaybooksProtocol` or `any PlaybooksProtocol`
     /// and pass a mock implementation in your tests.
     public protocol PlaybooksProtocol: Sendable {
-      /// See `PlaybooksClient.exportPlaybook`.
-      func exportPlaybookPollingUntilDone(request: ExportPlaybookRequest) async throws
-        -> any GoogleGax.PollableOperation<ExportPlaybookResponse>
-
-      /// See `PlaybooksClient.importPlaybook`.
-      func importPlaybookPollingUntilDone(request: ImportPlaybookRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportPlaybookResponse>
-
       /// See `PlaybooksClient.createPlaybook`.
       func createPlaybook(
         request: CreatePlaybookRequest, options: GoogleGax.RequestOptions

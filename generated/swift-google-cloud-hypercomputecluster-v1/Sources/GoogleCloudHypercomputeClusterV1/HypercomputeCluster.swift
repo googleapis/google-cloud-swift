@@ -242,36 +242,6 @@ extension Clients {
   /// `some HypercomputeClusterProtocol` or `any HypercomputeClusterProtocol`
   /// and pass a mock implementation in your tests.
   public protocol HypercomputeClusterProtocol: Sendable {
-    /// See `HypercomputeClusterClient.createCluster`.
-    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `HypercomputeClusterClient.createCluster`.
-    func createClusterPollingUntilDone(
-      parent: Swift.String,
-      cluster: Cluster?,
-      clusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `HypercomputeClusterClient.updateCluster`.
-    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `HypercomputeClusterClient.updateCluster`.
-    func updateClusterPollingUntilDone(
-      cluster: Cluster?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `HypercomputeClusterClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `HypercomputeClusterClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `HypercomputeClusterClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions

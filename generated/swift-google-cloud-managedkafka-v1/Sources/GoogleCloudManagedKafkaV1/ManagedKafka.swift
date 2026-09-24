@@ -382,36 +382,6 @@ extension Clients {
   /// `some ManagedKafkaProtocol` or `any ManagedKafkaProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ManagedKafkaProtocol: Sendable {
-    /// See `ManagedKafkaClient.createCluster`.
-    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `ManagedKafkaClient.createCluster`.
-    func createClusterPollingUntilDone(
-      parent: Swift.String,
-      cluster: Cluster?,
-      clusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `ManagedKafkaClient.updateCluster`.
-    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `ManagedKafkaClient.updateCluster`.
-    func updateClusterPollingUntilDone(
-      cluster: Cluster?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `ManagedKafkaClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `ManagedKafkaClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ManagedKafkaClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions

@@ -154,25 +154,6 @@ extension Clients {
   /// `some MetricsScopesProtocol` or `any MetricsScopesProtocol`
   /// and pass a mock implementation in your tests.
   public protocol MetricsScopesProtocol: Sendable {
-    /// See `MetricsScopesClient.createMonitoredProject`.
-    func createMonitoredProjectPollingUntilDone(request: CreateMonitoredProjectRequest) async throws
-      -> any GoogleGax.PollableOperation<MonitoredProject>
-
-    /// See `MetricsScopesClient.createMonitoredProject`.
-    func createMonitoredProjectPollingUntilDone(
-      parent: Swift.String,
-      monitoredProject: MonitoredProject?,
-    ) async throws -> any GoogleGax.PollableOperation<MonitoredProject>
-
-    /// See `MetricsScopesClient.deleteMonitoredProject`.
-    func deleteMonitoredProjectPollingUntilDone(request: DeleteMonitoredProjectRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `MetricsScopesClient.deleteMonitoredProject`.
-    func deleteMonitoredProjectPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `MetricsScopesClient.getMetricsScope`.
     func getMetricsScope(
       request: GetMetricsScopeRequest, options: GoogleGax.RequestOptions

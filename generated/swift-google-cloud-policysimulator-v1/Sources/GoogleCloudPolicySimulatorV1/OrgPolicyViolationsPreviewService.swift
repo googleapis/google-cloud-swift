@@ -177,18 +177,6 @@ extension Clients {
   /// `some OrgPolicyViolationsPreviewServiceProtocol` or `any OrgPolicyViolationsPreviewServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol OrgPolicyViolationsPreviewServiceProtocol: Sendable {
-    /// See `OrgPolicyViolationsPreviewServiceClient.createOrgPolicyViolationsPreview`.
-    func createOrgPolicyViolationsPreviewPollingUntilDone(
-      request: CreateOrgPolicyViolationsPreviewRequest
-    ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview>
-
-    /// See `OrgPolicyViolationsPreviewServiceClient.createOrgPolicyViolationsPreview`.
-    func createOrgPolicyViolationsPreviewPollingUntilDone(
-      parent: Swift.String,
-      orgPolicyViolationsPreview: OrgPolicyViolationsPreview?,
-      orgPolicyViolationsPreviewId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview>
-
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolationsPreviews`.
     func listOrgPolicyViolationsPreviews(
       request: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions

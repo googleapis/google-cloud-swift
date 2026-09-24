@@ -810,16 +810,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   @available(*, deprecated)
   public protocol DataCatalogProtocol: Sendable {
-    /// See `DataCatalogClient.reconcileTags`.
-    @available(*, deprecated)
-    func reconcileTagsPollingUntilDone(request: ReconcileTagsRequest) async throws -> any GoogleGax
-      .PollableOperation<ReconcileTagsResponse>
-
-    /// See `DataCatalogClient.importEntries`.
-    @available(*, deprecated)
-    func importEntriesPollingUntilDone(request: ImportEntriesRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportEntriesResponse>
-
     /// See `DataCatalogClient.searchCatalog`.
     @available(*, deprecated)
     func searchCatalog(

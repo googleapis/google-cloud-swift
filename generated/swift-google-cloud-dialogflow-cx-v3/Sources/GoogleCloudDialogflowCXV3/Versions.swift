@@ -290,25 +290,6 @@
     /// `some VersionsProtocol` or `any VersionsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol VersionsProtocol: Sendable {
-      /// See `VersionsClient.createVersion`.
-      func createVersionPollingUntilDone(request: CreateVersionRequest) async throws
-        -> any GoogleGax.PollableOperation<Version>
-
-      /// See `VersionsClient.createVersion`.
-      func createVersionPollingUntilDone(
-        parent: Swift.String,
-        version: Version?,
-      ) async throws -> any GoogleGax.PollableOperation<Version>
-
-      /// See `VersionsClient.loadVersion`.
-      func loadVersionPollingUntilDone(request: LoadVersionRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
-      /// See `VersionsClient.loadVersion`.
-      func loadVersionPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
       /// See `VersionsClient.listVersions`.
       func listVersions(
         request: ListVersionsRequest, options: GoogleGax.RequestOptions

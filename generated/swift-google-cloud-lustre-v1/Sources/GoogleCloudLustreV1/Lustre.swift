@@ -306,49 +306,6 @@ extension Clients {
   /// `some LustreProtocol` or `any LustreProtocol`
   /// and pass a mock implementation in your tests.
   public protocol LustreProtocol: Sendable {
-    /// See `LustreClient.createInstance`.
-    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `LustreClient.createInstance`.
-    func createInstancePollingUntilDone(
-      parent: Swift.String,
-      instance: Instance?,
-      instanceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `LustreClient.updateInstance`.
-    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `LustreClient.updateInstance`.
-    func updateInstancePollingUntilDone(
-      instance: Instance?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
-
-    /// See `LustreClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `LustreClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `LustreClient.importData`.
-    func importDataPollingUntilDone(request: ImportDataRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportDataResponse>
-
-    /// See `LustreClient.importData`.
-    func importDataPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse>
-
-    /// See `LustreClient.exportData`.
-    func exportDataPollingUntilDone(request: ExportDataRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportDataResponse>
-
     /// See `LustreClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions

@@ -300,36 +300,6 @@ extension Clients {
   /// `some AppConnectionsServiceProtocol` or `any AppConnectionsServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AppConnectionsServiceProtocol: Sendable {
-    /// See `AppConnectionsServiceClient.createAppConnection`.
-    func createAppConnectionPollingUntilDone(request: CreateAppConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<AppConnection>
-
-    /// See `AppConnectionsServiceClient.createAppConnection`.
-    func createAppConnectionPollingUntilDone(
-      parent: Swift.String,
-      appConnection: AppConnection?,
-      appConnectionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AppConnection>
-
-    /// See `AppConnectionsServiceClient.updateAppConnection`.
-    func updateAppConnectionPollingUntilDone(request: UpdateAppConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<AppConnection>
-
-    /// See `AppConnectionsServiceClient.updateAppConnection`.
-    func updateAppConnectionPollingUntilDone(
-      appConnection: AppConnection?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<AppConnection>
-
-    /// See `AppConnectionsServiceClient.deleteAppConnection`.
-    func deleteAppConnectionPollingUntilDone(request: DeleteAppConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppConnectionsServiceClient.deleteAppConnection`.
-    func deleteAppConnectionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `AppConnectionsServiceClient.listAppConnections`.
     func listAppConnections(
       request: ListAppConnectionsRequest, options: GoogleGax.RequestOptions

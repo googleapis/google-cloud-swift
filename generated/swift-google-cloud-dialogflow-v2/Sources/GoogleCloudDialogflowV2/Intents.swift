@@ -306,32 +306,6 @@
     /// `some IntentsProtocol` or `any IntentsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol IntentsProtocol: Sendable {
-      /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntentsPollingUntilDone(request: BatchUpdateIntentsRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
-
-      /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntentsPollingUntilDone(
-        parent: Swift.String,
-        intentBatchUri: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
-
-      /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntentsPollingUntilDone(
-        parent: Swift.String,
-        intentBatchInline: IntentBatch?,
-      ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
-
-      /// See `IntentsClient.batchDeleteIntents`.
-      func batchDeleteIntentsPollingUntilDone(request: BatchDeleteIntentsRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `IntentsClient.batchDeleteIntents`.
-      func batchDeleteIntentsPollingUntilDone(
-        parent: Swift.String,
-        intents: [Intent],
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
       /// See `IntentsClient.listIntents`.
       func listIntents(
         request: ListIntentsRequest, options: GoogleGax.RequestOptions

@@ -216,26 +216,6 @@
     /// and pass a mock implementation in your tests.
     public protocol DataStoreServiceProtocol: Sendable {
       /// See `DataStoreServiceClient.createDataStore`.
-      func createDataStorePollingUntilDone(request: CreateDataStoreRequest) async throws
-        -> any GoogleGax.PollableOperation<DataStore>
-
-      /// See `DataStoreServiceClient.createDataStore`.
-      func createDataStorePollingUntilDone(
-        parent: Swift.String,
-        dataStore: DataStore?,
-        dataStoreId: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<DataStore>
-
-      /// See `DataStoreServiceClient.deleteDataStore`.
-      func deleteDataStorePollingUntilDone(request: DeleteDataStoreRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DataStoreServiceClient.deleteDataStore`.
-      func deleteDataStorePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DataStoreServiceClient.createDataStore`.
       func createDataStore(
         request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

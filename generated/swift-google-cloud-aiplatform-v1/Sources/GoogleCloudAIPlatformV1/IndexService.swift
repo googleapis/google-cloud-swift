@@ -314,35 +314,6 @@
     /// and pass a mock implementation in your tests.
     public protocol IndexServiceProtocol: Sendable {
       /// See `IndexServiceClient.createIndex`.
-      func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
-        .PollableOperation<Index>
-
-      /// See `IndexServiceClient.createIndex`.
-      func createIndexPollingUntilDone(
-        parent: Swift.String,
-        index: Index?,
-      ) async throws -> any GoogleGax.PollableOperation<Index>
-
-      /// See `IndexServiceClient.updateIndex`.
-      func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> any GoogleGax
-        .PollableOperation<Index>
-
-      /// See `IndexServiceClient.updateIndex`.
-      func updateIndexPollingUntilDone(
-        index: Index?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<Index>
-
-      /// See `IndexServiceClient.deleteIndex`.
-      func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
-      /// See `IndexServiceClient.deleteIndex`.
-      func deleteIndexPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `IndexServiceClient.createIndex`.
       func createIndex(
         request: CreateIndexRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

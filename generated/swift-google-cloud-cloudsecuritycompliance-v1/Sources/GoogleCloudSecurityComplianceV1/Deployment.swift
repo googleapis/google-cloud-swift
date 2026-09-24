@@ -243,26 +243,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DeploymentProtocol: Sendable {
     /// See `DeploymentClient.createFrameworkDeployment`.
-    func createFrameworkDeploymentPollingUntilDone(request: CreateFrameworkDeploymentRequest)
-      async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
-
-    /// See `DeploymentClient.createFrameworkDeployment`.
-    func createFrameworkDeploymentPollingUntilDone(
-      parent: Swift.String,
-      frameworkDeployment: FrameworkDeployment?,
-      frameworkDeploymentId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
-
-    /// See `DeploymentClient.deleteFrameworkDeployment`.
-    func deleteFrameworkDeploymentPollingUntilDone(request: DeleteFrameworkDeploymentRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DeploymentClient.deleteFrameworkDeployment`.
-    func deleteFrameworkDeploymentPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DeploymentClient.createFrameworkDeployment`.
     func createFrameworkDeployment(
       request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -310,36 +310,6 @@ extension Clients {
   /// `some FunctionServiceProtocol` or `any FunctionServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol FunctionServiceProtocol: Sendable {
-    /// See `FunctionServiceClient.createFunction`.
-    func createFunctionPollingUntilDone(request: CreateFunctionRequest) async throws
-      -> any GoogleGax.PollableOperation<Function>
-
-    /// See `FunctionServiceClient.createFunction`.
-    func createFunctionPollingUntilDone(
-      parent: Swift.String,
-      function: Function?,
-      functionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Function>
-
-    /// See `FunctionServiceClient.updateFunction`.
-    func updateFunctionPollingUntilDone(request: UpdateFunctionRequest) async throws
-      -> any GoogleGax.PollableOperation<Function>
-
-    /// See `FunctionServiceClient.updateFunction`.
-    func updateFunctionPollingUntilDone(
-      function: Function?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Function>
-
-    /// See `FunctionServiceClient.deleteFunction`.
-    func deleteFunctionPollingUntilDone(request: DeleteFunctionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `FunctionServiceClient.deleteFunction`.
-    func deleteFunctionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `FunctionServiceClient.getFunction`.
     func getFunction(
       request: GetFunctionRequest, options: GoogleGax.RequestOptions

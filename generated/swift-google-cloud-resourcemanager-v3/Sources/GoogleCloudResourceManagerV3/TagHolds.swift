@@ -145,25 +145,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol TagHoldsProtocol: Sendable {
     /// See `TagHoldsClient.createTagHold`.
-    func createTagHoldPollingUntilDone(request: CreateTagHoldRequest) async throws -> any GoogleGax
-      .PollableOperation<TagHold>
-
-    /// See `TagHoldsClient.createTagHold`.
-    func createTagHoldPollingUntilDone(
-      parent: Swift.String,
-      tagHold: TagHold?,
-    ) async throws -> any GoogleGax.PollableOperation<TagHold>
-
-    /// See `TagHoldsClient.deleteTagHold`.
-    func deleteTagHoldPollingUntilDone(request: DeleteTagHoldRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `TagHoldsClient.deleteTagHold`.
-    func deleteTagHoldPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `TagHoldsClient.createTagHold`.
     func createTagHold(
       request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

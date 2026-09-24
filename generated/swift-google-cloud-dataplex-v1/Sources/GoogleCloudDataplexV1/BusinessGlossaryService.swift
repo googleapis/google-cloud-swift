@@ -394,36 +394,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol BusinessGlossaryServiceProtocol: Sendable {
     /// See `BusinessGlossaryServiceClient.createGlossary`.
-    func createGlossaryPollingUntilDone(request: CreateGlossaryRequest) async throws
-      -> any GoogleGax.PollableOperation<Glossary>
-
-    /// See `BusinessGlossaryServiceClient.createGlossary`.
-    func createGlossaryPollingUntilDone(
-      parent: Swift.String,
-      glossary: Glossary?,
-      glossaryId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Glossary>
-
-    /// See `BusinessGlossaryServiceClient.updateGlossary`.
-    func updateGlossaryPollingUntilDone(request: UpdateGlossaryRequest) async throws
-      -> any GoogleGax.PollableOperation<Glossary>
-
-    /// See `BusinessGlossaryServiceClient.updateGlossary`.
-    func updateGlossaryPollingUntilDone(
-      glossary: Glossary?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Glossary>
-
-    /// See `BusinessGlossaryServiceClient.deleteGlossary`.
-    func deleteGlossaryPollingUntilDone(request: DeleteGlossaryRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `BusinessGlossaryServiceClient.deleteGlossary`.
-    func deleteGlossaryPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `BusinessGlossaryServiceClient.createGlossary`.
     func createGlossary(
       request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

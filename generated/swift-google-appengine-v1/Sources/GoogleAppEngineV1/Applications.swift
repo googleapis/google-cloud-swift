@@ -225,18 +225,6 @@ extension Clients {
   /// `some ApplicationsProtocol` or `any ApplicationsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ApplicationsProtocol: Sendable {
-    /// See `ApplicationsClient.createApplication`.
-    func createApplicationPollingUntilDone(request: CreateApplicationRequest) async throws
-      -> any GoogleGax.PollableOperation<Application>
-
-    /// See `ApplicationsClient.updateApplication`.
-    func updateApplicationPollingUntilDone(request: UpdateApplicationRequest) async throws
-      -> any GoogleGax.PollableOperation<Application>
-
-    /// See `ApplicationsClient.repairApplication`.
-    func repairApplicationPollingUntilDone(request: RepairApplicationRequest) async throws
-      -> any GoogleGax.PollableOperation<Application>
-
     /// See `ApplicationsClient.getApplication`.
     func getApplication(
       request: GetApplicationRequest, options: GoogleGax.RequestOptions

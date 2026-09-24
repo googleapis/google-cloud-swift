@@ -387,23 +387,6 @@
     /// `some FlowsProtocol` or `any FlowsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol FlowsProtocol: Sendable {
-      /// See `FlowsClient.trainFlow`.
-      func trainFlowPollingUntilDone(request: TrainFlowRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
-      /// See `FlowsClient.trainFlow`.
-      func trainFlowPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `FlowsClient.importFlow`.
-      func importFlowPollingUntilDone(request: ImportFlowRequest) async throws -> any GoogleGax
-        .PollableOperation<ImportFlowResponse>
-
-      /// See `FlowsClient.exportFlow`.
-      func exportFlowPollingUntilDone(request: ExportFlowRequest) async throws -> any GoogleGax
-        .PollableOperation<ExportFlowResponse>
-
       /// See `FlowsClient.createFlow`.
       func createFlow(
         request: CreateFlowRequest, options: GoogleGax.RequestOptions

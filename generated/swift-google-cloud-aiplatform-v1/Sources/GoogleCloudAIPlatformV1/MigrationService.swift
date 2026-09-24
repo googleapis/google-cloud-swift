@@ -213,16 +213,6 @@
     /// `some MigrationServiceProtocol` or `any MigrationServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol MigrationServiceProtocol: Sendable {
-      /// See `MigrationServiceClient.batchMigrateResources`.
-      func batchMigrateResourcesPollingUntilDone(request: BatchMigrateResourcesRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse>
-
-      /// See `MigrationServiceClient.batchMigrateResources`.
-      func batchMigrateResourcesPollingUntilDone(
-        parent: Swift.String,
-        migrateResourceRequests: [MigrateResourceRequest],
-      ) async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse>
-
       /// See `MigrationServiceClient.searchMigratableResources`.
       func searchMigratableResources(
         request: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions

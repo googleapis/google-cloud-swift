@@ -410,60 +410,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ClusterControllerProtocol: Sendable {
     /// See `ClusterControllerClient.createCluster`.
-    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.createCluster`.
-    func createClusterPollingUntilDone(
-      projectId: Swift.String,
-      region: Swift.String,
-      cluster: Cluster?,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.updateCluster`.
-    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.updateCluster`.
-    func updateClusterPollingUntilDone(
-      projectId: Swift.String,
-      region: Swift.String,
-      clusterName: Swift.String,
-      cluster: Cluster?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.stopCluster`.
-    func stopClusterPollingUntilDone(request: StopClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.startCluster`.
-    func startClusterPollingUntilDone(request: StartClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
-
-    /// See `ClusterControllerClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `ClusterControllerClient.deleteCluster`.
-    func deleteClusterPollingUntilDone(
-      projectId: Swift.String,
-      region: Swift.String,
-      clusterName: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ClusterControllerClient.diagnoseCluster`.
-    func diagnoseClusterPollingUntilDone(request: DiagnoseClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<DiagnoseClusterResults>
-
-    /// See `ClusterControllerClient.diagnoseCluster`.
-    func diagnoseClusterPollingUntilDone(
-      projectId: Swift.String,
-      region: Swift.String,
-      clusterName: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<DiagnoseClusterResults>
-
-    /// See `ClusterControllerClient.createCluster`.
     func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

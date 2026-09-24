@@ -115,10 +115,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AnalyticsServiceProtocol: Sendable {
     /// See `AnalyticsServiceClient.exportAnalyticsMetrics`.
-    func exportAnalyticsMetricsPollingUntilDone(request: ExportAnalyticsMetricsRequest) async throws
-      -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse>
-
-    /// See `AnalyticsServiceClient.exportAnalyticsMetrics`.
     func exportAnalyticsMetrics(
       request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

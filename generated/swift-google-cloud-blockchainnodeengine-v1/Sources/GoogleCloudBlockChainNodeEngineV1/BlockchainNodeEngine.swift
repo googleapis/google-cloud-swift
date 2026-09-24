@@ -238,36 +238,6 @@ extension Clients {
   /// `some BlockchainNodeEngineProtocol` or `any BlockchainNodeEngineProtocol`
   /// and pass a mock implementation in your tests.
   public protocol BlockchainNodeEngineProtocol: Sendable {
-    /// See `BlockchainNodeEngineClient.createBlockchainNode`.
-    func createBlockchainNodePollingUntilDone(request: CreateBlockchainNodeRequest) async throws
-      -> any GoogleGax.PollableOperation<BlockchainNode>
-
-    /// See `BlockchainNodeEngineClient.createBlockchainNode`.
-    func createBlockchainNodePollingUntilDone(
-      parent: Swift.String,
-      blockchainNode: BlockchainNode?,
-      blockchainNodeId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
-
-    /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
-    func updateBlockchainNodePollingUntilDone(request: UpdateBlockchainNodeRequest) async throws
-      -> any GoogleGax.PollableOperation<BlockchainNode>
-
-    /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
-    func updateBlockchainNodePollingUntilDone(
-      blockchainNode: BlockchainNode?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
-
-    /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
-    func deleteBlockchainNodePollingUntilDone(request: DeleteBlockchainNodeRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
-    func deleteBlockchainNodePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `BlockchainNodeEngineClient.listBlockchainNodes`.
     func listBlockchainNodes(
       request: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions

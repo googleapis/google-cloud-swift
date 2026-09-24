@@ -265,36 +265,6 @@ extension Clients {
   /// `some JobServiceProtocol` or `any JobServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol JobServiceProtocol: Sendable {
-    /// See `JobServiceClient.batchCreateJobs`.
-    func batchCreateJobsPollingUntilDone(request: BatchCreateJobsRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchCreateJobsResponse>
-
-    /// See `JobServiceClient.batchCreateJobs`.
-    func batchCreateJobsPollingUntilDone(
-      parent: Swift.String,
-      jobs: [Job],
-    ) async throws -> any GoogleGax.PollableOperation<BatchCreateJobsResponse>
-
-    /// See `JobServiceClient.batchUpdateJobs`.
-    func batchUpdateJobsPollingUntilDone(request: BatchUpdateJobsRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchUpdateJobsResponse>
-
-    /// See `JobServiceClient.batchUpdateJobs`.
-    func batchUpdateJobsPollingUntilDone(
-      parent: Swift.String,
-      jobs: [Job],
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateJobsResponse>
-
-    /// See `JobServiceClient.batchDeleteJobs`.
-    func batchDeleteJobsPollingUntilDone(request: BatchDeleteJobsRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchDeleteJobsResponse>
-
-    /// See `JobServiceClient.batchDeleteJobs`.
-    func batchDeleteJobsPollingUntilDone(
-      parent: Swift.String,
-      names: [Swift.String],
-    ) async throws -> any GoogleGax.PollableOperation<BatchDeleteJobsResponse>
-
     /// See `JobServiceClient.createJob`.
     func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions

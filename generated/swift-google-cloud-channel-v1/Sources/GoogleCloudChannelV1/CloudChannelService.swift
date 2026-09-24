@@ -2158,50 +2158,6 @@ extension Clients {
   /// `some CloudChannelServiceProtocol` or `any CloudChannelServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol CloudChannelServiceProtocol: Sendable {
-    /// See `CloudChannelServiceClient.provisionCloudIdentity`.
-    func provisionCloudIdentityPollingUntilDone(request: ProvisionCloudIdentityRequest) async throws
-      -> any GoogleGax.PollableOperation<Customer>
-
-    /// See `CloudChannelServiceClient.createEntitlement`.
-    func createEntitlementPollingUntilDone(request: CreateEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.changeParameters`.
-    func changeParametersPollingUntilDone(request: ChangeParametersRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.changeRenewalSettings`.
-    func changeRenewalSettingsPollingUntilDone(request: ChangeRenewalSettingsRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.changeOffer`.
-    func changeOfferPollingUntilDone(request: ChangeOfferRequest) async throws -> any GoogleGax
-      .PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.startPaidService`.
-    func startPaidServicePollingUntilDone(request: StartPaidServiceRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.suspendEntitlement`.
-    func suspendEntitlementPollingUntilDone(request: SuspendEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.cancelEntitlement`.
-    func cancelEntitlementPollingUntilDone(request: CancelEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `CloudChannelServiceClient.activateEntitlement`.
-    func activateEntitlementPollingUntilDone(request: ActivateEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `CloudChannelServiceClient.transferEntitlements`.
-    func transferEntitlementsPollingUntilDone(request: TransferEntitlementsRequest) async throws
-      -> any GoogleGax.PollableOperation<TransferEntitlementsResponse>
-
-    /// See `CloudChannelServiceClient.transferEntitlementsToGoogle`.
-    func transferEntitlementsToGooglePollingUntilDone(request: TransferEntitlementsToGoogleRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `CloudChannelServiceClient.listCustomers`.
     func listCustomers(
       request: ListCustomersRequest, options: GoogleGax.RequestOptions

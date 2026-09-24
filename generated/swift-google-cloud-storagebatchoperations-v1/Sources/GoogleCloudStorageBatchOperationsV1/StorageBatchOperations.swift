@@ -204,17 +204,6 @@ extension Clients {
   /// `some StorageBatchOperationsProtocol` or `any StorageBatchOperationsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol StorageBatchOperationsProtocol: Sendable {
-    /// See `StorageBatchOperationsClient.createJob`.
-    func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Job>
-
-    /// See `StorageBatchOperationsClient.createJob`.
-    func createJobPollingUntilDone(
-      parent: Swift.String,
-      job: Job?,
-      jobId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Job>
-
     /// See `StorageBatchOperationsClient.listJobs`.
     func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions

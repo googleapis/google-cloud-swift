@@ -184,25 +184,6 @@ extension Clients {
   /// `some ImageAnnotatorProtocol` or `any ImageAnnotatorProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ImageAnnotatorProtocol: Sendable {
-    /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
-    func asyncBatchAnnotateImagesPollingUntilDone(request: AsyncBatchAnnotateImagesRequest)
-      async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
-
-    /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
-    func asyncBatchAnnotateImagesPollingUntilDone(
-      requests: [AnnotateImageRequest],
-      outputConfig: OutputConfig?,
-    ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
-
-    /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
-    func asyncBatchAnnotateFilesPollingUntilDone(request: AsyncBatchAnnotateFilesRequest)
-      async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
-
-    /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
-    func asyncBatchAnnotateFilesPollingUntilDone(
-      requests: [AsyncAnnotateFileRequest],
-    ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
-
     /// See `ImageAnnotatorClient.batchAnnotateImages`.
     func batchAnnotateImages(
       request: BatchAnnotateImagesRequest, options: GoogleGax.RequestOptions

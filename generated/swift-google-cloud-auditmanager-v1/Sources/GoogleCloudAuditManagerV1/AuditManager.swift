@@ -282,21 +282,6 @@ extension Clients {
   /// `some AuditManagerProtocol` or `any AuditManagerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AuditManagerProtocol: Sendable {
-    /// See `AuditManagerClient.generateAuditReport`.
-    func generateAuditReportPollingUntilDone(request: GenerateAuditReportRequest) async throws
-      -> any GoogleGax.PollableOperation<AuditReport>
-
-    /// See `AuditManagerClient.generateAuditReport`.
-    #if hasAttribute(diagnose)
-      @diagnose(DeprecatedDeclaration, as: ignored)
-    #endif
-    func generateAuditReportPollingUntilDone(
-      scope: Swift.String,
-      gcsUri: Swift.String,
-      complianceStandard: Swift.String,
-      reportFormat: GenerateAuditReportRequest.AuditReportFormat,
-    ) async throws -> any GoogleGax.PollableOperation<AuditReport>
-
     /// See `AuditManagerClient.createAuditSchedule`.
     func createAuditSchedule(
       request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions

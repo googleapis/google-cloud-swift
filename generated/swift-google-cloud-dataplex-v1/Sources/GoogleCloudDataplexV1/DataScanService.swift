@@ -343,36 +343,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataScanServiceProtocol: Sendable {
     /// See `DataScanServiceClient.createDataScan`.
-    func createDataScanPollingUntilDone(request: CreateDataScanRequest) async throws
-      -> any GoogleGax.PollableOperation<DataScan>
-
-    /// See `DataScanServiceClient.createDataScan`.
-    func createDataScanPollingUntilDone(
-      parent: Swift.String,
-      dataScan: DataScan?,
-      dataScanId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<DataScan>
-
-    /// See `DataScanServiceClient.updateDataScan`.
-    func updateDataScanPollingUntilDone(request: UpdateDataScanRequest) async throws
-      -> any GoogleGax.PollableOperation<DataScan>
-
-    /// See `DataScanServiceClient.updateDataScan`.
-    func updateDataScanPollingUntilDone(
-      dataScan: DataScan?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<DataScan>
-
-    /// See `DataScanServiceClient.deleteDataScan`.
-    func deleteDataScanPollingUntilDone(request: DeleteDataScanRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataScanServiceClient.deleteDataScan`.
-    func deleteDataScanPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataScanServiceClient.createDataScan`.
     func createDataScan(
       request: CreateDataScanRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

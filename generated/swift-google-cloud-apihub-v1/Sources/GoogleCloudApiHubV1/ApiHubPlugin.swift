@@ -430,65 +430,6 @@ extension Clients {
   /// `some ApiHubPluginProtocol` or `any ApiHubPluginProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ApiHubPluginProtocol: Sendable {
-    /// See `ApiHubPluginClient.deletePlugin`.
-    func deletePluginPollingUntilDone(request: DeletePluginRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `ApiHubPluginClient.deletePlugin`.
-    func deletePluginPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ApiHubPluginClient.createPluginInstance`.
-    func createPluginInstancePollingUntilDone(request: CreatePluginInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<PluginInstance>
-
-    /// See `ApiHubPluginClient.createPluginInstance`.
-    func createPluginInstancePollingUntilDone(
-      parent: Swift.String,
-      pluginInstance: PluginInstance?,
-      pluginInstanceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PluginInstance>
-
-    /// See `ApiHubPluginClient.executePluginInstanceAction`.
-    func executePluginInstanceActionPollingUntilDone(request: ExecutePluginInstanceActionRequest)
-      async throws -> any GoogleGax.PollableOperation<ExecutePluginInstanceActionResponse>
-
-    /// See `ApiHubPluginClient.executePluginInstanceAction`.
-    func executePluginInstanceActionPollingUntilDone(
-      name: Swift.String,
-      actionExecutionDetail: ActionExecutionDetail?,
-    ) async throws -> any GoogleGax.PollableOperation<ExecutePluginInstanceActionResponse>
-
-    /// See `ApiHubPluginClient.enablePluginInstanceAction`.
-    func enablePluginInstanceActionPollingUntilDone(request: EnablePluginInstanceActionRequest)
-      async throws -> any GoogleGax.PollableOperation<EnablePluginInstanceActionResponse>
-
-    /// See `ApiHubPluginClient.enablePluginInstanceAction`.
-    func enablePluginInstanceActionPollingUntilDone(
-      name: Swift.String,
-      actionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<EnablePluginInstanceActionResponse>
-
-    /// See `ApiHubPluginClient.disablePluginInstanceAction`.
-    func disablePluginInstanceActionPollingUntilDone(request: DisablePluginInstanceActionRequest)
-      async throws -> any GoogleGax.PollableOperation<DisablePluginInstanceActionResponse>
-
-    /// See `ApiHubPluginClient.disablePluginInstanceAction`.
-    func disablePluginInstanceActionPollingUntilDone(
-      name: Swift.String,
-      actionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<DisablePluginInstanceActionResponse>
-
-    /// See `ApiHubPluginClient.deletePluginInstance`.
-    func deletePluginInstancePollingUntilDone(request: DeletePluginInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ApiHubPluginClient.deletePluginInstance`.
-    func deletePluginInstancePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ApiHubPluginClient.getPlugin`.
     func getPlugin(
       request: GetPluginRequest, options: GoogleGax.RequestOptions

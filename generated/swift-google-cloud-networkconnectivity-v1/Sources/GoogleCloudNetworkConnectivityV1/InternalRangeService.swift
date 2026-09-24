@@ -277,36 +277,6 @@ extension Clients {
   /// `some InternalRangeServiceProtocol` or `any InternalRangeServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol InternalRangeServiceProtocol: Sendable {
-    /// See `InternalRangeServiceClient.createInternalRange`.
-    func createInternalRangePollingUntilDone(request: CreateInternalRangeRequest) async throws
-      -> any GoogleGax.PollableOperation<InternalRange>
-
-    /// See `InternalRangeServiceClient.createInternalRange`.
-    func createInternalRangePollingUntilDone(
-      parent: Swift.String,
-      internalRange: InternalRange?,
-      internalRangeId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<InternalRange>
-
-    /// See `InternalRangeServiceClient.updateInternalRange`.
-    func updateInternalRangePollingUntilDone(request: UpdateInternalRangeRequest) async throws
-      -> any GoogleGax.PollableOperation<InternalRange>
-
-    /// See `InternalRangeServiceClient.updateInternalRange`.
-    func updateInternalRangePollingUntilDone(
-      internalRange: InternalRange?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<InternalRange>
-
-    /// See `InternalRangeServiceClient.deleteInternalRange`.
-    func deleteInternalRangePollingUntilDone(request: DeleteInternalRangeRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `InternalRangeServiceClient.deleteInternalRange`.
-    func deleteInternalRangePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `InternalRangeServiceClient.listInternalRanges`.
     func listInternalRanges(
       request: ListInternalRangesRequest, options: GoogleGax.RequestOptions

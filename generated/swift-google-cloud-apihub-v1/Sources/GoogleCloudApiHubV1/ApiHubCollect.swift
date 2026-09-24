@@ -151,17 +151,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ApiHubCollectProtocol: Sendable {
     /// See `ApiHubCollectClient.collectApiData`.
-    func collectApiDataPollingUntilDone(request: CollectApiDataRequest) async throws
-      -> any GoogleGax.PollableOperation<CollectApiDataResponse>
-
-    /// See `ApiHubCollectClient.collectApiData`.
-    func collectApiDataPollingUntilDone(
-      location: Swift.String,
-      collectionType: CollectionType,
-      apiData: ApiData?,
-    ) async throws -> any GoogleGax.PollableOperation<CollectApiDataResponse>
-
-    /// See `ApiHubCollectClient.collectApiData`.
     func collectApiData(
       request: CollectApiDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -191,17 +191,6 @@ extension Clients {
   /// `some AuditProtocol` or `any AuditProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AuditProtocol: Sendable {
-    /// See `AuditClient.createFrameworkAudit`.
-    func createFrameworkAuditPollingUntilDone(request: CreateFrameworkAuditRequest) async throws
-      -> any GoogleGax.PollableOperation<FrameworkAudit>
-
-    /// See `AuditClient.createFrameworkAudit`.
-    func createFrameworkAuditPollingUntilDone(
-      parent: Swift.String,
-      frameworkAudit: FrameworkAudit?,
-      frameworkAuditId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<FrameworkAudit>
-
     /// See `AuditClient.generateFrameworkAuditScopeReport`.
     func generateFrameworkAuditScopeReport(
       request: GenerateFrameworkAuditScopeReportRequest, options: GoogleGax.RequestOptions

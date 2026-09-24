@@ -208,18 +208,6 @@ extension Clients {
   /// `some DomainMappingsProtocol` or `any DomainMappingsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol DomainMappingsProtocol: Sendable {
-    /// See `DomainMappingsClient.createDomainMapping`.
-    func createDomainMappingPollingUntilDone(request: CreateDomainMappingRequest) async throws
-      -> any GoogleGax.PollableOperation<DomainMapping>
-
-    /// See `DomainMappingsClient.updateDomainMapping`.
-    func updateDomainMappingPollingUntilDone(request: UpdateDomainMappingRequest) async throws
-      -> any GoogleGax.PollableOperation<DomainMapping>
-
-    /// See `DomainMappingsClient.deleteDomainMapping`.
-    func deleteDomainMappingPollingUntilDone(request: DeleteDomainMappingRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `DomainMappingsClient.listDomainMappings`.
     func listDomainMappings(
       request: ListDomainMappingsRequest, options: GoogleGax.RequestOptions

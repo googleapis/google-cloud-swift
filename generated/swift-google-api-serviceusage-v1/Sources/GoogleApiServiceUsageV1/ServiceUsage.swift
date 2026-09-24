@@ -239,18 +239,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ServiceUsageProtocol: Sendable {
     /// See `ServiceUsageClient.enableService`.
-    func enableServicePollingUntilDone(request: EnableServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<EnableServiceResponse>
-
-    /// See `ServiceUsageClient.disableService`.
-    func disableServicePollingUntilDone(request: DisableServiceRequest) async throws
-      -> any GoogleGax.PollableOperation<DisableServiceResponse>
-
-    /// See `ServiceUsageClient.batchEnableServices`.
-    func batchEnableServicesPollingUntilDone(request: BatchEnableServicesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchEnableServicesResponse>
-
-    /// See `ServiceUsageClient.enableService`.
     func enableService(
       request: EnableServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

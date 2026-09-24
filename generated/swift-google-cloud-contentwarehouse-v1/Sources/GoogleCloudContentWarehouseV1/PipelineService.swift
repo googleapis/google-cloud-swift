@@ -96,15 +96,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PipelineServiceProtocol: Sendable {
     /// See `PipelineServiceClient.runPipeline`.
-    func runPipelinePollingUntilDone(request: RunPipelineRequest) async throws -> any GoogleGax
-      .PollableOperation<RunPipelineResponse>
-
-    /// See `PipelineServiceClient.runPipeline`.
-    func runPipelinePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse>
-
-    /// See `PipelineServiceClient.runPipeline`.
     func runPipeline(
       request: RunPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

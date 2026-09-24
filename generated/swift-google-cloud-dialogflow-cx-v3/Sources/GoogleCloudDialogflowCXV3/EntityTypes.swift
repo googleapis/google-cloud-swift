@@ -251,14 +251,6 @@
     /// `some EntityTypesProtocol` or `any EntityTypesProtocol`
     /// and pass a mock implementation in your tests.
     public protocol EntityTypesProtocol: Sendable {
-      /// See `EntityTypesClient.exportEntityTypes`.
-      func exportEntityTypesPollingUntilDone(request: ExportEntityTypesRequest) async throws
-        -> any GoogleGax.PollableOperation<ExportEntityTypesResponse>
-
-      /// See `EntityTypesClient.importEntityTypes`.
-      func importEntityTypesPollingUntilDone(request: ImportEntityTypesRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportEntityTypesResponse>
-
       /// See `EntityTypesClient.getEntityType`.
       func getEntityType(
         request: GetEntityTypeRequest, options: GoogleGax.RequestOptions

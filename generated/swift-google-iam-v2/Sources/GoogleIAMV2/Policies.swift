@@ -208,30 +208,6 @@ extension Clients {
   /// `some PoliciesProtocol` or `any PoliciesProtocol`
   /// and pass a mock implementation in your tests.
   public protocol PoliciesProtocol: Sendable {
-    /// See `PoliciesClient.createPolicy`.
-    func createPolicyPollingUntilDone(request: CreatePolicyRequest) async throws -> any GoogleGax
-      .PollableOperation<Policy>
-
-    /// See `PoliciesClient.createPolicy`.
-    func createPolicyPollingUntilDone(
-      parent: Swift.String,
-      policy: Policy?,
-      policyId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Policy>
-
-    /// See `PoliciesClient.updatePolicy`.
-    func updatePolicyPollingUntilDone(request: UpdatePolicyRequest) async throws -> any GoogleGax
-      .PollableOperation<Policy>
-
-    /// See `PoliciesClient.deletePolicy`.
-    func deletePolicyPollingUntilDone(request: DeletePolicyRequest) async throws -> any GoogleGax
-      .PollableOperation<Policy>
-
-    /// See `PoliciesClient.deletePolicy`.
-    func deletePolicyPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Policy>
-
     /// See `PoliciesClient.listPolicies`.
     func listPolicies(
       request: ListPoliciesRequest, options: GoogleGax.RequestOptions

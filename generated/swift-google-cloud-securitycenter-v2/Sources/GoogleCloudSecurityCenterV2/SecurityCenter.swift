@@ -529,15 +529,6 @@ extension Clients {
   /// `some SecurityCenterProtocol` or `any SecurityCenterProtocol`
   /// and pass a mock implementation in your tests.
   public protocol SecurityCenterProtocol: Sendable {
-    /// See `SecurityCenterClient.bulkMuteFindings`.
-    func bulkMuteFindingsPollingUntilDone(request: BulkMuteFindingsRequest) async throws
-      -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse>
-
-    /// See `SecurityCenterClient.bulkMuteFindings`.
-    func bulkMuteFindingsPollingUntilDone(
-      parent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse>
-
     /// See `SecurityCenterClient.batchCreateResourceValueConfigs`.
     func batchCreateResourceValueConfigs(
       request: BatchCreateResourceValueConfigsRequest, options: GoogleGax.RequestOptions

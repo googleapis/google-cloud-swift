@@ -231,27 +231,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol NodeGroupControllerProtocol: Sendable {
     /// See `NodeGroupControllerClient.createNodeGroup`.
-    func createNodeGroupPollingUntilDone(request: CreateNodeGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<NodeGroup>
-
-    /// See `NodeGroupControllerClient.createNodeGroup`.
-    func createNodeGroupPollingUntilDone(
-      parent: Swift.String,
-      nodeGroup: NodeGroup?,
-      nodeGroupId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
-
-    /// See `NodeGroupControllerClient.resizeNodeGroup`.
-    func resizeNodeGroupPollingUntilDone(request: ResizeNodeGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<NodeGroup>
-
-    /// See `NodeGroupControllerClient.resizeNodeGroup`.
-    func resizeNodeGroupPollingUntilDone(
-      name: Swift.String,
-      size: Swift.Int32,
-    ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
-
-    /// See `NodeGroupControllerClient.createNodeGroup`.
     func createNodeGroup(
       request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

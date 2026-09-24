@@ -210,25 +210,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ModelServiceProtocol: Sendable {
     /// See `ModelServiceClient.createModel`.
-    func createModelPollingUntilDone(request: CreateModelRequest) async throws -> any GoogleGax
-      .PollableOperation<Model>
-
-    /// See `ModelServiceClient.createModel`.
-    func createModelPollingUntilDone(
-      parent: Swift.String,
-      model: Model?,
-    ) async throws -> any GoogleGax.PollableOperation<Model>
-
-    /// See `ModelServiceClient.tuneModel`.
-    func tuneModelPollingUntilDone(request: TuneModelRequest) async throws -> any GoogleGax
-      .PollableOperation<TuneModelResponse>
-
-    /// See `ModelServiceClient.tuneModel`.
-    func tuneModelPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse>
-
-    /// See `ModelServiceClient.createModel`.
     func createModel(
       request: CreateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

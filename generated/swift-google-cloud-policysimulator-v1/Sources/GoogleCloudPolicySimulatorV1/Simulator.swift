@@ -150,16 +150,6 @@ extension Clients {
   /// `some SimulatorProtocol` or `any SimulatorProtocol`
   /// and pass a mock implementation in your tests.
   public protocol SimulatorProtocol: Sendable {
-    /// See `SimulatorClient.createReplay`.
-    func createReplayPollingUntilDone(request: CreateReplayRequest) async throws -> any GoogleGax
-      .PollableOperation<Replay>
-
-    /// See `SimulatorClient.createReplay`.
-    func createReplayPollingUntilDone(
-      parent: Swift.String,
-      replay: Replay?,
-    ) async throws -> any GoogleGax.PollableOperation<Replay>
-
     /// See `SimulatorClient.getReplay`.
     func getReplay(
       request: GetReplayRequest, options: GoogleGax.RequestOptions

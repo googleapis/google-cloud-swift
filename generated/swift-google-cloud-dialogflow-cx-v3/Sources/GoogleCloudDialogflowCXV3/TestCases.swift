@@ -442,22 +442,6 @@
     /// `some TestCasesProtocol` or `any TestCasesProtocol`
     /// and pass a mock implementation in your tests.
     public protocol TestCasesProtocol: Sendable {
-      /// See `TestCasesClient.runTestCase`.
-      func runTestCasePollingUntilDone(request: RunTestCaseRequest) async throws -> any GoogleGax
-        .PollableOperation<RunTestCaseResponse>
-
-      /// See `TestCasesClient.batchRunTestCases`.
-      func batchRunTestCasesPollingUntilDone(request: BatchRunTestCasesRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchRunTestCasesResponse>
-
-      /// See `TestCasesClient.importTestCases`.
-      func importTestCasesPollingUntilDone(request: ImportTestCasesRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportTestCasesResponse>
-
-      /// See `TestCasesClient.exportTestCases`.
-      func exportTestCasesPollingUntilDone(request: ExportTestCasesRequest) async throws
-        -> any GoogleGax.PollableOperation<ExportTestCasesResponse>
-
       /// See `TestCasesClient.listTestCases`.
       func listTestCases(
         request: ListTestCasesRequest, options: GoogleGax.RequestOptions

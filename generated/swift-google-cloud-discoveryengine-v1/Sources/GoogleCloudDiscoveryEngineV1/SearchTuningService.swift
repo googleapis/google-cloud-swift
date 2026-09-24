@@ -130,10 +130,6 @@
     /// and pass a mock implementation in your tests.
     public protocol SearchTuningServiceProtocol: Sendable {
       /// See `SearchTuningServiceClient.trainCustomModel`.
-      func trainCustomModelPollingUntilDone(request: TrainCustomModelRequest) async throws
-        -> any GoogleGax.PollableOperation<TrainCustomModelResponse>
-
-      /// See `SearchTuningServiceClient.trainCustomModel`.
       func trainCustomModel(
         request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

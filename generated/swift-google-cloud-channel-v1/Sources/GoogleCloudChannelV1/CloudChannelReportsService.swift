@@ -240,11 +240,6 @@ extension Clients {
   public protocol CloudChannelReportsServiceProtocol: Sendable {
     /// See `CloudChannelReportsServiceClient.runReportJob`.
     @available(*, deprecated)
-    func runReportJobPollingUntilDone(request: RunReportJobRequest) async throws -> any GoogleGax
-      .PollableOperation<RunReportJobResponse>
-
-    /// See `CloudChannelReportsServiceClient.runReportJob`.
-    @available(*, deprecated)
     func runReportJob(
       request: RunReportJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

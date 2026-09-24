@@ -324,46 +324,6 @@ extension Clients {
   /// `some AppConnectorsServiceProtocol` or `any AppConnectorsServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AppConnectorsServiceProtocol: Sendable {
-    /// See `AppConnectorsServiceClient.createAppConnector`.
-    func createAppConnectorPollingUntilDone(request: CreateAppConnectorRequest) async throws
-      -> any GoogleGax.PollableOperation<AppConnector>
-
-    /// See `AppConnectorsServiceClient.createAppConnector`.
-    func createAppConnectorPollingUntilDone(
-      parent: Swift.String,
-      appConnector: AppConnector?,
-      appConnectorId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AppConnector>
-
-    /// See `AppConnectorsServiceClient.updateAppConnector`.
-    func updateAppConnectorPollingUntilDone(request: UpdateAppConnectorRequest) async throws
-      -> any GoogleGax.PollableOperation<AppConnector>
-
-    /// See `AppConnectorsServiceClient.updateAppConnector`.
-    func updateAppConnectorPollingUntilDone(
-      appConnector: AppConnector?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<AppConnector>
-
-    /// See `AppConnectorsServiceClient.deleteAppConnector`.
-    func deleteAppConnectorPollingUntilDone(request: DeleteAppConnectorRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppConnectorsServiceClient.deleteAppConnector`.
-    func deleteAppConnectorPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AppConnectorsServiceClient.reportStatus`.
-    func reportStatusPollingUntilDone(request: ReportStatusRequest) async throws -> any GoogleGax
-      .PollableOperation<AppConnector>
-
-    /// See `AppConnectorsServiceClient.reportStatus`.
-    func reportStatusPollingUntilDone(
-      appConnector: Swift.String,
-      resourceInfo: ResourceInfo?,
-    ) async throws -> any GoogleGax.PollableOperation<AppConnector>
-
     /// See `AppConnectorsServiceClient.listAppConnectors`.
     func listAppConnectors(
       request: ListAppConnectorsRequest, options: GoogleGax.RequestOptions

@@ -238,18 +238,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ConsumerProcurementServiceProtocol: Sendable {
     /// See `ConsumerProcurementServiceClient.placeOrder`.
-    func placeOrderPollingUntilDone(request: PlaceOrderRequest) async throws -> any GoogleGax
-      .PollableOperation<Order>
-
-    /// See `ConsumerProcurementServiceClient.modifyOrder`.
-    func modifyOrderPollingUntilDone(request: ModifyOrderRequest) async throws -> any GoogleGax
-      .PollableOperation<Order>
-
-    /// See `ConsumerProcurementServiceClient.cancelOrder`.
-    func cancelOrderPollingUntilDone(request: CancelOrderRequest) async throws -> any GoogleGax
-      .PollableOperation<Order>
-
-    /// See `ConsumerProcurementServiceClient.placeOrder`.
     func placeOrder(
       request: PlaceOrderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

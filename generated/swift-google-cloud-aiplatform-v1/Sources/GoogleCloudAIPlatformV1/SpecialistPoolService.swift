@@ -294,35 +294,6 @@
     /// and pass a mock implementation in your tests.
     public protocol SpecialistPoolServiceProtocol: Sendable {
       /// See `SpecialistPoolServiceClient.createSpecialistPool`.
-      func createSpecialistPoolPollingUntilDone(request: CreateSpecialistPoolRequest) async throws
-        -> any GoogleGax.PollableOperation<SpecialistPool>
-
-      /// See `SpecialistPoolServiceClient.createSpecialistPool`.
-      func createSpecialistPoolPollingUntilDone(
-        parent: Swift.String,
-        specialistPool: SpecialistPool?,
-      ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
-
-      /// See `SpecialistPoolServiceClient.deleteSpecialistPool`.
-      func deleteSpecialistPoolPollingUntilDone(request: DeleteSpecialistPoolRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `SpecialistPoolServiceClient.deleteSpecialistPool`.
-      func deleteSpecialistPoolPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
-      func updateSpecialistPoolPollingUntilDone(request: UpdateSpecialistPoolRequest) async throws
-        -> any GoogleGax.PollableOperation<SpecialistPool>
-
-      /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
-      func updateSpecialistPoolPollingUntilDone(
-        specialistPool: SpecialistPool?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
-
-      /// See `SpecialistPoolServiceClient.createSpecialistPool`.
       func createSpecialistPool(
         request: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

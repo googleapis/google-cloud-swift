@@ -276,11 +276,6 @@ extension Clients {
   /// `some EchoProtocol` or `any EchoProtocol`
   /// and pass a mock implementation in your tests.
   public protocol EchoProtocol: Sendable {
-    /// See `EchoClient.wait`.
-    func waitPollingUntilDone(request: WaitRequest) async throws -> any GoogleGax.PollableOperation<
-      WaitResponse
-    >
-
     /// See `EchoClient.echo`.
     func echo(
       request: EchoRequest, options: GoogleGax.RequestOptions

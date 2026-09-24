@@ -202,16 +202,6 @@ extension Clients {
   /// `some WebRiskServiceProtocol` or `any WebRiskServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol WebRiskServiceProtocol: Sendable {
-    /// See `WebRiskServiceClient.submitUri`.
-    func submitUriPollingUntilDone(request: SubmitUriRequest) async throws -> any GoogleGax
-      .PollableOperation<Submission>
-
-    /// See `WebRiskServiceClient.submitUri`.
-    func submitUriPollingUntilDone(
-      parent: Swift.String,
-      submission: Submission?,
-    ) async throws -> any GoogleGax.PollableOperation<Submission>
-
     /// See `WebRiskServiceClient.computeThreatListDiff`.
     func computeThreatListDiff(
       request: ComputeThreatListDiffRequest, options: GoogleGax.RequestOptions

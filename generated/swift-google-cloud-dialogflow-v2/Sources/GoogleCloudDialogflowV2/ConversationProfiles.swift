@@ -327,39 +327,6 @@
     /// `some ConversationProfilesProtocol` or `any ConversationProfilesProtocol`
     /// and pass a mock implementation in your tests.
     public protocol ConversationProfilesProtocol: Sendable {
-      /// See `ConversationProfilesClient.setSuggestionFeatureConfig`.
-      func setSuggestionFeatureConfigPollingUntilDone(request: SetSuggestionFeatureConfigRequest)
-        async throws -> any GoogleGax.PollableOperation<ConversationProfile>
-
-      /// See `ConversationProfilesClient.setSuggestionFeatureConfig`.
-      func setSuggestionFeatureConfigPollingUntilDone(
-        conversationProfile: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationProfile>
-
-      /// See `ConversationProfilesClient.setSuggestionFeatureConfig`.
-      func setSuggestionFeatureConfigPollingUntilDone(
-        conversationProfile: Swift.String,
-        participantRole: Participant.Role,
-        suggestionFeatureConfig: HumanAgentAssistantConfig.SuggestionFeatureConfig?,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationProfile>
-
-      /// See `ConversationProfilesClient.clearSuggestionFeatureConfig`.
-      func clearSuggestionFeatureConfigPollingUntilDone(
-        request: ClearSuggestionFeatureConfigRequest
-      ) async throws -> any GoogleGax.PollableOperation<ConversationProfile>
-
-      /// See `ConversationProfilesClient.clearSuggestionFeatureConfig`.
-      func clearSuggestionFeatureConfigPollingUntilDone(
-        conversationProfile: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationProfile>
-
-      /// See `ConversationProfilesClient.clearSuggestionFeatureConfig`.
-      func clearSuggestionFeatureConfigPollingUntilDone(
-        conversationProfile: Swift.String,
-        participantRole: Participant.Role,
-        suggestionFeatureType: SuggestionFeature.Type_,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationProfile>
-
       /// See `ConversationProfilesClient.listConversationProfiles`.
       func listConversationProfiles(
         request: ListConversationProfilesRequest, options: GoogleGax.RequestOptions

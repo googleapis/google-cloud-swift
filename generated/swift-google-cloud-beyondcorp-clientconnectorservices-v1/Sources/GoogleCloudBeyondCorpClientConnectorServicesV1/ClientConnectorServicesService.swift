@@ -292,36 +292,6 @@ extension Clients {
   /// `some ClientConnectorServicesServiceProtocol` or `any ClientConnectorServicesServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ClientConnectorServicesServiceProtocol: Sendable {
-    /// See `ClientConnectorServicesServiceClient.createClientConnectorService`.
-    func createClientConnectorServicePollingUntilDone(request: CreateClientConnectorServiceRequest)
-      async throws -> any GoogleGax.PollableOperation<ClientConnectorService>
-
-    /// See `ClientConnectorServicesServiceClient.createClientConnectorService`.
-    func createClientConnectorServicePollingUntilDone(
-      parent: Swift.String,
-      clientConnectorService: ClientConnectorService?,
-      clientConnectorServiceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService>
-
-    /// See `ClientConnectorServicesServiceClient.updateClientConnectorService`.
-    func updateClientConnectorServicePollingUntilDone(request: UpdateClientConnectorServiceRequest)
-      async throws -> any GoogleGax.PollableOperation<ClientConnectorService>
-
-    /// See `ClientConnectorServicesServiceClient.updateClientConnectorService`.
-    func updateClientConnectorServicePollingUntilDone(
-      clientConnectorService: ClientConnectorService?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService>
-
-    /// See `ClientConnectorServicesServiceClient.deleteClientConnectorService`.
-    func deleteClientConnectorServicePollingUntilDone(request: DeleteClientConnectorServiceRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ClientConnectorServicesServiceClient.deleteClientConnectorService`.
-    func deleteClientConnectorServicePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ClientConnectorServicesServiceClient.listClientConnectorServices`.
     func listClientConnectorServices(
       request: ListClientConnectorServicesRequest, options: GoogleGax.RequestOptions

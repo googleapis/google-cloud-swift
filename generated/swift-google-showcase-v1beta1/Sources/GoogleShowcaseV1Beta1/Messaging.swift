@@ -285,16 +285,6 @@ extension Clients {
   /// `some MessagingProtocol` or `any MessagingProtocol`
   /// and pass a mock implementation in your tests.
   public protocol MessagingProtocol: Sendable {
-    /// See `MessagingClient.searchBlurbs`.
-    func searchBlurbsPollingUntilDone(request: SearchBlurbsRequest) async throws -> any GoogleGax
-      .PollableOperation<SearchBlurbsResponse>
-
-    /// See `MessagingClient.searchBlurbs`.
-    func searchBlurbsPollingUntilDone(
-      parent: Swift.String,
-      query: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse>
-
     /// See `MessagingClient.createRoom`.
     func createRoom(
       request: CreateRoomRequest, options: GoogleGax.RequestOptions

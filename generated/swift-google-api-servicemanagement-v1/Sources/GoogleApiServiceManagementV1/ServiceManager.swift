@@ -492,54 +492,6 @@ extension Clients {
   /// `some ServiceManagerProtocol` or `any ServiceManagerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ServiceManagerProtocol: Sendable {
-    /// See `ServiceManagerClient.createService`.
-    func createServicePollingUntilDone(request: CreateServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<ManagedService>
-
-    /// See `ServiceManagerClient.createService`.
-    func createServicePollingUntilDone(
-      service: ManagedService?,
-    ) async throws -> any GoogleGax.PollableOperation<ManagedService>
-
-    /// See `ServiceManagerClient.deleteService`.
-    func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `ServiceManagerClient.deleteService`.
-    func deleteServicePollingUntilDone(
-      serviceName: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ServiceManagerClient.undeleteService`.
-    func undeleteServicePollingUntilDone(request: UndeleteServiceRequest) async throws
-      -> any GoogleGax.PollableOperation<UndeleteServiceResponse>
-
-    /// See `ServiceManagerClient.undeleteService`.
-    func undeleteServicePollingUntilDone(
-      serviceName: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<UndeleteServiceResponse>
-
-    /// See `ServiceManagerClient.submitConfigSource`.
-    func submitConfigSourcePollingUntilDone(request: SubmitConfigSourceRequest) async throws
-      -> any GoogleGax.PollableOperation<SubmitConfigSourceResponse>
-
-    /// See `ServiceManagerClient.submitConfigSource`.
-    func submitConfigSourcePollingUntilDone(
-      serviceName: Swift.String,
-      configSource: ConfigSource?,
-      validateOnly: Swift.Bool,
-    ) async throws -> any GoogleGax.PollableOperation<SubmitConfigSourceResponse>
-
-    /// See `ServiceManagerClient.createServiceRollout`.
-    func createServiceRolloutPollingUntilDone(request: CreateServiceRolloutRequest) async throws
-      -> any GoogleGax.PollableOperation<Rollout>
-
-    /// See `ServiceManagerClient.createServiceRollout`.
-    func createServiceRolloutPollingUntilDone(
-      serviceName: Swift.String,
-      rollout: Rollout?,
-    ) async throws -> any GoogleGax.PollableOperation<Rollout>
-
     /// See `ServiceManagerClient.listServices`.
     func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions

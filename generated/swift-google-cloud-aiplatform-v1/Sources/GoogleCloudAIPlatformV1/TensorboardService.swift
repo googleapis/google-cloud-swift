@@ -594,62 +594,6 @@
     /// and pass a mock implementation in your tests.
     public protocol TensorboardServiceProtocol: Sendable {
       /// See `TensorboardServiceClient.createTensorboard`.
-      func createTensorboardPollingUntilDone(request: CreateTensorboardRequest) async throws
-        -> any GoogleGax.PollableOperation<Tensorboard>
-
-      /// See `TensorboardServiceClient.createTensorboard`.
-      func createTensorboardPollingUntilDone(
-        parent: Swift.String,
-        tensorboard: Tensorboard?,
-      ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
-
-      /// See `TensorboardServiceClient.updateTensorboard`.
-      func updateTensorboardPollingUntilDone(request: UpdateTensorboardRequest) async throws
-        -> any GoogleGax.PollableOperation<Tensorboard>
-
-      /// See `TensorboardServiceClient.updateTensorboard`.
-      func updateTensorboardPollingUntilDone(
-        tensorboard: Tensorboard?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
-
-      /// See `TensorboardServiceClient.deleteTensorboard`.
-      func deleteTensorboardPollingUntilDone(request: DeleteTensorboardRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboard`.
-      func deleteTensorboardPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
-      func deleteTensorboardExperimentPollingUntilDone(request: DeleteTensorboardExperimentRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
-      func deleteTensorboardExperimentPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboardRun`.
-      func deleteTensorboardRunPollingUntilDone(request: DeleteTensorboardRunRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboardRun`.
-      func deleteTensorboardRunPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
-      func deleteTensorboardTimeSeriesPollingUntilDone(request: DeleteTensorboardTimeSeriesRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
-      func deleteTensorboardTimeSeriesPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(
         request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

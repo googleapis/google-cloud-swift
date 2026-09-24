@@ -200,26 +200,6 @@
     /// and pass a mock implementation in your tests.
     public protocol EngineServiceProtocol: Sendable {
       /// See `EngineServiceClient.createEngine`.
-      func createEnginePollingUntilDone(request: CreateEngineRequest) async throws -> any GoogleGax
-        .PollableOperation<Engine>
-
-      /// See `EngineServiceClient.createEngine`.
-      func createEnginePollingUntilDone(
-        parent: Swift.String,
-        engine: Engine?,
-        engineId: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Engine>
-
-      /// See `EngineServiceClient.deleteEngine`.
-      func deleteEnginePollingUntilDone(request: DeleteEngineRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
-      /// See `EngineServiceClient.deleteEngine`.
-      func deleteEnginePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `EngineServiceClient.createEngine`.
       func createEngine(
         request: CreateEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

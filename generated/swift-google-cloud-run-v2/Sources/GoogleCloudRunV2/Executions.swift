@@ -182,24 +182,6 @@ extension Clients {
   /// `some ExecutionsProtocol` or `any ExecutionsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ExecutionsProtocol: Sendable {
-    /// See `ExecutionsClient.deleteExecution`.
-    func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws
-      -> any GoogleGax.PollableOperation<Execution>
-
-    /// See `ExecutionsClient.deleteExecution`.
-    func deleteExecutionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Execution>
-
-    /// See `ExecutionsClient.cancelExecution`.
-    func cancelExecutionPollingUntilDone(request: CancelExecutionRequest) async throws
-      -> any GoogleGax.PollableOperation<Execution>
-
-    /// See `ExecutionsClient.cancelExecution`.
-    func cancelExecutionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Execution>
-
     /// See `ExecutionsClient.getExecution`.
     func getExecution(
       request: GetExecutionRequest, options: GoogleGax.RequestOptions

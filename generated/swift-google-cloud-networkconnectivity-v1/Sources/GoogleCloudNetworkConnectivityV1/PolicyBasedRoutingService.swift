@@ -243,26 +243,6 @@ extension Clients {
   /// `some PolicyBasedRoutingServiceProtocol` or `any PolicyBasedRoutingServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol PolicyBasedRoutingServiceProtocol: Sendable {
-    /// See `PolicyBasedRoutingServiceClient.createPolicyBasedRoute`.
-    func createPolicyBasedRoutePollingUntilDone(request: CreatePolicyBasedRouteRequest) async throws
-      -> any GoogleGax.PollableOperation<PolicyBasedRoute>
-
-    /// See `PolicyBasedRoutingServiceClient.createPolicyBasedRoute`.
-    func createPolicyBasedRoutePollingUntilDone(
-      parent: Swift.String,
-      policyBasedRoute: PolicyBasedRoute?,
-      policyBasedRouteId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PolicyBasedRoute>
-
-    /// See `PolicyBasedRoutingServiceClient.deletePolicyBasedRoute`.
-    func deletePolicyBasedRoutePollingUntilDone(request: DeletePolicyBasedRouteRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `PolicyBasedRoutingServiceClient.deletePolicyBasedRoute`.
-    func deletePolicyBasedRoutePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `PolicyBasedRoutingServiceClient.listPolicyBasedRoutes`.
     func listPolicyBasedRoutes(
       request: ListPolicyBasedRoutesRequest, options: GoogleGax.RequestOptions

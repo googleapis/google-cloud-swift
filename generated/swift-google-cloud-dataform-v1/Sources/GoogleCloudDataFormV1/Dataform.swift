@@ -939,46 +939,6 @@ extension Clients {
   /// `some DataformProtocol` or `any DataformProtocol`
   /// and pass a mock implementation in your tests.
   public protocol DataformProtocol: Sendable {
-    /// See `DataformClient.deleteTeamFolderTree`.
-    func deleteTeamFolderTreePollingUntilDone(request: DeleteTeamFolderTreeRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataformClient.deleteTeamFolderTree`.
-    func deleteTeamFolderTreePollingUntilDone(
-      name: Swift.String,
-      force: Swift.Bool,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataformClient.deleteFolderTree`.
-    func deleteFolderTreePollingUntilDone(request: DeleteFolderTreeRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataformClient.deleteFolderTree`.
-    func deleteFolderTreePollingUntilDone(
-      name: Swift.String,
-      force: Swift.Bool,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataformClient.moveFolder`.
-    func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `DataformClient.moveFolder`.
-    func moveFolderPollingUntilDone(
-      name: Swift.String,
-      destinationContainingFolder: Swift.String?,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataformClient.moveRepository`.
-    func moveRepositoryPollingUntilDone(request: MoveRepositoryRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataformClient.moveRepository`.
-    func moveRepositoryPollingUntilDone(
-      name: Swift.String,
-      destinationContainingFolder: Swift.String?,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `DataformClient.getTeamFolder`.
     func getTeamFolder(
       request: GetTeamFolderRequest, options: GoogleGax.RequestOptions

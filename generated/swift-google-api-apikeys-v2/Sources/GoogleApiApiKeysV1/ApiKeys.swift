@@ -277,40 +277,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ApiKeysProtocol: Sendable {
     /// See `ApiKeysClient.createKey`.
-    func createKeyPollingUntilDone(request: CreateKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<Key>
-
-    /// See `ApiKeysClient.createKey`.
-    func createKeyPollingUntilDone(
-      parent: Swift.String,
-      key: Key?,
-      keyId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Key>
-
-    /// See `ApiKeysClient.updateKey`.
-    func updateKeyPollingUntilDone(request: UpdateKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<Key>
-
-    /// See `ApiKeysClient.updateKey`.
-    func updateKeyPollingUntilDone(
-      key: Key?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Key>
-
-    /// See `ApiKeysClient.deleteKey`.
-    func deleteKeyPollingUntilDone(request: DeleteKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<Key>
-
-    /// See `ApiKeysClient.deleteKey`.
-    func deleteKeyPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Key>
-
-    /// See `ApiKeysClient.undeleteKey`.
-    func undeleteKeyPollingUntilDone(request: UndeleteKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<Key>
-
-    /// See `ApiKeysClient.createKey`.
     func createKey(
       request: CreateKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

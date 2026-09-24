@@ -362,32 +362,6 @@ extension Clients {
   /// `some WorkflowTemplateServiceProtocol` or `any WorkflowTemplateServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol WorkflowTemplateServiceProtocol: Sendable {
-    /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
-    func instantiateWorkflowTemplatePollingUntilDone(request: InstantiateWorkflowTemplateRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
-    func instantiateWorkflowTemplatePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
-    func instantiateWorkflowTemplatePollingUntilDone(
-      name: Swift.String,
-      parameters: [Swift.String: Swift.String],
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
-    func instantiateInlineWorkflowTemplatePollingUntilDone(
-      request: InstantiateInlineWorkflowTemplateRequest
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
-    func instantiateInlineWorkflowTemplatePollingUntilDone(
-      parent: Swift.String,
-      template: WorkflowTemplate?,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `WorkflowTemplateServiceClient.createWorkflowTemplate`.
     func createWorkflowTemplate(
       request: CreateWorkflowTemplateRequest, options: GoogleGax.RequestOptions

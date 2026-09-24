@@ -290,35 +290,6 @@
     /// and pass a mock implementation in your tests.
     public protocol ReasoningEngineServiceProtocol: Sendable {
       /// See `ReasoningEngineServiceClient.createReasoningEngine`.
-      func createReasoningEnginePollingUntilDone(request: CreateReasoningEngineRequest) async throws
-        -> any GoogleGax.PollableOperation<ReasoningEngine>
-
-      /// See `ReasoningEngineServiceClient.createReasoningEngine`.
-      func createReasoningEnginePollingUntilDone(
-        parent: Swift.String,
-        reasoningEngine: ReasoningEngine?,
-      ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
-
-      /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
-      func updateReasoningEnginePollingUntilDone(request: UpdateReasoningEngineRequest) async throws
-        -> any GoogleGax.PollableOperation<ReasoningEngine>
-
-      /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
-      func updateReasoningEnginePollingUntilDone(
-        reasoningEngine: ReasoningEngine?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
-
-      /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
-      func deleteReasoningEnginePollingUntilDone(request: DeleteReasoningEngineRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
-      func deleteReasoningEnginePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ReasoningEngineServiceClient.createReasoningEngine`.
       func createReasoningEngine(
         request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

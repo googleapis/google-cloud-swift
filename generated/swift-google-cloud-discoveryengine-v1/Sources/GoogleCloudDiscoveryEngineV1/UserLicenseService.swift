@@ -132,10 +132,6 @@
     /// `some UserLicenseServiceProtocol` or `any UserLicenseServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol UserLicenseServiceProtocol: Sendable {
-      /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
-      func batchUpdateUserLicensesPollingUntilDone(request: BatchUpdateUserLicensesRequest)
-        async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
-
       /// See `UserLicenseServiceClient.listUserLicenses`.
       func listUserLicenses(
         request: ListUserLicensesRequest, options: GoogleGax.RequestOptions

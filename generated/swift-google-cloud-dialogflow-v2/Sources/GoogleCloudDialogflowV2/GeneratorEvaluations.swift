@@ -183,16 +183,6 @@
     /// and pass a mock implementation in your tests.
     public protocol GeneratorEvaluationsProtocol: Sendable {
       /// See `GeneratorEvaluationsClient.createGeneratorEvaluation`.
-      func createGeneratorEvaluationPollingUntilDone(request: CreateGeneratorEvaluationRequest)
-        async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation>
-
-      /// See `GeneratorEvaluationsClient.createGeneratorEvaluation`.
-      func createGeneratorEvaluationPollingUntilDone(
-        parent: Swift.String,
-        generatorEvaluation: GeneratorEvaluation?,
-      ) async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation>
-
-      /// See `GeneratorEvaluationsClient.createGeneratorEvaluation`.
       func createGeneratorEvaluation(
         request: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

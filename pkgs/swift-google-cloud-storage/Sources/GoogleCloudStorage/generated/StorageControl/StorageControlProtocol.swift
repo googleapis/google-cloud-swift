@@ -308,13 +308,6 @@ public protocol StorageControlProtocol: Sendable {
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
   /// source and destination folders are locked until the long running operation
   /// completes.
-  func renameFolderPollingUntilDone(request: RenameFolderRequest) async throws -> any GoogleGax
-    .PollableOperation<Folder>
-
-  /// Renames a source folder to a destination folder. This operation is only
-  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
-  /// source and destination folders are locked until the long running operation
-  /// completes.
   func renameFolderPollingUntilDone(
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder>
@@ -324,11 +317,6 @@ public protocol StorageControlProtocol: Sendable {
   func deleteFolderRecursive(
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
-
-  /// Deletes a folder recursively. This operation is only applicable to a
-  /// hierarchical namespace enabled bucket.
-  func deleteFolderRecursivePollingUntilDone(request: DeleteFolderRecursiveRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
 
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
@@ -373,10 +361,6 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Creates an Anywhere Cache instance.
-  func createAnywhereCachePollingUntilDone(request: CreateAnywhereCacheRequest) async throws
-    -> any GoogleGax.PollableOperation<AnywhereCache>
-
-  /// Creates an Anywhere Cache instance.
   func createAnywhereCachePollingUntilDone(
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache>
@@ -386,11 +370,6 @@ public protocol StorageControlProtocol: Sendable {
   func updateAnywhereCache(
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
-
-  /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
-  /// `admission_policy`.
-  func updateAnywhereCachePollingUntilDone(request: UpdateAnywhereCacheRequest) async throws
-    -> any GoogleGax.PollableOperation<AnywhereCache>
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
@@ -432,10 +411,6 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Creates a Rapid Cache instance.
-  func createRapidCachePollingUntilDone(request: CreateRapidCacheRequest) async throws
-    -> any GoogleGax.PollableOperation<RapidCache>
-
-  /// Creates a Rapid Cache instance.
   func createRapidCachePollingUntilDone(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache>
@@ -446,10 +421,6 @@ public protocol StorageControlProtocol: Sendable {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Updates a Rapid Cache instance.
-  func updateRapidCachePollingUntilDone(request: UpdateRapidCacheRequest) async throws
-    -> any GoogleGax.PollableOperation<RapidCache>
-
-  /// Updates a Rapid Cache instance.
   func updateRapidCachePollingUntilDone(
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache>
@@ -458,10 +429,6 @@ public protocol StorageControlProtocol: Sendable {
   func disableRapidCache(
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
-
-  /// Disables a Rapid Cache instance.
-  func disableRapidCachePollingUntilDone(request: DisableRapidCacheRequest) async throws
-    -> any GoogleGax.PollableOperation<RapidCache>
 
   /// Disables a Rapid Cache instance.
   func disableRapidCachePollingUntilDone(

@@ -236,18 +236,6 @@ extension Clients {
   /// `some UserEventServiceProtocol` or `any UserEventServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol UserEventServiceProtocol: Sendable {
-    /// See `UserEventServiceClient.purgeUserEvents`.
-    func purgeUserEventsPollingUntilDone(request: PurgeUserEventsRequest) async throws
-      -> any GoogleGax.PollableOperation<PurgeUserEventsResponse>
-
-    /// See `UserEventServiceClient.importUserEvents`.
-    func importUserEventsPollingUntilDone(request: ImportUserEventsRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportUserEventsResponse>
-
-    /// See `UserEventServiceClient.rejoinUserEvents`.
-    func rejoinUserEventsPollingUntilDone(request: RejoinUserEventsRequest) async throws
-      -> any GoogleGax.PollableOperation<RejoinUserEventsResponse>
-
     /// See `UserEventServiceClient.writeUserEvent`.
     func writeUserEvent(
       request: WriteUserEventRequest, options: GoogleGax.RequestOptions

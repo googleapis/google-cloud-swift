@@ -269,30 +269,6 @@ extension Clients {
   /// `some InsightsConfigServiceProtocol` or `any InsightsConfigServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol InsightsConfigServiceProtocol: Sendable {
-    /// See `InsightsConfigServiceClient.createInsightsConfig`.
-    func createInsightsConfigPollingUntilDone(request: CreateInsightsConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<InsightsConfig>
-
-    /// See `InsightsConfigServiceClient.createInsightsConfig`.
-    func createInsightsConfigPollingUntilDone(
-      parent: Swift.String,
-      insightsConfig: InsightsConfig?,
-      insightsConfigId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<InsightsConfig>
-
-    /// See `InsightsConfigServiceClient.updateInsightsConfig`.
-    func updateInsightsConfigPollingUntilDone(request: UpdateInsightsConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<InsightsConfig>
-
-    /// See `InsightsConfigServiceClient.deleteInsightsConfig`.
-    func deleteInsightsConfigPollingUntilDone(request: DeleteInsightsConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `InsightsConfigServiceClient.deleteInsightsConfig`.
-    func deleteInsightsConfigPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `InsightsConfigServiceClient.listInsightsConfigs`.
     func listInsightsConfigs(
       request: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions

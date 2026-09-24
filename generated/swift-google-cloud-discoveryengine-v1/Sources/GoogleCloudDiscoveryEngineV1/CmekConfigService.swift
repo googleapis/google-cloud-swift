@@ -183,24 +183,6 @@
     /// and pass a mock implementation in your tests.
     public protocol CmekConfigServiceProtocol: Sendable {
       /// See `CmekConfigServiceClient.updateCmekConfig`.
-      func updateCmekConfigPollingUntilDone(request: UpdateCmekConfigRequest) async throws
-        -> any GoogleGax.PollableOperation<CmekConfig>
-
-      /// See `CmekConfigServiceClient.updateCmekConfig`.
-      func updateCmekConfigPollingUntilDone(
-        config: CmekConfig?,
-      ) async throws -> any GoogleGax.PollableOperation<CmekConfig>
-
-      /// See `CmekConfigServiceClient.deleteCmekConfig`.
-      func deleteCmekConfigPollingUntilDone(request: DeleteCmekConfigRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `CmekConfigServiceClient.deleteCmekConfig`.
-      func deleteCmekConfigPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `CmekConfigServiceClient.updateCmekConfig`.
       func updateCmekConfig(
         request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

@@ -412,46 +412,6 @@ extension Clients {
   /// `some ConnectorsProtocol` or `any ConnectorsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ConnectorsProtocol: Sendable {
-    /// See `ConnectorsClient.createConnection`.
-    func createConnectionPollingUntilDone(request: CreateConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `ConnectorsClient.createConnection`.
-    func createConnectionPollingUntilDone(
-      parent: Swift.String,
-      connection: Connection?,
-      connectionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `ConnectorsClient.updateConnection`.
-    func updateConnectionPollingUntilDone(request: UpdateConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `ConnectorsClient.updateConnection`.
-    func updateConnectionPollingUntilDone(
-      connection: Connection?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `ConnectorsClient.deleteConnection`.
-    func deleteConnectionPollingUntilDone(request: DeleteConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConnectorsClient.deleteConnection`.
-    func deleteConnectionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ConnectorsClient.refreshConnectionSchemaMetadata`.
-    func refreshConnectionSchemaMetadataPollingUntilDone(
-      request: RefreshConnectionSchemaMetadataRequest
-    ) async throws -> any GoogleGax.PollableOperation<ConnectionSchemaMetadata>
-
-    /// See `ConnectorsClient.refreshConnectionSchemaMetadata`.
-    func refreshConnectionSchemaMetadataPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ConnectionSchemaMetadata>
-
     /// See `ConnectorsClient.listConnections`.
     func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions

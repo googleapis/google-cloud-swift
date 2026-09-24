@@ -299,14 +299,6 @@
     /// `some IntentsProtocol` or `any IntentsProtocol`
     /// and pass a mock implementation in your tests.
     public protocol IntentsProtocol: Sendable {
-      /// See `IntentsClient.importIntents`.
-      func importIntentsPollingUntilDone(request: ImportIntentsRequest) async throws
-        -> any GoogleGax.PollableOperation<ImportIntentsResponse>
-
-      /// See `IntentsClient.exportIntents`.
-      func exportIntentsPollingUntilDone(request: ExportIntentsRequest) async throws
-        -> any GoogleGax.PollableOperation<ExportIntentsResponse>
-
       /// See `IntentsClient.listIntents`.
       func listIntents(
         request: ListIntentsRequest, options: GoogleGax.RequestOptions

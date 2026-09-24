@@ -299,32 +299,6 @@
     /// and pass a mock implementation in your tests.
     public protocol SessionServiceProtocol: Sendable {
       /// See `SessionServiceClient.createSession`.
-      func createSessionPollingUntilDone(request: CreateSessionRequest) async throws
-        -> any GoogleGax.PollableOperation<Session>
-
-      /// See `SessionServiceClient.createSession`.
-      func createSessionPollingUntilDone(
-        parent: Swift.String,
-        session: Session?,
-      ) async throws -> any GoogleGax.PollableOperation<Session>
-
-      /// See `SessionServiceClient.createSession`.
-      func createSessionPollingUntilDone(
-        parent: Swift.String,
-        session: Session?,
-        sessionId: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Session>
-
-      /// See `SessionServiceClient.deleteSession`.
-      func deleteSessionPollingUntilDone(request: DeleteSessionRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `SessionServiceClient.deleteSession`.
-      func deleteSessionPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `SessionServiceClient.createSession`.
       func createSession(
         request: CreateSessionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

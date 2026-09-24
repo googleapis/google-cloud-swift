@@ -147,15 +147,6 @@ extension Clients {
   /// `some RevisionsProtocol` or `any RevisionsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol RevisionsProtocol: Sendable {
-    /// See `RevisionsClient.deleteRevision`.
-    func deleteRevisionPollingUntilDone(request: DeleteRevisionRequest) async throws
-      -> any GoogleGax.PollableOperation<Revision>
-
-    /// See `RevisionsClient.deleteRevision`.
-    func deleteRevisionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Revision>
-
     /// See `RevisionsClient.getRevision`.
     func getRevision(
       request: GetRevisionRequest, options: GoogleGax.RequestOptions

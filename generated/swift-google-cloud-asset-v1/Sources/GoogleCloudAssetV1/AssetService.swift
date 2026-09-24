@@ -452,14 +452,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AssetServiceProtocol: Sendable {
     /// See `AssetServiceClient.exportAssets`.
-    func exportAssetsPollingUntilDone(request: ExportAssetsRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportAssetsResponse>
-
-    /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
-    func analyzeIamPolicyLongrunningPollingUntilDone(request: AnalyzeIamPolicyLongrunningRequest)
-      async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse>
-
-    /// See `AssetServiceClient.exportAssets`.
     func exportAssets(
       request: ExportAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -379,44 +379,6 @@ extension Clients {
   /// `some HsmManagementProtocol` or `any HsmManagementProtocol`
   /// and pass a mock implementation in your tests.
   public protocol HsmManagementProtocol: Sendable {
-    /// See `HsmManagementClient.createSingleTenantHsmInstance`.
-    func createSingleTenantHsmInstancePollingUntilDone(
-      request: CreateSingleTenantHsmInstanceRequest
-    ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
-
-    /// See `HsmManagementClient.createSingleTenantHsmInstance`.
-    func createSingleTenantHsmInstancePollingUntilDone(
-      parent: Swift.String,
-      singleTenantHsmInstance: SingleTenantHsmInstance?,
-      singleTenantHsmInstanceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
-
-    /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
-    func createSingleTenantHsmInstanceProposalPollingUntilDone(
-      request: CreateSingleTenantHsmInstanceProposalRequest
-    ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
-
-    /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
-    func createSingleTenantHsmInstanceProposalPollingUntilDone(
-      parent: Swift.String,
-      singleTenantHsmInstanceProposal: SingleTenantHsmInstanceProposal?,
-      singleTenantHsmInstanceProposalId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
-
-    /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
-    func executeSingleTenantHsmInstanceProposalPollingUntilDone(
-      request: ExecuteSingleTenantHsmInstanceProposalRequest
-    ) async throws -> any GoogleGax.PollableOperation<
-      ExecuteSingleTenantHsmInstanceProposalResponse
-    >
-
-    /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
-    func executeSingleTenantHsmInstanceProposalPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<
-      ExecuteSingleTenantHsmInstanceProposalResponse
-    >
-
     /// See `HsmManagementClient.listSingleTenantHsmInstances`.
     func listSingleTenantHsmInstances(
       request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions

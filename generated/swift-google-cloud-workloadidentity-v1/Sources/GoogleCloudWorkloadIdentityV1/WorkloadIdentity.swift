@@ -168,15 +168,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WorkloadIdentityProtocol: Sendable {
     /// See `WorkloadIdentityClient.generateServiceAgents`.
-    func generateServiceAgentsPollingUntilDone(request: GenerateServiceAgentsRequest) async throws
-      -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
-
-    /// See `WorkloadIdentityClient.generateServiceAgents`.
-    func generateServiceAgentsPollingUntilDone(
-      parent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
-
-    /// See `WorkloadIdentityClient.generateServiceAgents`.
     func generateServiceAgents(
       request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

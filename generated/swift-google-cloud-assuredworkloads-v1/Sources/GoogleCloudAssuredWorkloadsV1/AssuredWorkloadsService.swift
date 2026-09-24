@@ -165,16 +165,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AssuredWorkloadsServiceProtocol: Sendable {
     /// See `AssuredWorkloadsServiceClient.createWorkload`.
-    func createWorkloadPollingUntilDone(request: CreateWorkloadRequest) async throws
-      -> any GoogleGax.PollableOperation<Workload>
-
-    /// See `AssuredWorkloadsServiceClient.createWorkload`.
-    func createWorkloadPollingUntilDone(
-      parent: Swift.String,
-      workload: Workload?,
-    ) async throws -> any GoogleGax.PollableOperation<Workload>
-
-    /// See `AssuredWorkloadsServiceClient.createWorkload`.
     func createWorkload(
       request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -181,26 +181,6 @@ extension Clients {
   /// `some IDSProtocol` or `any IDSProtocol`
   /// and pass a mock implementation in your tests.
   public protocol IDSProtocol: Sendable {
-    /// See `IDSClient.createEndpoint`.
-    func createEndpointPollingUntilDone(request: CreateEndpointRequest) async throws
-      -> any GoogleGax.PollableOperation<Endpoint>
-
-    /// See `IDSClient.createEndpoint`.
-    func createEndpointPollingUntilDone(
-      parent: Swift.String,
-      endpoint: Endpoint?,
-      endpointId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Endpoint>
-
-    /// See `IDSClient.deleteEndpoint`.
-    func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `IDSClient.deleteEndpoint`.
-    func deleteEndpointPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `IDSClient.listEndpoints`.
     func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions

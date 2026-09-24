@@ -224,30 +224,6 @@
     /// `some SchemaServiceProtocol` or `any SchemaServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol SchemaServiceProtocol: Sendable {
-      /// See `SchemaServiceClient.createSchema`.
-      func createSchemaPollingUntilDone(request: CreateSchemaRequest) async throws -> any GoogleGax
-        .PollableOperation<Schema>
-
-      /// See `SchemaServiceClient.createSchema`.
-      func createSchemaPollingUntilDone(
-        parent: Swift.String,
-        schema: Schema?,
-        schemaId: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Schema>
-
-      /// See `SchemaServiceClient.updateSchema`.
-      func updateSchemaPollingUntilDone(request: UpdateSchemaRequest) async throws -> any GoogleGax
-        .PollableOperation<Schema>
-
-      /// See `SchemaServiceClient.deleteSchema`.
-      func deleteSchemaPollingUntilDone(request: DeleteSchemaRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
-      /// See `SchemaServiceClient.deleteSchema`.
-      func deleteSchemaPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
       /// See `SchemaServiceClient.getSchema`.
       func getSchema(
         request: GetSchemaRequest, options: GoogleGax.RequestOptions

@@ -198,14 +198,6 @@ extension Clients {
   /// `some InstancesProtocol` or `any InstancesProtocol`
   /// and pass a mock implementation in your tests.
   public protocol InstancesProtocol: Sendable {
-    /// See `InstancesClient.deleteInstance`.
-    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `InstancesClient.debugInstance`.
-    func debugInstancePollingUntilDone(request: DebugInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
-
     /// See `InstancesClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions

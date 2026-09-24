@@ -242,34 +242,6 @@ extension Clients {
   /// `some TagKeysProtocol` or `any TagKeysProtocol`
   /// and pass a mock implementation in your tests.
   public protocol TagKeysProtocol: Sendable {
-    /// See `TagKeysClient.createTagKey`.
-    func createTagKeyPollingUntilDone(request: CreateTagKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<TagKey>
-
-    /// See `TagKeysClient.createTagKey`.
-    func createTagKeyPollingUntilDone(
-      tagKey: TagKey?,
-    ) async throws -> any GoogleGax.PollableOperation<TagKey>
-
-    /// See `TagKeysClient.updateTagKey`.
-    func updateTagKeyPollingUntilDone(request: UpdateTagKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<TagKey>
-
-    /// See `TagKeysClient.updateTagKey`.
-    func updateTagKeyPollingUntilDone(
-      tagKey: TagKey?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<TagKey>
-
-    /// See `TagKeysClient.deleteTagKey`.
-    func deleteTagKeyPollingUntilDone(request: DeleteTagKeyRequest) async throws -> any GoogleGax
-      .PollableOperation<TagKey>
-
-    /// See `TagKeysClient.deleteTagKey`.
-    func deleteTagKeyPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<TagKey>
-
     /// See `TagKeysClient.listTagKeys`.
     func listTagKeys(
       request: ListTagKeysRequest, options: GoogleGax.RequestOptions

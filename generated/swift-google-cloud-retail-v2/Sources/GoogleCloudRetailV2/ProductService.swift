@@ -848,60 +848,6 @@ extension Clients {
   /// `some ProductServiceProtocol` or `any ProductServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ProductServiceProtocol: Sendable {
-    /// See `ProductServiceClient.purgeProducts`.
-    func purgeProductsPollingUntilDone(request: PurgeProductsRequest) async throws -> any GoogleGax
-      .PollableOperation<PurgeProductsResponse>
-
-    /// See `ProductServiceClient.importProducts`.
-    func importProductsPollingUntilDone(request: ImportProductsRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportProductsResponse>
-
-    /// See `ProductServiceClient.setInventory`.
-    func setInventoryPollingUntilDone(request: SetInventoryRequest) async throws -> any GoogleGax
-      .PollableOperation<SetInventoryResponse>
-
-    /// See `ProductServiceClient.setInventory`.
-    func setInventoryPollingUntilDone(
-      inventory: Product?,
-      setMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<SetInventoryResponse>
-
-    /// See `ProductServiceClient.addFulfillmentPlaces`.
-    func addFulfillmentPlacesPollingUntilDone(request: AddFulfillmentPlacesRequest) async throws
-      -> any GoogleGax.PollableOperation<AddFulfillmentPlacesResponse>
-
-    /// See `ProductServiceClient.addFulfillmentPlaces`.
-    func addFulfillmentPlacesPollingUntilDone(
-      product: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AddFulfillmentPlacesResponse>
-
-    /// See `ProductServiceClient.removeFulfillmentPlaces`.
-    func removeFulfillmentPlacesPollingUntilDone(request: RemoveFulfillmentPlacesRequest)
-      async throws -> any GoogleGax.PollableOperation<RemoveFulfillmentPlacesResponse>
-
-    /// See `ProductServiceClient.removeFulfillmentPlaces`.
-    func removeFulfillmentPlacesPollingUntilDone(
-      product: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<RemoveFulfillmentPlacesResponse>
-
-    /// See `ProductServiceClient.addLocalInventories`.
-    func addLocalInventoriesPollingUntilDone(request: AddLocalInventoriesRequest) async throws
-      -> any GoogleGax.PollableOperation<AddLocalInventoriesResponse>
-
-    /// See `ProductServiceClient.addLocalInventories`.
-    func addLocalInventoriesPollingUntilDone(
-      product: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<AddLocalInventoriesResponse>
-
-    /// See `ProductServiceClient.removeLocalInventories`.
-    func removeLocalInventoriesPollingUntilDone(request: RemoveLocalInventoriesRequest) async throws
-      -> any GoogleGax.PollableOperation<RemoveLocalInventoriesResponse>
-
-    /// See `ProductServiceClient.removeLocalInventories`.
-    func removeLocalInventoriesPollingUntilDone(
-      product: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<RemoveLocalInventoriesResponse>
-
     /// See `ProductServiceClient.createProduct`.
     func createProduct(
       request: CreateProductRequest, options: GoogleGax.RequestOptions

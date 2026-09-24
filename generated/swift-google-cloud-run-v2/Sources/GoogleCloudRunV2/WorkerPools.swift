@@ -250,41 +250,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WorkerPoolsProtocol: Sendable {
     /// See `WorkerPoolsClient.createWorkerPool`.
-    func createWorkerPoolPollingUntilDone(request: CreateWorkerPoolRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.createWorkerPool`.
-    func createWorkerPoolPollingUntilDone(
-      parent: Swift.String,
-      workerPool: WorkerPool?,
-      workerPoolId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.updateWorkerPool`.
-    func updateWorkerPoolPollingUntilDone(request: UpdateWorkerPoolRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.updateWorkerPool`.
-    func updateWorkerPoolPollingUntilDone(
-      workerPool: WorkerPool?,
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.updateWorkerPool`.
-    func updateWorkerPoolPollingUntilDone(
-      workerPool: WorkerPool?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.deleteWorkerPool`.
-    func deleteWorkerPoolPollingUntilDone(request: DeleteWorkerPoolRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.deleteWorkerPool`.
-    func deleteWorkerPoolPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
-
-    /// See `WorkerPoolsClient.createWorkerPool`.
     func createWorkerPool(
       request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

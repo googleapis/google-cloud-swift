@@ -425,33 +425,6 @@ extension Clients {
   /// `some AnalyticsHubServiceProtocol` or `any AnalyticsHubServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol AnalyticsHubServiceProtocol: Sendable {
-    /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
-    func subscribeDataExchangePollingUntilDone(request: SubscribeDataExchangeRequest) async throws
-      -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse>
-
-    /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
-    func subscribeDataExchangePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse>
-
-    /// See `AnalyticsHubServiceClient.refreshSubscription`.
-    func refreshSubscriptionPollingUntilDone(request: RefreshSubscriptionRequest) async throws
-      -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse>
-
-    /// See `AnalyticsHubServiceClient.refreshSubscription`.
-    func refreshSubscriptionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse>
-
-    /// See `AnalyticsHubServiceClient.deleteSubscription`.
-    func deleteSubscriptionPollingUntilDone(request: DeleteSubscriptionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `AnalyticsHubServiceClient.deleteSubscription`.
-    func deleteSubscriptionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `AnalyticsHubServiceClient.listDataExchanges`.
     func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleGax.RequestOptions

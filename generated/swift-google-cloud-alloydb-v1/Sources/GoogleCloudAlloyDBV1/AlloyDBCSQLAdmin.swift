@@ -147,16 +147,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AlloyDBCSQLAdminProtocol: Sendable {
     /// See `AlloyDBCSQLAdminClient.restoreFromCloudSql`.
-    func restoreFromCloudSqlPollingUntilDone(request: RestoreFromCloudSQLRequest) async throws
-      -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `AlloyDBCSQLAdminClient.restoreFromCloudSql`.
-    func restoreFromCloudSqlPollingUntilDone(
-      parent: Swift.String,
-      clusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
-
-    /// See `AlloyDBCSQLAdminClient.restoreFromCloudSql`.
     func restoreFromCloudSql(
       request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -289,10 +289,6 @@ extension Clients {
   /// `some StorageTransferServiceProtocol` or `any StorageTransferServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol StorageTransferServiceProtocol: Sendable {
-    /// See `StorageTransferServiceClient.runTransferJob`.
-    func runTransferJobPollingUntilDone(request: RunTransferJobRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `StorageTransferServiceClient.getGoogleServiceAccount`.
     func getGoogleServiceAccount(
       request: GetGoogleServiceAccountRequest, options: GoogleGax.RequestOptions

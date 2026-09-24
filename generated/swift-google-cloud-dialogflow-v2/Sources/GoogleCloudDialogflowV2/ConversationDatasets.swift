@@ -324,29 +324,6 @@
     /// and pass a mock implementation in your tests.
     public protocol ConversationDatasetsProtocol: Sendable {
       /// See `ConversationDatasetsClient.createConversationDataset`.
-      func createConversationDatasetPollingUntilDone(request: CreateConversationDatasetRequest)
-        async throws -> any GoogleGax.PollableOperation<ConversationDataset>
-
-      /// See `ConversationDatasetsClient.createConversationDataset`.
-      func createConversationDatasetPollingUntilDone(
-        parent: Swift.String,
-        conversationDataset: ConversationDataset?,
-      ) async throws -> any GoogleGax.PollableOperation<ConversationDataset>
-
-      /// See `ConversationDatasetsClient.deleteConversationDataset`.
-      func deleteConversationDatasetPollingUntilDone(request: DeleteConversationDatasetRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ConversationDatasetsClient.deleteConversationDataset`.
-      func deleteConversationDatasetPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ConversationDatasetsClient.importConversationData`.
-      func importConversationDataPollingUntilDone(request: ImportConversationDataRequest)
-        async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse>
-
-      /// See `ConversationDatasetsClient.createConversationDataset`.
       func createConversationDataset(
         request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

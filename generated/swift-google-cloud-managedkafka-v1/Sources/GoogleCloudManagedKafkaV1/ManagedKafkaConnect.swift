@@ -319,36 +319,6 @@ extension Clients {
   /// `some ManagedKafkaConnectProtocol` or `any ManagedKafkaConnectProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ManagedKafkaConnectProtocol: Sendable {
-    /// See `ManagedKafkaConnectClient.createConnectCluster`.
-    func createConnectClusterPollingUntilDone(request: CreateConnectClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<ConnectCluster>
-
-    /// See `ManagedKafkaConnectClient.createConnectCluster`.
-    func createConnectClusterPollingUntilDone(
-      parent: Swift.String,
-      connectCluster: ConnectCluster?,
-      connectClusterId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<ConnectCluster>
-
-    /// See `ManagedKafkaConnectClient.updateConnectCluster`.
-    func updateConnectClusterPollingUntilDone(request: UpdateConnectClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<ConnectCluster>
-
-    /// See `ManagedKafkaConnectClient.updateConnectCluster`.
-    func updateConnectClusterPollingUntilDone(
-      connectCluster: ConnectCluster?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<ConnectCluster>
-
-    /// See `ManagedKafkaConnectClient.deleteConnectCluster`.
-    func deleteConnectClusterPollingUntilDone(request: DeleteConnectClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ManagedKafkaConnectClient.deleteConnectCluster`.
-    func deleteConnectClusterPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ManagedKafkaConnectClient.listConnectClusters`.
     func listConnectClusters(
       request: ListConnectClustersRequest, options: GoogleGax.RequestOptions

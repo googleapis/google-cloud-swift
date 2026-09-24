@@ -158,14 +158,6 @@ extension Clients {
   /// `some ServicesProtocol` or `any ServicesProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ServicesProtocol: Sendable {
-    /// See `ServicesClient.updateService`.
-    func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Service>
-
-    /// See `ServicesClient.deleteService`.
-    func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
     /// See `ServicesClient.listServices`.
     func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions

@@ -281,44 +281,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol JobsProtocol: Sendable {
     /// See `JobsClient.createJob`.
-    func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Job>
-
-    /// See `JobsClient.createJob`.
-    func createJobPollingUntilDone(
-      parent: Swift.String,
-      job: Job?,
-      jobId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Job>
-
-    /// See `JobsClient.updateJob`.
-    func updateJobPollingUntilDone(request: UpdateJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Job>
-
-    /// See `JobsClient.updateJob`.
-    func updateJobPollingUntilDone(
-      job: Job?,
-    ) async throws -> any GoogleGax.PollableOperation<Job>
-
-    /// See `JobsClient.deleteJob`.
-    func deleteJobPollingUntilDone(request: DeleteJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Job>
-
-    /// See `JobsClient.deleteJob`.
-    func deleteJobPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Job>
-
-    /// See `JobsClient.runJob`.
-    func runJobPollingUntilDone(request: RunJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Execution>
-
-    /// See `JobsClient.runJob`.
-    func runJobPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Execution>
-
-    /// See `JobsClient.createJob`.
     func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

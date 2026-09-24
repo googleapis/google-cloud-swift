@@ -251,41 +251,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ServicesProtocol: Sendable {
     /// See `ServicesClient.createService`.
-    func createServicePollingUntilDone(request: CreateServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Service>
-
-    /// See `ServicesClient.createService`.
-    func createServicePollingUntilDone(
-      parent: Swift.String,
-      service: Service?,
-      serviceId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Service>
-
-    /// See `ServicesClient.updateService`.
-    func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Service>
-
-    /// See `ServicesClient.updateService`.
-    func updateServicePollingUntilDone(
-      service: Service?,
-    ) async throws -> any GoogleGax.PollableOperation<Service>
-
-    /// See `ServicesClient.updateService`.
-    func updateServicePollingUntilDone(
-      service: Service?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Service>
-
-    /// See `ServicesClient.deleteService`.
-    func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Service>
-
-    /// See `ServicesClient.deleteService`.
-    func deleteServicePollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Service>
-
-    /// See `ServicesClient.createService`.
     func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

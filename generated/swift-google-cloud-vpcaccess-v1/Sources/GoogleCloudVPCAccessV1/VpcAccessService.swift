@@ -175,26 +175,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol VpcAccessServiceProtocol: Sendable {
     /// See `VpcAccessServiceClient.createConnector`.
-    func createConnectorPollingUntilDone(request: CreateConnectorRequest) async throws
-      -> any GoogleGax.PollableOperation<Connector>
-
-    /// See `VpcAccessServiceClient.createConnector`.
-    func createConnectorPollingUntilDone(
-      parent: Swift.String,
-      connectorId: Swift.String,
-      connector: Connector?,
-    ) async throws -> any GoogleGax.PollableOperation<Connector>
-
-    /// See `VpcAccessServiceClient.deleteConnector`.
-    func deleteConnectorPollingUntilDone(request: DeleteConnectorRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `VpcAccessServiceClient.deleteConnector`.
-    func deleteConnectorPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `VpcAccessServiceClient.createConnector`.
     func createConnector(
       request: CreateConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

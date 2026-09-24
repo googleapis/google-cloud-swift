@@ -397,40 +397,6 @@ extension Clients {
   /// `some ReachabilityServiceProtocol` or `any ReachabilityServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ReachabilityServiceProtocol: Sendable {
-    /// See `ReachabilityServiceClient.createConnectivityTest`.
-    func createConnectivityTestPollingUntilDone(request: CreateConnectivityTestRequest) async throws
-      -> any GoogleGax.PollableOperation<ConnectivityTest>
-
-    /// See `ReachabilityServiceClient.createConnectivityTest`.
-    func createConnectivityTestPollingUntilDone(
-      parent: Swift.String,
-      testId: Swift.String,
-      resource: ConnectivityTest?,
-    ) async throws -> any GoogleGax.PollableOperation<ConnectivityTest>
-
-    /// See `ReachabilityServiceClient.updateConnectivityTest`.
-    func updateConnectivityTestPollingUntilDone(request: UpdateConnectivityTestRequest) async throws
-      -> any GoogleGax.PollableOperation<ConnectivityTest>
-
-    /// See `ReachabilityServiceClient.updateConnectivityTest`.
-    func updateConnectivityTestPollingUntilDone(
-      updateMask: GoogleWKT.WKTFieldMask?,
-      resource: ConnectivityTest?,
-    ) async throws -> any GoogleGax.PollableOperation<ConnectivityTest>
-
-    /// See `ReachabilityServiceClient.rerunConnectivityTest`.
-    func rerunConnectivityTestPollingUntilDone(request: RerunConnectivityTestRequest) async throws
-      -> any GoogleGax.PollableOperation<ConnectivityTest>
-
-    /// See `ReachabilityServiceClient.deleteConnectivityTest`.
-    func deleteConnectivityTestPollingUntilDone(request: DeleteConnectivityTestRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `ReachabilityServiceClient.deleteConnectivityTest`.
-    func deleteConnectivityTestPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `ReachabilityServiceClient.listConnectivityTests`.
     func listConnectivityTests(
       request: ListConnectivityTestsRequest, options: GoogleGax.RequestOptions

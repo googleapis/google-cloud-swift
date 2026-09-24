@@ -132,15 +132,6 @@
     /// and pass a mock implementation in your tests.
     public protocol ProjectServiceProtocol: Sendable {
       /// See `ProjectServiceClient.provisionProject`.
-      func provisionProjectPollingUntilDone(request: ProvisionProjectRequest) async throws
-        -> any GoogleGax.PollableOperation<Project>
-
-      /// See `ProjectServiceClient.provisionProject`.
-      func provisionProjectPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Project>
-
-      /// See `ProjectServiceClient.provisionProject`.
       func provisionProject(
         request: ProvisionProjectRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

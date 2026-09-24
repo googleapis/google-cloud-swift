@@ -253,36 +253,6 @@ extension Clients {
   /// `some WorkflowsProtocol` or `any WorkflowsProtocol`
   /// and pass a mock implementation in your tests.
   public protocol WorkflowsProtocol: Sendable {
-    /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflowPollingUntilDone(request: CreateWorkflowRequest) async throws
-      -> any GoogleGax.PollableOperation<Workflow>
-
-    /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflowPollingUntilDone(
-      parent: Swift.String,
-      workflow: Workflow?,
-      workflowId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Workflow>
-
-    /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflowPollingUntilDone(request: DeleteWorkflowRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflowPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflowPollingUntilDone(request: UpdateWorkflowRequest) async throws
-      -> any GoogleGax.PollableOperation<Workflow>
-
-    /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflowPollingUntilDone(
-      workflow: Workflow?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Workflow>
-
     /// See `WorkflowsClient.listWorkflows`.
     func listWorkflows(
       request: ListWorkflowsRequest, options: GoogleGax.RequestOptions

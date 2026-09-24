@@ -407,40 +407,6 @@ extension Clients {
   /// `some PrivilegedAccessManagerProtocol` or `any PrivilegedAccessManagerProtocol`
   /// and pass a mock implementation in your tests.
   public protocol PrivilegedAccessManagerProtocol: Sendable {
-    /// See `PrivilegedAccessManagerClient.createEntitlement`.
-    func createEntitlementPollingUntilDone(request: CreateEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.createEntitlement`.
-    func createEntitlementPollingUntilDone(
-      parent: Swift.String,
-      entitlement: Entitlement?,
-      entitlementId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
-    func deleteEntitlementPollingUntilDone(request: DeleteEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
-    func deleteEntitlementPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.updateEntitlement`.
-    func updateEntitlementPollingUntilDone(request: UpdateEntitlementRequest) async throws
-      -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.updateEntitlement`.
-    func updateEntitlementPollingUntilDone(
-      entitlement: Entitlement?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Entitlement>
-
-    /// See `PrivilegedAccessManagerClient.revokeGrant`.
-    func revokeGrantPollingUntilDone(request: RevokeGrantRequest) async throws -> any GoogleGax
-      .PollableOperation<Grant>
-
     /// See `PrivilegedAccessManagerClient.checkOnboardingStatus`.
     func checkOnboardingStatus(
       request: CheckOnboardingStatusRequest, options: GoogleGax.RequestOptions

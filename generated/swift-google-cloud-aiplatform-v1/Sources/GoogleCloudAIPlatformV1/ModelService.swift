@@ -558,63 +558,6 @@
     /// and pass a mock implementation in your tests.
     public protocol ModelServiceProtocol: Sendable {
       /// See `ModelServiceClient.uploadModel`.
-      func uploadModelPollingUntilDone(request: UploadModelRequest) async throws -> any GoogleGax
-        .PollableOperation<UploadModelResponse>
-
-      /// See `ModelServiceClient.uploadModel`.
-      func uploadModelPollingUntilDone(
-        parent: Swift.String,
-        model: Model?,
-      ) async throws -> any GoogleGax.PollableOperation<UploadModelResponse>
-
-      /// See `ModelServiceClient.updateExplanationDataset`.
-      func updateExplanationDatasetPollingUntilDone(request: UpdateExplanationDatasetRequest)
-        async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse>
-
-      /// See `ModelServiceClient.updateExplanationDataset`.
-      func updateExplanationDatasetPollingUntilDone(
-        model: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse>
-
-      /// See `ModelServiceClient.deleteModel`.
-      func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
-
-      /// See `ModelServiceClient.deleteModel`.
-      func deleteModelPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ModelServiceClient.deleteModelVersion`.
-      func deleteModelVersionPollingUntilDone(request: DeleteModelVersionRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ModelServiceClient.deleteModelVersion`.
-      func deleteModelVersionPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ModelServiceClient.exportModel`.
-      func exportModelPollingUntilDone(request: ExportModelRequest) async throws -> any GoogleGax
-        .PollableOperation<ExportModelResponse>
-
-      /// See `ModelServiceClient.exportModel`.
-      func exportModelPollingUntilDone(
-        name: Swift.String,
-        outputConfig: ExportModelRequest.OutputConfig?,
-      ) async throws -> any GoogleGax.PollableOperation<ExportModelResponse>
-
-      /// See `ModelServiceClient.copyModel`.
-      func copyModelPollingUntilDone(request: CopyModelRequest) async throws -> any GoogleGax
-        .PollableOperation<CopyModelResponse>
-
-      /// See `ModelServiceClient.copyModel`.
-      func copyModelPollingUntilDone(
-        parent: Swift.String,
-        sourceModel: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<CopyModelResponse>
-
-      /// See `ModelServiceClient.uploadModel`.
       func uploadModel(
         request: UploadModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

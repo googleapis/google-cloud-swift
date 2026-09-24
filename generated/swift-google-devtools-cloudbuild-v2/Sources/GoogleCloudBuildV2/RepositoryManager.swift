@@ -396,66 +396,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol RepositoryManagerProtocol: Sendable {
     /// See `RepositoryManagerClient.createConnection`.
-    func createConnectionPollingUntilDone(request: CreateConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `RepositoryManagerClient.createConnection`.
-    func createConnectionPollingUntilDone(
-      parent: Swift.String,
-      connection: Connection?,
-      connectionId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `RepositoryManagerClient.updateConnection`.
-    func updateConnectionPollingUntilDone(request: UpdateConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `RepositoryManagerClient.updateConnection`.
-    func updateConnectionPollingUntilDone(
-      connection: Connection?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
-
-    /// See `RepositoryManagerClient.deleteConnection`.
-    func deleteConnectionPollingUntilDone(request: DeleteConnectionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `RepositoryManagerClient.deleteConnection`.
-    func deleteConnectionPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `RepositoryManagerClient.createRepository`.
-    func createRepositoryPollingUntilDone(request: CreateRepositoryRequest) async throws
-      -> any GoogleGax.PollableOperation<Repository>
-
-    /// See `RepositoryManagerClient.createRepository`.
-    func createRepositoryPollingUntilDone(
-      parent: Swift.String,
-      repository: Repository?,
-      repositoryId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Repository>
-
-    /// See `RepositoryManagerClient.batchCreateRepositories`.
-    func batchCreateRepositoriesPollingUntilDone(request: BatchCreateRepositoriesRequest)
-      async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse>
-
-    /// See `RepositoryManagerClient.batchCreateRepositories`.
-    func batchCreateRepositoriesPollingUntilDone(
-      parent: Swift.String,
-      requests: [CreateRepositoryRequest],
-    ) async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse>
-
-    /// See `RepositoryManagerClient.deleteRepository`.
-    func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `RepositoryManagerClient.deleteRepository`.
-    func deleteRepositoryPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `RepositoryManagerClient.createConnection`.
     func createConnection(
       request: CreateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

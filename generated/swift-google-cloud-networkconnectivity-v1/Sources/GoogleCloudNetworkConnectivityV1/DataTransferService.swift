@@ -433,69 +433,6 @@ extension Clients {
   /// `some DataTransferServiceProtocol` or `any DataTransferServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol DataTransferServiceProtocol: Sendable {
-    /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
-    func createMulticloudDataTransferConfigPollingUntilDone(
-      request: CreateMulticloudDataTransferConfigRequest
-    ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
-
-    /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
-    func createMulticloudDataTransferConfigPollingUntilDone(
-      parent: Swift.String,
-      multicloudDataTransferConfig: MulticloudDataTransferConfig?,
-      multicloudDataTransferConfigId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
-
-    /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
-    func updateMulticloudDataTransferConfigPollingUntilDone(
-      request: UpdateMulticloudDataTransferConfigRequest
-    ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
-
-    /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
-    func updateMulticloudDataTransferConfigPollingUntilDone(
-      multicloudDataTransferConfig: MulticloudDataTransferConfig?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
-
-    /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
-    func deleteMulticloudDataTransferConfigPollingUntilDone(
-      request: DeleteMulticloudDataTransferConfigRequest
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
-    func deleteMulticloudDataTransferConfigPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataTransferServiceClient.createDestination`.
-    func createDestinationPollingUntilDone(request: CreateDestinationRequest) async throws
-      -> any GoogleGax.PollableOperation<Destination>
-
-    /// See `DataTransferServiceClient.createDestination`.
-    func createDestinationPollingUntilDone(
-      parent: Swift.String,
-      destination: Destination?,
-      destinationId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Destination>
-
-    /// See `DataTransferServiceClient.updateDestination`.
-    func updateDestinationPollingUntilDone(request: UpdateDestinationRequest) async throws
-      -> any GoogleGax.PollableOperation<Destination>
-
-    /// See `DataTransferServiceClient.updateDestination`.
-    func updateDestinationPollingUntilDone(
-      destination: Destination?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Destination>
-
-    /// See `DataTransferServiceClient.deleteDestination`.
-    func deleteDestinationPollingUntilDone(request: DeleteDestinationRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `DataTransferServiceClient.deleteDestination`.
-    func deleteDestinationPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `DataTransferServiceClient.listMulticloudDataTransferConfigs`.
     func listMulticloudDataTransferConfigs(
       request: ListMulticloudDataTransferConfigsRequest, options: GoogleGax.RequestOptions

@@ -221,10 +221,6 @@
     /// `some ReasoningEngineExecutionServiceProtocol` or `any ReasoningEngineExecutionServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol ReasoningEngineExecutionServiceProtocol: Sendable {
-      /// See `ReasoningEngineExecutionServiceClient.asyncQueryReasoningEngine`.
-      func asyncQueryReasoningEnginePollingUntilDone(request: AsyncQueryReasoningEngineRequest)
-        async throws -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse>
-
       /// See `ReasoningEngineExecutionServiceClient.queryReasoningEngine`.
       func queryReasoningEngine(
         request: QueryReasoningEngineRequest, options: GoogleGax.RequestOptions

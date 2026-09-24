@@ -276,15 +276,6 @@
     /// `some ScheduleServiceProtocol` or `any ScheduleServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol ScheduleServiceProtocol: Sendable {
-      /// See `ScheduleServiceClient.deleteSchedule`.
-      func deleteSchedulePollingUntilDone(request: DeleteScheduleRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `ScheduleServiceClient.deleteSchedule`.
-      func deleteSchedulePollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
       /// See `ScheduleServiceClient.createSchedule`.
       func createSchedule(
         request: CreateScheduleRequest, options: GoogleGax.RequestOptions

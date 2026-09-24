@@ -387,15 +387,6 @@
     /// `some VizierServiceProtocol` or `any VizierServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol VizierServiceProtocol: Sendable {
-      /// See `VizierServiceClient.suggestTrials`.
-      func suggestTrialsPollingUntilDone(request: SuggestTrialsRequest) async throws
-        -> any GoogleGax.PollableOperation<SuggestTrialsResponse>
-
-      /// See `VizierServiceClient.checkTrialEarlyStoppingState`.
-      func checkTrialEarlyStoppingStatePollingUntilDone(
-        request: CheckTrialEarlyStoppingStateRequest
-      ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
-
       /// See `VizierServiceClient.createStudy`.
       func createStudy(
         request: CreateStudyRequest, options: GoogleGax.RequestOptions

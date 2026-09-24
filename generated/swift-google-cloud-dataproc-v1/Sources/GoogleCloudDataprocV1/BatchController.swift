@@ -199,17 +199,6 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol BatchControllerProtocol: Sendable {
     /// See `BatchControllerClient.createBatch`.
-    func createBatchPollingUntilDone(request: CreateBatchRequest) async throws -> any GoogleGax
-      .PollableOperation<Batch>
-
-    /// See `BatchControllerClient.createBatch`.
-    func createBatchPollingUntilDone(
-      parent: Swift.String,
-      batch: Batch?,
-      batchId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Batch>
-
-    /// See `BatchControllerClient.createBatch`.
     func createBatch(
       request: CreateBatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -333,24 +333,6 @@ extension Clients {
   /// `some LineageProtocol` or `any LineageProtocol`
   /// and pass a mock implementation in your tests.
   public protocol LineageProtocol: Sendable {
-    /// See `LineageClient.deleteProcess`.
-    func deleteProcessPollingUntilDone(request: DeleteProcessRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `LineageClient.deleteProcess`.
-    func deleteProcessPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `LineageClient.deleteRun`.
-    func deleteRunPollingUntilDone(request: DeleteRunRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `LineageClient.deleteRun`.
-    func deleteRunPollingUntilDone(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `LineageClient.processOpenLineageRunEvent`.
     func processOpenLineageRunEvent(
       request: ProcessOpenLineageRunEventRequest, options: GoogleGax.RequestOptions

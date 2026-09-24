@@ -302,39 +302,6 @@
     /// and pass a mock implementation in your tests.
     public protocol DeploymentResourcePoolServiceProtocol: Sendable {
       /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
-      func createDeploymentResourcePoolPollingUntilDone(
-        request: CreateDeploymentResourcePoolRequest
-      ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-
-      /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
-      func createDeploymentResourcePoolPollingUntilDone(
-        parent: Swift.String,
-        deploymentResourcePool: DeploymentResourcePool?,
-        deploymentResourcePoolId: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-
-      /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
-      func updateDeploymentResourcePoolPollingUntilDone(
-        request: UpdateDeploymentResourcePoolRequest
-      ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-
-      /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
-      func updateDeploymentResourcePoolPollingUntilDone(
-        deploymentResourcePool: DeploymentResourcePool?,
-        updateMask: GoogleWKT.WKTFieldMask?,
-      ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-
-      /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
-      func deleteDeploymentResourcePoolPollingUntilDone(
-        request: DeleteDeploymentResourcePoolRequest
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
-      func deleteDeploymentResourcePoolPollingUntilDone(
-        name: Swift.String,
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-      /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
       func createDeploymentResourcePool(
         request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation
