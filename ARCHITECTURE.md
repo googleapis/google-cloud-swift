@@ -246,7 +246,8 @@ strict memory safety:
 - Handcrafted packages opt into `-strict-memory-safety`
   ([SE-0458](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0458-strict-memory-safety.md))
   via `.strictMemorySafety()` in `Package.swift`. Any use of unsafe pointers or
-  memory-unsafe APIs must be explicitly annotated with `@unsafe` and `unsafe`.
+  memory-unsafe APIs must be explicitly annotated with `@safe`, `@unsafe`, and
+  `unsafe`.
 - We compile all packages under Swift 6 with `-warnings-as-errors` enforced in
   CI.
 

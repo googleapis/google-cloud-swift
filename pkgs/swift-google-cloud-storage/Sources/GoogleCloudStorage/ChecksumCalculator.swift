@@ -23,7 +23,7 @@ protocol ChecksumCalculator: Sendable {
   var algorithmName: String { get }
 
   /// Incrementally updates the checksum state from raw memory.
-  @unsafe
+  @safe
   mutating func update(_ buffer: UnsafeRawBufferPointer)
 
   /// Finalizes the checksum and returns the Base64-encoded string.
@@ -33,17 +33,17 @@ protocol ChecksumCalculator: Sendable {
 extension ChecksumCalculator {
   /// Convenience helper for Data chunks.
   mutating func update(_ data: Data) {
-    unsafe data.withUnsafeBytes { unsafe update($0) }
+    unsafe data.withUnsafeBytes { update($0) }
   }
 
   /// Convenience helper for ByteChunk chunks.
   mutating func update(_ buffer: ByteChunk) {
-    unsafe buffer.withUnsafeBytes { unsafe update($0) }
+    buffer.withUnsafeBytes { update($0) }
   }
 
   /// Convenience helper for NIOCore.ByteBuffer chunks.
   mutating func update(_ buffer: NIOCore.ByteBuffer) {
-    unsafe buffer.withUnsafeReadableBytes { unsafe update($0) }
+    unsafe buffer.withUnsafeReadableBytes { update($0) }
   }
 }
 
@@ -56,9 +56,9 @@ struct CRC32CCalculator: ChecksumCalculator {
     self.crc32c = seed != nil ? _CRC32C(seed: seed!) : _CRC32C()
   }
 
-  @unsafe
+  @safe
   mutating func update(_ buffer: UnsafeRawBufferPointer) {
-    unsafe crc32c.update(buffer)
+    crc32c.update(buffer)
   }
 
   func finalize() -> String {
@@ -73,7 +73,7 @@ struct MD5Calculator: ChecksumCalculator {
 
   init() {}
 
-  @unsafe
+  @safe
   mutating func update(_ buffer: UnsafeRawBufferPointer) {
     unsafe md5.update(bufferPointer: buffer)
   }
@@ -98,7 +98,7 @@ struct ProvidedChecksumCalculator: ChecksumCalculator {
     }
   }
 
-  @unsafe
+  @safe
   mutating func update(_ buffer: UnsafeRawBufferPointer) {
     // No-op: value is static and already provided
   }

@@ -15,5 +15,5 @@ concurrency and opt into `-strict-memory-safety` ([SE-0458](https://github.com/s
 via `.strictMemorySafety()` in `Package.swift`. Under `-warnings-as-errors` in
 CI, any unannotated use of unsafe pointers, buffers, or memory-unsafe constructs
 fails the build, ensuring all low-level memory operations are explicitly audited
-and marked with `@unsafe` / `unsafe`.
+and marked with `@safe`, `@unsafe`, and `unsafe`.
 

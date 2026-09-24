@@ -62,8 +62,8 @@ import Testing
 
   @Test func initWithRawBufferPointer() {
     let bytes: [UInt8] = [10, 20, 30]
-    unsafe Data(bytes).withUnsafeBytes { rawBuffer in
-      let storage = unsafe ByteChunk(rawBuffer)
+    unsafe bytes.withUnsafeBytes { rawBuffer in
+      let storage = ByteChunk(rawBuffer)
       #expect(storage.count == 3)
       #expect(storage.byteArray == bytes)
     }
@@ -78,7 +78,7 @@ import Testing
   @Test func withUnsafeBytes() throws {
     let expected: [UInt8] = [100, 101, 102]
     let dataStorage = ByteChunk(Data(expected))
-    let dataResult = unsafe dataStorage.withUnsafeBytes { ptr in
+    let dataResult = dataStorage.withUnsafeBytes { ptr in
       unsafe Array(ptr)
     }
     #expect(dataResult == expected)
@@ -86,7 +86,7 @@ import Testing
     var buffer = ByteBufferAllocator().buffer(capacity: 3)
     buffer.writeBytes(expected)
     let bufferStorage = ByteChunk(buffer)
-    let bufferResult = unsafe bufferStorage.withUnsafeBytes { ptr in
+    let bufferResult = bufferStorage.withUnsafeBytes { ptr in
       unsafe Array(ptr)
     }
     #expect(bufferResult == expected)
@@ -175,13 +175,13 @@ import Testing
   @Test func withContiguousStorageIfAvailable() {
     let expected: [UInt8] = [10, 20, 30, 40]
     let dataChunk = ByteChunk(Data(expected))
-    let dataContiguous = unsafe dataChunk.withContiguousStorageIfAvailable { unsafe Array($0) }
+    let dataContiguous = dataChunk.withContiguousStorageIfAvailable { unsafe Array($0) }
     #expect(dataContiguous == expected)
     #expect(Array(dataChunk) == expected)
     #expect(Data(dataChunk) == Data(expected))
 
     let bufferChunk = ByteChunk(expected)
-    let bufferContiguous = unsafe bufferChunk.withContiguousStorageIfAvailable { unsafe Array($0) }
+    let bufferContiguous = bufferChunk.withContiguousStorageIfAvailable { unsafe Array($0) }
     #expect(bufferContiguous == expected)
     #expect(Array(bufferChunk) == expected)
     #expect(Data(bufferChunk) == Data(expected))

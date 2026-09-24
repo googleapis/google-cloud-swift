@@ -100,7 +100,9 @@ import struct NIOCore.ByteBuffer
     } catch let e {
       return .failure(.io(e))
     }
-    let data = Data(buffer: buffer)
+    // Use `.noCopy` (matching `NIOFoundationCompat`'s `JSONDecoder.decode(_:from: ByteBuffer)`)
+    // so `Data` references `buffer`'s underlying storage without copying.
+    let data = Data(buffer: buffer, byteTransferStrategy: .noCopy)
     let decoder = _ProtoJSONDecoder()
     let payload = try decoder.decode(type, from: data)
     return .success(payload)

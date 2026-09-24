@@ -39,24 +39,25 @@ public import Foundation
 
   public mutating func update(_ data: Data) {
     unsafe data.withUnsafeBytes { buffer in
-      unsafe update(buffer)
+      update(buffer)
     }
   }
 
-  @unsafe
+  @safe
   public mutating func update(_ buffer: UnsafeRawBufferPointer) {
-    guard let baseAddress = buffer.baseAddress, buffer.count > 0 else { return }
+    guard let baseAddress = buffer.baseAddress, unsafe !buffer.isEmpty else { return }
     if Self.isHardwareAccelerated {
       value = unsafe googleGax_crc32c_hw(value, baseAddress, buffer.count)
     } else {
-      unsafe updateSoftware(buffer)
+      updateSoftware(buffer)
     }
   }
 
-  @unsafe
+  @safe
   mutating func updateSoftware(_ buffer: UnsafeRawBufferPointer) {
-    for i in 0..<buffer.count {
-      let byte = unsafe buffer[i]
+    // `swift-format` 6.3 misformats `for unsafe byte` as `for unsafebyte`.
+    // swift-format-ignore
+    for unsafe byte in unsafe buffer {
       let index = Int(UInt8(value & 0xFF) ^ byte)
       value = (value >> 8) ^ Self.table[index]
     }
@@ -77,23 +78,23 @@ public import Foundation
     return crc.finalize()
   }
 
-  @unsafe
+  @safe
   public static func compute(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
     var crc = Self()
-    unsafe crc.update(buffer)
+    crc.update(buffer)
     return crc.finalize()
   }
 
   static func computeSoftware(_ data: Data) -> UInt32 {
     unsafe data.withUnsafeBytes { buffer in
-      unsafe computeSoftware(buffer)
+      computeSoftware(buffer)
     }
   }
 
-  @unsafe
+  @safe
   static func computeSoftware(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
     var crc = Self()
-    unsafe crc.updateSoftware(buffer)
+    crc.updateSoftware(buffer)
     return crc.finalize()
   }
 }

@@ -49,7 +49,7 @@ public struct ByteChunk: Sendable, ContiguousBytes {
   }
 
   /// Creates a byte chunk from a contiguous raw buffer pointer.
-  @unsafe
+  @safe
   public init(_ bufferPointer: UnsafeRawBufferPointer) {
     self.storage = .byteBuffer(unsafe NIOCore.ByteBuffer(bytes: bufferPointer))
   }
@@ -75,7 +75,7 @@ extension ByteChunk {
   }
 
   /// Calls a closure with a pointer to the contiguous bytes without copying.
-  @unsafe
+  @safe
   public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
     switch storage {
     case .data(let data):
@@ -86,12 +86,12 @@ extension ByteChunk {
   }
 
   /// Executes a closure on the sequence's contiguous storage.
-  @unsafe
+  @safe
   @inlinable
   public func withContiguousStorageIfAvailable<R>(
     _ body: (UnsafeBufferPointer<UInt8>) throws -> R
   ) rethrows -> R? {
-    try unsafe withUnsafeBytes { rawBuffer in
+    try withUnsafeBytes { rawBuffer in
       try unsafe rawBuffer.withMemoryRebound(to: UInt8.self) { buffer in
         try unsafe body(buffer)
       }
@@ -127,7 +127,7 @@ extension ByteChunk {
   /// Returns the bytes as a newly allocated `[UInt8]` array.
   @inlinable
   public var byteArray: [UInt8] {
-    unsafe withUnsafeBytes { unsafe Array($0) }
+    withUnsafeBytes { unsafe Array($0) }
   }
 
   /// Returns a zero-copy sub-chunk within the specified byte range.
@@ -177,10 +177,10 @@ extension ByteChunk: Equatable {
   public static func == (lhs: ByteChunk, rhs: ByteChunk) -> Bool {
     guard lhs.count == rhs.count else { return false }
     if lhs.isEmpty { return true }
-    return unsafe lhs.withUnsafeBytes { lhsBytes in
-      unsafe rhs.withUnsafeBytes { rhsBytes in
+    return lhs.withUnsafeBytes { lhsBytes in
+      rhs.withUnsafeBytes { rhsBytes in
         guard let lhsBase = lhsBytes.baseAddress, let rhsBase = rhsBytes.baseAddress else {
-          return lhsBytes.count == 0 && rhsBytes.count == 0
+          return unsafe lhsBytes.isEmpty && rhsBytes.isEmpty
         }
         return unsafe memcmp(lhsBase, rhsBase, lhsBytes.count) == 0
       }
@@ -191,7 +191,7 @@ extension ByteChunk: Equatable {
 extension ByteChunk: Hashable {
   @inlinable
   public func hash(into hasher: inout Hasher) {
-    unsafe withUnsafeBytes { unsafe hasher.combine(bytes: $0) }
+    withUnsafeBytes { unsafe hasher.combine(bytes: $0) }
   }
 }
 
