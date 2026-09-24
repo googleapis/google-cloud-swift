@@ -22,7 +22,7 @@ import Testing
   }
 
   @Test func strictIdempotency() {
-    let p = AlwaysRetry().strictIdempotency()
+    let p = AlwaysRetry.unbounded().strictIdempotency()
 
     #expect(p.onError(state: idempotentState(), error: transient()) == .retry(transient()))
     #expect(p.onError(state: nonIdempotentState(), error: transient()) == .permanent(transient()))

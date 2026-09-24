@@ -26,7 +26,7 @@ import Testing
       httpUnavailable(),
     ])
   func onRetryable(e: RequestError) {
-    let p = Aip194()
+    let p = Aip194.unbounded()
     #expect(p.onError(state: idempotentState(), error: e) == .retry(e))
     #expect(p.onError(state: nonIdempotentState(), error: e) == .retry(e))
     #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
@@ -41,7 +41,7 @@ import Testing
     ]
   )
   func onPermanent(e: RequestError) {
-    let p = Aip194()
+    let p = Aip194.unbounded()
     #expect(p.onError(state: idempotentState(), error: e) == .permanent(e))
     #expect(p.onError(state: nonIdempotentState(), error: e) == .permanent(e))
     #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))

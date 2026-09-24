@@ -60,7 +60,7 @@ The policies set on the client apply to every request made through it.
 4. Initialize a client that also waits differently between attempts:
    @Snippet(path: "OverrideRetryPolicy", slice: "backoff")
 
-The library offers other policies to build on: `AlwaysRetry` retries every
+The library offers other policies to build on: `AlwaysRetry.unbounded()` retries every
 error, which is only safe when the service guarantees idempotency, and
 `NeverRetry` disables retries. Applications with requirements that none of
 these express can implement the `RetryPolicy` protocol.

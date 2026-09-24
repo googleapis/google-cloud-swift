@@ -26,7 +26,7 @@ import Testing
       httpUnavailable(),
     ])
   func onRetryable(e: RequestError) {
-    let p: any PollingErrorPolicy = Aip194()
+    let p: any PollingErrorPolicy = Aip194.unbounded()
     #expect(p.onError(state: PollingState(), error: e) == PollingResult.retry(e))
   }
 
@@ -38,13 +38,13 @@ import Testing
     ]
   )
   func onPermanent(e: RequestError) {
-    let p: any PollingErrorPolicy = Aip194()
+    let p: any PollingErrorPolicy = Aip194.unbounded()
     #expect(p.onError(state: PollingState(), error: e) == PollingResult.permanent(e))
   }
 
   @Test("Verify Aip194 onInProgress is a no-op")
   func onInProgress() throws {
-    let p: any PollingErrorPolicy = Aip194()
+    let p: any PollingErrorPolicy = Aip194.unbounded()
     try p.onInProgress(state: PollingState())
   }
 

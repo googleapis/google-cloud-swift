@@ -18,13 +18,13 @@ import Testing
 
 @Suite struct AlwaysPollTests {
   @Test func alwaysPoll() {
-    let p = AlwaysPoll()
+    let p = AlwaysPoll.unbounded()
 
     #expect(p.onError(state: PollingState(), error: httpUnavailable()) == .retry(httpUnavailable()))
   }
 
   @Test func alwaysPollErrorKind() {
-    let p = AlwaysPoll()
+    let p = AlwaysPoll.unbounded()
 
     #expect(
       p.onError(state: PollingState(), error: .binding(BindingError()))
@@ -33,7 +33,7 @@ import Testing
   }
 
   @Test func alwaysPollOnInProgress() throws {
-    let p = AlwaysPoll()
+    let p = AlwaysPoll.unbounded()
     try p.onInProgress(state: PollingState())
   }
 

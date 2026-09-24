@@ -28,14 +28,14 @@ import Testing
   }
 
   @Test func retryPolicyFromDefault() {
-    let defaultOptions = ClientOptions().with { $0.retryPolicy = AlwaysRetry() }
+    let defaultOptions = ClientOptions().with { $0.retryPolicy = AlwaysRetry.unbounded() }
     let requestOptions = RequestOptions()
     let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
     #expect(loop.retryPolicy is AlwaysRetry)
   }
 
   @Test func retryPolicyFromRequest() {
-    let defaultOptions = ClientOptions().with { $0.retryPolicy = AlwaysRetry() }
+    let defaultOptions = ClientOptions().with { $0.retryPolicy = AlwaysRetry.unbounded() }
     let requestOptions = RequestOptions().with { $0.retryPolicy = NeverRetry() }
     let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
     #expect(loop.retryPolicy is NeverRetry)

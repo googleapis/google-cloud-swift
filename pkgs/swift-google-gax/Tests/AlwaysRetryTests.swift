@@ -18,7 +18,7 @@ import Testing
 
 @Suite struct AlwaysRetryTests {
   @Test func alwaysRetry() {
-    let p = AlwaysRetry()
+    let p = AlwaysRetry.unbounded()
 
     #expect(
       p.onError(state: idempotentState(), error: httpUnavailable()) == .retry(httpUnavailable()))
@@ -30,7 +30,7 @@ import Testing
 
   @Test(arguments: [true, false])
   func alwaysRetryErrorKind(idempotent: Bool) {
-    let p = AlwaysRetry()
+    let p = AlwaysRetry.unbounded()
     let state = idempotent ? idempotentState() : nonIdempotentState()
 
     #expect(

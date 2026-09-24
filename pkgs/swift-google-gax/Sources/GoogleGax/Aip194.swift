@@ -17,15 +17,35 @@ import GoogleRpc
 
 /// A retry policy that follows [AIP-194].
 ///
-/// This policy must be decorated to (1) limit the number of retry attempts or the duration of the
-/// retry loop, and (2) examine the idempotency of the request.
+/// Use ``unbounded()`` decorated with ``RetryPolicy/withTimeLimit(_:)``,
+/// ``RetryPolicy/withAttemptLimit(_:)``, and ``RetryPolicy/strictIdempotency()``
+/// to configure limits and idempotency handling. For standard default retry behavior,
+/// use ``BaseRetryPolicy/defaultPolicy``.
 ///
 /// The policy interprets AIP-194 **strictly**, the retry decision for server-side errors are based
 /// only on the status code, and the only retryable status code is `UNAVAILABLE`.
 ///
 /// [AIP-194]: https://google.aip.dev/194
 final public class Aip194: Sendable {
-  public init() {}
+  init() {}
+
+  /// Creates an unconstrained AIP-194 policy without attempt or time limits.
+  ///
+  /// Decorate this policy with ``RetryPolicy/withTimeLimit(_:)`` and/or
+  /// ``RetryPolicy/withAttemptLimit(_:)`` (and ``RetryPolicy/strictIdempotency()``
+  /// when used as a retry policy) to bound the loop:
+  /// ```swift
+  /// let policy = Aip194.unbounded()
+  ///   .strictIdempotency()
+  ///   .withTimeLimit(.seconds(30))
+  ///   .withAttemptLimit(5)
+  /// ```
+  ///
+  /// - Warning: Without attempt or time limit decorators, this policy retries
+  ///   transient errors indefinitely.
+  public static func unbounded() -> Aip194 {
+    Aip194()
+  }
 
   func isRetryable(_ error: RequestError) -> Bool {
     if let code = error.serviceCode, code == GoogleRpc.Code.unavailable {
