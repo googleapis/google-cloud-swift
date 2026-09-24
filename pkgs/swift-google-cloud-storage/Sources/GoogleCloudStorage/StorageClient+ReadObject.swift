@@ -55,32 +55,34 @@ extension StorageClient {
     metadata.bucket = BucketName.formatResourceName(bucket)
     metadata.object = object
 
+    // Using `Int64` for object sizes is safe because the maximum object size in Cloud Storage is
+    // 5 TiB (5 * 2^40 bytes), well within `Int64.max` (2^63 - 1, ~8 EiB).
     if let contentRangeHeader = headers.first(name: "Content-Range") {
       let contentRange = try HttpContentRange.parse(contentRangeHeader)
       if let total = contentRange.totalSize {
-        metadata.size = total
+        metadata.size = Int64(total)
       }
     } else if let sizeStr = headers.first(name: "x-goog-stored-content-length")
       ?? headers.first(name: "Content-Length"),
-      let size = UInt64(sizeStr)
+      let size = Int64(sizeStr)
     {
       metadata.size = size
     }
 
     if let storedLengthStr = headers.first(name: "x-goog-stored-content-length"),
-      let storedLength = UInt64(storedLengthStr)
+      let storedLength = Int64(storedLengthStr)
     {
       metadata.storedContentLength = storedLength
     }
 
     if let genStr = headers.first(name: "x-goog-generation"),
-      let gen = UInt64(genStr)
+      let gen = Int64(genStr)
     {
       metadata.generation = gen
     }
 
     if let metaGenStr = headers.first(name: "x-goog-metageneration"),
-      let metaGen = UInt64(metaGenStr)
+      let metaGen = Int64(metaGenStr)
     {
       metadata.metageneration = metaGen
     }

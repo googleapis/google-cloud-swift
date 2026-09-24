@@ -17,7 +17,7 @@ import Foundation
 import GoogleCloudStorage
 
 public func downloadByteRange(
-  client: StorageClient, bucketId: String, objectName: String, start: UInt64, end: UInt64
+  client: StorageClient, bucketId: String, objectName: String, start: Int64, end: Int64
 ) async throws {
   let options = ReadObjectOptions().with {
     $0.range = .bounded(start...end)

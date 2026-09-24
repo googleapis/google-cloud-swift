@@ -22,35 +22,35 @@ public enum ReadObjectRange: Sendable, Hashable, Equatable {
   case entire
 
   /// Read all bytes starting from `offset` to the end of the object (HTTP `bytes=N-`).
-  case fromOffset(UInt64)
+  case fromOffset(Int64)
 
   /// Read the first `count` bytes of the object (HTTP `bytes=0-N`).
-  case prefix(UInt64)
+  case prefix(Int64)
 
   /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
-  case suffix(UInt64)
+  case suffix(Int64)
 
   /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
-  case bounded(ClosedRange<UInt64>)
+  case bounded(ClosedRange<Int64>)
 
-  /// Convenience initializer for Swift `ClosedRange<UInt64>`.
-  public init(_ range: ClosedRange<UInt64>) {
+  /// Convenience initializer for Swift `ClosedRange<Int64>`.
+  public init(_ range: ClosedRange<Int64>) {
     self = .bounded(range)
   }
 
-  /// Convenience initializer for Swift `PartialRangeFrom<UInt64>` (e.g. `1024...`).
-  public init(_ range: PartialRangeFrom<UInt64>) {
+  /// Convenience initializer for Swift `PartialRangeFrom<Int64>` (e.g. `1024...`).
+  public init(_ range: PartialRangeFrom<Int64>) {
     self = .fromOffset(range.lowerBound)
   }
 
-  /// Convenience initializer for Swift `PartialRangeThrough<UInt64>` (e.g. `...1024`).
-  public init(_ range: PartialRangeThrough<UInt64>) {
+  /// Convenience initializer for Swift `PartialRangeThrough<Int64>` (e.g. `...1024`).
+  public init(_ range: PartialRangeThrough<Int64>) {
     self = .bounded(0...range.upperBound)
   }
 
-  /// Creates a bounded range from `start` to `end` inclusive, or returns `nil` if `end < start`.
-  public init?(start: UInt64, end: UInt64) {
-    guard start <= end else { return nil }
+  /// Creates a bounded range from `start` to `end` inclusive, or returns `nil` if `start < 0` or `end < start`.
+  public init?(start: Int64, end: Int64) {
+    guard start >= 0, start <= end else { return nil }
     self = .bounded(start...end)
   }
 
@@ -209,8 +209,8 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 /// > object, not partial or decompressed bytes. Pre-computed expected values (`.value(...)`)
 /// > are always verified.
 public struct ReadObjectOptions: Sendable {
-  /// Object generation (`UInt64?`) to read a specific revision of an object.
-  public var generation: UInt64?
+  /// Object generation (`Int64?`) to read a specific revision of an object.
+  public var generation: Int64?
 
   /// Preconditions to ensure operations execute only when condition constraints pass.
   public var preconditions: StoragePreconditions?
@@ -300,8 +300,8 @@ extension ReadObjectOptions {
 /// - Returns: The adjusted `ReadObjectRange` to request, or `nil` if all requested bytes have been received.
 package func calculateResumeRange(
   originalRange: ReadObjectRange,
-  bytesReceived: UInt64,
-  totalSize: UInt64?
+  bytesReceived: Int64,
+  totalSize: Int64?
 ) -> ReadObjectRange? {
   switch originalRange {
   case .entire:
@@ -337,16 +337,16 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public var object: String = ""
 
   /// Content size of the object payload in bytes.
-  public var size: UInt64 = 0
+  public var size: Int64 = 0
 
   /// Stored content length of the object before decompressive transcoding (if applicable).
-  public var storedContentLength: UInt64?
+  public var storedContentLength: Int64?
 
   /// Generation revision number of the object.
-  public var generation: UInt64 = 0
+  public var generation: Int64 = 0
 
   /// Metageneration revision number of the object metadata.
-  public var metageneration: UInt64?
+  public var metageneration: Int64?
 
   /// HTTP ETag representing the object's entity state.
   public var etag: String?
@@ -429,7 +429,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var metadata: ReadObjectMetadata?
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
-  private var bytesReceived: UInt64 = 0
+  private var bytesReceived: Int64 = 0
   private var resumeState: ResumeState<ReadObjectDetails>
   private var isFinished: Bool = false
   private var isCancelled: Bool = false
@@ -513,8 +513,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.streamIterator = it
           if let chunk {
             let storage = ByteChunk(chunk)
-            bytesReceived += UInt64(storage.count)
-            resumeState.details.bytesRead = bytesReceived
+            bytesReceived += Int64(storage.count)
+            resumeState.details.bytesRead = UInt64(bytesReceived)
             resumeLoop.onProgress(state: &resumeState)
             updateChecksums(with: storage)
             return storage
@@ -528,8 +528,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.bodyIterator = it
           if let chunk {
             let storage = ByteChunk(chunk)
-            bytesReceived += UInt64(storage.count)
-            resumeState.details.bytesRead = bytesReceived
+            bytesReceived += Int64(storage.count)
+            resumeState.details.bytesRead = UInt64(bytesReceived)
             resumeLoop.onProgress(state: &resumeState)
             updateChecksums(with: storage)
             return storage
@@ -560,7 +560,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
             throw ReadObjectError.requestError(err)
           }
           throw ReadObjectError.resumeFailed(
-            bytesReceived: bytesReceived, message: err.localizedDescription)
+            bytesReceived: UInt64(bytesReceived), message: err.localizedDescription)
         }
 
         try await resumeDownload(underlyingError: reqError)
@@ -699,7 +699,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         }
       }
       throw ReadObjectError.resumeFailed(
-        bytesReceived: bytesReceived, message: error.localizedDescription)
+        bytesReceived: UInt64(bytesReceived), message: error.localizedDescription)
     }
   }
 
