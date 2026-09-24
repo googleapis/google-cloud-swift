@@ -1381,10 +1381,108 @@ import Testing
     let client = try StorageClient(clientOptions, mock: registry)
 
     let reqOptions = ReadObjectOptions().with { $0.quotaProject = requestQuota }
-    let task = client.readObject(from: bucket, object: objectName, options: reqOptions)
-    for try await _ in task.body {}
+    let download = client.readObject(from: bucket, object: objectName, options: reqOptions)
+    for try await _ in download.body {}
     #expect(
       registry.lastRequest(for: downloadUrl)?.value(forHTTPHeaderField: "x-goog-user-project")
         == expected)
+  }
+
+  @Test func downloadObjectTaskCancellationBeforeMetadata() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancel-before-meta.txt"
+    let payload = Data("Never downloaded".utf8)
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: ["Content-Length": String(payload.count)]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let download: ObjectDownload = client.readObject(from: bucket, object: objectName)
+
+    let task = Task {
+      withUnsafeCurrentTask { $0?.cancel() }
+      return try await download.metadata
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+    #expect(registry.lastRequest(for: downloadUrl) == nil)
+  }
+
+  @Test func downloadObjectTaskCancellationDuringBodyIteration() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancel-mid-stream.txt"
+    let chunk1 = Data("Chunk 1 ".utf8)
+    let chunk2 = Data("Chunk 2 ".utf8)
+    let chunk3 = Data("Chunk 3".utf8)
+    let totalSize = chunk1.count + chunk2.count + chunk3.count
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1, chunk2, chunk3],
+        headers: ["Content-Length": String(totalSize)]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let download = client.readObject(from: bucket, object: objectName)
+
+    let task = Task { () -> Data in
+      var received = Data()
+      for try await chunk in download.body {
+        received.append(contentsOf: chunk)
+        withUnsafeCurrentTask { $0?.cancel() }
+      }
+      return received
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
+
+  @Test func downloadObjectManualCancelDuringBodyIteration() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "manual-cancel-stream.txt"
+    let chunk1 = Data("Chunk 1 ".utf8)
+    let chunk2 = Data("Chunk 2 ".utf8)
+    let chunk3 = Data("Chunk 3".utf8)
+    let totalSize = chunk1.count + chunk2.count + chunk3.count
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1, chunk2, chunk3],
+        headers: ["Content-Length": String(totalSize)]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let download = client.readObject(from: bucket, object: objectName)
+
+    var received = Data()
+    await #expect(throws: CancellationError.self) {
+      for try await chunk in download.body {
+        received.append(contentsOf: chunk)
+        download.cancel()
+      }
+    }
+    #expect(received == chunk1)
   }
 }

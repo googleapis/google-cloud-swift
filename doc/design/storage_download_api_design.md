@@ -20,16 +20,16 @@ func readObject(
   from bucket: String,
   object: String,
   options: ReadObjectOptions = .init()
-) -> ReadObjectTask
+) -> ObjectDownload
 ```
 
-- **Return Task Struct (`ReadObjectTask`):** `readObject` returns immediately with a `ReadObjectTask` struct holding both the object metadata and the streaming body:
+- **Return Struct (`ObjectDownload`):** `readObject` returns immediately with an `ObjectDownload` struct holding both the object metadata and the streaming body:
   ```swift
-  public struct ReadObjectTask: Sendable {
+  public struct ObjectDownload: Sendable {
     /// Object metadata populated from response headers upon request initiation.
     public var metadata: ReadObjectMetadata { get async throws }
 
-    /// An asynchronous sequence of `ByteBuffer` chunks for the object payload.
+    /// An asynchronous sequence of `ByteChunk` chunks for the object payload.
     public var body: ReadObjectSequence { get }
 
     /// Cancels the ongoing download.
@@ -300,7 +300,7 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
 }
 
 /// Container object returned by `readObject` containing metadata and the streaming body sequence.
-public struct ReadObjectTask: Sendable {
+public struct ObjectDownload: Sendable {
   /// Object metadata extracted from initial HTTP response headers.
   public var metadata: ReadObjectMetadata { get async throws }
 
@@ -320,14 +320,14 @@ public protocol StorageProtocol {
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ReadObjectTask
+  ) -> ObjectDownload
 }
 
 extension StorageProtocol {
   public func readObject(
     from bucket: String,
     object: String
-  ) -> ReadObjectTask {
+  ) -> ObjectDownload {
     readObject(from: bucket, object: object, options: .init())
   }
 }
@@ -337,8 +337,8 @@ extension StorageClient {
     from bucket: String,
     object: String,
     options: ReadObjectOptions = .init()
-  ) -> ReadObjectTask {
-    // Return ReadObjectTask backed by coordinator
+  ) -> ObjectDownload {
+    // Return ObjectDownload backed by coordinator
   }
 }
 ```

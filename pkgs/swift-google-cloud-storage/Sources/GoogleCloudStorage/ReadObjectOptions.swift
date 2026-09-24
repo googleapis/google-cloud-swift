@@ -145,7 +145,10 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 ///   $0.customerEncryptionKey = csek
 /// }
 ///
-/// let response = try await client.readObject(from: "my-bucket", object: "encrypted.bin", options: options)
+/// let download = client.readObject(from: "my-bucket", object: "encrypted.bin", options: options)
+/// for try await chunk in download.body {
+///   // Process ByteChunk chunk
+/// }
 /// ```
 ///
 /// ### Ranged Reads
@@ -458,8 +461,15 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     }
   }
 
+  private var cancelled: Bool {
+    lock.withLock { isCancelled }
+  }
+
   private func ensureInitialFetch() async throws -> ReadObjectMetadata {
-    let task = lock.withLock { () -> Task<ReadObjectMetadata, Error> in
+    let task = lock.withLock { () -> Task<ReadObjectMetadata, Error>? in
+      if self.isCancelled {
+        return nil
+      }
       if let existing = self.initialFetchTask {
         return existing
       }
@@ -472,7 +482,10 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           resumeLoop: self.resumeLoop,
           resumeState: self.resumeState
         )
-        self.lock.withLock {
+        try self.lock.withLock {
+          if self.isCancelled {
+            throw CancellationError()
+          }
           self.metadata = metadata
           self.bodyIterator = response.body.makeAsyncIterator()
           self.isInitialFetched = true
@@ -482,35 +495,61 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
       self.initialFetchTask = newTask
       return newTask
     }
+    guard let task else {
+      throw CancellationError()
+    }
     return try await task.value
   }
 
   package func getMetadata() async throws -> ReadObjectMetadata {
-    if isCancelled {
-      throw CancellationError()
+    try await withTaskCancellationHandler {
+      if cancelled || Task.isCancelled {
+        throw CancellationError()
+      }
+      return try await ensureInitialFetch()
+    } onCancel: {
+      self.cancel()
     }
-    return try await ensureInitialFetch()
   }
 
   package func nextChunk() async throws -> ByteChunk? {
-    guard !isFinished && !isCancelled else { return nil }
+    try await withTaskCancellationHandler {
+      try await nextChunkImpl()
+    } onCancel: {
+      self.cancel()
+    }
+  }
+
+  private func nextChunkImpl() async throws -> ByteChunk? {
+    if cancelled || Task.isCancelled {
+      throw CancellationError()
+    }
+    guard !lock.withLock({ isFinished }) else { return nil }
 
     if case .prefix(0) = options.range {
-      isFinished = true
+      lock.withLock { isFinished = true }
       return nil
     }
     if case .suffix(0) = options.range {
-      isFinished = true
+      lock.withLock { isFinished = true }
       return nil
     }
 
     _ = try await ensureInitialFetch()
 
-    while !isFinished && !isCancelled {
+    while !lock.withLock({ isFinished }) {
+      if cancelled || Task.isCancelled {
+        throw CancellationError()
+      }
       do {
-        if var it = streamIterator {
+        let nextStreamIt = lock.withLock { self.streamIterator }
+        let nextBodyIt = lock.withLock { self.bodyIterator }
+        if var it = nextStreamIt {
           let chunk = try await it.next()
-          self.streamIterator = it
+          if cancelled || Task.isCancelled {
+            throw CancellationError()
+          }
+          lock.withLock { self.streamIterator = it }
           if let chunk {
             let storage = ByteChunk(chunk)
             bytesReceived += UInt64(storage.count)
@@ -520,12 +559,15 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
             return storage
           } else {
             try validateChecksumsAtEOF()
-            isFinished = true
+            lock.withLock { isFinished = true }
             return nil
           }
-        } else if var it = bodyIterator {
+        } else if var it = nextBodyIt {
           let chunk = try await it.next()
-          self.bodyIterator = it
+          if cancelled || Task.isCancelled {
+            throw CancellationError()
+          }
+          lock.withLock { self.bodyIterator = it }
           if let chunk {
             let storage = ByteChunk(chunk)
             bytesReceived += UInt64(storage.count)
@@ -535,17 +577,21 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
             return storage
           } else {
             try validateChecksumsAtEOF()
-            isFinished = true
+            lock.withLock { isFinished = true }
             return nil
           }
         } else {
           try validateChecksumsAtEOF()
-          isFinished = true
+          lock.withLock { isFinished = true }
           return nil
         }
       } catch {
+        if error is CancellationError || cancelled || Task.isCancelled {
+          lock.withLock { isFinished = true }
+          throw CancellationError()
+        }
         if error is ReadObjectError {
-          isFinished = true
+          lock.withLock { isFinished = true }
           throw error
         }
 
@@ -553,7 +599,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         do {
           try await resumeLoop.handleError(state: &resumeState, error: reqError)
         } catch let err as RequestError {
-          isFinished = true
+          lock.withLock { isFinished = true }
           if case .http = err {
             throw ReadObjectError.requestError(err)
           } else if case .service = err {
@@ -561,12 +607,18 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           }
           throw ReadObjectError.resumeFailed(
             bytesReceived: bytesReceived, message: err.localizedDescription)
+        } catch {
+          lock.withLock { isFinished = true }
+          throw error
         }
 
         try await resumeDownload(underlyingError: reqError)
       }
     }
 
+    if cancelled || Task.isCancelled {
+      throw CancellationError()
+    }
     return nil
   }
 
@@ -582,7 +634,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     guard !hasValidatedChecksums else { return }
     hasValidatedChecksums = true
 
-    let currentMetadata = self.metadata ?? ReadObjectMetadata()
+    let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
     let isRangedRead = (options.range != .entire)
     let isDecompressedTranscoding =
       (currentMetadata.storedContentLength != nil && currentMetadata.contentEncoding == nil)
@@ -637,7 +689,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   private func resumeDownload(underlyingError: Error) async throws {
-    let currentMetadata = self.metadata ?? ReadObjectMetadata()
+    let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
     guard
       let resumeRange = calculateResumeRange(
         originalRange: options.range,
@@ -645,7 +697,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         totalSize: currentMetadata.size > 0 ? currentMetadata.size : nil
       )
     else {
-      isFinished = true
+      lock.withLock { isFinished = true }
       return
     }
 
@@ -667,6 +719,9 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         do {
           resp = try await request.execute()
         } catch {
+          if error is CancellationError || Task.isCancelled {
+            throw CancellationError()
+          }
           if let reqError = error as? RequestError {
             throw reqError
           }
@@ -684,10 +739,18 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: message)
       }
-      self.bodyIterator = response.body.makeAsyncIterator()
-      self.streamIterator = nil
+      try lock.withLock {
+        if self.isCancelled {
+          throw CancellationError()
+        }
+        self.bodyIterator = response.body.makeAsyncIterator()
+        self.streamIterator = nil
+      }
     } catch {
-      isFinished = true
+      lock.withLock { isFinished = true }
+      if error is CancellationError || cancelled || Task.isCancelled {
+        throw CancellationError()
+      }
       if let downloadError = error as? ReadObjectError {
         throw downloadError
       }
@@ -704,9 +767,14 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   package func cancel() {
-    isCancelled = true
-    isFinished = true
-    initialFetchTask?.cancel()
+    let taskToCancel = lock.withLock { () -> Task<ReadObjectMetadata, Error>? in
+      isCancelled = true
+      isFinished = true
+      bodyIterator = nil
+      streamIterator = nil
+      return initialFetchTask
+    }
+    taskToCancel?.cancel()
   }
 
   fileprivate static func fetchInitial(
@@ -725,6 +793,9 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         do {
           response = try await request.execute()
         } catch {
+          if error is CancellationError || Task.isCancelled {
+            throw CancellationError()
+          }
           if let reqError = error as? RequestError {
             throw reqError
           }
@@ -754,8 +825,25 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   }
 }
 
-/// Container object returned by `readObject` containing metadata and the streaming body sequence.
-public struct ReadObjectTask: Sendable {
+/// A handle to an in-progress or deferred object download returned by ``StorageClient/readObject(from:object:options:)``.
+///
+/// `ObjectDownload` provides access to both the object's initial response metadata (``metadata``)
+/// and its streaming payload (``body``). The network request is started lazily when either
+/// ``metadata`` or ``body`` is first awaited.
+///
+/// The download automatically participates in structured concurrency cancellation: cancelling the
+/// enclosing Swift `Task` while awaiting ``metadata`` or iterating ``body`` cancels the underlying
+/// download and throws `CancellationError`. You can also call ``cancel()`` to terminate the
+/// download early (for example, after inspecting ``metadata`` without consuming ``body``).
+///
+/// ```swift
+/// let download = client.readObject(from: "my-bucket", object: "file.txt")
+/// let metadata = try await download.metadata
+/// for try await chunk in download.body {
+///   // Process ByteChunk chunk
+/// }
+/// ```
+public struct ObjectDownload: Sendable {
   private let coordinator: ReadObjectCoordinator
 
   package init(coordinator: ReadObjectCoordinator) {
@@ -779,3 +867,6 @@ public struct ReadObjectTask: Sendable {
     coordinator.cancel()
   }
 }
+
+@available(*, deprecated, renamed: "ObjectDownload")
+public typealias ReadObjectTask = ObjectDownload

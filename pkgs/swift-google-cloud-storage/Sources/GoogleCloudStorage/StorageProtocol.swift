@@ -33,12 +33,22 @@ public protocol StorageProtocol: Sendable {
     options: WriteObjectOptions
   ) async throws -> Object
 
-  /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
+  /// Starts an object download from Cloud Storage.
+  ///
+  /// Iterate over ``ObjectDownload/body`` on the returned ``ObjectDownload`` to stream the
+  /// object's content as an asynchronous sequence of ``ByteChunk`` chunks, or `await`
+  /// ``ObjectDownload/metadata`` to inspect the object's metadata.
+  ///
+  /// - Parameters:
+  ///   - bucket: The GCS bucket name.
+  ///   - object: The GCS object name.
+  ///   - options: Configuration options for the read operation.
+  /// - Returns: An ``ObjectDownload`` providing access to the object's ``ObjectDownload/metadata`` and streaming ``ObjectDownload/body``.
   func readObject(
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ReadObjectTask
+  ) -> ObjectDownload
 }
 
 extension StorageProtocol {
@@ -64,12 +74,12 @@ extension StorageProtocol {
       unseekableSource, to: bucket, as: objectName, options: options)
   }
 
-  /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
+  /// Starts an object download from Cloud Storage.
   public func readObject(
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ReadObjectTask {
+  ) -> ObjectDownload {
     fatalError("readObject(from:object:options:) has not been implemented")
   }
 
@@ -117,7 +127,7 @@ extension StorageProtocol {
   public func readObject(
     from bucket: String,
     object: String
-  ) -> ReadObjectTask {
+  ) -> ObjectDownload {
     self.readObject(from: bucket, object: object, options: .init())
   }
 }
