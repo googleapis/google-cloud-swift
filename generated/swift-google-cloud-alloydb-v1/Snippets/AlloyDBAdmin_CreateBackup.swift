@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AlloyDBAdminClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createBackup(
-    withPolling: CreateBackupRequest()
+  let poller = try await client.createBackupPollingUntilDone(
+    request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.backupId = "[replace with a valid ID]"

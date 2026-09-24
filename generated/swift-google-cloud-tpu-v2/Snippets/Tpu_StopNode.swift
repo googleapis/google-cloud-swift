@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient) async throws {
-  let poller = try await client.stopNode(
-    withPolling: StopNodeRequest()
+  let poller = try await client.stopNodePollingUntilDone(
+    request: StopNodeRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

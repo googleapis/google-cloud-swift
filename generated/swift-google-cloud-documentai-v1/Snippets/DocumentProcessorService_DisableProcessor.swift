@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: DocumentProcessorServiceClient) async throws {
-  let poller = try await client.disableProcessor(
-    withPolling: DisableProcessorRequest()
+  let poller = try await client.disableProcessorPollingUntilDone(
+    request: DisableProcessorRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

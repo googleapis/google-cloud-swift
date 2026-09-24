@@ -25,8 +25,8 @@ func sample(
   client: InsightsConfigServiceClient, projectId: String, locationId: String,
   insightsConfigId: String
 ) async throws {
-  let poller = try await client.deleteInsightsConfig(
-    withPolling: DeleteInsightsConfigRequest()
+  let poller = try await client.deleteInsightsConfigPollingUntilDone(
+    request: DeleteInsightsConfigRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/insightsConfigs/\(insightsConfigId)"

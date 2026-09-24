@@ -69,14 +69,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// `SUCCESS` or `FAILURE`).
   ///
   /// @Snippet(path: "CloudBuild_CreateBuild")
-  public func createBuild(
-    withPolling: CreateBuildRequest, options: GoogleGax.RequestOptions
+  public func createBuildPollingUntilDone(
+    request: CreateBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Build>.State in
       return try op._extractStatus(Build.self)
     }
-    let rawOp = try await self.createBuild(request: withPolling, options: options)
+    let rawOp = try await self.createBuild(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       let op = try await self.getOperation(
@@ -188,14 +188,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// lifecycle management settings.
   ///
   /// @Snippet(path: "CloudBuild_RetryBuild")
-  public func retryBuild(
-    withPolling: RetryBuildRequest, options: GoogleGax.RequestOptions
+  public func retryBuildPollingUntilDone(
+    request: RetryBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Build>.State in
       return try op._extractStatus(Build.self)
     }
-    let rawOp = try await self.retryBuild(request: withPolling, options: options)
+    let rawOp = try await self.retryBuild(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       let op = try await self.getOperation(
@@ -232,14 +232,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// If rejected, the returned LRO will be immediately done.
   ///
   /// @Snippet(path: "CloudBuild_ApproveBuild")
-  public func approveBuild(
-    withPolling: ApproveBuildRequest, options: GoogleGax.RequestOptions
+  public func approveBuildPollingUntilDone(
+    request: ApproveBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Build>.State in
       return try op._extractStatus(Build.self)
     }
-    let rawOp = try await self.approveBuild(request: withPolling, options: options)
+    let rawOp = try await self.approveBuild(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       let op = try await self.getOperation(
@@ -323,14 +323,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// only be used when running global triggers.
   ///
   /// @Snippet(path: "CloudBuild_RunBuildTrigger")
-  public func runBuildTrigger(
-    withPolling: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
+  public func runBuildTriggerPollingUntilDone(
+    request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Build>.State in
       return try op._extractStatus(Build.self)
     }
-    let rawOp = try await self.runBuildTrigger(request: withPolling, options: options)
+    let rawOp = try await self.runBuildTrigger(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       let op = try await self.getOperation(
@@ -367,15 +367,15 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Creates a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_CreateWorkerPool")
-  public func createWorkerPool(
-    withPolling: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
+  public func createWorkerPoolPollingUntilDone(
+    request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State
       in
       return try op._extractStatus(WorkerPool.self)
     }
-    let rawOp = try await self.createWorkerPool(request: withPolling, options: options)
+    let rawOp = try await self.createWorkerPool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
       let op = try await self.getOperation(
@@ -411,15 +411,15 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Deletes a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_DeleteWorkerPool")
-  public func deleteWorkerPool(
-    withPolling: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkerPoolPollingUntilDone(
+    request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteWorkerPool(request: withPolling, options: options)
+    let rawOp = try await self.deleteWorkerPool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -446,15 +446,15 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Updates a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_UpdateWorkerPool")
-  public func updateWorkerPool(
-    withPolling: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
+  public func updateWorkerPoolPollingUntilDone(
+    request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State
       in
       return try op._extractStatus(WorkerPool.self)
     }
-    let rawOp = try await self.updateWorkerPool(request: withPolling, options: options)
+    let rawOp = try await self.updateWorkerPool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
       let op = try await self.getOperation(
@@ -518,83 +518,82 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol CloudBuildProtocol: Sendable {
     /// See `CloudBuildClient.createBuild`.
-    func createBuild(withPolling: CreateBuildRequest) async throws -> any GoogleGax
+    func createBuildPollingUntilDone(request: CreateBuildRequest) async throws -> any GoogleGax
       .PollableOperation<Build>
 
     /// See `CloudBuildClient.createBuild`.
-    func createBuild(
+    func createBuildPollingUntilDone(
       projectId: Swift.String,
       build: Build?,
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.createBuild`.
-    func createBuild(
+    func createBuildPollingUntilDone(
       parent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.retryBuild`.
-    func retryBuild(withPolling: RetryBuildRequest) async throws -> any GoogleGax.PollableOperation<
-      Build
-    >
+    func retryBuildPollingUntilDone(request: RetryBuildRequest) async throws -> any GoogleGax
+      .PollableOperation<Build>
 
     /// See `CloudBuildClient.retryBuild`.
-    func retryBuild(
+    func retryBuildPollingUntilDone(
       projectId: Swift.String,
       id: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.retryBuild`.
-    func retryBuild(
+    func retryBuildPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.approveBuild`.
-    func approveBuild(withPolling: ApproveBuildRequest) async throws -> any GoogleGax
+    func approveBuildPollingUntilDone(request: ApproveBuildRequest) async throws -> any GoogleGax
       .PollableOperation<Build>
 
     /// See `CloudBuildClient.approveBuild`.
-    func approveBuild(
+    func approveBuildPollingUntilDone(
       name: Swift.String,
       approvalResult: ApprovalResult?,
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.runBuildTrigger`.
-    func runBuildTrigger(withPolling: RunBuildTriggerRequest) async throws -> any GoogleGax
-      .PollableOperation<Build>
+    func runBuildTriggerPollingUntilDone(request: RunBuildTriggerRequest) async throws
+      -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.runBuildTrigger`.
-    func runBuildTrigger(
+    func runBuildTriggerPollingUntilDone(
       projectId: Swift.String,
       triggerId: Swift.String,
       source: RepoSource?,
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.createWorkerPool`.
-    func createWorkerPool(withPolling: CreateWorkerPoolRequest) async throws -> any GoogleGax
-      .PollableOperation<WorkerPool>
+    func createWorkerPoolPollingUntilDone(request: CreateWorkerPoolRequest) async throws
+      -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `CloudBuildClient.createWorkerPool`.
-    func createWorkerPool(
+    func createWorkerPoolPollingUntilDone(
       parent: Swift.String,
       workerPool: WorkerPool?,
       workerPoolId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `CloudBuildClient.deleteWorkerPool`.
-    func deleteWorkerPool(withPolling: DeleteWorkerPoolRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteWorkerPoolPollingUntilDone(request: DeleteWorkerPoolRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudBuildClient.deleteWorkerPool`.
-    func deleteWorkerPool(
+    func deleteWorkerPoolPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudBuildClient.updateWorkerPool`.
-    func updateWorkerPool(withPolling: UpdateWorkerPoolRequest) async throws -> any GoogleGax
-      .PollableOperation<WorkerPool>
+    func updateWorkerPoolPollingUntilDone(request: UpdateWorkerPoolRequest) async throws
+      -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `CloudBuildClient.updateWorkerPool`.
-    func updateWorkerPool(
+    func updateWorkerPoolPollingUntilDone(
       workerPool: WorkerPool?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
@@ -605,8 +604,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.createBuild`.
-    func createBuild(
-      withPolling: CreateBuildRequest, options: GoogleGax.RequestOptions
+    func createBuildPollingUntilDone(
+      request: CreateBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.getBuild`.
@@ -630,8 +629,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.retryBuild`.
-    func retryBuild(
-      withPolling: RetryBuildRequest, options: GoogleGax.RequestOptions
+    func retryBuildPollingUntilDone(
+      request: RetryBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.approveBuild`.
@@ -640,8 +639,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.approveBuild`.
-    func approveBuild(
-      withPolling: ApproveBuildRequest, options: GoogleGax.RequestOptions
+    func approveBuildPollingUntilDone(
+      request: ApproveBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.createBuildTrigger`.
@@ -675,8 +674,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.runBuildTrigger`.
-    func runBuildTrigger(
-      withPolling: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
+    func runBuildTriggerPollingUntilDone(
+      request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Build>
 
     /// See `CloudBuildClient.receiveTriggerWebhook`.
@@ -690,8 +689,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.createWorkerPool`.
-    func createWorkerPool(
-      withPolling: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
+    func createWorkerPoolPollingUntilDone(
+      request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `CloudBuildClient.getWorkerPool`.
@@ -705,8 +704,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.deleteWorkerPool`.
-    func deleteWorkerPool(
-      withPolling: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
+    func deleteWorkerPoolPollingUntilDone(
+      request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudBuildClient.updateWorkerPool`.
@@ -715,8 +714,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudBuildClient.updateWorkerPool`.
-    func updateWorkerPool(
-      withPolling: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
+    func updateWorkerPoolPollingUntilDone(
+      request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
 
     /// See `CloudBuildClient.listWorkerPools`.
@@ -748,14 +747,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBuild(withPolling: CreateBuildRequest) async throws -> any GoogleGax
+  public func createBuildPollingUntilDone(request: CreateBuildRequest) async throws -> any GoogleGax
     .PollableOperation<Build>
   {
-    try await self.createBuild(withPolling: withPolling, options: .init())
+    try await self.createBuildPollingUntilDone(request: request, options: .init())
   }
 
-  public func createBuild(
-    withPolling: CreateBuildRequest, options: GoogleGax.RequestOptions
+  public func createBuildPollingUntilDone(
+    request: CreateBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -764,7 +763,7 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createBuild(
+  public func createBuildPollingUntilDone(
     projectId: Swift.String,
     build: Build?,
   ) async throws -> any GoogleGax.PollableOperation<Build> {
@@ -772,16 +771,16 @@ extension Clients.CloudBuildProtocol {
       $0.projectId = projectId
       $0.build = build
     }
-    return try await self.createBuild(withPolling: request)
+    return try await self.createBuildPollingUntilDone(request: request)
   }
 
-  public func createBuild(
+  public func createBuildPollingUntilDone(
     parent: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let request = CreateBuildRequest().with {
       $0.parent = parent
     }
-    return try await self.createBuild(withPolling: request)
+    return try await self.createBuildPollingUntilDone(request: request)
   }
 
   public func getBuild(request: GetBuildRequest) async throws -> GoogleCloudBuildV1.Build {
@@ -900,14 +899,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func retryBuild(withPolling: RetryBuildRequest) async throws -> any GoogleGax
+  public func retryBuildPollingUntilDone(request: RetryBuildRequest) async throws -> any GoogleGax
     .PollableOperation<Build>
   {
-    try await self.retryBuild(withPolling: withPolling, options: .init())
+    try await self.retryBuildPollingUntilDone(request: request, options: .init())
   }
 
-  public func retryBuild(
-    withPolling: RetryBuildRequest, options: GoogleGax.RequestOptions
+  public func retryBuildPollingUntilDone(
+    request: RetryBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -916,7 +915,7 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func retryBuild(
+  public func retryBuildPollingUntilDone(
     projectId: Swift.String,
     id: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Build> {
@@ -924,16 +923,16 @@ extension Clients.CloudBuildProtocol {
       $0.projectId = projectId
       $0.id = id
     }
-    return try await self.retryBuild(withPolling: request)
+    return try await self.retryBuildPollingUntilDone(request: request)
   }
 
-  public func retryBuild(
+  public func retryBuildPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let request = RetryBuildRequest().with {
       $0.name = name
     }
-    return try await self.retryBuild(withPolling: request)
+    return try await self.retryBuildPollingUntilDone(request: request)
   }
 
   public func approveBuild(request: ApproveBuildRequest) async throws -> GoogleLongRunning.Operation
@@ -947,14 +946,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func approveBuild(withPolling: ApproveBuildRequest) async throws -> any GoogleGax
-    .PollableOperation<Build>
+  public func approveBuildPollingUntilDone(request: ApproveBuildRequest) async throws
+    -> any GoogleGax.PollableOperation<Build>
   {
-    try await self.approveBuild(withPolling: withPolling, options: .init())
+    try await self.approveBuildPollingUntilDone(request: request, options: .init())
   }
 
-  public func approveBuild(
-    withPolling: ApproveBuildRequest, options: GoogleGax.RequestOptions
+  public func approveBuildPollingUntilDone(
+    request: ApproveBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -963,7 +962,7 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func approveBuild(
+  public func approveBuildPollingUntilDone(
     name: Swift.String,
     approvalResult: ApprovalResult?,
   ) async throws -> any GoogleGax.PollableOperation<Build> {
@@ -971,7 +970,7 @@ extension Clients.CloudBuildProtocol {
       $0.name = name
       $0.approvalResult = approvalResult
     }
-    return try await self.approveBuild(withPolling: request)
+    return try await self.approveBuildPollingUntilDone(request: request)
   }
 
   public func createBuildTrigger(request: CreateBuildTriggerRequest) async throws
@@ -1147,14 +1146,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runBuildTrigger(withPolling: RunBuildTriggerRequest) async throws -> any GoogleGax
-    .PollableOperation<Build>
+  public func runBuildTriggerPollingUntilDone(request: RunBuildTriggerRequest) async throws
+    -> any GoogleGax.PollableOperation<Build>
   {
-    try await self.runBuildTrigger(withPolling: withPolling, options: .init())
+    try await self.runBuildTriggerPollingUntilDone(request: request, options: .init())
   }
 
-  public func runBuildTrigger(
-    withPolling: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
+  public func runBuildTriggerPollingUntilDone(
+    request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Build> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Build>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1163,7 +1162,7 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func runBuildTrigger(
+  public func runBuildTriggerPollingUntilDone(
     projectId: Swift.String,
     triggerId: Swift.String,
     source: RepoSource?,
@@ -1173,7 +1172,7 @@ extension Clients.CloudBuildProtocol {
       $0.triggerId = triggerId
       $0.source = source
     }
-    return try await self.runBuildTrigger(withPolling: request)
+    return try await self.runBuildTriggerPollingUntilDone(request: request)
   }
 
   public func receiveTriggerWebhook(request: ReceiveTriggerWebhookRequest) async throws
@@ -1200,14 +1199,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWorkerPool(withPolling: CreateWorkerPoolRequest) async throws -> any GoogleGax
-    .PollableOperation<WorkerPool>
+  public func createWorkerPoolPollingUntilDone(request: CreateWorkerPoolRequest) async throws
+    -> any GoogleGax.PollableOperation<WorkerPool>
   {
-    try await self.createWorkerPool(withPolling: withPolling, options: .init())
+    try await self.createWorkerPoolPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWorkerPool(
-    withPolling: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
+  public func createWorkerPoolPollingUntilDone(
+    request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1216,7 +1215,7 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWorkerPool(
+  public func createWorkerPoolPollingUntilDone(
     parent: Swift.String,
     workerPool: WorkerPool?,
     workerPoolId: Swift.String,
@@ -1226,7 +1225,7 @@ extension Clients.CloudBuildProtocol {
       $0.workerPool = workerPool
       $0.workerPoolId = workerPoolId
     }
-    return try await self.createWorkerPool(withPolling: request)
+    return try await self.createWorkerPoolPollingUntilDone(request: request)
   }
 
   public func getWorkerPool(request: GetWorkerPoolRequest) async throws
@@ -1262,14 +1261,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWorkerPool(withPolling: DeleteWorkerPoolRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteWorkerPoolPollingUntilDone(request: DeleteWorkerPoolRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteWorkerPool(withPolling: withPolling, options: .init())
+    try await self.deleteWorkerPoolPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWorkerPool(
-    withPolling: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkerPoolPollingUntilDone(
+    request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1278,13 +1277,13 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWorkerPool(
+  public func deleteWorkerPoolPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteWorkerPoolRequest().with {
       $0.name = name
     }
-    return try await self.deleteWorkerPool(withPolling: request)
+    return try await self.deleteWorkerPoolPollingUntilDone(request: request)
   }
 
   public func updateWorkerPool(request: UpdateWorkerPoolRequest) async throws
@@ -1299,14 +1298,14 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateWorkerPool(withPolling: UpdateWorkerPoolRequest) async throws -> any GoogleGax
-    .PollableOperation<WorkerPool>
+  public func updateWorkerPoolPollingUntilDone(request: UpdateWorkerPoolRequest) async throws
+    -> any GoogleGax.PollableOperation<WorkerPool>
   {
-    try await self.updateWorkerPool(withPolling: withPolling, options: .init())
+    try await self.updateWorkerPoolPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateWorkerPool(
-    withPolling: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
+  public func updateWorkerPoolPollingUntilDone(
+    request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1315,7 +1314,7 @@ extension Clients.CloudBuildProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateWorkerPool(
+  public func updateWorkerPoolPollingUntilDone(
     workerPool: WorkerPool?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
@@ -1323,7 +1322,7 @@ extension Clients.CloudBuildProtocol {
       $0.workerPool = workerPool
       $0.updateMask = updateMask
     }
-    return try await self.updateWorkerPool(withPolling: request)
+    return try await self.updateWorkerPoolPollingUntilDone(request: request)
   }
 
   public func listWorkerPools(request: ListWorkerPoolsRequest) async throws

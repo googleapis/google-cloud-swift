@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient) async throws {
-  let poller = try await client.disableInteractiveSerialConsole(
-    withPolling: DisableInteractiveSerialConsoleRequest()
+  let poller = try await client.disableInteractiveSerialConsolePollingUntilDone(
+    request: DisableInteractiveSerialConsoleRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

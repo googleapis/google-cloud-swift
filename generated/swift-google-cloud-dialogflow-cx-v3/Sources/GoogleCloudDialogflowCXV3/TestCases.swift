@@ -129,15 +129,15 @@
     /// [google.cloud.dialogflow.cx.v3.RunTestCaseResponse]: <doc:RunTestCaseResponse>
     ///
     /// @Snippet(path: "TestCases_RunTestCase")
-    public func runTestCase(
-      withPolling: RunTestCaseRequest, options: GoogleGax.RequestOptions
+    public func runTestCasePollingUntilDone(
+      request: RunTestCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RunTestCaseResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RunTestCaseResponse>.State in
         return try op._extractStatus(RunTestCaseResponse.self)
       }
-      let rawOp = try await self.runTestCase(request: withPolling, options: options)
+      let rawOp = try await self.runTestCase(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunTestCaseResponse>.State in
         let op = try await self.getOperation(
@@ -188,15 +188,15 @@
     /// [google.cloud.dialogflow.cx.v3.BatchRunTestCasesResponse]: <doc:BatchRunTestCasesResponse>
     ///
     /// @Snippet(path: "TestCases_BatchRunTestCases")
-    public func batchRunTestCases(
-      withPolling: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
+    public func batchRunTestCasesPollingUntilDone(
+      request: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchRunTestCasesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchRunTestCasesResponse>.State in
         return try op._extractStatus(BatchRunTestCasesResponse.self)
       }
-      let rawOp = try await self.batchRunTestCases(request: withPolling, options: options)
+      let rawOp = try await self.batchRunTestCases(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchRunTestCasesResponse>.State in
@@ -261,15 +261,15 @@
     /// [google.cloud.dialogflow.cx.v3.ImportTestCasesResponse]: <doc:ImportTestCasesResponse>
     ///
     /// @Snippet(path: "TestCases_ImportTestCases")
-    public func importTestCases(
-      withPolling: ImportTestCasesRequest, options: GoogleGax.RequestOptions
+    public func importTestCasesPollingUntilDone(
+      request: ImportTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportTestCasesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportTestCasesResponse>.State in
         return try op._extractStatus(ImportTestCasesResponse.self)
       }
-      let rawOp = try await self.importTestCases(request: withPolling, options: options)
+      let rawOp = try await self.importTestCases(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportTestCasesResponse>.State in
@@ -323,15 +323,15 @@
     /// [google.cloud.dialogflow.cx.v3.ExportTestCasesResponse]: <doc:ExportTestCasesResponse>
     ///
     /// @Snippet(path: "TestCases_ExportTestCases")
-    public func exportTestCases(
-      withPolling: ExportTestCasesRequest, options: GoogleGax.RequestOptions
+    public func exportTestCasesPollingUntilDone(
+      request: ExportTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportTestCasesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportTestCasesResponse>.State in
         return try op._extractStatus(ExportTestCasesResponse.self)
       }
-      let rawOp = try await self.exportTestCases(request: withPolling, options: options)
+      let rawOp = try await self.exportTestCases(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ExportTestCasesResponse>.State in
@@ -443,20 +443,20 @@
     /// and pass a mock implementation in your tests.
     public protocol TestCasesProtocol: Sendable {
       /// See `TestCasesClient.runTestCase`.
-      func runTestCase(withPolling: RunTestCaseRequest) async throws -> any GoogleGax
+      func runTestCasePollingUntilDone(request: RunTestCaseRequest) async throws -> any GoogleGax
         .PollableOperation<RunTestCaseResponse>
 
       /// See `TestCasesClient.batchRunTestCases`.
-      func batchRunTestCases(withPolling: BatchRunTestCasesRequest) async throws -> any GoogleGax
-        .PollableOperation<BatchRunTestCasesResponse>
+      func batchRunTestCasesPollingUntilDone(request: BatchRunTestCasesRequest) async throws
+        -> any GoogleGax.PollableOperation<BatchRunTestCasesResponse>
 
       /// See `TestCasesClient.importTestCases`.
-      func importTestCases(withPolling: ImportTestCasesRequest) async throws -> any GoogleGax
-        .PollableOperation<ImportTestCasesResponse>
+      func importTestCasesPollingUntilDone(request: ImportTestCasesRequest) async throws
+        -> any GoogleGax.PollableOperation<ImportTestCasesResponse>
 
       /// See `TestCasesClient.exportTestCases`.
-      func exportTestCases(withPolling: ExportTestCasesRequest) async throws -> any GoogleGax
-        .PollableOperation<ExportTestCasesResponse>
+      func exportTestCasesPollingUntilDone(request: ExportTestCasesRequest) async throws
+        -> any GoogleGax.PollableOperation<ExportTestCasesResponse>
 
       /// See `TestCasesClient.listTestCases`.
       func listTestCases(
@@ -489,8 +489,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TestCasesClient.runTestCase`.
-      func runTestCase(
-        withPolling: RunTestCaseRequest, options: GoogleGax.RequestOptions
+      func runTestCasePollingUntilDone(
+        request: RunTestCaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<RunTestCaseResponse>
 
       /// See `TestCasesClient.batchRunTestCases`.
@@ -499,8 +499,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TestCasesClient.batchRunTestCases`.
-      func batchRunTestCases(
-        withPolling: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
+      func batchRunTestCasesPollingUntilDone(
+        request: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchRunTestCasesResponse>
 
       /// See `TestCasesClient.calculateCoverage`.
@@ -514,8 +514,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TestCasesClient.importTestCases`.
-      func importTestCases(
-        withPolling: ImportTestCasesRequest, options: GoogleGax.RequestOptions
+      func importTestCasesPollingUntilDone(
+        request: ImportTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ImportTestCasesResponse>
 
       /// See `TestCasesClient.exportTestCases`.
@@ -524,8 +524,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TestCasesClient.exportTestCases`.
-      func exportTestCases(
-        withPolling: ExportTestCasesRequest, options: GoogleGax.RequestOptions
+      func exportTestCasesPollingUntilDone(
+        request: ExportTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ExportTestCasesResponse>
 
       /// See `TestCasesClient.listTestCaseResults`.
@@ -701,14 +701,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func runTestCase(withPolling: RunTestCaseRequest) async throws -> any GoogleGax
-      .PollableOperation<RunTestCaseResponse>
+    public func runTestCasePollingUntilDone(request: RunTestCaseRequest) async throws
+      -> any GoogleGax.PollableOperation<RunTestCaseResponse>
     {
-      try await self.runTestCase(withPolling: withPolling, options: .init())
+      try await self.runTestCasePollingUntilDone(request: request, options: .init())
     }
 
-    public func runTestCase(
-      withPolling: RunTestCaseRequest, options: GoogleGax.RequestOptions
+    public func runTestCasePollingUntilDone(
+      request: RunTestCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RunTestCaseResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunTestCaseResponse>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -729,14 +729,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchRunTestCases(withPolling: BatchRunTestCasesRequest) async throws
+    public func batchRunTestCasesPollingUntilDone(request: BatchRunTestCasesRequest) async throws
       -> any GoogleGax.PollableOperation<BatchRunTestCasesResponse>
     {
-      try await self.batchRunTestCases(withPolling: withPolling, options: .init())
+      try await self.batchRunTestCasesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchRunTestCases(
-      withPolling: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
+    public func batchRunTestCasesPollingUntilDone(
+      request: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchRunTestCasesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchRunTestCasesResponse>.State in
@@ -770,14 +770,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importTestCases(withPolling: ImportTestCasesRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportTestCasesResponse>
+    public func importTestCasesPollingUntilDone(request: ImportTestCasesRequest) async throws
+      -> any GoogleGax.PollableOperation<ImportTestCasesResponse>
     {
-      try await self.importTestCases(withPolling: withPolling, options: .init())
+      try await self.importTestCasesPollingUntilDone(request: request, options: .init())
     }
 
-    public func importTestCases(
-      withPolling: ImportTestCasesRequest, options: GoogleGax.RequestOptions
+    public func importTestCasesPollingUntilDone(
+      request: ImportTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportTestCasesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportTestCasesResponse>.State in
@@ -799,14 +799,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportTestCases(withPolling: ExportTestCasesRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportTestCasesResponse>
+    public func exportTestCasesPollingUntilDone(request: ExportTestCasesRequest) async throws
+      -> any GoogleGax.PollableOperation<ExportTestCasesResponse>
     {
-      try await self.exportTestCases(withPolling: withPolling, options: .init())
+      try await self.exportTestCasesPollingUntilDone(request: request, options: .init())
     }
 
-    public func exportTestCases(
-      withPolling: ExportTestCasesRequest, options: GoogleGax.RequestOptions
+    public func exportTestCasesPollingUntilDone(
+      request: ExportTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportTestCasesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ExportTestCasesResponse>.State in

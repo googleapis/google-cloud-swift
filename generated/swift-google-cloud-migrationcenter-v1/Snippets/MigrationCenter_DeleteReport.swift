@@ -26,8 +26,8 @@ func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, reportConfigId: String,
   reportId: String
 ) async throws {
-  let poller = try await client.deleteReport(
-    withPolling: DeleteReportRequest()
+  let poller = try await client.deleteReportPollingUntilDone(
+    request: DeleteReportRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/reportConfigs/\(reportConfigId)/reports/\(reportId)"

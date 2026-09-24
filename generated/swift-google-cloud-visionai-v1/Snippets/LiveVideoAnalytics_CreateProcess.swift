@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, clusterId: String
 ) async throws {
-  let poller = try await client.createProcess(
-    withPolling: CreateProcessRequest()
+  let poller = try await client.createProcessPollingUntilDone(
+    request: CreateProcessRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
         $0.processId = "[replace with a valid ID]"

@@ -55,8 +55,8 @@
     /// bucket.
     ///
     /// @Snippet(path: "backendBuckets_addSignedUrlKey")
-    public func addSignedUrlKey(
-      withPolling: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
+    public func addSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -72,14 +72,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.addSignedUrlKey(request: withPolling, options: options)
+      let rawOp = try await self.addSignedUrlKey(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -116,8 +116,8 @@
     /// Deletes the specified BackendBucket resource.
     ///
     /// @Snippet(path: "backendBuckets_delete")
-    public func delete(
-      withPolling: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -133,14 +133,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.delete(request: withPolling, options: options)
+      let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -166,8 +166,8 @@
     /// bucket.
     ///
     /// @Snippet(path: "backendBuckets_deleteSignedUrlKey")
-    public func deleteSignedUrlKey(
-      withPolling: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
+    public func deleteSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -183,14 +183,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.deleteSignedUrlKey(request: withPolling, options: options)
+      let rawOp = try await self.deleteSignedUrlKey(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -235,8 +235,8 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "backendBuckets_insert")
-    public func insert(
-      withPolling: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -252,14 +252,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.insert(request: withPolling, options: options)
+      let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -308,8 +308,8 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "backendBuckets_patch")
-    public func patch(
-      withPolling: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
+    public func patchPollingUntilDone(
+      request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -325,14 +325,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.patch(request: withPolling, options: options)
+      let rawOp = try await self.patch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -356,9 +356,8 @@
     /// Sets the edge security policy for the specified backend bucket.
     ///
     /// @Snippet(path: "backendBuckets_setEdgeSecurityPolicy")
-    public func setEdgeSecurityPolicy(
-      withPolling: BackendBucketsClient.SetEdgeSecurityPolicyRequest,
-      options: GoogleGax.RequestOptions
+    public func setEdgeSecurityPolicyPollingUntilDone(
+      request: BackendBucketsClient.SetEdgeSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -374,14 +373,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.setEdgeSecurityPolicy(request: withPolling, options: options)
+      let rawOp = try await self.setEdgeSecurityPolicy(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -426,8 +425,8 @@
     /// request.
     ///
     /// @Snippet(path: "backendBuckets_update")
-    public func update(
-      withPolling: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
+    public func updatePollingUntilDone(
+      request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -443,14 +442,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.update(request: withPolling, options: options)
+      let rawOp = try await self.update(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -566,14 +565,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func addSignedUrlKey(
-      withPolling: BackendBucketsClient.AddSignedUrlKeyRequest
+    public func addSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.AddSignedUrlKeyRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.addSignedUrlKey(withPolling: withPolling, options: .init())
+      try await self.addSignedUrlKeyPollingUntilDone(request: request, options: .init())
     }
 
-    public func addSignedUrlKey(
-      withPolling: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
+    public func addSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -583,7 +582,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func addSignedUrlKey(
+    public func addSignedUrlKeyPollingUntilDone(
       project: Swift.String,
       backendBucket: Swift.String,
       body: SignedUrlKey?,
@@ -593,7 +592,7 @@
         $0.backendBucket = backendBucket
         $0.body = body
       }
-      return try await self.addSignedUrlKey(withPolling: request)
+      return try await self.addSignedUrlKeyPollingUntilDone(request: request)
     }
 
     public func aggregatedList(request: BackendBucketsClient.AggregatedListRequest) async throws
@@ -654,14 +653,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func delete(
-      withPolling: BackendBucketsClient.DeleteRequest
+    public func deletePollingUntilDone(
+      request: BackendBucketsClient.DeleteRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.delete(withPolling: withPolling, options: .init())
+      try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
-    public func delete(
-      withPolling: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -671,7 +670,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func delete(
+    public func deletePollingUntilDone(
       project: Swift.String,
       backendBucket: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -679,7 +678,7 @@
         $0.project = project
         $0.backendBucket = backendBucket
       }
-      return try await self.delete(withPolling: request)
+      return try await self.deletePollingUntilDone(request: request)
     }
 
     public func deleteSignedUrlKey(request: BackendBucketsClient.DeleteSignedUrlKeyRequest)
@@ -694,14 +693,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSignedUrlKey(
-      withPolling: BackendBucketsClient.DeleteSignedUrlKeyRequest
+    public func deleteSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.DeleteSignedUrlKeyRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deleteSignedUrlKey(withPolling: withPolling, options: .init())
+      try await self.deleteSignedUrlKeyPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteSignedUrlKey(
-      withPolling: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
+    public func deleteSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -711,7 +710,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteSignedUrlKey(
+    public func deleteSignedUrlKeyPollingUntilDone(
       project: Swift.String,
       backendBucket: Swift.String,
       keyName: Swift.String,
@@ -721,7 +720,7 @@
         $0.backendBucket = backendBucket
         $0.keyName = keyName
       }
-      return try await self.deleteSignedUrlKey(withPolling: request)
+      return try await self.deleteSignedUrlKeyPollingUntilDone(request: request)
     }
 
     public func `get`(request: BackendBucketsClient.GetRequest) async throws
@@ -782,14 +781,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func insert(
-      withPolling: BackendBucketsClient.InsertRequest
+    public func insertPollingUntilDone(
+      request: BackendBucketsClient.InsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insert(withPolling: withPolling, options: .init())
+      try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
-    public func insert(
-      withPolling: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -799,7 +798,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func insert(
+    public func insertPollingUntilDone(
       project: Swift.String,
       body: BackendBucket?,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -807,7 +806,7 @@
         $0.project = project
         $0.body = body
       }
-      return try await self.insert(withPolling: request)
+      return try await self.insertPollingUntilDone(request: request)
     }
 
     public func list(request: BackendBucketsClient.ListRequest) async throws
@@ -907,14 +906,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func patch(
-      withPolling: BackendBucketsClient.PatchRequest
+    public func patchPollingUntilDone(
+      request: BackendBucketsClient.PatchRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patch(withPolling: withPolling, options: .init())
+      try await self.patchPollingUntilDone(request: request, options: .init())
     }
 
-    public func patch(
-      withPolling: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
+    public func patchPollingUntilDone(
+      request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -924,7 +923,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func patch(
+    public func patchPollingUntilDone(
       project: Swift.String,
       backendBucket: Swift.String,
       body: BackendBucket?,
@@ -934,7 +933,7 @@
         $0.backendBucket = backendBucket
         $0.body = body
       }
-      return try await self.patch(withPolling: request)
+      return try await self.patchPollingUntilDone(request: request)
     }
 
     public func setEdgeSecurityPolicy(request: BackendBucketsClient.SetEdgeSecurityPolicyRequest)
@@ -949,15 +948,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func setEdgeSecurityPolicy(
-      withPolling: BackendBucketsClient.SetEdgeSecurityPolicyRequest
+    public func setEdgeSecurityPolicyPollingUntilDone(
+      request: BackendBucketsClient.SetEdgeSecurityPolicyRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setEdgeSecurityPolicy(withPolling: withPolling, options: .init())
+      try await self.setEdgeSecurityPolicyPollingUntilDone(request: request, options: .init())
     }
 
-    public func setEdgeSecurityPolicy(
-      withPolling: BackendBucketsClient.SetEdgeSecurityPolicyRequest,
-      options: GoogleGax.RequestOptions
+    public func setEdgeSecurityPolicyPollingUntilDone(
+      request: BackendBucketsClient.SetEdgeSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -967,7 +965,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func setEdgeSecurityPolicy(
+    public func setEdgeSecurityPolicyPollingUntilDone(
       project: Swift.String,
       backendBucket: Swift.String,
       body: SecurityPolicyReference?,
@@ -977,7 +975,7 @@
         $0.backendBucket = backendBucket
         $0.body = body
       }
-      return try await self.setEdgeSecurityPolicy(withPolling: request)
+      return try await self.setEdgeSecurityPolicyPollingUntilDone(request: request)
     }
 
     public func setIamPolicy(request: BackendBucketsClient.SetIamPolicyRequest) async throws
@@ -1042,14 +1040,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func update(
-      withPolling: BackendBucketsClient.UpdateRequest
+    public func updatePollingUntilDone(
+      request: BackendBucketsClient.UpdateRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.update(withPolling: withPolling, options: .init())
+      try await self.updatePollingUntilDone(request: request, options: .init())
     }
 
-    public func update(
-      withPolling: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
+    public func updatePollingUntilDone(
+      request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -1059,7 +1057,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func update(
+    public func updatePollingUntilDone(
       project: Swift.String,
       backendBucket: Swift.String,
       body: BackendBucket?,
@@ -1069,7 +1067,7 @@
         $0.backendBucket = backendBucket
         $0.body = body
       }
-      return try await self.update(withPolling: request)
+      return try await self.updatePollingUntilDone(request: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: BackendBucketsClient) async throws {
-    let poller = try await client.addSignedUrlKey(
-      withPolling: BackendBucketsClient.AddSignedUrlKeyRequest()
+    let poller = try await client.addSignedUrlKeyPollingUntilDone(
+      request: BackendBucketsClient.AddSignedUrlKeyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

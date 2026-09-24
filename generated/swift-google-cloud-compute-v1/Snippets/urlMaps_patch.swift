@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: UrlMapsClient) async throws {
-    let poller = try await client.patch(
-      withPolling: UrlMapsClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: UrlMapsClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

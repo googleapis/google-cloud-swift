@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, preferenceSetId: String
 ) async throws {
-  let poller = try await client.deletePreferenceSet(
-    withPolling: DeletePreferenceSetRequest()
+  let poller = try await client.deletePreferenceSetPollingUntilDone(
+    request: DeletePreferenceSetRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/preferenceSets/\(preferenceSetId)"
       }

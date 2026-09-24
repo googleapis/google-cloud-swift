@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: PrivilegedAccessManagerClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createEntitlement(
-    withPolling: CreateEntitlementRequest()
+  let poller = try await client.createEntitlementPollingUntilDone(
+    request: CreateEntitlementRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.entitlementId = "[replace with a valid ID]"

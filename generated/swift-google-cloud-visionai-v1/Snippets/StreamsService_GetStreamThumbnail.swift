@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StreamsServiceClient) async throws {
-  let poller = try await client.getStreamThumbnail(
-    withPolling: GetStreamThumbnailRequest()
+  let poller = try await client.getStreamThumbnailPollingUntilDone(
+    request: GetStreamThumbnailRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

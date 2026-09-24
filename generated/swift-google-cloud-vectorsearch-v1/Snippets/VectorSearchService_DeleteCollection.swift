@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: VectorSearchServiceClient, projectId: String, locationId: String, collectionId: String
 ) async throws {
-  let poller = try await client.deleteCollection(
-    withPolling: DeleteCollectionRequest()
+  let poller = try await client.deleteCollectionPollingUntilDone(
+    request: DeleteCollectionRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)"
       }

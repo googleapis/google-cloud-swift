@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let poller = try await client.updateChannel(
-    withPolling: UpdateChannelRequest()
+  let poller = try await client.updateChannelPollingUntilDone(
+    request: UpdateChannelRequest()
       .with {
         $0.channel = Channel().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"

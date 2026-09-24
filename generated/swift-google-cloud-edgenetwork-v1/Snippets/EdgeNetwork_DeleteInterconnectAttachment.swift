@@ -26,8 +26,8 @@ func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String,
   interconnectAttachmentId: String
 ) async throws {
-  let poller = try await client.deleteInterconnectAttachment(
-    withPolling: DeleteInterconnectAttachmentRequest()
+  let poller = try await client.deleteInterconnectAttachmentPollingUntilDone(
+    request: DeleteInterconnectAttachmentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)/interconnectAttachments/\(interconnectAttachmentId)"

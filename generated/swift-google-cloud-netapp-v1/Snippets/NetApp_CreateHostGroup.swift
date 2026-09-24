@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createHostGroup(
-    withPolling: CreateHostGroupRequest()
+  let poller = try await client.createHostGroupPollingUntilDone(
+    request: CreateHostGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.hostGroup = HostGroup() /* .with { ... } */

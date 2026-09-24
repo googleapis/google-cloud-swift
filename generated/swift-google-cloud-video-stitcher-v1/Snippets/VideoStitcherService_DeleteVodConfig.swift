@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, vodConfigId: String
 ) async throws {
-  let poller = try await client.deleteVodConfig(
-    withPolling: DeleteVodConfigRequest()
+  let poller = try await client.deleteVodConfigPollingUntilDone(
+    request: DeleteVodConfigRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/vodConfigs/\(vodConfigId)"
       }

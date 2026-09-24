@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   loggingServerId: String
 ) async throws {
-  let poller = try await client.updateLoggingServer(
-    withPolling: UpdateLoggingServerRequest()
+  let poller = try await client.updateLoggingServerPollingUntilDone(
+    request: UpdateLoggingServerRequest()
       .with {
         $0.loggingServer = LoggingServer().with {
           $0.name =

@@ -121,15 +121,15 @@
     /// [google.cloud.aiplatform.v1.SuggestTrialsResponse]: <doc:SuggestTrialsResponse>
     ///
     /// @Snippet(path: "VizierService_SuggestTrials")
-    public func suggestTrials(
-      withPolling: SuggestTrialsRequest, options: GoogleGax.RequestOptions
+    public func suggestTrialsPollingUntilDone(
+      request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
         return try op._extractStatus(SuggestTrialsResponse.self)
       }
-      let rawOp = try await self.suggestTrials(request: withPolling, options: options)
+      let rawOp = try await self.suggestTrials(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
@@ -222,16 +222,15 @@
     /// [google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse]: <doc:CheckTrialEarlyStoppingStateResponse>
     ///
     /// @Snippet(path: "VizierService_CheckTrialEarlyStoppingState")
-    public func checkTrialEarlyStoppingState(
-      withPolling: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
+    public func checkTrialEarlyStoppingStatePollingUntilDone(
+      request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<CheckTrialEarlyStoppingStateResponse>.State in
         return try op._extractStatus(CheckTrialEarlyStoppingStateResponse.self)
       }
-      let rawOp = try await self.checkTrialEarlyStoppingState(
-        request: withPolling, options: options)
+      let rawOp = try await self.checkTrialEarlyStoppingState(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws
@@ -389,12 +388,13 @@
     /// and pass a mock implementation in your tests.
     public protocol VizierServiceProtocol: Sendable {
       /// See `VizierServiceClient.suggestTrials`.
-      func suggestTrials(withPolling: SuggestTrialsRequest) async throws -> any GoogleGax
-        .PollableOperation<SuggestTrialsResponse>
+      func suggestTrialsPollingUntilDone(request: SuggestTrialsRequest) async throws
+        -> any GoogleGax.PollableOperation<SuggestTrialsResponse>
 
       /// See `VizierServiceClient.checkTrialEarlyStoppingState`.
-      func checkTrialEarlyStoppingState(withPolling: CheckTrialEarlyStoppingStateRequest)
-        async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
+      func checkTrialEarlyStoppingStatePollingUntilDone(
+        request: CheckTrialEarlyStoppingStateRequest
+      ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
 
       /// See `VizierServiceClient.createStudy`.
       func createStudy(
@@ -427,8 +427,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VizierServiceClient.suggestTrials`.
-      func suggestTrials(
-        withPolling: SuggestTrialsRequest, options: GoogleGax.RequestOptions
+      func suggestTrialsPollingUntilDone(
+        request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse>
 
       /// See `VizierServiceClient.createTrial`.
@@ -467,8 +467,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VizierServiceClient.checkTrialEarlyStoppingState`.
-      func checkTrialEarlyStoppingState(
-        withPolling: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
+      func checkTrialEarlyStoppingStatePollingUntilDone(
+        request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
 
       /// See `VizierServiceClient.stopTrial`.
@@ -666,14 +666,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func suggestTrials(withPolling: SuggestTrialsRequest) async throws -> any GoogleGax
-      .PollableOperation<SuggestTrialsResponse>
+    public func suggestTrialsPollingUntilDone(request: SuggestTrialsRequest) async throws
+      -> any GoogleGax.PollableOperation<SuggestTrialsResponse>
     {
-      try await self.suggestTrials(withPolling: withPolling, options: .init())
+      try await self.suggestTrialsPollingUntilDone(request: request, options: .init())
     }
 
-    public func suggestTrials(
-      withPolling: SuggestTrialsRequest, options: GoogleGax.RequestOptions
+    public func suggestTrialsPollingUntilDone(
+      request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
@@ -822,14 +822,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func checkTrialEarlyStoppingState(withPolling: CheckTrialEarlyStoppingStateRequest)
-      async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
-    {
-      try await self.checkTrialEarlyStoppingState(withPolling: withPolling, options: .init())
+    public func checkTrialEarlyStoppingStatePollingUntilDone(
+      request: CheckTrialEarlyStoppingStateRequest
+    ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
+      try await self.checkTrialEarlyStoppingStatePollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func checkTrialEarlyStoppingState(
-      withPolling: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
+    public func checkTrialEarlyStoppingStatePollingUntilDone(
+      request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
       let poll = {
         () async throws

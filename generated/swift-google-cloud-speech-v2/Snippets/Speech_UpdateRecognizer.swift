@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: SpeechClient, projectId: String, locationId: String, recognizerId: String)
   async throws
 {
-  let poller = try await client.updateRecognizer(
-    withPolling: UpdateRecognizerRequest()
+  let poller = try await client.updateRecognizerPollingUntilDone(
+    request: UpdateRecognizerRequest()
       .with {
         $0.recognizer = Recognizer().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/recognizers/\(recognizerId)"

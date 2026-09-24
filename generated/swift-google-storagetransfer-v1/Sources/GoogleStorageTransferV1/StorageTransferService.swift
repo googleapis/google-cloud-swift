@@ -145,15 +145,15 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// returned.
   ///
   /// @Snippet(path: "StorageTransferService_RunTransferJob")
-  public func runTransferJob(
-    withPolling: RunTransferJobRequest, options: GoogleGax.RequestOptions
+  public func runTransferJobPollingUntilDone(
+    request: RunTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.runTransferJob(request: withPolling, options: options)
+    let rawOp = try await self.runTransferJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -290,8 +290,8 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol StorageTransferServiceProtocol: Sendable {
     /// See `StorageTransferServiceClient.runTransferJob`.
-    func runTransferJob(withPolling: RunTransferJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func runTransferJobPollingUntilDone(request: RunTransferJobRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `StorageTransferServiceClient.getGoogleServiceAccount`.
     func getGoogleServiceAccount(
@@ -334,8 +334,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `StorageTransferServiceClient.runTransferJob`.
-    func runTransferJob(
-      withPolling: RunTransferJobRequest, options: GoogleGax.RequestOptions
+    func runTransferJobPollingUntilDone(
+      request: RunTransferJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `StorageTransferServiceClient.deleteTransferJob`.
@@ -495,14 +495,14 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runTransferJob(withPolling: RunTransferJobRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func runTransferJobPollingUntilDone(request: RunTransferJobRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.runTransferJob(withPolling: withPolling, options: .init())
+    try await self.runTransferJobPollingUntilDone(request: request, options: .init())
   }
 
-  public func runTransferJob(
-    withPolling: RunTransferJobRequest, options: GoogleGax.RequestOptions
+  public func runTransferJobPollingUntilDone(
+    request: RunTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented

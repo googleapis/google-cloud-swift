@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionNetworkFirewallPoliciesClient) async throws {
-    let poller = try await client.removeRule(
-      withPolling: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest()
+    let poller = try await client.removeRulePollingUntilDone(
+      request: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

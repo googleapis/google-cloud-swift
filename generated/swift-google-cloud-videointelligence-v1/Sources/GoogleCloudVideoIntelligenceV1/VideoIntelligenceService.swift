@@ -62,15 +62,15 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   /// `Operation.response` contains `AnnotateVideoResponse` (results).
   ///
   /// @Snippet(path: "VideoIntelligenceService_AnnotateVideo")
-  public func annotateVideo(
-    withPolling: AnnotateVideoRequest, options: GoogleGax.RequestOptions
+  public func annotateVideoPollingUntilDone(
+    request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
       return try op._extractStatus(AnnotateVideoResponse.self)
     }
-    let rawOp = try await self.annotateVideo(request: withPolling, options: options)
+    let rawOp = try await self.annotateVideo(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
       let op = try await self.getOperation(
@@ -138,11 +138,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol VideoIntelligenceServiceProtocol: Sendable {
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
-    func annotateVideo(withPolling: AnnotateVideoRequest) async throws -> any GoogleGax
+    func annotateVideoPollingUntilDone(request: AnnotateVideoRequest) async throws -> any GoogleGax
       .PollableOperation<AnnotateVideoResponse>
 
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
-    func annotateVideo(
+    func annotateVideoPollingUntilDone(
       inputUri: Swift.String,
       features: [Feature],
     ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
@@ -153,8 +153,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
-    func annotateVideo(
-      withPolling: AnnotateVideoRequest, options: GoogleGax.RequestOptions
+    func annotateVideoPollingUntilDone(
+      request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
 
     /// See `VideoIntelligenceServiceClient.listOperations`.
@@ -188,14 +188,14 @@ extension Clients.VideoIntelligenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func annotateVideo(withPolling: AnnotateVideoRequest) async throws -> any GoogleGax
-    .PollableOperation<AnnotateVideoResponse>
+  public func annotateVideoPollingUntilDone(request: AnnotateVideoRequest) async throws
+    -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
   {
-    try await self.annotateVideo(withPolling: withPolling, options: .init())
+    try await self.annotateVideoPollingUntilDone(request: request, options: .init())
   }
 
-  public func annotateVideo(
-    withPolling: AnnotateVideoRequest, options: GoogleGax.RequestOptions
+  public func annotateVideoPollingUntilDone(
+    request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -204,7 +204,7 @@ extension Clients.VideoIntelligenceServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func annotateVideo(
+  public func annotateVideoPollingUntilDone(
     inputUri: Swift.String,
     features: [Feature],
   ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
@@ -212,7 +212,7 @@ extension Clients.VideoIntelligenceServiceProtocol {
       $0.inputUri = inputUri
       $0.features = features
     }
-    return try await self.annotateVideo(withPolling: request)
+    return try await self.annotateVideoPollingUntilDone(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

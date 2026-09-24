@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String, nodeId: String) async throws {
-  let poller = try await client.updateNode(
-    withPolling: UpdateNodeRequest()
+  let poller = try await client.updateNodePollingUntilDone(
+    request: UpdateNodeRequest()
       .with {
         $0.node = Node().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/nodes/\(nodeId)"

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkloadManagerClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createEvaluation(
-    withPolling: CreateEvaluationRequest()
+  let poller = try await client.createEvaluationPollingUntilDone(
+    request: CreateEvaluationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.evaluationId = "[replace with a valid ID]"

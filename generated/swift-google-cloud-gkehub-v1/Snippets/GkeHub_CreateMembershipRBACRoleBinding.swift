@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let poller = try await client.createMembershipRbacroleBinding(
-    withPolling: CreateMembershipRBACRoleBindingRequest()
+  let poller = try await client.createMembershipRbacroleBindingPollingUntilDone(
+    request: CreateMembershipRBACRoleBindingRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"
         $0.rbacrolebinding = RBACRoleBinding() /* .with { ... } */

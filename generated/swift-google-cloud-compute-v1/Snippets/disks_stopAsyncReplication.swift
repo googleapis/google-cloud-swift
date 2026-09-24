@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: DisksClient) async throws {
-    let poller = try await client.stopAsyncReplication(
-      withPolling: DisksClient.StopAsyncReplicationRequest()
+    let poller = try await client.stopAsyncReplicationPollingUntilDone(
+      request: DisksClient.StopAsyncReplicationRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

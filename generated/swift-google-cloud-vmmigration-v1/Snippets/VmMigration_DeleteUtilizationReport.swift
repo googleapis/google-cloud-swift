@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   utilizationReportId: String
 ) async throws {
-  let poller = try await client.deleteUtilizationReport(
-    withPolling: DeleteUtilizationReportRequest()
+  let poller = try await client.deleteUtilizationReportPollingUntilDone(
+    request: DeleteUtilizationReportRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/utilizationReports/\(utilizationReportId)"

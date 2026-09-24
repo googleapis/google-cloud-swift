@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionTargetHttpsProxiesClient) async throws {
-    let poller = try await client.patch(
-      withPolling: RegionTargetHttpsProxiesClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: RegionTargetHttpsProxiesClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

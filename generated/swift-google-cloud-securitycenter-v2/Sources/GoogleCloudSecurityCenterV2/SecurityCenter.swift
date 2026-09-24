@@ -71,15 +71,15 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// the filter will be muted after the LRO is done.
   ///
   /// @Snippet(path: "SecurityCenter_BulkMuteFindings")
-  public func bulkMuteFindings(
-    withPolling: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
+  public func bulkMuteFindingsPollingUntilDone(
+    request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State in
       return try op._extractStatus(BulkMuteFindingsResponse.self)
     }
-    let rawOp = try await self.bulkMuteFindings(request: withPolling, options: options)
+    let rawOp = try await self.bulkMuteFindings(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State in
@@ -530,11 +530,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol SecurityCenterProtocol: Sendable {
     /// See `SecurityCenterClient.bulkMuteFindings`.
-    func bulkMuteFindings(withPolling: BulkMuteFindingsRequest) async throws -> any GoogleGax
-      .PollableOperation<BulkMuteFindingsResponse>
+    func bulkMuteFindingsPollingUntilDone(request: BulkMuteFindingsRequest) async throws
+      -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse>
 
     /// See `SecurityCenterClient.bulkMuteFindings`.
-    func bulkMuteFindings(
+    func bulkMuteFindingsPollingUntilDone(
       parent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse>
 
@@ -549,8 +549,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecurityCenterClient.bulkMuteFindings`.
-    func bulkMuteFindings(
-      withPolling: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
+    func bulkMuteFindingsPollingUntilDone(
+      request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse>
 
     /// See `SecurityCenterClient.createBigQueryExport`.
@@ -797,14 +797,14 @@ extension Clients.SecurityCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func bulkMuteFindings(withPolling: BulkMuteFindingsRequest) async throws -> any GoogleGax
-    .PollableOperation<BulkMuteFindingsResponse>
+  public func bulkMuteFindingsPollingUntilDone(request: BulkMuteFindingsRequest) async throws
+    -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse>
   {
-    try await self.bulkMuteFindings(withPolling: withPolling, options: .init())
+    try await self.bulkMuteFindingsPollingUntilDone(request: request, options: .init())
   }
 
-  public func bulkMuteFindings(
-    withPolling: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
+  public func bulkMuteFindingsPollingUntilDone(
+    request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State in
@@ -814,13 +814,13 @@ extension Clients.SecurityCenterProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func bulkMuteFindings(
+  public func bulkMuteFindingsPollingUntilDone(
     parent: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse> {
     let request = BulkMuteFindingsRequest().with {
       $0.parent = parent
     }
-    return try await self.bulkMuteFindings(withPolling: request)
+    return try await self.bulkMuteFindingsPollingUntilDone(request: request)
   }
 
   public func createBigQueryExport(request: CreateBigQueryExportRequest) async throws

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: DisksClient) async throws {
-    let poller = try await client.update(
-      withPolling: DisksClient.UpdateRequest()
+    let poller = try await client.updatePollingUntilDone(
+      request: DisksClient.UpdateRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

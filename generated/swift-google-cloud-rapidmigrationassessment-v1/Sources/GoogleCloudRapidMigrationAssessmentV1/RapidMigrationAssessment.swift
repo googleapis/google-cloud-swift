@@ -60,15 +60,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// information about Customer assets.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_CreateCollector")
-  public func createCollector(
-    withPolling: CreateCollectorRequest, options: GoogleGax.RequestOptions
+  public func createCollectorPollingUntilDone(
+    request: CreateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
       in
       return try op._extractStatus(Collector.self)
     }
-    let rawOp = try await self.createCollector(request: withPolling, options: options)
+    let rawOp = try await self.createCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
@@ -95,15 +95,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// Creates an Annotation
   ///
   /// @Snippet(path: "RapidMigrationAssessment_CreateAnnotation")
-  public func createAnnotation(
-    withPolling: CreateAnnotationRequest, options: GoogleGax.RequestOptions
+  public func createAnnotationPollingUntilDone(
+    request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Annotation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Annotation>.State
       in
       return try op._extractStatus(Annotation.self)
     }
-    let rawOp = try await self.createAnnotation(request: withPolling, options: options)
+    let rawOp = try await self.createAnnotation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
       let op = try await self.getOperation(
@@ -157,15 +157,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// Updates the parameters of a single Collector.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_UpdateCollector")
-  public func updateCollector(
-    withPolling: UpdateCollectorRequest, options: GoogleGax.RequestOptions
+  public func updateCollectorPollingUntilDone(
+    request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
       in
       return try op._extractStatus(Collector.self)
     }
-    let rawOp = try await self.updateCollector(request: withPolling, options: options)
+    let rawOp = try await self.updateCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
@@ -194,15 +194,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// Background jobs does final deletion through producer API.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_DeleteCollector")
-  public func deleteCollector(
-    withPolling: DeleteCollectorRequest, options: GoogleGax.RequestOptions
+  public func deleteCollectorPollingUntilDone(
+    request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
       in
       return try op._extractStatus(Collector.self)
     }
-    let rawOp = try await self.deleteCollector(request: withPolling, options: options)
+    let rawOp = try await self.deleteCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
@@ -229,15 +229,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// Resumes the given collector.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_ResumeCollector")
-  public func resumeCollector(
-    withPolling: ResumeCollectorRequest, options: GoogleGax.RequestOptions
+  public func resumeCollectorPollingUntilDone(
+    request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
       in
       return try op._extractStatus(Collector.self)
     }
-    let rawOp = try await self.resumeCollector(request: withPolling, options: options)
+    let rawOp = try await self.resumeCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
@@ -264,15 +264,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// Registers the given collector.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_RegisterCollector")
-  public func registerCollector(
-    withPolling: RegisterCollectorRequest, options: GoogleGax.RequestOptions
+  public func registerCollectorPollingUntilDone(
+    request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
       in
       return try op._extractStatus(Collector.self)
     }
-    let rawOp = try await self.registerCollector(request: withPolling, options: options)
+    let rawOp = try await self.registerCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
@@ -299,15 +299,15 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// Pauses the given collector.
   ///
   /// @Snippet(path: "RapidMigrationAssessment_PauseCollector")
-  public func pauseCollector(
-    withPolling: PauseCollectorRequest, options: GoogleGax.RequestOptions
+  public func pauseCollectorPollingUntilDone(
+    request: PauseCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
       in
       return try op._extractStatus(Collector.self)
     }
-    let rawOp = try await self.pauseCollector(request: withPolling, options: options)
+    let rawOp = try await self.pauseCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
@@ -393,69 +393,69 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol RapidMigrationAssessmentProtocol: Sendable {
     /// See `RapidMigrationAssessmentClient.createCollector`.
-    func createCollector(withPolling: CreateCollectorRequest) async throws -> any GoogleGax
-      .PollableOperation<Collector>
+    func createCollectorPollingUntilDone(request: CreateCollectorRequest) async throws
+      -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.createCollector`.
-    func createCollector(
+    func createCollectorPollingUntilDone(
       parent: Swift.String,
       collector: Collector?,
       collectorId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.createAnnotation`.
-    func createAnnotation(withPolling: CreateAnnotationRequest) async throws -> any GoogleGax
-      .PollableOperation<Annotation>
+    func createAnnotationPollingUntilDone(request: CreateAnnotationRequest) async throws
+      -> any GoogleGax.PollableOperation<Annotation>
 
     /// See `RapidMigrationAssessmentClient.createAnnotation`.
-    func createAnnotation(
+    func createAnnotationPollingUntilDone(
       parent: Swift.String,
       annotation: Annotation?,
     ) async throws -> any GoogleGax.PollableOperation<Annotation>
 
     /// See `RapidMigrationAssessmentClient.updateCollector`.
-    func updateCollector(withPolling: UpdateCollectorRequest) async throws -> any GoogleGax
-      .PollableOperation<Collector>
+    func updateCollectorPollingUntilDone(request: UpdateCollectorRequest) async throws
+      -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.updateCollector`.
-    func updateCollector(
+    func updateCollectorPollingUntilDone(
       collector: Collector?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
-    func deleteCollector(withPolling: DeleteCollectorRequest) async throws -> any GoogleGax
-      .PollableOperation<Collector>
+    func deleteCollectorPollingUntilDone(request: DeleteCollectorRequest) async throws
+      -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
-    func deleteCollector(
+    func deleteCollectorPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.resumeCollector`.
-    func resumeCollector(withPolling: ResumeCollectorRequest) async throws -> any GoogleGax
-      .PollableOperation<Collector>
+    func resumeCollectorPollingUntilDone(request: ResumeCollectorRequest) async throws
+      -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.resumeCollector`.
-    func resumeCollector(
+    func resumeCollectorPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.registerCollector`.
-    func registerCollector(withPolling: RegisterCollectorRequest) async throws -> any GoogleGax
-      .PollableOperation<Collector>
+    func registerCollectorPollingUntilDone(request: RegisterCollectorRequest) async throws
+      -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.registerCollector`.
-    func registerCollector(
+    func registerCollectorPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.pauseCollector`.
-    func pauseCollector(withPolling: PauseCollectorRequest) async throws -> any GoogleGax
-      .PollableOperation<Collector>
+    func pauseCollectorPollingUntilDone(request: PauseCollectorRequest) async throws
+      -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.pauseCollector`.
-    func pauseCollector(
+    func pauseCollectorPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
@@ -465,8 +465,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.createCollector`.
-    func createCollector(
-      withPolling: CreateCollectorRequest, options: GoogleGax.RequestOptions
+    func createCollectorPollingUntilDone(
+      request: CreateCollectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.createAnnotation`.
@@ -475,8 +475,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.createAnnotation`.
-    func createAnnotation(
-      withPolling: CreateAnnotationRequest, options: GoogleGax.RequestOptions
+    func createAnnotationPollingUntilDone(
+      request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Annotation>
 
     /// See `RapidMigrationAssessmentClient.getAnnotation`.
@@ -500,8 +500,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.updateCollector`.
-    func updateCollector(
-      withPolling: UpdateCollectorRequest, options: GoogleGax.RequestOptions
+    func updateCollectorPollingUntilDone(
+      request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
@@ -510,8 +510,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
-    func deleteCollector(
-      withPolling: DeleteCollectorRequest, options: GoogleGax.RequestOptions
+    func deleteCollectorPollingUntilDone(
+      request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.resumeCollector`.
@@ -520,8 +520,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.resumeCollector`.
-    func resumeCollector(
-      withPolling: ResumeCollectorRequest, options: GoogleGax.RequestOptions
+    func resumeCollectorPollingUntilDone(
+      request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.registerCollector`.
@@ -530,8 +530,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.registerCollector`.
-    func registerCollector(
-      withPolling: RegisterCollectorRequest, options: GoogleGax.RequestOptions
+    func registerCollectorPollingUntilDone(
+      request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.pauseCollector`.
@@ -540,8 +540,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RapidMigrationAssessmentClient.pauseCollector`.
-    func pauseCollector(
-      withPolling: PauseCollectorRequest, options: GoogleGax.RequestOptions
+    func pauseCollectorPollingUntilDone(
+      request: PauseCollectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.listLocations`.
@@ -585,14 +585,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCollector(withPolling: CreateCollectorRequest) async throws -> any GoogleGax
-    .PollableOperation<Collector>
+  public func createCollectorPollingUntilDone(request: CreateCollectorRequest) async throws
+    -> any GoogleGax.PollableOperation<Collector>
   {
-    try await self.createCollector(withPolling: withPolling, options: .init())
+    try await self.createCollectorPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCollector(
-    withPolling: CreateCollectorRequest, options: GoogleGax.RequestOptions
+  public func createCollectorPollingUntilDone(
+    request: CreateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -601,7 +601,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCollector(
+  public func createCollectorPollingUntilDone(
     parent: Swift.String,
     collector: Collector?,
     collectorId: Swift.String,
@@ -611,7 +611,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
       $0.collector = collector
       $0.collectorId = collectorId
     }
-    return try await self.createCollector(withPolling: request)
+    return try await self.createCollectorPollingUntilDone(request: request)
   }
 
   public func createAnnotation(request: CreateAnnotationRequest) async throws
@@ -626,14 +626,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createAnnotation(withPolling: CreateAnnotationRequest) async throws -> any GoogleGax
-    .PollableOperation<Annotation>
+  public func createAnnotationPollingUntilDone(request: CreateAnnotationRequest) async throws
+    -> any GoogleGax.PollableOperation<Annotation>
   {
-    try await self.createAnnotation(withPolling: withPolling, options: .init())
+    try await self.createAnnotationPollingUntilDone(request: request, options: .init())
   }
 
-  public func createAnnotation(
-    withPolling: CreateAnnotationRequest, options: GoogleGax.RequestOptions
+  public func createAnnotationPollingUntilDone(
+    request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Annotation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -642,7 +642,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createAnnotation(
+  public func createAnnotationPollingUntilDone(
     parent: Swift.String,
     annotation: Annotation?,
   ) async throws -> any GoogleGax.PollableOperation<Annotation> {
@@ -650,7 +650,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
       $0.parent = parent
       $0.annotation = annotation
     }
-    return try await self.createAnnotation(withPolling: request)
+    return try await self.createAnnotationPollingUntilDone(request: request)
   }
 
   public func getAnnotation(request: GetAnnotationRequest) async throws
@@ -750,14 +750,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCollector(withPolling: UpdateCollectorRequest) async throws -> any GoogleGax
-    .PollableOperation<Collector>
+  public func updateCollectorPollingUntilDone(request: UpdateCollectorRequest) async throws
+    -> any GoogleGax.PollableOperation<Collector>
   {
-    try await self.updateCollector(withPolling: withPolling, options: .init())
+    try await self.updateCollectorPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCollector(
-    withPolling: UpdateCollectorRequest, options: GoogleGax.RequestOptions
+  public func updateCollectorPollingUntilDone(
+    request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -766,7 +766,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateCollector(
+  public func updateCollectorPollingUntilDone(
     collector: Collector?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
@@ -774,7 +774,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
       $0.collector = collector
       $0.updateMask = updateMask
     }
-    return try await self.updateCollector(withPolling: request)
+    return try await self.updateCollectorPollingUntilDone(request: request)
   }
 
   public func deleteCollector(request: DeleteCollectorRequest) async throws
@@ -789,14 +789,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCollector(withPolling: DeleteCollectorRequest) async throws -> any GoogleGax
-    .PollableOperation<Collector>
+  public func deleteCollectorPollingUntilDone(request: DeleteCollectorRequest) async throws
+    -> any GoogleGax.PollableOperation<Collector>
   {
-    try await self.deleteCollector(withPolling: withPolling, options: .init())
+    try await self.deleteCollectorPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCollector(
-    withPolling: DeleteCollectorRequest, options: GoogleGax.RequestOptions
+  public func deleteCollectorPollingUntilDone(
+    request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -805,13 +805,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCollector(
+  public func deleteCollectorPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let request = DeleteCollectorRequest().with {
       $0.name = name
     }
-    return try await self.deleteCollector(withPolling: request)
+    return try await self.deleteCollectorPollingUntilDone(request: request)
   }
 
   public func resumeCollector(request: ResumeCollectorRequest) async throws
@@ -826,14 +826,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func resumeCollector(withPolling: ResumeCollectorRequest) async throws -> any GoogleGax
-    .PollableOperation<Collector>
+  public func resumeCollectorPollingUntilDone(request: ResumeCollectorRequest) async throws
+    -> any GoogleGax.PollableOperation<Collector>
   {
-    try await self.resumeCollector(withPolling: withPolling, options: .init())
+    try await self.resumeCollectorPollingUntilDone(request: request, options: .init())
   }
 
-  public func resumeCollector(
-    withPolling: ResumeCollectorRequest, options: GoogleGax.RequestOptions
+  public func resumeCollectorPollingUntilDone(
+    request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -842,13 +842,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func resumeCollector(
+  public func resumeCollectorPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let request = ResumeCollectorRequest().with {
       $0.name = name
     }
-    return try await self.resumeCollector(withPolling: request)
+    return try await self.resumeCollectorPollingUntilDone(request: request)
   }
 
   public func registerCollector(request: RegisterCollectorRequest) async throws
@@ -863,14 +863,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func registerCollector(withPolling: RegisterCollectorRequest) async throws -> any GoogleGax
-    .PollableOperation<Collector>
+  public func registerCollectorPollingUntilDone(request: RegisterCollectorRequest) async throws
+    -> any GoogleGax.PollableOperation<Collector>
   {
-    try await self.registerCollector(withPolling: withPolling, options: .init())
+    try await self.registerCollectorPollingUntilDone(request: request, options: .init())
   }
 
-  public func registerCollector(
-    withPolling: RegisterCollectorRequest, options: GoogleGax.RequestOptions
+  public func registerCollectorPollingUntilDone(
+    request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -879,13 +879,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func registerCollector(
+  public func registerCollectorPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let request = RegisterCollectorRequest().with {
       $0.name = name
     }
-    return try await self.registerCollector(withPolling: request)
+    return try await self.registerCollectorPollingUntilDone(request: request)
   }
 
   public func pauseCollector(request: PauseCollectorRequest) async throws
@@ -900,14 +900,14 @@ extension Clients.RapidMigrationAssessmentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func pauseCollector(withPolling: PauseCollectorRequest) async throws -> any GoogleGax
-    .PollableOperation<Collector>
+  public func pauseCollectorPollingUntilDone(request: PauseCollectorRequest) async throws
+    -> any GoogleGax.PollableOperation<Collector>
   {
-    try await self.pauseCollector(withPolling: withPolling, options: .init())
+    try await self.pauseCollectorPollingUntilDone(request: request, options: .init())
   }
 
-  public func pauseCollector(
-    withPolling: PauseCollectorRequest, options: GoogleGax.RequestOptions
+  public func pauseCollectorPollingUntilDone(
+    request: PauseCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -916,13 +916,13 @@ extension Clients.RapidMigrationAssessmentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func pauseCollector(
+  public func pauseCollectorPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let request = PauseCollectorRequest().with {
       $0.name = name
     }
-    return try await self.pauseCollector(withPolling: request)
+    return try await self.pauseCollectorPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

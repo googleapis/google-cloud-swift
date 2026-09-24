@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LicenseManagerClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createConfiguration(
-    withPolling: CreateConfigurationRequest()
+  let poller = try await client.createConfigurationPollingUntilDone(
+    request: CreateConfigurationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.configurationId = "[replace with a valid ID]"

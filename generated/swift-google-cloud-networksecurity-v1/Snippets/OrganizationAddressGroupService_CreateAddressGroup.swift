@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: OrganizationAddressGroupServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createAddressGroup(
-    withPolling: CreateAddressGroupRequest()
+  let poller = try await client.createAddressGroupPollingUntilDone(
+    request: CreateAddressGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.addressGroup = AddressGroup() /* .with { ... } */

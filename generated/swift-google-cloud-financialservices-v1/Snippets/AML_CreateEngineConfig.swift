@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.createEngineConfig(
-    withPolling: CreateEngineConfigRequest()
+  let poller = try await client.createEngineConfigPollingUntilDone(
+    request: CreateEngineConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
         $0.engineConfig = EngineConfig() /* .with { ... } */

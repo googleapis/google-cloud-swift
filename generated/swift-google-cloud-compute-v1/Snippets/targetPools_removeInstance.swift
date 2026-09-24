@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetPoolsClient) async throws {
-    let poller = try await client.removeInstance(
-      withPolling: TargetPoolsClient.RemoveInstanceRequest()
+    let poller = try await client.removeInstancePollingUntilDone(
+      request: TargetPoolsClient.RemoveInstanceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: InternalRangeServiceClient, projectId: String, locationId: String, internalRangeId: String
 ) async throws {
-  let poller = try await client.updateInternalRange(
-    withPolling: UpdateInternalRangeRequest()
+  let poller = try await client.updateInternalRangePollingUntilDone(
+    request: UpdateInternalRangeRequest()
       .with {
         $0.internalRange = InternalRange().with {
           $0.name =

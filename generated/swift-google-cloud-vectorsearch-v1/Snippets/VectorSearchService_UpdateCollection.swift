@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: VectorSearchServiceClient, projectId: String, locationId: String, collectionId: String
 ) async throws {
-  let poller = try await client.updateCollection(
-    withPolling: UpdateCollectionRequest()
+  let poller = try await client.updateCollectionPollingUntilDone(
+    request: UpdateCollectionRequest()
       .with {
         $0.collection = Collection().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)"

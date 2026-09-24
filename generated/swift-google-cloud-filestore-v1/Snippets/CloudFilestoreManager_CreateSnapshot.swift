@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CloudFilestoreManagerClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let poller = try await client.createSnapshot(
-    withPolling: CreateSnapshotRequest()
+  let poller = try await client.createSnapshotPollingUntilDone(
+    request: CreateSnapshotRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
         $0.snapshotId = "[replace with a valid ID]"

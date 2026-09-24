@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createTrigger(
-    withPolling: CreateTriggerRequest()
+  let poller = try await client.createTriggerPollingUntilDone(
+    request: CreateTriggerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.triggerId = "[replace with a valid ID]"

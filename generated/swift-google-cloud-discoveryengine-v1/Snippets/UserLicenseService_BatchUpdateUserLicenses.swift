@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: UserLicenseServiceClient) async throws {
-    let poller = try await client.batchUpdateUserLicenses(
-      withPolling: BatchUpdateUserLicensesRequest()
+    let poller = try await client.batchUpdateUserLicensesPollingUntilDone(
+      request: BatchUpdateUserLicensesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

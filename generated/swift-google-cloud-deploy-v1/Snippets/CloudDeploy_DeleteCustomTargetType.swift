@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, customTargetTypeId: String
 ) async throws {
-  let poller = try await client.deleteCustomTargetType(
-    withPolling: DeleteCustomTargetTypeRequest()
+  let poller = try await client.deleteCustomTargetTypePollingUntilDone(
+    request: DeleteCustomTargetTypeRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/customTargetTypes/\(customTargetTypeId)"

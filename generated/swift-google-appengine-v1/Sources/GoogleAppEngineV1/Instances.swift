@@ -96,15 +96,15 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// method.
   ///
   /// @Snippet(path: "Instances_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -145,15 +145,15 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Only applicable for instances in App Engine flexible environment.
   ///
   /// @Snippet(path: "Instances_DebugInstance")
-  public func debugInstance(
-    withPolling: DebugInstanceRequest, options: GoogleGax.RequestOptions
+  public func debugInstancePollingUntilDone(
+    request: DebugInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.debugInstance(request: withPolling, options: options)
+    let rawOp = try await self.debugInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -199,11 +199,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol InstancesProtocol: Sendable {
     /// See `InstancesClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `InstancesClient.debugInstance`.
-    func debugInstance(withPolling: DebugInstanceRequest) async throws -> any GoogleGax
+    func debugInstancePollingUntilDone(request: DebugInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
     /// See `InstancesClient.listInstances`.
@@ -222,8 +222,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `InstancesClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `InstancesClient.debugInstance`.
@@ -232,8 +232,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `InstancesClient.debugInstance`.
-    func debugInstance(
-      withPolling: DebugInstanceRequest, options: GoogleGax.RequestOptions
+    func debugInstancePollingUntilDone(
+      request: DebugInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.listOperations`.
@@ -302,14 +302,14 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -330,14 +330,14 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func debugInstance(withPolling: DebugInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func debugInstancePollingUntilDone(request: DebugInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.debugInstance(withPolling: withPolling, options: .init())
+    try await self.debugInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func debugInstance(
-    withPolling: DebugInstanceRequest, options: GoogleGax.RequestOptions
+  public func debugInstancePollingUntilDone(
+    request: DebugInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented

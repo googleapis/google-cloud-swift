@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AlloyDBAdminClient) async throws {
-  let poller = try await client.restartInstance(
-    withPolling: RestartInstanceRequest()
+  let poller = try await client.restartInstancePollingUntilDone(
+    request: RestartInstanceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

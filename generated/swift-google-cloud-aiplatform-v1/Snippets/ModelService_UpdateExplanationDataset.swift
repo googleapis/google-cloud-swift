@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: ModelServiceClient) async throws {
-    let poller = try await client.updateExplanationDataset(
-      withPolling: UpdateExplanationDatasetRequest()
+    let poller = try await client.updateExplanationDatasetPollingUntilDone(
+      request: UpdateExplanationDatasetRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

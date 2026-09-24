@@ -26,8 +26,8 @@ func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String,
   backtestResultId: String
 ) async throws {
-  let poller = try await client.updateBacktestResult(
-    withPolling: UpdateBacktestResultRequest()
+  let poller = try await client.updateBacktestResultPollingUntilDone(
+    request: UpdateBacktestResultRequest()
       .with {
         $0.backtestResult = BacktestResult().with {
           $0.name =

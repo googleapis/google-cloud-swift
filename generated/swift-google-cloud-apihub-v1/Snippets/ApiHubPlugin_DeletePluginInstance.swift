@@ -26,8 +26,8 @@ func sample(
   client: ApiHubPluginClient, projectId: String, locationId: String, pluginId: String,
   instanceId: String
 ) async throws {
-  let poller = try await client.deletePluginInstance(
-    withPolling: DeletePluginInstanceRequest()
+  let poller = try await client.deletePluginInstancePollingUntilDone(
+    request: DeletePluginInstanceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/plugins/\(pluginId)/instances/\(instanceId)"

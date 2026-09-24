@@ -25,8 +25,8 @@ func sample(
   client: GkeHubClient, projectId: String, locationId: String, membershipId: String,
   membershipbindingId: String
 ) async throws {
-  let poller = try await client.updateMembershipBinding(
-    withPolling: UpdateMembershipBindingRequest()
+  let poller = try await client.updateMembershipBindingPollingUntilDone(
+    request: UpdateMembershipBindingRequest()
       .with {
         $0.membershipBinding = MembershipBinding().with {
           $0.name =

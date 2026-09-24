@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, membershipId: String)
   async throws
 {
-  let poller = try await client.createMembershipBinding(
-    withPolling: CreateMembershipBindingRequest()
+  let poller = try await client.createMembershipBindingPollingUntilDone(
+    request: CreateMembershipBindingRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/memberships/\(membershipId)"
         $0.membershipBinding = MembershipBinding() /* .with { ... } */

@@ -27,8 +27,8 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   automationId: String
 ) async throws {
-  let poller = try await client.updateAutomation(
-    withPolling: UpdateAutomationRequest()
+  let poller = try await client.updateAutomationPollingUntilDone(
+    request: UpdateAutomationRequest()
       .with {
         $0.automation = Automation().with {
           $0.name =

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworkFirewallPoliciesClient) async throws {
-    let poller = try await client.addAssociation(
-      withPolling: NetworkFirewallPoliciesClient.AddAssociationRequest()
+    let poller = try await client.addAssociationPollingUntilDone(
+      request: NetworkFirewallPoliciesClient.AddAssociationRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

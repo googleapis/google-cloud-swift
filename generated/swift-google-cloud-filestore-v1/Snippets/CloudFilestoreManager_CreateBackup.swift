@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFilestoreManagerClient, parent: String) async throws {
-  let poller = try await client.createBackup(
-    withPolling: CreateBackupRequest()
+  let poller = try await client.createBackupPollingUntilDone(
+    request: CreateBackupRequest()
       .with {
         $0.parent = "\(parent)"
         $0.backupId = "[replace with a valid ID]"

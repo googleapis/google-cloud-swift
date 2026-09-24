@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupForGKEClient, parent: String) async throws {
-  let poller = try await client.createRestoreChannel(
-    withPolling: CreateRestoreChannelRequest()
+  let poller = try await client.createRestoreChannelPollingUntilDone(
+    request: CreateRestoreChannelRequest()
       .with {
         $0.parent = "\(parent)"
         $0.restoreChannel = RestoreChannel() /* .with { ... } */

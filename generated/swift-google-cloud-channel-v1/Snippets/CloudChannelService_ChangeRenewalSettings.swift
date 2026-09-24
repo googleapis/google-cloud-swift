@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let poller = try await client.changeRenewalSettings(
-    withPolling: ChangeRenewalSettingsRequest()
+  let poller = try await client.changeRenewalSettingsPollingUntilDone(
+    request: ChangeRenewalSettingsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

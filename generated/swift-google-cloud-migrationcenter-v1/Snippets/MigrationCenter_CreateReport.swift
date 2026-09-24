@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, reportConfigId: String
 ) async throws {
-  let poller = try await client.createReport(
-    withPolling: CreateReportRequest()
+  let poller = try await client.createReportPollingUntilDone(
+    request: CreateReportRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/reportConfigs/\(reportConfigId)"
         $0.reportId = "[replace with a valid ID]"

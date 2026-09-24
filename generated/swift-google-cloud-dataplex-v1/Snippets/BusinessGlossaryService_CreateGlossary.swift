@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BusinessGlossaryServiceClient, parent: String) async throws {
-  let poller = try await client.createGlossary(
-    withPolling: CreateGlossaryRequest()
+  let poller = try await client.createGlossaryPollingUntilDone(
+    request: CreateGlossaryRequest()
       .with {
         $0.parent = "\(parent)"
         $0.glossaryId = "[replace with a valid ID]"

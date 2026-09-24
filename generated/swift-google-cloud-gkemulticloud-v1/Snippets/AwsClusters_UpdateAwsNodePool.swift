@@ -28,8 +28,8 @@ func sample(
   client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String,
   awsNodePoolId: String
 ) async throws {
-  let poller = try await client.updateAwsNodePool(
-    withPolling: UpdateAwsNodePoolRequest()
+  let poller = try await client.updateAwsNodePoolPollingUntilDone(
+    request: UpdateAwsNodePoolRequest()
       .with {
         $0.awsNodePool = AwsNodePool().with {
           $0.name =

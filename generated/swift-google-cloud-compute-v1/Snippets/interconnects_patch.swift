@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InterconnectsClient) async throws {
-    let poller = try await client.patch(
-      withPolling: InterconnectsClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: InterconnectsClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

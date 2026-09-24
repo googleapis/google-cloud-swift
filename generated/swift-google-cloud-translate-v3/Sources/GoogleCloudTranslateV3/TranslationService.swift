@@ -112,15 +112,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// use google.longrunning.Operation.name to poll the status of the call.
   ///
   /// @Snippet(path: "TranslationService_BatchTranslateText")
-  public func batchTranslateText(
-    withPolling: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
+  public func batchTranslateTextPollingUntilDone(
+    request: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchTranslateResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchTranslateResponse>.State in
       return try op._extractStatus(BatchTranslateResponse.self)
     }
-    let rawOp = try await self.batchTranslateText(request: withPolling, options: options)
+    let rawOp = try await self.batchTranslateText(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BatchTranslateResponse>.State in
@@ -160,15 +160,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// google.longrunning.Operation.name to poll the status of the call.
   ///
   /// @Snippet(path: "TranslationService_BatchTranslateDocument")
-  public func batchTranslateDocument(
-    withPolling: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
+  public func batchTranslateDocumentPollingUntilDone(
+    request: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchTranslateDocumentResponse>.State in
       return try op._extractStatus(BatchTranslateDocumentResponse.self)
     }
-    let rawOp = try await self.batchTranslateDocument(request: withPolling, options: options)
+    let rawOp = try await self.batchTranslateDocument(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BatchTranslateDocumentResponse>.State in
@@ -198,15 +198,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// NOT_FOUND, if the project doesn't exist.
   ///
   /// @Snippet(path: "TranslationService_CreateGlossary")
-  public func createGlossary(
-    withPolling: CreateGlossaryRequest, options: GoogleGax.RequestOptions
+  public func createGlossaryPollingUntilDone(
+    request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Glossary>.State
       in
       return try op._extractStatus(Glossary.self)
     }
-    let rawOp = try await self.createGlossary(request: withPolling, options: options)
+    let rawOp = try await self.createGlossary(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Glossary>.State in
       let op = try await self.getOperation(
@@ -235,15 +235,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// glossary's entry file is updated.
   ///
   /// @Snippet(path: "TranslationService_UpdateGlossary")
-  public func updateGlossary(
-    withPolling: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
+  public func updateGlossaryPollingUntilDone(
+    request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Glossary>.State
       in
       return try op._extractStatus(Glossary.self)
     }
-    let rawOp = try await self.updateGlossary(request: withPolling, options: options)
+    let rawOp = try await self.updateGlossary(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Glossary>.State in
       let op = try await self.getOperation(
@@ -294,15 +294,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Returns NOT_FOUND, if the glossary doesn't exist.
   ///
   /// @Snippet(path: "TranslationService_DeleteGlossary")
-  public func deleteGlossary(
-    withPolling: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
+  public func deleteGlossaryPollingUntilDone(
+    request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DeleteGlossaryResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DeleteGlossaryResponse>.State in
       return try op._extractStatus(DeleteGlossaryResponse.self)
     }
-    let rawOp = try await self.deleteGlossary(request: withPolling, options: options)
+    let rawOp = try await self.deleteGlossary(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DeleteGlossaryResponse>.State in
@@ -375,14 +375,14 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Creates a Dataset.
   ///
   /// @Snippet(path: "TranslationService_CreateDataset")
-  public func createDataset(
-    withPolling: CreateDatasetRequest, options: GoogleGax.RequestOptions
+  public func createDatasetPollingUntilDone(
+    request: CreateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       return try op._extractStatus(Dataset.self)
     }
-    let rawOp = try await self.createDataset(request: withPolling, options: options)
+    let rawOp = try await self.createDataset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       let op = try await self.getOperation(
@@ -427,15 +427,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Deletes a dataset and all of its contents.
   ///
   /// @Snippet(path: "TranslationService_DeleteDataset")
-  public func deleteDataset(
-    withPolling: DeleteDatasetRequest, options: GoogleGax.RequestOptions
+  public func deleteDatasetPollingUntilDone(
+    request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDataset(request: withPolling, options: options)
+    let rawOp = try await self.deleteDataset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -554,15 +554,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Import sentence pairs into translation Dataset.
   ///
   /// @Snippet(path: "TranslationService_ImportData")
-  public func importData(
-    withPolling: ImportDataRequest, options: GoogleGax.RequestOptions
+  public func importDataPollingUntilDone(
+    request: ImportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.importData(request: withPolling, options: options)
+    let rawOp = try await self.importData(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -589,15 +589,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Exports dataset's data to the provided output location.
   ///
   /// @Snippet(path: "TranslationService_ExportData")
-  public func exportData(
-    withPolling: ExportDataRequest, options: GoogleGax.RequestOptions
+  public func exportDataPollingUntilDone(
+    request: ExportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.exportData(request: withPolling, options: options)
+    let rawOp = try await self.exportData(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -633,14 +633,14 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Creates a Model.
   ///
   /// @Snippet(path: "TranslationService_CreateModel")
-  public func createModel(
-    withPolling: CreateModelRequest, options: GoogleGax.RequestOptions
+  public func createModelPollingUntilDone(
+    request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Model>.State in
       return try op._extractStatus(Model.self)
     }
-    let rawOp = try await self.createModel(request: withPolling, options: options)
+    let rawOp = try await self.createModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       let op = try await self.getOperation(
@@ -685,15 +685,15 @@ public final class TranslationServiceClient: Clients.TranslationServiceProtocol,
   /// Deletes a model.
   ///
   /// @Snippet(path: "TranslationService_DeleteModel")
-  public func deleteModel(
-    withPolling: DeleteModelRequest, options: GoogleGax.RequestOptions
+  public func deleteModelPollingUntilDone(
+    request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteModel(request: withPolling, options: options)
+    let rawOp = try await self.deleteModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -790,15 +790,15 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol TranslationServiceProtocol: Sendable {
     /// See `TranslationServiceClient.batchTranslateText`.
-    func batchTranslateText(withPolling: BatchTranslateTextRequest) async throws -> any GoogleGax
-      .PollableOperation<BatchTranslateResponse>
+    func batchTranslateTextPollingUntilDone(request: BatchTranslateTextRequest) async throws
+      -> any GoogleGax.PollableOperation<BatchTranslateResponse>
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
-    func batchTranslateDocument(withPolling: BatchTranslateDocumentRequest) async throws
+    func batchTranslateDocumentPollingUntilDone(request: BatchTranslateDocumentRequest) async throws
       -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse>
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
-    func batchTranslateDocument(
+    func batchTranslateDocumentPollingUntilDone(
       parent: Swift.String,
       sourceLanguageCode: Swift.String,
       targetLanguageCodes: [Swift.String],
@@ -807,91 +807,89 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse>
 
     /// See `TranslationServiceClient.createGlossary`.
-    func createGlossary(withPolling: CreateGlossaryRequest) async throws -> any GoogleGax
-      .PollableOperation<Glossary>
+    func createGlossaryPollingUntilDone(request: CreateGlossaryRequest) async throws
+      -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.createGlossary`.
-    func createGlossary(
+    func createGlossaryPollingUntilDone(
       parent: Swift.String,
       glossary: Glossary?,
     ) async throws -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.updateGlossary`.
-    func updateGlossary(withPolling: UpdateGlossaryRequest) async throws -> any GoogleGax
-      .PollableOperation<Glossary>
+    func updateGlossaryPollingUntilDone(request: UpdateGlossaryRequest) async throws
+      -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.updateGlossary`.
-    func updateGlossary(
+    func updateGlossaryPollingUntilDone(
       glossary: Glossary?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.deleteGlossary`.
-    func deleteGlossary(withPolling: DeleteGlossaryRequest) async throws -> any GoogleGax
-      .PollableOperation<DeleteGlossaryResponse>
+    func deleteGlossaryPollingUntilDone(request: DeleteGlossaryRequest) async throws
+      -> any GoogleGax.PollableOperation<DeleteGlossaryResponse>
 
     /// See `TranslationServiceClient.deleteGlossary`.
-    func deleteGlossary(
+    func deleteGlossaryPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DeleteGlossaryResponse>
 
     /// See `TranslationServiceClient.createDataset`.
-    func createDataset(withPolling: CreateDatasetRequest) async throws -> any GoogleGax
+    func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws -> any GoogleGax
       .PollableOperation<Dataset>
 
     /// See `TranslationServiceClient.createDataset`.
-    func createDataset(
+    func createDatasetPollingUntilDone(
       parent: Swift.String,
       dataset: Dataset?,
     ) async throws -> any GoogleGax.PollableOperation<Dataset>
 
     /// See `TranslationServiceClient.deleteDataset`.
-    func deleteDataset(withPolling: DeleteDatasetRequest) async throws -> any GoogleGax
+    func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.deleteDataset`.
-    func deleteDataset(
+    func deleteDatasetPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.importData`.
-    func importData(withPolling: ImportDataRequest) async throws -> any GoogleGax.PollableOperation<
-      Swift.Void
-    >
+    func importDataPollingUntilDone(request: ImportDataRequest) async throws -> any GoogleGax
+      .PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.importData`.
-    func importData(
+    func importDataPollingUntilDone(
       dataset: Swift.String,
       inputConfig: DatasetInputConfig?,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.exportData`.
-    func exportData(withPolling: ExportDataRequest) async throws -> any GoogleGax.PollableOperation<
-      Swift.Void
-    >
+    func exportDataPollingUntilDone(request: ExportDataRequest) async throws -> any GoogleGax
+      .PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.exportData`.
-    func exportData(
+    func exportDataPollingUntilDone(
       dataset: Swift.String,
       outputConfig: DatasetOutputConfig?,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.createModel`.
-    func createModel(withPolling: CreateModelRequest) async throws -> any GoogleGax
+    func createModelPollingUntilDone(request: CreateModelRequest) async throws -> any GoogleGax
       .PollableOperation<Model>
 
     /// See `TranslationServiceClient.createModel`.
-    func createModel(
+    func createModelPollingUntilDone(
       parent: Swift.String,
       model: Model?,
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
     /// See `TranslationServiceClient.deleteModel`.
-    func deleteModel(withPolling: DeleteModelRequest) async throws -> any GoogleGax
+    func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.deleteModel`.
-    func deleteModel(
+    func deleteModelPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -926,8 +924,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.batchTranslateText`.
-    func batchTranslateText(
-      withPolling: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
+    func batchTranslateTextPollingUntilDone(
+      request: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchTranslateResponse>
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
@@ -936,8 +934,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
-    func batchTranslateDocument(
-      withPolling: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
+    func batchTranslateDocumentPollingUntilDone(
+      request: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse>
 
     /// See `TranslationServiceClient.createGlossary`.
@@ -946,8 +944,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createGlossary`.
-    func createGlossary(
-      withPolling: CreateGlossaryRequest, options: GoogleGax.RequestOptions
+    func createGlossaryPollingUntilDone(
+      request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.updateGlossary`.
@@ -956,8 +954,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.updateGlossary`.
-    func updateGlossary(
-      withPolling: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
+    func updateGlossaryPollingUntilDone(
+      request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.listGlossaries`.
@@ -976,8 +974,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteGlossary`.
-    func deleteGlossary(
-      withPolling: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
+    func deleteGlossaryPollingUntilDone(
+      request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeleteGlossaryResponse>
 
     /// See `TranslationServiceClient.getGlossaryEntry`.
@@ -1011,8 +1009,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createDataset`.
-    func createDataset(
-      withPolling: CreateDatasetRequest, options: GoogleGax.RequestOptions
+    func createDatasetPollingUntilDone(
+      request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Dataset>
 
     /// See `TranslationServiceClient.getDataset`.
@@ -1031,8 +1029,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteDataset`.
-    func deleteDataset(
-      withPolling: DeleteDatasetRequest, options: GoogleGax.RequestOptions
+    func deleteDatasetPollingUntilDone(
+      request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.createAdaptiveMtDataset`.
@@ -1091,8 +1089,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.importData`.
-    func importData(
-      withPolling: ImportDataRequest, options: GoogleGax.RequestOptions
+    func importDataPollingUntilDone(
+      request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.exportData`.
@@ -1101,8 +1099,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.exportData`.
-    func exportData(
-      withPolling: ExportDataRequest, options: GoogleGax.RequestOptions
+    func exportDataPollingUntilDone(
+      request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.listExamples`.
@@ -1116,8 +1114,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createModel`.
-    func createModel(
-      withPolling: CreateModelRequest, options: GoogleGax.RequestOptions
+    func createModelPollingUntilDone(
+      request: CreateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
     /// See `TranslationServiceClient.listModels`.
@@ -1136,8 +1134,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteModel`.
-    func deleteModel(
-      withPolling: DeleteModelRequest, options: GoogleGax.RequestOptions
+    func deleteModelPollingUntilDone(
+      request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `TranslationServiceClient.listLocations`.
@@ -1317,14 +1315,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func batchTranslateText(withPolling: BatchTranslateTextRequest) async throws
+  public func batchTranslateTextPollingUntilDone(request: BatchTranslateTextRequest) async throws
     -> any GoogleGax.PollableOperation<BatchTranslateResponse>
   {
-    try await self.batchTranslateText(withPolling: withPolling, options: .init())
+    try await self.batchTranslateTextPollingUntilDone(request: request, options: .init())
   }
 
-  public func batchTranslateText(
-    withPolling: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
+  public func batchTranslateTextPollingUntilDone(
+    request: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchTranslateResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BatchTranslateResponse>.State in
@@ -1346,14 +1344,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func batchTranslateDocument(withPolling: BatchTranslateDocumentRequest) async throws
-    -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse>
+  public func batchTranslateDocumentPollingUntilDone(request: BatchTranslateDocumentRequest)
+    async throws -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse>
   {
-    try await self.batchTranslateDocument(withPolling: withPolling, options: .init())
+    try await self.batchTranslateDocumentPollingUntilDone(request: request, options: .init())
   }
 
-  public func batchTranslateDocument(
-    withPolling: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
+  public func batchTranslateDocumentPollingUntilDone(
+    request: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchTranslateDocumentResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BatchTranslateDocumentResponse>.State in
@@ -1363,7 +1361,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func batchTranslateDocument(
+  public func batchTranslateDocumentPollingUntilDone(
     parent: Swift.String,
     sourceLanguageCode: Swift.String,
     targetLanguageCodes: [Swift.String],
@@ -1377,7 +1375,7 @@ extension Clients.TranslationServiceProtocol {
       $0.inputConfigs = inputConfigs
       $0.outputConfig = outputConfig
     }
-    return try await self.batchTranslateDocument(withPolling: request)
+    return try await self.batchTranslateDocumentPollingUntilDone(request: request)
   }
 
   public func createGlossary(request: CreateGlossaryRequest) async throws
@@ -1392,14 +1390,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createGlossary(withPolling: CreateGlossaryRequest) async throws -> any GoogleGax
-    .PollableOperation<Glossary>
+  public func createGlossaryPollingUntilDone(request: CreateGlossaryRequest) async throws
+    -> any GoogleGax.PollableOperation<Glossary>
   {
-    try await self.createGlossary(withPolling: withPolling, options: .init())
+    try await self.createGlossaryPollingUntilDone(request: request, options: .init())
   }
 
-  public func createGlossary(
-    withPolling: CreateGlossaryRequest, options: GoogleGax.RequestOptions
+  public func createGlossaryPollingUntilDone(
+    request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Glossary>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1408,7 +1406,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createGlossary(
+  public func createGlossaryPollingUntilDone(
     parent: Swift.String,
     glossary: Glossary?,
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
@@ -1416,7 +1414,7 @@ extension Clients.TranslationServiceProtocol {
       $0.parent = parent
       $0.glossary = glossary
     }
-    return try await self.createGlossary(withPolling: request)
+    return try await self.createGlossaryPollingUntilDone(request: request)
   }
 
   public func updateGlossary(request: UpdateGlossaryRequest) async throws
@@ -1431,14 +1429,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateGlossary(withPolling: UpdateGlossaryRequest) async throws -> any GoogleGax
-    .PollableOperation<Glossary>
+  public func updateGlossaryPollingUntilDone(request: UpdateGlossaryRequest) async throws
+    -> any GoogleGax.PollableOperation<Glossary>
   {
-    try await self.updateGlossary(withPolling: withPolling, options: .init())
+    try await self.updateGlossaryPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateGlossary(
-    withPolling: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
+  public func updateGlossaryPollingUntilDone(
+    request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Glossary>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1447,7 +1445,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateGlossary(
+  public func updateGlossaryPollingUntilDone(
     glossary: Glossary?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Glossary> {
@@ -1455,7 +1453,7 @@ extension Clients.TranslationServiceProtocol {
       $0.glossary = glossary
       $0.updateMask = updateMask
     }
-    return try await self.updateGlossary(withPolling: request)
+    return try await self.updateGlossaryPollingUntilDone(request: request)
   }
 
   public func listGlossaries(request: ListGlossariesRequest) async throws
@@ -1534,14 +1532,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteGlossary(withPolling: DeleteGlossaryRequest) async throws -> any GoogleGax
-    .PollableOperation<DeleteGlossaryResponse>
+  public func deleteGlossaryPollingUntilDone(request: DeleteGlossaryRequest) async throws
+    -> any GoogleGax.PollableOperation<DeleteGlossaryResponse>
   {
-    try await self.deleteGlossary(withPolling: withPolling, options: .init())
+    try await self.deleteGlossaryPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteGlossary(
-    withPolling: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
+  public func deleteGlossaryPollingUntilDone(
+    request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DeleteGlossaryResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DeleteGlossaryResponse>.State in
@@ -1551,13 +1549,13 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteGlossary(
+  public func deleteGlossaryPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<DeleteGlossaryResponse> {
     let request = DeleteGlossaryRequest().with {
       $0.name = name
     }
-    return try await self.deleteGlossary(withPolling: request)
+    return try await self.deleteGlossaryPollingUntilDone(request: request)
   }
 
   public func getGlossaryEntry(request: GetGlossaryEntryRequest) async throws
@@ -1698,14 +1696,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createDataset(withPolling: CreateDatasetRequest) async throws -> any GoogleGax
-    .PollableOperation<Dataset>
+  public func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws
+    -> any GoogleGax.PollableOperation<Dataset>
   {
-    try await self.createDataset(withPolling: withPolling, options: .init())
+    try await self.createDatasetPollingUntilDone(request: request, options: .init())
   }
 
-  public func createDataset(
-    withPolling: CreateDatasetRequest, options: GoogleGax.RequestOptions
+  public func createDatasetPollingUntilDone(
+    request: CreateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1714,7 +1712,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createDataset(
+  public func createDatasetPollingUntilDone(
     parent: Swift.String,
     dataset: Dataset?,
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
@@ -1722,7 +1720,7 @@ extension Clients.TranslationServiceProtocol {
       $0.parent = parent
       $0.dataset = dataset
     }
-    return try await self.createDataset(withPolling: request)
+    return try await self.createDatasetPollingUntilDone(request: request)
   }
 
   public func getDataset(request: GetDatasetRequest) async throws -> GoogleCloudTranslateV3.Dataset
@@ -1799,14 +1797,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDataset(withPolling: DeleteDatasetRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteDataset(withPolling: withPolling, options: .init())
+    try await self.deleteDatasetPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteDataset(
-    withPolling: DeleteDatasetRequest, options: GoogleGax.RequestOptions
+  public func deleteDatasetPollingUntilDone(
+    request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1815,13 +1813,13 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteDataset(
+  public func deleteDatasetPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDatasetRequest().with {
       $0.name = name
     }
-    return try await self.deleteDataset(withPolling: request)
+    return try await self.deleteDatasetPollingUntilDone(request: request)
   }
 
   public func createAdaptiveMtDataset(request: CreateAdaptiveMtDatasetRequest) async throws
@@ -2108,14 +2106,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importData(withPolling: ImportDataRequest) async throws -> any GoogleGax
+  public func importDataPollingUntilDone(request: ImportDataRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.importData(withPolling: withPolling, options: .init())
+    try await self.importDataPollingUntilDone(request: request, options: .init())
   }
 
-  public func importData(
-    withPolling: ImportDataRequest, options: GoogleGax.RequestOptions
+  public func importDataPollingUntilDone(
+    request: ImportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2124,7 +2122,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func importData(
+  public func importDataPollingUntilDone(
     dataset: Swift.String,
     inputConfig: DatasetInputConfig?,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -2132,7 +2130,7 @@ extension Clients.TranslationServiceProtocol {
       $0.dataset = dataset
       $0.inputConfig = inputConfig
     }
-    return try await self.importData(withPolling: request)
+    return try await self.importDataPollingUntilDone(request: request)
   }
 
   public func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation {
@@ -2145,14 +2143,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportData(withPolling: ExportDataRequest) async throws -> any GoogleGax
+  public func exportDataPollingUntilDone(request: ExportDataRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.exportData(withPolling: withPolling, options: .init())
+    try await self.exportDataPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportData(
-    withPolling: ExportDataRequest, options: GoogleGax.RequestOptions
+  public func exportDataPollingUntilDone(
+    request: ExportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2161,7 +2159,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func exportData(
+  public func exportDataPollingUntilDone(
     dataset: Swift.String,
     outputConfig: DatasetOutputConfig?,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -2169,7 +2167,7 @@ extension Clients.TranslationServiceProtocol {
       $0.dataset = dataset
       $0.outputConfig = outputConfig
     }
-    return try await self.exportData(withPolling: request)
+    return try await self.exportDataPollingUntilDone(request: request)
   }
 
   public func listExamples(request: ListExamplesRequest) async throws
@@ -2224,14 +2222,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createModel(withPolling: CreateModelRequest) async throws -> any GoogleGax
+  public func createModelPollingUntilDone(request: CreateModelRequest) async throws -> any GoogleGax
     .PollableOperation<Model>
   {
-    try await self.createModel(withPolling: withPolling, options: .init())
+    try await self.createModelPollingUntilDone(request: request, options: .init())
   }
 
-  public func createModel(
-    withPolling: CreateModelRequest, options: GoogleGax.RequestOptions
+  public func createModelPollingUntilDone(
+    request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2240,7 +2238,7 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createModel(
+  public func createModelPollingUntilDone(
     parent: Swift.String,
     model: Model?,
   ) async throws -> any GoogleGax.PollableOperation<Model> {
@@ -2248,7 +2246,7 @@ extension Clients.TranslationServiceProtocol {
       $0.parent = parent
       $0.model = model
     }
-    return try await self.createModel(withPolling: request)
+    return try await self.createModelPollingUntilDone(request: request)
   }
 
   public func listModels(request: ListModelsRequest) async throws
@@ -2322,14 +2320,14 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteModel(withPolling: DeleteModelRequest) async throws -> any GoogleGax
+  public func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteModel(withPolling: withPolling, options: .init())
+    try await self.deleteModelPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteModel(
-    withPolling: DeleteModelRequest, options: GoogleGax.RequestOptions
+  public func deleteModelPollingUntilDone(
+    request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2338,13 +2336,13 @@ extension Clients.TranslationServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteModel(
+  public func deleteModelPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteModelRequest().with {
       $0.name = name
     }
-    return try await self.deleteModel(withPolling: request)
+    return try await self.deleteModelPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

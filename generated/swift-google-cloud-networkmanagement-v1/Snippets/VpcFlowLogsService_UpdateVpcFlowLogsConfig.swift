@@ -27,8 +27,8 @@ func sample(
   client: VpcFlowLogsServiceClient, projectId: String, locationId: String,
   vpcFlowLogsConfigId: String
 ) async throws {
-  let poller = try await client.updateVpcFlowLogsConfig(
-    withPolling: UpdateVpcFlowLogsConfigRequest()
+  let poller = try await client.updateVpcFlowLogsConfigPollingUntilDone(
+    request: UpdateVpcFlowLogsConfigRequest()
       .with {
         $0.vpcFlowLogsConfig = VpcFlowLogsConfig().with {
           $0.name =

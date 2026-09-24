@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BareMetalSolutionClient, projectId: String, locationId: String, nfsShareId: String
 ) async throws {
-  let poller = try await client.deleteNfsShare(
-    withPolling: DeleteNfsShareRequest()
+  let poller = try await client.deleteNfsSharePollingUntilDone(
+    request: DeleteNfsShareRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/nfsShares/\(nfsShareId)"
       }

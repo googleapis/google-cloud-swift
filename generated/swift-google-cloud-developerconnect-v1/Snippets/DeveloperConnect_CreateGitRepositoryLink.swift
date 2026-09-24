@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: DeveloperConnectClient, projectId: String, locationId: String, connectionId: String
 ) async throws {
-  let poller = try await client.createGitRepositoryLink(
-    withPolling: CreateGitRepositoryLinkRequest()
+  let poller = try await client.createGitRepositoryLinkPollingUntilDone(
+    request: CreateGitRepositoryLinkRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
         $0.gitRepositoryLink = GitRepositoryLink() /* .with { ... } */

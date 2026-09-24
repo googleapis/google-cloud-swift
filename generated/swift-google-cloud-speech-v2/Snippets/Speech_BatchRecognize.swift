@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SpeechClient) async throws {
-  let poller = try await client.batchRecognize(
-    withPolling: BatchRecognizeRequest()
+  let poller = try await client.batchRecognizePollingUntilDone(
+    request: BatchRecognizeRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -54,14 +54,14 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// Creates a batch workload that executes asynchronously.
   ///
   /// @Snippet(path: "BatchController_CreateBatch")
-  public func createBatch(
-    withPolling: CreateBatchRequest, options: GoogleGax.RequestOptions
+  public func createBatchPollingUntilDone(
+    request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Batch> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Batch>.State in
       return try op._extractStatus(Batch.self)
     }
-    let rawOp = try await self.createBatch(request: withPolling, options: options)
+    let rawOp = try await self.createBatch(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
       let op = try await self.getOperation(
@@ -199,11 +199,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol BatchControllerProtocol: Sendable {
     /// See `BatchControllerClient.createBatch`.
-    func createBatch(withPolling: CreateBatchRequest) async throws -> any GoogleGax
+    func createBatchPollingUntilDone(request: CreateBatchRequest) async throws -> any GoogleGax
       .PollableOperation<Batch>
 
     /// See `BatchControllerClient.createBatch`.
-    func createBatch(
+    func createBatchPollingUntilDone(
       parent: Swift.String,
       batch: Batch?,
       batchId: Swift.String,
@@ -215,8 +215,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BatchControllerClient.createBatch`.
-    func createBatch(
-      withPolling: CreateBatchRequest, options: GoogleGax.RequestOptions
+    func createBatchPollingUntilDone(
+      request: CreateBatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Batch>
 
     /// See `BatchControllerClient.getBatch`.
@@ -278,14 +278,14 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBatch(withPolling: CreateBatchRequest) async throws -> any GoogleGax
+  public func createBatchPollingUntilDone(request: CreateBatchRequest) async throws -> any GoogleGax
     .PollableOperation<Batch>
   {
-    try await self.createBatch(withPolling: withPolling, options: .init())
+    try await self.createBatchPollingUntilDone(request: request, options: .init())
   }
 
-  public func createBatch(
-    withPolling: CreateBatchRequest, options: GoogleGax.RequestOptions
+  public func createBatchPollingUntilDone(
+    request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Batch> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -294,7 +294,7 @@ extension Clients.BatchControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createBatch(
+  public func createBatchPollingUntilDone(
     parent: Swift.String,
     batch: Batch?,
     batchId: Swift.String,
@@ -304,7 +304,7 @@ extension Clients.BatchControllerProtocol {
       $0.batch = batch
       $0.batchId = batchId
     }
-    return try await self.createBatch(withPolling: request)
+    return try await self.createBatchPollingUntilDone(request: request)
   }
 
   public func getBatch(request: GetBatchRequest) async throws -> GoogleCloudDataprocV1.Batch {

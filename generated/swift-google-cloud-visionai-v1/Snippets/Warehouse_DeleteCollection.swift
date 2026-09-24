@@ -26,8 +26,8 @@ func sample(
   client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String,
   collectionId: String
 ) async throws {
-  let poller = try await client.deleteCollection(
-    withPolling: DeleteCollectionRequest()
+  let poller = try await client.deleteCollectionPollingUntilDone(
+    request: DeleteCollectionRequest()
       .with {
         $0.name =
           "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/collections/\(collectionId)"

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, autonomousDatabaseId: String
 ) async throws {
-  let poller = try await client.deleteAutonomousDatabase(
-    withPolling: DeleteAutonomousDatabaseRequest()
+  let poller = try await client.deleteAutonomousDatabasePollingUntilDone(
+    request: DeleteAutonomousDatabaseRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/autonomousDatabases/\(autonomousDatabaseId)"

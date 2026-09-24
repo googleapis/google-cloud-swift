@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(client: BlockchainNodeEngineClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createBlockchainNode(
-    withPolling: CreateBlockchainNodeRequest()
+  let poller = try await client.createBlockchainNodePollingUntilDone(
+    request: CreateBlockchainNodeRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.blockchainNode = BlockchainNode() /* .with { ... } */

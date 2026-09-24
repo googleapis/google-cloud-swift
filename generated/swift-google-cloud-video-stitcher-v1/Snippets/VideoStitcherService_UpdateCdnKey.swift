@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, cdnKeyId: String
 ) async throws {
-  let poller = try await client.updateCdnKey(
-    withPolling: UpdateCdnKeyRequest()
+  let poller = try await client.updateCdnKeyPollingUntilDone(
+    request: UpdateCdnKeyRequest()
       .with {
         $0.cdnKey = CdnKey().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/cdnKeys/\(cdnKeyId)"

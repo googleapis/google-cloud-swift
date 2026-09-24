@@ -74,15 +74,15 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
-  public func createOspolicyAssignment(
-    withPolling: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+  public func createOspolicyAssignmentPollingUntilDone(
+    request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<OSPolicyAssignment>.State in
       return try op._extractStatus(OSPolicyAssignment.self)
     }
-    let rawOp = try await self.createOspolicyAssignment(request: withPolling, options: options)
+    let rawOp = try await self.createOspolicyAssignment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<OSPolicyAssignment>.State in
       let op = try await self.getOperation(
@@ -125,15 +125,15 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
-  public func updateOspolicyAssignment(
-    withPolling: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+  public func updateOspolicyAssignmentPollingUntilDone(
+    request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<OSPolicyAssignment>.State in
       return try op._extractStatus(OSPolicyAssignment.self)
     }
-    let rawOp = try await self.updateOspolicyAssignment(request: withPolling, options: options)
+    let rawOp = try await self.updateOspolicyAssignment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<OSPolicyAssignment>.State in
       let op = try await self.getOperation(
@@ -215,15 +215,15 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
-  public func deleteOspolicyAssignment(
-    withPolling: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+  public func deleteOspolicyAssignmentPollingUntilDone(
+    request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteOspolicyAssignment(request: withPolling, options: options)
+    let rawOp = try await self.deleteOspolicyAssignment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -327,32 +327,32 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol OsConfigZonalServiceProtocol: Sendable {
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
-    func createOspolicyAssignment(withPolling: CreateOSPolicyAssignmentRequest) async throws
-      -> any GoogleGax.PollableOperation<OSPolicyAssignment>
+    func createOspolicyAssignmentPollingUntilDone(request: CreateOSPolicyAssignmentRequest)
+      async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
-    func createOspolicyAssignment(
+    func createOspolicyAssignmentPollingUntilDone(
       parent: Swift.String,
       osPolicyAssignment: OSPolicyAssignment?,
       osPolicyAssignmentId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
-    func updateOspolicyAssignment(withPolling: UpdateOSPolicyAssignmentRequest) async throws
-      -> any GoogleGax.PollableOperation<OSPolicyAssignment>
+    func updateOspolicyAssignmentPollingUntilDone(request: UpdateOSPolicyAssignmentRequest)
+      async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
-    func updateOspolicyAssignment(
+    func updateOspolicyAssignmentPollingUntilDone(
       osPolicyAssignment: OSPolicyAssignment?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
-    func deleteOspolicyAssignment(withPolling: DeleteOSPolicyAssignmentRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteOspolicyAssignmentPollingUntilDone(request: DeleteOSPolicyAssignmentRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
-    func deleteOspolicyAssignment(
+    func deleteOspolicyAssignmentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -362,8 +362,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
-    func createOspolicyAssignment(
-      withPolling: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+    func createOspolicyAssignmentPollingUntilDone(
+      request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
@@ -372,8 +372,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
-    func updateOspolicyAssignment(
-      withPolling: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+    func updateOspolicyAssignmentPollingUntilDone(
+      request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.getOspolicyAssignment`.
@@ -397,8 +397,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
-    func deleteOspolicyAssignment(
-      withPolling: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+    func deleteOspolicyAssignmentPollingUntilDone(
+      request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `OsConfigZonalServiceClient.getOspolicyAssignmentReport`.
@@ -452,14 +452,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createOspolicyAssignment(withPolling: CreateOSPolicyAssignmentRequest) async throws
-    -> any GoogleGax.PollableOperation<OSPolicyAssignment>
+  public func createOspolicyAssignmentPollingUntilDone(request: CreateOSPolicyAssignmentRequest)
+    async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
   {
-    try await self.createOspolicyAssignment(withPolling: withPolling, options: .init())
+    try await self.createOspolicyAssignmentPollingUntilDone(request: request, options: .init())
   }
 
-  public func createOspolicyAssignment(
-    withPolling: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+  public func createOspolicyAssignmentPollingUntilDone(
+    request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<OSPolicyAssignment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -468,7 +468,7 @@ extension Clients.OsConfigZonalServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createOspolicyAssignment(
+  public func createOspolicyAssignmentPollingUntilDone(
     parent: Swift.String,
     osPolicyAssignment: OSPolicyAssignment?,
     osPolicyAssignmentId: Swift.String,
@@ -478,7 +478,7 @@ extension Clients.OsConfigZonalServiceProtocol {
       $0.osPolicyAssignment = osPolicyAssignment
       $0.osPolicyAssignmentId = osPolicyAssignmentId
     }
-    return try await self.createOspolicyAssignment(withPolling: request)
+    return try await self.createOspolicyAssignmentPollingUntilDone(request: request)
   }
 
   public func updateOspolicyAssignment(request: UpdateOSPolicyAssignmentRequest) async throws
@@ -493,14 +493,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateOspolicyAssignment(withPolling: UpdateOSPolicyAssignmentRequest) async throws
-    -> any GoogleGax.PollableOperation<OSPolicyAssignment>
+  public func updateOspolicyAssignmentPollingUntilDone(request: UpdateOSPolicyAssignmentRequest)
+    async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment>
   {
-    try await self.updateOspolicyAssignment(withPolling: withPolling, options: .init())
+    try await self.updateOspolicyAssignmentPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateOspolicyAssignment(
-    withPolling: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+  public func updateOspolicyAssignmentPollingUntilDone(
+    request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<OSPolicyAssignment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -509,7 +509,7 @@ extension Clients.OsConfigZonalServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateOspolicyAssignment(
+  public func updateOspolicyAssignmentPollingUntilDone(
     osPolicyAssignment: OSPolicyAssignment?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<OSPolicyAssignment> {
@@ -517,7 +517,7 @@ extension Clients.OsConfigZonalServiceProtocol {
       $0.osPolicyAssignment = osPolicyAssignment
       $0.updateMask = updateMask
     }
-    return try await self.updateOspolicyAssignment(withPolling: request)
+    return try await self.updateOspolicyAssignmentPollingUntilDone(request: request)
   }
 
   public func getOspolicyAssignment(request: GetOSPolicyAssignmentRequest) async throws
@@ -640,14 +640,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteOspolicyAssignment(withPolling: DeleteOSPolicyAssignmentRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteOspolicyAssignmentPollingUntilDone(request: DeleteOSPolicyAssignmentRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteOspolicyAssignment(withPolling: withPolling, options: .init())
+    try await self.deleteOspolicyAssignmentPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteOspolicyAssignment(
-    withPolling: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
+  public func deleteOspolicyAssignmentPollingUntilDone(
+    request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -656,13 +656,13 @@ extension Clients.OsConfigZonalServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteOspolicyAssignment(
+  public func deleteOspolicyAssignmentPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteOSPolicyAssignmentRequest().with {
       $0.name = name
     }
-    return try await self.deleteOspolicyAssignment(withPolling: request)
+    return try await self.deleteOspolicyAssignmentPollingUntilDone(request: request)
   }
 
   public func getOspolicyAssignmentReport(request: GetOSPolicyAssignmentReportRequest) async throws

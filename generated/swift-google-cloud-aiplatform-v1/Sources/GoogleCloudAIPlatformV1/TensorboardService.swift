@@ -58,15 +58,15 @@
     /// Creates a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_CreateTensorboard")
-    public func createTensorboard(
-      withPolling: CreateTensorboardRequest, options: GoogleGax.RequestOptions
+    public func createTensorboardPollingUntilDone(
+      request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Tensorboard> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Tensorboard>.State in
         return try op._extractStatus(Tensorboard.self)
       }
-      let rawOp = try await self.createTensorboard(request: withPolling, options: options)
+      let rawOp = try await self.createTensorboard(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Tensorboard>.State in
         let op = try await self.getOperation(
@@ -102,15 +102,15 @@
     /// Updates a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_UpdateTensorboard")
-    public func updateTensorboard(
-      withPolling: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
+    public func updateTensorboardPollingUntilDone(
+      request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Tensorboard> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Tensorboard>.State in
         return try op._extractStatus(Tensorboard.self)
       }
-      let rawOp = try await self.updateTensorboard(request: withPolling, options: options)
+      let rawOp = try await self.updateTensorboard(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Tensorboard>.State in
         let op = try await self.getOperation(
@@ -146,15 +146,15 @@
     /// Deletes a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboard")
-    public func deleteTensorboard(
-      withPolling: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardPollingUntilDone(
+      request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteTensorboard(request: withPolling, options: options)
+      let rawOp = try await self.deleteTensorboard(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -235,15 +235,15 @@
     /// Deletes a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
-    public func deleteTensorboardExperiment(
-      withPolling: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardExperimentPollingUntilDone(
+      request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteTensorboardExperiment(request: withPolling, options: options)
+      let rawOp = try await self.deleteTensorboardExperiment(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -315,15 +315,15 @@
     /// Deletes a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
-    public func deleteTensorboardRun(
-      withPolling: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardRunPollingUntilDone(
+      request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteTensorboardRun(request: withPolling, options: options)
+      let rawOp = try await self.deleteTensorboardRun(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -395,15 +395,15 @@
     /// Deletes a TensorboardTimeSeries.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
-    public func deleteTensorboardTimeSeries(
-      withPolling: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardTimeSeriesPollingUntilDone(
+      request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteTensorboardTimeSeries(request: withPolling, options: options)
+      let rawOp = try await self.deleteTensorboardTimeSeries(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -606,58 +606,58 @@
     /// and pass a mock implementation in your tests.
     public protocol TensorboardServiceProtocol: Sendable {
       /// See `TensorboardServiceClient.createTensorboard`.
-      func createTensorboard(withPolling: CreateTensorboardRequest) async throws -> any GoogleGax
-        .PollableOperation<Tensorboard>
+      func createTensorboardPollingUntilDone(request: CreateTensorboardRequest) async throws
+        -> any GoogleGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.createTensorboard`.
-      func createTensorboard(
+      func createTensorboardPollingUntilDone(
         parent: Swift.String,
         tensorboard: Tensorboard?,
       ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.updateTensorboard`.
-      func updateTensorboard(withPolling: UpdateTensorboardRequest) async throws -> any GoogleGax
-        .PollableOperation<Tensorboard>
+      func updateTensorboardPollingUntilDone(request: UpdateTensorboardRequest) async throws
+        -> any GoogleGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.updateTensorboard`.
-      func updateTensorboard(
+      func updateTensorboardPollingUntilDone(
         tensorboard: Tensorboard?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
-      func deleteTensorboard(withPolling: DeleteTensorboardRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteTensorboardPollingUntilDone(request: DeleteTensorboardRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
-      func deleteTensorboard(
+      func deleteTensorboardPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
-      func deleteTensorboardExperiment(withPolling: DeleteTensorboardExperimentRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteTensorboardExperimentPollingUntilDone(request: DeleteTensorboardExperimentRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
-      func deleteTensorboardExperiment(
+      func deleteTensorboardExperimentPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
-      func deleteTensorboardRun(withPolling: DeleteTensorboardRunRequest) async throws
+      func deleteTensorboardRunPollingUntilDone(request: DeleteTensorboardRunRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
-      func deleteTensorboardRun(
+      func deleteTensorboardRunPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
-      func deleteTensorboardTimeSeries(withPolling: DeleteTensorboardTimeSeriesRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteTensorboardTimeSeriesPollingUntilDone(request: DeleteTensorboardTimeSeriesRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
-      func deleteTensorboardTimeSeries(
+      func deleteTensorboardTimeSeriesPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -667,8 +667,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.createTensorboard`.
-      func createTensorboard(
-        withPolling: CreateTensorboardRequest, options: GoogleGax.RequestOptions
+      func createTensorboardPollingUntilDone(
+        request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.getTensorboard`.
@@ -682,8 +682,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.updateTensorboard`.
-      func updateTensorboard(
-        withPolling: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
+      func updateTensorboardPollingUntilDone(
+        request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.listTensorboards`.
@@ -697,8 +697,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
-      func deleteTensorboard(
-        withPolling: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
+      func deleteTensorboardPollingUntilDone(
+        request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.readTensorboardUsage`.
@@ -737,8 +737,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
-      func deleteTensorboardExperiment(
-        withPolling: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
+      func deleteTensorboardExperimentPollingUntilDone(
+        request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.createTensorboardRun`.
@@ -772,8 +772,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
-      func deleteTensorboardRun(
-        withPolling: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
+      func deleteTensorboardRunPollingUntilDone(
+        request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.batchCreateTensorboardTimeSeries`.
@@ -807,8 +807,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
-      func deleteTensorboardTimeSeries(
-        withPolling: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
+      func deleteTensorboardTimeSeriesPollingUntilDone(
+        request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `TensorboardServiceClient.batchReadTensorboardTimeSeriesData`.
@@ -902,14 +902,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createTensorboard(withPolling: CreateTensorboardRequest) async throws
+    public func createTensorboardPollingUntilDone(request: CreateTensorboardRequest) async throws
       -> any GoogleGax.PollableOperation<Tensorboard>
     {
-      try await self.createTensorboard(withPolling: withPolling, options: .init())
+      try await self.createTensorboardPollingUntilDone(request: request, options: .init())
     }
 
-    public func createTensorboard(
-      withPolling: CreateTensorboardRequest, options: GoogleGax.RequestOptions
+    public func createTensorboardPollingUntilDone(
+      request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Tensorboard> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Tensorboard>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -918,7 +918,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createTensorboard(
+    public func createTensorboardPollingUntilDone(
       parent: Swift.String,
       tensorboard: Tensorboard?,
     ) async throws -> any GoogleGax.PollableOperation<Tensorboard> {
@@ -926,7 +926,7 @@
         $0.parent = parent
         $0.tensorboard = tensorboard
       }
-      return try await self.createTensorboard(withPolling: request)
+      return try await self.createTensorboardPollingUntilDone(request: request)
     }
 
     public func getTensorboard(request: GetTensorboardRequest) async throws
@@ -962,14 +962,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateTensorboard(withPolling: UpdateTensorboardRequest) async throws
+    public func updateTensorboardPollingUntilDone(request: UpdateTensorboardRequest) async throws
       -> any GoogleGax.PollableOperation<Tensorboard>
     {
-      try await self.updateTensorboard(withPolling: withPolling, options: .init())
+      try await self.updateTensorboardPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateTensorboard(
-      withPolling: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
+    public func updateTensorboardPollingUntilDone(
+      request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Tensorboard> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Tensorboard>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -978,7 +978,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateTensorboard(
+    public func updateTensorboardPollingUntilDone(
       tensorboard: Tensorboard?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Tensorboard> {
@@ -986,7 +986,7 @@
         $0.tensorboard = tensorboard
         $0.updateMask = updateMask
       }
-      return try await self.updateTensorboard(withPolling: request)
+      return try await self.updateTensorboardPollingUntilDone(request: request)
     }
 
     public func listTensorboards(request: ListTensorboardsRequest) async throws
@@ -1043,14 +1043,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteTensorboard(withPolling: DeleteTensorboardRequest) async throws
+    public func deleteTensorboardPollingUntilDone(request: DeleteTensorboardRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteTensorboard(withPolling: withPolling, options: .init())
+      try await self.deleteTensorboardPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteTensorboard(
-      withPolling: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardPollingUntilDone(
+      request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1059,13 +1059,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteTensorboard(
+    public func deleteTensorboardPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteTensorboardRequest().with {
         $0.name = name
       }
-      return try await self.deleteTensorboard(withPolling: request)
+      return try await self.deleteTensorboardPollingUntilDone(request: request)
     }
 
     public func readTensorboardUsage(request: ReadTensorboardUsageRequest) async throws
@@ -1234,14 +1234,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteTensorboardExperiment(withPolling: DeleteTensorboardExperimentRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-    {
-      try await self.deleteTensorboardExperiment(withPolling: withPolling, options: .init())
+    public func deleteTensorboardExperimentPollingUntilDone(
+      request: DeleteTensorboardExperimentRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+      try await self.deleteTensorboardExperimentPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteTensorboardExperiment(
-      withPolling: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardExperimentPollingUntilDone(
+      request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1250,13 +1250,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteTensorboardExperiment(
+    public func deleteTensorboardExperimentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteTensorboardExperimentRequest().with {
         $0.name = name
       }
-      return try await self.deleteTensorboardExperiment(withPolling: request)
+      return try await self.deleteTensorboardExperimentPollingUntilDone(request: request)
     }
 
     public func createTensorboardRun(request: CreateTensorboardRunRequest) async throws
@@ -1405,14 +1405,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteTensorboardRun(withPolling: DeleteTensorboardRunRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteTensorboardRunPollingUntilDone(request: DeleteTensorboardRunRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteTensorboardRun(withPolling: withPolling, options: .init())
+      try await self.deleteTensorboardRunPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteTensorboardRun(
-      withPolling: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardRunPollingUntilDone(
+      request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1421,13 +1421,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteTensorboardRun(
+    public func deleteTensorboardRunPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteTensorboardRunRequest().with {
         $0.name = name
       }
-      return try await self.deleteTensorboardRun(withPolling: request)
+      return try await self.deleteTensorboardRunPollingUntilDone(request: request)
     }
 
     public func batchCreateTensorboardTimeSeries(request: BatchCreateTensorboardTimeSeriesRequest)
@@ -1575,14 +1575,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteTensorboardTimeSeries(withPolling: DeleteTensorboardTimeSeriesRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-    {
-      try await self.deleteTensorboardTimeSeries(withPolling: withPolling, options: .init())
+    public func deleteTensorboardTimeSeriesPollingUntilDone(
+      request: DeleteTensorboardTimeSeriesRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+      try await self.deleteTensorboardTimeSeriesPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteTensorboardTimeSeries(
-      withPolling: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
+    public func deleteTensorboardTimeSeriesPollingUntilDone(
+      request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1591,13 +1591,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteTensorboardTimeSeries(
+    public func deleteTensorboardTimeSeriesPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteTensorboardTimeSeriesRequest().with {
         $0.name = name
       }
-      return try await self.deleteTensorboardTimeSeries(withPolling: request)
+      return try await self.deleteTensorboardTimeSeriesPollingUntilDone(request: request)
     }
 
     public func batchReadTensorboardTimeSeriesData(

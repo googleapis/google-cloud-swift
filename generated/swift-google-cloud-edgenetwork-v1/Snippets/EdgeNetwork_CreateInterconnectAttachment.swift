@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String)
   async throws
 {
-  let poller = try await client.createInterconnectAttachment(
-    withPolling: CreateInterconnectAttachmentRequest()
+  let poller = try await client.createInterconnectAttachmentPollingUntilDone(
+    request: CreateInterconnectAttachmentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)"
         $0.interconnectAttachment = InterconnectAttachment() /* .with { ... } */

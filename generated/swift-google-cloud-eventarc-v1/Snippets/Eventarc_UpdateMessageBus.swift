@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, messageBusId: String)
   async throws
 {
-  let poller = try await client.updateMessageBus(
-    withPolling: UpdateMessageBusRequest()
+  let poller = try await client.updateMessageBusPollingUntilDone(
+    request: UpdateMessageBusRequest()
       .with {
         $0.messageBus = MessageBus().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/messageBuses/\(messageBusId)"

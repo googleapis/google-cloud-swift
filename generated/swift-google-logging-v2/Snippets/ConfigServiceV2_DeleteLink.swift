@@ -25,8 +25,8 @@ func sample(
   client: ConfigServiceV2Client, projectId: String, locationId: String, bucketId: String,
   linkId: String
 ) async throws {
-  let poller = try await client.deleteLink(
-    withPolling: DeleteLinkRequest()
+  let poller = try await client.deleteLinkPollingUntilDone(
+    request: DeleteLinkRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/buckets/\(bucketId)/links/\(linkId)"

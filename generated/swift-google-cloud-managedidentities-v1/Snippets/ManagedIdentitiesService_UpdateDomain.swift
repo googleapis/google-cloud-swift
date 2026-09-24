@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: ManagedIdentitiesServiceClient, projectId: String, locationId: String, domainId: String
 ) async throws {
-  let poller = try await client.updateDomain(
-    withPolling: UpdateDomainRequest()
+  let poller = try await client.updateDomainPollingUntilDone(
+    request: UpdateDomainRequest()
       .with {
         $0.domain = Domain().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/domains/\(domainId)"

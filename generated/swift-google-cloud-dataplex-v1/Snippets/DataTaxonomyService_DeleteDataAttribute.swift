@@ -30,8 +30,8 @@ func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String, dataTaxonomyId: String,
   dataAttributeId: String
 ) async throws {
-  let poller = try await client.deleteDataAttribute(
-    withPolling: DeleteDataAttributeRequest()
+  let poller = try await client.deleteDataAttributePollingUntilDone(
+    request: DeleteDataAttributeRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/dataTaxonomies/\(dataTaxonomyId)/attributes/\(dataAttributeId)"

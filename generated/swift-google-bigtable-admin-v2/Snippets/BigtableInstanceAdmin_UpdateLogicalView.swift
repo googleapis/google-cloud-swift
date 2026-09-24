@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, logicalViewId: String
 ) async throws {
-  let poller = try await client.updateLogicalView(
-    withPolling: UpdateLogicalViewRequest()
+  let poller = try await client.updateLogicalViewPollingUntilDone(
+    request: UpdateLogicalViewRequest()
       .with {
         $0.logicalView = LogicalView().with {
           $0.name = "projects/\(projectId)/instances/\(instanceId)/logicalViews/\(logicalViewId)"

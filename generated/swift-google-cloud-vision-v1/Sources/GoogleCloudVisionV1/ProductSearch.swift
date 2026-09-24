@@ -356,15 +356,15 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_ImportProductSets")
-  public func importProductSets(
-    withPolling: ImportProductSetsRequest, options: GoogleGax.RequestOptions
+  public func importProductSetsPollingUntilDone(
+    request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State in
       return try op._extractStatus(ImportProductSetsResponse.self)
     }
-    let rawOp = try await self.importProductSets(request: withPolling, options: options)
+    let rawOp = try await self.importProductSets(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State in
@@ -442,15 +442,15 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_PurgeProducts")
-  public func purgeProducts(
-    withPolling: PurgeProductsRequest, options: GoogleGax.RequestOptions
+  public func purgeProductsPollingUntilDone(
+    request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.purgeProducts(request: withPolling, options: options)
+    let rawOp = try await self.purgeProducts(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -485,21 +485,21 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ProductSearchProtocol: Sendable {
     /// See `ProductSearchClient.importProductSets`.
-    func importProductSets(withPolling: ImportProductSetsRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportProductSetsResponse>
+    func importProductSetsPollingUntilDone(request: ImportProductSetsRequest) async throws
+      -> any GoogleGax.PollableOperation<ImportProductSetsResponse>
 
     /// See `ProductSearchClient.importProductSets`.
-    func importProductSets(
+    func importProductSetsPollingUntilDone(
       parent: Swift.String,
       inputConfig: ImportProductSetsInputConfig?,
     ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse>
 
     /// See `ProductSearchClient.purgeProducts`.
-    func purgeProducts(withPolling: PurgeProductsRequest) async throws -> any GoogleGax
+    func purgeProductsPollingUntilDone(request: PurgeProductsRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `ProductSearchClient.purgeProducts`.
-    func purgeProducts(
+    func purgeProductsPollingUntilDone(
       parent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -594,8 +594,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProductSearchClient.importProductSets`.
-    func importProductSets(
-      withPolling: ImportProductSetsRequest, options: GoogleGax.RequestOptions
+    func importProductSetsPollingUntilDone(
+      request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse>
 
     /// See `ProductSearchClient.purgeProducts`.
@@ -604,8 +604,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProductSearchClient.purgeProducts`.
-    func purgeProducts(
-      withPolling: PurgeProductsRequest, options: GoogleGax.RequestOptions
+    func purgeProductsPollingUntilDone(
+      request: PurgeProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
   }
 }
@@ -1095,14 +1095,14 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importProductSets(withPolling: ImportProductSetsRequest) async throws -> any GoogleGax
-    .PollableOperation<ImportProductSetsResponse>
+  public func importProductSetsPollingUntilDone(request: ImportProductSetsRequest) async throws
+    -> any GoogleGax.PollableOperation<ImportProductSetsResponse>
   {
-    try await self.importProductSets(withPolling: withPolling, options: .init())
+    try await self.importProductSetsPollingUntilDone(request: request, options: .init())
   }
 
-  public func importProductSets(
-    withPolling: ImportProductSetsRequest, options: GoogleGax.RequestOptions
+  public func importProductSetsPollingUntilDone(
+    request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State in
@@ -1112,7 +1112,7 @@ extension Clients.ProductSearchProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func importProductSets(
+  public func importProductSetsPollingUntilDone(
     parent: Swift.String,
     inputConfig: ImportProductSetsInputConfig?,
   ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse> {
@@ -1120,7 +1120,7 @@ extension Clients.ProductSearchProtocol {
       $0.parent = parent
       $0.inputConfig = inputConfig
     }
-    return try await self.importProductSets(withPolling: request)
+    return try await self.importProductSetsPollingUntilDone(request: request)
   }
 
   public func purgeProducts(request: PurgeProductsRequest) async throws
@@ -1135,14 +1135,14 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func purgeProducts(withPolling: PurgeProductsRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func purgeProductsPollingUntilDone(request: PurgeProductsRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.purgeProducts(withPolling: withPolling, options: .init())
+    try await self.purgeProductsPollingUntilDone(request: request, options: .init())
   }
 
-  public func purgeProducts(
-    withPolling: PurgeProductsRequest, options: GoogleGax.RequestOptions
+  public func purgeProductsPollingUntilDone(
+    request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1151,13 +1151,13 @@ extension Clients.ProductSearchProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func purgeProducts(
+  public func purgeProductsPollingUntilDone(
     parent: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = PurgeProductsRequest().with {
       $0.parent = parent
     }
-    return try await self.purgeProducts(withPolling: request)
+    return try await self.purgeProductsPollingUntilDone(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

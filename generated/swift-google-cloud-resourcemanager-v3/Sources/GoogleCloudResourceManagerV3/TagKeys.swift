@@ -91,14 +91,14 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   /// at any given time.
   ///
   /// @Snippet(path: "TagKeys_CreateTagKey")
-  public func createTagKey(
-    withPolling: CreateTagKeyRequest, options: GoogleGax.RequestOptions
+  public func createTagKeyPollingUntilDone(
+    request: CreateTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       return try op._extractStatus(TagKey.self)
     }
-    let rawOp = try await self.createTagKey(request: withPolling, options: options)
+    let rawOp = try await self.createTagKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       let op = try await self.getOperation(
@@ -125,14 +125,14 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   /// Updates the attributes of the TagKey resource.
   ///
   /// @Snippet(path: "TagKeys_UpdateTagKey")
-  public func updateTagKey(
-    withPolling: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
+  public func updateTagKeyPollingUntilDone(
+    request: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       return try op._extractStatus(TagKey.self)
     }
-    let rawOp = try await self.updateTagKey(request: withPolling, options: options)
+    let rawOp = try await self.updateTagKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       let op = try await self.getOperation(
@@ -161,14 +161,14 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   /// TagValues.
   ///
   /// @Snippet(path: "TagKeys_DeleteTagKey")
-  public func deleteTagKey(
-    withPolling: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
+  public func deleteTagKeyPollingUntilDone(
+    request: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       return try op._extractStatus(TagKey.self)
     }
-    let rawOp = try await self.deleteTagKey(request: withPolling, options: options)
+    let rawOp = try await self.deleteTagKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       let op = try await self.getOperation(
@@ -243,30 +243,30 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol TagKeysProtocol: Sendable {
     /// See `TagKeysClient.createTagKey`.
-    func createTagKey(withPolling: CreateTagKeyRequest) async throws -> any GoogleGax
+    func createTagKeyPollingUntilDone(request: CreateTagKeyRequest) async throws -> any GoogleGax
       .PollableOperation<TagKey>
 
     /// See `TagKeysClient.createTagKey`.
-    func createTagKey(
+    func createTagKeyPollingUntilDone(
       tagKey: TagKey?,
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.updateTagKey`.
-    func updateTagKey(withPolling: UpdateTagKeyRequest) async throws -> any GoogleGax
+    func updateTagKeyPollingUntilDone(request: UpdateTagKeyRequest) async throws -> any GoogleGax
       .PollableOperation<TagKey>
 
     /// See `TagKeysClient.updateTagKey`.
-    func updateTagKey(
+    func updateTagKeyPollingUntilDone(
       tagKey: TagKey?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.deleteTagKey`.
-    func deleteTagKey(withPolling: DeleteTagKeyRequest) async throws -> any GoogleGax
+    func deleteTagKeyPollingUntilDone(request: DeleteTagKeyRequest) async throws -> any GoogleGax
       .PollableOperation<TagKey>
 
     /// See `TagKeysClient.deleteTagKey`.
-    func deleteTagKey(
+    func deleteTagKeyPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
@@ -291,8 +291,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.createTagKey`.
-    func createTagKey(
-      withPolling: CreateTagKeyRequest, options: GoogleGax.RequestOptions
+    func createTagKeyPollingUntilDone(
+      request: CreateTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.updateTagKey`.
@@ -301,8 +301,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.updateTagKey`.
-    func updateTagKey(
-      withPolling: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
+    func updateTagKeyPollingUntilDone(
+      request: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.deleteTagKey`.
@@ -311,8 +311,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.deleteTagKey`.
-    func deleteTagKey(
-      withPolling: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
+    func deleteTagKeyPollingUntilDone(
+      request: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.getIamPolicy`.
@@ -429,14 +429,14 @@ extension Clients.TagKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createTagKey(withPolling: CreateTagKeyRequest) async throws -> any GoogleGax
-    .PollableOperation<TagKey>
+  public func createTagKeyPollingUntilDone(request: CreateTagKeyRequest) async throws
+    -> any GoogleGax.PollableOperation<TagKey>
   {
-    try await self.createTagKey(withPolling: withPolling, options: .init())
+    try await self.createTagKeyPollingUntilDone(request: request, options: .init())
   }
 
-  public func createTagKey(
-    withPolling: CreateTagKeyRequest, options: GoogleGax.RequestOptions
+  public func createTagKeyPollingUntilDone(
+    request: CreateTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -445,13 +445,13 @@ extension Clients.TagKeysProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createTagKey(
+  public func createTagKeyPollingUntilDone(
     tagKey: TagKey?,
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let request = CreateTagKeyRequest().with {
       $0.tagKey = tagKey
     }
-    return try await self.createTagKey(withPolling: request)
+    return try await self.createTagKeyPollingUntilDone(request: request)
   }
 
   public func updateTagKey(request: UpdateTagKeyRequest) async throws -> GoogleLongRunning.Operation
@@ -465,14 +465,14 @@ extension Clients.TagKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateTagKey(withPolling: UpdateTagKeyRequest) async throws -> any GoogleGax
-    .PollableOperation<TagKey>
+  public func updateTagKeyPollingUntilDone(request: UpdateTagKeyRequest) async throws
+    -> any GoogleGax.PollableOperation<TagKey>
   {
-    try await self.updateTagKey(withPolling: withPolling, options: .init())
+    try await self.updateTagKeyPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateTagKey(
-    withPolling: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
+  public func updateTagKeyPollingUntilDone(
+    request: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -481,7 +481,7 @@ extension Clients.TagKeysProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateTagKey(
+  public func updateTagKeyPollingUntilDone(
     tagKey: TagKey?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
@@ -489,7 +489,7 @@ extension Clients.TagKeysProtocol {
       $0.tagKey = tagKey
       $0.updateMask = updateMask
     }
-    return try await self.updateTagKey(withPolling: request)
+    return try await self.updateTagKeyPollingUntilDone(request: request)
   }
 
   public func deleteTagKey(request: DeleteTagKeyRequest) async throws -> GoogleLongRunning.Operation
@@ -503,14 +503,14 @@ extension Clients.TagKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTagKey(withPolling: DeleteTagKeyRequest) async throws -> any GoogleGax
-    .PollableOperation<TagKey>
+  public func deleteTagKeyPollingUntilDone(request: DeleteTagKeyRequest) async throws
+    -> any GoogleGax.PollableOperation<TagKey>
   {
-    try await self.deleteTagKey(withPolling: withPolling, options: .init())
+    try await self.deleteTagKeyPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteTagKey(
-    withPolling: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
+  public func deleteTagKeyPollingUntilDone(
+    request: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagKey>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -519,13 +519,13 @@ extension Clients.TagKeysProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteTagKey(
+  public func deleteTagKeyPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<TagKey> {
     let request = DeleteTagKeyRequest().with {
       $0.name = name
     }
-    return try await self.deleteTagKey(withPolling: request)
+    return try await self.deleteTagKeyPollingUntilDone(request: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

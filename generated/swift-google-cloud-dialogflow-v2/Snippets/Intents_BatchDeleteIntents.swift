@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: IntentsClient) async throws {
-    let poller = try await client.batchDeleteIntents(
-      withPolling: BatchDeleteIntentsRequest()
+    let poller = try await client.batchDeleteIntentsPollingUntilDone(
+      request: BatchDeleteIntentsRequest()
         /* set fields using .with { $0... } */
     )
     try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LicenseManagerClient, projectId: String, locationId: String, configurationId: String
 ) async throws {
-  let poller = try await client.updateConfiguration(
-    withPolling: UpdateConfigurationRequest()
+  let poller = try await client.updateConfigurationPollingUntilDone(
+    request: UpdateConfigurationRequest()
       .with {
         $0.configuration = Configuration().with {
           $0.name =

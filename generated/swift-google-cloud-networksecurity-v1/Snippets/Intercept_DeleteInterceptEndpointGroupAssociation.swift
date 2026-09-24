@@ -27,8 +27,8 @@ func sample(
   client: InterceptClient, projectId: String, locationId: String,
   interceptEndpointGroupAssociationId: String
 ) async throws {
-  let poller = try await client.deleteInterceptEndpointGroupAssociation(
-    withPolling: DeleteInterceptEndpointGroupAssociationRequest()
+  let poller = try await client.deleteInterceptEndpointGroupAssociationPollingUntilDone(
+    request: DeleteInterceptEndpointGroupAssociationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/interceptEndpointGroupAssociations/\(interceptEndpointGroupAssociationId)"

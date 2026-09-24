@@ -26,8 +26,8 @@ func sample(
   client: EdgeContainerClient, projectId: String, locationId: String, clusterId: String,
   nodePoolId: String
 ) async throws {
-  let poller = try await client.updateNodePool(
-    withPolling: UpdateNodePoolRequest()
+  let poller = try await client.updateNodePoolPollingUntilDone(
+    request: UpdateNodePoolRequest()
       .with {
         $0.nodePool = NodePool().with {
           $0.name =

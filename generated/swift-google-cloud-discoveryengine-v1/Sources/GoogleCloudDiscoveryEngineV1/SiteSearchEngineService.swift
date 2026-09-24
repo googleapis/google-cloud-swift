@@ -73,15 +73,15 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_CreateTargetSite")
-    public func createTargetSite(
-      withPolling: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
+    public func createTargetSitePollingUntilDone(
+      request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         return try op._extractStatus(TargetSite.self)
       }
-      let rawOp = try await self.createTargetSite(request: withPolling, options: options)
+      let rawOp = try await self.createTargetSite(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         let op = try await self.getOperation(
@@ -114,15 +114,15 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_BatchCreateTargetSites")
-    public func batchCreateTargetSites(
-      withPolling: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
+    public func batchCreateTargetSitesPollingUntilDone(
+      request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
         return try op._extractStatus(BatchCreateTargetSitesResponse.self)
       }
-      let rawOp = try await self.batchCreateTargetSites(request: withPolling, options: options)
+      let rawOp = try await self.batchCreateTargetSites(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
@@ -165,15 +165,15 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_UpdateTargetSite")
-    public func updateTargetSite(
-      withPolling: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
+    public func updateTargetSitePollingUntilDone(
+      request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         return try op._extractStatus(TargetSite.self)
       }
-      let rawOp = try await self.updateTargetSite(request: withPolling, options: options)
+      let rawOp = try await self.updateTargetSite(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         let op = try await self.getOperation(
@@ -204,15 +204,15 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
-    public func deleteTargetSite(
-      withPolling: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
+    public func deleteTargetSitePollingUntilDone(
+      request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteTargetSite(request: withPolling, options: options)
+      let rawOp = try await self.deleteTargetSite(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -254,15 +254,15 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_CreateSitemap")
-    public func createSitemap(
-      withPolling: CreateSitemapRequest, options: GoogleGax.RequestOptions
+    public func createSitemapPollingUntilDone(
+      request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Sitemap> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Sitemap>.State
         in
         return try op._extractStatus(Sitemap.self)
       }
-      let rawOp = try await self.createSitemap(request: withPolling, options: options)
+      let rawOp = try await self.createSitemap(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Sitemap>.State in
         let op = try await self.getOperation(
@@ -293,15 +293,15 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
-    public func deleteSitemap(
-      withPolling: DeleteSitemapRequest, options: GoogleGax.RequestOptions
+    public func deleteSitemapPollingUntilDone(
+      request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteSitemap(request: withPolling, options: options)
+      let rawOp = try await self.deleteSitemap(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -341,15 +341,15 @@
     /// Upgrade from basic site search to advanced site search.
     ///
     /// @Snippet(path: "SiteSearchEngineService_EnableAdvancedSiteSearch")
-    public func enableAdvancedSiteSearch(
-      withPolling: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
+    public func enableAdvancedSiteSearchPollingUntilDone(
+      request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State in
         return try op._extractStatus(EnableAdvancedSiteSearchResponse.self)
       }
-      let rawOp = try await self.enableAdvancedSiteSearch(request: withPolling, options: options)
+      let rawOp = try await self.enableAdvancedSiteSearch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State
@@ -378,15 +378,15 @@
     /// Downgrade from advanced site search to basic site search.
     ///
     /// @Snippet(path: "SiteSearchEngineService_DisableAdvancedSiteSearch")
-    public func disableAdvancedSiteSearch(
-      withPolling: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
+    public func disableAdvancedSiteSearchPollingUntilDone(
+      request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State in
         return try op._extractStatus(DisableAdvancedSiteSearchResponse.self)
       }
-      let rawOp = try await self.disableAdvancedSiteSearch(request: withPolling, options: options)
+      let rawOp = try await self.disableAdvancedSiteSearch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State
@@ -415,15 +415,15 @@
     /// Request on-demand recrawl for a list of URIs.
     ///
     /// @Snippet(path: "SiteSearchEngineService_RecrawlUris")
-    public func recrawlUris(
-      withPolling: RecrawlUrisRequest, options: GoogleGax.RequestOptions
+    public func recrawlUrisPollingUntilDone(
+      request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RecrawlUrisResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
         return try op._extractStatus(RecrawlUrisResponse.self)
       }
-      let rawOp = try await self.recrawlUris(request: withPolling, options: options)
+      let rawOp = try await self.recrawlUris(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
         let op = try await self.getOperation(
@@ -454,15 +454,15 @@
     /// verification.
     ///
     /// @Snippet(path: "SiteSearchEngineService_BatchVerifyTargetSites")
-    public func batchVerifyTargetSites(
-      withPolling: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
+    public func batchVerifyTargetSitesPollingUntilDone(
+      request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
         return try op._extractStatus(BatchVerifyTargetSitesResponse.self)
       }
-      let rawOp = try await self.batchVerifyTargetSites(request: withPolling, options: options)
+      let rawOp = try await self.batchVerifyTargetSites(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
@@ -531,71 +531,71 @@
     /// and pass a mock implementation in your tests.
     public protocol SiteSearchEngineServiceProtocol: Sendable {
       /// See `SiteSearchEngineServiceClient.createTargetSite`.
-      func createTargetSite(withPolling: CreateTargetSiteRequest) async throws -> any GoogleGax
-        .PollableOperation<TargetSite>
+      func createTargetSitePollingUntilDone(request: CreateTargetSiteRequest) async throws
+        -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.createTargetSite`.
-      func createTargetSite(
+      func createTargetSitePollingUntilDone(
         parent: Swift.String,
         targetSite: TargetSite?,
       ) async throws -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.batchCreateTargetSites`.
-      func batchCreateTargetSites(withPolling: BatchCreateTargetSitesRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse>
+      func batchCreateTargetSitesPollingUntilDone(request: BatchCreateTargetSitesRequest)
+        async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse>
 
       /// See `SiteSearchEngineServiceClient.updateTargetSite`.
-      func updateTargetSite(withPolling: UpdateTargetSiteRequest) async throws -> any GoogleGax
-        .PollableOperation<TargetSite>
+      func updateTargetSitePollingUntilDone(request: UpdateTargetSiteRequest) async throws
+        -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.updateTargetSite`.
-      func updateTargetSite(
+      func updateTargetSitePollingUntilDone(
         targetSite: TargetSite?,
       ) async throws -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
-      func deleteTargetSite(withPolling: DeleteTargetSiteRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteTargetSitePollingUntilDone(request: DeleteTargetSiteRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
-      func deleteTargetSite(
+      func deleteTargetSitePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
-      func createSitemap(withPolling: CreateSitemapRequest) async throws -> any GoogleGax
-        .PollableOperation<Sitemap>
+      func createSitemapPollingUntilDone(request: CreateSitemapRequest) async throws
+        -> any GoogleGax.PollableOperation<Sitemap>
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
-      func createSitemap(
+      func createSitemapPollingUntilDone(
         parent: Swift.String,
         sitemap: Sitemap?,
       ) async throws -> any GoogleGax.PollableOperation<Sitemap>
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
-      func deleteSitemap(withPolling: DeleteSitemapRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteSitemapPollingUntilDone(request: DeleteSitemapRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
-      func deleteSitemap(
+      func deleteSitemapPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.enableAdvancedSiteSearch`.
-      func enableAdvancedSiteSearch(withPolling: EnableAdvancedSiteSearchRequest) async throws
-        -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse>
+      func enableAdvancedSiteSearchPollingUntilDone(request: EnableAdvancedSiteSearchRequest)
+        async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse>
 
       /// See `SiteSearchEngineServiceClient.disableAdvancedSiteSearch`.
-      func disableAdvancedSiteSearch(withPolling: DisableAdvancedSiteSearchRequest) async throws
-        -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse>
+      func disableAdvancedSiteSearchPollingUntilDone(request: DisableAdvancedSiteSearchRequest)
+        async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse>
 
       /// See `SiteSearchEngineServiceClient.recrawlUris`.
-      func recrawlUris(withPolling: RecrawlUrisRequest) async throws -> any GoogleGax
+      func recrawlUrisPollingUntilDone(request: RecrawlUrisRequest) async throws -> any GoogleGax
         .PollableOperation<RecrawlUrisResponse>
 
       /// See `SiteSearchEngineServiceClient.batchVerifyTargetSites`.
-      func batchVerifyTargetSites(withPolling: BatchVerifyTargetSitesRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse>
+      func batchVerifyTargetSitesPollingUntilDone(request: BatchVerifyTargetSitesRequest)
+        async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse>
 
       /// See `SiteSearchEngineServiceClient.getSiteSearchEngine`.
       func getSiteSearchEngine(
@@ -608,8 +608,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.createTargetSite`.
-      func createTargetSite(
-        withPolling: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
+      func createTargetSitePollingUntilDone(
+        request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.batchCreateTargetSites`.
@@ -618,8 +618,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.batchCreateTargetSites`.
-      func batchCreateTargetSites(
-        withPolling: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
+      func batchCreateTargetSitesPollingUntilDone(
+        request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse>
 
       /// See `SiteSearchEngineServiceClient.getTargetSite`.
@@ -633,8 +633,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.updateTargetSite`.
-      func updateTargetSite(
-        withPolling: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
+      func updateTargetSitePollingUntilDone(
+        request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<TargetSite>
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
@@ -643,8 +643,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
-      func deleteTargetSite(
-        withPolling: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
+      func deleteTargetSitePollingUntilDone(
+        request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.listTargetSites`.
@@ -658,8 +658,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.createSitemap`.
-      func createSitemap(
-        withPolling: CreateSitemapRequest, options: GoogleGax.RequestOptions
+      func createSitemapPollingUntilDone(
+        request: CreateSitemapRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Sitemap>
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
@@ -668,8 +668,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
-      func deleteSitemap(
-        withPolling: DeleteSitemapRequest, options: GoogleGax.RequestOptions
+      func deleteSitemapPollingUntilDone(
+        request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.fetchSitemaps`.
@@ -683,8 +683,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.enableAdvancedSiteSearch`.
-      func enableAdvancedSiteSearch(
-        withPolling: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
+      func enableAdvancedSiteSearchPollingUntilDone(
+        request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse>
 
       /// See `SiteSearchEngineServiceClient.disableAdvancedSiteSearch`.
@@ -693,8 +693,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.disableAdvancedSiteSearch`.
-      func disableAdvancedSiteSearch(
-        withPolling: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
+      func disableAdvancedSiteSearchPollingUntilDone(
+        request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse>
 
       /// See `SiteSearchEngineServiceClient.recrawlUris`.
@@ -703,8 +703,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.recrawlUris`.
-      func recrawlUris(
-        withPolling: RecrawlUrisRequest, options: GoogleGax.RequestOptions
+      func recrawlUrisPollingUntilDone(
+        request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<RecrawlUrisResponse>
 
       /// See `SiteSearchEngineServiceClient.batchVerifyTargetSites`.
@@ -713,8 +713,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SiteSearchEngineServiceClient.batchVerifyTargetSites`.
-      func batchVerifyTargetSites(
-        withPolling: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
+      func batchVerifyTargetSitesPollingUntilDone(
+        request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse>
 
       /// See `SiteSearchEngineServiceClient.fetchDomainVerificationStatus`.
@@ -769,14 +769,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createTargetSite(withPolling: CreateTargetSiteRequest) async throws -> any GoogleGax
-      .PollableOperation<TargetSite>
+    public func createTargetSitePollingUntilDone(request: CreateTargetSiteRequest) async throws
+      -> any GoogleGax.PollableOperation<TargetSite>
     {
-      try await self.createTargetSite(withPolling: withPolling, options: .init())
+      try await self.createTargetSitePollingUntilDone(request: request, options: .init())
     }
 
-    public func createTargetSite(
-      withPolling: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
+    public func createTargetSitePollingUntilDone(
+      request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -785,7 +785,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createTargetSite(
+    public func createTargetSitePollingUntilDone(
       parent: Swift.String,
       targetSite: TargetSite?,
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
@@ -793,7 +793,7 @@
         $0.parent = parent
         $0.targetSite = targetSite
       }
-      return try await self.createTargetSite(withPolling: request)
+      return try await self.createTargetSitePollingUntilDone(request: request)
     }
 
     public func batchCreateTargetSites(request: BatchCreateTargetSitesRequest) async throws
@@ -808,14 +808,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchCreateTargetSites(withPolling: BatchCreateTargetSitesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse>
+    public func batchCreateTargetSitesPollingUntilDone(request: BatchCreateTargetSitesRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse>
     {
-      try await self.batchCreateTargetSites(withPolling: withPolling, options: .init())
+      try await self.batchCreateTargetSitesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchCreateTargetSites(
-      withPolling: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
+    public func batchCreateTargetSitesPollingUntilDone(
+      request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
@@ -858,14 +858,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateTargetSite(withPolling: UpdateTargetSiteRequest) async throws -> any GoogleGax
-      .PollableOperation<TargetSite>
+    public func updateTargetSitePollingUntilDone(request: UpdateTargetSiteRequest) async throws
+      -> any GoogleGax.PollableOperation<TargetSite>
     {
-      try await self.updateTargetSite(withPolling: withPolling, options: .init())
+      try await self.updateTargetSitePollingUntilDone(request: request, options: .init())
     }
 
-    public func updateTargetSite(
-      withPolling: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
+    public func updateTargetSitePollingUntilDone(
+      request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -874,13 +874,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateTargetSite(
+    public func updateTargetSitePollingUntilDone(
       targetSite: TargetSite?,
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let request = UpdateTargetSiteRequest().with {
         $0.targetSite = targetSite
       }
-      return try await self.updateTargetSite(withPolling: request)
+      return try await self.updateTargetSitePollingUntilDone(request: request)
     }
 
     public func deleteTargetSite(request: DeleteTargetSiteRequest) async throws
@@ -895,14 +895,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteTargetSite(withPolling: DeleteTargetSiteRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteTargetSitePollingUntilDone(request: DeleteTargetSiteRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteTargetSite(withPolling: withPolling, options: .init())
+      try await self.deleteTargetSitePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteTargetSite(
-      withPolling: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
+    public func deleteTargetSitePollingUntilDone(
+      request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -911,13 +911,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteTargetSite(
+    public func deleteTargetSitePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteTargetSiteRequest().with {
         $0.name = name
       }
-      return try await self.deleteTargetSite(withPolling: request)
+      return try await self.deleteTargetSitePollingUntilDone(request: request)
     }
 
     public func listTargetSites(request: ListTargetSitesRequest) async throws
@@ -977,14 +977,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createSitemap(withPolling: CreateSitemapRequest) async throws -> any GoogleGax
-      .PollableOperation<Sitemap>
+    public func createSitemapPollingUntilDone(request: CreateSitemapRequest) async throws
+      -> any GoogleGax.PollableOperation<Sitemap>
     {
-      try await self.createSitemap(withPolling: withPolling, options: .init())
+      try await self.createSitemapPollingUntilDone(request: request, options: .init())
     }
 
-    public func createSitemap(
-      withPolling: CreateSitemapRequest, options: GoogleGax.RequestOptions
+    public func createSitemapPollingUntilDone(
+      request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Sitemap> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Sitemap>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -993,7 +993,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createSitemap(
+    public func createSitemapPollingUntilDone(
       parent: Swift.String,
       sitemap: Sitemap?,
     ) async throws -> any GoogleGax.PollableOperation<Sitemap> {
@@ -1001,7 +1001,7 @@
         $0.parent = parent
         $0.sitemap = sitemap
       }
-      return try await self.createSitemap(withPolling: request)
+      return try await self.createSitemapPollingUntilDone(request: request)
     }
 
     public func deleteSitemap(request: DeleteSitemapRequest) async throws
@@ -1016,14 +1016,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSitemap(withPolling: DeleteSitemapRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteSitemapPollingUntilDone(request: DeleteSitemapRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteSitemap(withPolling: withPolling, options: .init())
+      try await self.deleteSitemapPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteSitemap(
-      withPolling: DeleteSitemapRequest, options: GoogleGax.RequestOptions
+    public func deleteSitemapPollingUntilDone(
+      request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1032,13 +1032,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteSitemap(
+    public func deleteSitemapPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteSitemapRequest().with {
         $0.name = name
       }
-      return try await self.deleteSitemap(withPolling: request)
+      return try await self.deleteSitemapPollingUntilDone(request: request)
     }
 
     public func fetchSitemaps(request: FetchSitemapsRequest) async throws
@@ -1074,14 +1074,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func enableAdvancedSiteSearch(withPolling: EnableAdvancedSiteSearchRequest) async throws
-      -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse>
+    public func enableAdvancedSiteSearchPollingUntilDone(request: EnableAdvancedSiteSearchRequest)
+      async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse>
     {
-      try await self.enableAdvancedSiteSearch(withPolling: withPolling, options: .init())
+      try await self.enableAdvancedSiteSearchPollingUntilDone(request: request, options: .init())
     }
 
-    public func enableAdvancedSiteSearch(
-      withPolling: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
+    public func enableAdvancedSiteSearchPollingUntilDone(
+      request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State
@@ -1104,14 +1104,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func disableAdvancedSiteSearch(withPolling: DisableAdvancedSiteSearchRequest)
+    public func disableAdvancedSiteSearchPollingUntilDone(request: DisableAdvancedSiteSearchRequest)
       async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse>
     {
-      try await self.disableAdvancedSiteSearch(withPolling: withPolling, options: .init())
+      try await self.disableAdvancedSiteSearchPollingUntilDone(request: request, options: .init())
     }
 
-    public func disableAdvancedSiteSearch(
-      withPolling: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
+    public func disableAdvancedSiteSearchPollingUntilDone(
+      request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State
@@ -1133,14 +1133,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func recrawlUris(withPolling: RecrawlUrisRequest) async throws -> any GoogleGax
-      .PollableOperation<RecrawlUrisResponse>
+    public func recrawlUrisPollingUntilDone(request: RecrawlUrisRequest) async throws
+      -> any GoogleGax.PollableOperation<RecrawlUrisResponse>
     {
-      try await self.recrawlUris(withPolling: withPolling, options: .init())
+      try await self.recrawlUrisPollingUntilDone(request: request, options: .init())
     }
 
-    public func recrawlUris(
-      withPolling: RecrawlUrisRequest, options: GoogleGax.RequestOptions
+    public func recrawlUrisPollingUntilDone(
+      request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RecrawlUrisResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1161,14 +1161,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchVerifyTargetSites(withPolling: BatchVerifyTargetSitesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse>
+    public func batchVerifyTargetSitesPollingUntilDone(request: BatchVerifyTargetSitesRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse>
     {
-      try await self.batchVerifyTargetSites(withPolling: withPolling, options: .init())
+      try await self.batchVerifyTargetSitesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchVerifyTargetSites(
-      withPolling: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
+    public func batchVerifyTargetSitesPollingUntilDone(
+      request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in

@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: IndexEndpointServiceClient) async throws {
-    let poller = try await client.deployIndex(
-      withPolling: DeployIndexRequest()
+    let poller = try await client.deployIndexPollingUntilDone(
+      request: DeployIndexRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

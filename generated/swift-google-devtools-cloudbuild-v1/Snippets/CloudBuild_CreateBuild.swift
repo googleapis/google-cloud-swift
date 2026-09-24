@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudBuildClient, projectId: String) async throws {
-  let poller = try await client.createBuild(
-    withPolling: CreateBuildRequest()
+  let poller = try await client.createBuildPollingUntilDone(
+    request: CreateBuildRequest()
       .with {
         $0.parent = "projects/\(projectId)"
         $0.build = Build() /* .with { ... } */

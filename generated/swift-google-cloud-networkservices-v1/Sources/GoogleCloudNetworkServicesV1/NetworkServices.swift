@@ -74,15 +74,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new EndpointPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateEndpointPolicy")
-  public func createEndpointPolicy(
-    withPolling: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
+  public func createEndpointPolicyPollingUntilDone(
+    request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EndpointPolicy>.State in
       return try op._extractStatus(EndpointPolicy.self)
     }
-    let rawOp = try await self.createEndpointPolicy(request: withPolling, options: options)
+    let rawOp = try await self.createEndpointPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<EndpointPolicy>.State in
       let op = try await self.getOperation(
@@ -109,15 +109,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_UpdateEndpointPolicy")
-  public func updateEndpointPolicy(
-    withPolling: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
+  public func updateEndpointPolicyPollingUntilDone(
+    request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EndpointPolicy>.State in
       return try op._extractStatus(EndpointPolicy.self)
     }
-    let rawOp = try await self.updateEndpointPolicy(request: withPolling, options: options)
+    let rawOp = try await self.updateEndpointPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<EndpointPolicy>.State in
       let op = try await self.getOperation(
@@ -144,15 +144,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_DeleteEndpointPolicy")
-  public func deleteEndpointPolicy(
-    withPolling: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
+  public func deleteEndpointPolicyPollingUntilDone(
+    request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteEndpointPolicy(request: withPolling, options: options)
+    let rawOp = try await self.deleteEndpointPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -200,15 +200,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateWasmPluginVersion")
-  public func createWasmPluginVersion(
-    withPolling: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
+  public func createWasmPluginVersionPollingUntilDone(
+    request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WasmPluginVersion> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WasmPluginVersion>.State in
       return try op._extractStatus(WasmPluginVersion.self)
     }
-    let rawOp = try await self.createWasmPluginVersion(request: withPolling, options: options)
+    let rawOp = try await self.createWasmPluginVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WasmPluginVersion>.State in
       let op = try await self.getOperation(
@@ -235,15 +235,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes the specified `WasmPluginVersion` resource.
   ///
   /// @Snippet(path: "NetworkServices_DeleteWasmPluginVersion")
-  public func deleteWasmPluginVersion(
-    withPolling: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
+  public func deleteWasmPluginVersionPollingUntilDone(
+    request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteWasmPluginVersion(request: withPolling, options: options)
+    let rawOp = try await self.deleteWasmPluginVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -291,15 +291,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateWasmPlugin")
-  public func createWasmPlugin(
-    withPolling: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
+  public func createWasmPluginPollingUntilDone(
+    request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WasmPlugin> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<WasmPlugin>.State
       in
       return try op._extractStatus(WasmPlugin.self)
     }
-    let rawOp = try await self.createWasmPlugin(request: withPolling, options: options)
+    let rawOp = try await self.createWasmPlugin(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WasmPlugin>.State in
       let op = try await self.getOperation(
@@ -326,15 +326,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_UpdateWasmPlugin")
-  public func updateWasmPlugin(
-    withPolling: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
+  public func updateWasmPluginPollingUntilDone(
+    request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WasmPlugin> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<WasmPlugin>.State
       in
       return try op._extractStatus(WasmPlugin.self)
     }
-    let rawOp = try await self.updateWasmPlugin(request: withPolling, options: options)
+    let rawOp = try await self.updateWasmPlugin(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WasmPlugin>.State in
       let op = try await self.getOperation(
@@ -361,15 +361,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_DeleteWasmPlugin")
-  public func deleteWasmPlugin(
-    withPolling: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
+  public func deleteWasmPluginPollingUntilDone(
+    request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteWasmPlugin(request: withPolling, options: options)
+    let rawOp = try await self.deleteWasmPlugin(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -414,14 +414,14 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new Gateway in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateGateway")
-  public func createGateway(
-    withPolling: CreateGatewayRequest, options: GoogleGax.RequestOptions
+  public func createGatewayPollingUntilDone(
+    request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Gateway>.State in
       return try op._extractStatus(Gateway.self)
     }
-    let rawOp = try await self.createGateway(request: withPolling, options: options)
+    let rawOp = try await self.createGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Gateway>.State in
       let op = try await self.getOperation(
@@ -448,14 +448,14 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_UpdateGateway")
-  public func updateGateway(
-    withPolling: UpdateGatewayRequest, options: GoogleGax.RequestOptions
+  public func updateGatewayPollingUntilDone(
+    request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Gateway>.State in
       return try op._extractStatus(Gateway.self)
     }
-    let rawOp = try await self.updateGateway(request: withPolling, options: options)
+    let rawOp = try await self.updateGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Gateway>.State in
       let op = try await self.getOperation(
@@ -482,15 +482,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_DeleteGateway")
-  public func deleteGateway(
-    withPolling: DeleteGatewayRequest, options: GoogleGax.RequestOptions
+  public func deleteGatewayPollingUntilDone(
+    request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteGateway(request: withPolling, options: options)
+    let rawOp = try await self.deleteGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -535,15 +535,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new GrpcRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateGrpcRoute")
-  public func createGrpcRoute(
-    withPolling: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
+  public func createGrpcRoutePollingUntilDone(
+    request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GrpcRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<GrpcRoute>.State
       in
       return try op._extractStatus(GrpcRoute.self)
     }
-    let rawOp = try await self.createGrpcRoute(request: withPolling, options: options)
+    let rawOp = try await self.createGrpcRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<GrpcRoute>.State in
       let op = try await self.getOperation(
@@ -570,15 +570,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateGrpcRoute")
-  public func updateGrpcRoute(
-    withPolling: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
+  public func updateGrpcRoutePollingUntilDone(
+    request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GrpcRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<GrpcRoute>.State
       in
       return try op._extractStatus(GrpcRoute.self)
     }
-    let rawOp = try await self.updateGrpcRoute(request: withPolling, options: options)
+    let rawOp = try await self.updateGrpcRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<GrpcRoute>.State in
       let op = try await self.getOperation(
@@ -605,15 +605,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteGrpcRoute")
-  public func deleteGrpcRoute(
-    withPolling: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteGrpcRoutePollingUntilDone(
+    request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteGrpcRoute(request: withPolling, options: options)
+    let rawOp = try await self.deleteGrpcRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -658,15 +658,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new HttpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateHttpRoute")
-  public func createHttpRoute(
-    withPolling: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
+  public func createHttpRoutePollingUntilDone(
+    request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<HttpRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<HttpRoute>.State
       in
       return try op._extractStatus(HttpRoute.self)
     }
-    let rawOp = try await self.createHttpRoute(request: withPolling, options: options)
+    let rawOp = try await self.createHttpRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<HttpRoute>.State in
       let op = try await self.getOperation(
@@ -693,15 +693,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateHttpRoute")
-  public func updateHttpRoute(
-    withPolling: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
+  public func updateHttpRoutePollingUntilDone(
+    request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<HttpRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<HttpRoute>.State
       in
       return try op._extractStatus(HttpRoute.self)
     }
-    let rawOp = try await self.updateHttpRoute(request: withPolling, options: options)
+    let rawOp = try await self.updateHttpRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<HttpRoute>.State in
       let op = try await self.getOperation(
@@ -728,15 +728,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteHttpRoute")
-  public func deleteHttpRoute(
-    withPolling: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteHttpRoutePollingUntilDone(
+    request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteHttpRoute(request: withPolling, options: options)
+    let rawOp = try await self.deleteHttpRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -781,15 +781,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new TcpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateTcpRoute")
-  public func createTcpRoute(
-    withPolling: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
+  public func createTcpRoutePollingUntilDone(
+    request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TcpRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TcpRoute>.State
       in
       return try op._extractStatus(TcpRoute.self)
     }
-    let rawOp = try await self.createTcpRoute(request: withPolling, options: options)
+    let rawOp = try await self.createTcpRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TcpRoute>.State in
       let op = try await self.getOperation(
@@ -816,15 +816,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateTcpRoute")
-  public func updateTcpRoute(
-    withPolling: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
+  public func updateTcpRoutePollingUntilDone(
+    request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TcpRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TcpRoute>.State
       in
       return try op._extractStatus(TcpRoute.self)
     }
-    let rawOp = try await self.updateTcpRoute(request: withPolling, options: options)
+    let rawOp = try await self.updateTcpRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TcpRoute>.State in
       let op = try await self.getOperation(
@@ -851,15 +851,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteTcpRoute")
-  public func deleteTcpRoute(
-    withPolling: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteTcpRoutePollingUntilDone(
+    request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteTcpRoute(request: withPolling, options: options)
+    let rawOp = try await self.deleteTcpRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -904,15 +904,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new TlsRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateTlsRoute")
-  public func createTlsRoute(
-    withPolling: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
+  public func createTlsRoutePollingUntilDone(
+    request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TlsRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TlsRoute>.State
       in
       return try op._extractStatus(TlsRoute.self)
     }
-    let rawOp = try await self.createTlsRoute(request: withPolling, options: options)
+    let rawOp = try await self.createTlsRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TlsRoute>.State in
       let op = try await self.getOperation(
@@ -939,15 +939,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateTlsRoute")
-  public func updateTlsRoute(
-    withPolling: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
+  public func updateTlsRoutePollingUntilDone(
+    request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TlsRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TlsRoute>.State
       in
       return try op._extractStatus(TlsRoute.self)
     }
-    let rawOp = try await self.updateTlsRoute(request: withPolling, options: options)
+    let rawOp = try await self.updateTlsRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TlsRoute>.State in
       let op = try await self.getOperation(
@@ -974,15 +974,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteTlsRoute")
-  public func deleteTlsRoute(
-    withPolling: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteTlsRoutePollingUntilDone(
+    request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteTlsRoute(request: withPolling, options: options)
+    let rawOp = try await self.deleteTlsRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1027,15 +1027,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new ServiceBinding in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateServiceBinding")
-  public func createServiceBinding(
-    withPolling: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
+  public func createServiceBindingPollingUntilDone(
+    request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceBinding>.State in
       return try op._extractStatus(ServiceBinding.self)
     }
-    let rawOp = try await self.createServiceBinding(request: withPolling, options: options)
+    let rawOp = try await self.createServiceBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceBinding>.State in
       let op = try await self.getOperation(
@@ -1062,15 +1062,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_UpdateServiceBinding")
-  public func updateServiceBinding(
-    withPolling: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
+  public func updateServiceBindingPollingUntilDone(
+    request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceBinding>.State in
       return try op._extractStatus(ServiceBinding.self)
     }
-    let rawOp = try await self.updateServiceBinding(request: withPolling, options: options)
+    let rawOp = try await self.updateServiceBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceBinding>.State in
       let op = try await self.getOperation(
@@ -1097,15 +1097,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_DeleteServiceBinding")
-  public func deleteServiceBinding(
-    withPolling: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteServiceBindingPollingUntilDone(
+    request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteServiceBinding(request: withPolling, options: options)
+    let rawOp = try await self.deleteServiceBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1150,14 +1150,14 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new Mesh in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateMesh")
-  public func createMesh(
-    withPolling: CreateMeshRequest, options: GoogleGax.RequestOptions
+  public func createMeshPollingUntilDone(
+    request: CreateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Mesh> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Mesh>.State in
       return try op._extractStatus(Mesh.self)
     }
-    let rawOp = try await self.createMesh(request: withPolling, options: options)
+    let rawOp = try await self.createMesh(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Mesh>.State in
       let op = try await self.getOperation(
@@ -1184,14 +1184,14 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_UpdateMesh")
-  public func updateMesh(
-    withPolling: UpdateMeshRequest, options: GoogleGax.RequestOptions
+  public func updateMeshPollingUntilDone(
+    request: UpdateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Mesh> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Mesh>.State in
       return try op._extractStatus(Mesh.self)
     }
-    let rawOp = try await self.updateMesh(request: withPolling, options: options)
+    let rawOp = try await self.updateMesh(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Mesh>.State in
       let op = try await self.getOperation(
@@ -1218,15 +1218,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_DeleteMesh")
-  public func deleteMesh(
-    withPolling: DeleteMeshRequest, options: GoogleGax.RequestOptions
+  public func deleteMeshPollingUntilDone(
+    request: DeleteMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMesh(request: withPolling, options: options)
+    let rawOp = try await self.deleteMesh(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1271,15 +1271,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new ServiceLbPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateServiceLbPolicy")
-  public func createServiceLbPolicy(
-    withPolling: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+  public func createServiceLbPolicyPollingUntilDone(
+    request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceLbPolicy>.State in
       return try op._extractStatus(ServiceLbPolicy.self)
     }
-    let rawOp = try await self.createServiceLbPolicy(request: withPolling, options: options)
+    let rawOp = try await self.createServiceLbPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceLbPolicy>.State in
       let op = try await self.getOperation(
@@ -1306,15 +1306,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_UpdateServiceLbPolicy")
-  public func updateServiceLbPolicy(
-    withPolling: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+  public func updateServiceLbPolicyPollingUntilDone(
+    request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceLbPolicy>.State in
       return try op._extractStatus(ServiceLbPolicy.self)
     }
-    let rawOp = try await self.updateServiceLbPolicy(request: withPolling, options: options)
+    let rawOp = try await self.updateServiceLbPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceLbPolicy>.State in
       let op = try await self.getOperation(
@@ -1341,15 +1341,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_DeleteServiceLbPolicy")
-  public func deleteServiceLbPolicy(
-    withPolling: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+  public func deleteServiceLbPolicyPollingUntilDone(
+    request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteServiceLbPolicy(request: withPolling, options: options)
+    let rawOp = try await self.deleteServiceLbPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1430,15 +1430,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new AgentGateway in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateAgentGateway")
-  public func createAgentGateway(
-    withPolling: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
+  public func createAgentGatewayPollingUntilDone(
+    request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AgentGateway> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AgentGateway>.State in
       return try op._extractStatus(AgentGateway.self)
     }
-    let rawOp = try await self.createAgentGateway(request: withPolling, options: options)
+    let rawOp = try await self.createAgentGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AgentGateway>.State in
       let op = try await self.getOperation(
@@ -1465,15 +1465,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_UpdateAgentGateway")
-  public func updateAgentGateway(
-    withPolling: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
+  public func updateAgentGatewayPollingUntilDone(
+    request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AgentGateway> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AgentGateway>.State in
       return try op._extractStatus(AgentGateway.self)
     }
-    let rawOp = try await self.updateAgentGateway(request: withPolling, options: options)
+    let rawOp = try await self.updateAgentGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AgentGateway>.State in
       let op = try await self.getOperation(
@@ -1500,15 +1500,15 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_DeleteAgentGateway")
-  public func deleteAgentGateway(
-    withPolling: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
+  public func deleteAgentGatewayPollingUntilDone(
+    request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteAgentGateway(request: withPolling, options: options)
+    let rawOp = try await self.deleteAgentGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1632,355 +1632,352 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol NetworkServicesProtocol: Sendable {
     /// See `NetworkServicesClient.createEndpointPolicy`.
-    func createEndpointPolicy(withPolling: CreateEndpointPolicyRequest) async throws
+    func createEndpointPolicyPollingUntilDone(request: CreateEndpointPolicyRequest) async throws
       -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.createEndpointPolicy`.
-    func createEndpointPolicy(
+    func createEndpointPolicyPollingUntilDone(
       parent: Swift.String,
       endpointPolicy: EndpointPolicy?,
       endpointPolicyId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.updateEndpointPolicy`.
-    func updateEndpointPolicy(withPolling: UpdateEndpointPolicyRequest) async throws
+    func updateEndpointPolicyPollingUntilDone(request: UpdateEndpointPolicyRequest) async throws
       -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.updateEndpointPolicy`.
-    func updateEndpointPolicy(
+    func updateEndpointPolicyPollingUntilDone(
       endpointPolicy: EndpointPolicy?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.deleteEndpointPolicy`.
-    func deleteEndpointPolicy(withPolling: DeleteEndpointPolicyRequest) async throws
+    func deleteEndpointPolicyPollingUntilDone(request: DeleteEndpointPolicyRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteEndpointPolicy`.
-    func deleteEndpointPolicy(
+    func deleteEndpointPolicyPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createWasmPluginVersion`.
-    func createWasmPluginVersion(withPolling: CreateWasmPluginVersionRequest) async throws
-      -> any GoogleGax.PollableOperation<WasmPluginVersion>
+    func createWasmPluginVersionPollingUntilDone(request: CreateWasmPluginVersionRequest)
+      async throws -> any GoogleGax.PollableOperation<WasmPluginVersion>
 
     /// See `NetworkServicesClient.createWasmPluginVersion`.
-    func createWasmPluginVersion(
+    func createWasmPluginVersionPollingUntilDone(
       parent: Swift.String,
       wasmPluginVersion: WasmPluginVersion?,
       wasmPluginVersionId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WasmPluginVersion>
 
     /// See `NetworkServicesClient.deleteWasmPluginVersion`.
-    func deleteWasmPluginVersion(withPolling: DeleteWasmPluginVersionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteWasmPluginVersionPollingUntilDone(request: DeleteWasmPluginVersionRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteWasmPluginVersion`.
-    func deleteWasmPluginVersion(
+    func deleteWasmPluginVersionPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createWasmPlugin`.
-    func createWasmPlugin(withPolling: CreateWasmPluginRequest) async throws -> any GoogleGax
-      .PollableOperation<WasmPlugin>
+    func createWasmPluginPollingUntilDone(request: CreateWasmPluginRequest) async throws
+      -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.createWasmPlugin`.
-    func createWasmPlugin(
+    func createWasmPluginPollingUntilDone(
       parent: Swift.String,
       wasmPlugin: WasmPlugin?,
       wasmPluginId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.updateWasmPlugin`.
-    func updateWasmPlugin(withPolling: UpdateWasmPluginRequest) async throws -> any GoogleGax
-      .PollableOperation<WasmPlugin>
+    func updateWasmPluginPollingUntilDone(request: UpdateWasmPluginRequest) async throws
+      -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.updateWasmPlugin`.
-    func updateWasmPlugin(
+    func updateWasmPluginPollingUntilDone(
       wasmPlugin: WasmPlugin?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.deleteWasmPlugin`.
-    func deleteWasmPlugin(withPolling: DeleteWasmPluginRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteWasmPluginPollingUntilDone(request: DeleteWasmPluginRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteWasmPlugin`.
-    func deleteWasmPlugin(
+    func deleteWasmPluginPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createGateway`.
-    func createGateway(withPolling: CreateGatewayRequest) async throws -> any GoogleGax
+    func createGatewayPollingUntilDone(request: CreateGatewayRequest) async throws -> any GoogleGax
       .PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.createGateway`.
-    func createGateway(
+    func createGatewayPollingUntilDone(
       parent: Swift.String,
       gateway: Gateway?,
       gatewayId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.updateGateway`.
-    func updateGateway(withPolling: UpdateGatewayRequest) async throws -> any GoogleGax
+    func updateGatewayPollingUntilDone(request: UpdateGatewayRequest) async throws -> any GoogleGax
       .PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.updateGateway`.
-    func updateGateway(
+    func updateGatewayPollingUntilDone(
       gateway: Gateway?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.deleteGateway`.
-    func deleteGateway(withPolling: DeleteGatewayRequest) async throws -> any GoogleGax
+    func deleteGatewayPollingUntilDone(request: DeleteGatewayRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteGateway`.
-    func deleteGateway(
+    func deleteGatewayPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createGrpcRoute`.
-    func createGrpcRoute(withPolling: CreateGrpcRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<GrpcRoute>
+    func createGrpcRoutePollingUntilDone(request: CreateGrpcRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.createGrpcRoute`.
-    func createGrpcRoute(
+    func createGrpcRoutePollingUntilDone(
       parent: Swift.String,
       grpcRoute: GrpcRoute?,
       grpcRouteId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.updateGrpcRoute`.
-    func updateGrpcRoute(withPolling: UpdateGrpcRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<GrpcRoute>
+    func updateGrpcRoutePollingUntilDone(request: UpdateGrpcRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.updateGrpcRoute`.
-    func updateGrpcRoute(
+    func updateGrpcRoutePollingUntilDone(
       grpcRoute: GrpcRoute?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.deleteGrpcRoute`.
-    func deleteGrpcRoute(withPolling: DeleteGrpcRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteGrpcRoutePollingUntilDone(request: DeleteGrpcRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteGrpcRoute`.
-    func deleteGrpcRoute(
+    func deleteGrpcRoutePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createHttpRoute`.
-    func createHttpRoute(withPolling: CreateHttpRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<HttpRoute>
+    func createHttpRoutePollingUntilDone(request: CreateHttpRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.createHttpRoute`.
-    func createHttpRoute(
+    func createHttpRoutePollingUntilDone(
       parent: Swift.String,
       httpRoute: HttpRoute?,
       httpRouteId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.updateHttpRoute`.
-    func updateHttpRoute(withPolling: UpdateHttpRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<HttpRoute>
+    func updateHttpRoutePollingUntilDone(request: UpdateHttpRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.updateHttpRoute`.
-    func updateHttpRoute(
+    func updateHttpRoutePollingUntilDone(
       httpRoute: HttpRoute?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.deleteHttpRoute`.
-    func deleteHttpRoute(withPolling: DeleteHttpRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteHttpRoutePollingUntilDone(request: DeleteHttpRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteHttpRoute`.
-    func deleteHttpRoute(
+    func deleteHttpRoutePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createTcpRoute`.
-    func createTcpRoute(withPolling: CreateTcpRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<TcpRoute>
+    func createTcpRoutePollingUntilDone(request: CreateTcpRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.createTcpRoute`.
-    func createTcpRoute(
+    func createTcpRoutePollingUntilDone(
       parent: Swift.String,
       tcpRoute: TcpRoute?,
       tcpRouteId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.updateTcpRoute`.
-    func updateTcpRoute(withPolling: UpdateTcpRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<TcpRoute>
+    func updateTcpRoutePollingUntilDone(request: UpdateTcpRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.updateTcpRoute`.
-    func updateTcpRoute(
+    func updateTcpRoutePollingUntilDone(
       tcpRoute: TcpRoute?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.deleteTcpRoute`.
-    func deleteTcpRoute(withPolling: DeleteTcpRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteTcpRoutePollingUntilDone(request: DeleteTcpRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteTcpRoute`.
-    func deleteTcpRoute(
+    func deleteTcpRoutePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createTlsRoute`.
-    func createTlsRoute(withPolling: CreateTlsRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<TlsRoute>
+    func createTlsRoutePollingUntilDone(request: CreateTlsRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.createTlsRoute`.
-    func createTlsRoute(
+    func createTlsRoutePollingUntilDone(
       parent: Swift.String,
       tlsRoute: TlsRoute?,
       tlsRouteId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.updateTlsRoute`.
-    func updateTlsRoute(withPolling: UpdateTlsRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<TlsRoute>
+    func updateTlsRoutePollingUntilDone(request: UpdateTlsRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.updateTlsRoute`.
-    func updateTlsRoute(
+    func updateTlsRoutePollingUntilDone(
       tlsRoute: TlsRoute?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.deleteTlsRoute`.
-    func deleteTlsRoute(withPolling: DeleteTlsRouteRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteTlsRoutePollingUntilDone(request: DeleteTlsRouteRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteTlsRoute`.
-    func deleteTlsRoute(
+    func deleteTlsRoutePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createServiceBinding`.
-    func createServiceBinding(withPolling: CreateServiceBindingRequest) async throws
+    func createServiceBindingPollingUntilDone(request: CreateServiceBindingRequest) async throws
       -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.createServiceBinding`.
-    func createServiceBinding(
+    func createServiceBindingPollingUntilDone(
       parent: Swift.String,
       serviceBinding: ServiceBinding?,
       serviceBindingId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.updateServiceBinding`.
-    func updateServiceBinding(withPolling: UpdateServiceBindingRequest) async throws
+    func updateServiceBindingPollingUntilDone(request: UpdateServiceBindingRequest) async throws
       -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.updateServiceBinding`.
-    func updateServiceBinding(
+    func updateServiceBindingPollingUntilDone(
       serviceBinding: ServiceBinding?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.deleteServiceBinding`.
-    func deleteServiceBinding(withPolling: DeleteServiceBindingRequest) async throws
+    func deleteServiceBindingPollingUntilDone(request: DeleteServiceBindingRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteServiceBinding`.
-    func deleteServiceBinding(
+    func deleteServiceBindingPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createMesh`.
-    func createMesh(withPolling: CreateMeshRequest) async throws -> any GoogleGax.PollableOperation<
-      Mesh
-    >
+    func createMeshPollingUntilDone(request: CreateMeshRequest) async throws -> any GoogleGax
+      .PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.createMesh`.
-    func createMesh(
+    func createMeshPollingUntilDone(
       parent: Swift.String,
       mesh: Mesh?,
       meshId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.updateMesh`.
-    func updateMesh(withPolling: UpdateMeshRequest) async throws -> any GoogleGax.PollableOperation<
-      Mesh
-    >
+    func updateMeshPollingUntilDone(request: UpdateMeshRequest) async throws -> any GoogleGax
+      .PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.updateMesh`.
-    func updateMesh(
+    func updateMeshPollingUntilDone(
       mesh: Mesh?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.deleteMesh`.
-    func deleteMesh(withPolling: DeleteMeshRequest) async throws -> any GoogleGax.PollableOperation<
-      Swift.Void
-    >
+    func deleteMeshPollingUntilDone(request: DeleteMeshRequest) async throws -> any GoogleGax
+      .PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteMesh`.
-    func deleteMesh(
+    func deleteMeshPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createServiceLbPolicy`.
-    func createServiceLbPolicy(withPolling: CreateServiceLbPolicyRequest) async throws
+    func createServiceLbPolicyPollingUntilDone(request: CreateServiceLbPolicyRequest) async throws
       -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.createServiceLbPolicy`.
-    func createServiceLbPolicy(
+    func createServiceLbPolicyPollingUntilDone(
       parent: Swift.String,
       serviceLbPolicy: ServiceLbPolicy?,
       serviceLbPolicyId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.updateServiceLbPolicy`.
-    func updateServiceLbPolicy(withPolling: UpdateServiceLbPolicyRequest) async throws
+    func updateServiceLbPolicyPollingUntilDone(request: UpdateServiceLbPolicyRequest) async throws
       -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.updateServiceLbPolicy`.
-    func updateServiceLbPolicy(
+    func updateServiceLbPolicyPollingUntilDone(
       serviceLbPolicy: ServiceLbPolicy?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.deleteServiceLbPolicy`.
-    func deleteServiceLbPolicy(withPolling: DeleteServiceLbPolicyRequest) async throws
+    func deleteServiceLbPolicyPollingUntilDone(request: DeleteServiceLbPolicyRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteServiceLbPolicy`.
-    func deleteServiceLbPolicy(
+    func deleteServiceLbPolicyPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.createAgentGateway`.
-    func createAgentGateway(withPolling: CreateAgentGatewayRequest) async throws -> any GoogleGax
-      .PollableOperation<AgentGateway>
+    func createAgentGatewayPollingUntilDone(request: CreateAgentGatewayRequest) async throws
+      -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.createAgentGateway`.
-    func createAgentGateway(
+    func createAgentGatewayPollingUntilDone(
       parent: Swift.String,
       agentGateway: AgentGateway?,
       agentGatewayId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.updateAgentGateway`.
-    func updateAgentGateway(withPolling: UpdateAgentGatewayRequest) async throws -> any GoogleGax
-      .PollableOperation<AgentGateway>
+    func updateAgentGatewayPollingUntilDone(request: UpdateAgentGatewayRequest) async throws
+      -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.updateAgentGateway`.
-    func updateAgentGateway(
+    func updateAgentGatewayPollingUntilDone(
       agentGateway: AgentGateway?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.deleteAgentGateway`.
-    func deleteAgentGateway(withPolling: DeleteAgentGatewayRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteAgentGatewayPollingUntilDone(request: DeleteAgentGatewayRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.deleteAgentGateway`.
-    func deleteAgentGateway(
+    func deleteAgentGatewayPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -2000,8 +1997,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createEndpointPolicy`.
-    func createEndpointPolicy(
-      withPolling: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
+    func createEndpointPolicyPollingUntilDone(
+      request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.updateEndpointPolicy`.
@@ -2010,8 +2007,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateEndpointPolicy`.
-    func updateEndpointPolicy(
-      withPolling: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
+    func updateEndpointPolicyPollingUntilDone(
+      request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
 
     /// See `NetworkServicesClient.deleteEndpointPolicy`.
@@ -2020,8 +2017,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteEndpointPolicy`.
-    func deleteEndpointPolicy(
-      withPolling: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
+    func deleteEndpointPolicyPollingUntilDone(
+      request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listWasmPluginVersions`.
@@ -2040,8 +2037,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createWasmPluginVersion`.
-    func createWasmPluginVersion(
-      withPolling: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
+    func createWasmPluginVersionPollingUntilDone(
+      request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WasmPluginVersion>
 
     /// See `NetworkServicesClient.deleteWasmPluginVersion`.
@@ -2050,8 +2047,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteWasmPluginVersion`.
-    func deleteWasmPluginVersion(
-      withPolling: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
+    func deleteWasmPluginVersionPollingUntilDone(
+      request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listWasmPlugins`.
@@ -2070,8 +2067,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createWasmPlugin`.
-    func createWasmPlugin(
-      withPolling: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
+    func createWasmPluginPollingUntilDone(
+      request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.updateWasmPlugin`.
@@ -2080,8 +2077,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateWasmPlugin`.
-    func updateWasmPlugin(
-      withPolling: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
+    func updateWasmPluginPollingUntilDone(
+      request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WasmPlugin>
 
     /// See `NetworkServicesClient.deleteWasmPlugin`.
@@ -2090,8 +2087,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteWasmPlugin`.
-    func deleteWasmPlugin(
-      withPolling: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
+    func deleteWasmPluginPollingUntilDone(
+      request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listGateways`.
@@ -2110,8 +2107,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createGateway`.
-    func createGateway(
-      withPolling: CreateGatewayRequest, options: GoogleGax.RequestOptions
+    func createGatewayPollingUntilDone(
+      request: CreateGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.updateGateway`.
@@ -2120,8 +2117,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateGateway`.
-    func updateGateway(
-      withPolling: UpdateGatewayRequest, options: GoogleGax.RequestOptions
+    func updateGatewayPollingUntilDone(
+      request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Gateway>
 
     /// See `NetworkServicesClient.deleteGateway`.
@@ -2130,8 +2127,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteGateway`.
-    func deleteGateway(
-      withPolling: DeleteGatewayRequest, options: GoogleGax.RequestOptions
+    func deleteGatewayPollingUntilDone(
+      request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listGrpcRoutes`.
@@ -2150,8 +2147,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createGrpcRoute`.
-    func createGrpcRoute(
-      withPolling: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
+    func createGrpcRoutePollingUntilDone(
+      request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.updateGrpcRoute`.
@@ -2160,8 +2157,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateGrpcRoute`.
-    func updateGrpcRoute(
-      withPolling: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
+    func updateGrpcRoutePollingUntilDone(
+      request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GrpcRoute>
 
     /// See `NetworkServicesClient.deleteGrpcRoute`.
@@ -2170,8 +2167,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteGrpcRoute`.
-    func deleteGrpcRoute(
-      withPolling: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
+    func deleteGrpcRoutePollingUntilDone(
+      request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listHttpRoutes`.
@@ -2190,8 +2187,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createHttpRoute`.
-    func createHttpRoute(
-      withPolling: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
+    func createHttpRoutePollingUntilDone(
+      request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.updateHttpRoute`.
@@ -2200,8 +2197,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateHttpRoute`.
-    func updateHttpRoute(
-      withPolling: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
+    func updateHttpRoutePollingUntilDone(
+      request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<HttpRoute>
 
     /// See `NetworkServicesClient.deleteHttpRoute`.
@@ -2210,8 +2207,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteHttpRoute`.
-    func deleteHttpRoute(
-      withPolling: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
+    func deleteHttpRoutePollingUntilDone(
+      request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listTcpRoutes`.
@@ -2230,8 +2227,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createTcpRoute`.
-    func createTcpRoute(
-      withPolling: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
+    func createTcpRoutePollingUntilDone(
+      request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.updateTcpRoute`.
@@ -2240,8 +2237,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateTcpRoute`.
-    func updateTcpRoute(
-      withPolling: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
+    func updateTcpRoutePollingUntilDone(
+      request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TcpRoute>
 
     /// See `NetworkServicesClient.deleteTcpRoute`.
@@ -2250,8 +2247,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteTcpRoute`.
-    func deleteTcpRoute(
-      withPolling: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
+    func deleteTcpRoutePollingUntilDone(
+      request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listTlsRoutes`.
@@ -2270,8 +2267,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createTlsRoute`.
-    func createTlsRoute(
-      withPolling: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
+    func createTlsRoutePollingUntilDone(
+      request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.updateTlsRoute`.
@@ -2280,8 +2277,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateTlsRoute`.
-    func updateTlsRoute(
-      withPolling: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
+    func updateTlsRoutePollingUntilDone(
+      request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TlsRoute>
 
     /// See `NetworkServicesClient.deleteTlsRoute`.
@@ -2290,8 +2287,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteTlsRoute`.
-    func deleteTlsRoute(
-      withPolling: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
+    func deleteTlsRoutePollingUntilDone(
+      request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listServiceBindings`.
@@ -2310,8 +2307,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createServiceBinding`.
-    func createServiceBinding(
-      withPolling: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
+    func createServiceBindingPollingUntilDone(
+      request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.updateServiceBinding`.
@@ -2320,8 +2317,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateServiceBinding`.
-    func updateServiceBinding(
-      withPolling: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
+    func updateServiceBindingPollingUntilDone(
+      request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ServiceBinding>
 
     /// See `NetworkServicesClient.deleteServiceBinding`.
@@ -2330,8 +2327,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteServiceBinding`.
-    func deleteServiceBinding(
-      withPolling: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
+    func deleteServiceBindingPollingUntilDone(
+      request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listMeshes`.
@@ -2350,8 +2347,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createMesh`.
-    func createMesh(
-      withPolling: CreateMeshRequest, options: GoogleGax.RequestOptions
+    func createMeshPollingUntilDone(
+      request: CreateMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.updateMesh`.
@@ -2360,8 +2357,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateMesh`.
-    func updateMesh(
-      withPolling: UpdateMeshRequest, options: GoogleGax.RequestOptions
+    func updateMeshPollingUntilDone(
+      request: UpdateMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Mesh>
 
     /// See `NetworkServicesClient.deleteMesh`.
@@ -2370,8 +2367,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteMesh`.
-    func deleteMesh(
-      withPolling: DeleteMeshRequest, options: GoogleGax.RequestOptions
+    func deleteMeshPollingUntilDone(
+      request: DeleteMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listServiceLbPolicies`.
@@ -2390,8 +2387,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createServiceLbPolicy`.
-    func createServiceLbPolicy(
-      withPolling: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+    func createServiceLbPolicyPollingUntilDone(
+      request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.updateServiceLbPolicy`.
@@ -2400,8 +2397,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateServiceLbPolicy`.
-    func updateServiceLbPolicy(
-      withPolling: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+    func updateServiceLbPolicyPollingUntilDone(
+      request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
 
     /// See `NetworkServicesClient.deleteServiceLbPolicy`.
@@ -2410,8 +2407,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteServiceLbPolicy`.
-    func deleteServiceLbPolicy(
-      withPolling: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+    func deleteServiceLbPolicyPollingUntilDone(
+      request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.getGatewayRouteView`.
@@ -2450,8 +2447,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.createAgentGateway`.
-    func createAgentGateway(
-      withPolling: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
+    func createAgentGatewayPollingUntilDone(
+      request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.updateAgentGateway`.
@@ -2460,8 +2457,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.updateAgentGateway`.
-    func updateAgentGateway(
-      withPolling: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
+    func updateAgentGatewayPollingUntilDone(
+      request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AgentGateway>
 
     /// See `NetworkServicesClient.deleteAgentGateway`.
@@ -2470,8 +2467,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NetworkServicesClient.deleteAgentGateway`.
-    func deleteAgentGateway(
-      withPolling: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
+    func deleteAgentGatewayPollingUntilDone(
+      request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NetworkServicesClient.listLocations`.
@@ -2594,14 +2591,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createEndpointPolicy(withPolling: CreateEndpointPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<EndpointPolicy>
+  public func createEndpointPolicyPollingUntilDone(request: CreateEndpointPolicyRequest)
+    async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
   {
-    try await self.createEndpointPolicy(withPolling: withPolling, options: .init())
+    try await self.createEndpointPolicyPollingUntilDone(request: request, options: .init())
   }
 
-  public func createEndpointPolicy(
-    withPolling: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
+  public func createEndpointPolicyPollingUntilDone(
+    request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<EndpointPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2610,7 +2607,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createEndpointPolicy(
+  public func createEndpointPolicyPollingUntilDone(
     parent: Swift.String,
     endpointPolicy: EndpointPolicy?,
     endpointPolicyId: Swift.String,
@@ -2620,7 +2617,7 @@ extension Clients.NetworkServicesProtocol {
       $0.endpointPolicy = endpointPolicy
       $0.endpointPolicyId = endpointPolicyId
     }
-    return try await self.createEndpointPolicy(withPolling: request)
+    return try await self.createEndpointPolicyPollingUntilDone(request: request)
   }
 
   public func updateEndpointPolicy(request: UpdateEndpointPolicyRequest) async throws
@@ -2635,14 +2632,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateEndpointPolicy(withPolling: UpdateEndpointPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<EndpointPolicy>
+  public func updateEndpointPolicyPollingUntilDone(request: UpdateEndpointPolicyRequest)
+    async throws -> any GoogleGax.PollableOperation<EndpointPolicy>
   {
-    try await self.updateEndpointPolicy(withPolling: withPolling, options: .init())
+    try await self.updateEndpointPolicyPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateEndpointPolicy(
-    withPolling: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
+  public func updateEndpointPolicyPollingUntilDone(
+    request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<EndpointPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2651,7 +2648,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateEndpointPolicy(
+  public func updateEndpointPolicyPollingUntilDone(
     endpointPolicy: EndpointPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<EndpointPolicy> {
@@ -2659,7 +2656,7 @@ extension Clients.NetworkServicesProtocol {
       $0.endpointPolicy = endpointPolicy
       $0.updateMask = updateMask
     }
-    return try await self.updateEndpointPolicy(withPolling: request)
+    return try await self.updateEndpointPolicyPollingUntilDone(request: request)
   }
 
   public func deleteEndpointPolicy(request: DeleteEndpointPolicyRequest) async throws
@@ -2674,14 +2671,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEndpointPolicy(withPolling: DeleteEndpointPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteEndpointPolicyPollingUntilDone(request: DeleteEndpointPolicyRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteEndpointPolicy(withPolling: withPolling, options: .init())
+    try await self.deleteEndpointPolicyPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteEndpointPolicy(
-    withPolling: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
+  public func deleteEndpointPolicyPollingUntilDone(
+    request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2690,13 +2687,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteEndpointPolicy(
+  public func deleteEndpointPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteEndpointPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteEndpointPolicy(withPolling: request)
+    return try await self.deleteEndpointPolicyPollingUntilDone(request: request)
   }
 
   public func listWasmPluginVersions(request: ListWasmPluginVersionsRequest) async throws
@@ -2776,14 +2773,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWasmPluginVersion(withPolling: CreateWasmPluginVersionRequest) async throws
-    -> any GoogleGax.PollableOperation<WasmPluginVersion>
+  public func createWasmPluginVersionPollingUntilDone(request: CreateWasmPluginVersionRequest)
+    async throws -> any GoogleGax.PollableOperation<WasmPluginVersion>
   {
-    try await self.createWasmPluginVersion(withPolling: withPolling, options: .init())
+    try await self.createWasmPluginVersionPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWasmPluginVersion(
-    withPolling: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
+  public func createWasmPluginVersionPollingUntilDone(
+    request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WasmPluginVersion> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WasmPluginVersion>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2792,7 +2789,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWasmPluginVersion(
+  public func createWasmPluginVersionPollingUntilDone(
     parent: Swift.String,
     wasmPluginVersion: WasmPluginVersion?,
     wasmPluginVersionId: Swift.String,
@@ -2802,7 +2799,7 @@ extension Clients.NetworkServicesProtocol {
       $0.wasmPluginVersion = wasmPluginVersion
       $0.wasmPluginVersionId = wasmPluginVersionId
     }
-    return try await self.createWasmPluginVersion(withPolling: request)
+    return try await self.createWasmPluginVersionPollingUntilDone(request: request)
   }
 
   public func deleteWasmPluginVersion(request: DeleteWasmPluginVersionRequest) async throws
@@ -2817,14 +2814,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWasmPluginVersion(withPolling: DeleteWasmPluginVersionRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteWasmPluginVersionPollingUntilDone(request: DeleteWasmPluginVersionRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteWasmPluginVersion(withPolling: withPolling, options: .init())
+    try await self.deleteWasmPluginVersionPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWasmPluginVersion(
-    withPolling: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
+  public func deleteWasmPluginVersionPollingUntilDone(
+    request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2833,13 +2830,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWasmPluginVersion(
+  public func deleteWasmPluginVersionPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteWasmPluginVersionRequest().with {
       $0.name = name
     }
-    return try await self.deleteWasmPluginVersion(withPolling: request)
+    return try await self.deleteWasmPluginVersionPollingUntilDone(request: request)
   }
 
   public func listWasmPlugins(request: ListWasmPluginsRequest) async throws
@@ -2918,14 +2915,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWasmPlugin(withPolling: CreateWasmPluginRequest) async throws -> any GoogleGax
-    .PollableOperation<WasmPlugin>
+  public func createWasmPluginPollingUntilDone(request: CreateWasmPluginRequest) async throws
+    -> any GoogleGax.PollableOperation<WasmPlugin>
   {
-    try await self.createWasmPlugin(withPolling: withPolling, options: .init())
+    try await self.createWasmPluginPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWasmPlugin(
-    withPolling: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
+  public func createWasmPluginPollingUntilDone(
+    request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WasmPlugin> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WasmPlugin>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2934,7 +2931,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWasmPlugin(
+  public func createWasmPluginPollingUntilDone(
     parent: Swift.String,
     wasmPlugin: WasmPlugin?,
     wasmPluginId: Swift.String,
@@ -2944,7 +2941,7 @@ extension Clients.NetworkServicesProtocol {
       $0.wasmPlugin = wasmPlugin
       $0.wasmPluginId = wasmPluginId
     }
-    return try await self.createWasmPlugin(withPolling: request)
+    return try await self.createWasmPluginPollingUntilDone(request: request)
   }
 
   public func updateWasmPlugin(request: UpdateWasmPluginRequest) async throws
@@ -2959,14 +2956,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateWasmPlugin(withPolling: UpdateWasmPluginRequest) async throws -> any GoogleGax
-    .PollableOperation<WasmPlugin>
+  public func updateWasmPluginPollingUntilDone(request: UpdateWasmPluginRequest) async throws
+    -> any GoogleGax.PollableOperation<WasmPlugin>
   {
-    try await self.updateWasmPlugin(withPolling: withPolling, options: .init())
+    try await self.updateWasmPluginPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateWasmPlugin(
-    withPolling: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
+  public func updateWasmPluginPollingUntilDone(
+    request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WasmPlugin> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WasmPlugin>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2975,7 +2972,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateWasmPlugin(
+  public func updateWasmPluginPollingUntilDone(
     wasmPlugin: WasmPlugin?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WasmPlugin> {
@@ -2983,7 +2980,7 @@ extension Clients.NetworkServicesProtocol {
       $0.wasmPlugin = wasmPlugin
       $0.updateMask = updateMask
     }
-    return try await self.updateWasmPlugin(withPolling: request)
+    return try await self.updateWasmPluginPollingUntilDone(request: request)
   }
 
   public func deleteWasmPlugin(request: DeleteWasmPluginRequest) async throws
@@ -2998,14 +2995,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWasmPlugin(withPolling: DeleteWasmPluginRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteWasmPluginPollingUntilDone(request: DeleteWasmPluginRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteWasmPlugin(withPolling: withPolling, options: .init())
+    try await self.deleteWasmPluginPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWasmPlugin(
-    withPolling: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
+  public func deleteWasmPluginPollingUntilDone(
+    request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3014,13 +3011,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWasmPlugin(
+  public func deleteWasmPluginPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteWasmPluginRequest().with {
       $0.name = name
     }
-    return try await self.deleteWasmPlugin(withPolling: request)
+    return try await self.deleteWasmPluginPollingUntilDone(request: request)
   }
 
   public func listGateways(request: ListGatewaysRequest) async throws
@@ -3098,14 +3095,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createGateway(withPolling: CreateGatewayRequest) async throws -> any GoogleGax
-    .PollableOperation<Gateway>
+  public func createGatewayPollingUntilDone(request: CreateGatewayRequest) async throws
+    -> any GoogleGax.PollableOperation<Gateway>
   {
-    try await self.createGateway(withPolling: withPolling, options: .init())
+    try await self.createGatewayPollingUntilDone(request: request, options: .init())
   }
 
-  public func createGateway(
-    withPolling: CreateGatewayRequest, options: GoogleGax.RequestOptions
+  public func createGatewayPollingUntilDone(
+    request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Gateway>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3114,7 +3111,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createGateway(
+  public func createGatewayPollingUntilDone(
     parent: Swift.String,
     gateway: Gateway?,
     gatewayId: Swift.String,
@@ -3124,7 +3121,7 @@ extension Clients.NetworkServicesProtocol {
       $0.gateway = gateway
       $0.gatewayId = gatewayId
     }
-    return try await self.createGateway(withPolling: request)
+    return try await self.createGatewayPollingUntilDone(request: request)
   }
 
   public func updateGateway(request: UpdateGatewayRequest) async throws
@@ -3139,14 +3136,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateGateway(withPolling: UpdateGatewayRequest) async throws -> any GoogleGax
-    .PollableOperation<Gateway>
+  public func updateGatewayPollingUntilDone(request: UpdateGatewayRequest) async throws
+    -> any GoogleGax.PollableOperation<Gateway>
   {
-    try await self.updateGateway(withPolling: withPolling, options: .init())
+    try await self.updateGatewayPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateGateway(
-    withPolling: UpdateGatewayRequest, options: GoogleGax.RequestOptions
+  public func updateGatewayPollingUntilDone(
+    request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Gateway>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3155,7 +3152,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateGateway(
+  public func updateGatewayPollingUntilDone(
     gateway: Gateway?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Gateway> {
@@ -3163,7 +3160,7 @@ extension Clients.NetworkServicesProtocol {
       $0.gateway = gateway
       $0.updateMask = updateMask
     }
-    return try await self.updateGateway(withPolling: request)
+    return try await self.updateGatewayPollingUntilDone(request: request)
   }
 
   public func deleteGateway(request: DeleteGatewayRequest) async throws
@@ -3178,14 +3175,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteGateway(withPolling: DeleteGatewayRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteGatewayPollingUntilDone(request: DeleteGatewayRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteGateway(withPolling: withPolling, options: .init())
+    try await self.deleteGatewayPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteGateway(
-    withPolling: DeleteGatewayRequest, options: GoogleGax.RequestOptions
+  public func deleteGatewayPollingUntilDone(
+    request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3194,13 +3191,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteGateway(
+  public func deleteGatewayPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteGatewayRequest().with {
       $0.name = name
     }
-    return try await self.deleteGateway(withPolling: request)
+    return try await self.deleteGatewayPollingUntilDone(request: request)
   }
 
   public func listGrpcRoutes(request: ListGrpcRoutesRequest) async throws
@@ -3278,14 +3275,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createGrpcRoute(withPolling: CreateGrpcRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<GrpcRoute>
+  public func createGrpcRoutePollingUntilDone(request: CreateGrpcRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<GrpcRoute>
   {
-    try await self.createGrpcRoute(withPolling: withPolling, options: .init())
+    try await self.createGrpcRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func createGrpcRoute(
-    withPolling: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
+  public func createGrpcRoutePollingUntilDone(
+    request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GrpcRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<GrpcRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3294,7 +3291,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createGrpcRoute(
+  public func createGrpcRoutePollingUntilDone(
     parent: Swift.String,
     grpcRoute: GrpcRoute?,
     grpcRouteId: Swift.String,
@@ -3304,7 +3301,7 @@ extension Clients.NetworkServicesProtocol {
       $0.grpcRoute = grpcRoute
       $0.grpcRouteId = grpcRouteId
     }
-    return try await self.createGrpcRoute(withPolling: request)
+    return try await self.createGrpcRoutePollingUntilDone(request: request)
   }
 
   public func updateGrpcRoute(request: UpdateGrpcRouteRequest) async throws
@@ -3319,14 +3316,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateGrpcRoute(withPolling: UpdateGrpcRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<GrpcRoute>
+  public func updateGrpcRoutePollingUntilDone(request: UpdateGrpcRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<GrpcRoute>
   {
-    try await self.updateGrpcRoute(withPolling: withPolling, options: .init())
+    try await self.updateGrpcRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateGrpcRoute(
-    withPolling: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
+  public func updateGrpcRoutePollingUntilDone(
+    request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GrpcRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<GrpcRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3335,7 +3332,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateGrpcRoute(
+  public func updateGrpcRoutePollingUntilDone(
     grpcRoute: GrpcRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<GrpcRoute> {
@@ -3343,7 +3340,7 @@ extension Clients.NetworkServicesProtocol {
       $0.grpcRoute = grpcRoute
       $0.updateMask = updateMask
     }
-    return try await self.updateGrpcRoute(withPolling: request)
+    return try await self.updateGrpcRoutePollingUntilDone(request: request)
   }
 
   public func deleteGrpcRoute(request: DeleteGrpcRouteRequest) async throws
@@ -3358,14 +3355,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteGrpcRoute(withPolling: DeleteGrpcRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteGrpcRoutePollingUntilDone(request: DeleteGrpcRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteGrpcRoute(withPolling: withPolling, options: .init())
+    try await self.deleteGrpcRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteGrpcRoute(
-    withPolling: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteGrpcRoutePollingUntilDone(
+    request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3374,13 +3371,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteGrpcRoute(
+  public func deleteGrpcRoutePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteGrpcRouteRequest().with {
       $0.name = name
     }
-    return try await self.deleteGrpcRoute(withPolling: request)
+    return try await self.deleteGrpcRoutePollingUntilDone(request: request)
   }
 
   public func listHttpRoutes(request: ListHttpRoutesRequest) async throws
@@ -3458,14 +3455,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createHttpRoute(withPolling: CreateHttpRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<HttpRoute>
+  public func createHttpRoutePollingUntilDone(request: CreateHttpRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<HttpRoute>
   {
-    try await self.createHttpRoute(withPolling: withPolling, options: .init())
+    try await self.createHttpRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func createHttpRoute(
-    withPolling: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
+  public func createHttpRoutePollingUntilDone(
+    request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<HttpRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<HttpRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3474,7 +3471,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createHttpRoute(
+  public func createHttpRoutePollingUntilDone(
     parent: Swift.String,
     httpRoute: HttpRoute?,
     httpRouteId: Swift.String,
@@ -3484,7 +3481,7 @@ extension Clients.NetworkServicesProtocol {
       $0.httpRoute = httpRoute
       $0.httpRouteId = httpRouteId
     }
-    return try await self.createHttpRoute(withPolling: request)
+    return try await self.createHttpRoutePollingUntilDone(request: request)
   }
 
   public func updateHttpRoute(request: UpdateHttpRouteRequest) async throws
@@ -3499,14 +3496,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateHttpRoute(withPolling: UpdateHttpRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<HttpRoute>
+  public func updateHttpRoutePollingUntilDone(request: UpdateHttpRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<HttpRoute>
   {
-    try await self.updateHttpRoute(withPolling: withPolling, options: .init())
+    try await self.updateHttpRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateHttpRoute(
-    withPolling: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
+  public func updateHttpRoutePollingUntilDone(
+    request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<HttpRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<HttpRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3515,7 +3512,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateHttpRoute(
+  public func updateHttpRoutePollingUntilDone(
     httpRoute: HttpRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<HttpRoute> {
@@ -3523,7 +3520,7 @@ extension Clients.NetworkServicesProtocol {
       $0.httpRoute = httpRoute
       $0.updateMask = updateMask
     }
-    return try await self.updateHttpRoute(withPolling: request)
+    return try await self.updateHttpRoutePollingUntilDone(request: request)
   }
 
   public func deleteHttpRoute(request: DeleteHttpRouteRequest) async throws
@@ -3538,14 +3535,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteHttpRoute(withPolling: DeleteHttpRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteHttpRoutePollingUntilDone(request: DeleteHttpRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteHttpRoute(withPolling: withPolling, options: .init())
+    try await self.deleteHttpRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteHttpRoute(
-    withPolling: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteHttpRoutePollingUntilDone(
+    request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3554,13 +3551,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteHttpRoute(
+  public func deleteHttpRoutePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteHttpRouteRequest().with {
       $0.name = name
     }
-    return try await self.deleteHttpRoute(withPolling: request)
+    return try await self.deleteHttpRoutePollingUntilDone(request: request)
   }
 
   public func listTcpRoutes(request: ListTcpRoutesRequest) async throws
@@ -3638,14 +3635,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createTcpRoute(withPolling: CreateTcpRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<TcpRoute>
+  public func createTcpRoutePollingUntilDone(request: CreateTcpRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<TcpRoute>
   {
-    try await self.createTcpRoute(withPolling: withPolling, options: .init())
+    try await self.createTcpRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func createTcpRoute(
-    withPolling: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
+  public func createTcpRoutePollingUntilDone(
+    request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TcpRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TcpRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3654,7 +3651,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createTcpRoute(
+  public func createTcpRoutePollingUntilDone(
     parent: Swift.String,
     tcpRoute: TcpRoute?,
     tcpRouteId: Swift.String,
@@ -3664,7 +3661,7 @@ extension Clients.NetworkServicesProtocol {
       $0.tcpRoute = tcpRoute
       $0.tcpRouteId = tcpRouteId
     }
-    return try await self.createTcpRoute(withPolling: request)
+    return try await self.createTcpRoutePollingUntilDone(request: request)
   }
 
   public func updateTcpRoute(request: UpdateTcpRouteRequest) async throws
@@ -3679,14 +3676,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateTcpRoute(withPolling: UpdateTcpRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<TcpRoute>
+  public func updateTcpRoutePollingUntilDone(request: UpdateTcpRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<TcpRoute>
   {
-    try await self.updateTcpRoute(withPolling: withPolling, options: .init())
+    try await self.updateTcpRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateTcpRoute(
-    withPolling: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
+  public func updateTcpRoutePollingUntilDone(
+    request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TcpRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TcpRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3695,7 +3692,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateTcpRoute(
+  public func updateTcpRoutePollingUntilDone(
     tcpRoute: TcpRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TcpRoute> {
@@ -3703,7 +3700,7 @@ extension Clients.NetworkServicesProtocol {
       $0.tcpRoute = tcpRoute
       $0.updateMask = updateMask
     }
-    return try await self.updateTcpRoute(withPolling: request)
+    return try await self.updateTcpRoutePollingUntilDone(request: request)
   }
 
   public func deleteTcpRoute(request: DeleteTcpRouteRequest) async throws
@@ -3718,14 +3715,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTcpRoute(withPolling: DeleteTcpRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteTcpRoutePollingUntilDone(request: DeleteTcpRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteTcpRoute(withPolling: withPolling, options: .init())
+    try await self.deleteTcpRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteTcpRoute(
-    withPolling: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteTcpRoutePollingUntilDone(
+    request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3734,13 +3731,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteTcpRoute(
+  public func deleteTcpRoutePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteTcpRouteRequest().with {
       $0.name = name
     }
-    return try await self.deleteTcpRoute(withPolling: request)
+    return try await self.deleteTcpRoutePollingUntilDone(request: request)
   }
 
   public func listTlsRoutes(request: ListTlsRoutesRequest) async throws
@@ -3818,14 +3815,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createTlsRoute(withPolling: CreateTlsRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<TlsRoute>
+  public func createTlsRoutePollingUntilDone(request: CreateTlsRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<TlsRoute>
   {
-    try await self.createTlsRoute(withPolling: withPolling, options: .init())
+    try await self.createTlsRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func createTlsRoute(
-    withPolling: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
+  public func createTlsRoutePollingUntilDone(
+    request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TlsRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TlsRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3834,7 +3831,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createTlsRoute(
+  public func createTlsRoutePollingUntilDone(
     parent: Swift.String,
     tlsRoute: TlsRoute?,
     tlsRouteId: Swift.String,
@@ -3844,7 +3841,7 @@ extension Clients.NetworkServicesProtocol {
       $0.tlsRoute = tlsRoute
       $0.tlsRouteId = tlsRouteId
     }
-    return try await self.createTlsRoute(withPolling: request)
+    return try await self.createTlsRoutePollingUntilDone(request: request)
   }
 
   public func updateTlsRoute(request: UpdateTlsRouteRequest) async throws
@@ -3859,14 +3856,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateTlsRoute(withPolling: UpdateTlsRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<TlsRoute>
+  public func updateTlsRoutePollingUntilDone(request: UpdateTlsRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<TlsRoute>
   {
-    try await self.updateTlsRoute(withPolling: withPolling, options: .init())
+    try await self.updateTlsRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateTlsRoute(
-    withPolling: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
+  public func updateTlsRoutePollingUntilDone(
+    request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TlsRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TlsRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3875,7 +3872,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateTlsRoute(
+  public func updateTlsRoutePollingUntilDone(
     tlsRoute: TlsRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<TlsRoute> {
@@ -3883,7 +3880,7 @@ extension Clients.NetworkServicesProtocol {
       $0.tlsRoute = tlsRoute
       $0.updateMask = updateMask
     }
-    return try await self.updateTlsRoute(withPolling: request)
+    return try await self.updateTlsRoutePollingUntilDone(request: request)
   }
 
   public func deleteTlsRoute(request: DeleteTlsRouteRequest) async throws
@@ -3898,14 +3895,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTlsRoute(withPolling: DeleteTlsRouteRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteTlsRoutePollingUntilDone(request: DeleteTlsRouteRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteTlsRoute(withPolling: withPolling, options: .init())
+    try await self.deleteTlsRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteTlsRoute(
-    withPolling: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
+  public func deleteTlsRoutePollingUntilDone(
+    request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3914,13 +3911,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteTlsRoute(
+  public func deleteTlsRoutePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteTlsRouteRequest().with {
       $0.name = name
     }
-    return try await self.deleteTlsRoute(withPolling: request)
+    return try await self.deleteTlsRoutePollingUntilDone(request: request)
   }
 
   public func listServiceBindings(request: ListServiceBindingsRequest) async throws
@@ -3999,14 +3996,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createServiceBinding(withPolling: CreateServiceBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<ServiceBinding>
+  public func createServiceBindingPollingUntilDone(request: CreateServiceBindingRequest)
+    async throws -> any GoogleGax.PollableOperation<ServiceBinding>
   {
-    try await self.createServiceBinding(withPolling: withPolling, options: .init())
+    try await self.createServiceBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func createServiceBinding(
-    withPolling: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
+  public func createServiceBindingPollingUntilDone(
+    request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4015,7 +4012,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createServiceBinding(
+  public func createServiceBindingPollingUntilDone(
     parent: Swift.String,
     serviceBinding: ServiceBinding?,
     serviceBindingId: Swift.String,
@@ -4025,7 +4022,7 @@ extension Clients.NetworkServicesProtocol {
       $0.serviceBinding = serviceBinding
       $0.serviceBindingId = serviceBindingId
     }
-    return try await self.createServiceBinding(withPolling: request)
+    return try await self.createServiceBindingPollingUntilDone(request: request)
   }
 
   public func updateServiceBinding(request: UpdateServiceBindingRequest) async throws
@@ -4040,14 +4037,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateServiceBinding(withPolling: UpdateServiceBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<ServiceBinding>
+  public func updateServiceBindingPollingUntilDone(request: UpdateServiceBindingRequest)
+    async throws -> any GoogleGax.PollableOperation<ServiceBinding>
   {
-    try await self.updateServiceBinding(withPolling: withPolling, options: .init())
+    try await self.updateServiceBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateServiceBinding(
-    withPolling: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
+  public func updateServiceBindingPollingUntilDone(
+    request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4056,7 +4053,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateServiceBinding(
+  public func updateServiceBindingPollingUntilDone(
     serviceBinding: ServiceBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceBinding> {
@@ -4064,7 +4061,7 @@ extension Clients.NetworkServicesProtocol {
       $0.serviceBinding = serviceBinding
       $0.updateMask = updateMask
     }
-    return try await self.updateServiceBinding(withPolling: request)
+    return try await self.updateServiceBindingPollingUntilDone(request: request)
   }
 
   public func deleteServiceBinding(request: DeleteServiceBindingRequest) async throws
@@ -4079,14 +4076,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteServiceBinding(withPolling: DeleteServiceBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteServiceBindingPollingUntilDone(request: DeleteServiceBindingRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteServiceBinding(withPolling: withPolling, options: .init())
+    try await self.deleteServiceBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteServiceBinding(
-    withPolling: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteServiceBindingPollingUntilDone(
+    request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4095,13 +4092,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteServiceBinding(
+  public func deleteServiceBindingPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteServiceBindingRequest().with {
       $0.name = name
     }
-    return try await self.deleteServiceBinding(withPolling: request)
+    return try await self.deleteServiceBindingPollingUntilDone(request: request)
   }
 
   public func listMeshes(request: ListMeshesRequest) async throws
@@ -4175,14 +4172,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMesh(withPolling: CreateMeshRequest) async throws -> any GoogleGax
+  public func createMeshPollingUntilDone(request: CreateMeshRequest) async throws -> any GoogleGax
     .PollableOperation<Mesh>
   {
-    try await self.createMesh(withPolling: withPolling, options: .init())
+    try await self.createMeshPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMesh(
-    withPolling: CreateMeshRequest, options: GoogleGax.RequestOptions
+  public func createMeshPollingUntilDone(
+    request: CreateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Mesh> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Mesh>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4191,7 +4188,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMesh(
+  public func createMeshPollingUntilDone(
     parent: Swift.String,
     mesh: Mesh?,
     meshId: Swift.String,
@@ -4201,7 +4198,7 @@ extension Clients.NetworkServicesProtocol {
       $0.mesh = mesh
       $0.meshId = meshId
     }
-    return try await self.createMesh(withPolling: request)
+    return try await self.createMeshPollingUntilDone(request: request)
   }
 
   public func updateMesh(request: UpdateMeshRequest) async throws -> GoogleLongRunning.Operation {
@@ -4214,14 +4211,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMesh(withPolling: UpdateMeshRequest) async throws -> any GoogleGax
+  public func updateMeshPollingUntilDone(request: UpdateMeshRequest) async throws -> any GoogleGax
     .PollableOperation<Mesh>
   {
-    try await self.updateMesh(withPolling: withPolling, options: .init())
+    try await self.updateMeshPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMesh(
-    withPolling: UpdateMeshRequest, options: GoogleGax.RequestOptions
+  public func updateMeshPollingUntilDone(
+    request: UpdateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Mesh> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Mesh>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4230,7 +4227,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMesh(
+  public func updateMeshPollingUntilDone(
     mesh: Mesh?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Mesh> {
@@ -4238,7 +4235,7 @@ extension Clients.NetworkServicesProtocol {
       $0.mesh = mesh
       $0.updateMask = updateMask
     }
-    return try await self.updateMesh(withPolling: request)
+    return try await self.updateMeshPollingUntilDone(request: request)
   }
 
   public func deleteMesh(request: DeleteMeshRequest) async throws -> GoogleLongRunning.Operation {
@@ -4251,14 +4248,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMesh(withPolling: DeleteMeshRequest) async throws -> any GoogleGax
+  public func deleteMeshPollingUntilDone(request: DeleteMeshRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteMesh(withPolling: withPolling, options: .init())
+    try await self.deleteMeshPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteMesh(
-    withPolling: DeleteMeshRequest, options: GoogleGax.RequestOptions
+  public func deleteMeshPollingUntilDone(
+    request: DeleteMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4267,13 +4264,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMesh(
+  public func deleteMeshPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMeshRequest().with {
       $0.name = name
     }
-    return try await self.deleteMesh(withPolling: request)
+    return try await self.deleteMeshPollingUntilDone(request: request)
   }
 
   public func listServiceLbPolicies(request: ListServiceLbPoliciesRequest) async throws
@@ -4352,14 +4349,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createServiceLbPolicy(withPolling: CreateServiceLbPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<ServiceLbPolicy>
+  public func createServiceLbPolicyPollingUntilDone(request: CreateServiceLbPolicyRequest)
+    async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
   {
-    try await self.createServiceLbPolicy(withPolling: withPolling, options: .init())
+    try await self.createServiceLbPolicyPollingUntilDone(request: request, options: .init())
   }
 
-  public func createServiceLbPolicy(
-    withPolling: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+  public func createServiceLbPolicyPollingUntilDone(
+    request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceLbPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4368,7 +4365,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createServiceLbPolicy(
+  public func createServiceLbPolicyPollingUntilDone(
     parent: Swift.String,
     serviceLbPolicy: ServiceLbPolicy?,
     serviceLbPolicyId: Swift.String,
@@ -4378,7 +4375,7 @@ extension Clients.NetworkServicesProtocol {
       $0.serviceLbPolicy = serviceLbPolicy
       $0.serviceLbPolicyId = serviceLbPolicyId
     }
-    return try await self.createServiceLbPolicy(withPolling: request)
+    return try await self.createServiceLbPolicyPollingUntilDone(request: request)
   }
 
   public func updateServiceLbPolicy(request: UpdateServiceLbPolicyRequest) async throws
@@ -4393,14 +4390,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateServiceLbPolicy(withPolling: UpdateServiceLbPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<ServiceLbPolicy>
+  public func updateServiceLbPolicyPollingUntilDone(request: UpdateServiceLbPolicyRequest)
+    async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy>
   {
-    try await self.updateServiceLbPolicy(withPolling: withPolling, options: .init())
+    try await self.updateServiceLbPolicyPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateServiceLbPolicy(
-    withPolling: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+  public func updateServiceLbPolicyPollingUntilDone(
+    request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceLbPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4409,7 +4406,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateServiceLbPolicy(
+  public func updateServiceLbPolicyPollingUntilDone(
     serviceLbPolicy: ServiceLbPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<ServiceLbPolicy> {
@@ -4417,7 +4414,7 @@ extension Clients.NetworkServicesProtocol {
       $0.serviceLbPolicy = serviceLbPolicy
       $0.updateMask = updateMask
     }
-    return try await self.updateServiceLbPolicy(withPolling: request)
+    return try await self.updateServiceLbPolicyPollingUntilDone(request: request)
   }
 
   public func deleteServiceLbPolicy(request: DeleteServiceLbPolicyRequest) async throws
@@ -4432,14 +4429,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteServiceLbPolicy(withPolling: DeleteServiceLbPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteServiceLbPolicyPollingUntilDone(request: DeleteServiceLbPolicyRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteServiceLbPolicy(withPolling: withPolling, options: .init())
+    try await self.deleteServiceLbPolicyPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteServiceLbPolicy(
-    withPolling: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
+  public func deleteServiceLbPolicyPollingUntilDone(
+    request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4448,13 +4445,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteServiceLbPolicy(
+  public func deleteServiceLbPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteServiceLbPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteServiceLbPolicy(withPolling: request)
+    return try await self.deleteServiceLbPolicyPollingUntilDone(request: request)
   }
 
   public func getGatewayRouteView(request: GetGatewayRouteViewRequest) async throws
@@ -4661,14 +4658,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createAgentGateway(withPolling: CreateAgentGatewayRequest) async throws
+  public func createAgentGatewayPollingUntilDone(request: CreateAgentGatewayRequest) async throws
     -> any GoogleGax.PollableOperation<AgentGateway>
   {
-    try await self.createAgentGateway(withPolling: withPolling, options: .init())
+    try await self.createAgentGatewayPollingUntilDone(request: request, options: .init())
   }
 
-  public func createAgentGateway(
-    withPolling: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
+  public func createAgentGatewayPollingUntilDone(
+    request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AgentGateway> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AgentGateway>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4677,7 +4674,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createAgentGateway(
+  public func createAgentGatewayPollingUntilDone(
     parent: Swift.String,
     agentGateway: AgentGateway?,
     agentGatewayId: Swift.String,
@@ -4687,7 +4684,7 @@ extension Clients.NetworkServicesProtocol {
       $0.agentGateway = agentGateway
       $0.agentGatewayId = agentGatewayId
     }
-    return try await self.createAgentGateway(withPolling: request)
+    return try await self.createAgentGatewayPollingUntilDone(request: request)
   }
 
   public func updateAgentGateway(request: UpdateAgentGatewayRequest) async throws
@@ -4702,14 +4699,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateAgentGateway(withPolling: UpdateAgentGatewayRequest) async throws
+  public func updateAgentGatewayPollingUntilDone(request: UpdateAgentGatewayRequest) async throws
     -> any GoogleGax.PollableOperation<AgentGateway>
   {
-    try await self.updateAgentGateway(withPolling: withPolling, options: .init())
+    try await self.updateAgentGatewayPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateAgentGateway(
-    withPolling: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
+  public func updateAgentGatewayPollingUntilDone(
+    request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AgentGateway> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AgentGateway>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4718,7 +4715,7 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateAgentGateway(
+  public func updateAgentGatewayPollingUntilDone(
     agentGateway: AgentGateway?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AgentGateway> {
@@ -4726,7 +4723,7 @@ extension Clients.NetworkServicesProtocol {
       $0.agentGateway = agentGateway
       $0.updateMask = updateMask
     }
-    return try await self.updateAgentGateway(withPolling: request)
+    return try await self.updateAgentGatewayPollingUntilDone(request: request)
   }
 
   public func deleteAgentGateway(request: DeleteAgentGatewayRequest) async throws
@@ -4741,14 +4738,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAgentGateway(withPolling: DeleteAgentGatewayRequest) async throws
+  public func deleteAgentGatewayPollingUntilDone(request: DeleteAgentGatewayRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteAgentGateway(withPolling: withPolling, options: .init())
+    try await self.deleteAgentGatewayPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteAgentGateway(
-    withPolling: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
+  public func deleteAgentGatewayPollingUntilDone(
+    request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4757,13 +4754,13 @@ extension Clients.NetworkServicesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteAgentGateway(
+  public func deleteAgentGatewayPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteAgentGatewayRequest().with {
       $0.name = name
     }
-    return try await self.deleteAgentGateway(withPolling: request)
+    return try await self.deleteAgentGatewayPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

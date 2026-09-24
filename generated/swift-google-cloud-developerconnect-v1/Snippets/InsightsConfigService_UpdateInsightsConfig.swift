@@ -25,8 +25,8 @@ func sample(
   client: InsightsConfigServiceClient, projectId: String, locationId: String,
   insightsConfigId: String
 ) async throws {
-  let poller = try await client.updateInsightsConfig(
-    withPolling: UpdateInsightsConfigRequest()
+  let poller = try await client.updateInsightsConfigPollingUntilDone(
+    request: UpdateInsightsConfigRequest()
       .with {
         $0.insightsConfig = InsightsConfig().with {
           $0.name =

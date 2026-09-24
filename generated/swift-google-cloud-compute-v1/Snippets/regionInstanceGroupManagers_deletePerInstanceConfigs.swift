@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionInstanceGroupManagersClient) async throws {
-    let poller = try await client.deletePerInstanceConfigs(
-      withPolling: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest()
+    let poller = try await client.deletePerInstanceConfigsPollingUntilDone(
+      request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: SSERealmServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createSacattachment(
-    withPolling: CreateSACAttachmentRequest()
+  let poller = try await client.createSacattachmentPollingUntilDone(
+    request: CreateSACAttachmentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.sacAttachment = SACAttachment() /* .with { ... } */

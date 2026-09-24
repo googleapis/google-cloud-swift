@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient) async throws {
-  let poller = try await client.deployIssueModel(
-    withPolling: DeployIssueModelRequest()
+  let poller = try await client.deployIssueModelPollingUntilDone(
+    request: DeployIssueModelRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataScanServiceClient, projectId: String, locationId: String, dataScanId: String
 ) async throws {
-  let poller = try await client.updateDataScan(
-    withPolling: UpdateDataScanRequest()
+  let poller = try await client.updateDataScanPollingUntilDone(
+    request: UpdateDataScanRequest()
       .with {
         $0.dataScan = DataScan().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/dataScans/\(dataScanId)"

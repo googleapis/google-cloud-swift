@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TelcoAutomationClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createEdgeSlm(
-    withPolling: CreateEdgeSlmRequest()
+  let poller = try await client.createEdgeSlmPollingUntilDone(
+    request: CreateEdgeSlmRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.edgeSlm = EdgeSlm() /* .with { ... } */

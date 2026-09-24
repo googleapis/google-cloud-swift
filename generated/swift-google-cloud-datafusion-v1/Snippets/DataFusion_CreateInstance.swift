@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataFusionClient, parent: String) async throws {
-  let poller = try await client.createInstance(
-    withPolling: CreateInstanceRequest()
+  let poller = try await client.createInstancePollingUntilDone(
+    request: CreateInstanceRequest()
       .with {
         $0.parent = "\(parent)"
         $0.instanceId = "[replace with a valid ID]"

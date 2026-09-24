@@ -63,15 +63,15 @@
     /// Creates a SpecialistPool.
     ///
     /// @Snippet(path: "SpecialistPoolService_CreateSpecialistPool")
-    public func createSpecialistPool(
-      withPolling: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
+    public func createSpecialistPoolPollingUntilDone(
+      request: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<SpecialistPool>.State in
         return try op._extractStatus(SpecialistPool.self)
       }
-      let rawOp = try await self.createSpecialistPool(request: withPolling, options: options)
+      let rawOp = try await self.createSpecialistPool(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<SpecialistPool>.State in
         let op = try await self.getOperation(
@@ -116,15 +116,15 @@
     /// Deletes a SpecialistPool as well as all Specialists in the pool.
     ///
     /// @Snippet(path: "SpecialistPoolService_DeleteSpecialistPool")
-    public func deleteSpecialistPool(
-      withPolling: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
+    public func deleteSpecialistPoolPollingUntilDone(
+      request: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteSpecialistPool(request: withPolling, options: options)
+      let rawOp = try await self.deleteSpecialistPool(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -151,15 +151,15 @@
     /// Updates a SpecialistPool.
     ///
     /// @Snippet(path: "SpecialistPoolService_UpdateSpecialistPool")
-    public func updateSpecialistPool(
-      withPolling: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
+    public func updateSpecialistPoolPollingUntilDone(
+      request: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<SpecialistPool>.State in
         return try op._extractStatus(SpecialistPool.self)
       }
-      let rawOp = try await self.updateSpecialistPool(request: withPolling, options: options)
+      let rawOp = try await self.updateSpecialistPool(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<SpecialistPool>.State in
         let op = try await self.getOperation(
@@ -294,30 +294,30 @@
     /// and pass a mock implementation in your tests.
     public protocol SpecialistPoolServiceProtocol: Sendable {
       /// See `SpecialistPoolServiceClient.createSpecialistPool`.
-      func createSpecialistPool(withPolling: CreateSpecialistPoolRequest) async throws
+      func createSpecialistPoolPollingUntilDone(request: CreateSpecialistPoolRequest) async throws
         -> any GoogleGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.createSpecialistPool`.
-      func createSpecialistPool(
+      func createSpecialistPoolPollingUntilDone(
         parent: Swift.String,
         specialistPool: SpecialistPool?,
       ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.deleteSpecialistPool`.
-      func deleteSpecialistPool(withPolling: DeleteSpecialistPoolRequest) async throws
+      func deleteSpecialistPoolPollingUntilDone(request: DeleteSpecialistPoolRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SpecialistPoolServiceClient.deleteSpecialistPool`.
-      func deleteSpecialistPool(
+      func deleteSpecialistPoolPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
-      func updateSpecialistPool(withPolling: UpdateSpecialistPoolRequest) async throws
+      func updateSpecialistPoolPollingUntilDone(request: UpdateSpecialistPoolRequest) async throws
         -> any GoogleGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
-      func updateSpecialistPool(
+      func updateSpecialistPoolPollingUntilDone(
         specialistPool: SpecialistPool?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
@@ -328,8 +328,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SpecialistPoolServiceClient.createSpecialistPool`.
-      func createSpecialistPool(
-        withPolling: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
+      func createSpecialistPoolPollingUntilDone(
+        request: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.getSpecialistPool`.
@@ -348,8 +348,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SpecialistPoolServiceClient.deleteSpecialistPool`.
-      func deleteSpecialistPool(
-        withPolling: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
+      func deleteSpecialistPoolPollingUntilDone(
+        request: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
@@ -358,8 +358,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
-      func updateSpecialistPool(
-        withPolling: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
+      func updateSpecialistPoolPollingUntilDone(
+        request: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.listLocations`.
@@ -423,14 +423,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createSpecialistPool(withPolling: CreateSpecialistPoolRequest) async throws
-      -> any GoogleGax.PollableOperation<SpecialistPool>
+    public func createSpecialistPoolPollingUntilDone(request: CreateSpecialistPoolRequest)
+      async throws -> any GoogleGax.PollableOperation<SpecialistPool>
     {
-      try await self.createSpecialistPool(withPolling: withPolling, options: .init())
+      try await self.createSpecialistPoolPollingUntilDone(request: request, options: .init())
     }
 
-    public func createSpecialistPool(
-      withPolling: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
+    public func createSpecialistPoolPollingUntilDone(
+      request: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<SpecialistPool>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -439,7 +439,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createSpecialistPool(
+    public func createSpecialistPoolPollingUntilDone(
       parent: Swift.String,
       specialistPool: SpecialistPool?,
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
@@ -447,7 +447,7 @@
         $0.parent = parent
         $0.specialistPool = specialistPool
       }
-      return try await self.createSpecialistPool(withPolling: request)
+      return try await self.createSpecialistPoolPollingUntilDone(request: request)
     }
 
     public func getSpecialistPool(request: GetSpecialistPoolRequest) async throws
@@ -525,14 +525,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSpecialistPool(withPolling: DeleteSpecialistPoolRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteSpecialistPoolPollingUntilDone(request: DeleteSpecialistPoolRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteSpecialistPool(withPolling: withPolling, options: .init())
+      try await self.deleteSpecialistPoolPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteSpecialistPool(
-      withPolling: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
+    public func deleteSpecialistPoolPollingUntilDone(
+      request: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -541,13 +541,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteSpecialistPool(
+    public func deleteSpecialistPoolPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteSpecialistPoolRequest().with {
         $0.name = name
       }
-      return try await self.deleteSpecialistPool(withPolling: request)
+      return try await self.deleteSpecialistPoolPollingUntilDone(request: request)
     }
 
     public func updateSpecialistPool(request: UpdateSpecialistPoolRequest) async throws
@@ -562,14 +562,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateSpecialistPool(withPolling: UpdateSpecialistPoolRequest) async throws
-      -> any GoogleGax.PollableOperation<SpecialistPool>
+    public func updateSpecialistPoolPollingUntilDone(request: UpdateSpecialistPoolRequest)
+      async throws -> any GoogleGax.PollableOperation<SpecialistPool>
     {
-      try await self.updateSpecialistPool(withPolling: withPolling, options: .init())
+      try await self.updateSpecialistPoolPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateSpecialistPool(
-      withPolling: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
+    public func updateSpecialistPoolPollingUntilDone(
+      request: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<SpecialistPool>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -578,7 +578,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateSpecialistPool(
+    public func updateSpecialistPoolPollingUntilDone(
       specialistPool: SpecialistPool?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<SpecialistPool> {
@@ -586,7 +586,7 @@
         $0.specialistPool = specialistPool
         $0.updateMask = updateMask
       }
-      return try await self.updateSpecialistPool(withPolling: request)
+      return try await self.updateSpecialistPoolPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

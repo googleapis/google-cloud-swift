@@ -26,8 +26,8 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String
 ) async throws {
-  let poller = try await client.deleteRelease(
-    withPolling: DeleteReleaseRequest()
+  let poller = try await client.deleteReleasePollingUntilDone(
+    request: DeleteReleaseRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/resourceBundles/\(resourceBundleId)/releases/\(releaseId)"

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient) async throws {
-  let poller = try await client.createFolder(
-    withPolling: CreateFolderRequest()
+  let poller = try await client.createFolderPollingUntilDone(
+    request: CreateFolderRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

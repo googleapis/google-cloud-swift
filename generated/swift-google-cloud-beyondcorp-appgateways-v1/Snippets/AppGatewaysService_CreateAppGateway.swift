@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: AppGatewaysServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAppGateway(
-    withPolling: CreateAppGatewayRequest()
+  let poller = try await client.createAppGatewayPollingUntilDone(
+    request: CreateAppGatewayRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.appGateway = AppGateway() /* .with { ... } */

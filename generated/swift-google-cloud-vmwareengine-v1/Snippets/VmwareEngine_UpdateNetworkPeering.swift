@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPeeringId: String
 ) async throws {
-  let poller = try await client.updateNetworkPeering(
-    withPolling: UpdateNetworkPeeringRequest()
+  let poller = try await client.updateNetworkPeeringPollingUntilDone(
+    request: UpdateNetworkPeeringRequest()
       .with {
         $0.networkPeering = NetworkPeering().with {
           $0.name =

@@ -78,15 +78,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroup")
-  public func createMirroringEndpointGroup(
-    withPolling: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+  public func createMirroringEndpointGroupPollingUntilDone(
+    request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MirroringEndpointGroup>.State in
       return try op._extractStatus(MirroringEndpointGroup.self)
     }
-    let rawOp = try await self.createMirroringEndpointGroup(request: withPolling, options: options)
+    let rawOp = try await self.createMirroringEndpointGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroup>.State in
@@ -116,15 +116,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroup")
-  public func updateMirroringEndpointGroup(
-    withPolling: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringEndpointGroupPollingUntilDone(
+    request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MirroringEndpointGroup>.State in
       return try op._extractStatus(MirroringEndpointGroup.self)
     }
-    let rawOp = try await self.updateMirroringEndpointGroup(request: withPolling, options: options)
+    let rawOp = try await self.updateMirroringEndpointGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroup>.State in
@@ -154,15 +154,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroup")
-  public func deleteMirroringEndpointGroup(
-    withPolling: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringEndpointGroupPollingUntilDone(
+    request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMirroringEndpointGroup(request: withPolling, options: options)
+    let rawOp = try await self.deleteMirroringEndpointGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -211,8 +211,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroupAssociation")
-  public func createMirroringEndpointGroupAssociation(
-    withPolling: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+  public func createMirroringEndpointGroupAssociationPollingUntilDone(
+    request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
@@ -220,7 +220,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
       return try op._extractStatus(MirroringEndpointGroupAssociation.self)
     }
     let rawOp = try await self.createMirroringEndpointGroupAssociation(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroupAssociation>.State
@@ -251,8 +251,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroupAssociation")
-  public func updateMirroringEndpointGroupAssociation(
-    withPolling: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringEndpointGroupAssociationPollingUntilDone(
+    request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
@@ -260,7 +260,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
       return try op._extractStatus(MirroringEndpointGroupAssociation.self)
     }
     let rawOp = try await self.updateMirroringEndpointGroupAssociation(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroupAssociation>.State
@@ -291,8 +291,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroupAssociation")
-  public func deleteMirroringEndpointGroupAssociation(
-    withPolling: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
+    request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
@@ -300,7 +300,7 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteMirroringEndpointGroupAssociation(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -349,16 +349,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringDeploymentGroup")
-  public func createMirroringDeploymentGroup(
-    withPolling: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+  public func createMirroringDeploymentGroupPollingUntilDone(
+    request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MirroringDeploymentGroup>.State in
       return try op._extractStatus(MirroringDeploymentGroup.self)
     }
-    let rawOp = try await self.createMirroringDeploymentGroup(
-      request: withPolling, options: options)
+    let rawOp = try await self.createMirroringDeploymentGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringDeploymentGroup>.State in
@@ -388,16 +387,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringDeploymentGroup")
-  public func updateMirroringDeploymentGroup(
-    withPolling: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringDeploymentGroupPollingUntilDone(
+    request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MirroringDeploymentGroup>.State in
       return try op._extractStatus(MirroringDeploymentGroup.self)
     }
-    let rawOp = try await self.updateMirroringDeploymentGroup(
-      request: withPolling, options: options)
+    let rawOp = try await self.updateMirroringDeploymentGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringDeploymentGroup>.State in
@@ -427,16 +425,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringDeploymentGroup")
-  public func deleteMirroringDeploymentGroup(
-    withPolling: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringDeploymentGroupPollingUntilDone(
+    request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMirroringDeploymentGroup(
-      request: withPolling, options: options)
+    let rawOp = try await self.deleteMirroringDeploymentGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -485,15 +482,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringDeployment")
-  public func createMirroringDeployment(
-    withPolling: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+  public func createMirroringDeploymentPollingUntilDone(
+    request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MirroringDeployment>.State in
       return try op._extractStatus(MirroringDeployment.self)
     }
-    let rawOp = try await self.createMirroringDeployment(request: withPolling, options: options)
+    let rawOp = try await self.createMirroringDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MirroringDeployment>.State in
       let op = try await self.getOperation(
@@ -522,15 +519,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringDeployment")
-  public func updateMirroringDeployment(
-    withPolling: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringDeploymentPollingUntilDone(
+    request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MirroringDeployment>.State in
       return try op._extractStatus(MirroringDeployment.self)
     }
-    let rawOp = try await self.updateMirroringDeployment(request: withPolling, options: options)
+    let rawOp = try await self.updateMirroringDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MirroringDeployment>.State in
       let op = try await self.getOperation(
@@ -559,15 +556,15 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringDeployment")
-  public func deleteMirroringDeployment(
-    withPolling: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringDeploymentPollingUntilDone(
+    request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMirroringDeployment(request: withPolling, options: options)
+    let rawOp = try await self.deleteMirroringDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -708,125 +705,128 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol MirroringProtocol: Sendable {
     /// See `MirroringClient.createMirroringEndpointGroup`.
-    func createMirroringEndpointGroup(withPolling: CreateMirroringEndpointGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
+    func createMirroringEndpointGroupPollingUntilDone(request: CreateMirroringEndpointGroupRequest)
+      async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.createMirroringEndpointGroup`.
-    func createMirroringEndpointGroup(
+    func createMirroringEndpointGroupPollingUntilDone(
       parent: Swift.String,
       mirroringEndpointGroup: MirroringEndpointGroup?,
       mirroringEndpointGroupId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.updateMirroringEndpointGroup`.
-    func updateMirroringEndpointGroup(withPolling: UpdateMirroringEndpointGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
+    func updateMirroringEndpointGroupPollingUntilDone(request: UpdateMirroringEndpointGroupRequest)
+      async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.updateMirroringEndpointGroup`.
-    func updateMirroringEndpointGroup(
+    func updateMirroringEndpointGroupPollingUntilDone(
       mirroringEndpointGroup: MirroringEndpointGroup?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.deleteMirroringEndpointGroup`.
-    func deleteMirroringEndpointGroup(withPolling: DeleteMirroringEndpointGroupRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteMirroringEndpointGroupPollingUntilDone(request: DeleteMirroringEndpointGroupRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.deleteMirroringEndpointGroup`.
-    func deleteMirroringEndpointGroup(
+    func deleteMirroringEndpointGroupPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.createMirroringEndpointGroupAssociation`.
-    func createMirroringEndpointGroupAssociation(
-      withPolling: CreateMirroringEndpointGroupAssociationRequest
+    func createMirroringEndpointGroupAssociationPollingUntilDone(
+      request: CreateMirroringEndpointGroupAssociationRequest
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.createMirroringEndpointGroupAssociation`.
-    func createMirroringEndpointGroupAssociation(
+    func createMirroringEndpointGroupAssociationPollingUntilDone(
       parent: Swift.String,
       mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
       mirroringEndpointGroupAssociationId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.updateMirroringEndpointGroupAssociation`.
-    func updateMirroringEndpointGroupAssociation(
-      withPolling: UpdateMirroringEndpointGroupAssociationRequest
+    func updateMirroringEndpointGroupAssociationPollingUntilDone(
+      request: UpdateMirroringEndpointGroupAssociationRequest
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.updateMirroringEndpointGroupAssociation`.
-    func updateMirroringEndpointGroupAssociation(
+    func updateMirroringEndpointGroupAssociationPollingUntilDone(
       mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.deleteMirroringEndpointGroupAssociation`.
-    func deleteMirroringEndpointGroupAssociation(
-      withPolling: DeleteMirroringEndpointGroupAssociationRequest
+    func deleteMirroringEndpointGroupAssociationPollingUntilDone(
+      request: DeleteMirroringEndpointGroupAssociationRequest
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.deleteMirroringEndpointGroupAssociation`.
-    func deleteMirroringEndpointGroupAssociation(
+    func deleteMirroringEndpointGroupAssociationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.createMirroringDeploymentGroup`.
-    func createMirroringDeploymentGroup(withPolling: CreateMirroringDeploymentGroupRequest)
-      async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
+    func createMirroringDeploymentGroupPollingUntilDone(
+      request: CreateMirroringDeploymentGroupRequest
+    ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.createMirroringDeploymentGroup`.
-    func createMirroringDeploymentGroup(
+    func createMirroringDeploymentGroupPollingUntilDone(
       parent: Swift.String,
       mirroringDeploymentGroup: MirroringDeploymentGroup?,
       mirroringDeploymentGroupId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.updateMirroringDeploymentGroup`.
-    func updateMirroringDeploymentGroup(withPolling: UpdateMirroringDeploymentGroupRequest)
-      async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
+    func updateMirroringDeploymentGroupPollingUntilDone(
+      request: UpdateMirroringDeploymentGroupRequest
+    ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.updateMirroringDeploymentGroup`.
-    func updateMirroringDeploymentGroup(
+    func updateMirroringDeploymentGroupPollingUntilDone(
       mirroringDeploymentGroup: MirroringDeploymentGroup?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.deleteMirroringDeploymentGroup`.
-    func deleteMirroringDeploymentGroup(withPolling: DeleteMirroringDeploymentGroupRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteMirroringDeploymentGroupPollingUntilDone(
+      request: DeleteMirroringDeploymentGroupRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.deleteMirroringDeploymentGroup`.
-    func deleteMirroringDeploymentGroup(
+    func deleteMirroringDeploymentGroupPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.createMirroringDeployment`.
-    func createMirroringDeployment(withPolling: CreateMirroringDeploymentRequest) async throws
-      -> any GoogleGax.PollableOperation<MirroringDeployment>
+    func createMirroringDeploymentPollingUntilDone(request: CreateMirroringDeploymentRequest)
+      async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.createMirroringDeployment`.
-    func createMirroringDeployment(
+    func createMirroringDeploymentPollingUntilDone(
       parent: Swift.String,
       mirroringDeployment: MirroringDeployment?,
       mirroringDeploymentId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.updateMirroringDeployment`.
-    func updateMirroringDeployment(withPolling: UpdateMirroringDeploymentRequest) async throws
-      -> any GoogleGax.PollableOperation<MirroringDeployment>
+    func updateMirroringDeploymentPollingUntilDone(request: UpdateMirroringDeploymentRequest)
+      async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.updateMirroringDeployment`.
-    func updateMirroringDeployment(
+    func updateMirroringDeploymentPollingUntilDone(
       mirroringDeployment: MirroringDeployment?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.deleteMirroringDeployment`.
-    func deleteMirroringDeployment(withPolling: DeleteMirroringDeploymentRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteMirroringDeploymentPollingUntilDone(request: DeleteMirroringDeploymentRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.deleteMirroringDeployment`.
-    func deleteMirroringDeployment(
+    func deleteMirroringDeploymentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -846,8 +846,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.createMirroringEndpointGroup`.
-    func createMirroringEndpointGroup(
-      withPolling: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+    func createMirroringEndpointGroupPollingUntilDone(
+      request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.updateMirroringEndpointGroup`.
@@ -856,8 +856,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.updateMirroringEndpointGroup`.
-    func updateMirroringEndpointGroup(
-      withPolling: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+    func updateMirroringEndpointGroupPollingUntilDone(
+      request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.deleteMirroringEndpointGroup`.
@@ -866,8 +866,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.deleteMirroringEndpointGroup`.
-    func deleteMirroringEndpointGroup(
-      withPolling: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+    func deleteMirroringEndpointGroupPollingUntilDone(
+      request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.listMirroringEndpointGroupAssociations`.
@@ -886,8 +886,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.createMirroringEndpointGroupAssociation`.
-    func createMirroringEndpointGroupAssociation(
-      withPolling: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+    func createMirroringEndpointGroupAssociationPollingUntilDone(
+      request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.updateMirroringEndpointGroupAssociation`.
@@ -896,8 +896,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.updateMirroringEndpointGroupAssociation`.
-    func updateMirroringEndpointGroupAssociation(
-      withPolling: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+    func updateMirroringEndpointGroupAssociationPollingUntilDone(
+      request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.deleteMirroringEndpointGroupAssociation`.
@@ -906,8 +906,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.deleteMirroringEndpointGroupAssociation`.
-    func deleteMirroringEndpointGroupAssociation(
-      withPolling: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+    func deleteMirroringEndpointGroupAssociationPollingUntilDone(
+      request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.listMirroringDeploymentGroups`.
@@ -926,8 +926,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.createMirroringDeploymentGroup`.
-    func createMirroringDeploymentGroup(
-      withPolling: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+    func createMirroringDeploymentGroupPollingUntilDone(
+      request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.updateMirroringDeploymentGroup`.
@@ -936,8 +936,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.updateMirroringDeploymentGroup`.
-    func updateMirroringDeploymentGroup(
-      withPolling: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+    func updateMirroringDeploymentGroupPollingUntilDone(
+      request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.deleteMirroringDeploymentGroup`.
@@ -946,8 +946,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.deleteMirroringDeploymentGroup`.
-    func deleteMirroringDeploymentGroup(
-      withPolling: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+    func deleteMirroringDeploymentGroupPollingUntilDone(
+      request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.listMirroringDeployments`.
@@ -966,8 +966,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.createMirroringDeployment`.
-    func createMirroringDeployment(
-      withPolling: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+    func createMirroringDeploymentPollingUntilDone(
+      request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.updateMirroringDeployment`.
@@ -976,8 +976,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.updateMirroringDeployment`.
-    func updateMirroringDeployment(
-      withPolling: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+    func updateMirroringDeploymentPollingUntilDone(
+      request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.deleteMirroringDeployment`.
@@ -986,8 +986,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MirroringClient.deleteMirroringDeployment`.
-    func deleteMirroringDeployment(
-      withPolling: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+    func deleteMirroringDeploymentPollingUntilDone(
+      request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MirroringClient.listLocations`.
@@ -1111,14 +1111,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMirroringEndpointGroup(withPolling: CreateMirroringEndpointGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
-  {
-    try await self.createMirroringEndpointGroup(withPolling: withPolling, options: .init())
+  public func createMirroringEndpointGroupPollingUntilDone(
+    request: CreateMirroringEndpointGroupRequest
+  ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
+    try await self.createMirroringEndpointGroupPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMirroringEndpointGroup(
-    withPolling: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+  public func createMirroringEndpointGroupPollingUntilDone(
+    request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroup>.State in
@@ -1128,7 +1128,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMirroringEndpointGroup(
+  public func createMirroringEndpointGroupPollingUntilDone(
     parent: Swift.String,
     mirroringEndpointGroup: MirroringEndpointGroup?,
     mirroringEndpointGroupId: Swift.String,
@@ -1138,7 +1138,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringEndpointGroup = mirroringEndpointGroup
       $0.mirroringEndpointGroupId = mirroringEndpointGroupId
     }
-    return try await self.createMirroringEndpointGroup(withPolling: request)
+    return try await self.createMirroringEndpointGroupPollingUntilDone(request: request)
   }
 
   public func updateMirroringEndpointGroup(request: UpdateMirroringEndpointGroupRequest)
@@ -1153,14 +1153,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMirroringEndpointGroup(withPolling: UpdateMirroringEndpointGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup>
-  {
-    try await self.updateMirroringEndpointGroup(withPolling: withPolling, options: .init())
+  public func updateMirroringEndpointGroupPollingUntilDone(
+    request: UpdateMirroringEndpointGroupRequest
+  ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
+    try await self.updateMirroringEndpointGroupPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMirroringEndpointGroup(
-    withPolling: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringEndpointGroupPollingUntilDone(
+    request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroup>.State in
@@ -1170,7 +1170,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMirroringEndpointGroup(
+  public func updateMirroringEndpointGroupPollingUntilDone(
     mirroringEndpointGroup: MirroringEndpointGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroup> {
@@ -1178,7 +1178,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringEndpointGroup = mirroringEndpointGroup
       $0.updateMask = updateMask
     }
-    return try await self.updateMirroringEndpointGroup(withPolling: request)
+    return try await self.updateMirroringEndpointGroupPollingUntilDone(request: request)
   }
 
   public func deleteMirroringEndpointGroup(request: DeleteMirroringEndpointGroupRequest)
@@ -1193,14 +1193,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMirroringEndpointGroup(withPolling: DeleteMirroringEndpointGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
-  {
-    try await self.deleteMirroringEndpointGroup(withPolling: withPolling, options: .init())
+  public func deleteMirroringEndpointGroupPollingUntilDone(
+    request: DeleteMirroringEndpointGroupRequest
+  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    try await self.deleteMirroringEndpointGroupPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteMirroringEndpointGroup(
-    withPolling: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringEndpointGroupPollingUntilDone(
+    request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1209,13 +1209,13 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMirroringEndpointGroup(
+  public func deleteMirroringEndpointGroupPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMirroringEndpointGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteMirroringEndpointGroup(withPolling: request)
+    return try await self.deleteMirroringEndpointGroupPollingUntilDone(request: request)
   }
 
   public func listMirroringEndpointGroupAssociations(
@@ -1296,15 +1296,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMirroringEndpointGroupAssociation(
-    withPolling: CreateMirroringEndpointGroupAssociationRequest
+  public func createMirroringEndpointGroupAssociationPollingUntilDone(
+    request: CreateMirroringEndpointGroupAssociationRequest
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
-    try await self.createMirroringEndpointGroupAssociation(
-      withPolling: withPolling, options: .init())
+    try await self.createMirroringEndpointGroupAssociationPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func createMirroringEndpointGroupAssociation(
-    withPolling: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+  public func createMirroringEndpointGroupAssociationPollingUntilDone(
+    request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroupAssociation>.State
@@ -1315,7 +1315,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMirroringEndpointGroupAssociation(
+  public func createMirroringEndpointGroupAssociationPollingUntilDone(
     parent: Swift.String,
     mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
     mirroringEndpointGroupAssociationId: Swift.String,
@@ -1325,7 +1325,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringEndpointGroupAssociation = mirroringEndpointGroupAssociation
       $0.mirroringEndpointGroupAssociationId = mirroringEndpointGroupAssociationId
     }
-    return try await self.createMirroringEndpointGroupAssociation(withPolling: request)
+    return try await self.createMirroringEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
   public func updateMirroringEndpointGroupAssociation(
@@ -1340,15 +1340,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMirroringEndpointGroupAssociation(
-    withPolling: UpdateMirroringEndpointGroupAssociationRequest
+  public func updateMirroringEndpointGroupAssociationPollingUntilDone(
+    request: UpdateMirroringEndpointGroupAssociationRequest
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
-    try await self.updateMirroringEndpointGroupAssociation(
-      withPolling: withPolling, options: .init())
+    try await self.updateMirroringEndpointGroupAssociationPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func updateMirroringEndpointGroupAssociation(
-    withPolling: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringEndpointGroupAssociationPollingUntilDone(
+    request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringEndpointGroupAssociation>.State
@@ -1359,7 +1359,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMirroringEndpointGroupAssociation(
+  public func updateMirroringEndpointGroupAssociationPollingUntilDone(
     mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MirroringEndpointGroupAssociation> {
@@ -1367,7 +1367,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringEndpointGroupAssociation = mirroringEndpointGroupAssociation
       $0.updateMask = updateMask
     }
-    return try await self.updateMirroringEndpointGroupAssociation(withPolling: request)
+    return try await self.updateMirroringEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
   public func deleteMirroringEndpointGroupAssociation(
@@ -1382,15 +1382,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMirroringEndpointGroupAssociation(
-    withPolling: DeleteMirroringEndpointGroupAssociationRequest
+  public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
+    request: DeleteMirroringEndpointGroupAssociationRequest
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    try await self.deleteMirroringEndpointGroupAssociation(
-      withPolling: withPolling, options: .init())
+    try await self.deleteMirroringEndpointGroupAssociationPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func deleteMirroringEndpointGroupAssociation(
-    withPolling: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
+    request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1399,13 +1399,13 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMirroringEndpointGroupAssociation(
+  public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMirroringEndpointGroupAssociationRequest().with {
       $0.name = name
     }
-    return try await self.deleteMirroringEndpointGroupAssociation(withPolling: request)
+    return try await self.deleteMirroringEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
   public func listMirroringDeploymentGroups(request: ListMirroringDeploymentGroupsRequest)
@@ -1485,14 +1485,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMirroringDeploymentGroup(withPolling: CreateMirroringDeploymentGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
-  {
-    try await self.createMirroringDeploymentGroup(withPolling: withPolling, options: .init())
+  public func createMirroringDeploymentGroupPollingUntilDone(
+    request: CreateMirroringDeploymentGroupRequest
+  ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
+    try await self.createMirroringDeploymentGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func createMirroringDeploymentGroup(
-    withPolling: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+  public func createMirroringDeploymentGroupPollingUntilDone(
+    request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringDeploymentGroup>.State in
@@ -1502,7 +1503,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMirroringDeploymentGroup(
+  public func createMirroringDeploymentGroupPollingUntilDone(
     parent: Swift.String,
     mirroringDeploymentGroup: MirroringDeploymentGroup?,
     mirroringDeploymentGroupId: Swift.String,
@@ -1512,7 +1513,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringDeploymentGroup = mirroringDeploymentGroup
       $0.mirroringDeploymentGroupId = mirroringDeploymentGroupId
     }
-    return try await self.createMirroringDeploymentGroup(withPolling: request)
+    return try await self.createMirroringDeploymentGroupPollingUntilDone(request: request)
   }
 
   public func updateMirroringDeploymentGroup(request: UpdateMirroringDeploymentGroupRequest)
@@ -1527,14 +1528,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMirroringDeploymentGroup(withPolling: UpdateMirroringDeploymentGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup>
-  {
-    try await self.updateMirroringDeploymentGroup(withPolling: withPolling, options: .init())
+  public func updateMirroringDeploymentGroupPollingUntilDone(
+    request: UpdateMirroringDeploymentGroupRequest
+  ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
+    try await self.updateMirroringDeploymentGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func updateMirroringDeploymentGroup(
-    withPolling: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringDeploymentGroupPollingUntilDone(
+    request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MirroringDeploymentGroup>.State in
@@ -1544,7 +1546,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMirroringDeploymentGroup(
+  public func updateMirroringDeploymentGroupPollingUntilDone(
     mirroringDeploymentGroup: MirroringDeploymentGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeploymentGroup> {
@@ -1552,7 +1554,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringDeploymentGroup = mirroringDeploymentGroup
       $0.updateMask = updateMask
     }
-    return try await self.updateMirroringDeploymentGroup(withPolling: request)
+    return try await self.updateMirroringDeploymentGroupPollingUntilDone(request: request)
   }
 
   public func deleteMirroringDeploymentGroup(request: DeleteMirroringDeploymentGroupRequest)
@@ -1567,14 +1569,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMirroringDeploymentGroup(withPolling: DeleteMirroringDeploymentGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
-  {
-    try await self.deleteMirroringDeploymentGroup(withPolling: withPolling, options: .init())
+  public func deleteMirroringDeploymentGroupPollingUntilDone(
+    request: DeleteMirroringDeploymentGroupRequest
+  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    try await self.deleteMirroringDeploymentGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func deleteMirroringDeploymentGroup(
-    withPolling: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringDeploymentGroupPollingUntilDone(
+    request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1583,13 +1586,13 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMirroringDeploymentGroup(
+  public func deleteMirroringDeploymentGroupPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMirroringDeploymentGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteMirroringDeploymentGroup(withPolling: request)
+    return try await self.deleteMirroringDeploymentGroupPollingUntilDone(request: request)
   }
 
   public func listMirroringDeployments(request: ListMirroringDeploymentsRequest) async throws
@@ -1669,14 +1672,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMirroringDeployment(withPolling: CreateMirroringDeploymentRequest) async throws
-    -> any GoogleGax.PollableOperation<MirroringDeployment>
+  public func createMirroringDeploymentPollingUntilDone(request: CreateMirroringDeploymentRequest)
+    async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
   {
-    try await self.createMirroringDeployment(withPolling: withPolling, options: .init())
+    try await self.createMirroringDeploymentPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMirroringDeployment(
-    withPolling: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+  public func createMirroringDeploymentPollingUntilDone(
+    request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MirroringDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1685,7 +1688,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMirroringDeployment(
+  public func createMirroringDeploymentPollingUntilDone(
     parent: Swift.String,
     mirroringDeployment: MirroringDeployment?,
     mirroringDeploymentId: Swift.String,
@@ -1695,7 +1698,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringDeployment = mirroringDeployment
       $0.mirroringDeploymentId = mirroringDeploymentId
     }
-    return try await self.createMirroringDeployment(withPolling: request)
+    return try await self.createMirroringDeploymentPollingUntilDone(request: request)
   }
 
   public func updateMirroringDeployment(request: UpdateMirroringDeploymentRequest) async throws
@@ -1710,14 +1713,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMirroringDeployment(withPolling: UpdateMirroringDeploymentRequest) async throws
-    -> any GoogleGax.PollableOperation<MirroringDeployment>
+  public func updateMirroringDeploymentPollingUntilDone(request: UpdateMirroringDeploymentRequest)
+    async throws -> any GoogleGax.PollableOperation<MirroringDeployment>
   {
-    try await self.updateMirroringDeployment(withPolling: withPolling, options: .init())
+    try await self.updateMirroringDeploymentPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMirroringDeployment(
-    withPolling: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+  public func updateMirroringDeploymentPollingUntilDone(
+    request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MirroringDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1726,7 +1729,7 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMirroringDeployment(
+  public func updateMirroringDeploymentPollingUntilDone(
     mirroringDeployment: MirroringDeployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MirroringDeployment> {
@@ -1734,7 +1737,7 @@ extension Clients.MirroringProtocol {
       $0.mirroringDeployment = mirroringDeployment
       $0.updateMask = updateMask
     }
-    return try await self.updateMirroringDeployment(withPolling: request)
+    return try await self.updateMirroringDeploymentPollingUntilDone(request: request)
   }
 
   public func deleteMirroringDeployment(request: DeleteMirroringDeploymentRequest) async throws
@@ -1749,14 +1752,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMirroringDeployment(withPolling: DeleteMirroringDeploymentRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteMirroringDeploymentPollingUntilDone(request: DeleteMirroringDeploymentRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteMirroringDeployment(withPolling: withPolling, options: .init())
+    try await self.deleteMirroringDeploymentPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteMirroringDeployment(
-    withPolling: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
+  public func deleteMirroringDeploymentPollingUntilDone(
+    request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1765,13 +1768,13 @@ extension Clients.MirroringProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMirroringDeployment(
+  public func deleteMirroringDeploymentPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMirroringDeploymentRequest().with {
       $0.name = name
     }
-    return try await self.deleteMirroringDeployment(withPolling: request)
+    return try await self.deleteMirroringDeploymentPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

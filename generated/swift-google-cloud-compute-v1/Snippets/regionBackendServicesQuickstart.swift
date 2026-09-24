@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionBackendServicesClient()
-    let poller = try await client.delete(
-      withPolling: RegionBackendServicesClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: RegionBackendServicesClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

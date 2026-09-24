@@ -24,8 +24,8 @@ import GoogleLongRunning
 
 func sample(client: ClientGatewaysServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createClientGateway(
-    withPolling: CreateClientGatewayRequest()
+  let poller = try await client.createClientGatewayPollingUntilDone(
+    request: CreateClientGatewayRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.clientGateway = ClientGateway() /* .with { ... } */

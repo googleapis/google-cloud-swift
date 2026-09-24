@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let poller = try await client.createPreview(
-    withPolling: CreatePreviewRequest()
+  let poller = try await client.createPreviewPollingUntilDone(
+    request: CreatePreviewRequest()
       .with {
         $0.parent = "\(parent)"
         $0.previewId = "[replace with a valid ID]"

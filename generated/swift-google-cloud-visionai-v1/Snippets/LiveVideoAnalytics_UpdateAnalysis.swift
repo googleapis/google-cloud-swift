@@ -26,8 +26,8 @@ func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, clusterId: String,
   analysisId: String
 ) async throws {
-  let poller = try await client.updateAnalysis(
-    withPolling: UpdateAnalysisRequest()
+  let poller = try await client.updateAnalysisPollingUntilDone(
+    request: UpdateAnalysisRequest()
       .with {
         $0.analysis = Analysis().with {
           $0.name =

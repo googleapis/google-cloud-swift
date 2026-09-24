@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateManagerClient, parent: String) async throws {
-  let poller = try await client.createTrustConfig(
-    withPolling: CreateTrustConfigRequest()
+  let poller = try await client.createTrustConfigPollingUntilDone(
+    request: CreateTrustConfigRequest()
       .with {
         $0.parent = "\(parent)"
         $0.trustConfig = TrustConfig() /* .with { ... } */

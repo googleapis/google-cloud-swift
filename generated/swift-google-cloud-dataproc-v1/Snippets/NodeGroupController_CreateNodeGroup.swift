@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(
   client: NodeGroupControllerClient, projectId: String, regionId: String, clusterId: String
 ) async throws {
-  let poller = try await client.createNodeGroup(
-    withPolling: CreateNodeGroupRequest()
+  let poller = try await client.createNodeGroupPollingUntilDone(
+    request: CreateNodeGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/regions/\(regionId)/clusters/\(clusterId)"
         $0.nodeGroup = NodeGroup() /* .with { ... } */

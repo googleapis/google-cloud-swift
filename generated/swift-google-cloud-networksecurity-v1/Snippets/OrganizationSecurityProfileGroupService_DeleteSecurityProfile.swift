@@ -27,8 +27,8 @@ func sample(
   client: OrganizationSecurityProfileGroupServiceClient, organizationId: String, locationId: String,
   securityProfileId: String
 ) async throws {
-  let poller = try await client.deleteSecurityProfile(
-    withPolling: DeleteSecurityProfileRequest()
+  let poller = try await client.deleteSecurityProfilePollingUntilDone(
+    request: DeleteSecurityProfileRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/securityProfiles/\(securityProfileId)"

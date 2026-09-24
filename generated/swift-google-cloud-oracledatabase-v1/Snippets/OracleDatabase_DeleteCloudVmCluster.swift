@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, cloudVmClusterId: String
 ) async throws {
-  let poller = try await client.deleteCloudVmCluster(
-    withPolling: DeleteCloudVmClusterRequest()
+  let poller = try await client.deleteCloudVmClusterPollingUntilDone(
+    request: DeleteCloudVmClusterRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/cloudVmClusters/\(cloudVmClusterId)"

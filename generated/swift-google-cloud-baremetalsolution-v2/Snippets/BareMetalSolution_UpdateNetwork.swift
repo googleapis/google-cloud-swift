@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BareMetalSolutionClient, projectId: String, locationId: String, networkId: String
 ) async throws {
-  let poller = try await client.updateNetwork(
-    withPolling: UpdateNetworkRequest()
+  let poller = try await client.updateNetworkPollingUntilDone(
+    request: UpdateNetworkRequest()
       .with {
         $0.network = Network().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/networks/\(networkId)"

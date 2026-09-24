@@ -63,15 +63,15 @@ public final class AuditClient: Clients.AuditProtocol, Sendable {
   /// Creates an audit scope report for a framework.
   ///
   /// @Snippet(path: "Audit_CreateFrameworkAudit")
-  public func createFrameworkAudit(
-    withPolling: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
+  public func createFrameworkAuditPollingUntilDone(
+    request: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FrameworkAudit> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
       return try op._extractStatus(FrameworkAudit.self)
     }
-    let rawOp = try await self.createFrameworkAudit(request: withPolling, options: options)
+    let rawOp = try await self.createFrameworkAudit(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
       let op = try await self.getOperation(
@@ -192,11 +192,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AuditProtocol: Sendable {
     /// See `AuditClient.createFrameworkAudit`.
-    func createFrameworkAudit(withPolling: CreateFrameworkAuditRequest) async throws
+    func createFrameworkAuditPollingUntilDone(request: CreateFrameworkAuditRequest) async throws
       -> any GoogleGax.PollableOperation<FrameworkAudit>
 
     /// See `AuditClient.createFrameworkAudit`.
-    func createFrameworkAudit(
+    func createFrameworkAuditPollingUntilDone(
       parent: Swift.String,
       frameworkAudit: FrameworkAudit?,
       frameworkAuditId: Swift.String,
@@ -213,8 +213,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AuditClient.createFrameworkAudit`.
-    func createFrameworkAudit(
-      withPolling: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
+    func createFrameworkAuditPollingUntilDone(
+      request: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FrameworkAudit>
 
     /// See `AuditClient.listFrameworkAudits`.
@@ -293,14 +293,14 @@ extension Clients.AuditProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createFrameworkAudit(withPolling: CreateFrameworkAuditRequest) async throws
-    -> any GoogleGax.PollableOperation<FrameworkAudit>
+  public func createFrameworkAuditPollingUntilDone(request: CreateFrameworkAuditRequest)
+    async throws -> any GoogleGax.PollableOperation<FrameworkAudit>
   {
-    try await self.createFrameworkAudit(withPolling: withPolling, options: .init())
+    try await self.createFrameworkAuditPollingUntilDone(request: request, options: .init())
   }
 
-  public func createFrameworkAudit(
-    withPolling: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
+  public func createFrameworkAuditPollingUntilDone(
+    request: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FrameworkAudit> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -309,7 +309,7 @@ extension Clients.AuditProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createFrameworkAudit(
+  public func createFrameworkAuditPollingUntilDone(
     parent: Swift.String,
     frameworkAudit: FrameworkAudit?,
     frameworkAuditId: Swift.String,
@@ -319,7 +319,7 @@ extension Clients.AuditProtocol {
       $0.frameworkAudit = frameworkAudit
       $0.frameworkAuditId = frameworkAuditId
     }
-    return try await self.createFrameworkAudit(withPolling: request)
+    return try await self.createFrameworkAuditPollingUntilDone(request: request)
   }
 
   public func listFrameworkAudits(request: ListFrameworkAuditsRequest) async throws

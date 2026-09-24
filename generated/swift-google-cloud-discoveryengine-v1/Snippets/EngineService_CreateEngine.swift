@@ -23,8 +23,8 @@
   import GoogleWKT
 
   func sample(client: EngineServiceClient, parent: String) async throws {
-    let poller = try await client.createEngine(
-      withPolling: CreateEngineRequest()
+    let poller = try await client.createEnginePollingUntilDone(
+      request: CreateEngineRequest()
         .with {
           $0.parent = "\(parent)"
           $0.engineId = "[replace with a valid ID]"

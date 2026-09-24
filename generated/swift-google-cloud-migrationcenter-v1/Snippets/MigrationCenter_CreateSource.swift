@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createSource(
-    withPolling: CreateSourceRequest()
+  let poller = try await client.createSourcePollingUntilDone(
+    request: CreateSourceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.sourceId = "[replace with a valid ID]"

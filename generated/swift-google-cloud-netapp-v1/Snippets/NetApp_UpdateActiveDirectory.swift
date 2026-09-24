@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, activeDirectoryId: String)
   async throws
 {
-  let poller = try await client.updateActiveDirectory(
-    withPolling: UpdateActiveDirectoryRequest()
+  let poller = try await client.updateActiveDirectoryPollingUntilDone(
+    request: UpdateActiveDirectoryRequest()
       .with {
         $0.activeDirectory = ActiveDirectory().with {
           $0.name =

@@ -127,15 +127,15 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// out to Sales or your customer engineer to obtain access.
   ///
   /// @Snippet(path: "WebRiskService_SubmitUri")
-  public func submitUri(
-    withPolling: SubmitUriRequest, options: GoogleGax.RequestOptions
+  public func submitUriPollingUntilDone(
+    request: SubmitUriRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Submission> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Submission>.State
       in
       return try op._extractStatus(Submission.self)
     }
-    let rawOp = try await self.submitUri(request: withPolling, options: options)
+    let rawOp = try await self.submitUri(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Submission>.State in
       let op = try await self.getOperation(
@@ -203,12 +203,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WebRiskServiceProtocol: Sendable {
     /// See `WebRiskServiceClient.submitUri`.
-    func submitUri(withPolling: SubmitUriRequest) async throws -> any GoogleGax.PollableOperation<
-      Submission
-    >
+    func submitUriPollingUntilDone(request: SubmitUriRequest) async throws -> any GoogleGax
+      .PollableOperation<Submission>
 
     /// See `WebRiskServiceClient.submitUri`.
-    func submitUri(
+    func submitUriPollingUntilDone(
       parent: Swift.String,
       submission: Submission?,
     ) async throws -> any GoogleGax.PollableOperation<Submission>
@@ -239,8 +238,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WebRiskServiceClient.submitUri`.
-    func submitUri(
-      withPolling: SubmitUriRequest, options: GoogleGax.RequestOptions
+    func submitUriPollingUntilDone(
+      request: SubmitUriRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Submission>
 
     /// See `WebRiskServiceClient.listOperations`.
@@ -366,14 +365,14 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func submitUri(withPolling: SubmitUriRequest) async throws -> any GoogleGax
+  public func submitUriPollingUntilDone(request: SubmitUriRequest) async throws -> any GoogleGax
     .PollableOperation<Submission>
   {
-    try await self.submitUri(withPolling: withPolling, options: .init())
+    try await self.submitUriPollingUntilDone(request: request, options: .init())
   }
 
-  public func submitUri(
-    withPolling: SubmitUriRequest, options: GoogleGax.RequestOptions
+  public func submitUriPollingUntilDone(
+    request: SubmitUriRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Submission> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Submission>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -382,7 +381,7 @@ extension Clients.WebRiskServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func submitUri(
+  public func submitUriPollingUntilDone(
     parent: Swift.String,
     submission: Submission?,
   ) async throws -> any GoogleGax.PollableOperation<Submission> {
@@ -390,7 +389,7 @@ extension Clients.WebRiskServiceProtocol {
       $0.parent = parent
       $0.submission = submission
     }
-    return try await self.submitUri(withPolling: request)
+    return try await self.submitUriPollingUntilDone(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

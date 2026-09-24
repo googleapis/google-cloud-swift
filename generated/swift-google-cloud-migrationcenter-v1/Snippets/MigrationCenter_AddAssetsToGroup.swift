@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient) async throws {
-  let poller = try await client.addAssetsToGroup(
-    withPolling: AddAssetsToGroupRequest()
+  let poller = try await client.addAssetsToGroupPollingUntilDone(
+    request: AddAssetsToGroupRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

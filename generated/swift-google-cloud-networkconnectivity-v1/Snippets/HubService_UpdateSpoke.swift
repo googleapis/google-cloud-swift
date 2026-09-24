@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: HubServiceClient, projectId: String, locationId: String, spokeId: String)
   async throws
 {
-  let poller = try await client.updateSpoke(
-    withPolling: UpdateSpokeRequest()
+  let poller = try await client.updateSpokePollingUntilDone(
+    request: UpdateSpokeRequest()
       .with {
         $0.spoke = Spoke().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/spokes/\(spokeId)"

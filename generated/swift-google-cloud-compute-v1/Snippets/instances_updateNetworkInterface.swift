@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.updateNetworkInterface(
-      withPolling: InstancesClient.UpdateNetworkInterfaceRequest()
+    let poller = try await client.updateNetworkInterfacePollingUntilDone(
+      request: InstancesClient.UpdateNetworkInterfaceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

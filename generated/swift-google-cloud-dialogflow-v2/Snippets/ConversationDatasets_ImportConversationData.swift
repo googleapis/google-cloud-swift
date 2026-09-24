@@ -23,8 +23,8 @@
   import GoogleLongRunning
 
   func sample(client: ConversationDatasetsClient) async throws {
-    let poller = try await client.importConversationData(
-      withPolling: ImportConversationDataRequest()
+    let poller = try await client.importConversationDataPollingUntilDone(
+      request: ImportConversationDataRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

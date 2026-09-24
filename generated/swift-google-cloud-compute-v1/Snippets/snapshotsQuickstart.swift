@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.SnapshotsClient()
-    let poller = try await client.delete(
-      withPolling: SnapshotsClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: SnapshotsClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

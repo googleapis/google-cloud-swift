@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LivestreamServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createInput(
-    withPolling: CreateInputRequest()
+  let poller = try await client.createInputPollingUntilDone(
+    request: CreateInputRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.inputId = "[replace with a valid ID]"

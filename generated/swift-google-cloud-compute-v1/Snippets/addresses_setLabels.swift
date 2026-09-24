@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: AddressesClient) async throws {
-    let poller = try await client.setLabels(
-      withPolling: AddressesClient.SetLabelsRequest()
+    let poller = try await client.setLabelsPollingUntilDone(
+      request: AddressesClient.SetLabelsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

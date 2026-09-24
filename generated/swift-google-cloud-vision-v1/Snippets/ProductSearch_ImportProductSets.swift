@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProductSearchClient) async throws {
-  let poller = try await client.importProductSets(
-    withPolling: ImportProductSetsRequest()
+  let poller = try await client.importProductSetsPollingUntilDone(
+    request: ImportProductSetsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

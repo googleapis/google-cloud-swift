@@ -78,15 +78,15 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "DataStoreService_CreateDataStore")
-    public func createDataStore(
-      withPolling: CreateDataStoreRequest, options: GoogleGax.RequestOptions
+    public func createDataStorePollingUntilDone(
+      request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataStore> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DataStore>.State in
         return try op._extractStatus(DataStore.self)
       }
-      let rawOp = try await self.createDataStore(request: withPolling, options: options)
+      let rawOp = try await self.createDataStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataStore>.State in
         let op = try await self.getOperation(
@@ -140,15 +140,15 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_DeleteDataStore")
-    public func deleteDataStore(
-      withPolling: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
+    public func deleteDataStorePollingUntilDone(
+      request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteDataStore(request: withPolling, options: options)
+      let rawOp = try await self.deleteDataStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -216,22 +216,22 @@
     /// and pass a mock implementation in your tests.
     public protocol DataStoreServiceProtocol: Sendable {
       /// See `DataStoreServiceClient.createDataStore`.
-      func createDataStore(withPolling: CreateDataStoreRequest) async throws -> any GoogleGax
-        .PollableOperation<DataStore>
+      func createDataStorePollingUntilDone(request: CreateDataStoreRequest) async throws
+        -> any GoogleGax.PollableOperation<DataStore>
 
       /// See `DataStoreServiceClient.createDataStore`.
-      func createDataStore(
+      func createDataStorePollingUntilDone(
         parent: Swift.String,
         dataStore: DataStore?,
         dataStoreId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<DataStore>
 
       /// See `DataStoreServiceClient.deleteDataStore`.
-      func deleteDataStore(withPolling: DeleteDataStoreRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteDataStorePollingUntilDone(request: DeleteDataStoreRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `DataStoreServiceClient.deleteDataStore`.
-      func deleteDataStore(
+      func deleteDataStorePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -241,8 +241,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `DataStoreServiceClient.createDataStore`.
-      func createDataStore(
-        withPolling: CreateDataStoreRequest, options: GoogleGax.RequestOptions
+      func createDataStorePollingUntilDone(
+        request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DataStore>
 
       /// See `DataStoreServiceClient.getDataStore`.
@@ -261,8 +261,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `DataStoreServiceClient.deleteDataStore`.
-      func deleteDataStore(
-        withPolling: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
+      func deleteDataStorePollingUntilDone(
+        request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `DataStoreServiceClient.updateDataStore`.
@@ -296,14 +296,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createDataStore(withPolling: CreateDataStoreRequest) async throws -> any GoogleGax
-      .PollableOperation<DataStore>
+    public func createDataStorePollingUntilDone(request: CreateDataStoreRequest) async throws
+      -> any GoogleGax.PollableOperation<DataStore>
     {
-      try await self.createDataStore(withPolling: withPolling, options: .init())
+      try await self.createDataStorePollingUntilDone(request: request, options: .init())
     }
 
-    public func createDataStore(
-      withPolling: CreateDataStoreRequest, options: GoogleGax.RequestOptions
+    public func createDataStorePollingUntilDone(
+      request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataStore> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataStore>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -312,7 +312,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createDataStore(
+    public func createDataStorePollingUntilDone(
       parent: Swift.String,
       dataStore: DataStore?,
       dataStoreId: Swift.String,
@@ -322,7 +322,7 @@
         $0.dataStore = dataStore
         $0.dataStoreId = dataStoreId
       }
-      return try await self.createDataStore(withPolling: request)
+      return try await self.createDataStorePollingUntilDone(request: request)
     }
 
     public func getDataStore(request: GetDataStoreRequest) async throws
@@ -403,14 +403,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteDataStore(withPolling: DeleteDataStoreRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteDataStorePollingUntilDone(request: DeleteDataStoreRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteDataStore(withPolling: withPolling, options: .init())
+      try await self.deleteDataStorePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteDataStore(
-      withPolling: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
+    public func deleteDataStorePollingUntilDone(
+      request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -419,13 +419,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteDataStore(
+    public func deleteDataStorePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteDataStoreRequest().with {
         $0.name = name
       }
-      return try await self.deleteDataStore(withPolling: request)
+      return try await self.deleteDataStorePollingUntilDone(request: request)
     }
 
     public func updateDataStore(request: UpdateDataStoreRequest) async throws

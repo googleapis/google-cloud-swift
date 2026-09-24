@@ -21,8 +21,8 @@ import GoogleCloudDatastoreAdminV1
 import GoogleLongRunning
 
 func sample(client: DatastoreAdminClient) async throws {
-  let poller = try await client.deleteIndex(
-    withPolling: DeleteIndexRequest()
+  let poller = try await client.deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

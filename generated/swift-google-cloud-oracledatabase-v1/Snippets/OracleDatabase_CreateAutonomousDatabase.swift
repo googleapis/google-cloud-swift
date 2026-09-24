@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAutonomousDatabase(
-    withPolling: CreateAutonomousDatabaseRequest()
+  let poller = try await client.createAutonomousDatabasePollingUntilDone(
+    request: CreateAutonomousDatabaseRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.autonomousDatabase = AutonomousDatabase() /* .with { ... } */

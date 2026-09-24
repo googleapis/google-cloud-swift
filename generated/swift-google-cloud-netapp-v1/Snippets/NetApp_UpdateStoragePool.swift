@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, storagePoolId: String)
   async throws
 {
-  let poller = try await client.updateStoragePool(
-    withPolling: UpdateStoragePoolRequest()
+  let poller = try await client.updateStoragePoolPollingUntilDone(
+    request: UpdateStoragePoolRequest()
       .with {
         $0.storagePool = StoragePool().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/storagePools/\(storagePoolId)"

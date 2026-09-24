@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LicenseManagerClient) async throws {
-  let poller = try await client.deactivateConfiguration(
-    withPolling: DeactivateConfigurationRequest()
+  let poller = try await client.deactivateConfigurationPollingUntilDone(
+    request: DeactivateConfigurationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createMesh(
-    withPolling: CreateMeshRequest()
+  let poller = try await client.createMeshPollingUntilDone(
+    request: CreateMeshRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.meshId = "[replace with a valid ID]"

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.deleteRepository(
-    withPolling: DeleteRepositoryRequest()
+  let poller = try await client.deleteRepositoryPollingUntilDone(
+    request: DeleteRepositoryRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
       }

@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   subnetId: String
 ) async throws {
-  let poller = try await client.updateSubnet(
-    withPolling: UpdateSubnetRequest()
+  let poller = try await client.updateSubnetPollingUntilDone(
+    request: UpdateSubnetRequest()
       .with {
         $0.subnet = Subnet().with {
           $0.name =

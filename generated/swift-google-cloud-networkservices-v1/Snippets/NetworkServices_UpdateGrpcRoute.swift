@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, grpcRouteId: String
 ) async throws {
-  let poller = try await client.updateGrpcRoute(
-    withPolling: UpdateGrpcRouteRequest()
+  let poller = try await client.updateGrpcRoutePollingUntilDone(
+    request: UpdateGrpcRouteRequest()
       .with {
         $0.grpcRoute = GrpcRoute().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/grpcRoutes/\(grpcRouteId)"

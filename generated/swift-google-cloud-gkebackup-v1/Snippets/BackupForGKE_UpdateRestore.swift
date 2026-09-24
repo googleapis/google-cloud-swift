@@ -27,8 +27,8 @@ func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restorePlanId: String,
   restoreId: String
 ) async throws {
-  let poller = try await client.updateRestore(
-    withPolling: UpdateRestoreRequest()
+  let poller = try await client.updateRestorePollingUntilDone(
+    request: UpdateRestoreRequest()
       .with {
         $0.restore = Restore().with {
           $0.name =

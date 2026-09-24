@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createCloudExadataInfrastructure(
-    withPolling: CreateCloudExadataInfrastructureRequest()
+  let poller = try await client.createCloudExadataInfrastructurePollingUntilDone(
+    request: CreateCloudExadataInfrastructureRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.cloudExadataInfrastructure = CloudExadataInfrastructure() /* .with { ... } */

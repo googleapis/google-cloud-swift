@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String
 ) async throws {
-  let poller = try await client.updateService(
-    withPolling: UpdateServiceRequest()
+  let poller = try await client.updateServicePollingUntilDone(
+    request: UpdateServiceRequest()
       .with {
         $0.service = Service().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"

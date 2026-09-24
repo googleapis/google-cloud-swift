@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: BackendServicesClient) async throws {
-    let poller = try await client.deleteSignedUrlKey(
-      withPolling: BackendServicesClient.DeleteSignedUrlKeyRequest()
+    let poller = try await client.deleteSignedUrlKeyPollingUntilDone(
+      request: BackendServicesClient.DeleteSignedUrlKeyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

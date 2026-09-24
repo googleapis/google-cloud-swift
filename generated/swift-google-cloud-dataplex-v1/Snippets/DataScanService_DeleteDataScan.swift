@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataScanServiceClient, projectId: String, locationId: String, dataScanId: String
 ) async throws {
-  let poller = try await client.deleteDataScan(
-    withPolling: DeleteDataScanRequest()
+  let poller = try await client.deleteDataScanPollingUntilDone(
+    request: DeleteDataScanRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/dataScans/\(dataScanId)"
       }

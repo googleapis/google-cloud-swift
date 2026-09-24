@@ -26,8 +26,8 @@ func sample(
   client: ClientGatewaysServiceClient, projectId: String, locationId: String,
   clientGatewayId: String
 ) async throws {
-  let poller = try await client.deleteClientGateway(
-    withPolling: DeleteClientGatewayRequest()
+  let poller = try await client.deleteClientGatewayPollingUntilDone(
+    request: DeleteClientGatewayRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/clientGateways/\(clientGatewayId)"
       }

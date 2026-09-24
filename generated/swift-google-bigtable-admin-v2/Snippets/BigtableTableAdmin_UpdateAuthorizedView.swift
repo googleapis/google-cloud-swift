@@ -26,8 +26,8 @@ func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String,
   authorizedViewId: String
 ) async throws {
-  let poller = try await client.updateAuthorizedView(
-    withPolling: UpdateAuthorizedViewRequest()
+  let poller = try await client.updateAuthorizedViewPollingUntilDone(
+    request: UpdateAuthorizedViewRequest()
       .with {
         $0.authorizedView = AuthorizedView().with {
           $0.name =

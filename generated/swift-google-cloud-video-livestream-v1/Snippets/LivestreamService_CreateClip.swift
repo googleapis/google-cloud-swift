@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let poller = try await client.createClip(
-    withPolling: CreateClipRequest()
+  let poller = try await client.createClipPollingUntilDone(
+    request: CreateClipRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"
         $0.clipId = "[replace with a valid ID]"

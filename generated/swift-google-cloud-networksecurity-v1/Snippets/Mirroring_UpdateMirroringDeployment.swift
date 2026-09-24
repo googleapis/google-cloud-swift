@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: MirroringClient, projectId: String, locationId: String, mirroringDeploymentId: String
 ) async throws {
-  let poller = try await client.updateMirroringDeployment(
-    withPolling: UpdateMirroringDeploymentRequest()
+  let poller = try await client.updateMirroringDeploymentPollingUntilDone(
+    request: UpdateMirroringDeploymentRequest()
       .with {
         $0.mirroringDeployment = MirroringDeployment().with {
           $0.name =

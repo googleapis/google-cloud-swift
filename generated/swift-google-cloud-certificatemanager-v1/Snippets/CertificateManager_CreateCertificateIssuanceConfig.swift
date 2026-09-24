@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateManagerClient, parent: String) async throws {
-  let poller = try await client.createCertificateIssuanceConfig(
-    withPolling: CreateCertificateIssuanceConfigRequest()
+  let poller = try await client.createCertificateIssuanceConfigPollingUntilDone(
+    request: CreateCertificateIssuanceConfigRequest()
       .with {
         $0.parent = "\(parent)"
         $0.certificateIssuanceConfig = CertificateIssuanceConfig() /* .with { ... } */

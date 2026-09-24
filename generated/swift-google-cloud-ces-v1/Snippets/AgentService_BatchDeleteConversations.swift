@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AgentServiceClient) async throws {
-  let poller = try await client.batchDeleteConversations(
-    withPolling: BatchDeleteConversationsRequest()
+  let poller = try await client.batchDeleteConversationsPollingUntilDone(
+    request: BatchDeleteConversationsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

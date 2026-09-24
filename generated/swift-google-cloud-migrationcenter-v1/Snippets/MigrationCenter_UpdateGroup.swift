@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: MigrationCenterClient, projectId: String, locationId: String, groupId: String)
   async throws
 {
-  let poller = try await client.updateGroup(
-    withPolling: UpdateGroupRequest()
+  let poller = try await client.updateGroupPollingUntilDone(
+    request: UpdateGroupRequest()
       .with {
         $0.group = Group().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/groups/\(groupId)"

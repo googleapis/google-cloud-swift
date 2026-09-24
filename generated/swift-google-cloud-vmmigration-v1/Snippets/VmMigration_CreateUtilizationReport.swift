@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: VmMigrationClient, projectId: String, locationId: String, sourceId: String)
   async throws
 {
-  let poller = try await client.createUtilizationReport(
-    withPolling: CreateUtilizationReportRequest()
+  let poller = try await client.createUtilizationReportPollingUntilDone(
+    request: CreateUtilizationReportRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)"
         $0.utilizationReport = UtilizationReport() /* .with { ... } */

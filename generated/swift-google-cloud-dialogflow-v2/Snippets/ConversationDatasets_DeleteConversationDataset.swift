@@ -26,8 +26,8 @@
     client: ConversationDatasetsClient, projectId: String, locationId: String,
     conversationDatasetId: String
   ) async throws {
-    let poller = try await client.deleteConversationDataset(
-      withPolling: DeleteConversationDatasetRequest()
+    let poller = try await client.deleteConversationDatasetPollingUntilDone(
+      request: DeleteConversationDatasetRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/conversationDatasets/\(conversationDatasetId)"

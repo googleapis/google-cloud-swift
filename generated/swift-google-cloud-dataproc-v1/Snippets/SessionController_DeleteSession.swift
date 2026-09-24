@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(
   client: SessionControllerClient, projectId: String, locationId: String, sessionId: String
 ) async throws {
-  let poller = try await client.deleteSession(
-    withPolling: DeleteSessionRequest()
+  let poller = try await client.deleteSessionPollingUntilDone(
+    request: DeleteSessionRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/sessions/\(sessionId)"
       }

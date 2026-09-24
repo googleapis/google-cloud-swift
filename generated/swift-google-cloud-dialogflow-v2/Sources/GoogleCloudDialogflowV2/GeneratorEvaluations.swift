@@ -56,15 +56,15 @@
     /// Creates evaluation of a generator.
     ///
     /// @Snippet(path: "GeneratorEvaluations_CreateGeneratorEvaluation")
-    public func createGeneratorEvaluation(
-      withPolling: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
+    public func createGeneratorEvaluationPollingUntilDone(
+      request: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<GeneratorEvaluation>.State in
         return try op._extractStatus(GeneratorEvaluation.self)
       }
-      let rawOp = try await self.createGeneratorEvaluation(request: withPolling, options: options)
+      let rawOp = try await self.createGeneratorEvaluation(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<GeneratorEvaluation>.State in
         let op = try await self.getOperation(
@@ -183,11 +183,11 @@
     /// and pass a mock implementation in your tests.
     public protocol GeneratorEvaluationsProtocol: Sendable {
       /// See `GeneratorEvaluationsClient.createGeneratorEvaluation`.
-      func createGeneratorEvaluation(withPolling: CreateGeneratorEvaluationRequest) async throws
-        -> any GoogleGax.PollableOperation<GeneratorEvaluation>
+      func createGeneratorEvaluationPollingUntilDone(request: CreateGeneratorEvaluationRequest)
+        async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation>
 
       /// See `GeneratorEvaluationsClient.createGeneratorEvaluation`.
-      func createGeneratorEvaluation(
+      func createGeneratorEvaluationPollingUntilDone(
         parent: Swift.String,
         generatorEvaluation: GeneratorEvaluation?,
       ) async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation>
@@ -198,8 +198,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `GeneratorEvaluationsClient.createGeneratorEvaluation`.
-      func createGeneratorEvaluation(
-        withPolling: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
+      func createGeneratorEvaluationPollingUntilDone(
+        request: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation>
 
       /// See `GeneratorEvaluationsClient.getGeneratorEvaluation`.
@@ -253,14 +253,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createGeneratorEvaluation(withPolling: CreateGeneratorEvaluationRequest)
+    public func createGeneratorEvaluationPollingUntilDone(request: CreateGeneratorEvaluationRequest)
       async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation>
     {
-      try await self.createGeneratorEvaluation(withPolling: withPolling, options: .init())
+      try await self.createGeneratorEvaluationPollingUntilDone(request: request, options: .init())
     }
 
-    public func createGeneratorEvaluation(
-      withPolling: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
+    public func createGeneratorEvaluationPollingUntilDone(
+      request: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<GeneratorEvaluation>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -269,7 +269,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createGeneratorEvaluation(
+    public func createGeneratorEvaluationPollingUntilDone(
       parent: Swift.String,
       generatorEvaluation: GeneratorEvaluation?,
     ) async throws -> any GoogleGax.PollableOperation<GeneratorEvaluation> {
@@ -277,7 +277,7 @@
         $0.parent = parent
         $0.generatorEvaluation = generatorEvaluation
       }
-      return try await self.createGeneratorEvaluation(withPolling: request)
+      return try await self.createGeneratorEvaluationPollingUntilDone(request: request)
     }
 
     public func getGeneratorEvaluation(request: GetGeneratorEvaluationRequest) async throws

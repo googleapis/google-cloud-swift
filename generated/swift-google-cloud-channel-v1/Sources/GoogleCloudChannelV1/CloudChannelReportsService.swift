@@ -130,15 +130,15 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   ///
   /// @Snippet(path: "CloudChannelReportsService_RunReportJob")
   @available(*, deprecated)
-  public func runReportJob(
-    withPolling: RunReportJobRequest, options: GoogleGax.RequestOptions
+  public func runReportJobPollingUntilDone(
+    request: RunReportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunReportJobResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
       return try op._extractStatus(RunReportJobResponse.self)
     }
-    let rawOp = try await self.runReportJob(request: withPolling, options: options)
+    let rawOp = try await self.runReportJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
       let op = try await self.getOperation(
@@ -240,7 +240,7 @@ extension Clients {
   public protocol CloudChannelReportsServiceProtocol: Sendable {
     /// See `CloudChannelReportsServiceClient.runReportJob`.
     @available(*, deprecated)
-    func runReportJob(withPolling: RunReportJobRequest) async throws -> any GoogleGax
+    func runReportJobPollingUntilDone(request: RunReportJobRequest) async throws -> any GoogleGax
       .PollableOperation<RunReportJobResponse>
 
     /// See `CloudChannelReportsServiceClient.runReportJob`.
@@ -251,8 +251,8 @@ extension Clients {
 
     /// See `CloudChannelReportsServiceClient.runReportJob`.
     @available(*, deprecated)
-    func runReportJob(
-      withPolling: RunReportJobRequest, options: GoogleGax.RequestOptions
+    func runReportJobPollingUntilDone(
+      request: RunReportJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RunReportJobResponse>
 
     /// See `CloudChannelReportsServiceClient.fetchReportResults`.
@@ -301,15 +301,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func runReportJob(withPolling: RunReportJobRequest) async throws -> any GoogleGax
-    .PollableOperation<RunReportJobResponse>
+  public func runReportJobPollingUntilDone(request: RunReportJobRequest) async throws
+    -> any GoogleGax.PollableOperation<RunReportJobResponse>
   {
-    try await self.runReportJob(withPolling: withPolling, options: .init())
+    try await self.runReportJobPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func runReportJob(
-    withPolling: RunReportJobRequest, options: GoogleGax.RequestOptions
+  public func runReportJobPollingUntilDone(
+    request: RunReportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunReportJobResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
       throw GoogleGax.RequestError.unimplemented

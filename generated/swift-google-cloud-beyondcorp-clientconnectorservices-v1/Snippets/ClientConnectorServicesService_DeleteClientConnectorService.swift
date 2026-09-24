@@ -27,8 +27,8 @@ func sample(
   client: ClientConnectorServicesServiceClient, projectId: String, locationId: String,
   clientConnectorServiceId: String
 ) async throws {
-  let poller = try await client.deleteClientConnectorService(
-    withPolling: DeleteClientConnectorServiceRequest()
+  let poller = try await client.deleteClientConnectorServicePollingUntilDone(
+    request: DeleteClientConnectorServiceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/clientConnectorServices/\(clientConnectorServiceId)"

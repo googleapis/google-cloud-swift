@@ -53,8 +53,8 @@
     /// Deletes the specified cross-site network in the given scope.
     ///
     /// @Snippet(path: "crossSiteNetworks_delete")
-    public func delete(
-      withPolling: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -70,14 +70,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.delete(request: withPolling, options: options)
+      let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -112,8 +112,8 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "crossSiteNetworks_insert")
-    public func insert(
-      withPolling: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -129,14 +129,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.insert(request: withPolling, options: options)
+      let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -175,8 +175,8 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "crossSiteNetworks_patch")
-    public func patch(
-      withPolling: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
+    public func patchPollingUntilDone(
+      request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -192,14 +192,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.patch(request: withPolling, options: options)
+      let rawOp = try await self.patch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -269,14 +269,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func delete(
-      withPolling: CrossSiteNetworksClient.DeleteRequest
+    public func deletePollingUntilDone(
+      request: CrossSiteNetworksClient.DeleteRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.delete(withPolling: withPolling, options: .init())
+      try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
-    public func delete(
-      withPolling: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -286,7 +286,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func delete(
+    public func deletePollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -294,7 +294,7 @@
         $0.project = project
         $0.crossSiteNetwork = crossSiteNetwork
       }
-      return try await self.delete(withPolling: request)
+      return try await self.deletePollingUntilDone(request: request)
     }
 
     public func `get`(request: CrossSiteNetworksClient.GetRequest) async throws
@@ -332,14 +332,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func insert(
-      withPolling: CrossSiteNetworksClient.InsertRequest
+    public func insertPollingUntilDone(
+      request: CrossSiteNetworksClient.InsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insert(withPolling: withPolling, options: .init())
+      try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
-    public func insert(
-      withPolling: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -349,7 +349,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func insert(
+    public func insertPollingUntilDone(
       project: Swift.String,
       body: CrossSiteNetwork?,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -357,7 +357,7 @@
         $0.project = project
         $0.body = body
       }
-      return try await self.insert(withPolling: request)
+      return try await self.insertPollingUntilDone(request: request)
     }
 
     public func list(request: CrossSiteNetworksClient.ListRequest) async throws
@@ -414,14 +414,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func patch(
-      withPolling: CrossSiteNetworksClient.PatchRequest
+    public func patchPollingUntilDone(
+      request: CrossSiteNetworksClient.PatchRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patch(withPolling: withPolling, options: .init())
+      try await self.patchPollingUntilDone(request: request, options: .init())
     }
 
-    public func patch(
-      withPolling: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
+    public func patchPollingUntilDone(
+      request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -431,7 +431,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func patch(
+    public func patchPollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
       body: CrossSiteNetwork?,
@@ -441,7 +441,7 @@
         $0.crossSiteNetwork = crossSiteNetwork
         $0.body = body
       }
-      return try await self.patch(withPolling: request)
+      return try await self.patchPollingUntilDone(request: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient, folderId: String) async throws {
-  let poller = try await client.updateFolder(
-    withPolling: UpdateFolderRequest()
+  let poller = try await client.updateFolderPollingUntilDone(
+    request: UpdateFolderRequest()
       .with {
         $0.folder = Folder().with {
           $0.name = "folders/\(folderId)"

@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, fleetId: String)
   async throws
 {
-  let poller = try await client.deleteFleet(
-    withPolling: DeleteFleetRequest()
+  let poller = try await client.deleteFleetPollingUntilDone(
+    request: DeleteFleetRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/fleets/\(fleetId)"
       }

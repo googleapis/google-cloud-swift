@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: CloudFtpClient, projectId: String, locationId: String, serverId: String)
   async throws
 {
-  let poller = try await client.createUser(
-    withPolling: CreateUserRequest()
+  let poller = try await client.createUserPollingUntilDone(
+    request: CreateUserRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/servers/\(serverId)"
         $0.userId = "[replace with a valid ID]"

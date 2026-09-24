@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client) async throws {
-  let poller = try await client.copyLogEntries(
-    withPolling: CopyLogEntriesRequest()
+  let poller = try await client.copyLogEntriesPollingUntilDone(
+    request: CopyLogEntriesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: OrganizationSecurityPoliciesClient) async throws {
-    let poller = try await client.removeRule(
-      withPolling: OrganizationSecurityPoliciesClient.RemoveRuleRequest()
+    let poller = try await client.removeRulePollingUntilDone(
+      request: OrganizationSecurityPoliciesClient.RemoveRuleRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

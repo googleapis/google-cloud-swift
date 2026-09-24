@@ -26,8 +26,8 @@ func sample(
   client: SecurityPostureClient, organizationId: String, locationId: String,
   postureDeploymentId: String
 ) async throws {
-  let poller = try await client.updatePostureDeployment(
-    withPolling: UpdatePostureDeploymentRequest()
+  let poller = try await client.updatePostureDeploymentPollingUntilDone(
+    request: UpdatePostureDeploymentRequest()
       .with {
         $0.postureDeployment = PostureDeployment().with {
           $0.name =

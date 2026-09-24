@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   tlsInspectionPolicyId: String
 ) async throws {
-  let poller = try await client.updateTlsInspectionPolicy(
-    withPolling: UpdateTlsInspectionPolicyRequest()
+  let poller = try await client.updateTlsInspectionPolicyPollingUntilDone(
+    request: UpdateTlsInspectionPolicyRequest()
       .with {
         $0.tlsInspectionPolicy = TlsInspectionPolicy().with {
           $0.name =

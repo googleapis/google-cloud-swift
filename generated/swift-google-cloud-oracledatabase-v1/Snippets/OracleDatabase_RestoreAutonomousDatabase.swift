@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient) async throws {
-  let poller = try await client.restoreAutonomousDatabase(
-    withPolling: RestoreAutonomousDatabaseRequest()
+  let poller = try await client.restoreAutonomousDatabasePollingUntilDone(
+    request: RestoreAutonomousDatabaseRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: SpeechClient, projectId: String, locationId: String, phraseSetId: String)
   async throws
 {
-  let poller = try await client.undeletePhraseSet(
-    withPolling: UndeletePhraseSetRequest()
+  let poller = try await client.undeletePhraseSetPollingUntilDone(
+    request: UndeletePhraseSetRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/phraseSets/\(phraseSetId)"
       }

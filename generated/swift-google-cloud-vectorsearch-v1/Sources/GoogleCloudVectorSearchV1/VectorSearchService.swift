@@ -78,15 +78,15 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Creates a new Collection in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_CreateCollection")
-  public func createCollection(
-    withPolling: CreateCollectionRequest, options: GoogleGax.RequestOptions
+  public func createCollectionPollingUntilDone(
+    request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collection>.State
       in
       return try op._extractStatus(Collection.self)
     }
-    let rawOp = try await self.createCollection(request: withPolling, options: options)
+    let rawOp = try await self.createCollection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collection>.State in
       let op = try await self.getOperation(
@@ -113,15 +113,15 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Updates the parameters of a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_UpdateCollection")
-  public func updateCollection(
-    withPolling: UpdateCollectionRequest, options: GoogleGax.RequestOptions
+  public func updateCollectionPollingUntilDone(
+    request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collection>.State
       in
       return try op._extractStatus(Collection.self)
     }
-    let rawOp = try await self.updateCollection(request: withPolling, options: options)
+    let rawOp = try await self.updateCollection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collection>.State in
       let op = try await self.getOperation(
@@ -148,15 +148,15 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Deletes a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_DeleteCollection")
-  public func deleteCollection(
-    withPolling: DeleteCollectionRequest, options: GoogleGax.RequestOptions
+  public func deleteCollectionPollingUntilDone(
+    request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteCollection(request: withPolling, options: options)
+    let rawOp = try await self.deleteCollection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -201,14 +201,14 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Creates a new Index in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_CreateIndex")
-  public func createIndex(
-    withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+  public func createIndexPollingUntilDone(
+    request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
-    let rawOp = try await self.createIndex(request: withPolling, options: options)
+    let rawOp = try await self.createIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
@@ -235,14 +235,14 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Updates the parameters of a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_UpdateIndex")
-  public func updateIndex(
-    withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+  public func updateIndexPollingUntilDone(
+    request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
-    let rawOp = try await self.updateIndex(request: withPolling, options: options)
+    let rawOp = try await self.updateIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
@@ -269,15 +269,15 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Deletes a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_DeleteIndex")
-  public func deleteIndex(
-    withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteIndex(request: withPolling, options: options)
+    let rawOp = try await self.deleteIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -304,15 +304,15 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Initiates a Long-Running Operation to import DataObjects into a Collection.
   ///
   /// @Snippet(path: "VectorSearchService_ImportDataObjects")
-  public func importDataObjects(
-    withPolling: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
+  public func importDataObjectsPollingUntilDone(
+    request: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportDataObjectsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportDataObjectsResponse>.State in
       return try op._extractStatus(ImportDataObjectsResponse.self)
     }
-    let rawOp = try await self.importDataObjects(request: withPolling, options: options)
+    let rawOp = try await self.importDataObjects(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ImportDataObjectsResponse>.State in
@@ -340,15 +340,15 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Initiates a Long-Running Operation to export DataObjects from a Collection.
   ///
   /// @Snippet(path: "VectorSearchService_ExportDataObjects")
-  public func exportDataObjects(
-    withPolling: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
+  public func exportDataObjectsPollingUntilDone(
+    request: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportDataObjectsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportDataObjectsResponse>.State in
       return try op._extractStatus(ExportDataObjectsResponse.self)
     }
-    let rawOp = try await self.exportDataObjects(request: withPolling, options: options)
+    let rawOp = try await self.exportDataObjects(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ExportDataObjectsResponse>.State in
@@ -452,72 +452,72 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol VectorSearchServiceProtocol: Sendable {
     /// See `VectorSearchServiceClient.createCollection`.
-    func createCollection(withPolling: CreateCollectionRequest) async throws -> any GoogleGax
-      .PollableOperation<Collection>
+    func createCollectionPollingUntilDone(request: CreateCollectionRequest) async throws
+      -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.createCollection`.
-    func createCollection(
+    func createCollectionPollingUntilDone(
       parent: Swift.String,
       collection: Collection?,
       collectionId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.updateCollection`.
-    func updateCollection(withPolling: UpdateCollectionRequest) async throws -> any GoogleGax
-      .PollableOperation<Collection>
+    func updateCollectionPollingUntilDone(request: UpdateCollectionRequest) async throws
+      -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.updateCollection`.
-    func updateCollection(
+    func updateCollectionPollingUntilDone(
       collection: Collection?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.deleteCollection`.
-    func deleteCollection(withPolling: DeleteCollectionRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteCollectionPollingUntilDone(request: DeleteCollectionRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.deleteCollection`.
-    func deleteCollection(
+    func deleteCollectionPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.createIndex`.
-    func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+    func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.createIndex`.
-    func createIndex(
+    func createIndexPollingUntilDone(
       parent: Swift.String,
       index: Index?,
       indexId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.updateIndex`.
-    func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
+    func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.updateIndex`.
-    func updateIndex(
+    func updateIndexPollingUntilDone(
       index: Index?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.deleteIndex`.
-    func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+    func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.deleteIndex`.
-    func deleteIndex(
+    func deleteIndexPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.importDataObjects`.
-    func importDataObjects(withPolling: ImportDataObjectsRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportDataObjectsResponse>
+    func importDataObjectsPollingUntilDone(request: ImportDataObjectsRequest) async throws
+      -> any GoogleGax.PollableOperation<ImportDataObjectsResponse>
 
     /// See `VectorSearchServiceClient.exportDataObjects`.
-    func exportDataObjects(withPolling: ExportDataObjectsRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportDataObjectsResponse>
+    func exportDataObjectsPollingUntilDone(request: ExportDataObjectsRequest) async throws
+      -> any GoogleGax.PollableOperation<ExportDataObjectsResponse>
 
     /// See `VectorSearchServiceClient.listCollections`.
     func listCollections(
@@ -535,8 +535,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.createCollection`.
-    func createCollection(
-      withPolling: CreateCollectionRequest, options: GoogleGax.RequestOptions
+    func createCollectionPollingUntilDone(
+      request: CreateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.updateCollection`.
@@ -545,8 +545,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.updateCollection`.
-    func updateCollection(
-      withPolling: UpdateCollectionRequest, options: GoogleGax.RequestOptions
+    func updateCollectionPollingUntilDone(
+      request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.deleteCollection`.
@@ -555,8 +555,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.deleteCollection`.
-    func deleteCollection(
-      withPolling: DeleteCollectionRequest, options: GoogleGax.RequestOptions
+    func deleteCollectionPollingUntilDone(
+      request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.listIndexes`.
@@ -575,8 +575,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.createIndex`.
-    func createIndex(
-      withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+    func createIndexPollingUntilDone(
+      request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.updateIndex`.
@@ -585,8 +585,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.updateIndex`.
-    func updateIndex(
-      withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+    func updateIndexPollingUntilDone(
+      request: UpdateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.deleteIndex`.
@@ -595,8 +595,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.deleteIndex`.
-    func deleteIndex(
-      withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+    func deleteIndexPollingUntilDone(
+      request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VectorSearchServiceClient.importDataObjects`.
@@ -605,8 +605,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.importDataObjects`.
-    func importDataObjects(
-      withPolling: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
+    func importDataObjectsPollingUntilDone(
+      request: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportDataObjectsResponse>
 
     /// See `VectorSearchServiceClient.exportDataObjects`.
@@ -615,8 +615,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VectorSearchServiceClient.exportDataObjects`.
-    func exportDataObjects(
-      withPolling: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
+    func exportDataObjectsPollingUntilDone(
+      request: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportDataObjectsResponse>
 
     /// See `VectorSearchServiceClient.listLocations`.
@@ -723,14 +723,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCollection(withPolling: CreateCollectionRequest) async throws -> any GoogleGax
-    .PollableOperation<Collection>
+  public func createCollectionPollingUntilDone(request: CreateCollectionRequest) async throws
+    -> any GoogleGax.PollableOperation<Collection>
   {
-    try await self.createCollection(withPolling: withPolling, options: .init())
+    try await self.createCollectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCollection(
-    withPolling: CreateCollectionRequest, options: GoogleGax.RequestOptions
+  public func createCollectionPollingUntilDone(
+    request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collection>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -739,7 +739,7 @@ extension Clients.VectorSearchServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCollection(
+  public func createCollectionPollingUntilDone(
     parent: Swift.String,
     collection: Collection?,
     collectionId: Swift.String,
@@ -749,7 +749,7 @@ extension Clients.VectorSearchServiceProtocol {
       $0.collection = collection
       $0.collectionId = collectionId
     }
-    return try await self.createCollection(withPolling: request)
+    return try await self.createCollectionPollingUntilDone(request: request)
   }
 
   public func updateCollection(request: UpdateCollectionRequest) async throws
@@ -764,14 +764,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCollection(withPolling: UpdateCollectionRequest) async throws -> any GoogleGax
-    .PollableOperation<Collection>
+  public func updateCollectionPollingUntilDone(request: UpdateCollectionRequest) async throws
+    -> any GoogleGax.PollableOperation<Collection>
   {
-    try await self.updateCollection(withPolling: withPolling, options: .init())
+    try await self.updateCollectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCollection(
-    withPolling: UpdateCollectionRequest, options: GoogleGax.RequestOptions
+  public func updateCollectionPollingUntilDone(
+    request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collection>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -780,7 +780,7 @@ extension Clients.VectorSearchServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateCollection(
+  public func updateCollectionPollingUntilDone(
     collection: Collection?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
@@ -788,7 +788,7 @@ extension Clients.VectorSearchServiceProtocol {
       $0.collection = collection
       $0.updateMask = updateMask
     }
-    return try await self.updateCollection(withPolling: request)
+    return try await self.updateCollectionPollingUntilDone(request: request)
   }
 
   public func deleteCollection(request: DeleteCollectionRequest) async throws
@@ -803,14 +803,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCollection(withPolling: DeleteCollectionRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteCollectionPollingUntilDone(request: DeleteCollectionRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteCollection(withPolling: withPolling, options: .init())
+    try await self.deleteCollectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCollection(
-    withPolling: DeleteCollectionRequest, options: GoogleGax.RequestOptions
+  public func deleteCollectionPollingUntilDone(
+    request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -819,13 +819,13 @@ extension Clients.VectorSearchServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCollection(
+  public func deleteCollectionPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteCollectionRequest().with {
       $0.name = name
     }
-    return try await self.deleteCollection(withPolling: request)
+    return try await self.deleteCollectionPollingUntilDone(request: request)
   }
 
   public func listIndexes(request: ListIndexesRequest) async throws
@@ -899,14 +899,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+  public func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Index>
   {
-    try await self.createIndex(withPolling: withPolling, options: .init())
+    try await self.createIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func createIndex(
-    withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+  public func createIndexPollingUntilDone(
+    request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -915,7 +915,7 @@ extension Clients.VectorSearchServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createIndex(
+  public func createIndexPollingUntilDone(
     parent: Swift.String,
     index: Index?,
     indexId: Swift.String,
@@ -925,7 +925,7 @@ extension Clients.VectorSearchServiceProtocol {
       $0.index = index
       $0.indexId = indexId
     }
-    return try await self.createIndex(withPolling: request)
+    return try await self.createIndexPollingUntilDone(request: request)
   }
 
   public func updateIndex(request: UpdateIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -938,14 +938,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
+  public func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Index>
   {
-    try await self.updateIndex(withPolling: withPolling, options: .init())
+    try await self.updateIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateIndex(
-    withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+  public func updateIndexPollingUntilDone(
+    request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -954,7 +954,7 @@ extension Clients.VectorSearchServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateIndex(
+  public func updateIndexPollingUntilDone(
     index: Index?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Index> {
@@ -962,7 +962,7 @@ extension Clients.VectorSearchServiceProtocol {
       $0.index = index
       $0.updateMask = updateMask
     }
-    return try await self.updateIndex(withPolling: request)
+    return try await self.updateIndexPollingUntilDone(request: request)
   }
 
   public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -975,14 +975,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+  public func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteIndex(withPolling: withPolling, options: .init())
+    try await self.deleteIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteIndex(
-    withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -991,13 +991,13 @@ extension Clients.VectorSearchServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteIndex(
+  public func deleteIndexPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteIndexRequest().with {
       $0.name = name
     }
-    return try await self.deleteIndex(withPolling: request)
+    return try await self.deleteIndexPollingUntilDone(request: request)
   }
 
   public func importDataObjects(request: ImportDataObjectsRequest) async throws
@@ -1012,14 +1012,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importDataObjects(withPolling: ImportDataObjectsRequest) async throws -> any GoogleGax
-    .PollableOperation<ImportDataObjectsResponse>
+  public func importDataObjectsPollingUntilDone(request: ImportDataObjectsRequest) async throws
+    -> any GoogleGax.PollableOperation<ImportDataObjectsResponse>
   {
-    try await self.importDataObjects(withPolling: withPolling, options: .init())
+    try await self.importDataObjectsPollingUntilDone(request: request, options: .init())
   }
 
-  public func importDataObjects(
-    withPolling: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
+  public func importDataObjectsPollingUntilDone(
+    request: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportDataObjectsResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ImportDataObjectsResponse>.State in
@@ -1041,14 +1041,14 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportDataObjects(withPolling: ExportDataObjectsRequest) async throws -> any GoogleGax
-    .PollableOperation<ExportDataObjectsResponse>
+  public func exportDataObjectsPollingUntilDone(request: ExportDataObjectsRequest) async throws
+    -> any GoogleGax.PollableOperation<ExportDataObjectsResponse>
   {
-    try await self.exportDataObjects(withPolling: withPolling, options: .init())
+    try await self.exportDataObjectsPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportDataObjects(
-    withPolling: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
+  public func exportDataObjectsPollingUntilDone(
+    request: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportDataObjectsResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ExportDataObjectsResponse>.State in

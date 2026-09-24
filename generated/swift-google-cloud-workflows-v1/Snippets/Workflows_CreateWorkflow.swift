@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkflowsClient, parent: String) async throws {
-  let poller = try await client.createWorkflow(
-    withPolling: CreateWorkflowRequest()
+  let poller = try await client.createWorkflowPollingUntilDone(
+    request: CreateWorkflowRequest()
       .with {
         $0.parent = "\(parent)"
         $0.workflowId = "[replace with a valid ID]"

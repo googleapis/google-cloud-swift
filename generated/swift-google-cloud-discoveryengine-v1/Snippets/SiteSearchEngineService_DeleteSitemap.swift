@@ -25,8 +25,8 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String, sitemapId: String
   ) async throws {
-    let poller = try await client.deleteSitemap(
-      withPolling: DeleteSitemapRequest()
+    let poller = try await client.deleteSitemapPollingUntilDone(
+      request: DeleteSitemapRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/siteSearchEngine/sitemaps/\(sitemapId)"

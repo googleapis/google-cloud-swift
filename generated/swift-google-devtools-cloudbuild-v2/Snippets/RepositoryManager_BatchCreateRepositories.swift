@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RepositoryManagerClient) async throws {
-  let poller = try await client.batchCreateRepositories(
-    withPolling: BatchCreateRepositoriesRequest()
+  let poller = try await client.batchCreateRepositoriesPollingUntilDone(
+    request: BatchCreateRepositoriesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

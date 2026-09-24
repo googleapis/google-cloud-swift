@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String
 ) async throws {
-  let poller = try await client.createRelease(
-    withPolling: CreateReleaseRequest()
+  let poller = try await client.createReleasePollingUntilDone(
+    request: CreateReleaseRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/deliveryPipelines/\(deliveryPipelineId)"

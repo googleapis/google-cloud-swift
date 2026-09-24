@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudDeployClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createTarget(
-    withPolling: CreateTargetRequest()
+  let poller = try await client.createTargetPollingUntilDone(
+    request: CreateTargetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.targetId = "[replace with a valid ID]"

@@ -23,8 +23,8 @@ import GoogleLongRunning
 func sample(client: InstancesClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.deleteInstance(
-    withPolling: DeleteInstanceRequest()
+  let poller = try await client.deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

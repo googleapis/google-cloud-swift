@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionSslCertificatesClient()
-    let poller = try await client.delete(
-      withPolling: RegionSslCertificatesClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: RegionSslCertificatesClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: RepositoryManagerClient, projectId: String, locationId: String, connectionId: String
 ) async throws {
-  let poller = try await client.createRepository(
-    withPolling: CreateRepositoryRequest()
+  let poller = try await client.createRepositoryPollingUntilDone(
+    request: CreateRepositoryRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
         $0.repositoryId = "[replace with a valid ID]"

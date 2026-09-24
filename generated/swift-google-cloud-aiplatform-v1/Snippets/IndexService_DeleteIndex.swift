@@ -27,8 +27,8 @@
   func sample(client: IndexServiceClient, projectId: String, locationId: String, indexId: String)
     async throws
   {
-    let poller = try await client.deleteIndex(
-      withPolling: DeleteIndexRequest()
+    let poller = try await client.deleteIndexPollingUntilDone(
+      request: DeleteIndexRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/indexes/\(indexId)"
         }

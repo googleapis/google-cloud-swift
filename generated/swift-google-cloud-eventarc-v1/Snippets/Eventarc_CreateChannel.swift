@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createChannel(
-    withPolling: CreateChannelRequest()
+  let poller = try await client.createChannelPollingUntilDone(
+    request: CreateChannelRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.channelId = "[replace with a valid ID]"

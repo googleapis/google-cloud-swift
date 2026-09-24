@@ -76,8 +76,8 @@
     /// included in the request.
     ///
     /// @Snippet(path: "regionCommitments_insert")
-    public func insert(
-      withPolling: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -93,15 +93,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.insert(request: withPolling, options: options)
+      let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.region = withPolling.region
+            $0.project = request.project
+            $0.region = request.region
           }, options: options)
         return try extractStatus(op)
       }
@@ -139,8 +139,8 @@
     /// update-mask. Only the following fields can be updated: auto_renew and plan.
     ///
     /// @Snippet(path: "regionCommitments_update")
-    public func update(
-      withPolling: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
+    public func updatePollingUntilDone(
+      request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -156,15 +156,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.update(request: withPolling, options: options)
+      let rawOp = try await self.update(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.region = withPolling.region
+            $0.project = request.project
+            $0.region = request.region
           }, options: options)
         return try extractStatus(op)
       }
@@ -304,14 +304,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func insert(
-      withPolling: RegionCommitmentsClient.InsertRequest
+    public func insertPollingUntilDone(
+      request: RegionCommitmentsClient.InsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insert(withPolling: withPolling, options: .init())
+      try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
-    public func insert(
-      withPolling: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -321,7 +321,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func insert(
+    public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       body: Commitment?,
@@ -331,7 +331,7 @@
         $0.region = region
         $0.body = body
       }
-      return try await self.insert(withPolling: request)
+      return try await self.insertPollingUntilDone(request: request)
     }
 
     public func list(request: RegionCommitmentsClient.ListRequest) async throws
@@ -390,14 +390,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func update(
-      withPolling: RegionCommitmentsClient.UpdateRequest
+    public func updatePollingUntilDone(
+      request: RegionCommitmentsClient.UpdateRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.update(withPolling: withPolling, options: .init())
+      try await self.updatePollingUntilDone(request: request, options: .init())
     }
 
-    public func update(
-      withPolling: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
+    public func updatePollingUntilDone(
+      request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -407,7 +407,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func update(
+    public func updatePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       commitment: Swift.String,
@@ -419,7 +419,7 @@
         $0.commitment = commitment
         $0.body = body
       }
-      return try await self.update(withPolling: request)
+      return try await self.updatePollingUntilDone(request: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

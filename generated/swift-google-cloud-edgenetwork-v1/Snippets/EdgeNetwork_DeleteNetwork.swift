@@ -26,8 +26,8 @@ func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String,
   networkId: String
 ) async throws {
-  let poller = try await client.deleteNetwork(
-    withPolling: DeleteNetworkRequest()
+  let poller = try await client.deleteNetworkPollingUntilDone(
+    request: DeleteNetworkRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)/networks/\(networkId)"

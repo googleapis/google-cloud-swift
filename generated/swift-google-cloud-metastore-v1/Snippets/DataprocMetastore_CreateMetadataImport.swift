@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String
 ) async throws {
-  let poller = try await client.createMetadataImport(
-    withPolling: CreateMetadataImportRequest()
+  let poller = try await client.createMetadataImportPollingUntilDone(
+    request: CreateMetadataImportRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"
         $0.metadataImport = MetadataImport() /* .with { ... } */

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, backupChannelId: String
 ) async throws {
-  let poller = try await client.updateBackupChannel(
-    withPolling: UpdateBackupChannelRequest()
+  let poller = try await client.updateBackupChannelPollingUntilDone(
+    request: UpdateBackupChannelRequest()
       .with {
         $0.backupChannel = BackupChannel().with {
           $0.name =

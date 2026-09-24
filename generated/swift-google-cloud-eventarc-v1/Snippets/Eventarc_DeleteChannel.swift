@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, channelId: String)
   async throws
 {
-  let poller = try await client.deleteChannel(
-    withPolling: DeleteChannelRequest()
+  let poller = try await client.deleteChannelPollingUntilDone(
+    request: DeleteChannelRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"
       }

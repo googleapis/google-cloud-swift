@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SpeechClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createCustomClass(
-    withPolling: CreateCustomClassRequest()
+  let poller = try await client.createCustomClassPollingUntilDone(
+    request: CreateCustomClassRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.customClass = CustomClass() /* .with { ... } */

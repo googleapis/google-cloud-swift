@@ -24,8 +24,8 @@
   func sample(
     client: SchemaServiceClient, projectId: String, locationId: String, dataStoreId: String
   ) async throws {
-    let poller = try await client.createSchema(
-      withPolling: CreateSchemaRequest()
+    let poller = try await client.createSchemaPollingUntilDone(
+      request: CreateSchemaRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"
           $0.schemaId = "[replace with a valid ID]"

@@ -25,8 +25,8 @@ func sample(
   client: GkeHubClient, projectId: String, locationId: String, scopeId: String,
   rbacrolebindingId: String
 ) async throws {
-  let poller = try await client.updateMembershipRbacroleBinding(
-    withPolling: UpdateMembershipRBACRoleBindingRequest()
+  let poller = try await client.updateMembershipRbacroleBindingPollingUntilDone(
+    request: UpdateMembershipRBACRoleBindingRequest()
       .with {
         $0.rbacrolebinding = RBACRoleBinding().with {
           $0.name =

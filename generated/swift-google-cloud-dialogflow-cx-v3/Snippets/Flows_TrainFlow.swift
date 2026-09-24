@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: FlowsClient) async throws {
-    let poller = try await client.trainFlow(
-      withPolling: TrainFlowRequest()
+    let poller = try await client.trainFlowPollingUntilDone(
+      request: TrainFlowRequest()
         /* set fields using .with { $0... } */
     )
     try await poller.wait()

@@ -76,14 +76,14 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Creates a new Network Connectivity Center hub in the specified project.
   ///
   /// @Snippet(path: "HubService_CreateHub")
-  public func createHub(
-    withPolling: CreateHubRequest, options: GoogleGax.RequestOptions
+  public func createHubPollingUntilDone(
+    request: CreateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hub> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Hub>.State in
       return try op._extractStatus(Hub.self)
     }
-    let rawOp = try await self.createHub(request: withPolling, options: options)
+    let rawOp = try await self.createHub(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hub>.State in
       let op = try await self.getOperation(
@@ -112,14 +112,14 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// hub.
   ///
   /// @Snippet(path: "HubService_UpdateHub")
-  public func updateHub(
-    withPolling: UpdateHubRequest, options: GoogleGax.RequestOptions
+  public func updateHubPollingUntilDone(
+    request: UpdateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hub> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Hub>.State in
       return try op._extractStatus(Hub.self)
     }
-    let rawOp = try await self.updateHub(request: withPolling, options: options)
+    let rawOp = try await self.updateHub(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hub>.State in
       let op = try await self.getOperation(
@@ -146,15 +146,15 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Deletes a Network Connectivity Center hub.
   ///
   /// @Snippet(path: "HubService_DeleteHub")
-  public func deleteHub(
-    withPolling: DeleteHubRequest, options: GoogleGax.RequestOptions
+  public func deleteHubPollingUntilDone(
+    request: DeleteHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteHub(request: withPolling, options: options)
+    let rawOp = try await self.deleteHub(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -221,14 +221,14 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Creates a Network Connectivity Center spoke.
   ///
   /// @Snippet(path: "HubService_CreateSpoke")
-  public func createSpoke(
-    withPolling: CreateSpokeRequest, options: GoogleGax.RequestOptions
+  public func createSpokePollingUntilDone(
+    request: CreateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Spoke> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Spoke>.State in
       return try op._extractStatus(Spoke.self)
     }
-    let rawOp = try await self.createSpoke(request: withPolling, options: options)
+    let rawOp = try await self.createSpoke(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Spoke>.State in
       let op = try await self.getOperation(
@@ -255,14 +255,14 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Updates the parameters of a Network Connectivity Center spoke.
   ///
   /// @Snippet(path: "HubService_UpdateSpoke")
-  public func updateSpoke(
-    withPolling: UpdateSpokeRequest, options: GoogleGax.RequestOptions
+  public func updateSpokePollingUntilDone(
+    request: UpdateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Spoke> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Spoke>.State in
       return try op._extractStatus(Spoke.self)
     }
-    let rawOp = try await self.updateSpoke(request: withPolling, options: options)
+    let rawOp = try await self.updateSpoke(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Spoke>.State in
       let op = try await self.getOperation(
@@ -295,15 +295,15 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// connect to other spokes that are attached to the hub.
   ///
   /// @Snippet(path: "HubService_RejectHubSpoke")
-  public func rejectHubSpoke(
-    withPolling: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
+  public func rejectHubSpokePollingUntilDone(
+    request: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RejectHubSpokeResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RejectHubSpokeResponse>.State in
       return try op._extractStatus(RejectHubSpokeResponse.self)
     }
-    let rawOp = try await self.rejectHubSpoke(request: withPolling, options: options)
+    let rawOp = try await self.rejectHubSpoke(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<RejectHubSpokeResponse>.State in
@@ -333,15 +333,15 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// to a hub.
   ///
   /// @Snippet(path: "HubService_AcceptHubSpoke")
-  public func acceptHubSpoke(
-    withPolling: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
+  public func acceptHubSpokePollingUntilDone(
+    request: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AcceptHubSpokeResponse>.State in
       return try op._extractStatus(AcceptHubSpokeResponse.self)
     }
-    let rawOp = try await self.acceptHubSpoke(request: withPolling, options: options)
+    let rawOp = try await self.acceptHubSpoke(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AcceptHubSpokeResponse>.State in
@@ -369,15 +369,15 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Accepts a proposal to update a Network Connectivity Center spoke in a hub.
   ///
   /// @Snippet(path: "HubService_AcceptSpokeUpdate")
-  public func acceptSpokeUpdate(
-    withPolling: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
+  public func acceptSpokeUpdatePollingUntilDone(
+    request: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AcceptSpokeUpdateResponse>.State in
       return try op._extractStatus(AcceptSpokeUpdateResponse.self)
     }
-    let rawOp = try await self.acceptSpokeUpdate(request: withPolling, options: options)
+    let rawOp = try await self.acceptSpokeUpdate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AcceptSpokeUpdateResponse>.State in
@@ -405,15 +405,15 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Rejects a proposal to update a Network Connectivity Center spoke in a hub.
   ///
   /// @Snippet(path: "HubService_RejectSpokeUpdate")
-  public func rejectSpokeUpdate(
-    withPolling: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
+  public func rejectSpokeUpdatePollingUntilDone(
+    request: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RejectSpokeUpdateResponse>.State in
       return try op._extractStatus(RejectSpokeUpdateResponse.self)
     }
-    let rawOp = try await self.rejectSpokeUpdate(request: withPolling, options: options)
+    let rawOp = try await self.rejectSpokeUpdate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<RejectSpokeUpdateResponse>.State in
@@ -441,15 +441,15 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Deletes a Network Connectivity Center spoke.
   ///
   /// @Snippet(path: "HubService_DeleteSpoke")
-  public func deleteSpoke(
-    withPolling: DeleteSpokeRequest, options: GoogleGax.RequestOptions
+  public func deleteSpokePollingUntilDone(
+    request: DeleteSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteSpoke(request: withPolling, options: options)
+    let rawOp = try await self.deleteSpoke(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -530,14 +530,14 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// Updates the parameters of a Network Connectivity Center group.
   ///
   /// @Snippet(path: "HubService_UpdateGroup")
-  public func updateGroup(
-    withPolling: UpdateGroupRequest, options: GoogleGax.RequestOptions
+  public func updateGroupPollingUntilDone(
+    request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Group> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Group>.State in
       return try op._extractStatus(Group.self)
     }
-    let rawOp = try await self.updateGroup(request: withPolling, options: options)
+    let rawOp = try await self.updateGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Group>.State in
       let op = try await self.getOperation(
@@ -661,116 +661,113 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol HubServiceProtocol: Sendable {
     /// See `HubServiceClient.createHub`.
-    func createHub(withPolling: CreateHubRequest) async throws -> any GoogleGax.PollableOperation<
-      Hub
-    >
+    func createHubPollingUntilDone(request: CreateHubRequest) async throws -> any GoogleGax
+      .PollableOperation<Hub>
 
     /// See `HubServiceClient.createHub`.
-    func createHub(
+    func createHubPollingUntilDone(
       parent: Swift.String,
       hub: Hub?,
       hubId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.updateHub`.
-    func updateHub(withPolling: UpdateHubRequest) async throws -> any GoogleGax.PollableOperation<
-      Hub
-    >
+    func updateHubPollingUntilDone(request: UpdateHubRequest) async throws -> any GoogleGax
+      .PollableOperation<Hub>
 
     /// See `HubServiceClient.updateHub`.
-    func updateHub(
+    func updateHubPollingUntilDone(
       hub: Hub?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.deleteHub`.
-    func deleteHub(withPolling: DeleteHubRequest) async throws -> any GoogleGax.PollableOperation<
-      Swift.Void
-    >
+    func deleteHubPollingUntilDone(request: DeleteHubRequest) async throws -> any GoogleGax
+      .PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.deleteHub`.
-    func deleteHub(
+    func deleteHubPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.createSpoke`.
-    func createSpoke(withPolling: CreateSpokeRequest) async throws -> any GoogleGax
+    func createSpokePollingUntilDone(request: CreateSpokeRequest) async throws -> any GoogleGax
       .PollableOperation<Spoke>
 
     /// See `HubServiceClient.createSpoke`.
-    func createSpoke(
+    func createSpokePollingUntilDone(
       parent: Swift.String,
       spoke: Spoke?,
       spokeId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.updateSpoke`.
-    func updateSpoke(withPolling: UpdateSpokeRequest) async throws -> any GoogleGax
+    func updateSpokePollingUntilDone(request: UpdateSpokeRequest) async throws -> any GoogleGax
       .PollableOperation<Spoke>
 
     /// See `HubServiceClient.updateSpoke`.
-    func updateSpoke(
+    func updateSpokePollingUntilDone(
       spoke: Spoke?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.rejectHubSpoke`.
-    func rejectHubSpoke(withPolling: RejectHubSpokeRequest) async throws -> any GoogleGax
-      .PollableOperation<RejectHubSpokeResponse>
+    func rejectHubSpokePollingUntilDone(request: RejectHubSpokeRequest) async throws
+      -> any GoogleGax.PollableOperation<RejectHubSpokeResponse>
 
     /// See `HubServiceClient.rejectHubSpoke`.
-    func rejectHubSpoke(
+    func rejectHubSpokePollingUntilDone(
       name: Swift.String,
       spokeUri: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RejectHubSpokeResponse>
 
     /// See `HubServiceClient.acceptHubSpoke`.
-    func acceptHubSpoke(withPolling: AcceptHubSpokeRequest) async throws -> any GoogleGax
-      .PollableOperation<AcceptHubSpokeResponse>
+    func acceptHubSpokePollingUntilDone(request: AcceptHubSpokeRequest) async throws
+      -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse>
 
     /// See `HubServiceClient.acceptHubSpoke`.
-    func acceptHubSpoke(
+    func acceptHubSpokePollingUntilDone(
       name: Swift.String,
       spokeUri: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse>
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
-    func acceptSpokeUpdate(withPolling: AcceptSpokeUpdateRequest) async throws -> any GoogleGax
-      .PollableOperation<AcceptSpokeUpdateResponse>
+    func acceptSpokeUpdatePollingUntilDone(request: AcceptSpokeUpdateRequest) async throws
+      -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse>
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
-    func acceptSpokeUpdate(
+    func acceptSpokeUpdatePollingUntilDone(
       name: Swift.String,
       spokeUri: Swift.String,
       spokeEtag: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse>
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
-    func rejectSpokeUpdate(withPolling: RejectSpokeUpdateRequest) async throws -> any GoogleGax
-      .PollableOperation<RejectSpokeUpdateResponse>
+    func rejectSpokeUpdatePollingUntilDone(request: RejectSpokeUpdateRequest) async throws
+      -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse>
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
-    func rejectSpokeUpdate(
+    func rejectSpokeUpdatePollingUntilDone(
       name: Swift.String,
       spokeUri: Swift.String,
       spokeEtag: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse>
 
     /// See `HubServiceClient.deleteSpoke`.
-    func deleteSpoke(withPolling: DeleteSpokeRequest) async throws -> any GoogleGax
+    func deleteSpokePollingUntilDone(request: DeleteSpokeRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.deleteSpoke`.
-    func deleteSpoke(
+    func deleteSpokePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.updateGroup`.
-    func updateGroup(withPolling: UpdateGroupRequest) async throws -> any GoogleGax
+    func updateGroupPollingUntilDone(request: UpdateGroupRequest) async throws -> any GoogleGax
       .PollableOperation<Group>
 
     /// See `HubServiceClient.updateGroup`.
-    func updateGroup(
+    func updateGroupPollingUntilDone(
       group: Group?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Group>
@@ -791,8 +788,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createHub`.
-    func createHub(
-      withPolling: CreateHubRequest, options: GoogleGax.RequestOptions
+    func createHubPollingUntilDone(
+      request: CreateHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.updateHub`.
@@ -801,8 +798,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateHub`.
-    func updateHub(
-      withPolling: UpdateHubRequest, options: GoogleGax.RequestOptions
+    func updateHubPollingUntilDone(
+      request: UpdateHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.deleteHub`.
@@ -811,8 +808,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.deleteHub`.
-    func deleteHub(
-      withPolling: DeleteHubRequest, options: GoogleGax.RequestOptions
+    func deleteHubPollingUntilDone(
+      request: DeleteHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.listHubSpokes`.
@@ -841,8 +838,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createSpoke`.
-    func createSpoke(
-      withPolling: CreateSpokeRequest, options: GoogleGax.RequestOptions
+    func createSpokePollingUntilDone(
+      request: CreateSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.updateSpoke`.
@@ -851,8 +848,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateSpoke`.
-    func updateSpoke(
-      withPolling: UpdateSpokeRequest, options: GoogleGax.RequestOptions
+    func updateSpokePollingUntilDone(
+      request: UpdateSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.rejectHubSpoke`.
@@ -861,8 +858,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectHubSpoke`.
-    func rejectHubSpoke(
-      withPolling: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
+    func rejectHubSpokePollingUntilDone(
+      request: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RejectHubSpokeResponse>
 
     /// See `HubServiceClient.acceptHubSpoke`.
@@ -871,8 +868,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptHubSpoke`.
-    func acceptHubSpoke(
-      withPolling: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
+    func acceptHubSpokePollingUntilDone(
+      request: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse>
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
@@ -881,8 +878,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
-    func acceptSpokeUpdate(
-      withPolling: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
+    func acceptSpokeUpdatePollingUntilDone(
+      request: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse>
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
@@ -891,8 +888,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
-    func rejectSpokeUpdate(
-      withPolling: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
+    func rejectSpokeUpdatePollingUntilDone(
+      request: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse>
 
     /// See `HubServiceClient.deleteSpoke`.
@@ -901,8 +898,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.deleteSpoke`.
-    func deleteSpoke(
-      withPolling: DeleteSpokeRequest, options: GoogleGax.RequestOptions
+    func deleteSpokePollingUntilDone(
+      request: DeleteSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.getRouteTable`.
@@ -941,8 +938,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateGroup`.
-    func updateGroup(
-      withPolling: UpdateGroupRequest, options: GoogleGax.RequestOptions
+    func updateGroupPollingUntilDone(
+      request: UpdateGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Group>
 
     /// See `HubServiceClient.listLocations`.
@@ -1060,14 +1057,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createHub(withPolling: CreateHubRequest) async throws -> any GoogleGax
+  public func createHubPollingUntilDone(request: CreateHubRequest) async throws -> any GoogleGax
     .PollableOperation<Hub>
   {
-    try await self.createHub(withPolling: withPolling, options: .init())
+    try await self.createHubPollingUntilDone(request: request, options: .init())
   }
 
-  public func createHub(
-    withPolling: CreateHubRequest, options: GoogleGax.RequestOptions
+  public func createHubPollingUntilDone(
+    request: CreateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hub> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hub>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1076,7 +1073,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createHub(
+  public func createHubPollingUntilDone(
     parent: Swift.String,
     hub: Hub?,
     hubId: Swift.String,
@@ -1086,7 +1083,7 @@ extension Clients.HubServiceProtocol {
       $0.hub = hub
       $0.hubId = hubId
     }
-    return try await self.createHub(withPolling: request)
+    return try await self.createHubPollingUntilDone(request: request)
   }
 
   public func updateHub(request: UpdateHubRequest) async throws -> GoogleLongRunning.Operation {
@@ -1099,14 +1096,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateHub(withPolling: UpdateHubRequest) async throws -> any GoogleGax
+  public func updateHubPollingUntilDone(request: UpdateHubRequest) async throws -> any GoogleGax
     .PollableOperation<Hub>
   {
-    try await self.updateHub(withPolling: withPolling, options: .init())
+    try await self.updateHubPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateHub(
-    withPolling: UpdateHubRequest, options: GoogleGax.RequestOptions
+  public func updateHubPollingUntilDone(
+    request: UpdateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hub> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hub>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1115,7 +1112,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateHub(
+  public func updateHubPollingUntilDone(
     hub: Hub?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Hub> {
@@ -1123,7 +1120,7 @@ extension Clients.HubServiceProtocol {
       $0.hub = hub
       $0.updateMask = updateMask
     }
-    return try await self.updateHub(withPolling: request)
+    return try await self.updateHubPollingUntilDone(request: request)
   }
 
   public func deleteHub(request: DeleteHubRequest) async throws -> GoogleLongRunning.Operation {
@@ -1136,14 +1133,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteHub(withPolling: DeleteHubRequest) async throws -> any GoogleGax
+  public func deleteHubPollingUntilDone(request: DeleteHubRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteHub(withPolling: withPolling, options: .init())
+    try await self.deleteHubPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteHub(
-    withPolling: DeleteHubRequest, options: GoogleGax.RequestOptions
+  public func deleteHubPollingUntilDone(
+    request: DeleteHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1152,13 +1149,13 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteHub(
+  public func deleteHubPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteHubRequest().with {
       $0.name = name
     }
-    return try await self.deleteHub(withPolling: request)
+    return try await self.deleteHubPollingUntilDone(request: request)
   }
 
   public func listHubSpokes(request: ListHubSpokesRequest) async throws
@@ -1324,14 +1321,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createSpoke(withPolling: CreateSpokeRequest) async throws -> any GoogleGax
+  public func createSpokePollingUntilDone(request: CreateSpokeRequest) async throws -> any GoogleGax
     .PollableOperation<Spoke>
   {
-    try await self.createSpoke(withPolling: withPolling, options: .init())
+    try await self.createSpokePollingUntilDone(request: request, options: .init())
   }
 
-  public func createSpoke(
-    withPolling: CreateSpokeRequest, options: GoogleGax.RequestOptions
+  public func createSpokePollingUntilDone(
+    request: CreateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Spoke> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Spoke>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1340,7 +1337,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createSpoke(
+  public func createSpokePollingUntilDone(
     parent: Swift.String,
     spoke: Spoke?,
     spokeId: Swift.String,
@@ -1350,7 +1347,7 @@ extension Clients.HubServiceProtocol {
       $0.spoke = spoke
       $0.spokeId = spokeId
     }
-    return try await self.createSpoke(withPolling: request)
+    return try await self.createSpokePollingUntilDone(request: request)
   }
 
   public func updateSpoke(request: UpdateSpokeRequest) async throws -> GoogleLongRunning.Operation {
@@ -1363,14 +1360,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateSpoke(withPolling: UpdateSpokeRequest) async throws -> any GoogleGax
+  public func updateSpokePollingUntilDone(request: UpdateSpokeRequest) async throws -> any GoogleGax
     .PollableOperation<Spoke>
   {
-    try await self.updateSpoke(withPolling: withPolling, options: .init())
+    try await self.updateSpokePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateSpoke(
-    withPolling: UpdateSpokeRequest, options: GoogleGax.RequestOptions
+  public func updateSpokePollingUntilDone(
+    request: UpdateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Spoke> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Spoke>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1379,7 +1376,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateSpoke(
+  public func updateSpokePollingUntilDone(
     spoke: Spoke?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Spoke> {
@@ -1387,7 +1384,7 @@ extension Clients.HubServiceProtocol {
       $0.spoke = spoke
       $0.updateMask = updateMask
     }
-    return try await self.updateSpoke(withPolling: request)
+    return try await self.updateSpokePollingUntilDone(request: request)
   }
 
   public func rejectHubSpoke(request: RejectHubSpokeRequest) async throws
@@ -1402,14 +1399,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func rejectHubSpoke(withPolling: RejectHubSpokeRequest) async throws -> any GoogleGax
-    .PollableOperation<RejectHubSpokeResponse>
+  public func rejectHubSpokePollingUntilDone(request: RejectHubSpokeRequest) async throws
+    -> any GoogleGax.PollableOperation<RejectHubSpokeResponse>
   {
-    try await self.rejectHubSpoke(withPolling: withPolling, options: .init())
+    try await self.rejectHubSpokePollingUntilDone(request: request, options: .init())
   }
 
-  public func rejectHubSpoke(
-    withPolling: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
+  public func rejectHubSpokePollingUntilDone(
+    request: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RejectHubSpokeResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<RejectHubSpokeResponse>.State in
@@ -1419,7 +1416,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func rejectHubSpoke(
+  public func rejectHubSpokePollingUntilDone(
     name: Swift.String,
     spokeUri: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<RejectHubSpokeResponse> {
@@ -1427,7 +1424,7 @@ extension Clients.HubServiceProtocol {
       $0.name = name
       $0.spokeUri = spokeUri
     }
-    return try await self.rejectHubSpoke(withPolling: request)
+    return try await self.rejectHubSpokePollingUntilDone(request: request)
   }
 
   public func acceptHubSpoke(request: AcceptHubSpokeRequest) async throws
@@ -1442,14 +1439,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func acceptHubSpoke(withPolling: AcceptHubSpokeRequest) async throws -> any GoogleGax
-    .PollableOperation<AcceptHubSpokeResponse>
+  public func acceptHubSpokePollingUntilDone(request: AcceptHubSpokeRequest) async throws
+    -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse>
   {
-    try await self.acceptHubSpoke(withPolling: withPolling, options: .init())
+    try await self.acceptHubSpokePollingUntilDone(request: request, options: .init())
   }
 
-  public func acceptHubSpoke(
-    withPolling: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
+  public func acceptHubSpokePollingUntilDone(
+    request: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AcceptHubSpokeResponse>.State in
@@ -1459,7 +1456,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func acceptHubSpoke(
+  public func acceptHubSpokePollingUntilDone(
     name: Swift.String,
     spokeUri: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<AcceptHubSpokeResponse> {
@@ -1467,7 +1464,7 @@ extension Clients.HubServiceProtocol {
       $0.name = name
       $0.spokeUri = spokeUri
     }
-    return try await self.acceptHubSpoke(withPolling: request)
+    return try await self.acceptHubSpokePollingUntilDone(request: request)
   }
 
   public func acceptSpokeUpdate(request: AcceptSpokeUpdateRequest) async throws
@@ -1482,14 +1479,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func acceptSpokeUpdate(withPolling: AcceptSpokeUpdateRequest) async throws -> any GoogleGax
-    .PollableOperation<AcceptSpokeUpdateResponse>
+  public func acceptSpokeUpdatePollingUntilDone(request: AcceptSpokeUpdateRequest) async throws
+    -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse>
   {
-    try await self.acceptSpokeUpdate(withPolling: withPolling, options: .init())
+    try await self.acceptSpokeUpdatePollingUntilDone(request: request, options: .init())
   }
 
-  public func acceptSpokeUpdate(
-    withPolling: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
+  public func acceptSpokeUpdatePollingUntilDone(
+    request: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AcceptSpokeUpdateResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AcceptSpokeUpdateResponse>.State in
@@ -1499,7 +1496,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func acceptSpokeUpdate(
+  public func acceptSpokeUpdatePollingUntilDone(
     name: Swift.String,
     spokeUri: Swift.String,
     spokeEtag: Swift.String,
@@ -1509,7 +1506,7 @@ extension Clients.HubServiceProtocol {
       $0.spokeUri = spokeUri
       $0.spokeEtag = spokeEtag
     }
-    return try await self.acceptSpokeUpdate(withPolling: request)
+    return try await self.acceptSpokeUpdatePollingUntilDone(request: request)
   }
 
   public func rejectSpokeUpdate(request: RejectSpokeUpdateRequest) async throws
@@ -1524,14 +1521,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func rejectSpokeUpdate(withPolling: RejectSpokeUpdateRequest) async throws -> any GoogleGax
-    .PollableOperation<RejectSpokeUpdateResponse>
+  public func rejectSpokeUpdatePollingUntilDone(request: RejectSpokeUpdateRequest) async throws
+    -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse>
   {
-    try await self.rejectSpokeUpdate(withPolling: withPolling, options: .init())
+    try await self.rejectSpokeUpdatePollingUntilDone(request: request, options: .init())
   }
 
-  public func rejectSpokeUpdate(
-    withPolling: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
+  public func rejectSpokeUpdatePollingUntilDone(
+    request: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RejectSpokeUpdateResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<RejectSpokeUpdateResponse>.State in
@@ -1541,7 +1538,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func rejectSpokeUpdate(
+  public func rejectSpokeUpdatePollingUntilDone(
     name: Swift.String,
     spokeUri: Swift.String,
     spokeEtag: Swift.String,
@@ -1551,7 +1548,7 @@ extension Clients.HubServiceProtocol {
       $0.spokeUri = spokeUri
       $0.spokeEtag = spokeEtag
     }
-    return try await self.rejectSpokeUpdate(withPolling: request)
+    return try await self.rejectSpokeUpdatePollingUntilDone(request: request)
   }
 
   public func deleteSpoke(request: DeleteSpokeRequest) async throws -> GoogleLongRunning.Operation {
@@ -1564,14 +1561,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSpoke(withPolling: DeleteSpokeRequest) async throws -> any GoogleGax
+  public func deleteSpokePollingUntilDone(request: DeleteSpokeRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteSpoke(withPolling: withPolling, options: .init())
+    try await self.deleteSpokePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteSpoke(
-    withPolling: DeleteSpokeRequest, options: GoogleGax.RequestOptions
+  public func deleteSpokePollingUntilDone(
+    request: DeleteSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1580,13 +1577,13 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteSpoke(
+  public func deleteSpokePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteSpokeRequest().with {
       $0.name = name
     }
-    return try await self.deleteSpoke(withPolling: request)
+    return try await self.deleteSpokePollingUntilDone(request: request)
   }
 
   public func getRouteTable(request: GetRouteTableRequest) async throws
@@ -1789,14 +1786,14 @@ extension Clients.HubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateGroup(withPolling: UpdateGroupRequest) async throws -> any GoogleGax
+  public func updateGroupPollingUntilDone(request: UpdateGroupRequest) async throws -> any GoogleGax
     .PollableOperation<Group>
   {
-    try await self.updateGroup(withPolling: withPolling, options: .init())
+    try await self.updateGroupPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateGroup(
-    withPolling: UpdateGroupRequest, options: GoogleGax.RequestOptions
+  public func updateGroupPollingUntilDone(
+    request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Group> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Group>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1805,7 +1802,7 @@ extension Clients.HubServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateGroup(
+  public func updateGroupPollingUntilDone(
     group: Group?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Group> {
@@ -1813,7 +1810,7 @@ extension Clients.HubServiceProtocol {
       $0.group = group
       $0.updateMask = updateMask
     }
-    return try await self.updateGroup(withPolling: request)
+    return try await self.updateGroupPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

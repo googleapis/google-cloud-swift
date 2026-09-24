@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, tcpRouteId: String
 ) async throws {
-  let poller = try await client.updateTcpRoute(
-    withPolling: UpdateTcpRouteRequest()
+  let poller = try await client.updateTcpRoutePollingUntilDone(
+    request: UpdateTcpRouteRequest()
       .with {
         $0.tcpRoute = TcpRoute().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/tcpRoutes/\(tcpRouteId)"

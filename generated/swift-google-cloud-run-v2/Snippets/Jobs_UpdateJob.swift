@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: JobsClient, projectId: String, locationId: String, jobId: String) async throws {
-  let poller = try await client.updateJob(
-    withPolling: UpdateJobRequest()
+  let poller = try await client.updateJobPollingUntilDone(
+    request: UpdateJobRequest()
       .with {
         $0.job = Job().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)"

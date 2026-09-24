@@ -78,8 +78,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// and location.
   ///
   /// @Snippet(path: "DataTransferService_CreateMulticloudDataTransferConfig")
-  public func createMulticloudDataTransferConfig(
-    withPolling: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+  public func createMulticloudDataTransferConfigPollingUntilDone(
+    request: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
@@ -87,7 +87,7 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
       return try op._extractStatus(MulticloudDataTransferConfig.self)
     }
     let rawOp = try await self.createMulticloudDataTransferConfig(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MulticloudDataTransferConfig>.State in
@@ -117,8 +117,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// and location.
   ///
   /// @Snippet(path: "DataTransferService_UpdateMulticloudDataTransferConfig")
-  public func updateMulticloudDataTransferConfig(
-    withPolling: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+  public func updateMulticloudDataTransferConfigPollingUntilDone(
+    request: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
@@ -126,7 +126,7 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
       return try op._extractStatus(MulticloudDataTransferConfig.self)
     }
     let rawOp = try await self.updateMulticloudDataTransferConfig(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MulticloudDataTransferConfig>.State in
@@ -154,8 +154,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// Deletes a `MulticloudDataTransferConfig` resource.
   ///
   /// @Snippet(path: "DataTransferService_DeleteMulticloudDataTransferConfig")
-  public func deleteMulticloudDataTransferConfig(
-    withPolling: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteMulticloudDataTransferConfigPollingUntilDone(
+    request: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
@@ -163,7 +163,7 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteMulticloudDataTransferConfig(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -208,15 +208,15 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// Creates a `Destination` resource in a specified project and location.
   ///
   /// @Snippet(path: "DataTransferService_CreateDestination")
-  public func createDestination(
-    withPolling: CreateDestinationRequest, options: GoogleGax.RequestOptions
+  public func createDestinationPollingUntilDone(
+    request: CreateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Destination> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Destination>.State in
       return try op._extractStatus(Destination.self)
     }
-    let rawOp = try await self.createDestination(request: withPolling, options: options)
+    let rawOp = try await self.createDestination(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Destination>.State in
       let op = try await self.getOperation(
@@ -243,15 +243,15 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// Updates a `Destination` resource in a specified project and location.
   ///
   /// @Snippet(path: "DataTransferService_UpdateDestination")
-  public func updateDestination(
-    withPolling: UpdateDestinationRequest, options: GoogleGax.RequestOptions
+  public func updateDestinationPollingUntilDone(
+    request: UpdateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Destination> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Destination>.State in
       return try op._extractStatus(Destination.self)
     }
-    let rawOp = try await self.updateDestination(request: withPolling, options: options)
+    let rawOp = try await self.updateDestination(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Destination>.State in
       let op = try await self.getOperation(
@@ -278,15 +278,15 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// Deletes a `Destination` resource.
   ///
   /// @Snippet(path: "DataTransferService_DeleteDestination")
-  public func deleteDestination(
-    withPolling: DeleteDestinationRequest, options: GoogleGax.RequestOptions
+  public func deleteDestinationPollingUntilDone(
+    request: DeleteDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDestination(request: withPolling, options: options)
+    let rawOp = try await self.deleteDestination(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -434,62 +434,65 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataTransferServiceProtocol: Sendable {
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
-    func createMulticloudDataTransferConfig(withPolling: CreateMulticloudDataTransferConfigRequest)
-      async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
+    func createMulticloudDataTransferConfigPollingUntilDone(
+      request: CreateMulticloudDataTransferConfigRequest
+    ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
-    func createMulticloudDataTransferConfig(
+    func createMulticloudDataTransferConfigPollingUntilDone(
       parent: Swift.String,
       multicloudDataTransferConfig: MulticloudDataTransferConfig?,
       multicloudDataTransferConfigId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
-    func updateMulticloudDataTransferConfig(withPolling: UpdateMulticloudDataTransferConfigRequest)
-      async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
+    func updateMulticloudDataTransferConfigPollingUntilDone(
+      request: UpdateMulticloudDataTransferConfigRequest
+    ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
-    func updateMulticloudDataTransferConfig(
+    func updateMulticloudDataTransferConfigPollingUntilDone(
       multicloudDataTransferConfig: MulticloudDataTransferConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
-    func deleteMulticloudDataTransferConfig(withPolling: DeleteMulticloudDataTransferConfigRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteMulticloudDataTransferConfigPollingUntilDone(
+      request: DeleteMulticloudDataTransferConfigRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
-    func deleteMulticloudDataTransferConfig(
+    func deleteMulticloudDataTransferConfigPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTransferServiceClient.createDestination`.
-    func createDestination(withPolling: CreateDestinationRequest) async throws -> any GoogleGax
-      .PollableOperation<Destination>
+    func createDestinationPollingUntilDone(request: CreateDestinationRequest) async throws
+      -> any GoogleGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.createDestination`.
-    func createDestination(
+    func createDestinationPollingUntilDone(
       parent: Swift.String,
       destination: Destination?,
       destinationId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.updateDestination`.
-    func updateDestination(withPolling: UpdateDestinationRequest) async throws -> any GoogleGax
-      .PollableOperation<Destination>
+    func updateDestinationPollingUntilDone(request: UpdateDestinationRequest) async throws
+      -> any GoogleGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.updateDestination`.
-    func updateDestination(
+    func updateDestinationPollingUntilDone(
       destination: Destination?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.deleteDestination`.
-    func deleteDestination(withPolling: DeleteDestinationRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteDestinationPollingUntilDone(request: DeleteDestinationRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTransferServiceClient.deleteDestination`.
-    func deleteDestination(
+    func deleteDestinationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -509,8 +512,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
-    func createMulticloudDataTransferConfig(
-      withPolling: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+    func createMulticloudDataTransferConfigPollingUntilDone(
+      request: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
@@ -519,8 +522,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
-    func updateMulticloudDataTransferConfig(
-      withPolling: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+    func updateMulticloudDataTransferConfigPollingUntilDone(
+      request: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
@@ -529,8 +532,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
-    func deleteMulticloudDataTransferConfig(
-      withPolling: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+    func deleteMulticloudDataTransferConfigPollingUntilDone(
+      request: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTransferServiceClient.listDestinations`.
@@ -549,8 +552,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.createDestination`.
-    func createDestination(
-      withPolling: CreateDestinationRequest, options: GoogleGax.RequestOptions
+    func createDestinationPollingUntilDone(
+      request: CreateDestinationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.updateDestination`.
@@ -559,8 +562,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.updateDestination`.
-    func updateDestination(
-      withPolling: UpdateDestinationRequest, options: GoogleGax.RequestOptions
+    func updateDestinationPollingUntilDone(
+      request: UpdateDestinationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.deleteDestination`.
@@ -569,8 +572,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.deleteDestination`.
-    func deleteDestination(
-      withPolling: DeleteDestinationRequest, options: GoogleGax.RequestOptions
+    func deleteDestinationPollingUntilDone(
+      request: DeleteDestinationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTransferServiceClient.getMulticloudDataTransferSupportedService`.
@@ -705,14 +708,15 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMulticloudDataTransferConfig(
-    withPolling: CreateMulticloudDataTransferConfigRequest
+  public func createMulticloudDataTransferConfigPollingUntilDone(
+    request: CreateMulticloudDataTransferConfigRequest
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
-    try await self.createMulticloudDataTransferConfig(withPolling: withPolling, options: .init())
+    try await self.createMulticloudDataTransferConfigPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func createMulticloudDataTransferConfig(
-    withPolling: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+  public func createMulticloudDataTransferConfigPollingUntilDone(
+    request: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MulticloudDataTransferConfig>.State in
@@ -722,7 +726,7 @@ extension Clients.DataTransferServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMulticloudDataTransferConfig(
+  public func createMulticloudDataTransferConfigPollingUntilDone(
     parent: Swift.String,
     multicloudDataTransferConfig: MulticloudDataTransferConfig?,
     multicloudDataTransferConfigId: Swift.String,
@@ -732,7 +736,7 @@ extension Clients.DataTransferServiceProtocol {
       $0.multicloudDataTransferConfig = multicloudDataTransferConfig
       $0.multicloudDataTransferConfigId = multicloudDataTransferConfigId
     }
-    return try await self.createMulticloudDataTransferConfig(withPolling: request)
+    return try await self.createMulticloudDataTransferConfigPollingUntilDone(request: request)
   }
 
   public func updateMulticloudDataTransferConfig(request: UpdateMulticloudDataTransferConfigRequest)
@@ -747,14 +751,15 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMulticloudDataTransferConfig(
-    withPolling: UpdateMulticloudDataTransferConfigRequest
+  public func updateMulticloudDataTransferConfigPollingUntilDone(
+    request: UpdateMulticloudDataTransferConfigRequest
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
-    try await self.updateMulticloudDataTransferConfig(withPolling: withPolling, options: .init())
+    try await self.updateMulticloudDataTransferConfigPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func updateMulticloudDataTransferConfig(
-    withPolling: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+  public func updateMulticloudDataTransferConfigPollingUntilDone(
+    request: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MulticloudDataTransferConfig>.State in
@@ -764,7 +769,7 @@ extension Clients.DataTransferServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMulticloudDataTransferConfig(
+  public func updateMulticloudDataTransferConfigPollingUntilDone(
     multicloudDataTransferConfig: MulticloudDataTransferConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MulticloudDataTransferConfig> {
@@ -772,7 +777,7 @@ extension Clients.DataTransferServiceProtocol {
       $0.multicloudDataTransferConfig = multicloudDataTransferConfig
       $0.updateMask = updateMask
     }
-    return try await self.updateMulticloudDataTransferConfig(withPolling: request)
+    return try await self.updateMulticloudDataTransferConfigPollingUntilDone(request: request)
   }
 
   public func deleteMulticloudDataTransferConfig(request: DeleteMulticloudDataTransferConfigRequest)
@@ -787,14 +792,15 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMulticloudDataTransferConfig(
-    withPolling: DeleteMulticloudDataTransferConfigRequest
+  public func deleteMulticloudDataTransferConfigPollingUntilDone(
+    request: DeleteMulticloudDataTransferConfigRequest
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    try await self.deleteMulticloudDataTransferConfig(withPolling: withPolling, options: .init())
+    try await self.deleteMulticloudDataTransferConfigPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func deleteMulticloudDataTransferConfig(
-    withPolling: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteMulticloudDataTransferConfigPollingUntilDone(
+    request: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -803,13 +809,13 @@ extension Clients.DataTransferServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMulticloudDataTransferConfig(
+  public func deleteMulticloudDataTransferConfigPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMulticloudDataTransferConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteMulticloudDataTransferConfig(withPolling: request)
+    return try await self.deleteMulticloudDataTransferConfigPollingUntilDone(request: request)
   }
 
   public func listDestinations(request: ListDestinationsRequest) async throws
@@ -888,14 +894,14 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createDestination(withPolling: CreateDestinationRequest) async throws -> any GoogleGax
-    .PollableOperation<Destination>
+  public func createDestinationPollingUntilDone(request: CreateDestinationRequest) async throws
+    -> any GoogleGax.PollableOperation<Destination>
   {
-    try await self.createDestination(withPolling: withPolling, options: .init())
+    try await self.createDestinationPollingUntilDone(request: request, options: .init())
   }
 
-  public func createDestination(
-    withPolling: CreateDestinationRequest, options: GoogleGax.RequestOptions
+  public func createDestinationPollingUntilDone(
+    request: CreateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Destination> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Destination>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -904,7 +910,7 @@ extension Clients.DataTransferServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createDestination(
+  public func createDestinationPollingUntilDone(
     parent: Swift.String,
     destination: Destination?,
     destinationId: Swift.String,
@@ -914,7 +920,7 @@ extension Clients.DataTransferServiceProtocol {
       $0.destination = destination
       $0.destinationId = destinationId
     }
-    return try await self.createDestination(withPolling: request)
+    return try await self.createDestinationPollingUntilDone(request: request)
   }
 
   public func updateDestination(request: UpdateDestinationRequest) async throws
@@ -929,14 +935,14 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateDestination(withPolling: UpdateDestinationRequest) async throws -> any GoogleGax
-    .PollableOperation<Destination>
+  public func updateDestinationPollingUntilDone(request: UpdateDestinationRequest) async throws
+    -> any GoogleGax.PollableOperation<Destination>
   {
-    try await self.updateDestination(withPolling: withPolling, options: .init())
+    try await self.updateDestinationPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateDestination(
-    withPolling: UpdateDestinationRequest, options: GoogleGax.RequestOptions
+  public func updateDestinationPollingUntilDone(
+    request: UpdateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Destination> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Destination>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -945,7 +951,7 @@ extension Clients.DataTransferServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateDestination(
+  public func updateDestinationPollingUntilDone(
     destination: Destination?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Destination> {
@@ -953,7 +959,7 @@ extension Clients.DataTransferServiceProtocol {
       $0.destination = destination
       $0.updateMask = updateMask
     }
-    return try await self.updateDestination(withPolling: request)
+    return try await self.updateDestinationPollingUntilDone(request: request)
   }
 
   public func deleteDestination(request: DeleteDestinationRequest) async throws
@@ -968,14 +974,14 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDestination(withPolling: DeleteDestinationRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteDestinationPollingUntilDone(request: DeleteDestinationRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteDestination(withPolling: withPolling, options: .init())
+    try await self.deleteDestinationPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteDestination(
-    withPolling: DeleteDestinationRequest, options: GoogleGax.RequestOptions
+  public func deleteDestinationPollingUntilDone(
+    request: DeleteDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -984,13 +990,13 @@ extension Clients.DataTransferServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteDestination(
+  public func deleteDestinationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDestinationRequest().with {
       $0.name = name
     }
-    return try await self.deleteDestination(withPolling: request)
+    return try await self.deleteDestinationPollingUntilDone(request: request)
   }
 
   public func getMulticloudDataTransferSupportedService(

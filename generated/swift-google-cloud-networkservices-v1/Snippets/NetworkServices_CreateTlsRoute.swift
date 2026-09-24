@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createTlsRoute(
-    withPolling: CreateTlsRouteRequest()
+  let poller = try await client.createTlsRoutePollingUntilDone(
+    request: CreateTlsRouteRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.tlsRoute = TlsRoute() /* .with { ... } */

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InterconnectGroupsClient) async throws {
-    let poller = try await client.delete(
-      withPolling: InterconnectGroupsClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: InterconnectGroupsClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

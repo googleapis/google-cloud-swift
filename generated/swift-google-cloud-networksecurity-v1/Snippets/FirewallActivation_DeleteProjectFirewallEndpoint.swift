@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FirewallActivationClient) async throws {
-  let poller = try await client.deleteProjectFirewallEndpoint(
-    withPolling: DeleteFirewallEndpointRequest()
+  let poller = try await client.deleteProjectFirewallEndpointPollingUntilDone(
+    request: DeleteFirewallEndpointRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

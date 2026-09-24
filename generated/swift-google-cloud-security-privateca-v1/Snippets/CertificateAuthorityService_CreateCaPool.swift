@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateAuthorityServiceClient, parent: String) async throws {
-  let poller = try await client.createCaPool(
-    withPolling: CreateCaPoolRequest()
+  let poller = try await client.createCaPoolPollingUntilDone(
+    request: CreateCaPoolRequest()
       .with {
         $0.parent = "\(parent)"
         $0.caPool = CaPool() /* .with { ... } */

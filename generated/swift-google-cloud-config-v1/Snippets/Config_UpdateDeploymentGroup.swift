@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, deploymentGroupId: String)
   async throws
 {
-  let poller = try await client.updateDeploymentGroup(
-    withPolling: UpdateDeploymentGroupRequest()
+  let poller = try await client.updateDeploymentGroupPollingUntilDone(
+    request: UpdateDeploymentGroupRequest()
       .with {
         $0.deploymentGroup = DeploymentGroup().with {
           $0.name =

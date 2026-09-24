@@ -54,8 +54,8 @@
     /// Deletes the specified externalVpnGateway.
     ///
     /// @Snippet(path: "externalVpnGateways_delete")
-    public func delete(
-      withPolling: ExternalVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: ExternalVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -71,14 +71,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.delete(request: withPolling, options: options)
+      let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -114,8 +114,8 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "externalVpnGateways_insert")
-    public func insert(
-      withPolling: ExternalVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: ExternalVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -131,14 +131,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.insert(request: withPolling, options: options)
+      let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -176,8 +176,8 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "externalVpnGateways_setLabels")
-    public func setLabels(
-      withPolling: ExternalVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+    public func setLabelsPollingUntilDone(
+      request: ExternalVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -193,14 +193,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.setLabels(request: withPolling, options: options)
+      let rawOp = try await self.setLabels(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -286,14 +286,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func delete(
-      withPolling: ExternalVpnGatewaysClient.DeleteRequest
+    public func deletePollingUntilDone(
+      request: ExternalVpnGatewaysClient.DeleteRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.delete(withPolling: withPolling, options: .init())
+      try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
-    public func delete(
-      withPolling: ExternalVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: ExternalVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -303,7 +303,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func delete(
+    public func deletePollingUntilDone(
       project: Swift.String,
       externalVpnGateway: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -311,7 +311,7 @@
         $0.project = project
         $0.externalVpnGateway = externalVpnGateway
       }
-      return try await self.delete(withPolling: request)
+      return try await self.deletePollingUntilDone(request: request)
     }
 
     public func `get`(request: ExternalVpnGatewaysClient.GetRequest) async throws
@@ -349,14 +349,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func insert(
-      withPolling: ExternalVpnGatewaysClient.InsertRequest
+    public func insertPollingUntilDone(
+      request: ExternalVpnGatewaysClient.InsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insert(withPolling: withPolling, options: .init())
+      try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
-    public func insert(
-      withPolling: ExternalVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: ExternalVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -366,7 +366,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func insert(
+    public func insertPollingUntilDone(
       project: Swift.String,
       body: ExternalVpnGateway?,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -374,7 +374,7 @@
         $0.project = project
         $0.body = body
       }
-      return try await self.insert(withPolling: request)
+      return try await self.insertPollingUntilDone(request: request)
     }
 
     public func list(request: ExternalVpnGatewaysClient.ListRequest) async throws
@@ -432,14 +432,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func setLabels(
-      withPolling: ExternalVpnGatewaysClient.SetLabelsRequest
+    public func setLabelsPollingUntilDone(
+      request: ExternalVpnGatewaysClient.SetLabelsRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setLabels(withPolling: withPolling, options: .init())
+      try await self.setLabelsPollingUntilDone(request: request, options: .init())
     }
 
-    public func setLabels(
-      withPolling: ExternalVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+    public func setLabelsPollingUntilDone(
+      request: ExternalVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -449,7 +449,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func setLabels(
+    public func setLabelsPollingUntilDone(
       project: Swift.String,
       resource: Swift.String,
       body: GlobalSetLabelsRequest?,
@@ -459,7 +459,7 @@
         $0.resource = resource
         $0.body = body
       }
-      return try await self.setLabels(withPolling: request)
+      return try await self.setLabelsPollingUntilDone(request: request)
     }
 
     public func testIamPermissions(request: ExternalVpnGatewaysClient.TestIamPermissionsRequest)

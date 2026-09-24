@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: ManagedZonesClient) async throws {
-  let poller = try await client.patch(
-    withPolling: ManagedZonesClient.PatchRequest()
+  let poller = try await client.patchPollingUntilDone(
+    request: ManagedZonesClient.PatchRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

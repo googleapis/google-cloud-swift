@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PrivilegedAccessManagerClient) async throws {
-  let poller = try await client.revokeGrant(
-    withPolling: RevokeGrantRequest()
+  let poller = try await client.revokeGrantPollingUntilDone(
+    request: RevokeGrantRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

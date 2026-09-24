@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetHttpsProxiesClient) async throws {
-    let poller = try await client.setSslPolicy(
-      withPolling: TargetHttpsProxiesClient.SetSslPolicyRequest()
+    let poller = try await client.setSslPolicyPollingUntilDone(
+      request: TargetHttpsProxiesClient.SetSslPolicyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

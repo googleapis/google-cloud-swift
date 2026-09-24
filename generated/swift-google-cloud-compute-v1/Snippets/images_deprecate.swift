@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ImagesClient) async throws {
-    let poller = try await client.deprecate(
-      withPolling: ImagesClient.DeprecateRequest()
+    let poller = try await client.deprecatePollingUntilDone(
+      request: ImagesClient.DeprecateRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: WarehouseClient, projectId: String, locationId: String, indexEndpointId: String)
   async throws
 {
-  let poller = try await client.updateIndexEndpoint(
-    withPolling: UpdateIndexEndpointRequest()
+  let poller = try await client.updateIndexEndpointPollingUntilDone(
+    request: UpdateIndexEndpointRequest()
       .with {
         $0.indexEndpoint = IndexEndpoint().with {
           $0.name =

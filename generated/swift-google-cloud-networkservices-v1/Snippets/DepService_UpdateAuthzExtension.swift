@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DepServiceClient, projectId: String, locationId: String, authzExtensionId: String
 ) async throws {
-  let poller = try await client.updateAuthzExtension(
-    withPolling: UpdateAuthzExtensionRequest()
+  let poller = try await client.updateAuthzExtensionPollingUntilDone(
+    request: UpdateAuthzExtensionRequest()
       .with {
         $0.authzExtension = AuthzExtension().with {
           $0.name =

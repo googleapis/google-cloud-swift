@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   gatewaySecurityPolicyId: String
 ) async throws {
-  let poller = try await client.updateGatewaySecurityPolicy(
-    withPolling: UpdateGatewaySecurityPolicyRequest()
+  let poller = try await client.updateGatewaySecurityPolicyPollingUntilDone(
+    request: UpdateGatewaySecurityPolicyRequest()
       .with {
         $0.gatewaySecurityPolicy = GatewaySecurityPolicy().with {
           $0.name =

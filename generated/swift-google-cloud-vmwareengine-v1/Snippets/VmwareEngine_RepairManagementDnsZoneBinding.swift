@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient) async throws {
-  let poller = try await client.repairManagementDnsZoneBinding(
-    withPolling: RepairManagementDnsZoneBindingRequest()
+  let poller = try await client.repairManagementDnsZoneBindingPollingUntilDone(
+    request: RepairManagementDnsZoneBindingRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

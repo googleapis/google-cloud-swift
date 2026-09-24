@@ -23,8 +23,8 @@
   import GoogleLongRunning
 
   func sample(client: ConversationDatasetsClient, parent: String) async throws {
-    let poller = try await client.createConversationDataset(
-      withPolling: CreateConversationDatasetRequest()
+    let poller = try await client.createConversationDatasetPollingUntilDone(
+      request: CreateConversationDatasetRequest()
         .with {
           $0.parent = "\(parent)"
           $0.conversationDataset = ConversationDataset() /* .with { ... } */

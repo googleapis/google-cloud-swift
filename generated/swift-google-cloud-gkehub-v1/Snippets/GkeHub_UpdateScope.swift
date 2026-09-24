@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let poller = try await client.updateScope(
-    withPolling: UpdateScopeRequest()
+  let poller = try await client.updateScopePollingUntilDone(
+    request: UpdateScopeRequest()
       .with {
         $0.scope = Scope().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"

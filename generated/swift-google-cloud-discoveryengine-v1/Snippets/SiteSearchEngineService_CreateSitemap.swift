@@ -25,8 +25,8 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String
   ) async throws {
-    let poller = try await client.createSitemap(
-      withPolling: CreateSitemapRequest()
+    let poller = try await client.createSitemapPollingUntilDone(
+      request: CreateSitemapRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/siteSearchEngine"

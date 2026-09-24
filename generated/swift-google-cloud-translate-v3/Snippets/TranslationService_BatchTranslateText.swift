@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TranslationServiceClient) async throws {
-  let poller = try await client.batchTranslateText(
-    withPolling: BatchTranslateTextRequest()
+  let poller = try await client.batchTranslateTextPollingUntilDone(
+    request: BatchTranslateTextRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

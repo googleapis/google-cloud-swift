@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: VpcAccessServiceClient, parent: String) async throws {
-  let poller = try await client.createConnector(
-    withPolling: CreateConnectorRequest()
+  let poller = try await client.createConnectorPollingUntilDone(
+    request: CreateConnectorRequest()
       .with {
         $0.parent = "\(parent)"
         $0.connectorId = "[replace with a valid ID]"

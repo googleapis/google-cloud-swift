@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.updateSettings(
-    withPolling: UpdateSettingsRequest()
+  let poller = try await client.updateSettingsPollingUntilDone(
+    request: UpdateSettingsRequest()
       .with {
         $0.settings = Settings().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/settings"

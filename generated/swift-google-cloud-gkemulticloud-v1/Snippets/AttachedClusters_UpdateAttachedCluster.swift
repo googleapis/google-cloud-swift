@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: AttachedClustersClient, projectId: String, locationId: String, attachedClusterId: String
 ) async throws {
-  let poller = try await client.updateAttachedCluster(
-    withPolling: UpdateAttachedClusterRequest()
+  let poller = try await client.updateAttachedClusterPollingUntilDone(
+    request: UpdateAttachedClusterRequest()
       .with {
         $0.attachedCluster = AttachedCluster().with {
           $0.name =

@@ -21,8 +21,8 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagBindingsClient, tagBindingId: String) async throws {
-  let poller = try await client.deleteTagBinding(
-    withPolling: DeleteTagBindingRequest()
+  let poller = try await client.deleteTagBindingPollingUntilDone(
+    request: DeleteTagBindingRequest()
       .with {
         $0.name = "tagBindings/\(tagBindingId)"
       }

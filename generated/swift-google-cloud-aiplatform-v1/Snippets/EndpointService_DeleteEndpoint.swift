@@ -27,8 +27,8 @@
   func sample(
     client: EndpointServiceClient, projectId: String, locationId: String, endpointId: String
   ) async throws {
-    let poller = try await client.deleteEndpoint(
-      withPolling: DeleteEndpointRequest()
+    let poller = try await client.deleteEndpointPollingUntilDone(
+      request: DeleteEndpointRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/endpoints/\(endpointId)"
         }

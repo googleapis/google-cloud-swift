@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiKeysClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createKey(
-    withPolling: CreateKeyRequest()
+  let poller = try await client.createKeyPollingUntilDone(
+    request: CreateKeyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.keyId = "[replace with a valid ID]"

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String)
   async throws
 {
-  let poller = try await client.createNetwork(
-    withPolling: CreateNetworkRequest()
+  let poller = try await client.createNetworkPollingUntilDone(
+    request: CreateNetworkRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)"
         $0.networkId = "[replace with a valid ID]"

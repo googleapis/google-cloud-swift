@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createExascaleDbStorageVault(
-    withPolling: CreateExascaleDbStorageVaultRequest()
+  let poller = try await client.createExascaleDbStorageVaultPollingUntilDone(
+    request: CreateExascaleDbStorageVaultRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.exascaleDbStorageVault = ExascaleDbStorageVault() /* .with { ... } */

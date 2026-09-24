@@ -27,8 +27,8 @@
   func sample(
     client: ScheduleServiceClient, projectId: String, locationId: String, scheduleId: String
   ) async throws {
-    let poller = try await client.deleteSchedule(
-      withPolling: DeleteScheduleRequest()
+    let poller = try await client.deleteSchedulePollingUntilDone(
+      request: DeleteScheduleRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/schedules/\(scheduleId)"
         }

@@ -27,8 +27,8 @@ func sample(
   client: KeyManagementServiceClient, projectId: String, locationId: String, keyRingId: String,
   cryptoKeyId: String
 ) async throws {
-  let poller = try await client.deleteCryptoKey(
-    withPolling: DeleteCryptoKeyRequest()
+  let poller = try await client.deleteCryptoKeyPollingUntilDone(
+    request: DeleteCryptoKeyRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/keyRings/\(keyRingId)/cryptoKeys/\(cryptoKeyId)"

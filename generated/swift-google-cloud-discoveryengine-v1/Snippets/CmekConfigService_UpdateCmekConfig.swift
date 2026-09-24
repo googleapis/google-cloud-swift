@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: CmekConfigServiceClient, projectId: String, locationId: String) async throws {
-    let poller = try await client.updateCmekConfig(
-      withPolling: UpdateCmekConfigRequest()
+    let poller = try await client.updateCmekConfigPollingUntilDone(
+      request: UpdateCmekConfigRequest()
         .with {
           $0.config = CmekConfig().with {
             $0.name = "projects/\(projectId)/locations/\(locationId)/cmekConfig"

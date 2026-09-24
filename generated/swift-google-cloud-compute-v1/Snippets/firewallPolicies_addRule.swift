@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: FirewallPoliciesClient) async throws {
-    let poller = try await client.addRule(
-      withPolling: FirewallPoliciesClient.AddRuleRequest()
+    let poller = try await client.addRulePollingUntilDone(
+      request: FirewallPoliciesClient.AddRuleRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String
 ) async throws {
-  let poller = try await client.createDataAsset(
-    withPolling: CreateDataAssetRequest()
+  let poller = try await client.createDataAssetPollingUntilDone(
+    request: CreateDataAssetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/dataProducts/\(dataProductId)"
         $0.dataAsset = DataAsset() /* .with { ... } */

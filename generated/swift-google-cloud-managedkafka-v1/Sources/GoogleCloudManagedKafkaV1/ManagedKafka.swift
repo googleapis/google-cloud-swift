@@ -74,14 +74,14 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// Creates a new cluster in a given project and location.
   ///
   /// @Snippet(path: "ManagedKafka_CreateCluster")
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.createCluster(request: withPolling, options: options)
+    let rawOp = try await self.createCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -108,14 +108,14 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// Updates the properties of a single cluster.
   ///
   /// @Snippet(path: "ManagedKafka_UpdateCluster")
-  public func updateCluster(
-    withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.updateCluster(request: withPolling, options: options)
+    let rawOp = try await self.updateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -142,15 +142,15 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// Deletes a single cluster.
   ///
   /// @Snippet(path: "ManagedKafka_DeleteCluster")
-  public func deleteCluster(
-    withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteCluster(request: withPolling, options: options)
+    let rawOp = try await self.deleteCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -383,32 +383,32 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ManagedKafkaProtocol: Sendable {
     /// See `ManagedKafkaClient.createCluster`.
-    func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
+    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.createCluster`.
-    func createCluster(
+    func createClusterPollingUntilDone(
       parent: Swift.String,
       cluster: Cluster?,
       clusterId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.updateCluster`.
-    func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
+    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.updateCluster`.
-    func updateCluster(
+    func updateClusterPollingUntilDone(
       cluster: Cluster?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.deleteCluster`.
-    func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
+    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `ManagedKafkaClient.deleteCluster`.
-    func deleteCluster(
+    func deleteClusterPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -428,8 +428,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ManagedKafkaClient.createCluster`.
-    func createCluster(
-      withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+    func createClusterPollingUntilDone(
+      request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.updateCluster`.
@@ -438,8 +438,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ManagedKafkaClient.updateCluster`.
-    func updateCluster(
-      withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+    func updateClusterPollingUntilDone(
+      request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.deleteCluster`.
@@ -448,8 +448,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ManagedKafkaClient.deleteCluster`.
-    func deleteCluster(
-      withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+    func deleteClusterPollingUntilDone(
+      request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `ManagedKafkaClient.listTopics`.
@@ -636,14 +636,14 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.createCluster(withPolling: withPolling, options: .init())
+    try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -652,7 +652,7 @@ extension Clients.ManagedKafkaProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCluster(
+  public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
     clusterId: Swift.String,
@@ -662,7 +662,7 @@ extension Clients.ManagedKafkaProtocol {
       $0.cluster = cluster
       $0.clusterId = clusterId
     }
-    return try await self.createCluster(withPolling: request)
+    return try await self.createClusterPollingUntilDone(request: request)
   }
 
   public func updateCluster(request: UpdateClusterRequest) async throws
@@ -677,14 +677,14 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.updateCluster(withPolling: withPolling, options: .init())
+    try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCluster(
-    withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -693,7 +693,7 @@ extension Clients.ManagedKafkaProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateCluster(
+  public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
@@ -701,7 +701,7 @@ extension Clients.ManagedKafkaProtocol {
       $0.cluster = cluster
       $0.updateMask = updateMask
     }
-    return try await self.updateCluster(withPolling: request)
+    return try await self.updateClusterPollingUntilDone(request: request)
   }
 
   public func deleteCluster(request: DeleteClusterRequest) async throws
@@ -716,14 +716,14 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteCluster(withPolling: withPolling, options: .init())
+    try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCluster(
-    withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -732,13 +732,13 @@ extension Clients.ManagedKafkaProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCluster(
+  public func deleteClusterPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteCluster(withPolling: request)
+    return try await self.deleteClusterPollingUntilDone(request: request)
   }
 
   public func listTopics(request: ListTopicsRequest) async throws

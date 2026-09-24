@@ -54,15 +54,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// Create a new environment.
   ///
   /// @Snippet(path: "Environments_CreateEnvironment")
-  public func createEnvironment(
-    withPolling: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
+  public func createEnvironmentPollingUntilDone(
+    request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Environment>.State in
       return try op._extractStatus(Environment.self)
     }
-    let rawOp = try await self.createEnvironment(request: withPolling, options: options)
+    let rawOp = try await self.createEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       let op = try await self.getOperation(
@@ -107,15 +107,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// Update an environment.
   ///
   /// @Snippet(path: "Environments_UpdateEnvironment")
-  public func updateEnvironment(
-    withPolling: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
+  public func updateEnvironmentPollingUntilDone(
+    request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Environment>.State in
       return try op._extractStatus(Environment.self)
     }
-    let rawOp = try await self.updateEnvironment(request: withPolling, options: options)
+    let rawOp = try await self.updateEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       let op = try await self.getOperation(
@@ -142,15 +142,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// Delete an environment.
   ///
   /// @Snippet(path: "Environments_DeleteEnvironment")
-  public func deleteEnvironment(
-    withPolling: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
+  public func deleteEnvironmentPollingUntilDone(
+    request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteEnvironment(request: withPolling, options: options)
+    let rawOp = try await self.deleteEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -221,15 +221,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// In case of problems detailed info can be found in the returned Operation.
   ///
   /// @Snippet(path: "Environments_CheckUpgrade")
-  public func checkUpgrade(
-    withPolling: CheckUpgradeRequest, options: GoogleGax.RequestOptions
+  public func checkUpgradePollingUntilDone(
+    request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CheckUpgradeResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
       return try op._extractStatus(CheckUpgradeResponse.self)
     }
-    let rawOp = try await self.checkUpgrade(request: withPolling, options: options)
+    let rawOp = try await self.checkUpgrade(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
       let op = try await self.getOperation(
@@ -383,15 +383,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// in a location specified in the SaveSnapshotRequest.
   ///
   /// @Snippet(path: "Environments_SaveSnapshot")
-  public func saveSnapshot(
-    withPolling: SaveSnapshotRequest, options: GoogleGax.RequestOptions
+  public func saveSnapshotPollingUntilDone(
+    request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SaveSnapshotResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
       return try op._extractStatus(SaveSnapshotResponse.self)
     }
-    let rawOp = try await self.saveSnapshot(request: withPolling, options: options)
+    let rawOp = try await self.saveSnapshot(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
       let op = try await self.getOperation(
@@ -424,15 +424,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// LoadSnapshotRequest is loaded into the environment.
   ///
   /// @Snippet(path: "Environments_LoadSnapshot")
-  public func loadSnapshot(
-    withPolling: LoadSnapshotRequest, options: GoogleGax.RequestOptions
+  public func loadSnapshotPollingUntilDone(
+    request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoadSnapshotResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
       return try op._extractStatus(LoadSnapshotResponse.self)
     }
-    let rawOp = try await self.loadSnapshot(request: withPolling, options: options)
+    let rawOp = try await self.loadSnapshot(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
       let op = try await self.getOperation(
@@ -459,15 +459,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// Triggers database failover (only for highly resilient environments).
   ///
   /// @Snippet(path: "Environments_DatabaseFailover")
-  public func databaseFailover(
-    withPolling: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
+  public func databaseFailoverPollingUntilDone(
+    request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DatabaseFailoverResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State in
       return try op._extractStatus(DatabaseFailoverResponse.self)
     }
-    let rawOp = try await self.databaseFailover(request: withPolling, options: options)
+    let rawOp = try await self.databaseFailover(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State in
@@ -534,50 +534,50 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol EnvironmentsProtocol: Sendable {
     /// See `EnvironmentsClient.createEnvironment`.
-    func createEnvironment(withPolling: CreateEnvironmentRequest) async throws -> any GoogleGax
-      .PollableOperation<Environment>
+    func createEnvironmentPollingUntilDone(request: CreateEnvironmentRequest) async throws
+      -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.createEnvironment`.
-    func createEnvironment(
+    func createEnvironmentPollingUntilDone(
       parent: Swift.String,
       environment: Environment?,
     ) async throws -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.updateEnvironment`.
-    func updateEnvironment(withPolling: UpdateEnvironmentRequest) async throws -> any GoogleGax
-      .PollableOperation<Environment>
+    func updateEnvironmentPollingUntilDone(request: UpdateEnvironmentRequest) async throws
+      -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.updateEnvironment`.
-    func updateEnvironment(
+    func updateEnvironmentPollingUntilDone(
       name: Swift.String,
       environment: Environment?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.deleteEnvironment`.
-    func deleteEnvironment(withPolling: DeleteEnvironmentRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteEnvironmentPollingUntilDone(request: DeleteEnvironmentRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EnvironmentsClient.deleteEnvironment`.
-    func deleteEnvironment(
+    func deleteEnvironmentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EnvironmentsClient.checkUpgrade`.
-    func checkUpgrade(withPolling: CheckUpgradeRequest) async throws -> any GoogleGax
+    func checkUpgradePollingUntilDone(request: CheckUpgradeRequest) async throws -> any GoogleGax
       .PollableOperation<CheckUpgradeResponse>
 
     /// See `EnvironmentsClient.saveSnapshot`.
-    func saveSnapshot(withPolling: SaveSnapshotRequest) async throws -> any GoogleGax
+    func saveSnapshotPollingUntilDone(request: SaveSnapshotRequest) async throws -> any GoogleGax
       .PollableOperation<SaveSnapshotResponse>
 
     /// See `EnvironmentsClient.loadSnapshot`.
-    func loadSnapshot(withPolling: LoadSnapshotRequest) async throws -> any GoogleGax
+    func loadSnapshotPollingUntilDone(request: LoadSnapshotRequest) async throws -> any GoogleGax
       .PollableOperation<LoadSnapshotResponse>
 
     /// See `EnvironmentsClient.databaseFailover`.
-    func databaseFailover(withPolling: DatabaseFailoverRequest) async throws -> any GoogleGax
-      .PollableOperation<DatabaseFailoverResponse>
+    func databaseFailoverPollingUntilDone(request: DatabaseFailoverRequest) async throws
+      -> any GoogleGax.PollableOperation<DatabaseFailoverResponse>
 
     /// See `EnvironmentsClient.createEnvironment`.
     func createEnvironment(
@@ -585,8 +585,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.createEnvironment`.
-    func createEnvironment(
-      withPolling: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
+    func createEnvironmentPollingUntilDone(
+      request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.getEnvironment`.
@@ -605,8 +605,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.updateEnvironment`.
-    func updateEnvironment(
-      withPolling: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
+    func updateEnvironmentPollingUntilDone(
+      request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.deleteEnvironment`.
@@ -615,8 +615,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.deleteEnvironment`.
-    func deleteEnvironment(
-      withPolling: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
+    func deleteEnvironmentPollingUntilDone(
+      request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EnvironmentsClient.executeAirflowCommand`.
@@ -645,8 +645,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.checkUpgrade`.
-    func checkUpgrade(
-      withPolling: CheckUpgradeRequest, options: GoogleGax.RequestOptions
+    func checkUpgradePollingUntilDone(
+      request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CheckUpgradeResponse>
 
     /// See `EnvironmentsClient.createUserWorkloadsSecret`.
@@ -705,8 +705,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.saveSnapshot`.
-    func saveSnapshot(
-      withPolling: SaveSnapshotRequest, options: GoogleGax.RequestOptions
+    func saveSnapshotPollingUntilDone(
+      request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SaveSnapshotResponse>
 
     /// See `EnvironmentsClient.loadSnapshot`.
@@ -715,8 +715,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.loadSnapshot`.
-    func loadSnapshot(
-      withPolling: LoadSnapshotRequest, options: GoogleGax.RequestOptions
+    func loadSnapshotPollingUntilDone(
+      request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<LoadSnapshotResponse>
 
     /// See `EnvironmentsClient.databaseFailover`.
@@ -725,8 +725,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EnvironmentsClient.databaseFailover`.
-    func databaseFailover(
-      withPolling: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
+    func databaseFailoverPollingUntilDone(
+      request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DatabaseFailoverResponse>
 
     /// See `EnvironmentsClient.fetchDatabaseProperties`.
@@ -760,14 +760,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createEnvironment(withPolling: CreateEnvironmentRequest) async throws -> any GoogleGax
-    .PollableOperation<Environment>
+  public func createEnvironmentPollingUntilDone(request: CreateEnvironmentRequest) async throws
+    -> any GoogleGax.PollableOperation<Environment>
   {
-    try await self.createEnvironment(withPolling: withPolling, options: .init())
+    try await self.createEnvironmentPollingUntilDone(request: request, options: .init())
   }
 
-  public func createEnvironment(
-    withPolling: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
+  public func createEnvironmentPollingUntilDone(
+    request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -776,7 +776,7 @@ extension Clients.EnvironmentsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createEnvironment(
+  public func createEnvironmentPollingUntilDone(
     parent: Swift.String,
     environment: Environment?,
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
@@ -784,7 +784,7 @@ extension Clients.EnvironmentsProtocol {
       $0.parent = parent
       $0.environment = environment
     }
-    return try await self.createEnvironment(withPolling: request)
+    return try await self.createEnvironmentPollingUntilDone(request: request)
   }
 
   public func getEnvironment(request: GetEnvironmentRequest) async throws
@@ -863,14 +863,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateEnvironment(withPolling: UpdateEnvironmentRequest) async throws -> any GoogleGax
-    .PollableOperation<Environment>
+  public func updateEnvironmentPollingUntilDone(request: UpdateEnvironmentRequest) async throws
+    -> any GoogleGax.PollableOperation<Environment>
   {
-    try await self.updateEnvironment(withPolling: withPolling, options: .init())
+    try await self.updateEnvironmentPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateEnvironment(
-    withPolling: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
+  public func updateEnvironmentPollingUntilDone(
+    request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -879,7 +879,7 @@ extension Clients.EnvironmentsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateEnvironment(
+  public func updateEnvironmentPollingUntilDone(
     name: Swift.String,
     environment: Environment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -889,7 +889,7 @@ extension Clients.EnvironmentsProtocol {
       $0.environment = environment
       $0.updateMask = updateMask
     }
-    return try await self.updateEnvironment(withPolling: request)
+    return try await self.updateEnvironmentPollingUntilDone(request: request)
   }
 
   public func deleteEnvironment(request: DeleteEnvironmentRequest) async throws
@@ -904,14 +904,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEnvironment(withPolling: DeleteEnvironmentRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteEnvironmentPollingUntilDone(request: DeleteEnvironmentRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteEnvironment(withPolling: withPolling, options: .init())
+    try await self.deleteEnvironmentPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteEnvironment(
-    withPolling: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
+  public func deleteEnvironmentPollingUntilDone(
+    request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -920,13 +920,13 @@ extension Clients.EnvironmentsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteEnvironment(
+  public func deleteEnvironmentPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteEnvironmentRequest().with {
       $0.name = name
     }
-    return try await self.deleteEnvironment(withPolling: request)
+    return try await self.deleteEnvironmentPollingUntilDone(request: request)
   }
 
   public func executeAirflowCommand(request: ExecuteAirflowCommandRequest) async throws
@@ -1023,14 +1023,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func checkUpgrade(withPolling: CheckUpgradeRequest) async throws -> any GoogleGax
-    .PollableOperation<CheckUpgradeResponse>
+  public func checkUpgradePollingUntilDone(request: CheckUpgradeRequest) async throws
+    -> any GoogleGax.PollableOperation<CheckUpgradeResponse>
   {
-    try await self.checkUpgrade(withPolling: withPolling, options: .init())
+    try await self.checkUpgradePollingUntilDone(request: request, options: .init())
   }
 
-  public func checkUpgrade(
-    withPolling: CheckUpgradeRequest, options: GoogleGax.RequestOptions
+  public func checkUpgradePollingUntilDone(
+    request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CheckUpgradeResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1312,14 +1312,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func saveSnapshot(withPolling: SaveSnapshotRequest) async throws -> any GoogleGax
-    .PollableOperation<SaveSnapshotResponse>
+  public func saveSnapshotPollingUntilDone(request: SaveSnapshotRequest) async throws
+    -> any GoogleGax.PollableOperation<SaveSnapshotResponse>
   {
-    try await self.saveSnapshot(withPolling: withPolling, options: .init())
+    try await self.saveSnapshotPollingUntilDone(request: request, options: .init())
   }
 
-  public func saveSnapshot(
-    withPolling: SaveSnapshotRequest, options: GoogleGax.RequestOptions
+  public func saveSnapshotPollingUntilDone(
+    request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SaveSnapshotResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1339,14 +1339,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func loadSnapshot(withPolling: LoadSnapshotRequest) async throws -> any GoogleGax
-    .PollableOperation<LoadSnapshotResponse>
+  public func loadSnapshotPollingUntilDone(request: LoadSnapshotRequest) async throws
+    -> any GoogleGax.PollableOperation<LoadSnapshotResponse>
   {
-    try await self.loadSnapshot(withPolling: withPolling, options: .init())
+    try await self.loadSnapshotPollingUntilDone(request: request, options: .init())
   }
 
-  public func loadSnapshot(
-    withPolling: LoadSnapshotRequest, options: GoogleGax.RequestOptions
+  public func loadSnapshotPollingUntilDone(
+    request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoadSnapshotResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1367,14 +1367,14 @@ extension Clients.EnvironmentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func databaseFailover(withPolling: DatabaseFailoverRequest) async throws -> any GoogleGax
-    .PollableOperation<DatabaseFailoverResponse>
+  public func databaseFailoverPollingUntilDone(request: DatabaseFailoverRequest) async throws
+    -> any GoogleGax.PollableOperation<DatabaseFailoverResponse>
   {
-    try await self.databaseFailover(withPolling: withPolling, options: .init())
+    try await self.databaseFailoverPollingUntilDone(request: request, options: .init())
   }
 
-  public func databaseFailover(
-    withPolling: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
+  public func databaseFailoverPollingUntilDone(
+    request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DatabaseFailoverResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State in

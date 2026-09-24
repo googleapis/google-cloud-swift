@@ -25,8 +25,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: AwsClustersClient) async throws {
-  let poller = try await client.rollbackAwsNodePoolUpdate(
-    withPolling: RollbackAwsNodePoolUpdateRequest()
+  let poller = try await client.rollbackAwsNodePoolUpdatePollingUntilDone(
+    request: RollbackAwsNodePoolUpdateRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   datacenterConnectorId: String
 ) async throws {
-  let poller = try await client.deleteDatacenterConnector(
-    withPolling: DeleteDatacenterConnectorRequest()
+  let poller = try await client.deleteDatacenterConnectorPollingUntilDone(
+    request: DeleteDatacenterConnectorRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/datacenterConnectors/\(datacenterConnectorId)"

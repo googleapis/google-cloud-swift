@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppPlatformClient) async throws {
-  let poller = try await client.undeployApplication(
-    withPolling: UndeployApplicationRequest()
+  let poller = try await client.undeployApplicationPollingUntilDone(
+    request: UndeployApplicationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

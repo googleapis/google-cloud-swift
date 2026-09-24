@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient, parent: String) async throws {
-  let poller = try await client.createIssueModel(
-    withPolling: CreateIssueModelRequest()
+  let poller = try await client.createIssueModelPollingUntilDone(
+    request: CreateIssueModelRequest()
       .with {
         $0.parent = "\(parent)"
         $0.issueModel = IssueModel() /* .with { ... } */

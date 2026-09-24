@@ -27,8 +27,8 @@ func sample(
   client: MirroringClient, projectId: String, locationId: String,
   mirroringEndpointGroupAssociationId: String
 ) async throws {
-  let poller = try await client.updateMirroringEndpointGroupAssociation(
-    withPolling: UpdateMirroringEndpointGroupAssociationRequest()
+  let poller = try await client.updateMirroringEndpointGroupAssociationPollingUntilDone(
+    request: UpdateMirroringEndpointGroupAssociationRequest()
       .with {
         $0.mirroringEndpointGroupAssociation = MirroringEndpointGroupAssociation().with {
           $0.name =

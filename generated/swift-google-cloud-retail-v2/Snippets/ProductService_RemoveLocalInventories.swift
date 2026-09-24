@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProductServiceClient) async throws {
-  let poller = try await client.removeLocalInventories(
-    withPolling: RemoveLocalInventoriesRequest()
+  let poller = try await client.removeLocalInventoriesPollingUntilDone(
+    request: RemoveLocalInventoriesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

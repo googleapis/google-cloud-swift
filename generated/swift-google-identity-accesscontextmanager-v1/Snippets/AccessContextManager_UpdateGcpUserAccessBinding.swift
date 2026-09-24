@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: AccessContextManagerClient, organizationId: String, gcpUserAccessBindingId: String
 ) async throws {
-  let poller = try await client.updateGcpUserAccessBinding(
-    withPolling: UpdateGcpUserAccessBindingRequest()
+  let poller = try await client.updateGcpUserAccessBindingPollingUntilDone(
+    request: UpdateGcpUserAccessBindingRequest()
       .with {
         $0.gcpUserAccessBinding = GcpUserAccessBinding().with {
           $0.name =

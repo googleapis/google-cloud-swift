@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: EndpointServiceClient) async throws {
-    let poller = try await client.undeployModel(
-      withPolling: UndeployModelRequest()
+    let poller = try await client.undeployModelPollingUntilDone(
+      request: UndeployModelRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

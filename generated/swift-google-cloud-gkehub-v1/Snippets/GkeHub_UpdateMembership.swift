@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, membershipId: String)
   async throws
 {
-  let poller = try await client.updateMembership(
-    withPolling: UpdateMembershipRequest()
+  let poller = try await client.updateMembershipPollingUntilDone(
+    request: UpdateMembershipRequest()
       .with {
         $0.resource = Membership().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/memberships/\(membershipId)"

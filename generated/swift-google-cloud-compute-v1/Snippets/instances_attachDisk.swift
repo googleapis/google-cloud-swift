@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.attachDisk(
-      withPolling: InstancesClient.AttachDiskRequest()
+    let poller = try await client.attachDiskPollingUntilDone(
+      request: InstancesClient.AttachDiskRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

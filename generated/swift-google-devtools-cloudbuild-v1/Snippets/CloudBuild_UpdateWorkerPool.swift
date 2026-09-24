@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: CloudBuildClient, projectId: String, locationId: String, workerPoolId: String)
   async throws
 {
-  let poller = try await client.updateWorkerPool(
-    withPolling: UpdateWorkerPoolRequest()
+  let poller = try await client.updateWorkerPoolPollingUntilDone(
+    request: UpdateWorkerPoolRequest()
       .with {
         $0.workerPool = WorkerPool().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/workerPools/\(workerPoolId)"

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let poller = try await client.moveFolder(
-    withPolling: MoveFolderRequest()
+  let poller = try await client.moveFolderPollingUntilDone(
+    request: MoveFolderRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

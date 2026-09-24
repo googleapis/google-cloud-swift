@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AlloyDBAdminClient) async throws {
-  let poller = try await client.createSecondaryCluster(
-    withPolling: CreateSecondaryClusterRequest()
+  let poller = try await client.createSecondaryClusterPollingUntilDone(
+    request: CreateSecondaryClusterRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

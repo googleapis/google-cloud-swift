@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(
   client: VpcAccessServiceClient, projectId: String, locationId: String, connectorId: String
 ) async throws {
-  let poller = try await client.deleteConnector(
-    withPolling: DeleteConnectorRequest()
+  let poller = try await client.deleteConnectorPollingUntilDone(
+    request: DeleteConnectorRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/connectors/\(connectorId)"
       }

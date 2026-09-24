@@ -57,15 +57,15 @@
     /// Creates an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_CreateEndpoint")
-    public func createEndpoint(
-      withPolling: CreateEndpointRequest, options: GoogleGax.RequestOptions
+    public func createEndpointPollingUntilDone(
+      request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Endpoint>.State
         in
         return try op._extractStatus(Endpoint.self)
       }
-      let rawOp = try await self.createEndpoint(request: withPolling, options: options)
+      let rawOp = try await self.createEndpoint(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         let op = try await self.getOperation(
@@ -119,15 +119,15 @@
     /// Updates an Endpoint with a long running operation.
     ///
     /// @Snippet(path: "EndpointService_UpdateEndpointLongRunning")
-    public func updateEndpointLongRunning(
-      withPolling: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
+    public func updateEndpointLongRunningPollingUntilDone(
+      request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Endpoint>.State
         in
         return try op._extractStatus(Endpoint.self)
       }
-      let rawOp = try await self.updateEndpointLongRunning(request: withPolling, options: options)
+      let rawOp = try await self.updateEndpointLongRunning(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         let op = try await self.getOperation(
@@ -154,15 +154,15 @@
     /// Deletes an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_DeleteEndpoint")
-    public func deleteEndpoint(
-      withPolling: DeleteEndpointRequest, options: GoogleGax.RequestOptions
+    public func deleteEndpointPollingUntilDone(
+      request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteEndpoint(request: withPolling, options: options)
+      let rawOp = try await self.deleteEndpoint(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -189,15 +189,15 @@
     /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
     ///
     /// @Snippet(path: "EndpointService_DeployModel")
-    public func deployModel(
-      withPolling: DeployModelRequest, options: GoogleGax.RequestOptions
+    public func deployModelPollingUntilDone(
+      request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
         return try op._extractStatus(DeployModelResponse.self)
       }
-      let rawOp = try await self.deployModel(request: withPolling, options: options)
+      let rawOp = try await self.deployModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
         let op = try await self.getOperation(
@@ -226,15 +226,15 @@
     /// freeing all resources it's using.
     ///
     /// @Snippet(path: "EndpointService_UndeployModel")
-    public func undeployModel(
-      withPolling: UndeployModelRequest, options: GoogleGax.RequestOptions
+    public func undeployModelPollingUntilDone(
+      request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State in
         return try op._extractStatus(UndeployModelResponse.self)
       }
-      let rawOp = try await self.undeployModel(request: withPolling, options: options)
+      let rawOp = try await self.undeployModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State in
@@ -268,15 +268,15 @@
     /// `enable_container_logging` (v1beta1 only).
     ///
     /// @Snippet(path: "EndpointService_MutateDeployedModel")
-    public func mutateDeployedModel(
-      withPolling: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
+    public func mutateDeployedModelPollingUntilDone(
+      request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
         return try op._extractStatus(MutateDeployedModelResponse.self)
       }
-      let rawOp = try await self.mutateDeployedModel(request: withPolling, options: options)
+      let rawOp = try await self.mutateDeployedModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
@@ -412,68 +412,68 @@
     /// and pass a mock implementation in your tests.
     public protocol EndpointServiceProtocol: Sendable {
       /// See `EndpointServiceClient.createEndpoint`.
-      func createEndpoint(withPolling: CreateEndpointRequest) async throws -> any GoogleGax
-        .PollableOperation<Endpoint>
+      func createEndpointPollingUntilDone(request: CreateEndpointRequest) async throws
+        -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.createEndpoint`.
-      func createEndpoint(
+      func createEndpointPollingUntilDone(
         parent: Swift.String,
         endpoint: Endpoint?,
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.createEndpoint`.
-      func createEndpoint(
+      func createEndpointPollingUntilDone(
         parent: Swift.String,
         endpoint: Endpoint?,
         endpointId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.updateEndpointLongRunning`.
-      func updateEndpointLongRunning(withPolling: UpdateEndpointLongRunningRequest) async throws
-        -> any GoogleGax.PollableOperation<Endpoint>
+      func updateEndpointLongRunningPollingUntilDone(request: UpdateEndpointLongRunningRequest)
+        async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.updateEndpointLongRunning`.
-      func updateEndpointLongRunning(
+      func updateEndpointLongRunningPollingUntilDone(
         endpoint: Endpoint?,
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.deleteEndpoint`.
-      func deleteEndpoint(withPolling: DeleteEndpointRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `EndpointServiceClient.deleteEndpoint`.
-      func deleteEndpoint(
+      func deleteEndpointPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `EndpointServiceClient.deployModel`.
-      func deployModel(withPolling: DeployModelRequest) async throws -> any GoogleGax
+      func deployModelPollingUntilDone(request: DeployModelRequest) async throws -> any GoogleGax
         .PollableOperation<DeployModelResponse>
 
       /// See `EndpointServiceClient.deployModel`.
-      func deployModel(
+      func deployModelPollingUntilDone(
         endpoint: Swift.String,
         deployedModel: DeployedModel?,
         trafficSplit: [Swift.String: Swift.Int32],
       ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse>
 
       /// See `EndpointServiceClient.undeployModel`.
-      func undeployModel(withPolling: UndeployModelRequest) async throws -> any GoogleGax
-        .PollableOperation<UndeployModelResponse>
+      func undeployModelPollingUntilDone(request: UndeployModelRequest) async throws
+        -> any GoogleGax.PollableOperation<UndeployModelResponse>
 
       /// See `EndpointServiceClient.undeployModel`.
-      func undeployModel(
+      func undeployModelPollingUntilDone(
         endpoint: Swift.String,
         deployedModelId: Swift.String,
         trafficSplit: [Swift.String: Swift.Int32],
       ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse>
 
       /// See `EndpointServiceClient.mutateDeployedModel`.
-      func mutateDeployedModel(withPolling: MutateDeployedModelRequest) async throws
+      func mutateDeployedModelPollingUntilDone(request: MutateDeployedModelRequest) async throws
         -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
 
       /// See `EndpointServiceClient.mutateDeployedModel`.
-      func mutateDeployedModel(
+      func mutateDeployedModelPollingUntilDone(
         endpoint: Swift.String,
         deployedModel: DeployedModel?,
         updateMask: GoogleWKT.WKTFieldMask?,
@@ -485,8 +485,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.createEndpoint`.
-      func createEndpoint(
-        withPolling: CreateEndpointRequest, options: GoogleGax.RequestOptions
+      func createEndpointPollingUntilDone(
+        request: CreateEndpointRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.getEndpoint`.
@@ -510,8 +510,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.updateEndpointLongRunning`.
-      func updateEndpointLongRunning(
-        withPolling: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
+      func updateEndpointLongRunningPollingUntilDone(
+        request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Endpoint>
 
       /// See `EndpointServiceClient.deleteEndpoint`.
@@ -520,8 +520,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.deleteEndpoint`.
-      func deleteEndpoint(
-        withPolling: DeleteEndpointRequest, options: GoogleGax.RequestOptions
+      func deleteEndpointPollingUntilDone(
+        request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `EndpointServiceClient.deployModel`.
@@ -530,8 +530,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.deployModel`.
-      func deployModel(
-        withPolling: DeployModelRequest, options: GoogleGax.RequestOptions
+      func deployModelPollingUntilDone(
+        request: DeployModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse>
 
       /// See `EndpointServiceClient.undeployModel`.
@@ -540,8 +540,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.undeployModel`.
-      func undeployModel(
-        withPolling: UndeployModelRequest, options: GoogleGax.RequestOptions
+      func undeployModelPollingUntilDone(
+        request: UndeployModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse>
 
       /// See `EndpointServiceClient.mutateDeployedModel`.
@@ -550,8 +550,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EndpointServiceClient.mutateDeployedModel`.
-      func mutateDeployedModel(
-        withPolling: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
+      func mutateDeployedModelPollingUntilDone(
+        request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
 
       /// See `EndpointServiceClient.listLocations`.
@@ -615,14 +615,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createEndpoint(withPolling: CreateEndpointRequest) async throws -> any GoogleGax
-      .PollableOperation<Endpoint>
+    public func createEndpointPollingUntilDone(request: CreateEndpointRequest) async throws
+      -> any GoogleGax.PollableOperation<Endpoint>
     {
-      try await self.createEndpoint(withPolling: withPolling, options: .init())
+      try await self.createEndpointPollingUntilDone(request: request, options: .init())
     }
 
-    public func createEndpoint(
-      withPolling: CreateEndpointRequest, options: GoogleGax.RequestOptions
+    public func createEndpointPollingUntilDone(
+      request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -631,7 +631,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createEndpoint(
+    public func createEndpointPollingUntilDone(
       parent: Swift.String,
       endpoint: Endpoint?,
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
@@ -639,10 +639,10 @@
         $0.parent = parent
         $0.endpoint = endpoint
       }
-      return try await self.createEndpoint(withPolling: request)
+      return try await self.createEndpointPollingUntilDone(request: request)
     }
 
-    public func createEndpoint(
+    public func createEndpointPollingUntilDone(
       parent: Swift.String,
       endpoint: Endpoint?,
       endpointId: Swift.String,
@@ -652,7 +652,7 @@
         $0.endpoint = endpoint
         $0.endpointId = endpointId
       }
-      return try await self.createEndpoint(withPolling: request)
+      return try await self.createEndpointPollingUntilDone(request: request)
     }
 
     public func getEndpoint(request: GetEndpointRequest) async throws
@@ -753,14 +753,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateEndpointLongRunning(withPolling: UpdateEndpointLongRunningRequest)
+    public func updateEndpointLongRunningPollingUntilDone(request: UpdateEndpointLongRunningRequest)
       async throws -> any GoogleGax.PollableOperation<Endpoint>
     {
-      try await self.updateEndpointLongRunning(withPolling: withPolling, options: .init())
+      try await self.updateEndpointLongRunningPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateEndpointLongRunning(
-      withPolling: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
+    public func updateEndpointLongRunningPollingUntilDone(
+      request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -769,13 +769,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateEndpointLongRunning(
+    public func updateEndpointLongRunningPollingUntilDone(
       endpoint: Endpoint?,
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let request = UpdateEndpointLongRunningRequest().with {
         $0.endpoint = endpoint
       }
-      return try await self.updateEndpointLongRunning(withPolling: request)
+      return try await self.updateEndpointLongRunningPollingUntilDone(request: request)
     }
 
     public func deleteEndpoint(request: DeleteEndpointRequest) async throws
@@ -790,14 +790,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteEndpoint(withPolling: DeleteEndpointRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteEndpoint(withPolling: withPolling, options: .init())
+      try await self.deleteEndpointPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteEndpoint(
-      withPolling: DeleteEndpointRequest, options: GoogleGax.RequestOptions
+    public func deleteEndpointPollingUntilDone(
+      request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -806,13 +806,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteEndpoint(
+    public func deleteEndpointPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteEndpointRequest().with {
         $0.name = name
       }
-      return try await self.deleteEndpoint(withPolling: request)
+      return try await self.deleteEndpointPollingUntilDone(request: request)
     }
 
     public func deployModel(request: DeployModelRequest) async throws -> GoogleLongRunning.Operation
@@ -826,14 +826,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deployModel(withPolling: DeployModelRequest) async throws -> any GoogleGax
-      .PollableOperation<DeployModelResponse>
+    public func deployModelPollingUntilDone(request: DeployModelRequest) async throws
+      -> any GoogleGax.PollableOperation<DeployModelResponse>
     {
-      try await self.deployModel(withPolling: withPolling, options: .init())
+      try await self.deployModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func deployModel(
-      withPolling: DeployModelRequest, options: GoogleGax.RequestOptions
+    public func deployModelPollingUntilDone(
+      request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -842,7 +842,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deployModel(
+    public func deployModelPollingUntilDone(
       endpoint: Swift.String,
       deployedModel: DeployedModel?,
       trafficSplit: [Swift.String: Swift.Int32],
@@ -852,7 +852,7 @@
         $0.deployedModel = deployedModel
         $0.trafficSplit = trafficSplit
       }
-      return try await self.deployModel(withPolling: request)
+      return try await self.deployModelPollingUntilDone(request: request)
     }
 
     public func undeployModel(request: UndeployModelRequest) async throws
@@ -867,14 +867,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func undeployModel(withPolling: UndeployModelRequest) async throws -> any GoogleGax
-      .PollableOperation<UndeployModelResponse>
+    public func undeployModelPollingUntilDone(request: UndeployModelRequest) async throws
+      -> any GoogleGax.PollableOperation<UndeployModelResponse>
     {
-      try await self.undeployModel(withPolling: withPolling, options: .init())
+      try await self.undeployModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func undeployModel(
-      withPolling: UndeployModelRequest, options: GoogleGax.RequestOptions
+    public func undeployModelPollingUntilDone(
+      request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State in
@@ -884,7 +884,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func undeployModel(
+    public func undeployModelPollingUntilDone(
       endpoint: Swift.String,
       deployedModelId: Swift.String,
       trafficSplit: [Swift.String: Swift.Int32],
@@ -894,7 +894,7 @@
         $0.deployedModelId = deployedModelId
         $0.trafficSplit = trafficSplit
       }
-      return try await self.undeployModel(withPolling: request)
+      return try await self.undeployModelPollingUntilDone(request: request)
     }
 
     public func mutateDeployedModel(request: MutateDeployedModelRequest) async throws
@@ -909,14 +909,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func mutateDeployedModel(withPolling: MutateDeployedModelRequest) async throws
-      -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
+    public func mutateDeployedModelPollingUntilDone(request: MutateDeployedModelRequest)
+      async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse>
     {
-      try await self.mutateDeployedModel(withPolling: withPolling, options: .init())
+      try await self.mutateDeployedModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func mutateDeployedModel(
-      withPolling: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
+    public func mutateDeployedModelPollingUntilDone(
+      request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
@@ -926,7 +926,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func mutateDeployedModel(
+    public func mutateDeployedModelPollingUntilDone(
       endpoint: Swift.String,
       deployedModel: DeployedModel?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -936,7 +936,7 @@
         $0.deployedModel = deployedModel
         $0.updateMask = updateMask
       }
-      return try await self.mutateDeployedModel(withPolling: request)
+      return try await self.mutateDeployedModelPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

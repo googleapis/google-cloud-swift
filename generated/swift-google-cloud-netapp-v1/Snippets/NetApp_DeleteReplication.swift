@@ -26,8 +26,8 @@ func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String,
   replicationId: String
 ) async throws {
-  let poller = try await client.deleteReplication(
-    withPolling: DeleteReplicationRequest()
+  let poller = try await client.deleteReplicationPollingUntilDone(
+    request: DeleteReplicationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)/replications/\(replicationId)"

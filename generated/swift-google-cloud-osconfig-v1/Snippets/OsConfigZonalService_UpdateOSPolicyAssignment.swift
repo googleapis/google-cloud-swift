@@ -25,8 +25,8 @@ func sample(
   client: OsConfigZonalServiceClient, projectId: String, locationId: String,
   osPolicyAssignmentId: String
 ) async throws {
-  let poller = try await client.updateOspolicyAssignment(
-    withPolling: UpdateOSPolicyAssignmentRequest()
+  let poller = try await client.updateOspolicyAssignmentPollingUntilDone(
+    request: UpdateOSPolicyAssignmentRequest()
       .with {
         $0.osPolicyAssignment = OSPolicyAssignment().with {
           $0.name =

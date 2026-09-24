@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient) async throws {
-  let poller = try await client.runDiskMigrationJob(
-    withPolling: RunDiskMigrationJobRequest()
+  let poller = try await client.runDiskMigrationJobPollingUntilDone(
+    request: RunDiskMigrationJobRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

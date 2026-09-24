@@ -27,8 +27,8 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let poller = try await client.updateFeaturestore(
-      withPolling: UpdateFeaturestoreRequest()
+    let poller = try await client.updateFeaturestorePollingUntilDone(
+      request: UpdateFeaturestoreRequest()
         .with {
           $0.featurestore = Featurestore().with {
             $0.name =

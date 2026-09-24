@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DeveloperConnectClient) async throws {
-  let poller = try await client.deleteSelf(
-    withPolling: DeleteSelfRequest()
+  let poller = try await client.deleteSelfPollingUntilDone(
+    request: DeleteSelfRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

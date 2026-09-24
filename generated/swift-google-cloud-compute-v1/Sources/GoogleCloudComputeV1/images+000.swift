@@ -53,8 +53,8 @@
     /// Deletes the specified image.
     ///
     /// @Snippet(path: "images_delete")
-    public func delete(
-      withPolling: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -70,14 +70,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.delete(request: withPolling, options: options)
+      let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -105,8 +105,8 @@
     /// If an empty request body is given, clears the deprecation status instead.
     ///
     /// @Snippet(path: "images_deprecate")
-    public func deprecate(
-      withPolling: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
+    public func deprecatePollingUntilDone(
+      request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -122,14 +122,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.deprecate(request: withPolling, options: options)
+      let rawOp = try await self.deprecate(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -185,8 +185,8 @@
     /// in the request.
     ///
     /// @Snippet(path: "images_insert")
-    public func insert(
-      withPolling: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -202,14 +202,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.insert(request: withPolling, options: options)
+      let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -252,8 +252,8 @@
     /// deprecation status.
     ///
     /// @Snippet(path: "images_patch")
-    public func patch(
-      withPolling: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
+    public func patchPollingUntilDone(
+      request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -269,14 +269,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.patch(request: withPolling, options: options)
+      let rawOp = try await self.patch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -312,8 +312,8 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "images_setLabels")
-    public func setLabels(
-      withPolling: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+    public func setLabelsPollingUntilDone(
+      request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -329,14 +329,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.setLabels(request: withPolling, options: options)
+      let rawOp = try await self.setLabels(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -445,14 +445,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func delete(
-      withPolling: ImagesClient.DeleteRequest
+    public func deletePollingUntilDone(
+      request: ImagesClient.DeleteRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.delete(withPolling: withPolling, options: .init())
+      try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
-    public func delete(
-      withPolling: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -462,7 +462,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func delete(
+    public func deletePollingUntilDone(
       project: Swift.String,
       image: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -470,7 +470,7 @@
         $0.project = project
         $0.image = image
       }
-      return try await self.delete(withPolling: request)
+      return try await self.deletePollingUntilDone(request: request)
     }
 
     public func deprecate(request: ImagesClient.DeprecateRequest) async throws
@@ -485,14 +485,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deprecate(
-      withPolling: ImagesClient.DeprecateRequest
+    public func deprecatePollingUntilDone(
+      request: ImagesClient.DeprecateRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deprecate(withPolling: withPolling, options: .init())
+      try await self.deprecatePollingUntilDone(request: request, options: .init())
     }
 
-    public func deprecate(
-      withPolling: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
+    public func deprecatePollingUntilDone(
+      request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -502,7 +502,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deprecate(
+    public func deprecatePollingUntilDone(
       project: Swift.String,
       image: Swift.String,
       body: DeprecationStatus?,
@@ -512,7 +512,7 @@
         $0.image = image
         $0.body = body
       }
-      return try await self.deprecate(withPolling: request)
+      return try await self.deprecatePollingUntilDone(request: request)
     }
 
     public func `get`(request: ImagesClient.GetRequest) async throws -> GoogleCloudComputeV1.Image {
@@ -594,14 +594,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func insert(
-      withPolling: ImagesClient.InsertRequest
+    public func insertPollingUntilDone(
+      request: ImagesClient.InsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insert(withPolling: withPolling, options: .init())
+      try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
-    public func insert(
-      withPolling: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
+    public func insertPollingUntilDone(
+      request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -611,7 +611,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func insert(
+    public func insertPollingUntilDone(
       project: Swift.String,
       body: Image?,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -619,7 +619,7 @@
         $0.project = project
         $0.body = body
       }
-      return try await self.insert(withPolling: request)
+      return try await self.insertPollingUntilDone(request: request)
     }
 
     public func list(request: ImagesClient.ListRequest) async throws
@@ -681,14 +681,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func patch(
-      withPolling: ImagesClient.PatchRequest
+    public func patchPollingUntilDone(
+      request: ImagesClient.PatchRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patch(withPolling: withPolling, options: .init())
+      try await self.patchPollingUntilDone(request: request, options: .init())
     }
 
-    public func patch(
-      withPolling: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
+    public func patchPollingUntilDone(
+      request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -698,7 +698,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func patch(
+    public func patchPollingUntilDone(
       project: Swift.String,
       image: Swift.String,
       body: Image?,
@@ -708,7 +708,7 @@
         $0.image = image
         $0.body = body
       }
-      return try await self.patch(withPolling: request)
+      return try await self.patchPollingUntilDone(request: request)
     }
 
     public func setIamPolicy(request: ImagesClient.SetIamPolicyRequest) async throws
@@ -748,14 +748,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func setLabels(
-      withPolling: ImagesClient.SetLabelsRequest
+    public func setLabelsPollingUntilDone(
+      request: ImagesClient.SetLabelsRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setLabels(withPolling: withPolling, options: .init())
+      try await self.setLabelsPollingUntilDone(request: request, options: .init())
     }
 
-    public func setLabels(
-      withPolling: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+    public func setLabelsPollingUntilDone(
+      request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -765,7 +765,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func setLabels(
+    public func setLabelsPollingUntilDone(
       project: Swift.String,
       resource: Swift.String,
       body: GlobalSetLabelsRequest?,
@@ -775,7 +775,7 @@
         $0.resource = resource
         $0.body = body
       }
-      return try await self.setLabels(withPolling: request)
+      return try await self.setLabelsPollingUntilDone(request: request)
     }
 
     public func testIamPermissions(request: ImagesClient.TestIamPermissionsRequest) async throws

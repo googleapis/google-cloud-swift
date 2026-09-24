@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: HsmManagementClient) async throws {
-  let poller = try await client.executeSingleTenantHsmInstanceProposal(
-    withPolling: ExecuteSingleTenantHsmInstanceProposalRequest()
+  let poller = try await client.executeSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: ExecuteSingleTenantHsmInstanceProposalRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: LivestreamServiceClient, projectId: String, locationId: String, inputId: String)
   async throws
 {
-  let poller = try await client.deleteInput(
-    withPolling: DeleteInputRequest()
+  let poller = try await client.deleteInputPollingUntilDone(
+    request: DeleteInputRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/inputs/\(inputId)"
       }

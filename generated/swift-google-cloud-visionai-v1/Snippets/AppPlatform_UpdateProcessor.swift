@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AppPlatformClient, projectId: String, locationId: String, processorId: String)
   async throws
 {
-  let poller = try await client.updateProcessor(
-    withPolling: UpdateProcessorRequest()
+  let poller = try await client.updateProcessorPollingUntilDone(
+    request: UpdateProcessorRequest()
       .with {
         $0.processor = Processor().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/processors/\(processorId)"

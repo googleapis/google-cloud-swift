@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPolicyId: String,
   externalAccessRuleId: String
 ) async throws {
-  let poller = try await client.updateExternalAccessRule(
-    withPolling: UpdateExternalAccessRuleRequest()
+  let poller = try await client.updateExternalAccessRulePollingUntilDone(
+    request: UpdateExternalAccessRuleRequest()
       .with {
         $0.externalAccessRule = ExternalAccessRule().with {
           $0.name =

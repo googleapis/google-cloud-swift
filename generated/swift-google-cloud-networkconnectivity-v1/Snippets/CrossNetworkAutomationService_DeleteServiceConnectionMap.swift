@@ -27,8 +27,8 @@ func sample(
   client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String,
   serviceConnectionMapId: String
 ) async throws {
-  let poller = try await client.deleteServiceConnectionMap(
-    withPolling: DeleteServiceConnectionMapRequest()
+  let poller = try await client.deleteServiceConnectionMapPollingUntilDone(
+    request: DeleteServiceConnectionMapRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/serviceConnectionMaps/\(serviceConnectionMapId)"

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String
 ) async throws {
-  let poller = try await client.createCertificateMapEntry(
-    withPolling: CreateCertificateMapEntryRequest()
+  let poller = try await client.createCertificateMapEntryPollingUntilDone(
+    request: CreateCertificateMapEntryRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/certificateMaps/\(certificateMapId)"

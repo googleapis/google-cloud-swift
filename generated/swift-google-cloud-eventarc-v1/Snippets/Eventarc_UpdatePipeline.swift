@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, pipelineId: String)
   async throws
 {
-  let poller = try await client.updatePipeline(
-    withPolling: UpdatePipelineRequest()
+  let poller = try await client.updatePipelinePollingUntilDone(
+    request: UpdatePipelineRequest()
       .with {
         $0.pipeline = Pipeline().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/pipelines/\(pipelineId)"

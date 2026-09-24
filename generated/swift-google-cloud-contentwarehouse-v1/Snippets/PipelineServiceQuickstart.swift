@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudContentWarehouseV1.PipelineServiceClient()
-  let poller = try await client.runPipeline(
-    withPolling: RunPipelineRequest()
+  let poller = try await client.runPipelinePollingUntilDone(
+    request: RunPipelineRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

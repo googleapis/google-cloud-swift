@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let poller = try await client.updateNamedSet(
-      withPolling: RoutersClient.UpdateNamedSetRequest()
+    let poller = try await client.updateNamedSetPollingUntilDone(
+      request: RoutersClient.UpdateNamedSetRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

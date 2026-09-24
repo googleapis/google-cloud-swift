@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: BackupDRClient, projectId: String, locationId: String, managementserverId: String
 ) async throws {
-  let poller = try await client.deleteManagementServer(
-    withPolling: DeleteManagementServerRequest()
+  let poller = try await client.deleteManagementServerPollingUntilDone(
+    request: DeleteManagementServerRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/managementServers/\(managementserverId)"

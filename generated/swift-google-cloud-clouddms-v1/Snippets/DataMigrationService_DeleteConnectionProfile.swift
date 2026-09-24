@@ -27,8 +27,8 @@ func sample(
   client: DataMigrationServiceClient, projectId: String, locationId: String,
   connectionProfileId: String
 ) async throws {
-  let poller = try await client.deleteConnectionProfile(
-    withPolling: DeleteConnectionProfileRequest()
+  let poller = try await client.deleteConnectionProfilePollingUntilDone(
+    request: DeleteConnectionProfileRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/connectionProfiles/\(connectionProfileId)"

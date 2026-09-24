@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: EndpointServiceClient) async throws {
-    let poller = try await client.updateEndpointLongRunning(
-      withPolling: UpdateEndpointLongRunningRequest()
+    let poller = try await client.updateEndpointLongRunningPollingUntilDone(
+      request: UpdateEndpointLongRunningRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

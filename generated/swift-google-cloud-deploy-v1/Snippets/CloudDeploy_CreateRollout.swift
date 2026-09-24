@@ -27,8 +27,8 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   releaseId: String
 ) async throws {
-  let poller = try await client.createRollout(
-    withPolling: CreateRolloutRequest()
+  let poller = try await client.createRolloutPollingUntilDone(
+    request: CreateRolloutRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/deliveryPipelines/\(deliveryPipelineId)/releases/\(releaseId)"

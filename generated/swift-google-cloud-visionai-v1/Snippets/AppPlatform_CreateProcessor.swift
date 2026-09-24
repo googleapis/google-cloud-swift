@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppPlatformClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createProcessor(
-    withPolling: CreateProcessorRequest()
+  let poller = try await client.createProcessorPollingUntilDone(
+    request: CreateProcessorRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.processorId = "[replace with a valid ID]"

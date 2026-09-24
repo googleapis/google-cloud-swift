@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: WorkflowTemplateServiceClient) async throws {
-  let poller = try await client.instantiateInlineWorkflowTemplate(
-    withPolling: InstantiateInlineWorkflowTemplateRequest()
+  let poller = try await client.instantiateInlineWorkflowTemplatePollingUntilDone(
+    request: InstantiateInlineWorkflowTemplateRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

@@ -25,8 +25,8 @@ func sample(
   client: GkeHubClient, projectId: String, locationId: String, membershipId: String,
   membershipbindingId: String
 ) async throws {
-  let poller = try await client.deleteMembershipBinding(
-    withPolling: DeleteMembershipBindingRequest()
+  let poller = try await client.deleteMembershipBindingPollingUntilDone(
+    request: DeleteMembershipBindingRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/memberships/\(membershipId)/bindings/\(membershipbindingId)"

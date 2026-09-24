@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AnalyticsHubServiceClient) async throws {
-  let poller = try await client.subscribeDataExchange(
-    withPolling: SubscribeDataExchangeRequest()
+  let poller = try await client.subscribeDataExchangePollingUntilDone(
+    request: SubscribeDataExchangeRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

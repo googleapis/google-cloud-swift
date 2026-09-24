@@ -26,8 +26,8 @@ func sample(
   client: PrivilegedAccessManagerClient, projectId: String, locationId: String,
   entitlementId: String
 ) async throws {
-  let poller = try await client.updateEntitlement(
-    withPolling: UpdateEntitlementRequest()
+  let poller = try await client.updateEntitlementPollingUntilDone(
+    request: UpdateEntitlementRequest()
       .with {
         $0.entitlement = Entitlement().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/entitlements/\(entitlementId)"

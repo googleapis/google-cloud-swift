@@ -102,15 +102,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// resource and retry registration.
   ///
   /// @Snippet(path: "Domains_RegisterDomain")
-  public func registerDomain(
-    withPolling: RegisterDomainRequest, options: GoogleGax.RequestOptions
+  public func registerDomainPollingUntilDone(
+    request: RegisterDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.registerDomain(request: withPolling, options: options)
+    let rawOp = try await self.registerDomain(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -191,15 +191,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// the resource and retry the transfer.
   ///
   /// @Snippet(path: "Domains_TransferDomain")
-  public func transferDomain(
-    withPolling: TransferDomainRequest, options: GoogleGax.RequestOptions
+  public func transferDomainPollingUntilDone(
+    request: TransferDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.transferDomain(request: withPolling, options: options)
+    let rawOp = try await self.transferDomain(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -254,15 +254,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// * To update contact information, see `ConfigureContactSettings`
   ///
   /// @Snippet(path: "Domains_UpdateRegistration")
-  public func updateRegistration(
-    withPolling: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
+  public func updateRegistrationPollingUntilDone(
+    request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.updateRegistration(request: withPolling, options: options)
+    let rawOp = try await self.updateRegistration(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -289,15 +289,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Updates a `Registration`'s management settings.
   ///
   /// @Snippet(path: "Domains_ConfigureManagementSettings")
-  public func configureManagementSettings(
-    withPolling: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
+  public func configureManagementSettingsPollingUntilDone(
+    request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.configureManagementSettings(request: withPolling, options: options)
+    let rawOp = try await self.configureManagementSettings(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -324,15 +324,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Updates a `Registration`'s DNS settings.
   ///
   /// @Snippet(path: "Domains_ConfigureDnsSettings")
-  public func configureDnsSettings(
-    withPolling: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
+  public func configureDnsSettingsPollingUntilDone(
+    request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.configureDnsSettings(request: withPolling, options: options)
+    let rawOp = try await self.configureDnsSettings(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -361,15 +361,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// confirmation by the domain's registrant contact .
   ///
   /// @Snippet(path: "Domains_ConfigureContactSettings")
-  public func configureContactSettings(
-    withPolling: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
+  public func configureContactSettingsPollingUntilDone(
+    request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.configureContactSettings(request: withPolling, options: options)
+    let rawOp = try await self.configureContactSettings(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -412,15 +412,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Domains.
   ///
   /// @Snippet(path: "Domains_ExportRegistration")
-  public func exportRegistration(
-    withPolling: ExportRegistrationRequest, options: GoogleGax.RequestOptions
+  public func exportRegistrationPollingUntilDone(
+    request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Registration>.State in
       return try op._extractStatus(Registration.self)
     }
-    let rawOp = try await self.exportRegistration(request: withPolling, options: options)
+    let rawOp = try await self.exportRegistration(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       let op = try await self.getOperation(
@@ -483,15 +483,15 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Google Domains.
   ///
   /// @Snippet(path: "Domains_DeleteRegistration")
-  public func deleteRegistration(
-    withPolling: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
+  public func deleteRegistrationPollingUntilDone(
+    request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteRegistration(request: withPolling, options: options)
+    let rawOp = try await self.deleteRegistration(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -562,22 +562,22 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DomainsProtocol: Sendable {
     /// See `DomainsClient.registerDomain`.
-    func registerDomain(withPolling: RegisterDomainRequest) async throws -> any GoogleGax
-      .PollableOperation<Registration>
+    func registerDomainPollingUntilDone(request: RegisterDomainRequest) async throws
+      -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.registerDomain`.
-    func registerDomain(
+    func registerDomainPollingUntilDone(
       parent: Swift.String,
       registration: Registration?,
       yearlyPrice: GoogleType.Money?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.transferDomain`.
-    func transferDomain(withPolling: TransferDomainRequest) async throws -> any GoogleGax
-      .PollableOperation<Registration>
+    func transferDomainPollingUntilDone(request: TransferDomainRequest) async throws
+      -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.transferDomain`.
-    func transferDomain(
+    func transferDomainPollingUntilDone(
       parent: Swift.String,
       registration: Registration?,
       yearlyPrice: GoogleType.Money?,
@@ -585,63 +585,63 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.updateRegistration`.
-    func updateRegistration(withPolling: UpdateRegistrationRequest) async throws -> any GoogleGax
-      .PollableOperation<Registration>
+    func updateRegistrationPollingUntilDone(request: UpdateRegistrationRequest) async throws
+      -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.updateRegistration`.
-    func updateRegistration(
+    func updateRegistrationPollingUntilDone(
       registration: Registration?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureManagementSettings`.
-    func configureManagementSettings(withPolling: ConfigureManagementSettingsRequest) async throws
-      -> any GoogleGax.PollableOperation<Registration>
+    func configureManagementSettingsPollingUntilDone(request: ConfigureManagementSettingsRequest)
+      async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureManagementSettings`.
-    func configureManagementSettings(
+    func configureManagementSettingsPollingUntilDone(
       registration: Swift.String,
       managementSettings: ManagementSettings?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureDnsSettings`.
-    func configureDnsSettings(withPolling: ConfigureDnsSettingsRequest) async throws
+    func configureDnsSettingsPollingUntilDone(request: ConfigureDnsSettingsRequest) async throws
       -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureDnsSettings`.
-    func configureDnsSettings(
+    func configureDnsSettingsPollingUntilDone(
       registration: Swift.String,
       dnsSettings: DnsSettings?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureContactSettings`.
-    func configureContactSettings(withPolling: ConfigureContactSettingsRequest) async throws
-      -> any GoogleGax.PollableOperation<Registration>
+    func configureContactSettingsPollingUntilDone(request: ConfigureContactSettingsRequest)
+      async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureContactSettings`.
-    func configureContactSettings(
+    func configureContactSettingsPollingUntilDone(
       registration: Swift.String,
       contactSettings: ContactSettings?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.exportRegistration`.
-    func exportRegistration(withPolling: ExportRegistrationRequest) async throws -> any GoogleGax
-      .PollableOperation<Registration>
+    func exportRegistrationPollingUntilDone(request: ExportRegistrationRequest) async throws
+      -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.exportRegistration`.
-    func exportRegistration(
+    func exportRegistrationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.deleteRegistration`.
-    func deleteRegistration(withPolling: DeleteRegistrationRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteRegistrationPollingUntilDone(request: DeleteRegistrationRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DomainsClient.deleteRegistration`.
-    func deleteRegistration(
+    func deleteRegistrationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -661,8 +661,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.registerDomain`.
-    func registerDomain(
-      withPolling: RegisterDomainRequest, options: GoogleGax.RequestOptions
+    func registerDomainPollingUntilDone(
+      request: RegisterDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.retrieveTransferParameters`.
@@ -676,8 +676,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.transferDomain`.
-    func transferDomain(
-      withPolling: TransferDomainRequest, options: GoogleGax.RequestOptions
+    func transferDomainPollingUntilDone(
+      request: TransferDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.listRegistrations`.
@@ -696,8 +696,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.updateRegistration`.
-    func updateRegistration(
-      withPolling: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
+    func updateRegistrationPollingUntilDone(
+      request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureManagementSettings`.
@@ -706,8 +706,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureManagementSettings`.
-    func configureManagementSettings(
-      withPolling: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
+    func configureManagementSettingsPollingUntilDone(
+      request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureDnsSettings`.
@@ -716,8 +716,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureDnsSettings`.
-    func configureDnsSettings(
-      withPolling: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
+    func configureDnsSettingsPollingUntilDone(
+      request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.configureContactSettings`.
@@ -726,8 +726,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureContactSettings`.
-    func configureContactSettings(
-      withPolling: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
+    func configureContactSettingsPollingUntilDone(
+      request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.exportRegistration`.
@@ -736,8 +736,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.exportRegistration`.
-    func exportRegistration(
-      withPolling: ExportRegistrationRequest, options: GoogleGax.RequestOptions
+    func exportRegistrationPollingUntilDone(
+      request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Registration>
 
     /// See `DomainsClient.deleteRegistration`.
@@ -746,8 +746,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.deleteRegistration`.
-    func deleteRegistration(
-      withPolling: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
+    func deleteRegistrationPollingUntilDone(
+      request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DomainsClient.retrieveAuthorizationCode`.
@@ -827,14 +827,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func registerDomain(withPolling: RegisterDomainRequest) async throws -> any GoogleGax
-    .PollableOperation<Registration>
+  public func registerDomainPollingUntilDone(request: RegisterDomainRequest) async throws
+    -> any GoogleGax.PollableOperation<Registration>
   {
-    try await self.registerDomain(withPolling: withPolling, options: .init())
+    try await self.registerDomainPollingUntilDone(request: request, options: .init())
   }
 
-  public func registerDomain(
-    withPolling: RegisterDomainRequest, options: GoogleGax.RequestOptions
+  public func registerDomainPollingUntilDone(
+    request: RegisterDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -843,7 +843,7 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func registerDomain(
+  public func registerDomainPollingUntilDone(
     parent: Swift.String,
     registration: Registration?,
     yearlyPrice: GoogleType.Money?,
@@ -853,7 +853,7 @@ extension Clients.DomainsProtocol {
       $0.registration = registration
       $0.yearlyPrice = yearlyPrice
     }
-    return try await self.registerDomain(withPolling: request)
+    return try await self.registerDomainPollingUntilDone(request: request)
   }
 
   public func retrieveTransferParameters(request: RetrieveTransferParametersRequest) async throws
@@ -891,14 +891,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func transferDomain(withPolling: TransferDomainRequest) async throws -> any GoogleGax
-    .PollableOperation<Registration>
+  public func transferDomainPollingUntilDone(request: TransferDomainRequest) async throws
+    -> any GoogleGax.PollableOperation<Registration>
   {
-    try await self.transferDomain(withPolling: withPolling, options: .init())
+    try await self.transferDomainPollingUntilDone(request: request, options: .init())
   }
 
-  public func transferDomain(
-    withPolling: TransferDomainRequest, options: GoogleGax.RequestOptions
+  public func transferDomainPollingUntilDone(
+    request: TransferDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -907,7 +907,7 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func transferDomain(
+  public func transferDomainPollingUntilDone(
     parent: Swift.String,
     registration: Registration?,
     yearlyPrice: GoogleType.Money?,
@@ -919,7 +919,7 @@ extension Clients.DomainsProtocol {
       $0.yearlyPrice = yearlyPrice
       $0.authorizationCode = authorizationCode
     }
-    return try await self.transferDomain(withPolling: request)
+    return try await self.transferDomainPollingUntilDone(request: request)
   }
 
   public func listRegistrations(request: ListRegistrationsRequest) async throws
@@ -997,14 +997,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateRegistration(withPolling: UpdateRegistrationRequest) async throws
+  public func updateRegistrationPollingUntilDone(request: UpdateRegistrationRequest) async throws
     -> any GoogleGax.PollableOperation<Registration>
   {
-    try await self.updateRegistration(withPolling: withPolling, options: .init())
+    try await self.updateRegistrationPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateRegistration(
-    withPolling: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
+  public func updateRegistrationPollingUntilDone(
+    request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1013,7 +1013,7 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateRegistration(
+  public func updateRegistrationPollingUntilDone(
     registration: Registration?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
@@ -1021,7 +1021,7 @@ extension Clients.DomainsProtocol {
       $0.registration = registration
       $0.updateMask = updateMask
     }
-    return try await self.updateRegistration(withPolling: request)
+    return try await self.updateRegistrationPollingUntilDone(request: request)
   }
 
   public func configureManagementSettings(request: ConfigureManagementSettingsRequest) async throws
@@ -1036,14 +1036,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func configureManagementSettings(withPolling: ConfigureManagementSettingsRequest)
-    async throws -> any GoogleGax.PollableOperation<Registration>
-  {
-    try await self.configureManagementSettings(withPolling: withPolling, options: .init())
+  public func configureManagementSettingsPollingUntilDone(
+    request: ConfigureManagementSettingsRequest
+  ) async throws -> any GoogleGax.PollableOperation<Registration> {
+    try await self.configureManagementSettingsPollingUntilDone(request: request, options: .init())
   }
 
-  public func configureManagementSettings(
-    withPolling: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
+  public func configureManagementSettingsPollingUntilDone(
+    request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1052,7 +1052,7 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func configureManagementSettings(
+  public func configureManagementSettingsPollingUntilDone(
     registration: Swift.String,
     managementSettings: ManagementSettings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1062,7 +1062,7 @@ extension Clients.DomainsProtocol {
       $0.managementSettings = managementSettings
       $0.updateMask = updateMask
     }
-    return try await self.configureManagementSettings(withPolling: request)
+    return try await self.configureManagementSettingsPollingUntilDone(request: request)
   }
 
   public func configureDnsSettings(request: ConfigureDnsSettingsRequest) async throws
@@ -1077,14 +1077,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func configureDnsSettings(withPolling: ConfigureDnsSettingsRequest) async throws
-    -> any GoogleGax.PollableOperation<Registration>
+  public func configureDnsSettingsPollingUntilDone(request: ConfigureDnsSettingsRequest)
+    async throws -> any GoogleGax.PollableOperation<Registration>
   {
-    try await self.configureDnsSettings(withPolling: withPolling, options: .init())
+    try await self.configureDnsSettingsPollingUntilDone(request: request, options: .init())
   }
 
-  public func configureDnsSettings(
-    withPolling: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
+  public func configureDnsSettingsPollingUntilDone(
+    request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1093,7 +1093,7 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func configureDnsSettings(
+  public func configureDnsSettingsPollingUntilDone(
     registration: Swift.String,
     dnsSettings: DnsSettings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1103,7 +1103,7 @@ extension Clients.DomainsProtocol {
       $0.dnsSettings = dnsSettings
       $0.updateMask = updateMask
     }
-    return try await self.configureDnsSettings(withPolling: request)
+    return try await self.configureDnsSettingsPollingUntilDone(request: request)
   }
 
   public func configureContactSettings(request: ConfigureContactSettingsRequest) async throws
@@ -1118,14 +1118,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func configureContactSettings(withPolling: ConfigureContactSettingsRequest) async throws
-    -> any GoogleGax.PollableOperation<Registration>
+  public func configureContactSettingsPollingUntilDone(request: ConfigureContactSettingsRequest)
+    async throws -> any GoogleGax.PollableOperation<Registration>
   {
-    try await self.configureContactSettings(withPolling: withPolling, options: .init())
+    try await self.configureContactSettingsPollingUntilDone(request: request, options: .init())
   }
 
-  public func configureContactSettings(
-    withPolling: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
+  public func configureContactSettingsPollingUntilDone(
+    request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1134,7 +1134,7 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func configureContactSettings(
+  public func configureContactSettingsPollingUntilDone(
     registration: Swift.String,
     contactSettings: ContactSettings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1144,7 +1144,7 @@ extension Clients.DomainsProtocol {
       $0.contactSettings = contactSettings
       $0.updateMask = updateMask
     }
-    return try await self.configureContactSettings(withPolling: request)
+    return try await self.configureContactSettingsPollingUntilDone(request: request)
   }
 
   public func exportRegistration(request: ExportRegistrationRequest) async throws
@@ -1159,14 +1159,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportRegistration(withPolling: ExportRegistrationRequest) async throws
+  public func exportRegistrationPollingUntilDone(request: ExportRegistrationRequest) async throws
     -> any GoogleGax.PollableOperation<Registration>
   {
-    try await self.exportRegistration(withPolling: withPolling, options: .init())
+    try await self.exportRegistrationPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportRegistration(
-    withPolling: ExportRegistrationRequest, options: GoogleGax.RequestOptions
+  public func exportRegistrationPollingUntilDone(
+    request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Registration>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1175,13 +1175,13 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func exportRegistration(
+  public func exportRegistrationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Registration> {
     let request = ExportRegistrationRequest().with {
       $0.name = name
     }
-    return try await self.exportRegistration(withPolling: request)
+    return try await self.exportRegistrationPollingUntilDone(request: request)
   }
 
   public func deleteRegistration(request: DeleteRegistrationRequest) async throws
@@ -1196,14 +1196,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteRegistration(withPolling: DeleteRegistrationRequest) async throws
+  public func deleteRegistrationPollingUntilDone(request: DeleteRegistrationRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteRegistration(withPolling: withPolling, options: .init())
+    try await self.deleteRegistrationPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteRegistration(
-    withPolling: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
+  public func deleteRegistrationPollingUntilDone(
+    request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1212,13 +1212,13 @@ extension Clients.DomainsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteRegistration(
+  public func deleteRegistrationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteRegistrationRequest().with {
       $0.name = name
     }
-    return try await self.deleteRegistration(withPolling: request)
+    return try await self.deleteRegistrationPollingUntilDone(request: request)
   }
 
   public func retrieveAuthorizationCode(request: RetrieveAuthorizationCodeRequest) async throws

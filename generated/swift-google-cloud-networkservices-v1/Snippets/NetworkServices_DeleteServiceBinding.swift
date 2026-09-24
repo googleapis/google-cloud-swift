@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, serviceBindingId: String
 ) async throws {
-  let poller = try await client.deleteServiceBinding(
-    withPolling: DeleteServiceBindingRequest()
+  let poller = try await client.deleteServiceBindingPollingUntilDone(
+    request: DeleteServiceBindingRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/serviceBindings/\(serviceBindingId)"

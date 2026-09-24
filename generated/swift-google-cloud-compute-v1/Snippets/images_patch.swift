@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ImagesClient) async throws {
-    let poller = try await client.patch(
-      withPolling: ImagesClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: ImagesClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

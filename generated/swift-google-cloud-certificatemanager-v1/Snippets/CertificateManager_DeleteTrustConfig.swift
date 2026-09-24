@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, trustConfigId: String
 ) async throws {
-  let poller = try await client.deleteTrustConfig(
-    withPolling: DeleteTrustConfigRequest()
+  let poller = try await client.deleteTrustConfigPollingUntilDone(
+    request: DeleteTrustConfigRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/trustConfigs/\(trustConfigId)"
       }

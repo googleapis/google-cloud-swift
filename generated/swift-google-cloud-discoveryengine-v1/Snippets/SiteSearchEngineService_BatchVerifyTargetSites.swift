@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: SiteSearchEngineServiceClient) async throws {
-    let poller = try await client.batchVerifyTargetSites(
-      withPolling: BatchVerifyTargetSitesRequest()
+    let poller = try await client.batchVerifyTargetSitesPollingUntilDone(
+      request: BatchVerifyTargetSitesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

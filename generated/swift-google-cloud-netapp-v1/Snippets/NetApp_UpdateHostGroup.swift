@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, hostGroupId: String)
   async throws
 {
-  let poller = try await client.updateHostGroup(
-    withPolling: UpdateHostGroupRequest()
+  let poller = try await client.updateHostGroupPollingUntilDone(
+    request: UpdateHostGroupRequest()
       .with {
         $0.hostGroup = HostGroup().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/hostGroups/\(hostGroupId)"

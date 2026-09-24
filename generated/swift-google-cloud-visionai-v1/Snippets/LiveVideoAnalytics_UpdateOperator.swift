@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, operatorId: String
 ) async throws {
-  let poller = try await client.updateOperator(
-    withPolling: UpdateOperatorRequest()
+  let poller = try await client.updateOperatorPollingUntilDone(
+    request: UpdateOperatorRequest()
       .with {
         $0.`operator` = Operator().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/operators/\(operatorId)"

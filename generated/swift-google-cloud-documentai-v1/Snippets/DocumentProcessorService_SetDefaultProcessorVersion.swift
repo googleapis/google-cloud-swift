@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: DocumentProcessorServiceClient) async throws {
-  let poller = try await client.setDefaultProcessorVersion(
-    withPolling: SetDefaultProcessorVersionRequest()
+  let poller = try await client.setDefaultProcessorVersionPollingUntilDone(
+    request: SetDefaultProcessorVersionRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

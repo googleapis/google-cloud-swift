@@ -27,8 +27,8 @@
   func sample(
     client: DatasetServiceClient, projectId: String, locationId: String, datasetId: String
   ) async throws {
-    let poller = try await client.createDatasetVersion(
-      withPolling: CreateDatasetVersionRequest()
+    let poller = try await client.createDatasetVersionPollingUntilDone(
+      request: CreateDatasetVersionRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)"
           $0.datasetVersion = DatasetVersion() /* .with { ... } */

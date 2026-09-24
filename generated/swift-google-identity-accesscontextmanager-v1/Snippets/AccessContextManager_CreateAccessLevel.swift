@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, accessPolicyId: String) async throws {
-  let poller = try await client.createAccessLevel(
-    withPolling: CreateAccessLevelRequest()
+  let poller = try await client.createAccessLevelPollingUntilDone(
+    request: CreateAccessLevelRequest()
       .with {
         $0.parent = "accessPolicies/\(accessPolicyId)"
         $0.accessLevel = AccessLevel() /* .with { ... } */

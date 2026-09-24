@@ -27,8 +27,8 @@ func sample(
   client: DataTransferServiceClient, projectId: String, locationId: String,
   multicloudDataTransferConfigId: String
 ) async throws {
-  let poller = try await client.updateMulticloudDataTransferConfig(
-    withPolling: UpdateMulticloudDataTransferConfigRequest()
+  let poller = try await client.updateMulticloudDataTransferConfigPollingUntilDone(
+    request: UpdateMulticloudDataTransferConfigRequest()
       .with {
         $0.multicloudDataTransferConfig = MulticloudDataTransferConfig().with {
           $0.name =

@@ -28,8 +28,8 @@
     client: PersistentResourceServiceClient, projectId: String, locationId: String,
     persistentResourceId: String
   ) async throws {
-    let poller = try await client.deletePersistentResource(
-      withPolling: DeletePersistentResourceRequest()
+    let poller = try await client.deletePersistentResourcePollingUntilDone(
+      request: DeletePersistentResourceRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/persistentResources/\(persistentResourceId)"

@@ -26,8 +26,8 @@ func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String,
   predictionResultId: String
 ) async throws {
-  let poller = try await client.updatePredictionResult(
-    withPolling: UpdatePredictionResultRequest()
+  let poller = try await client.updatePredictionResultPollingUntilDone(
+    request: UpdatePredictionResultRequest()
       .with {
         $0.predictionResult = PredictionResult().with {
           $0.name =

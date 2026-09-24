@@ -24,8 +24,8 @@ func sample(
   client: ExecutionsClient, projectId: String, locationId: String, jobId: String,
   executionId: String
 ) async throws {
-  let poller = try await client.deleteExecution(
-    withPolling: DeleteExecutionRequest()
+  let poller = try await client.deleteExecutionPollingUntilDone(
+    request: DeleteExecutionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)/executions/\(executionId)"

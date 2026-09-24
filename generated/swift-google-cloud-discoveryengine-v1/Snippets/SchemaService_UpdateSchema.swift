@@ -25,8 +25,8 @@
     client: SchemaServiceClient, projectId: String, locationId: String, dataStoreId: String,
     schemaId: String
   ) async throws {
-    let poller = try await client.updateSchema(
-      withPolling: UpdateSchemaRequest()
+    let poller = try await client.updateSchemaPollingUntilDone(
+      request: UpdateSchemaRequest()
         .with {
           $0.schema = Schema().with {
             $0.name =

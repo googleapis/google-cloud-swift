@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: MetadataServiceClient) async throws {
-    let poller = try await client.purgeExecutions(
-      withPolling: PurgeExecutionsRequest()
+    let poller = try await client.purgeExecutionsPollingUntilDone(
+      request: PurgeExecutionsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

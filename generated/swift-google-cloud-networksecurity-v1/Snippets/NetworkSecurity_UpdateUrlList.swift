@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String, urlListId: String)
   async throws
 {
-  let poller = try await client.updateUrlList(
-    withPolling: UpdateUrlListRequest()
+  let poller = try await client.updateUrlListPollingUntilDone(
+    request: UpdateUrlListRequest()
       .with {
         $0.urlList = UrlList().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/urlLists/\(urlListId)"

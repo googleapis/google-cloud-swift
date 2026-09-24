@@ -26,8 +26,8 @@ func sample(
   client: EdgeContainerClient, projectId: String, locationId: String, clusterId: String,
   nodePoolId: String
 ) async throws {
-  let poller = try await client.deleteNodePool(
-    withPolling: DeleteNodePoolRequest()
+  let poller = try await client.deleteNodePoolPollingUntilDone(
+    request: DeleteNodePoolRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)/nodePools/\(nodePoolId)"

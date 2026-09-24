@@ -113,15 +113,15 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// Cloud Storage.
   ///
   /// @Snippet(path: "DatastoreAdmin_ExportEntities")
-  public func exportEntities(
-    withPolling: ExportEntitiesRequest, options: GoogleGax.RequestOptions
+  public func exportEntitiesPollingUntilDone(
+    request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
       return try op._extractStatus(ExportEntitiesResponse.self)
     }
-    let rawOp = try await self.exportEntities(request: withPolling, options: options)
+    let rawOp = try await self.exportEntities(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
@@ -157,15 +157,15 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// that a subset of the data has already been imported to Cloud Datastore.
   ///
   /// @Snippet(path: "DatastoreAdmin_ImportEntities")
-  public func importEntities(
-    withPolling: ImportEntitiesRequest, options: GoogleGax.RequestOptions
+  public func importEntitiesPollingUntilDone(
+    request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.importEntities(request: withPolling, options: options)
+    let rawOp = try await self.importEntities(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -224,14 +224,14 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
-  public func createIndex(
-    withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+  public func createIndexPollingUntilDone(
+    request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
-    let rawOp = try await self.createIndex(request: withPolling, options: options)
+    let rawOp = try await self.createIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
@@ -286,14 +286,14 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
-  public func deleteIndex(
-    withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
-    let rawOp = try await self.deleteIndex(request: withPolling, options: options)
+    let rawOp = try await self.deleteIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
@@ -381,11 +381,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DatastoreAdminProtocol: Sendable {
     /// See `DatastoreAdminClient.exportEntities`.
-    func exportEntities(withPolling: ExportEntitiesRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportEntitiesResponse>
+    func exportEntitiesPollingUntilDone(request: ExportEntitiesRequest) async throws
+      -> any GoogleGax.PollableOperation<ExportEntitiesResponse>
 
     /// See `DatastoreAdminClient.exportEntities`.
-    func exportEntities(
+    func exportEntitiesPollingUntilDone(
       projectId: Swift.String,
       labels: [Swift.String: Swift.String],
       entityFilter: EntityFilter?,
@@ -393,11 +393,11 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse>
 
     /// See `DatastoreAdminClient.importEntities`.
-    func importEntities(withPolling: ImportEntitiesRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func importEntitiesPollingUntilDone(request: ImportEntitiesRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DatastoreAdminClient.importEntities`.
-    func importEntities(
+    func importEntitiesPollingUntilDone(
       projectId: Swift.String,
       labels: [Swift.String: Swift.String],
       inputUrl: Swift.String,
@@ -405,11 +405,11 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DatastoreAdminClient.createIndex`.
-    func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+    func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
     /// See `DatastoreAdminClient.deleteIndex`.
-    func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+    func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
     /// See `DatastoreAdminClient.exportEntities`.
@@ -418,8 +418,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.exportEntities`.
-    func exportEntities(
-      withPolling: ExportEntitiesRequest, options: GoogleGax.RequestOptions
+    func exportEntitiesPollingUntilDone(
+      request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse>
 
     /// See `DatastoreAdminClient.importEntities`.
@@ -428,8 +428,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.importEntities`.
-    func importEntities(
-      withPolling: ImportEntitiesRequest, options: GoogleGax.RequestOptions
+    func importEntitiesPollingUntilDone(
+      request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DatastoreAdminClient.createIndex`.
@@ -438,8 +438,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.createIndex`.
-    func createIndex(
-      withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+    func createIndexPollingUntilDone(
+      request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `DatastoreAdminClient.deleteIndex`.
@@ -448,8 +448,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.deleteIndex`.
-    func deleteIndex(
-      withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+    func deleteIndexPollingUntilDone(
+      request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `DatastoreAdminClient.getIndex`.
@@ -493,14 +493,14 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportEntities(withPolling: ExportEntitiesRequest) async throws -> any GoogleGax
-    .PollableOperation<ExportEntitiesResponse>
+  public func exportEntitiesPollingUntilDone(request: ExportEntitiesRequest) async throws
+    -> any GoogleGax.PollableOperation<ExportEntitiesResponse>
   {
-    try await self.exportEntities(withPolling: withPolling, options: .init())
+    try await self.exportEntitiesPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportEntities(
-    withPolling: ExportEntitiesRequest, options: GoogleGax.RequestOptions
+  public func exportEntitiesPollingUntilDone(
+    request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
@@ -510,7 +510,7 @@ extension Clients.DatastoreAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func exportEntities(
+  public func exportEntitiesPollingUntilDone(
     projectId: Swift.String,
     labels: [Swift.String: Swift.String],
     entityFilter: EntityFilter?,
@@ -522,7 +522,7 @@ extension Clients.DatastoreAdminProtocol {
       $0.entityFilter = entityFilter
       $0.outputUrlPrefix = outputUrlPrefix
     }
-    return try await self.exportEntities(withPolling: request)
+    return try await self.exportEntitiesPollingUntilDone(request: request)
   }
 
   public func importEntities(request: ImportEntitiesRequest) async throws
@@ -537,14 +537,14 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importEntities(withPolling: ImportEntitiesRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func importEntitiesPollingUntilDone(request: ImportEntitiesRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.importEntities(withPolling: withPolling, options: .init())
+    try await self.importEntitiesPollingUntilDone(request: request, options: .init())
   }
 
-  public func importEntities(
-    withPolling: ImportEntitiesRequest, options: GoogleGax.RequestOptions
+  public func importEntitiesPollingUntilDone(
+    request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -553,7 +553,7 @@ extension Clients.DatastoreAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func importEntities(
+  public func importEntitiesPollingUntilDone(
     projectId: Swift.String,
     labels: [Swift.String: Swift.String],
     inputUrl: Swift.String,
@@ -565,7 +565,7 @@ extension Clients.DatastoreAdminProtocol {
       $0.inputUrl = inputUrl
       $0.entityFilter = entityFilter
     }
-    return try await self.importEntities(withPolling: request)
+    return try await self.importEntitiesPollingUntilDone(request: request)
   }
 
   public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -578,14 +578,14 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+  public func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Index>
   {
-    try await self.createIndex(withPolling: withPolling, options: .init())
+    try await self.createIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func createIndex(
-    withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+  public func createIndexPollingUntilDone(
+    request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -604,14 +604,14 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+  public func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Index>
   {
-    try await self.deleteIndex(withPolling: withPolling, options: .init())
+    try await self.deleteIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteIndex(
-    withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented

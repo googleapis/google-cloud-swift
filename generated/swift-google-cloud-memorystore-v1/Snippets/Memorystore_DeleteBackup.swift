@@ -26,8 +26,8 @@ func sample(
   client: MemorystoreClient, projectId: String, locationId: String, backupCollectionId: String,
   backupId: String
 ) async throws {
-  let poller = try await client.deleteBackup(
-    withPolling: DeleteBackupRequest()
+  let poller = try await client.deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/backupCollections/\(backupCollectionId)/backups/\(backupId)"

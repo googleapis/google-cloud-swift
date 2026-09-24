@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: SpecialistPoolServiceClient, parent: String) async throws {
-    let poller = try await client.createSpecialistPool(
-      withPolling: CreateSpecialistPoolRequest()
+    let poller = try await client.createSpecialistPoolPollingUntilDone(
+      request: CreateSpecialistPoolRequest()
         .with {
           $0.parent = "\(parent)"
           $0.specialistPool = SpecialistPool() /* .with { ... } */

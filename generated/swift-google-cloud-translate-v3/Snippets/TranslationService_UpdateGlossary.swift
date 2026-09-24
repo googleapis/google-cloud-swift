@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, glossaryId: String
 ) async throws {
-  let poller = try await client.updateGlossary(
-    withPolling: UpdateGlossaryRequest()
+  let poller = try await client.updateGlossaryPollingUntilDone(
+    request: UpdateGlossaryRequest()
       .with {
         $0.glossary = Glossary().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/glossaries/\(glossaryId)"

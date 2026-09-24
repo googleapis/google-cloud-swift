@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: PublicDelegatedPrefixesClient) async throws {
-    let poller = try await client.announce(
-      withPolling: PublicDelegatedPrefixesClient.AnnounceRequest()
+    let poller = try await client.announcePollingUntilDone(
+      request: PublicDelegatedPrefixesClient.AnnounceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

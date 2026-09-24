@@ -27,8 +27,8 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   branchRuleId: String
 ) async throws {
-  let poller = try await client.updateBranchRule(
-    withPolling: UpdateBranchRuleRequest()
+  let poller = try await client.updateBranchRulePollingUntilDone(
+    request: UpdateBranchRuleRequest()
       .with {
         $0.branchRule = BranchRule().with {
           $0.name =

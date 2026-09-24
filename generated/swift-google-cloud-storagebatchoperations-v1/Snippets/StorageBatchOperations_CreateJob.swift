@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(client: StorageBatchOperationsClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createJob(
-    withPolling: CreateJobRequest()
+  let poller = try await client.createJobPollingUntilDone(
+    request: CreateJobRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.jobId = "[replace with a valid ID]"

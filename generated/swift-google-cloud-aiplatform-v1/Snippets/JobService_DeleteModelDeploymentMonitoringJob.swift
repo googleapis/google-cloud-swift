@@ -28,8 +28,8 @@
     client: JobServiceClient, projectId: String, locationId: String,
     modelDeploymentMonitoringJobId: String
   ) async throws {
-    let poller = try await client.deleteModelDeploymentMonitoringJob(
-      withPolling: DeleteModelDeploymentMonitoringJobRequest()
+    let poller = try await client.deleteModelDeploymentMonitoringJobPollingUntilDone(
+      request: DeleteModelDeploymentMonitoringJobRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/modelDeploymentMonitoringJobs/\(modelDeploymentMonitoringJobId)"

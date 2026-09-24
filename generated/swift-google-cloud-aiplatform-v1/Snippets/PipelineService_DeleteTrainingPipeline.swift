@@ -26,8 +26,8 @@
   func sample(
     client: PipelineServiceClient, projectId: String, locationId: String, trainingPipelineId: String
   ) async throws {
-    let poller = try await client.deleteTrainingPipeline(
-      withPolling: DeleteTrainingPipelineRequest()
+    let poller = try await client.deleteTrainingPipelinePollingUntilDone(
+      request: DeleteTrainingPipelineRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/trainingPipelines/\(trainingPipelineId)"

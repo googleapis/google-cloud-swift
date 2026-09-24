@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: ManagedKafkaConnectClient, projectId: String, locationId: String, connectClusterId: String
 ) async throws {
-  let poller = try await client.deleteConnectCluster(
-    withPolling: DeleteConnectClusterRequest()
+  let poller = try await client.deleteConnectClusterPollingUntilDone(
+    request: DeleteConnectClusterRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/connectClusters/\(connectClusterId)"

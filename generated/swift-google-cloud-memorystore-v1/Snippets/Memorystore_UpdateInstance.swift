@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: MemorystoreClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.updateInstance(
-    withPolling: UpdateInstanceRequest()
+  let poller = try await client.updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest()
       .with {
         $0.instance = Instance().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"

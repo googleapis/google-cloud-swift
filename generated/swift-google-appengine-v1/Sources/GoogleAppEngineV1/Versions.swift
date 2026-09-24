@@ -73,14 +73,14 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Deploys code and resource files to a new version.
   ///
   /// @Snippet(path: "Versions_CreateVersion")
-  public func createVersion(
-    withPolling: CreateVersionRequest, options: GoogleGax.RequestOptions
+  public func createVersionPollingUntilDone(
+    request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Version> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Version>.State in
       return try op._extractStatus(Version.self)
     }
-    let rawOp = try await self.createVersion(request: withPolling, options: options)
+    let rawOp = try await self.createVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Version>.State in
       let op = try await self.getOperation(
@@ -177,14 +177,14 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
   ///
   /// @Snippet(path: "Versions_UpdateVersion")
-  public func updateVersion(
-    withPolling: UpdateVersionRequest, options: GoogleGax.RequestOptions
+  public func updateVersionPollingUntilDone(
+    request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Version> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Version>.State in
       return try op._extractStatus(Version.self)
     }
-    let rawOp = try await self.updateVersion(request: withPolling, options: options)
+    let rawOp = try await self.updateVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Version>.State in
       let op = try await self.getOperation(
@@ -211,15 +211,15 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Deletes an existing Version resource.
   ///
   /// @Snippet(path: "Versions_DeleteVersion")
-  public func deleteVersion(
-    withPolling: DeleteVersionRequest, options: GoogleGax.RequestOptions
+  public func deleteVersionPollingUntilDone(
+    request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteVersion(request: withPolling, options: options)
+    let rawOp = try await self.deleteVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -265,15 +265,15 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol VersionsProtocol: Sendable {
     /// See `VersionsClient.createVersion`.
-    func createVersion(withPolling: CreateVersionRequest) async throws -> any GoogleGax
+    func createVersionPollingUntilDone(request: CreateVersionRequest) async throws -> any GoogleGax
       .PollableOperation<Version>
 
     /// See `VersionsClient.updateVersion`.
-    func updateVersion(withPolling: UpdateVersionRequest) async throws -> any GoogleGax
+    func updateVersionPollingUntilDone(request: UpdateVersionRequest) async throws -> any GoogleGax
       .PollableOperation<Version>
 
     /// See `VersionsClient.deleteVersion`.
-    func deleteVersion(withPolling: DeleteVersionRequest) async throws -> any GoogleGax
+    func deleteVersionPollingUntilDone(request: DeleteVersionRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `VersionsClient.listVersions`.
@@ -292,8 +292,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VersionsClient.createVersion`.
-    func createVersion(
-      withPolling: CreateVersionRequest, options: GoogleGax.RequestOptions
+    func createVersionPollingUntilDone(
+      request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Version>
 
     /// See `VersionsClient.updateVersion`.
@@ -302,8 +302,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VersionsClient.updateVersion`.
-    func updateVersion(
-      withPolling: UpdateVersionRequest, options: GoogleGax.RequestOptions
+    func updateVersionPollingUntilDone(
+      request: UpdateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Version>
 
     /// See `VersionsClient.deleteVersion`.
@@ -312,8 +312,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VersionsClient.deleteVersion`.
-    func deleteVersion(
-      withPolling: DeleteVersionRequest, options: GoogleGax.RequestOptions
+    func deleteVersionPollingUntilDone(
+      request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VersionsClient.listOperations`.
@@ -379,14 +379,14 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createVersion(withPolling: CreateVersionRequest) async throws -> any GoogleGax
-    .PollableOperation<Version>
+  public func createVersionPollingUntilDone(request: CreateVersionRequest) async throws
+    -> any GoogleGax.PollableOperation<Version>
   {
-    try await self.createVersion(withPolling: withPolling, options: .init())
+    try await self.createVersionPollingUntilDone(request: request, options: .init())
   }
 
-  public func createVersion(
-    withPolling: CreateVersionRequest, options: GoogleGax.RequestOptions
+  public func createVersionPollingUntilDone(
+    request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Version> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Version>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -407,14 +407,14 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateVersion(withPolling: UpdateVersionRequest) async throws -> any GoogleGax
-    .PollableOperation<Version>
+  public func updateVersionPollingUntilDone(request: UpdateVersionRequest) async throws
+    -> any GoogleGax.PollableOperation<Version>
   {
-    try await self.updateVersion(withPolling: withPolling, options: .init())
+    try await self.updateVersionPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateVersion(
-    withPolling: UpdateVersionRequest, options: GoogleGax.RequestOptions
+  public func updateVersionPollingUntilDone(
+    request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Version> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Version>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -435,14 +435,14 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteVersion(withPolling: DeleteVersionRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteVersionPollingUntilDone(request: DeleteVersionRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteVersion(withPolling: withPolling, options: .init())
+    try await self.deleteVersionPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteVersion(
-    withPolling: DeleteVersionRequest, options: GoogleGax.RequestOptions
+  public func deleteVersionPollingUntilDone(
+    request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented

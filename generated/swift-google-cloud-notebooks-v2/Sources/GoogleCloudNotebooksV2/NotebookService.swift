@@ -74,15 +74,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Creates a new Instance in a given project and location.
   ///
   /// @Snippet(path: "NotebookService_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -109,15 +109,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// UpdateInstance updates an Instance.
   ///
   /// @Snippet(path: "NotebookService_UpdateInstance")
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.updateInstance(request: withPolling, options: options)
+    let rawOp = try await self.updateInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -144,15 +144,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Deletes a single Instance.
   ///
   /// @Snippet(path: "NotebookService_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -179,15 +179,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Starts a notebook instance.
   ///
   /// @Snippet(path: "NotebookService_StartInstance")
-  public func startInstance(
-    withPolling: StartInstanceRequest, options: GoogleGax.RequestOptions
+  public func startInstancePollingUntilDone(
+    request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.startInstance(request: withPolling, options: options)
+    let rawOp = try await self.startInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -214,15 +214,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Stops a notebook instance.
   ///
   /// @Snippet(path: "NotebookService_StopInstance")
-  public func stopInstance(
-    withPolling: StopInstanceRequest, options: GoogleGax.RequestOptions
+  public func stopInstancePollingUntilDone(
+    request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.stopInstance(request: withPolling, options: options)
+    let rawOp = try await self.stopInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -249,15 +249,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Resets a notebook instance.
   ///
   /// @Snippet(path: "NotebookService_ResetInstance")
-  public func resetInstance(
-    withPolling: ResetInstanceRequest, options: GoogleGax.RequestOptions
+  public func resetInstancePollingUntilDone(
+    request: ResetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.resetInstance(request: withPolling, options: options)
+    let rawOp = try await self.resetInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -293,15 +293,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Upgrades a notebook instance to the latest version.
   ///
   /// @Snippet(path: "NotebookService_UpgradeInstance")
-  public func upgradeInstance(
-    withPolling: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
+  public func upgradeInstancePollingUntilDone(
+    request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.upgradeInstance(request: withPolling, options: options)
+    let rawOp = try await self.upgradeInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -328,15 +328,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Rollbacks a notebook instance to the previous version.
   ///
   /// @Snippet(path: "NotebookService_RollbackInstance")
-  public func rollbackInstance(
-    withPolling: RollbackInstanceRequest, options: GoogleGax.RequestOptions
+  public func rollbackInstancePollingUntilDone(
+    request: RollbackInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.rollbackInstance(request: withPolling, options: options)
+    let rawOp = try await self.rollbackInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -363,15 +363,15 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// Creates a Diagnostic File and runs Diagnostic Tool given an Instance.
   ///
   /// @Snippet(path: "NotebookService_DiagnoseInstance")
-  public func diagnoseInstance(
-    withPolling: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
+  public func diagnoseInstancePollingUntilDone(
+    request: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.diagnoseInstance(request: withPolling, options: options)
+    let rawOp = try await self.diagnoseInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -495,61 +495,61 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol NotebookServiceProtocol: Sendable {
     /// See `NotebookServiceClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instance: Instance?,
       instanceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.updateInstance`.
-    func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.updateInstance`.
-    func updateInstance(
+    func updateInstancePollingUntilDone(
       instance: Instance?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NotebookServiceClient.deleteInstance`.
-    func deleteInstance(
+    func deleteInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NotebookServiceClient.startInstance`.
-    func startInstance(withPolling: StartInstanceRequest) async throws -> any GoogleGax
+    func startInstancePollingUntilDone(request: StartInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
     /// See `NotebookServiceClient.stopInstance`.
-    func stopInstance(withPolling: StopInstanceRequest) async throws -> any GoogleGax
+    func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
     /// See `NotebookServiceClient.resetInstance`.
-    func resetInstance(withPolling: ResetInstanceRequest) async throws -> any GoogleGax
+    func resetInstancePollingUntilDone(request: ResetInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
     /// See `NotebookServiceClient.upgradeInstance`.
-    func upgradeInstance(withPolling: UpgradeInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func upgradeInstancePollingUntilDone(request: UpgradeInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.rollbackInstance`.
-    func rollbackInstance(withPolling: RollbackInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func rollbackInstancePollingUntilDone(request: RollbackInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.diagnoseInstance`.
-    func diagnoseInstance(withPolling: DiagnoseInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func diagnoseInstancePollingUntilDone(request: DiagnoseInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.diagnoseInstance`.
-    func diagnoseInstance(
+    func diagnoseInstancePollingUntilDone(
       name: Swift.String,
       diagnosticConfig: DiagnosticConfig?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
@@ -570,8 +570,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.updateInstance`.
@@ -580,8 +580,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.updateInstance`.
-    func updateInstance(
-      withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    func updateInstancePollingUntilDone(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.deleteInstance`.
@@ -590,8 +590,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `NotebookServiceClient.startInstance`.
@@ -600,8 +600,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.startInstance`.
-    func startInstance(
-      withPolling: StartInstanceRequest, options: GoogleGax.RequestOptions
+    func startInstancePollingUntilDone(
+      request: StartInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.stopInstance`.
@@ -610,8 +610,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.stopInstance`.
-    func stopInstance(
-      withPolling: StopInstanceRequest, options: GoogleGax.RequestOptions
+    func stopInstancePollingUntilDone(
+      request: StopInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.resetInstance`.
@@ -620,8 +620,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.resetInstance`.
-    func resetInstance(
-      withPolling: ResetInstanceRequest, options: GoogleGax.RequestOptions
+    func resetInstancePollingUntilDone(
+      request: ResetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.checkInstanceUpgradability`.
@@ -635,8 +635,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.upgradeInstance`.
-    func upgradeInstance(
-      withPolling: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
+    func upgradeInstancePollingUntilDone(
+      request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.rollbackInstance`.
@@ -645,8 +645,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.rollbackInstance`.
-    func rollbackInstance(
-      withPolling: RollbackInstanceRequest, options: GoogleGax.RequestOptions
+    func rollbackInstancePollingUntilDone(
+      request: RollbackInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.diagnoseInstance`.
@@ -655,8 +655,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.diagnoseInstance`.
-    func diagnoseInstance(
-      withPolling: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
+    func diagnoseInstancePollingUntilDone(
+      request: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.listLocations`.
@@ -778,14 +778,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -794,7 +794,7 @@ extension Clients.NotebookServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
@@ -804,7 +804,7 @@ extension Clients.NotebookServiceProtocol {
       $0.instance = instance
       $0.instanceId = instanceId
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
@@ -819,14 +819,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.updateInstance(withPolling: withPolling, options: .init())
+    try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -835,7 +835,7 @@ extension Clients.NotebookServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateInstance(
+  public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -843,7 +843,7 @@ extension Clients.NotebookServiceProtocol {
       $0.instance = instance
       $0.updateMask = updateMask
     }
-    return try await self.updateInstance(withPolling: request)
+    return try await self.updateInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -858,14 +858,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -874,13 +874,13 @@ extension Clients.NotebookServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteInstance(
+  public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstance(withPolling: request)
+    return try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func startInstance(request: StartInstanceRequest) async throws
@@ -895,14 +895,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func startInstance(withPolling: StartInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func startInstancePollingUntilDone(request: StartInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.startInstance(withPolling: withPolling, options: .init())
+    try await self.startInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func startInstance(
-    withPolling: StartInstanceRequest, options: GoogleGax.RequestOptions
+  public func startInstancePollingUntilDone(
+    request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -922,14 +922,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func stopInstance(withPolling: StopInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.stopInstance(withPolling: withPolling, options: .init())
+    try await self.stopInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func stopInstance(
-    withPolling: StopInstanceRequest, options: GoogleGax.RequestOptions
+  public func stopInstancePollingUntilDone(
+    request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -950,14 +950,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func resetInstance(withPolling: ResetInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func resetInstancePollingUntilDone(request: ResetInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.resetInstance(withPolling: withPolling, options: .init())
+    try await self.resetInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func resetInstance(
-    withPolling: ResetInstanceRequest, options: GoogleGax.RequestOptions
+  public func resetInstancePollingUntilDone(
+    request: ResetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -990,14 +990,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func upgradeInstance(withPolling: UpgradeInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func upgradeInstancePollingUntilDone(request: UpgradeInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.upgradeInstance(withPolling: withPolling, options: .init())
+    try await self.upgradeInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func upgradeInstance(
-    withPolling: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
+  public func upgradeInstancePollingUntilDone(
+    request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1018,14 +1018,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func rollbackInstance(withPolling: RollbackInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func rollbackInstancePollingUntilDone(request: RollbackInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.rollbackInstance(withPolling: withPolling, options: .init())
+    try await self.rollbackInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func rollbackInstance(
-    withPolling: RollbackInstanceRequest, options: GoogleGax.RequestOptions
+  public func rollbackInstancePollingUntilDone(
+    request: RollbackInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1046,14 +1046,14 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func diagnoseInstance(withPolling: DiagnoseInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func diagnoseInstancePollingUntilDone(request: DiagnoseInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.diagnoseInstance(withPolling: withPolling, options: .init())
+    try await self.diagnoseInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func diagnoseInstance(
-    withPolling: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
+  public func diagnoseInstancePollingUntilDone(
+    request: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1062,7 +1062,7 @@ extension Clients.NotebookServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func diagnoseInstance(
+  public func diagnoseInstancePollingUntilDone(
     name: Swift.String,
     diagnosticConfig: DiagnosticConfig?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -1070,7 +1070,7 @@ extension Clients.NotebookServiceProtocol {
       $0.name = name
       $0.diagnosticConfig = diagnosticConfig
     }
-    return try await self.diagnoseInstance(withPolling: request)
+    return try await self.diagnoseInstancePollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

@@ -26,8 +26,8 @@
   func sample(client: EnvironmentsClient, projectId: String, locationId: String, agentId: String)
     async throws
   {
-    let poller = try await client.createEnvironment(
-      withPolling: CreateEnvironmentRequest()
+    let poller = try await client.createEnvironmentPollingUntilDone(
+      request: CreateEnvironmentRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"
           $0.environment = Environment() /* .with { ... } */

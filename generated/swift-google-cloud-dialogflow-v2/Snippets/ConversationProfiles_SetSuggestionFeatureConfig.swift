@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: ConversationProfilesClient) async throws {
-    let poller = try await client.setSuggestionFeatureConfig(
-      withPolling: SetSuggestionFeatureConfigRequest()
+    let poller = try await client.setSuggestionFeatureConfigPollingUntilDone(
+      request: SetSuggestionFeatureConfigRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

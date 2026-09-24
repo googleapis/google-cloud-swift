@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: VersionsClient) async throws {
-    let poller = try await client.loadVersion(
-      withPolling: LoadVersionRequest()
+    let poller = try await client.loadVersionPollingUntilDone(
+      request: LoadVersionRequest()
         /* set fields using .with { $0... } */
     )
     try await poller.wait()

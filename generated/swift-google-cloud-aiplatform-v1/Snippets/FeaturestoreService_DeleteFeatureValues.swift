@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: FeaturestoreServiceClient) async throws {
-    let poller = try await client.deleteFeatureValues(
-      withPolling: DeleteFeatureValuesRequest()
+    let poller = try await client.deleteFeatureValuesPollingUntilDone(
+      request: DeleteFeatureValuesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

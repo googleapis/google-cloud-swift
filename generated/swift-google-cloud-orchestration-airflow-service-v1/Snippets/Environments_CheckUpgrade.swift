@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EnvironmentsClient) async throws {
-  let poller = try await client.checkUpgrade(
-    withPolling: CheckUpgradeRequest()
+  let poller = try await client.checkUpgradePollingUntilDone(
+    request: CheckUpgradeRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

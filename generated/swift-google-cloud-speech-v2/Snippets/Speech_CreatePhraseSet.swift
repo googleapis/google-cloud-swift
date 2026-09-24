@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SpeechClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createPhraseSet(
-    withPolling: CreatePhraseSetRequest()
+  let poller = try await client.createPhraseSetPollingUntilDone(
+    request: CreatePhraseSetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.phraseSet = PhraseSet() /* .with { ... } */

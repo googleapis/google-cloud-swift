@@ -28,8 +28,8 @@ func sample(
   client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String,
   awsNodePoolId: String
 ) async throws {
-  let poller = try await client.deleteAwsNodePool(
-    withPolling: DeleteAwsNodePoolRequest()
+  let poller = try await client.deleteAwsNodePoolPollingUntilDone(
+    request: DeleteAwsNodePoolRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/awsClusters/\(awsClusterId)/awsNodePools/\(awsNodePoolId)"

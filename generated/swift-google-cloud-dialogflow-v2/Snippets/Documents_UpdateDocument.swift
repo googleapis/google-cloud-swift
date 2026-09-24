@@ -26,8 +26,8 @@
   func sample(
     client: DocumentsClient, projectId: String, knowledgeBaseId: String, documentId: String
   ) async throws {
-    let poller = try await client.updateDocument(
-      withPolling: UpdateDocumentRequest()
+    let poller = try await client.updateDocumentPollingUntilDone(
+      request: UpdateDocumentRequest()
         .with {
           $0.document = Document().with {
             $0.name =

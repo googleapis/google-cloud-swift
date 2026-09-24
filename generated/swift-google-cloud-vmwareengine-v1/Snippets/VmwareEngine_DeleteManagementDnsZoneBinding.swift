@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   managementDnsZoneBindingId: String
 ) async throws {
-  let poller = try await client.deleteManagementDnsZoneBinding(
-    withPolling: DeleteManagementDnsZoneBindingRequest()
+  let poller = try await client.deleteManagementDnsZoneBindingPollingUntilDone(
+    request: DeleteManagementDnsZoneBindingRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)/managementDnsZoneBindings/\(managementDnsZoneBindingId)"

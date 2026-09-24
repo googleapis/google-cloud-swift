@@ -25,8 +25,8 @@ func sample(
   client: PrincipalAccessBoundaryPoliciesClient, organizationId: String, locationId: String,
   principalAccessBoundaryPolicyId: String
 ) async throws {
-  let poller = try await client.updatePrincipalAccessBoundaryPolicy(
-    withPolling: UpdatePrincipalAccessBoundaryPolicyRequest()
+  let poller = try await client.updatePrincipalAccessBoundaryPolicyPollingUntilDone(
+    request: UpdatePrincipalAccessBoundaryPolicyRequest()
       .with {
         $0.principalAccessBoundaryPolicy = PrincipalAccessBoundaryPolicy().with {
           $0.name =

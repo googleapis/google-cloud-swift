@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DatastreamClient) async throws {
-  let poller = try await client.runStream(
-    withPolling: RunStreamRequest()
+  let poller = try await client.runStreamPollingUntilDone(
+    request: RunStreamRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

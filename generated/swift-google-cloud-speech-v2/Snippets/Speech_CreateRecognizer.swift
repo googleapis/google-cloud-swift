@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SpeechClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createRecognizer(
-    withPolling: CreateRecognizerRequest()
+  let poller = try await client.createRecognizerPollingUntilDone(
+    request: CreateRecognizerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.recognizerId = "[replace with a valid ID]"

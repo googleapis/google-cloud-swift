@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createClientTlsPolicy(
-    withPolling: CreateClientTlsPolicyRequest()
+  let poller = try await client.createClientTlsPolicyPollingUntilDone(
+    request: CreateClientTlsPolicyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.clientTlsPolicy = ClientTlsPolicy() /* .with { ... } */

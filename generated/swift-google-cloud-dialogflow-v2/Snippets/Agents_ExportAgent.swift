@@ -23,8 +23,8 @@
   import GoogleLongRunning
 
   func sample(client: AgentsClient) async throws {
-    let poller = try await client.exportAgent(
-      withPolling: ExportAgentRequest()
+    let poller = try await client.exportAgentPollingUntilDone(
+      request: ExportAgentRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

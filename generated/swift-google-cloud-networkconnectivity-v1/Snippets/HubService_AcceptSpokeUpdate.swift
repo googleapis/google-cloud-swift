@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient) async throws {
-  let poller = try await client.acceptSpokeUpdate(
-    withPolling: AcceptSpokeUpdateRequest()
+  let poller = try await client.acceptSpokeUpdatePollingUntilDone(
+    request: AcceptSpokeUpdateRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

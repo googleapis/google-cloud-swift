@@ -28,8 +28,8 @@
     client: JobServiceClient, projectId: String, locationId: String,
     modelDeploymentMonitoringJobId: String
   ) async throws {
-    let poller = try await client.updateModelDeploymentMonitoringJob(
-      withPolling: UpdateModelDeploymentMonitoringJobRequest()
+    let poller = try await client.updateModelDeploymentMonitoringJobPollingUntilDone(
+      request: UpdateModelDeploymentMonitoringJobRequest()
         .with {
           $0.modelDeploymentMonitoringJob = ModelDeploymentMonitoringJob().with {
             $0.name =

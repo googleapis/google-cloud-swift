@@ -27,8 +27,8 @@ func sample(
   client: OrganizationSecurityProfileGroupServiceClient, organizationId: String, locationId: String,
   securityProfileId: String
 ) async throws {
-  let poller = try await client.updateSecurityProfile(
-    withPolling: UpdateSecurityProfileRequest()
+  let poller = try await client.updateSecurityProfilePollingUntilDone(
+    request: UpdateSecurityProfileRequest()
       .with {
         $0.securityProfile = SecurityProfile().with {
           $0.name =

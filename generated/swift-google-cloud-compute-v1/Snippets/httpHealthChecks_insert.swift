@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: HttpHealthChecksClient) async throws {
-    let poller = try await client.insert(
-      withPolling: HttpHealthChecksClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: HttpHealthChecksClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

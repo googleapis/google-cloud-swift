@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   authorizationPolicyId: String
 ) async throws {
-  let poller = try await client.updateAuthorizationPolicy(
-    withPolling: UpdateAuthorizationPolicyRequest()
+  let poller = try await client.updateAuthorizationPolicyPollingUntilDone(
+    request: UpdateAuthorizationPolicyRequest()
       .with {
         $0.authorizationPolicy = AuthorizationPolicy().with {
           $0.name =

@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionNetworkEndpointGroupsClient()
-    let poller = try await client.attachNetworkEndpoints(
-      withPolling: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest()
+    let poller = try await client.attachNetworkEndpointsPollingUntilDone(
+      request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

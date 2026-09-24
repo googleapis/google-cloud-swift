@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.addAccessConfig(
-      withPolling: InstancesClient.AddAccessConfigRequest()
+    let poller = try await client.addAccessConfigPollingUntilDone(
+      request: InstancesClient.AddAccessConfigRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

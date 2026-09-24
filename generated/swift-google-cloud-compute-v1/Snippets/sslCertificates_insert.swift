@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: SslCertificatesClient) async throws {
-    let poller = try await client.insert(
-      withPolling: SslCertificatesClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: SslCertificatesClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -61,15 +61,15 @@
     /// Creates a new FeatureOnlineStore in a given project and location.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_CreateFeatureOnlineStore")
-    public func createFeatureOnlineStore(
-      withPolling: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+    public func createFeatureOnlineStorePollingUntilDone(
+      request: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<FeatureOnlineStore>.State in
         return try op._extractStatus(FeatureOnlineStore.self)
       }
-      let rawOp = try await self.createFeatureOnlineStore(request: withPolling, options: options)
+      let rawOp = try await self.createFeatureOnlineStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureOnlineStore>.State in
         let op = try await self.getOperation(
@@ -114,15 +114,15 @@
     /// Updates the parameters of a single FeatureOnlineStore.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_UpdateFeatureOnlineStore")
-    public func updateFeatureOnlineStore(
-      withPolling: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+    public func updateFeatureOnlineStorePollingUntilDone(
+      request: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<FeatureOnlineStore>.State in
         return try op._extractStatus(FeatureOnlineStore.self)
       }
-      let rawOp = try await self.updateFeatureOnlineStore(request: withPolling, options: options)
+      let rawOp = try await self.updateFeatureOnlineStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureOnlineStore>.State in
         let op = try await self.getOperation(
@@ -151,15 +151,15 @@
     /// contain any FeatureViews.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_DeleteFeatureOnlineStore")
-    public func deleteFeatureOnlineStore(
-      withPolling: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureOnlineStorePollingUntilDone(
+      request: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteFeatureOnlineStore(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeatureOnlineStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -186,15 +186,15 @@
     /// Creates a new FeatureView in a given FeatureOnlineStore.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_CreateFeatureView")
-    public func createFeatureView(
-      withPolling: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
+    public func createFeatureViewPollingUntilDone(
+      request: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureView> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<FeatureView>.State in
         return try op._extractStatus(FeatureView.self)
       }
-      let rawOp = try await self.createFeatureView(request: withPolling, options: options)
+      let rawOp = try await self.createFeatureView(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureView>.State in
         let op = try await self.getOperation(
@@ -239,15 +239,15 @@
     /// Updates the parameters of a single FeatureView.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_UpdateFeatureView")
-    public func updateFeatureView(
-      withPolling: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
+    public func updateFeatureViewPollingUntilDone(
+      request: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureView> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<FeatureView>.State in
         return try op._extractStatus(FeatureView.self)
       }
-      let rawOp = try await self.updateFeatureView(request: withPolling, options: options)
+      let rawOp = try await self.updateFeatureView(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureView>.State in
         let op = try await self.getOperation(
@@ -274,15 +274,15 @@
     /// Deletes a single FeatureView.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_DeleteFeatureView")
-    public func deleteFeatureView(
-      withPolling: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureViewPollingUntilDone(
+      request: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteFeatureView(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeatureView(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -444,63 +444,63 @@
     /// and pass a mock implementation in your tests.
     public protocol FeatureOnlineStoreAdminServiceProtocol: Sendable {
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
-      func createFeatureOnlineStore(withPolling: CreateFeatureOnlineStoreRequest) async throws
-        -> any GoogleGax.PollableOperation<FeatureOnlineStore>
+      func createFeatureOnlineStorePollingUntilDone(request: CreateFeatureOnlineStoreRequest)
+        async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
-      func createFeatureOnlineStore(
+      func createFeatureOnlineStorePollingUntilDone(
         parent: Swift.String,
         featureOnlineStore: FeatureOnlineStore?,
         featureOnlineStoreId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
-      func updateFeatureOnlineStore(withPolling: UpdateFeatureOnlineStoreRequest) async throws
-        -> any GoogleGax.PollableOperation<FeatureOnlineStore>
+      func updateFeatureOnlineStorePollingUntilDone(request: UpdateFeatureOnlineStoreRequest)
+        async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
-      func updateFeatureOnlineStore(
+      func updateFeatureOnlineStorePollingUntilDone(
         featureOnlineStore: FeatureOnlineStore?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
-      func deleteFeatureOnlineStore(withPolling: DeleteFeatureOnlineStoreRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteFeatureOnlineStorePollingUntilDone(request: DeleteFeatureOnlineStoreRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
-      func deleteFeatureOnlineStore(
+      func deleteFeatureOnlineStorePollingUntilDone(
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
-      func createFeatureView(withPolling: CreateFeatureViewRequest) async throws -> any GoogleGax
-        .PollableOperation<FeatureView>
+      func createFeatureViewPollingUntilDone(request: CreateFeatureViewRequest) async throws
+        -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
-      func createFeatureView(
+      func createFeatureViewPollingUntilDone(
         parent: Swift.String,
         featureView: FeatureView?,
         featureViewId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
-      func updateFeatureView(withPolling: UpdateFeatureViewRequest) async throws -> any GoogleGax
-        .PollableOperation<FeatureView>
+      func updateFeatureViewPollingUntilDone(request: UpdateFeatureViewRequest) async throws
+        -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
-      func updateFeatureView(
+      func updateFeatureViewPollingUntilDone(
         featureView: FeatureView?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
-      func deleteFeatureView(withPolling: DeleteFeatureViewRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteFeatureViewPollingUntilDone(request: DeleteFeatureViewRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
-      func deleteFeatureView(
+      func deleteFeatureViewPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -510,8 +510,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
-      func createFeatureOnlineStore(
-        withPolling: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+      func createFeatureOnlineStorePollingUntilDone(
+        request: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.getFeatureOnlineStore`.
@@ -530,8 +530,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
-      func updateFeatureOnlineStore(
-        withPolling: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+      func updateFeatureOnlineStorePollingUntilDone(
+        request: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
@@ -540,8 +540,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
-      func deleteFeatureOnlineStore(
-        withPolling: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+      func deleteFeatureOnlineStorePollingUntilDone(
+        request: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
@@ -550,8 +550,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
-      func createFeatureView(
-        withPolling: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
+      func createFeatureViewPollingUntilDone(
+        request: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.getFeatureView`.
@@ -570,8 +570,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
-      func updateFeatureView(
-        withPolling: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
+      func updateFeatureViewPollingUntilDone(
+        request: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
@@ -580,8 +580,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
-      func deleteFeatureView(
-        withPolling: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
+      func deleteFeatureViewPollingUntilDone(
+        request: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureOnlineStoreAdminServiceClient.syncFeatureView`.
@@ -660,14 +660,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeatureOnlineStore(withPolling: CreateFeatureOnlineStoreRequest) async throws
-      -> any GoogleGax.PollableOperation<FeatureOnlineStore>
+    public func createFeatureOnlineStorePollingUntilDone(request: CreateFeatureOnlineStoreRequest)
+      async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
     {
-      try await self.createFeatureOnlineStore(withPolling: withPolling, options: .init())
+      try await self.createFeatureOnlineStorePollingUntilDone(request: request, options: .init())
     }
 
-    public func createFeatureOnlineStore(
-      withPolling: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+    public func createFeatureOnlineStorePollingUntilDone(
+      request: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureOnlineStore>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -676,7 +676,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createFeatureOnlineStore(
+    public func createFeatureOnlineStorePollingUntilDone(
       parent: Swift.String,
       featureOnlineStore: FeatureOnlineStore?,
       featureOnlineStoreId: Swift.String,
@@ -686,7 +686,7 @@
         $0.featureOnlineStore = featureOnlineStore
         $0.featureOnlineStoreId = featureOnlineStoreId
       }
-      return try await self.createFeatureOnlineStore(withPolling: request)
+      return try await self.createFeatureOnlineStorePollingUntilDone(request: request)
     }
 
     public func getFeatureOnlineStore(request: GetFeatureOnlineStoreRequest) async throws
@@ -765,14 +765,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateFeatureOnlineStore(withPolling: UpdateFeatureOnlineStoreRequest) async throws
-      -> any GoogleGax.PollableOperation<FeatureOnlineStore>
+    public func updateFeatureOnlineStorePollingUntilDone(request: UpdateFeatureOnlineStoreRequest)
+      async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore>
     {
-      try await self.updateFeatureOnlineStore(withPolling: withPolling, options: .init())
+      try await self.updateFeatureOnlineStorePollingUntilDone(request: request, options: .init())
     }
 
-    public func updateFeatureOnlineStore(
-      withPolling: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+    public func updateFeatureOnlineStorePollingUntilDone(
+      request: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureOnlineStore>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -781,7 +781,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateFeatureOnlineStore(
+    public func updateFeatureOnlineStorePollingUntilDone(
       featureOnlineStore: FeatureOnlineStore?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<FeatureOnlineStore> {
@@ -789,7 +789,7 @@
         $0.featureOnlineStore = featureOnlineStore
         $0.updateMask = updateMask
       }
-      return try await self.updateFeatureOnlineStore(withPolling: request)
+      return try await self.updateFeatureOnlineStorePollingUntilDone(request: request)
     }
 
     public func deleteFeatureOnlineStore(request: DeleteFeatureOnlineStoreRequest) async throws
@@ -804,14 +804,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeatureOnlineStore(withPolling: DeleteFeatureOnlineStoreRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteFeatureOnlineStorePollingUntilDone(request: DeleteFeatureOnlineStoreRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteFeatureOnlineStore(withPolling: withPolling, options: .init())
+      try await self.deleteFeatureOnlineStorePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeatureOnlineStore(
-      withPolling: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureOnlineStorePollingUntilDone(
+      request: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -820,7 +820,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeatureOnlineStore(
+    public func deleteFeatureOnlineStorePollingUntilDone(
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -828,7 +828,7 @@
         $0.name = name
         $0.force = force
       }
-      return try await self.deleteFeatureOnlineStore(withPolling: request)
+      return try await self.deleteFeatureOnlineStorePollingUntilDone(request: request)
     }
 
     public func createFeatureView(request: CreateFeatureViewRequest) async throws
@@ -843,14 +843,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeatureView(withPolling: CreateFeatureViewRequest) async throws
+    public func createFeatureViewPollingUntilDone(request: CreateFeatureViewRequest) async throws
       -> any GoogleGax.PollableOperation<FeatureView>
     {
-      try await self.createFeatureView(withPolling: withPolling, options: .init())
+      try await self.createFeatureViewPollingUntilDone(request: request, options: .init())
     }
 
-    public func createFeatureView(
-      withPolling: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
+    public func createFeatureViewPollingUntilDone(
+      request: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureView> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureView>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -859,7 +859,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createFeatureView(
+    public func createFeatureViewPollingUntilDone(
       parent: Swift.String,
       featureView: FeatureView?,
       featureViewId: Swift.String,
@@ -869,7 +869,7 @@
         $0.featureView = featureView
         $0.featureViewId = featureViewId
       }
-      return try await self.createFeatureView(withPolling: request)
+      return try await self.createFeatureViewPollingUntilDone(request: request)
     }
 
     public func getFeatureView(request: GetFeatureViewRequest) async throws
@@ -947,14 +947,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateFeatureView(withPolling: UpdateFeatureViewRequest) async throws
+    public func updateFeatureViewPollingUntilDone(request: UpdateFeatureViewRequest) async throws
       -> any GoogleGax.PollableOperation<FeatureView>
     {
-      try await self.updateFeatureView(withPolling: withPolling, options: .init())
+      try await self.updateFeatureViewPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateFeatureView(
-      withPolling: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
+    public func updateFeatureViewPollingUntilDone(
+      request: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureView> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureView>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -963,7 +963,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateFeatureView(
+    public func updateFeatureViewPollingUntilDone(
       featureView: FeatureView?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<FeatureView> {
@@ -971,7 +971,7 @@
         $0.featureView = featureView
         $0.updateMask = updateMask
       }
-      return try await self.updateFeatureView(withPolling: request)
+      return try await self.updateFeatureViewPollingUntilDone(request: request)
     }
 
     public func deleteFeatureView(request: DeleteFeatureViewRequest) async throws
@@ -986,14 +986,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeatureView(withPolling: DeleteFeatureViewRequest) async throws
+    public func deleteFeatureViewPollingUntilDone(request: DeleteFeatureViewRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteFeatureView(withPolling: withPolling, options: .init())
+      try await self.deleteFeatureViewPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeatureView(
-      withPolling: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureViewPollingUntilDone(
+      request: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1002,13 +1002,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeatureView(
+    public func deleteFeatureViewPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteFeatureViewRequest().with {
         $0.name = name
       }
-      return try await self.deleteFeatureView(withPolling: request)
+      return try await self.deleteFeatureViewPollingUntilDone(request: request)
     }
 
     public func syncFeatureView(request: SyncFeatureViewRequest) async throws

@@ -27,8 +27,8 @@ func sample(
   client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String,
   serviceConnectionPolicyId: String
 ) async throws {
-  let poller = try await client.updateServiceConnectionPolicy(
-    withPolling: UpdateServiceConnectionPolicyRequest()
+  let poller = try await client.updateServiceConnectionPolicyPollingUntilDone(
+    request: UpdateServiceConnectionPolicyRequest()
       .with {
         $0.serviceConnectionPolicy = ServiceConnectionPolicy().with {
           $0.name =

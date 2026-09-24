@@ -145,15 +145,15 @@
     /// [google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]: <doc:BatchUpdateIntentsResponse>
     ///
     /// @Snippet(path: "Intents_BatchUpdateIntents")
-    public func batchUpdateIntents(
-      withPolling: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
+    public func batchUpdateIntentsPollingUntilDone(
+      request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
         return try op._extractStatus(BatchUpdateIntentsResponse.self)
       }
-      let rawOp = try await self.batchUpdateIntents(request: withPolling, options: options)
+      let rawOp = try await self.batchUpdateIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
@@ -207,15 +207,15 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "Intents_BatchDeleteIntents")
-    public func batchDeleteIntents(
-      withPolling: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
+    public func batchDeleteIntentsPollingUntilDone(
+      request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.batchDeleteIntents(request: withPolling, options: options)
+      let rawOp = try await self.batchDeleteIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -307,27 +307,27 @@
     /// and pass a mock implementation in your tests.
     public protocol IntentsProtocol: Sendable {
       /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntents(withPolling: BatchUpdateIntentsRequest) async throws -> any GoogleGax
-        .PollableOperation<BatchUpdateIntentsResponse>
+      func batchUpdateIntentsPollingUntilDone(request: BatchUpdateIntentsRequest) async throws
+        -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
 
       /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntents(
+      func batchUpdateIntentsPollingUntilDone(
         parent: Swift.String,
         intentBatchUri: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
 
       /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntents(
+      func batchUpdateIntentsPollingUntilDone(
         parent: Swift.String,
         intentBatchInline: IntentBatch?,
       ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
 
       /// See `IntentsClient.batchDeleteIntents`.
-      func batchDeleteIntents(withPolling: BatchDeleteIntentsRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func batchDeleteIntentsPollingUntilDone(request: BatchDeleteIntentsRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `IntentsClient.batchDeleteIntents`.
-      func batchDeleteIntents(
+      func batchDeleteIntentsPollingUntilDone(
         parent: Swift.String,
         intents: [Intent],
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
@@ -363,8 +363,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IntentsClient.batchUpdateIntents`.
-      func batchUpdateIntents(
-        withPolling: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
+      func batchUpdateIntentsPollingUntilDone(
+        request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
 
       /// See `IntentsClient.batchDeleteIntents`.
@@ -373,8 +373,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IntentsClient.batchDeleteIntents`.
-      func batchDeleteIntents(
-        withPolling: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
+      func batchDeleteIntentsPollingUntilDone(
+        request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `IntentsClient.listLocations`.
@@ -588,14 +588,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchUpdateIntents(withPolling: BatchUpdateIntentsRequest) async throws
+    public func batchUpdateIntentsPollingUntilDone(request: BatchUpdateIntentsRequest) async throws
       -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
     {
-      try await self.batchUpdateIntents(withPolling: withPolling, options: .init())
+      try await self.batchUpdateIntentsPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchUpdateIntents(
-      withPolling: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
+    public func batchUpdateIntentsPollingUntilDone(
+      request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
@@ -605,7 +605,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchUpdateIntents(
+    public func batchUpdateIntentsPollingUntilDone(
       parent: Swift.String,
       intentBatchUri: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
@@ -613,10 +613,10 @@
         $0.parent = parent
         $0.intentBatch = .intentBatchUri(intentBatchUri)
       }
-      return try await self.batchUpdateIntents(withPolling: request)
+      return try await self.batchUpdateIntentsPollingUntilDone(request: request)
     }
 
-    public func batchUpdateIntents(
+    public func batchUpdateIntentsPollingUntilDone(
       parent: Swift.String,
       intentBatchInline: IntentBatch?,
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
@@ -624,7 +624,7 @@
         $0.parent = parent
         $0.intentBatch = intentBatchInline.map { .intentBatchInline($0) }
       }
-      return try await self.batchUpdateIntents(withPolling: request)
+      return try await self.batchUpdateIntentsPollingUntilDone(request: request)
     }
 
     public func batchDeleteIntents(request: BatchDeleteIntentsRequest) async throws
@@ -639,14 +639,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchDeleteIntents(withPolling: BatchDeleteIntentsRequest) async throws
+    public func batchDeleteIntentsPollingUntilDone(request: BatchDeleteIntentsRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.batchDeleteIntents(withPolling: withPolling, options: .init())
+      try await self.batchDeleteIntentsPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchDeleteIntents(
-      withPolling: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
+    public func batchDeleteIntentsPollingUntilDone(
+      request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -655,7 +655,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchDeleteIntents(
+    public func batchDeleteIntentsPollingUntilDone(
       parent: Swift.String,
       intents: [Intent],
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -663,7 +663,7 @@
         $0.parent = parent
         $0.intents = intents
       }
-      return try await self.batchDeleteIntents(withPolling: request)
+      return try await self.batchDeleteIntentsPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

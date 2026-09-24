@@ -67,15 +67,15 @@
     /// specify in request to provide consent to that service terms.
     ///
     /// @Snippet(path: "ProjectService_ProvisionProject")
-    public func provisionProject(
-      withPolling: ProvisionProjectRequest, options: GoogleGax.RequestOptions
+    public func provisionProjectPollingUntilDone(
+      request: ProvisionProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Project> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Project>.State
         in
         return try op._extractStatus(Project.self)
       }
-      let rawOp = try await self.provisionProject(request: withPolling, options: options)
+      let rawOp = try await self.provisionProject(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
         let op = try await self.getOperation(
@@ -132,11 +132,11 @@
     /// and pass a mock implementation in your tests.
     public protocol ProjectServiceProtocol: Sendable {
       /// See `ProjectServiceClient.provisionProject`.
-      func provisionProject(withPolling: ProvisionProjectRequest) async throws -> any GoogleGax
-        .PollableOperation<Project>
+      func provisionProjectPollingUntilDone(request: ProvisionProjectRequest) async throws
+        -> any GoogleGax.PollableOperation<Project>
 
       /// See `ProjectServiceClient.provisionProject`.
-      func provisionProject(
+      func provisionProjectPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Project>
 
@@ -146,8 +146,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ProjectServiceClient.provisionProject`.
-      func provisionProject(
-        withPolling: ProvisionProjectRequest, options: GoogleGax.RequestOptions
+      func provisionProjectPollingUntilDone(
+        request: ProvisionProjectRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Project>
 
       /// See `ProjectServiceClient.listOperations`.
@@ -176,14 +176,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func provisionProject(withPolling: ProvisionProjectRequest) async throws -> any GoogleGax
-      .PollableOperation<Project>
+    public func provisionProjectPollingUntilDone(request: ProvisionProjectRequest) async throws
+      -> any GoogleGax.PollableOperation<Project>
     {
-      try await self.provisionProject(withPolling: withPolling, options: .init())
+      try await self.provisionProjectPollingUntilDone(request: request, options: .init())
     }
 
-    public func provisionProject(
-      withPolling: ProvisionProjectRequest, options: GoogleGax.RequestOptions
+    public func provisionProjectPollingUntilDone(
+      request: ProvisionProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Project> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -192,13 +192,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func provisionProject(
+    public func provisionProjectPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Project> {
       let request = ProvisionProjectRequest().with {
         $0.name = name
       }
-      return try await self.provisionProject(withPolling: request)
+      return try await self.provisionProjectPollingUntilDone(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

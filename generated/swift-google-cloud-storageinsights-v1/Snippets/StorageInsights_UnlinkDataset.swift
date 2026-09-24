@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StorageInsightsClient) async throws {
-  let poller = try await client.unlinkDataset(
-    withPolling: UnlinkDatasetRequest()
+  let poller = try await client.unlinkDatasetPollingUntilDone(
+    request: UnlinkDatasetRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

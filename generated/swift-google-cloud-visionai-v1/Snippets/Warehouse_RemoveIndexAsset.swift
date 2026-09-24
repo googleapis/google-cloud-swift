@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient) async throws {
-  let poller = try await client.removeIndexAsset(
-    withPolling: RemoveIndexAssetRequest()
+  let poller = try await client.removeIndexAssetPollingUntilDone(
+    request: RemoveIndexAssetRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

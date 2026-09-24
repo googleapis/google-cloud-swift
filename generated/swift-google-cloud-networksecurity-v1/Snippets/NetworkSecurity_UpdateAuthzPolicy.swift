@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String, authzPolicyId: String
 ) async throws {
-  let poller = try await client.updateAuthzPolicy(
-    withPolling: UpdateAuthzPolicyRequest()
+  let poller = try await client.updateAuthzPolicyPollingUntilDone(
+    request: UpdateAuthzPolicyRequest()
       .with {
         $0.authzPolicy = AuthzPolicy().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/authzPolicies/\(authzPolicyId)"

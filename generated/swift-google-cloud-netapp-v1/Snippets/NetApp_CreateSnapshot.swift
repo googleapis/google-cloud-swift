@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, volumeId: String)
   async throws
 {
-  let poller = try await client.createSnapshot(
-    withPolling: CreateSnapshotRequest()
+  let poller = try await client.createSnapshotPollingUntilDone(
+    request: CreateSnapshotRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"
         $0.snapshotId = "[replace with a valid ID]"

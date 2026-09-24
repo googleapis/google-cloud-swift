@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionInstanceGroupManagersClient) async throws {
-    let poller = try await client.createInstances(
-      withPolling: RegionInstanceGroupManagersClient.CreateInstancesRequest()
+    let poller = try await client.createInstancesPollingUntilDone(
+      request: RegionInstanceGroupManagersClient.CreateInstancesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

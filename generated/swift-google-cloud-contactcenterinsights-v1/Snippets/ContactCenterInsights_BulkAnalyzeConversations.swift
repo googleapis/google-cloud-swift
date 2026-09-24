@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient) async throws {
-  let poller = try await client.bulkAnalyzeConversations(
-    withPolling: BulkAnalyzeConversationsRequest()
+  let poller = try await client.bulkAnalyzeConversationsPollingUntilDone(
+    request: BulkAnalyzeConversationsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

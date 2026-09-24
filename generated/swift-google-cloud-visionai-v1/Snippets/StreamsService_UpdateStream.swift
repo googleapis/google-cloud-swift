@@ -26,8 +26,8 @@ func sample(
   client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String,
   streamId: String
 ) async throws {
-  let poller = try await client.updateStream(
-    withPolling: UpdateStreamRequest()
+  let poller = try await client.updateStreamPollingUntilDone(
+    request: UpdateStreamRequest()
       .with {
         $0.stream = Stream().with {
           $0.name =

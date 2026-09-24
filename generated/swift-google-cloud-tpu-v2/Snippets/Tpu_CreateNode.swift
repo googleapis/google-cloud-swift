@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, parent: String) async throws {
-  let poller = try await client.createNode(
-    withPolling: CreateNodeRequest()
+  let poller = try await client.createNodePollingUntilDone(
+    request: CreateNodeRequest()
       .with {
         $0.parent = "\(parent)"
         $0.nodeId = "[replace with a valid ID]"

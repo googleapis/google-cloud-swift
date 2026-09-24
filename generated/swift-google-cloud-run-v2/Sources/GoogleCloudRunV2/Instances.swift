@@ -53,15 +53,15 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Creates an Instance.
   ///
   /// @Snippet(path: "Instances_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -88,15 +88,15 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Deletes a Instance
   ///
   /// @Snippet(path: "Instances_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -141,15 +141,15 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Stops an Instance.
   ///
   /// @Snippet(path: "Instances_StopInstance")
-  public func stopInstance(
-    withPolling: StopInstanceRequest, options: GoogleGax.RequestOptions
+  public func stopInstancePollingUntilDone(
+    request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.stopInstance(request: withPolling, options: options)
+    let rawOp = try await self.stopInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -176,15 +176,15 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Starts an Instance.
   ///
   /// @Snippet(path: "Instances_StartInstance")
-  public func startInstance(
-    withPolling: StartInstanceRequest, options: GoogleGax.RequestOptions
+  public func startInstancePollingUntilDone(
+    request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.startInstance(request: withPolling, options: options)
+    let rawOp = try await self.startInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -252,39 +252,39 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol InstancesProtocol: Sendable {
     /// See `InstancesClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instance: Instance?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.deleteInstance`.
-    func deleteInstance(
+    func deleteInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.stopInstance`.
-    func stopInstance(withPolling: StopInstanceRequest) async throws -> any GoogleGax
+    func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
     /// See `InstancesClient.stopInstance`.
-    func stopInstance(
+    func stopInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.startInstance`.
-    func startInstance(withPolling: StartInstanceRequest) async throws -> any GoogleGax
+    func startInstancePollingUntilDone(request: StartInstanceRequest) async throws -> any GoogleGax
       .PollableOperation<Instance>
 
     /// See `InstancesClient.startInstance`.
-    func startInstance(
+    func startInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
@@ -294,8 +294,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `InstancesClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.deleteInstance`.
@@ -304,8 +304,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `InstancesClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.getInstance`.
@@ -324,8 +324,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `InstancesClient.stopInstance`.
-    func stopInstance(
-      withPolling: StopInstanceRequest, options: GoogleGax.RequestOptions
+    func stopInstancePollingUntilDone(
+      request: StopInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.startInstance`.
@@ -334,8 +334,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `InstancesClient.startInstance`.
-    func startInstance(
-      withPolling: StartInstanceRequest, options: GoogleGax.RequestOptions
+    func startInstancePollingUntilDone(
+      request: StartInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `InstancesClient.listOperations`.
@@ -369,14 +369,14 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -385,7 +385,7 @@ extension Clients.InstancesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -393,7 +393,7 @@ extension Clients.InstancesProtocol {
       $0.parent = parent
       $0.instance = instance
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -408,14 +408,14 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -424,13 +424,13 @@ extension Clients.InstancesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteInstance(
+  public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstance(withPolling: request)
+    return try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudRunV2.Instance {
@@ -504,14 +504,14 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func stopInstance(withPolling: StopInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.stopInstance(withPolling: withPolling, options: .init())
+    try await self.stopInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func stopInstance(
-    withPolling: StopInstanceRequest, options: GoogleGax.RequestOptions
+  public func stopInstancePollingUntilDone(
+    request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -520,13 +520,13 @@ extension Clients.InstancesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func stopInstance(
+  public func stopInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = StopInstanceRequest().with {
       $0.name = name
     }
-    return try await self.stopInstance(withPolling: request)
+    return try await self.stopInstancePollingUntilDone(request: request)
   }
 
   public func startInstance(request: StartInstanceRequest) async throws
@@ -541,14 +541,14 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func startInstance(withPolling: StartInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func startInstancePollingUntilDone(request: StartInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.startInstance(withPolling: withPolling, options: .init())
+    try await self.startInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func startInstance(
-    withPolling: StartInstanceRequest, options: GoogleGax.RequestOptions
+  public func startInstancePollingUntilDone(
+    request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -557,13 +557,13 @@ extension Clients.InstancesProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func startInstance(
+  public func startInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = StartInstanceRequest().with {
       $0.name = name
     }
-    return try await self.startInstance(withPolling: request)
+    return try await self.startInstancePollingUntilDone(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

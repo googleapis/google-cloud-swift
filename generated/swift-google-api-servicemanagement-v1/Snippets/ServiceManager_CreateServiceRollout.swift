@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ServiceManagerClient) async throws {
-  let poller = try await client.createServiceRollout(
-    withPolling: CreateServiceRolloutRequest()
+  let poller = try await client.createServiceRolloutPollingUntilDone(
+    request: CreateServiceRolloutRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

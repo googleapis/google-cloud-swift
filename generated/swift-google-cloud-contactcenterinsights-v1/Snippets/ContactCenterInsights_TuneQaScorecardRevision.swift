@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient) async throws {
-  let poller = try await client.tuneQaScorecardRevision(
-    withPolling: TuneQaScorecardRevisionRequest()
+  let poller = try await client.tuneQaScorecardRevisionPollingUntilDone(
+    request: TuneQaScorecardRevisionRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

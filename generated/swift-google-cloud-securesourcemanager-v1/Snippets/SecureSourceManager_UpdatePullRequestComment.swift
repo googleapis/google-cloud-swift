@@ -27,8 +27,8 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   pullRequestId: String, commentId: String
 ) async throws {
-  let poller = try await client.updatePullRequestComment(
-    withPolling: UpdatePullRequestCommentRequest()
+  let poller = try await client.updatePullRequestCommentPollingUntilDone(
+    request: UpdatePullRequestCommentRequest()
       .with {
         $0.pullRequestComment = PullRequestComment().with {
           $0.name =

@@ -21,8 +21,8 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagHoldsClient, tagValueId: String) async throws {
-  let poller = try await client.createTagHold(
-    withPolling: CreateTagHoldRequest()
+  let poller = try await client.createTagHoldPollingUntilDone(
+    request: CreateTagHoldRequest()
       .with {
         $0.parent = "tagValues/\(tagValueId)"
         $0.tagHold = TagHold() /* .with { ... } */

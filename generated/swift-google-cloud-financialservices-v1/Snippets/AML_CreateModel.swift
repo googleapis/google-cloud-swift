@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.createModel(
-    withPolling: CreateModelRequest()
+  let poller = try await client.createModelPollingUntilDone(
+    request: CreateModelRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
         $0.modelId = "[replace with a valid ID]"

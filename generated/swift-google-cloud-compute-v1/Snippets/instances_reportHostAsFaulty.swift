@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.reportHostAsFaulty(
-      withPolling: InstancesClient.ReportHostAsFaultyRequest()
+    let poller = try await client.reportHostAsFaultyPollingUntilDone(
+      request: InstancesClient.ReportHostAsFaultyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

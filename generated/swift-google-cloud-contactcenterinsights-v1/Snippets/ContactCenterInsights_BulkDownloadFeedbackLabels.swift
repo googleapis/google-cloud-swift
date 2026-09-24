@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient) async throws {
-  let poller = try await client.bulkDownloadFeedbackLabels(
-    withPolling: BulkDownloadFeedbackLabelsRequest()
+  let poller = try await client.bulkDownloadFeedbackLabelsPollingUntilDone(
+    request: BulkDownloadFeedbackLabelsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -151,14 +151,14 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// identified parent.
   ///
   /// @Snippet(path: "Folders_CreateFolder")
-  public func createFolder(
-    withPolling: CreateFolderRequest, options: GoogleGax.RequestOptions
+  public func createFolderPollingUntilDone(
+    request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       return try op._extractStatus(Folder.self)
     }
-    let rawOp = try await self.createFolder(request: withPolling, options: options)
+    let rawOp = try await self.createFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       let op = try await self.getOperation(
@@ -221,14 +221,14 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_UpdateFolder")
-  public func updateFolder(
-    withPolling: UpdateFolderRequest, options: GoogleGax.RequestOptions
+  public func updateFolderPollingUntilDone(
+    request: UpdateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       return try op._extractStatus(Folder.self)
     }
-    let rawOp = try await self.updateFolder(request: withPolling, options: options)
+    let rawOp = try await self.updateFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       let op = try await self.getOperation(
@@ -291,14 +291,14 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_MoveFolder")
-  public func moveFolder(
-    withPolling: MoveFolderRequest, options: GoogleGax.RequestOptions
+  public func moveFolderPollingUntilDone(
+    request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       return try op._extractStatus(Folder.self)
     }
-    let rawOp = try await self.moveFolder(request: withPolling, options: options)
+    let rawOp = try await self.moveFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       let op = try await self.getOperation(
@@ -351,14 +351,14 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// [google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]: <doc:Folder/State/deleteRequested>
   ///
   /// @Snippet(path: "Folders_DeleteFolder")
-  public func deleteFolder(
-    withPolling: DeleteFolderRequest, options: GoogleGax.RequestOptions
+  public func deleteFolderPollingUntilDone(
+    request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       return try op._extractStatus(Folder.self)
     }
-    let rawOp = try await self.deleteFolder(request: withPolling, options: options)
+    let rawOp = try await self.deleteFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       let op = try await self.getOperation(
@@ -411,14 +411,14 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_UndeleteFolder")
-  public func undeleteFolder(
-    withPolling: UndeleteFolderRequest, options: GoogleGax.RequestOptions
+  public func undeleteFolderPollingUntilDone(
+    request: UndeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       return try op._extractStatus(Folder.self)
     }
-    let rawOp = try await self.undeleteFolder(request: withPolling, options: options)
+    let rawOp = try await self.undeleteFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       let op = try await self.getOperation(
@@ -492,50 +492,49 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol FoldersProtocol: Sendable {
     /// See `FoldersClient.createFolder`.
-    func createFolder(withPolling: CreateFolderRequest) async throws -> any GoogleGax
+    func createFolderPollingUntilDone(request: CreateFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
 
     /// See `FoldersClient.createFolder`.
-    func createFolder(
+    func createFolderPollingUntilDone(
       folder: Folder?,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.updateFolder`.
-    func updateFolder(withPolling: UpdateFolderRequest) async throws -> any GoogleGax
+    func updateFolderPollingUntilDone(request: UpdateFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
 
     /// See `FoldersClient.updateFolder`.
-    func updateFolder(
+    func updateFolderPollingUntilDone(
       folder: Folder?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.moveFolder`.
-    func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleGax.PollableOperation<
-      Folder
-    >
+    func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws -> any GoogleGax
+      .PollableOperation<Folder>
 
     /// See `FoldersClient.moveFolder`.
-    func moveFolder(
+    func moveFolderPollingUntilDone(
       name: Swift.String,
       destinationParent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.deleteFolder`.
-    func deleteFolder(withPolling: DeleteFolderRequest) async throws -> any GoogleGax
+    func deleteFolderPollingUntilDone(request: DeleteFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Folder>
 
     /// See `FoldersClient.deleteFolder`.
-    func deleteFolder(
+    func deleteFolderPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.undeleteFolder`.
-    func undeleteFolder(withPolling: UndeleteFolderRequest) async throws -> any GoogleGax
-      .PollableOperation<Folder>
+    func undeleteFolderPollingUntilDone(request: UndeleteFolderRequest) async throws
+      -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.undeleteFolder`.
-    func undeleteFolder(
+    func undeleteFolderPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
@@ -560,8 +559,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `FoldersClient.createFolder`.
-    func createFolder(
-      withPolling: CreateFolderRequest, options: GoogleGax.RequestOptions
+    func createFolderPollingUntilDone(
+      request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.updateFolder`.
@@ -570,8 +569,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `FoldersClient.updateFolder`.
-    func updateFolder(
-      withPolling: UpdateFolderRequest, options: GoogleGax.RequestOptions
+    func updateFolderPollingUntilDone(
+      request: UpdateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.moveFolder`.
@@ -580,8 +579,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `FoldersClient.moveFolder`.
-    func moveFolder(
-      withPolling: MoveFolderRequest, options: GoogleGax.RequestOptions
+    func moveFolderPollingUntilDone(
+      request: MoveFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.deleteFolder`.
@@ -590,8 +589,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `FoldersClient.deleteFolder`.
-    func deleteFolder(
-      withPolling: DeleteFolderRequest, options: GoogleGax.RequestOptions
+    func deleteFolderPollingUntilDone(
+      request: DeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.undeleteFolder`.
@@ -600,8 +599,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `FoldersClient.undeleteFolder`.
-    func undeleteFolder(
-      withPolling: UndeleteFolderRequest, options: GoogleGax.RequestOptions
+    func undeleteFolderPollingUntilDone(
+      request: UndeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Folder>
 
     /// See `FoldersClient.getIamPolicy`.
@@ -750,14 +749,14 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createFolder(withPolling: CreateFolderRequest) async throws -> any GoogleGax
-    .PollableOperation<Folder>
+  public func createFolderPollingUntilDone(request: CreateFolderRequest) async throws
+    -> any GoogleGax.PollableOperation<Folder>
   {
-    try await self.createFolder(withPolling: withPolling, options: .init())
+    try await self.createFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func createFolder(
-    withPolling: CreateFolderRequest, options: GoogleGax.RequestOptions
+  public func createFolderPollingUntilDone(
+    request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -766,13 +765,13 @@ extension Clients.FoldersProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createFolder(
+  public func createFolderPollingUntilDone(
     folder: Folder?,
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let request = CreateFolderRequest().with {
       $0.folder = folder
     }
-    return try await self.createFolder(withPolling: request)
+    return try await self.createFolderPollingUntilDone(request: request)
   }
 
   public func updateFolder(request: UpdateFolderRequest) async throws -> GoogleLongRunning.Operation
@@ -786,14 +785,14 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateFolder(withPolling: UpdateFolderRequest) async throws -> any GoogleGax
-    .PollableOperation<Folder>
+  public func updateFolderPollingUntilDone(request: UpdateFolderRequest) async throws
+    -> any GoogleGax.PollableOperation<Folder>
   {
-    try await self.updateFolder(withPolling: withPolling, options: .init())
+    try await self.updateFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateFolder(
-    withPolling: UpdateFolderRequest, options: GoogleGax.RequestOptions
+  public func updateFolderPollingUntilDone(
+    request: UpdateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -802,7 +801,7 @@ extension Clients.FoldersProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateFolder(
+  public func updateFolderPollingUntilDone(
     folder: Folder?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
@@ -810,7 +809,7 @@ extension Clients.FoldersProtocol {
       $0.folder = folder
       $0.updateMask = updateMask
     }
-    return try await self.updateFolder(withPolling: request)
+    return try await self.updateFolderPollingUntilDone(request: request)
   }
 
   public func moveFolder(request: MoveFolderRequest) async throws -> GoogleLongRunning.Operation {
@@ -823,14 +822,14 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleGax
+  public func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws -> any GoogleGax
     .PollableOperation<Folder>
   {
-    try await self.moveFolder(withPolling: withPolling, options: .init())
+    try await self.moveFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func moveFolder(
-    withPolling: MoveFolderRequest, options: GoogleGax.RequestOptions
+  public func moveFolderPollingUntilDone(
+    request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -839,7 +838,7 @@ extension Clients.FoldersProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func moveFolder(
+  public func moveFolderPollingUntilDone(
     name: Swift.String,
     destinationParent: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
@@ -847,7 +846,7 @@ extension Clients.FoldersProtocol {
       $0.name = name
       $0.destinationParent = destinationParent
     }
-    return try await self.moveFolder(withPolling: request)
+    return try await self.moveFolderPollingUntilDone(request: request)
   }
 
   public func deleteFolder(request: DeleteFolderRequest) async throws -> GoogleLongRunning.Operation
@@ -861,14 +860,14 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFolder(withPolling: DeleteFolderRequest) async throws -> any GoogleGax
-    .PollableOperation<Folder>
+  public func deleteFolderPollingUntilDone(request: DeleteFolderRequest) async throws
+    -> any GoogleGax.PollableOperation<Folder>
   {
-    try await self.deleteFolder(withPolling: withPolling, options: .init())
+    try await self.deleteFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFolder(
-    withPolling: DeleteFolderRequest, options: GoogleGax.RequestOptions
+  public func deleteFolderPollingUntilDone(
+    request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -877,13 +876,13 @@ extension Clients.FoldersProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteFolder(
+  public func deleteFolderPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let request = DeleteFolderRequest().with {
       $0.name = name
     }
-    return try await self.deleteFolder(withPolling: request)
+    return try await self.deleteFolderPollingUntilDone(request: request)
   }
 
   public func undeleteFolder(request: UndeleteFolderRequest) async throws
@@ -898,14 +897,14 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func undeleteFolder(withPolling: UndeleteFolderRequest) async throws -> any GoogleGax
-    .PollableOperation<Folder>
+  public func undeleteFolderPollingUntilDone(request: UndeleteFolderRequest) async throws
+    -> any GoogleGax.PollableOperation<Folder>
   {
-    try await self.undeleteFolder(withPolling: withPolling, options: .init())
+    try await self.undeleteFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func undeleteFolder(
-    withPolling: UndeleteFolderRequest, options: GoogleGax.RequestOptions
+  public func undeleteFolderPollingUntilDone(
+    request: UndeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -914,13 +913,13 @@ extension Clients.FoldersProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func undeleteFolder(
+  public func undeleteFolderPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let request = UndeleteFolderRequest().with {
       $0.name = name
     }
-    return try await self.undeleteFolder(withPolling: request)
+    return try await self.undeleteFolderPollingUntilDone(request: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

@@ -27,8 +27,8 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   taskId: String
 ) async throws {
-  let poller = try await client.updateTask(
-    withPolling: UpdateTaskRequest()
+  let poller = try await client.updateTaskPollingUntilDone(
+    request: UpdateTaskRequest()
       .with {
         $0.task = Task().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/tasks/\(taskId)"

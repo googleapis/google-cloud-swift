@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createOdbNetwork(
-    withPolling: CreateOdbNetworkRequest()
+  let poller = try await client.createOdbNetworkPollingUntilDone(
+    request: CreateOdbNetworkRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.odbNetwork = OdbNetwork() /* .with { ... } */

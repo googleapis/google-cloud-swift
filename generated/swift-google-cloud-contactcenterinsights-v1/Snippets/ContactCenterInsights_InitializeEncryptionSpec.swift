@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient) async throws {
-  let poller = try await client.initializeEncryptionSpec(
-    withPolling: InitializeEncryptionSpecRequest()
+  let poller = try await client.initializeEncryptionSpecPollingUntilDone(
+    request: InitializeEncryptionSpecRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

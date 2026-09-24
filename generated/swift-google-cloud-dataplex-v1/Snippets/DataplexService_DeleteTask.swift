@@ -27,8 +27,8 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   taskId: String
 ) async throws {
-  let poller = try await client.deleteTask(
-    withPolling: DeleteTaskRequest()
+  let poller = try await client.deleteTaskPollingUntilDone(
+    request: DeleteTaskRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/tasks/\(taskId)"
       }

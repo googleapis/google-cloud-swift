@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: SubnetworksClient) async throws {
-    let poller = try await client.patch(
-      withPolling: SubnetworksClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: SubnetworksClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

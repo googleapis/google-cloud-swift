@@ -129,15 +129,15 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "Agents_TrainAgent")
-    public func trainAgent(
-      withPolling: TrainAgentRequest, options: GoogleGax.RequestOptions
+    public func trainAgentPollingUntilDone(
+      request: TrainAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.trainAgent(request: withPolling, options: options)
+      let rawOp = try await self.trainAgent(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -186,15 +186,15 @@
     /// [google.cloud.dialogflow.v2.ExportAgentResponse]: <doc:ExportAgentResponse>
     ///
     /// @Snippet(path: "Agents_ExportAgent")
-    public func exportAgent(
-      withPolling: ExportAgentRequest, options: GoogleGax.RequestOptions
+    public func exportAgentPollingUntilDone(
+      request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportAgentResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportAgentResponse>.State in
         return try op._extractStatus(ExportAgentResponse.self)
       }
-      let rawOp = try await self.exportAgent(request: withPolling, options: options)
+      let rawOp = try await self.exportAgent(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportAgentResponse>.State in
         let op = try await self.getOperation(
@@ -279,15 +279,15 @@
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
-    public func importAgent(
-      withPolling: ImportAgentRequest, options: GoogleGax.RequestOptions
+    public func importAgentPollingUntilDone(
+      request: ImportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.importAgent(request: withPolling, options: options)
+      let rawOp = try await self.importAgent(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -366,15 +366,15 @@
     /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
-    public func restoreAgent(
-      withPolling: RestoreAgentRequest, options: GoogleGax.RequestOptions
+    public func restoreAgentPollingUntilDone(
+      request: RestoreAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.restoreAgent(request: withPolling, options: options)
+      let rawOp = try await self.restoreAgent(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -476,29 +476,29 @@
     /// and pass a mock implementation in your tests.
     public protocol AgentsProtocol: Sendable {
       /// See `AgentsClient.trainAgent`.
-      func trainAgent(withPolling: TrainAgentRequest) async throws -> any GoogleGax
+      func trainAgentPollingUntilDone(request: TrainAgentRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `AgentsClient.trainAgent`.
-      func trainAgent(
+      func trainAgentPollingUntilDone(
         parent: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `AgentsClient.exportAgent`.
-      func exportAgent(withPolling: ExportAgentRequest) async throws -> any GoogleGax
+      func exportAgentPollingUntilDone(request: ExportAgentRequest) async throws -> any GoogleGax
         .PollableOperation<ExportAgentResponse>
 
       /// See `AgentsClient.exportAgent`.
-      func exportAgent(
+      func exportAgentPollingUntilDone(
         parent: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<ExportAgentResponse>
 
       /// See `AgentsClient.importAgent`.
-      func importAgent(withPolling: ImportAgentRequest) async throws -> any GoogleGax
+      func importAgentPollingUntilDone(request: ImportAgentRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `AgentsClient.restoreAgent`.
-      func restoreAgent(withPolling: RestoreAgentRequest) async throws -> any GoogleGax
+      func restoreAgentPollingUntilDone(request: RestoreAgentRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `AgentsClient.getAgent`.
@@ -527,8 +527,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `AgentsClient.trainAgent`.
-      func trainAgent(
-        withPolling: TrainAgentRequest, options: GoogleGax.RequestOptions
+      func trainAgentPollingUntilDone(
+        request: TrainAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `AgentsClient.exportAgent`.
@@ -537,8 +537,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `AgentsClient.exportAgent`.
-      func exportAgent(
-        withPolling: ExportAgentRequest, options: GoogleGax.RequestOptions
+      func exportAgentPollingUntilDone(
+        request: ExportAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ExportAgentResponse>
 
       /// See `AgentsClient.importAgent`.
@@ -547,8 +547,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `AgentsClient.importAgent`.
-      func importAgent(
-        withPolling: ImportAgentRequest, options: GoogleGax.RequestOptions
+      func importAgentPollingUntilDone(
+        request: ImportAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `AgentsClient.restoreAgent`.
@@ -557,8 +557,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `AgentsClient.restoreAgent`.
-      func restoreAgent(
-        withPolling: RestoreAgentRequest, options: GoogleGax.RequestOptions
+      func restoreAgentPollingUntilDone(
+        request: RestoreAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `AgentsClient.getValidationResult`.
@@ -705,14 +705,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func trainAgent(withPolling: TrainAgentRequest) async throws -> any GoogleGax
+    public func trainAgentPollingUntilDone(request: TrainAgentRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
     {
-      try await self.trainAgent(withPolling: withPolling, options: .init())
+      try await self.trainAgentPollingUntilDone(request: request, options: .init())
     }
 
-    public func trainAgent(
-      withPolling: TrainAgentRequest, options: GoogleGax.RequestOptions
+    public func trainAgentPollingUntilDone(
+      request: TrainAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -721,13 +721,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func trainAgent(
+    public func trainAgentPollingUntilDone(
       parent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = TrainAgentRequest().with {
         $0.parent = parent
       }
-      return try await self.trainAgent(withPolling: request)
+      return try await self.trainAgentPollingUntilDone(request: request)
     }
 
     public func exportAgent(request: ExportAgentRequest) async throws -> GoogleLongRunning.Operation
@@ -741,14 +741,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportAgent(withPolling: ExportAgentRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportAgentResponse>
+    public func exportAgentPollingUntilDone(request: ExportAgentRequest) async throws
+      -> any GoogleGax.PollableOperation<ExportAgentResponse>
     {
-      try await self.exportAgent(withPolling: withPolling, options: .init())
+      try await self.exportAgentPollingUntilDone(request: request, options: .init())
     }
 
-    public func exportAgent(
-      withPolling: ExportAgentRequest, options: GoogleGax.RequestOptions
+    public func exportAgentPollingUntilDone(
+      request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportAgentResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportAgentResponse>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -757,13 +757,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func exportAgent(
+    public func exportAgentPollingUntilDone(
       parent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ExportAgentResponse> {
       let request = ExportAgentRequest().with {
         $0.parent = parent
       }
-      return try await self.exportAgent(withPolling: request)
+      return try await self.exportAgentPollingUntilDone(request: request)
     }
 
     public func importAgent(request: ImportAgentRequest) async throws -> GoogleLongRunning.Operation
@@ -777,14 +777,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importAgent(withPolling: ImportAgentRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func importAgentPollingUntilDone(request: ImportAgentRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.importAgent(withPolling: withPolling, options: .init())
+      try await self.importAgentPollingUntilDone(request: request, options: .init())
     }
 
-    public func importAgent(
-      withPolling: ImportAgentRequest, options: GoogleGax.RequestOptions
+    public func importAgentPollingUntilDone(
+      request: ImportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -805,14 +805,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func restoreAgent(withPolling: RestoreAgentRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func restoreAgentPollingUntilDone(request: RestoreAgentRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.restoreAgent(withPolling: withPolling, options: .init())
+      try await self.restoreAgentPollingUntilDone(request: request, options: .init())
     }
 
-    public func restoreAgent(
-      withPolling: RestoreAgentRequest, options: GoogleGax.RequestOptions
+    public func restoreAgentPollingUntilDone(
+      request: RestoreAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented

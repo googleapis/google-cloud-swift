@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MessagingClient) async throws {
-  let poller = try await client.searchBlurbs(
-    withPolling: SearchBlurbsRequest()
+  let poller = try await client.searchBlurbsPollingUntilDone(
+    request: SearchBlurbsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

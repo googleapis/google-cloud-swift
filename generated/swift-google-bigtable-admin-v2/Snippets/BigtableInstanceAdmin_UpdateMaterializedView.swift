@@ -26,8 +26,8 @@ func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String,
   materializedViewId: String
 ) async throws {
-  let poller = try await client.updateMaterializedView(
-    withPolling: UpdateMaterializedViewRequest()
+  let poller = try await client.updateMaterializedViewPollingUntilDone(
+    request: UpdateMaterializedViewRequest()
       .with {
         $0.materializedView = MaterializedView().with {
           $0.name =

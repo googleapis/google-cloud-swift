@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(client: BigtableInstanceAdminClient, projectId: String, instanceId: String) async throws
 {
-  let poller = try await client.createCluster(
-    withPolling: CreateClusterRequest()
+  let poller = try await client.createClusterPollingUntilDone(
+    request: CreateClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)"
         $0.clusterId = "[replace with a valid ID]"

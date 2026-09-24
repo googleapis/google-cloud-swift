@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: JobServiceClient) async throws {
-  let poller = try await client.batchDeleteJobs(
-    withPolling: BatchDeleteJobsRequest()
+  let poller = try await client.batchDeleteJobsPollingUntilDone(
+    request: BatchDeleteJobsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

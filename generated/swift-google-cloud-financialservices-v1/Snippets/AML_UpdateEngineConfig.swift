@@ -26,8 +26,8 @@ func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String,
   engineConfigId: String
 ) async throws {
-  let poller = try await client.updateEngineConfig(
-    withPolling: UpdateEngineConfigRequest()
+  let poller = try await client.updateEngineConfigPollingUntilDone(
+    request: UpdateEngineConfigRequest()
       .with {
         $0.engineConfig = EngineConfig().with {
           $0.name =

@@ -82,15 +82,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureClient")
   @available(*, deprecated)
-  public func createAzureClient(
-    withPolling: CreateAzureClientRequest, options: GoogleGax.RequestOptions
+  public func createAzureClientPollingUntilDone(
+    request: CreateAzureClientRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureClient> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AzureClient>.State in
       return try op._extractStatus(AzureClient.self)
     }
-    let rawOp = try await self.createAzureClient(request: withPolling, options: options)
+    let rawOp = try await self.createAzureClient(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureClient>.State in
       let op = try await self.getOperation(
@@ -167,15 +167,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureClient")
   @available(*, deprecated)
-  public func deleteAzureClient(
-    withPolling: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
+  public func deleteAzureClientPollingUntilDone(
+    request: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteAzureClient(request: withPolling, options: options)
+    let rawOp = try await self.deleteAzureClient(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -220,15 +220,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureCluster")
   @available(*, deprecated)
-  public func createAzureCluster(
-    withPolling: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
+  public func createAzureClusterPollingUntilDone(
+    request: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureCluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AzureCluster>.State in
       return try op._extractStatus(AzureCluster.self)
     }
-    let rawOp = try await self.createAzureCluster(request: withPolling, options: options)
+    let rawOp = try await self.createAzureCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureCluster>.State in
       let op = try await self.getOperation(
@@ -261,15 +261,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_UpdateAzureCluster")
   @available(*, deprecated)
-  public func updateAzureCluster(
-    withPolling: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
+  public func updateAzureClusterPollingUntilDone(
+    request: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureCluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AzureCluster>.State in
       return try op._extractStatus(AzureCluster.self)
     }
-    let rawOp = try await self.updateAzureCluster(request: withPolling, options: options)
+    let rawOp = try await self.updateAzureCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureCluster>.State in
       let op = try await self.getOperation(
@@ -348,15 +348,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureCluster")
   @available(*, deprecated)
-  public func deleteAzureCluster(
-    withPolling: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteAzureClusterPollingUntilDone(
+    request: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteAzureCluster(request: withPolling, options: options)
+    let rawOp = try await self.deleteAzureCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -428,15 +428,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureNodePool")
   @available(*, deprecated)
-  public func createAzureNodePool(
-    withPolling: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
+  public func createAzureNodePoolPollingUntilDone(
+    request: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureNodePool> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AzureNodePool>.State in
       return try op._extractStatus(AzureNodePool.self)
     }
-    let rawOp = try await self.createAzureNodePool(request: withPolling, options: options)
+    let rawOp = try await self.createAzureNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureNodePool>.State in
       let op = try await self.getOperation(
@@ -469,15 +469,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_UpdateAzureNodePool")
   @available(*, deprecated)
-  public func updateAzureNodePool(
-    withPolling: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
+  public func updateAzureNodePoolPollingUntilDone(
+    request: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureNodePool> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AzureNodePool>.State in
       return try op._extractStatus(AzureNodePool.self)
     }
-    let rawOp = try await self.updateAzureNodePool(request: withPolling, options: options)
+    let rawOp = try await self.updateAzureNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureNodePool>.State in
       let op = try await self.getOperation(
@@ -550,15 +550,15 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureNodePool")
   @available(*, deprecated)
-  public func deleteAzureNodePool(
-    withPolling: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
+  public func deleteAzureNodePoolPollingUntilDone(
+    request: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteAzureNodePool(request: withPolling, options: options)
+    let rawOp = try await self.deleteAzureNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -664,12 +664,12 @@ extension Clients {
   public protocol AzureClustersProtocol: Sendable {
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
-    func createAzureClient(withPolling: CreateAzureClientRequest) async throws -> any GoogleGax
-      .PollableOperation<AzureClient>
+    func createAzureClientPollingUntilDone(request: CreateAzureClientRequest) async throws
+      -> any GoogleGax.PollableOperation<AzureClient>
 
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
-    func createAzureClient(
+    func createAzureClientPollingUntilDone(
       parent: Swift.String,
       azureClient: AzureClient?,
       azureClientId: Swift.String,
@@ -677,23 +677,23 @@ extension Clients {
 
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
-    func deleteAzureClient(withPolling: DeleteAzureClientRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteAzureClientPollingUntilDone(request: DeleteAzureClientRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
-    func deleteAzureClient(
+    func deleteAzureClientPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
-    func createAzureCluster(withPolling: CreateAzureClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<AzureCluster>
+    func createAzureClusterPollingUntilDone(request: CreateAzureClusterRequest) async throws
+      -> any GoogleGax.PollableOperation<AzureCluster>
 
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
-    func createAzureCluster(
+    func createAzureClusterPollingUntilDone(
       parent: Swift.String,
       azureCluster: AzureCluster?,
       azureClusterId: Swift.String,
@@ -701,35 +701,35 @@ extension Clients {
 
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
-    func updateAzureCluster(withPolling: UpdateAzureClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<AzureCluster>
+    func updateAzureClusterPollingUntilDone(request: UpdateAzureClusterRequest) async throws
+      -> any GoogleGax.PollableOperation<AzureCluster>
 
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
-    func updateAzureCluster(
+    func updateAzureClusterPollingUntilDone(
       azureCluster: AzureCluster?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AzureCluster>
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
-    func deleteAzureCluster(withPolling: DeleteAzureClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteAzureClusterPollingUntilDone(request: DeleteAzureClusterRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
-    func deleteAzureCluster(
+    func deleteAzureClusterPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
-    func createAzureNodePool(withPolling: CreateAzureNodePoolRequest) async throws -> any GoogleGax
-      .PollableOperation<AzureNodePool>
+    func createAzureNodePoolPollingUntilDone(request: CreateAzureNodePoolRequest) async throws
+      -> any GoogleGax.PollableOperation<AzureNodePool>
 
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
-    func createAzureNodePool(
+    func createAzureNodePoolPollingUntilDone(
       parent: Swift.String,
       azureNodePool: AzureNodePool?,
       azureNodePoolId: Swift.String,
@@ -737,24 +737,24 @@ extension Clients {
 
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
-    func updateAzureNodePool(withPolling: UpdateAzureNodePoolRequest) async throws -> any GoogleGax
-      .PollableOperation<AzureNodePool>
+    func updateAzureNodePoolPollingUntilDone(request: UpdateAzureNodePoolRequest) async throws
+      -> any GoogleGax.PollableOperation<AzureNodePool>
 
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
-    func updateAzureNodePool(
+    func updateAzureNodePoolPollingUntilDone(
       azureNodePool: AzureNodePool?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AzureNodePool>
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
-    func deleteAzureNodePool(withPolling: DeleteAzureNodePoolRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteAzureNodePoolPollingUntilDone(request: DeleteAzureNodePoolRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
-    func deleteAzureNodePool(
+    func deleteAzureNodePoolPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -766,8 +766,8 @@ extension Clients {
 
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
-    func createAzureClient(
-      withPolling: CreateAzureClientRequest, options: GoogleGax.RequestOptions
+    func createAzureClientPollingUntilDone(
+      request: CreateAzureClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AzureClient>
 
     /// See `AzureClustersClient.getAzureClient`.
@@ -790,8 +790,8 @@ extension Clients {
 
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
-    func deleteAzureClient(
-      withPolling: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
+    func deleteAzureClientPollingUntilDone(
+      request: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.createAzureCluster`.
@@ -802,8 +802,8 @@ extension Clients {
 
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
-    func createAzureCluster(
-      withPolling: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
+    func createAzureClusterPollingUntilDone(
+      request: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AzureCluster>
 
     /// See `AzureClustersClient.updateAzureCluster`.
@@ -814,8 +814,8 @@ extension Clients {
 
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
-    func updateAzureCluster(
-      withPolling: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
+    func updateAzureClusterPollingUntilDone(
+      request: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AzureCluster>
 
     /// See `AzureClustersClient.getAzureCluster`.
@@ -838,8 +838,8 @@ extension Clients {
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
-    func deleteAzureCluster(
-      withPolling: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
+    func deleteAzureClusterPollingUntilDone(
+      request: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.generateAzureClusterAgentToken`.
@@ -862,8 +862,8 @@ extension Clients {
 
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
-    func createAzureNodePool(
-      withPolling: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
+    func createAzureNodePoolPollingUntilDone(
+      request: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AzureNodePool>
 
     /// See `AzureClustersClient.updateAzureNodePool`.
@@ -874,8 +874,8 @@ extension Clients {
 
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
-    func updateAzureNodePool(
-      withPolling: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
+    func updateAzureNodePoolPollingUntilDone(
+      request: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AzureNodePool>
 
     /// See `AzureClustersClient.getAzureNodePool`.
@@ -898,8 +898,8 @@ extension Clients {
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
-    func deleteAzureNodePool(
-      withPolling: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
+    func deleteAzureNodePoolPollingUntilDone(
+      request: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AzureClustersClient.getAzureOpenIdConfig`.
@@ -955,15 +955,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func createAzureClient(withPolling: CreateAzureClientRequest) async throws -> any GoogleGax
-    .PollableOperation<AzureClient>
+  public func createAzureClientPollingUntilDone(request: CreateAzureClientRequest) async throws
+    -> any GoogleGax.PollableOperation<AzureClient>
   {
-    try await self.createAzureClient(withPolling: withPolling, options: .init())
+    try await self.createAzureClientPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func createAzureClient(
-    withPolling: CreateAzureClientRequest, options: GoogleGax.RequestOptions
+  public func createAzureClientPollingUntilDone(
+    request: CreateAzureClientRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureClient> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureClient>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -973,7 +973,7 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func createAzureClient(
+  public func createAzureClientPollingUntilDone(
     parent: Swift.String,
     azureClient: AzureClient?,
     azureClientId: Swift.String,
@@ -983,7 +983,7 @@ extension Clients.AzureClustersProtocol {
       $0.azureClient = azureClient
       $0.azureClientId = azureClientId
     }
-    return try await self.createAzureClient(withPolling: request)
+    return try await self.createAzureClientPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1075,15 +1075,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteAzureClient(withPolling: DeleteAzureClientRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteAzureClientPollingUntilDone(request: DeleteAzureClientRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteAzureClient(withPolling: withPolling, options: .init())
+    try await self.deleteAzureClientPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func deleteAzureClient(
-    withPolling: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
+  public func deleteAzureClientPollingUntilDone(
+    request: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1093,13 +1093,13 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteAzureClient(
+  public func deleteAzureClientPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteAzureClientRequest().with {
       $0.name = name
     }
-    return try await self.deleteAzureClient(withPolling: request)
+    return try await self.deleteAzureClientPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1117,15 +1117,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func createAzureCluster(withPolling: CreateAzureClusterRequest) async throws
+  public func createAzureClusterPollingUntilDone(request: CreateAzureClusterRequest) async throws
     -> any GoogleGax.PollableOperation<AzureCluster>
   {
-    try await self.createAzureCluster(withPolling: withPolling, options: .init())
+    try await self.createAzureClusterPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func createAzureCluster(
-    withPolling: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
+  public func createAzureClusterPollingUntilDone(
+    request: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureCluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureCluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1135,7 +1135,7 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func createAzureCluster(
+  public func createAzureClusterPollingUntilDone(
     parent: Swift.String,
     azureCluster: AzureCluster?,
     azureClusterId: Swift.String,
@@ -1145,7 +1145,7 @@ extension Clients.AzureClustersProtocol {
       $0.azureCluster = azureCluster
       $0.azureClusterId = azureClusterId
     }
-    return try await self.createAzureCluster(withPolling: request)
+    return try await self.createAzureClusterPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1163,15 +1163,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func updateAzureCluster(withPolling: UpdateAzureClusterRequest) async throws
+  public func updateAzureClusterPollingUntilDone(request: UpdateAzureClusterRequest) async throws
     -> any GoogleGax.PollableOperation<AzureCluster>
   {
-    try await self.updateAzureCluster(withPolling: withPolling, options: .init())
+    try await self.updateAzureClusterPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func updateAzureCluster(
-    withPolling: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
+  public func updateAzureClusterPollingUntilDone(
+    request: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureCluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureCluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1181,7 +1181,7 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func updateAzureCluster(
+  public func updateAzureClusterPollingUntilDone(
     azureCluster: AzureCluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AzureCluster> {
@@ -1189,7 +1189,7 @@ extension Clients.AzureClustersProtocol {
       $0.azureCluster = azureCluster
       $0.updateMask = updateMask
     }
-    return try await self.updateAzureCluster(withPolling: request)
+    return try await self.updateAzureClusterPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1281,15 +1281,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteAzureCluster(withPolling: DeleteAzureClusterRequest) async throws
+  public func deleteAzureClusterPollingUntilDone(request: DeleteAzureClusterRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteAzureCluster(withPolling: withPolling, options: .init())
+    try await self.deleteAzureClusterPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func deleteAzureCluster(
-    withPolling: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteAzureClusterPollingUntilDone(
+    request: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1299,13 +1299,13 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteAzureCluster(
+  public func deleteAzureClusterPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteAzureClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteAzureCluster(withPolling: request)
+    return try await self.deleteAzureClusterPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1351,15 +1351,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func createAzureNodePool(withPolling: CreateAzureNodePoolRequest) async throws
+  public func createAzureNodePoolPollingUntilDone(request: CreateAzureNodePoolRequest) async throws
     -> any GoogleGax.PollableOperation<AzureNodePool>
   {
-    try await self.createAzureNodePool(withPolling: withPolling, options: .init())
+    try await self.createAzureNodePoolPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func createAzureNodePool(
-    withPolling: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
+  public func createAzureNodePoolPollingUntilDone(
+    request: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureNodePool> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureNodePool>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1369,7 +1369,7 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func createAzureNodePool(
+  public func createAzureNodePoolPollingUntilDone(
     parent: Swift.String,
     azureNodePool: AzureNodePool?,
     azureNodePoolId: Swift.String,
@@ -1379,7 +1379,7 @@ extension Clients.AzureClustersProtocol {
       $0.azureNodePool = azureNodePool
       $0.azureNodePoolId = azureNodePoolId
     }
-    return try await self.createAzureNodePool(withPolling: request)
+    return try await self.createAzureNodePoolPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1397,15 +1397,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func updateAzureNodePool(withPolling: UpdateAzureNodePoolRequest) async throws
+  public func updateAzureNodePoolPollingUntilDone(request: UpdateAzureNodePoolRequest) async throws
     -> any GoogleGax.PollableOperation<AzureNodePool>
   {
-    try await self.updateAzureNodePool(withPolling: withPolling, options: .init())
+    try await self.updateAzureNodePoolPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func updateAzureNodePool(
-    withPolling: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
+  public func updateAzureNodePoolPollingUntilDone(
+    request: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AzureNodePool> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AzureNodePool>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1415,7 +1415,7 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func updateAzureNodePool(
+  public func updateAzureNodePoolPollingUntilDone(
     azureNodePool: AzureNodePool?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AzureNodePool> {
@@ -1423,7 +1423,7 @@ extension Clients.AzureClustersProtocol {
       $0.azureNodePool = azureNodePool
       $0.updateMask = updateMask
     }
-    return try await self.updateAzureNodePool(withPolling: request)
+    return try await self.updateAzureNodePoolPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1517,15 +1517,15 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteAzureNodePool(withPolling: DeleteAzureNodePoolRequest) async throws
+  public func deleteAzureNodePoolPollingUntilDone(request: DeleteAzureNodePoolRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteAzureNodePool(withPolling: withPolling, options: .init())
+    try await self.deleteAzureNodePoolPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func deleteAzureNodePool(
-    withPolling: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
+  public func deleteAzureNodePoolPollingUntilDone(
+    request: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1535,13 +1535,13 @@ extension Clients.AzureClustersProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteAzureNodePool(
+  public func deleteAzureNodePoolPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteAzureNodePoolRequest().with {
       $0.name = name
     }
-    return try await self.deleteAzureNodePool(withPolling: request)
+    return try await self.deleteAzureNodePoolPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)

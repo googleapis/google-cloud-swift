@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let poller = try await client.openPullRequest(
-    withPolling: OpenPullRequestRequest()
+  let poller = try await client.openPullRequestPollingUntilDone(
+    request: OpenPullRequestRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

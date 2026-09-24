@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: DocumentsClient, projectId: String, knowledgeBaseId: String) async throws {
-    let poller = try await client.createDocument(
-      withPolling: CreateDocumentRequest()
+    let poller = try await client.createDocumentPollingUntilDone(
+      request: CreateDocumentRequest()
         .with {
           $0.parent = "projects/\(projectId)/knowledgeBases/\(knowledgeBaseId)"
           $0.document = Document() /* .with { ... } */

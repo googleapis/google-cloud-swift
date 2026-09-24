@@ -63,8 +63,8 @@
     /// queue.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
-    public func cancel(
-      withPolling: InstanceGroupManagerResizeRequestsClient.CancelRequest,
+    public func cancelPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
       options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
@@ -81,15 +81,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.cancel(request: withPolling, options: options)
+      let rawOp = try await self.cancel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.zone = withPolling.zone
+            $0.project = request.project
+            $0.zone = request.zone
           }, options: options)
         return try extractStatus(op)
       }
@@ -118,8 +118,8 @@
     /// were provisioned previously.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
-    public func delete(
-      withPolling: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
+    public func deletePollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
       options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
@@ -136,15 +136,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.delete(request: withPolling, options: options)
+      let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.zone = withPolling.zone
+            $0.project = request.project
+            $0.zone = request.zone
           }, options: options)
         return try extractStatus(op)
       }
@@ -181,8 +181,8 @@
     /// or queues VM creation.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
-    public func insert(
-      withPolling: InstanceGroupManagerResizeRequestsClient.InsertRequest,
+    public func insertPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.InsertRequest,
       options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
@@ -199,15 +199,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.insert(request: withPolling, options: options)
+      let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.zone = withPolling.zone
+            $0.project = request.project
+            $0.zone = request.zone
           }, options: options)
         return try extractStatus(op)
       }
@@ -294,14 +294,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func cancel(
-      withPolling: InstanceGroupManagerResizeRequestsClient.CancelRequest
+    public func cancelPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.CancelRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.cancel(withPolling: withPolling, options: .init())
+      try await self.cancelPollingUntilDone(request: request, options: .init())
     }
 
-    public func cancel(
-      withPolling: InstanceGroupManagerResizeRequestsClient.CancelRequest,
+    public func cancelPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
       options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
@@ -312,7 +312,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func cancel(
+    public func cancelPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
@@ -324,7 +324,7 @@
         $0.instanceGroupManager = instanceGroupManager
         $0.resizeRequest = resizeRequest
       }
-      return try await self.cancel(withPolling: request)
+      return try await self.cancelPollingUntilDone(request: request)
     }
 
     public func delete(request: InstanceGroupManagerResizeRequestsClient.DeleteRequest) async throws
@@ -340,14 +340,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func delete(
-      withPolling: InstanceGroupManagerResizeRequestsClient.DeleteRequest
+    public func deletePollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.DeleteRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.delete(withPolling: withPolling, options: .init())
+      try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
-    public func delete(
-      withPolling: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
+    public func deletePollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
       options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
@@ -358,7 +358,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func delete(
+    public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
@@ -370,7 +370,7 @@
         $0.instanceGroupManager = instanceGroupManager
         $0.resizeRequest = resizeRequest
       }
-      return try await self.delete(withPolling: request)
+      return try await self.deletePollingUntilDone(request: request)
     }
 
     public func `get`(request: InstanceGroupManagerResizeRequestsClient.GetRequest) async throws
@@ -414,14 +414,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func insert(
-      withPolling: InstanceGroupManagerResizeRequestsClient.InsertRequest
+    public func insertPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.InsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insert(withPolling: withPolling, options: .init())
+      try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
-    public func insert(
-      withPolling: InstanceGroupManagerResizeRequestsClient.InsertRequest,
+    public func insertPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.InsertRequest,
       options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
@@ -432,7 +432,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func insert(
+    public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
@@ -444,7 +444,7 @@
         $0.instanceGroupManager = instanceGroupManager
         $0.body = body
       }
-      return try await self.insert(withPolling: request)
+      return try await self.insertPollingUntilDone(request: request)
     }
 
     public func list(request: InstanceGroupManagerResizeRequestsClient.ListRequest) async throws

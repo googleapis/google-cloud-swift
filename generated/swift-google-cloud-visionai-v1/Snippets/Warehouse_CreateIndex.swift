@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String)
   async throws
 {
-  let poller = try await client.createIndex(
-    withPolling: CreateIndexRequest()
+  let poller = try await client.createIndexPollingUntilDone(
+    request: CreateIndexRequest()
       .with {
         $0.parent = "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)"
         $0.indexId = "[replace with a valid ID]"

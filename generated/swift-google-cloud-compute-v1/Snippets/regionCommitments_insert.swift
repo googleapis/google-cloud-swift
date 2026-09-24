@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionCommitmentsClient) async throws {
-    let poller = try await client.insert(
-      withPolling: RegionCommitmentsClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: RegionCommitmentsClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

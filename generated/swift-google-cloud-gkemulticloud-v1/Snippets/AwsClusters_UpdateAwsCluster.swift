@@ -27,8 +27,8 @@ import GoogleWKT
 func sample(client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String)
   async throws
 {
-  let poller = try await client.updateAwsCluster(
-    withPolling: UpdateAwsClusterRequest()
+  let poller = try await client.updateAwsClusterPollingUntilDone(
+    request: UpdateAwsClusterRequest()
       .with {
         $0.awsCluster = AwsCluster().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/awsClusters/\(awsClusterId)"

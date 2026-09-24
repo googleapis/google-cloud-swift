@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: SiteSearchEngineServiceClient) async throws {
-    let poller = try await client.enableAdvancedSiteSearch(
-      withPolling: EnableAdvancedSiteSearchRequest()
+    let poller = try await client.enableAdvancedSiteSearchPollingUntilDone(
+      request: EnableAdvancedSiteSearchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

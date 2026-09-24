@@ -90,14 +90,14 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Creates a metastore service in a project and location.
   ///
   /// @Snippet(path: "DataprocMetastore_CreateService")
-  public func createService(
-    withPolling: CreateServiceRequest, options: GoogleGax.RequestOptions
+  public func createServicePollingUntilDone(
+    request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Service>.State in
       return try op._extractStatus(Service.self)
     }
-    let rawOp = try await self.createService(request: withPolling, options: options)
+    let rawOp = try await self.createService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       let op = try await self.getOperation(
@@ -124,14 +124,14 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Updates the parameters of a single service.
   ///
   /// @Snippet(path: "DataprocMetastore_UpdateService")
-  public func updateService(
-    withPolling: UpdateServiceRequest, options: GoogleGax.RequestOptions
+  public func updateServicePollingUntilDone(
+    request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Service>.State in
       return try op._extractStatus(Service.self)
     }
-    let rawOp = try await self.updateService(request: withPolling, options: options)
+    let rawOp = try await self.updateService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       let op = try await self.getOperation(
@@ -158,15 +158,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Deletes a single service.
   ///
   /// @Snippet(path: "DataprocMetastore_DeleteService")
-  public func deleteService(
-    withPolling: DeleteServiceRequest, options: GoogleGax.RequestOptions
+  public func deleteServicePollingUntilDone(
+    request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteService(request: withPolling, options: options)
+    let rawOp = try await self.deleteService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -211,15 +211,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Creates a new MetadataImport in a given project and location.
   ///
   /// @Snippet(path: "DataprocMetastore_CreateMetadataImport")
-  public func createMetadataImport(
-    withPolling: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
+  public func createMetadataImportPollingUntilDone(
+    request: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataImport> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataImport>.State in
       return try op._extractStatus(MetadataImport.self)
     }
-    let rawOp = try await self.createMetadataImport(request: withPolling, options: options)
+    let rawOp = try await self.createMetadataImport(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataImport>.State in
       let op = try await self.getOperation(
@@ -248,15 +248,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Only the description field of MetadataImport is supported to be updated.
   ///
   /// @Snippet(path: "DataprocMetastore_UpdateMetadataImport")
-  public func updateMetadataImport(
-    withPolling: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
+  public func updateMetadataImportPollingUntilDone(
+    request: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataImport> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataImport>.State in
       return try op._extractStatus(MetadataImport.self)
     }
-    let rawOp = try await self.updateMetadataImport(request: withPolling, options: options)
+    let rawOp = try await self.updateMetadataImport(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataImport>.State in
       let op = try await self.getOperation(
@@ -283,15 +283,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Exports metadata from a service.
   ///
   /// @Snippet(path: "DataprocMetastore_ExportMetadata")
-  public func exportMetadata(
-    withPolling: ExportMetadataRequest, options: GoogleGax.RequestOptions
+  public func exportMetadataPollingUntilDone(
+    request: ExportMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataExport> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataExport>.State in
       return try op._extractStatus(MetadataExport.self)
     }
-    let rawOp = try await self.exportMetadata(request: withPolling, options: options)
+    let rawOp = try await self.exportMetadata(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataExport>.State in
       let op = try await self.getOperation(
@@ -318,14 +318,14 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Restores a service from a backup.
   ///
   /// @Snippet(path: "DataprocMetastore_RestoreService")
-  public func restoreService(
-    withPolling: RestoreServiceRequest, options: GoogleGax.RequestOptions
+  public func restoreServicePollingUntilDone(
+    request: RestoreServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Restore> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Restore>.State in
       return try op._extractStatus(Restore.self)
     }
-    let rawOp = try await self.restoreService(request: withPolling, options: options)
+    let rawOp = try await self.restoreService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Restore>.State in
       let op = try await self.getOperation(
@@ -370,14 +370,14 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Creates a new backup in a given project and location.
   ///
   /// @Snippet(path: "DataprocMetastore_CreateBackup")
-  public func createBackup(
-    withPolling: CreateBackupRequest, options: GoogleGax.RequestOptions
+  public func createBackupPollingUntilDone(
+    request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Backup>.State in
       return try op._extractStatus(Backup.self)
     }
-    let rawOp = try await self.createBackup(request: withPolling, options: options)
+    let rawOp = try await self.createBackup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
       let op = try await self.getOperation(
@@ -404,15 +404,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Deletes a single backup.
   ///
   /// @Snippet(path: "DataprocMetastore_DeleteBackup")
-  public func deleteBackup(
-    withPolling: DeleteBackupRequest, options: GoogleGax.RequestOptions
+  public func deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteBackup(request: withPolling, options: options)
+    let rawOp = try await self.deleteBackup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -439,15 +439,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Query DPMS metadata.
   ///
   /// @Snippet(path: "DataprocMetastore_QueryMetadata")
-  public func queryMetadata(
-    withPolling: QueryMetadataRequest, options: GoogleGax.RequestOptions
+  public func queryMetadataPollingUntilDone(
+    request: QueryMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<QueryMetadataResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<QueryMetadataResponse>.State in
       return try op._extractStatus(QueryMetadataResponse.self)
     }
-    let rawOp = try await self.queryMetadata(request: withPolling, options: options)
+    let rawOp = try await self.queryMetadata(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<QueryMetadataResponse>.State in
       let op = try await self.getOperation(
@@ -474,15 +474,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// Move a table to another database.
   ///
   /// @Snippet(path: "DataprocMetastore_MoveTableToDatabase")
-  public func moveTableToDatabase(
-    withPolling: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
+  public func moveTableToDatabasePollingUntilDone(
+    request: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MoveTableToDatabaseResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MoveTableToDatabaseResponse>.State in
       return try op._extractStatus(MoveTableToDatabaseResponse.self)
     }
-    let rawOp = try await self.moveTableToDatabase(request: withPolling, options: options)
+    let rawOp = try await self.moveTableToDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MoveTableToDatabaseResponse>.State in
@@ -516,15 +516,15 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// data to the new location.
   ///
   /// @Snippet(path: "DataprocMetastore_AlterMetadataResourceLocation")
-  public func alterMetadataResourceLocation(
-    withPolling: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
+  public func alterMetadataResourceLocationPollingUntilDone(
+    request: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AlterMetadataResourceLocationResponse>.State in
       return try op._extractStatus(AlterMetadataResourceLocationResponse.self)
     }
-    let rawOp = try await self.alterMetadataResourceLocation(request: withPolling, options: options)
+    let rawOp = try await self.alterMetadataResourceLocation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws
@@ -650,101 +650,102 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataprocMetastoreProtocol: Sendable {
     /// See `DataprocMetastoreClient.createService`.
-    func createService(withPolling: CreateServiceRequest) async throws -> any GoogleGax
+    func createServicePollingUntilDone(request: CreateServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.createService`.
-    func createService(
+    func createServicePollingUntilDone(
       parent: Swift.String,
       service: Service?,
       serviceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.updateService`.
-    func updateService(withPolling: UpdateServiceRequest) async throws -> any GoogleGax
+    func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.updateService`.
-    func updateService(
+    func updateServicePollingUntilDone(
       service: Service?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.deleteService`.
-    func deleteService(withPolling: DeleteServiceRequest) async throws -> any GoogleGax
+    func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreClient.deleteService`.
-    func deleteService(
+    func deleteServicePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreClient.createMetadataImport`.
-    func createMetadataImport(withPolling: CreateMetadataImportRequest) async throws
+    func createMetadataImportPollingUntilDone(request: CreateMetadataImportRequest) async throws
       -> any GoogleGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.createMetadataImport`.
-    func createMetadataImport(
+    func createMetadataImportPollingUntilDone(
       parent: Swift.String,
       metadataImport: MetadataImport?,
       metadataImportId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.updateMetadataImport`.
-    func updateMetadataImport(withPolling: UpdateMetadataImportRequest) async throws
+    func updateMetadataImportPollingUntilDone(request: UpdateMetadataImportRequest) async throws
       -> any GoogleGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.updateMetadataImport`.
-    func updateMetadataImport(
+    func updateMetadataImportPollingUntilDone(
       metadataImport: MetadataImport?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.exportMetadata`.
-    func exportMetadata(withPolling: ExportMetadataRequest) async throws -> any GoogleGax
-      .PollableOperation<MetadataExport>
+    func exportMetadataPollingUntilDone(request: ExportMetadataRequest) async throws
+      -> any GoogleGax.PollableOperation<MetadataExport>
 
     /// See `DataprocMetastoreClient.restoreService`.
-    func restoreService(withPolling: RestoreServiceRequest) async throws -> any GoogleGax
-      .PollableOperation<Restore>
+    func restoreServicePollingUntilDone(request: RestoreServiceRequest) async throws
+      -> any GoogleGax.PollableOperation<Restore>
 
     /// See `DataprocMetastoreClient.restoreService`.
-    func restoreService(
+    func restoreServicePollingUntilDone(
       service: Swift.String,
       backup: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Restore>
 
     /// See `DataprocMetastoreClient.createBackup`.
-    func createBackup(withPolling: CreateBackupRequest) async throws -> any GoogleGax
+    func createBackupPollingUntilDone(request: CreateBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Backup>
 
     /// See `DataprocMetastoreClient.createBackup`.
-    func createBackup(
+    func createBackupPollingUntilDone(
       parent: Swift.String,
       backup: Backup?,
       backupId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `DataprocMetastoreClient.deleteBackup`.
-    func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
+    func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreClient.deleteBackup`.
-    func deleteBackup(
+    func deleteBackupPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreClient.queryMetadata`.
-    func queryMetadata(withPolling: QueryMetadataRequest) async throws -> any GoogleGax
+    func queryMetadataPollingUntilDone(request: QueryMetadataRequest) async throws -> any GoogleGax
       .PollableOperation<QueryMetadataResponse>
 
     /// See `DataprocMetastoreClient.moveTableToDatabase`.
-    func moveTableToDatabase(withPolling: MoveTableToDatabaseRequest) async throws -> any GoogleGax
-      .PollableOperation<MoveTableToDatabaseResponse>
+    func moveTableToDatabasePollingUntilDone(request: MoveTableToDatabaseRequest) async throws
+      -> any GoogleGax.PollableOperation<MoveTableToDatabaseResponse>
 
     /// See `DataprocMetastoreClient.alterMetadataResourceLocation`.
-    func alterMetadataResourceLocation(withPolling: AlterMetadataResourceLocationRequest)
-      async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse>
+    func alterMetadataResourceLocationPollingUntilDone(
+      request: AlterMetadataResourceLocationRequest
+    ) async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse>
 
     /// See `DataprocMetastoreClient.listServices`.
     func listServices(
@@ -762,8 +763,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.createService`.
-    func createService(
-      withPolling: CreateServiceRequest, options: GoogleGax.RequestOptions
+    func createServicePollingUntilDone(
+      request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.updateService`.
@@ -772,8 +773,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.updateService`.
-    func updateService(
-      withPolling: UpdateServiceRequest, options: GoogleGax.RequestOptions
+    func updateServicePollingUntilDone(
+      request: UpdateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.deleteService`.
@@ -782,8 +783,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.deleteService`.
-    func deleteService(
-      withPolling: DeleteServiceRequest, options: GoogleGax.RequestOptions
+    func deleteServicePollingUntilDone(
+      request: DeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreClient.listMetadataImports`.
@@ -802,8 +803,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.createMetadataImport`.
-    func createMetadataImport(
-      withPolling: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
+    func createMetadataImportPollingUntilDone(
+      request: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.updateMetadataImport`.
@@ -812,8 +813,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.updateMetadataImport`.
-    func updateMetadataImport(
-      withPolling: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
+    func updateMetadataImportPollingUntilDone(
+      request: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.exportMetadata`.
@@ -822,8 +823,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.exportMetadata`.
-    func exportMetadata(
-      withPolling: ExportMetadataRequest, options: GoogleGax.RequestOptions
+    func exportMetadataPollingUntilDone(
+      request: ExportMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MetadataExport>
 
     /// See `DataprocMetastoreClient.restoreService`.
@@ -832,8 +833,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.restoreService`.
-    func restoreService(
-      withPolling: RestoreServiceRequest, options: GoogleGax.RequestOptions
+    func restoreServicePollingUntilDone(
+      request: RestoreServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Restore>
 
     /// See `DataprocMetastoreClient.listBackups`.
@@ -852,8 +853,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.createBackup`.
-    func createBackup(
-      withPolling: CreateBackupRequest, options: GoogleGax.RequestOptions
+    func createBackupPollingUntilDone(
+      request: CreateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `DataprocMetastoreClient.deleteBackup`.
@@ -862,8 +863,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.deleteBackup`.
-    func deleteBackup(
-      withPolling: DeleteBackupRequest, options: GoogleGax.RequestOptions
+    func deleteBackupPollingUntilDone(
+      request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreClient.queryMetadata`.
@@ -872,8 +873,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.queryMetadata`.
-    func queryMetadata(
-      withPolling: QueryMetadataRequest, options: GoogleGax.RequestOptions
+    func queryMetadataPollingUntilDone(
+      request: QueryMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<QueryMetadataResponse>
 
     /// See `DataprocMetastoreClient.moveTableToDatabase`.
@@ -882,8 +883,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.moveTableToDatabase`.
-    func moveTableToDatabase(
-      withPolling: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
+    func moveTableToDatabasePollingUntilDone(
+      request: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MoveTableToDatabaseResponse>
 
     /// See `DataprocMetastoreClient.alterMetadataResourceLocation`.
@@ -892,8 +893,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreClient.alterMetadataResourceLocation`.
-    func alterMetadataResourceLocation(
-      withPolling: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
+    func alterMetadataResourceLocationPollingUntilDone(
+      request: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse>
 
     /// See `DataprocMetastoreClient.listLocations`.
@@ -1014,14 +1015,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createService(withPolling: CreateServiceRequest) async throws -> any GoogleGax
-    .PollableOperation<Service>
+  public func createServicePollingUntilDone(request: CreateServiceRequest) async throws
+    -> any GoogleGax.PollableOperation<Service>
   {
-    try await self.createService(withPolling: withPolling, options: .init())
+    try await self.createServicePollingUntilDone(request: request, options: .init())
   }
 
-  public func createService(
-    withPolling: CreateServiceRequest, options: GoogleGax.RequestOptions
+  public func createServicePollingUntilDone(
+    request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1030,7 +1031,7 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createService(
+  public func createServicePollingUntilDone(
     parent: Swift.String,
     service: Service?,
     serviceId: Swift.String,
@@ -1040,7 +1041,7 @@ extension Clients.DataprocMetastoreProtocol {
       $0.service = service
       $0.serviceId = serviceId
     }
-    return try await self.createService(withPolling: request)
+    return try await self.createServicePollingUntilDone(request: request)
   }
 
   public func updateService(request: UpdateServiceRequest) async throws
@@ -1055,14 +1056,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateService(withPolling: UpdateServiceRequest) async throws -> any GoogleGax
-    .PollableOperation<Service>
+  public func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws
+    -> any GoogleGax.PollableOperation<Service>
   {
-    try await self.updateService(withPolling: withPolling, options: .init())
+    try await self.updateServicePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateService(
-    withPolling: UpdateServiceRequest, options: GoogleGax.RequestOptions
+  public func updateServicePollingUntilDone(
+    request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1071,7 +1072,7 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateService(
+  public func updateServicePollingUntilDone(
     service: Service?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Service> {
@@ -1079,7 +1080,7 @@ extension Clients.DataprocMetastoreProtocol {
       $0.service = service
       $0.updateMask = updateMask
     }
-    return try await self.updateService(withPolling: request)
+    return try await self.updateServicePollingUntilDone(request: request)
   }
 
   public func deleteService(request: DeleteServiceRequest) async throws
@@ -1094,14 +1095,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteService(withPolling: DeleteServiceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteService(withPolling: withPolling, options: .init())
+    try await self.deleteServicePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteService(
-    withPolling: DeleteServiceRequest, options: GoogleGax.RequestOptions
+  public func deleteServicePollingUntilDone(
+    request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1110,13 +1111,13 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteService(
+  public func deleteServicePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteServiceRequest().with {
       $0.name = name
     }
-    return try await self.deleteService(withPolling: request)
+    return try await self.deleteServicePollingUntilDone(request: request)
   }
 
   public func listMetadataImports(request: ListMetadataImportsRequest) async throws
@@ -1194,14 +1195,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMetadataImport(withPolling: CreateMetadataImportRequest) async throws
-    -> any GoogleGax.PollableOperation<MetadataImport>
+  public func createMetadataImportPollingUntilDone(request: CreateMetadataImportRequest)
+    async throws -> any GoogleGax.PollableOperation<MetadataImport>
   {
-    try await self.createMetadataImport(withPolling: withPolling, options: .init())
+    try await self.createMetadataImportPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMetadataImport(
-    withPolling: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
+  public func createMetadataImportPollingUntilDone(
+    request: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataImport> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataImport>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1210,7 +1211,7 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMetadataImport(
+  public func createMetadataImportPollingUntilDone(
     parent: Swift.String,
     metadataImport: MetadataImport?,
     metadataImportId: Swift.String,
@@ -1220,7 +1221,7 @@ extension Clients.DataprocMetastoreProtocol {
       $0.metadataImport = metadataImport
       $0.metadataImportId = metadataImportId
     }
-    return try await self.createMetadataImport(withPolling: request)
+    return try await self.createMetadataImportPollingUntilDone(request: request)
   }
 
   public func updateMetadataImport(request: UpdateMetadataImportRequest) async throws
@@ -1235,14 +1236,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMetadataImport(withPolling: UpdateMetadataImportRequest) async throws
-    -> any GoogleGax.PollableOperation<MetadataImport>
+  public func updateMetadataImportPollingUntilDone(request: UpdateMetadataImportRequest)
+    async throws -> any GoogleGax.PollableOperation<MetadataImport>
   {
-    try await self.updateMetadataImport(withPolling: withPolling, options: .init())
+    try await self.updateMetadataImportPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMetadataImport(
-    withPolling: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
+  public func updateMetadataImportPollingUntilDone(
+    request: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataImport> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataImport>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1251,7 +1252,7 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMetadataImport(
+  public func updateMetadataImportPollingUntilDone(
     metadataImport: MetadataImport?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MetadataImport> {
@@ -1259,7 +1260,7 @@ extension Clients.DataprocMetastoreProtocol {
       $0.metadataImport = metadataImport
       $0.updateMask = updateMask
     }
-    return try await self.updateMetadataImport(withPolling: request)
+    return try await self.updateMetadataImportPollingUntilDone(request: request)
   }
 
   public func exportMetadata(request: ExportMetadataRequest) async throws
@@ -1274,14 +1275,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportMetadata(withPolling: ExportMetadataRequest) async throws -> any GoogleGax
-    .PollableOperation<MetadataExport>
+  public func exportMetadataPollingUntilDone(request: ExportMetadataRequest) async throws
+    -> any GoogleGax.PollableOperation<MetadataExport>
   {
-    try await self.exportMetadata(withPolling: withPolling, options: .init())
+    try await self.exportMetadataPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportMetadata(
-    withPolling: ExportMetadataRequest, options: GoogleGax.RequestOptions
+  public func exportMetadataPollingUntilDone(
+    request: ExportMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataExport> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataExport>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1302,14 +1303,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func restoreService(withPolling: RestoreServiceRequest) async throws -> any GoogleGax
-    .PollableOperation<Restore>
+  public func restoreServicePollingUntilDone(request: RestoreServiceRequest) async throws
+    -> any GoogleGax.PollableOperation<Restore>
   {
-    try await self.restoreService(withPolling: withPolling, options: .init())
+    try await self.restoreServicePollingUntilDone(request: request, options: .init())
   }
 
-  public func restoreService(
-    withPolling: RestoreServiceRequest, options: GoogleGax.RequestOptions
+  public func restoreServicePollingUntilDone(
+    request: RestoreServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Restore> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Restore>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1318,7 +1319,7 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func restoreService(
+  public func restoreServicePollingUntilDone(
     service: Swift.String,
     backup: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Restore> {
@@ -1326,7 +1327,7 @@ extension Clients.DataprocMetastoreProtocol {
       $0.service = service
       $0.backup = backup
     }
-    return try await self.restoreService(withPolling: request)
+    return try await self.restoreServicePollingUntilDone(request: request)
   }
 
   public func listBackups(request: ListBackupsRequest) async throws
@@ -1401,14 +1402,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBackup(withPolling: CreateBackupRequest) async throws -> any GoogleGax
-    .PollableOperation<Backup>
+  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws
+    -> any GoogleGax.PollableOperation<Backup>
   {
-    try await self.createBackup(withPolling: withPolling, options: .init())
+    try await self.createBackupPollingUntilDone(request: request, options: .init())
   }
 
-  public func createBackup(
-    withPolling: CreateBackupRequest, options: GoogleGax.RequestOptions
+  public func createBackupPollingUntilDone(
+    request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1417,7 +1418,7 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createBackup(
+  public func createBackupPollingUntilDone(
     parent: Swift.String,
     backup: Backup?,
     backupId: Swift.String,
@@ -1427,7 +1428,7 @@ extension Clients.DataprocMetastoreProtocol {
       $0.backup = backup
       $0.backupId = backupId
     }
-    return try await self.createBackup(withPolling: request)
+    return try await self.createBackupPollingUntilDone(request: request)
   }
 
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -1441,14 +1442,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteBackup(withPolling: withPolling, options: .init())
+    try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteBackup(
-    withPolling: DeleteBackupRequest, options: GoogleGax.RequestOptions
+  public func deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1457,13 +1458,13 @@ extension Clients.DataprocMetastoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteBackup(
+  public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteBackupRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackup(withPolling: request)
+    return try await self.deleteBackupPollingUntilDone(request: request)
   }
 
   public func queryMetadata(request: QueryMetadataRequest) async throws
@@ -1478,14 +1479,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func queryMetadata(withPolling: QueryMetadataRequest) async throws -> any GoogleGax
-    .PollableOperation<QueryMetadataResponse>
+  public func queryMetadataPollingUntilDone(request: QueryMetadataRequest) async throws
+    -> any GoogleGax.PollableOperation<QueryMetadataResponse>
   {
-    try await self.queryMetadata(withPolling: withPolling, options: .init())
+    try await self.queryMetadataPollingUntilDone(request: request, options: .init())
   }
 
-  public func queryMetadata(
-    withPolling: QueryMetadataRequest, options: GoogleGax.RequestOptions
+  public func queryMetadataPollingUntilDone(
+    request: QueryMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<QueryMetadataResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<QueryMetadataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1506,14 +1507,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func moveTableToDatabase(withPolling: MoveTableToDatabaseRequest) async throws
+  public func moveTableToDatabasePollingUntilDone(request: MoveTableToDatabaseRequest) async throws
     -> any GoogleGax.PollableOperation<MoveTableToDatabaseResponse>
   {
-    try await self.moveTableToDatabase(withPolling: withPolling, options: .init())
+    try await self.moveTableToDatabasePollingUntilDone(request: request, options: .init())
   }
 
-  public func moveTableToDatabase(
-    withPolling: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
+  public func moveTableToDatabasePollingUntilDone(
+    request: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MoveTableToDatabaseResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<MoveTableToDatabaseResponse>.State in
@@ -1535,14 +1536,14 @@ extension Clients.DataprocMetastoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func alterMetadataResourceLocation(withPolling: AlterMetadataResourceLocationRequest)
-    async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse>
-  {
-    try await self.alterMetadataResourceLocation(withPolling: withPolling, options: .init())
+  public func alterMetadataResourceLocationPollingUntilDone(
+    request: AlterMetadataResourceLocationRequest
+  ) async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse> {
+    try await self.alterMetadataResourceLocationPollingUntilDone(request: request, options: .init())
   }
 
-  public func alterMetadataResourceLocation(
-    withPolling: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
+  public func alterMetadataResourceLocationPollingUntilDone(
+    request: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AlterMetadataResourceLocationResponse> {
     let poll = {
       () async throws

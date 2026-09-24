@@ -28,8 +28,8 @@ func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String,
   azureNodePoolId: String
 ) async throws {
-  let poller = try await client.updateAzureNodePool(
-    withPolling: UpdateAzureNodePoolRequest()
+  let poller = try await client.updateAzureNodePoolPollingUntilDone(
+    request: UpdateAzureNodePoolRequest()
       .with {
         $0.azureNodePool = AzureNodePool().with {
           $0.name =

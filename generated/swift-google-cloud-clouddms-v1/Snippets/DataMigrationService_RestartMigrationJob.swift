@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataMigrationServiceClient) async throws {
-  let poller = try await client.restartMigrationJob(
-    withPolling: RestartMigrationJobRequest()
+  let poller = try await client.restartMigrationJobPollingUntilDone(
+    request: RestartMigrationJobRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

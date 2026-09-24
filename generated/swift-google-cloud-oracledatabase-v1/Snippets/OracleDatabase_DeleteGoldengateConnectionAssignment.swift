@@ -26,8 +26,8 @@ func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String,
   goldengateConnectionAssignmentId: String
 ) async throws {
-  let poller = try await client.deleteGoldengateConnectionAssignment(
-    withPolling: DeleteGoldengateConnectionAssignmentRequest()
+  let poller = try await client.deleteGoldengateConnectionAssignmentPollingUntilDone(
+    request: DeleteGoldengateConnectionAssignmentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/goldengateConnectionAssignments/\(goldengateConnectionAssignmentId)"

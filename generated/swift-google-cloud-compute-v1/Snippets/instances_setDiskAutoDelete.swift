@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.setDiskAutoDelete(
-      withPolling: InstancesClient.SetDiskAutoDeleteRequest()
+    let poller = try await client.setDiskAutoDeletePollingUntilDone(
+      request: InstancesClient.SetDiskAutoDeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

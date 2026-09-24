@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetHttpsProxiesClient) async throws {
-    let poller = try await client.setQuicOverride(
-      withPolling: TargetHttpsProxiesClient.SetQuicOverrideRequest()
+    let poller = try await client.setQuicOverridePollingUntilDone(
+      request: TargetHttpsProxiesClient.SetQuicOverrideRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   gatewaySecurityPolicyId: String
 ) async throws {
-  let poller = try await client.createGatewaySecurityPolicyRule(
-    withPolling: CreateGatewaySecurityPolicyRuleRequest()
+  let poller = try await client.createGatewaySecurityPolicyRulePollingUntilDone(
+    request: CreateGatewaySecurityPolicyRuleRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/gatewaySecurityPolicies/\(gatewaySecurityPolicyId)"

@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let poller = try await client.suspendEntitlement(
-    withPolling: SuspendEntitlementRequest()
+  let poller = try await client.suspendEntitlementPollingUntilDone(
+    request: SuspendEntitlementRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, autonomousDatabaseId: String
 ) async throws {
-  let poller = try await client.updateAutonomousDatabase(
-    withPolling: UpdateAutonomousDatabaseRequest()
+  let poller = try await client.updateAutonomousDatabasePollingUntilDone(
+    request: UpdateAutonomousDatabaseRequest()
       .with {
         $0.autonomousDatabase = AutonomousDatabase().with {
           $0.name =

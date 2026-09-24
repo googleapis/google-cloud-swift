@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createFeature(
-    withPolling: CreateFeatureRequest()
+  let poller = try await client.createFeaturePollingUntilDone(
+    request: CreateFeatureRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.featureId = "[replace with a valid ID]"

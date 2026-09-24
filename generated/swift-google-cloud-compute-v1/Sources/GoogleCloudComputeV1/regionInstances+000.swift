@@ -55,8 +55,8 @@
     /// instances to create.
     ///
     /// @Snippet(path: "regionInstances_bulkInsert")
-    public func bulkInsert(
-      withPolling: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
+    public func bulkInsertPollingUntilDone(
+      request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -72,15 +72,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.bulkInsert(request: withPolling, options: options)
+      let rawOp = try await self.bulkInsert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.region = withPolling.region
+            $0.project = request.project
+            $0.region = request.region
           }, options: options)
         return try extractStatus(op)
       }
@@ -130,14 +130,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func bulkInsert(
-      withPolling: RegionInstancesClient.BulkInsertRequest
+    public func bulkInsertPollingUntilDone(
+      request: RegionInstancesClient.BulkInsertRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.bulkInsert(withPolling: withPolling, options: .init())
+      try await self.bulkInsertPollingUntilDone(request: request, options: .init())
     }
 
-    public func bulkInsert(
-      withPolling: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
+    public func bulkInsertPollingUntilDone(
+      request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -147,7 +147,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func bulkInsert(
+    public func bulkInsertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       body: BulkInsertInstanceResource?,
@@ -157,7 +157,7 @@
         $0.region = region
         $0.body = body
       }
-      return try await self.bulkInsert(withPolling: request)
+      return try await self.bulkInsertPollingUntilDone(request: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

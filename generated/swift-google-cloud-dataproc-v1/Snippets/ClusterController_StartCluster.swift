@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ClusterControllerClient) async throws {
-  let poller = try await client.startCluster(
-    withPolling: StartClusterRequest()
+  let poller = try await client.startClusterPollingUntilDone(
+    request: StartClusterRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

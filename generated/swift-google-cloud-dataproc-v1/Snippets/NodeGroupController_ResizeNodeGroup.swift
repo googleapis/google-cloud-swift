@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: NodeGroupControllerClient) async throws {
-  let poller = try await client.resizeNodeGroup(
-    withPolling: ResizeNodeGroupRequest()
+  let poller = try await client.resizeNodeGroupPollingUntilDone(
+    request: ResizeNodeGroupRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

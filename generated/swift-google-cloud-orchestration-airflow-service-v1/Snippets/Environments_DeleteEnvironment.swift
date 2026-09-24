@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EnvironmentsClient) async throws {
-  let poller = try await client.deleteEnvironment(
-    withPolling: DeleteEnvironmentRequest()
+  let poller = try await client.deleteEnvironmentPollingUntilDone(
+    request: DeleteEnvironmentRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

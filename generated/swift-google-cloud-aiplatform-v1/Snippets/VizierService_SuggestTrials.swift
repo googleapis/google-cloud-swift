@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: VizierServiceClient) async throws {
-    let poller = try await client.suggestTrials(
-      withPolling: SuggestTrialsRequest()
+    let poller = try await client.suggestTrialsPollingUntilDone(
+      request: SuggestTrialsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

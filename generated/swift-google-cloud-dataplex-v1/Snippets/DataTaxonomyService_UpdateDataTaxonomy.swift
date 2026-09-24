@@ -29,8 +29,8 @@ import GoogleWKT
 func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String, dataTaxonomyId: String
 ) async throws {
-  let poller = try await client.updateDataTaxonomy(
-    withPolling: UpdateDataTaxonomyRequest()
+  let poller = try await client.updateDataTaxonomyPollingUntilDone(
+    request: UpdateDataTaxonomyRequest()
       .with {
         $0.dataTaxonomy = DataTaxonomy().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/dataTaxonomies/\(dataTaxonomyId)"

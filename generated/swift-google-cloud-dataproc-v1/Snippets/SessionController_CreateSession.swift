@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: SessionControllerClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createSession(
-    withPolling: CreateSessionRequest()
+  let poller = try await client.createSessionPollingUntilDone(
+    request: CreateSessionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.sessionId = "[replace with a valid ID]"

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createMessageBus(
-    withPolling: CreateMessageBusRequest()
+  let poller = try await client.createMessageBusPollingUntilDone(
+    request: CreateMessageBusRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.messageBus = MessageBus() /* .with { ... } */

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NodeGroupsClient) async throws {
-    let poller = try await client.performMaintenance(
-      withPolling: NodeGroupsClient.PerformMaintenanceRequest()
+    let poller = try await client.performMaintenancePollingUntilDone(
+      request: NodeGroupsClient.PerformMaintenanceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

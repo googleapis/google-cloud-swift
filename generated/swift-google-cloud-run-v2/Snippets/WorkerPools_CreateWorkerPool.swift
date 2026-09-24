@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkerPoolsClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createWorkerPool(
-    withPolling: CreateWorkerPoolRequest()
+  let poller = try await client.createWorkerPoolPollingUntilDone(
+    request: CreateWorkerPoolRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.workerPool = WorkerPool() /* .with { ... } */

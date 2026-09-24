@@ -27,8 +27,8 @@ func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String,
   dataAssetId: String
 ) async throws {
-  let poller = try await client.deleteDataAsset(
-    withPolling: DeleteDataAssetRequest()
+  let poller = try await client.deleteDataAssetPollingUntilDone(
+    request: DeleteDataAssetRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/dataProducts/\(dataProductId)/dataAssets/\(dataAssetId)"

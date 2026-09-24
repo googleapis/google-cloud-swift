@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: VmMigrationClient, projectId: String, locationId: String, sourceId: String)
   async throws
 {
-  let poller = try await client.updateSource(
-    withPolling: UpdateSourceRequest()
+  let poller = try await client.updateSourcePollingUntilDone(
+    request: UpdateSourceRequest()
       .with {
         $0.source = Source().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)"

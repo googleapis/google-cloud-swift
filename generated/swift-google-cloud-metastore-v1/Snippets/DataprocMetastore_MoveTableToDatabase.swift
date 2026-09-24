@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataprocMetastoreClient) async throws {
-  let poller = try await client.moveTableToDatabase(
-    withPolling: MoveTableToDatabaseRequest()
+  let poller = try await client.moveTableToDatabasePollingUntilDone(
+    request: MoveTableToDatabaseRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

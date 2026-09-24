@@ -63,14 +63,14 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Submits job to a cluster.
   ///
   /// @Snippet(path: "JobController_SubmitJobAsOperation")
-  public func submitJobAsOperation(
-    withPolling: SubmitJobRequest, options: GoogleGax.RequestOptions
+  public func submitJobAsOperationPollingUntilDone(
+    request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Job>.State in
       return try op._extractStatus(Job.self)
     }
-    let rawOp = try await self.submitJobAsOperation(request: withPolling, options: options)
+    let rawOp = try await self.submitJobAsOperation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       let op = try await self.getOperation(
@@ -226,11 +226,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol JobControllerProtocol: Sendable {
     /// See `JobControllerClient.submitJobAsOperation`.
-    func submitJobAsOperation(withPolling: SubmitJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Job>
+    func submitJobAsOperationPollingUntilDone(request: SubmitJobRequest) async throws
+      -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobControllerClient.submitJobAsOperation`.
-    func submitJobAsOperation(
+    func submitJobAsOperationPollingUntilDone(
       projectId: Swift.String,
       region: Swift.String,
       job: Job?,
@@ -247,8 +247,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `JobControllerClient.submitJobAsOperation`.
-    func submitJobAsOperation(
-      withPolling: SubmitJobRequest, options: GoogleGax.RequestOptions
+    func submitJobAsOperationPollingUntilDone(
+      request: SubmitJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobControllerClient.getJob`.
@@ -345,14 +345,14 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func submitJobAsOperation(withPolling: SubmitJobRequest) async throws -> any GoogleGax
-    .PollableOperation<Job>
+  public func submitJobAsOperationPollingUntilDone(request: SubmitJobRequest) async throws
+    -> any GoogleGax.PollableOperation<Job>
   {
-    try await self.submitJobAsOperation(withPolling: withPolling, options: .init())
+    try await self.submitJobAsOperationPollingUntilDone(request: request, options: .init())
   }
 
-  public func submitJobAsOperation(
-    withPolling: SubmitJobRequest, options: GoogleGax.RequestOptions
+  public func submitJobAsOperationPollingUntilDone(
+    request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -361,7 +361,7 @@ extension Clients.JobControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func submitJobAsOperation(
+  public func submitJobAsOperationPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
     job: Job?,
@@ -371,7 +371,7 @@ extension Clients.JobControllerProtocol {
       $0.region = region
       $0.job = job
     }
-    return try await self.submitJobAsOperation(withPolling: request)
+    return try await self.submitJobAsOperationPollingUntilDone(request: request)
   }
 
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudDataprocV1.Job {

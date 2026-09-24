@@ -27,8 +27,8 @@ func sample(
   client: AppHubClient, projectId: String, locationId: String, applicationId: String,
   serviceId: String
 ) async throws {
-  let poller = try await client.updateService(
-    withPolling: UpdateServiceRequest()
+  let poller = try await client.updateServicePollingUntilDone(
+    request: UpdateServiceRequest()
       .with {
         $0.service = Service().with {
           $0.name =

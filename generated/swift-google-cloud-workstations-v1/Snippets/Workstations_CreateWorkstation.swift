@@ -26,8 +26,8 @@ func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String,
   workstationConfigId: String
 ) async throws {
-  let poller = try await client.createWorkstation(
-    withPolling: CreateWorkstationRequest()
+  let poller = try await client.createWorkstationPollingUntilDone(
+    request: CreateWorkstationRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/workstationClusters/\(workstationClusterId)/workstationConfigs/\(workstationConfigId)"

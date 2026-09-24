@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.createBacktestResult(
-    withPolling: CreateBacktestResultRequest()
+  let poller = try await client.createBacktestResultPollingUntilDone(
+    request: CreateBacktestResultRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
         $0.backtestResult = BacktestResult() /* .with { ... } */

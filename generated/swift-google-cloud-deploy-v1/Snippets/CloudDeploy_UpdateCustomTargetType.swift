@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, customTargetTypeId: String
 ) async throws {
-  let poller = try await client.updateCustomTargetType(
-    withPolling: UpdateCustomTargetTypeRequest()
+  let poller = try await client.updateCustomTargetTypePollingUntilDone(
+    request: UpdateCustomTargetTypeRequest()
       .with {
         $0.customTargetType = CustomTargetType().with {
           $0.name =

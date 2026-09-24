@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAuthorizationPolicy(
-    withPolling: CreateAuthorizationPolicyRequest()
+  let poller = try await client.createAuthorizationPolicyPollingUntilDone(
+    request: CreateAuthorizationPolicyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.authorizationPolicy = AuthorizationPolicy() /* .with { ... } */

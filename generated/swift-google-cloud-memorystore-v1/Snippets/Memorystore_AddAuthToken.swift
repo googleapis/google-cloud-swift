@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MemorystoreClient) async throws {
-  let poller = try await client.addAuthToken(
-    withPolling: AddAuthTokenRequest()
+  let poller = try await client.addAuthTokenPollingUntilDone(
+    request: AddAuthTokenRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ReachabilityServiceClient, parent: String) async throws {
-  let poller = try await client.createConnectivityTest(
-    withPolling: CreateConnectivityTestRequest()
+  let poller = try await client.createConnectivityTestPollingUntilDone(
+    request: CreateConnectivityTestRequest()
       .with {
         $0.parent = "\(parent)"
         $0.resource = ConnectivityTest() /* .with { ... } */

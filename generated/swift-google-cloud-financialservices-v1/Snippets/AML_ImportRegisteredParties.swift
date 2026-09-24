@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AMLClient) async throws {
-  let poller = try await client.importRegisteredParties(
-    withPolling: ImportRegisteredPartiesRequest()
+  let poller = try await client.importRegisteredPartiesPollingUntilDone(
+    request: ImportRegisteredPartiesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

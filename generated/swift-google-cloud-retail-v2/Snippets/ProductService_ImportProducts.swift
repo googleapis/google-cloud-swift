@@ -25,8 +25,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: ProductServiceClient) async throws {
-  let poller = try await client.importProducts(
-    withPolling: ImportProductsRequest()
+  let poller = try await client.importProductsPollingUntilDone(
+    request: ImportProductsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

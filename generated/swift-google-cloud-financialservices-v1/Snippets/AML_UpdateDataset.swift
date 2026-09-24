@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String, datasetId: String
 ) async throws {
-  let poller = try await client.updateDataset(
-    withPolling: UpdateDatasetRequest()
+  let poller = try await client.updateDatasetPollingUntilDone(
+    request: UpdateDatasetRequest()
       .with {
         $0.dataset = Dataset().with {
           $0.name =

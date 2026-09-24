@@ -26,8 +26,8 @@ func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String,
   workstationConfigId: String
 ) async throws {
-  let poller = try await client.updateWorkstationConfig(
-    withPolling: UpdateWorkstationConfigRequest()
+  let poller = try await client.updateWorkstationConfigPollingUntilDone(
+    request: UpdateWorkstationConfigRequest()
       .with {
         $0.workstationConfig = WorkstationConfig().with {
           $0.name =

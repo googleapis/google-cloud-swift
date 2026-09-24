@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String
 ) async throws {
-  let poller = try await client.updateWorkstationCluster(
-    withPolling: UpdateWorkstationClusterRequest()
+  let poller = try await client.updateWorkstationClusterPollingUntilDone(
+    request: UpdateWorkstationClusterRequest()
       .with {
         $0.workstationCluster = WorkstationCluster().with {
           $0.name =

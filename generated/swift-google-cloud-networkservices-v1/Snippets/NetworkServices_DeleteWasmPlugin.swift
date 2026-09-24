@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, wasmPluginId: String
 ) async throws {
-  let poller = try await client.deleteWasmPlugin(
-    withPolling: DeleteWasmPluginRequest()
+  let poller = try await client.deleteWasmPluginPollingUntilDone(
+    request: DeleteWasmPluginRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/wasmPlugins/\(wasmPluginId)"
       }

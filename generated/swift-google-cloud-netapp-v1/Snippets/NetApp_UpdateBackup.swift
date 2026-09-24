@@ -26,8 +26,8 @@ func sample(
   client: NetAppClient, projectId: String, locationId: String, backupVaultId: String,
   backupId: String
 ) async throws {
-  let poller = try await client.updateBackup(
-    withPolling: UpdateBackupRequest()
+  let poller = try await client.updateBackupPollingUntilDone(
+    request: UpdateBackupRequest()
       .with {
         $0.backup = Backup().with {
           $0.name =

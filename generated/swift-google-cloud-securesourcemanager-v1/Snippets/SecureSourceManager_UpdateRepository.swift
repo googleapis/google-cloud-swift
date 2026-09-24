@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.updateRepository(
-    withPolling: UpdateRepositoryRequest()
+  let poller = try await client.updateRepositoryPollingUntilDone(
+    request: UpdateRepositoryRequest()
       .with {
         $0.repository = Repository().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"

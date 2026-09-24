@@ -64,14 +64,14 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_CreateCluster")
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.createCluster(request: withPolling, options: options)
+    let rawOp = try await self.createCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -114,14 +114,14 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_UpdateCluster")
-  public func updateCluster(
-    withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.updateCluster(request: withPolling, options: options)
+    let rawOp = try await self.updateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -148,14 +148,14 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Stops a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_StopCluster")
-  public func stopCluster(
-    withPolling: StopClusterRequest, options: GoogleGax.RequestOptions
+  public func stopClusterPollingUntilDone(
+    request: StopClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.stopCluster(request: withPolling, options: options)
+    let rawOp = try await self.stopCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -182,14 +182,14 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Starts a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_StartCluster")
-  public func startCluster(
-    withPolling: StartClusterRequest, options: GoogleGax.RequestOptions
+  public func startClusterPollingUntilDone(
+    request: StartClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.startCluster(request: withPolling, options: options)
+    let rawOp = try await self.startCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -224,15 +224,15 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_DeleteCluster")
-  public func deleteCluster(
-    withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteCluster(request: withPolling, options: options)
+    let rawOp = try await self.deleteCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -295,15 +295,15 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   ///
   /// @Snippet(path: "ClusterController_DiagnoseCluster")
-  public func diagnoseCluster(
-    withPolling: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
+  public func diagnoseClusterPollingUntilDone(
+    request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DiagnoseClusterResults> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DiagnoseClusterResults>.State in
       return try op._extractStatus(DiagnoseClusterResults.self)
     }
-    let rawOp = try await self.diagnoseCluster(request: withPolling, options: options)
+    let rawOp = try await self.diagnoseCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DiagnoseClusterResults>.State in
@@ -410,22 +410,22 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ClusterControllerProtocol: Sendable {
     /// See `ClusterControllerClient.createCluster`.
-    func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
+    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.createCluster`.
-    func createCluster(
+    func createClusterPollingUntilDone(
       projectId: Swift.String,
       region: Swift.String,
       cluster: Cluster?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.updateCluster`.
-    func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
+    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.updateCluster`.
-    func updateCluster(
+    func updateClusterPollingUntilDone(
       projectId: Swift.String,
       region: Swift.String,
       clusterName: Swift.String,
@@ -434,30 +434,30 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.stopCluster`.
-    func stopCluster(withPolling: StopClusterRequest) async throws -> any GoogleGax
+    func stopClusterPollingUntilDone(request: StopClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.startCluster`.
-    func startCluster(withPolling: StartClusterRequest) async throws -> any GoogleGax
+    func startClusterPollingUntilDone(request: StartClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.deleteCluster`.
-    func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
+    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `ClusterControllerClient.deleteCluster`.
-    func deleteCluster(
+    func deleteClusterPollingUntilDone(
       projectId: Swift.String,
       region: Swift.String,
       clusterName: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `ClusterControllerClient.diagnoseCluster`.
-    func diagnoseCluster(withPolling: DiagnoseClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<DiagnoseClusterResults>
+    func diagnoseClusterPollingUntilDone(request: DiagnoseClusterRequest) async throws
+      -> any GoogleGax.PollableOperation<DiagnoseClusterResults>
 
     /// See `ClusterControllerClient.diagnoseCluster`.
-    func diagnoseCluster(
+    func diagnoseClusterPollingUntilDone(
       projectId: Swift.String,
       region: Swift.String,
       clusterName: Swift.String,
@@ -469,8 +469,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.createCluster`.
-    func createCluster(
-      withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+    func createClusterPollingUntilDone(
+      request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.updateCluster`.
@@ -479,8 +479,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.updateCluster`.
-    func updateCluster(
-      withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+    func updateClusterPollingUntilDone(
+      request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.stopCluster`.
@@ -489,8 +489,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.stopCluster`.
-    func stopCluster(
-      withPolling: StopClusterRequest, options: GoogleGax.RequestOptions
+    func stopClusterPollingUntilDone(
+      request: StopClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.startCluster`.
@@ -499,8 +499,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.startCluster`.
-    func startCluster(
-      withPolling: StartClusterRequest, options: GoogleGax.RequestOptions
+    func startClusterPollingUntilDone(
+      request: StartClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `ClusterControllerClient.deleteCluster`.
@@ -509,8 +509,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.deleteCluster`.
-    func deleteCluster(
-      withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+    func deleteClusterPollingUntilDone(
+      request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `ClusterControllerClient.getCluster`.
@@ -529,8 +529,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ClusterControllerClient.diagnoseCluster`.
-    func diagnoseCluster(
-      withPolling: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
+    func diagnoseClusterPollingUntilDone(
+      request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DiagnoseClusterResults>
 
     /// See `ClusterControllerClient.setIamPolicy`.
@@ -579,14 +579,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.createCluster(withPolling: withPolling, options: .init())
+    try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -595,7 +595,7 @@ extension Clients.ClusterControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCluster(
+  public func createClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
     cluster: Cluster?,
@@ -605,7 +605,7 @@ extension Clients.ClusterControllerProtocol {
       $0.region = region
       $0.cluster = cluster
     }
-    return try await self.createCluster(withPolling: request)
+    return try await self.createClusterPollingUntilDone(request: request)
   }
 
   public func updateCluster(request: UpdateClusterRequest) async throws
@@ -620,14 +620,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.updateCluster(withPolling: withPolling, options: .init())
+    try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCluster(
-    withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -636,7 +636,7 @@ extension Clients.ClusterControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateCluster(
+  public func updateClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
     clusterName: Swift.String,
@@ -650,7 +650,7 @@ extension Clients.ClusterControllerProtocol {
       $0.cluster = cluster
       $0.updateMask = updateMask
     }
-    return try await self.updateCluster(withPolling: request)
+    return try await self.updateClusterPollingUntilDone(request: request)
   }
 
   public func stopCluster(request: StopClusterRequest) async throws -> GoogleLongRunning.Operation {
@@ -663,14 +663,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func stopCluster(withPolling: StopClusterRequest) async throws -> any GoogleGax
+  public func stopClusterPollingUntilDone(request: StopClusterRequest) async throws -> any GoogleGax
     .PollableOperation<Cluster>
   {
-    try await self.stopCluster(withPolling: withPolling, options: .init())
+    try await self.stopClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func stopCluster(
-    withPolling: StopClusterRequest, options: GoogleGax.RequestOptions
+  public func stopClusterPollingUntilDone(
+    request: StopClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -690,14 +690,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func startCluster(withPolling: StartClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func startClusterPollingUntilDone(request: StartClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.startCluster(withPolling: withPolling, options: .init())
+    try await self.startClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func startCluster(
-    withPolling: StartClusterRequest, options: GoogleGax.RequestOptions
+  public func startClusterPollingUntilDone(
+    request: StartClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -718,14 +718,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteCluster(withPolling: withPolling, options: .init())
+    try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCluster(
-    withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -734,7 +734,7 @@ extension Clients.ClusterControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCluster(
+  public func deleteClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
     clusterName: Swift.String,
@@ -744,7 +744,7 @@ extension Clients.ClusterControllerProtocol {
       $0.region = region
       $0.clusterName = clusterName
     }
-    return try await self.deleteCluster(withPolling: request)
+    return try await self.deleteClusterPollingUntilDone(request: request)
   }
 
   public func getCluster(request: GetClusterRequest) async throws -> GoogleCloudDataprocV1.Cluster {
@@ -839,14 +839,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func diagnoseCluster(withPolling: DiagnoseClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<DiagnoseClusterResults>
+  public func diagnoseClusterPollingUntilDone(request: DiagnoseClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<DiagnoseClusterResults>
   {
-    try await self.diagnoseCluster(withPolling: withPolling, options: .init())
+    try await self.diagnoseClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func diagnoseCluster(
-    withPolling: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
+  public func diagnoseClusterPollingUntilDone(
+    request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DiagnoseClusterResults> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DiagnoseClusterResults>.State in
@@ -856,7 +856,7 @@ extension Clients.ClusterControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func diagnoseCluster(
+  public func diagnoseClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
     clusterName: Swift.String,
@@ -866,7 +866,7 @@ extension Clients.ClusterControllerProtocol {
       $0.region = region
       $0.clusterName = clusterName
     }
-    return try await self.diagnoseCluster(withPolling: request)
+    return try await self.diagnoseClusterPollingUntilDone(request: request)
   }
 
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws

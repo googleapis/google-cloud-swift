@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: EndpointServiceClient, parent: String) async throws {
-    let poller = try await client.createEndpoint(
-      withPolling: CreateEndpointRequest()
+    let poller = try await client.createEndpointPollingUntilDone(
+      request: CreateEndpointRequest()
         .with {
           $0.parent = "\(parent)"
           $0.endpointId = "[replace with a valid ID]"

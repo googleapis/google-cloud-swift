@@ -27,8 +27,8 @@
     client: EnvironmentsClient, projectId: String, locationId: String, agentId: String,
     environmentId: String
   ) async throws {
-    let poller = try await client.updateEnvironment(
-      withPolling: UpdateEnvironmentRequest()
+    let poller = try await client.updateEnvironmentPollingUntilDone(
+      request: UpdateEnvironmentRequest()
         .with {
           $0.environment = Environment().with {
             $0.name =

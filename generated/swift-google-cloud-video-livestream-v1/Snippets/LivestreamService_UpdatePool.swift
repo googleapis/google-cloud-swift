@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: LivestreamServiceClient, projectId: String, locationId: String, poolId: String)
   async throws
 {
-  let poller = try await client.updatePool(
-    withPolling: UpdatePoolRequest()
+  let poller = try await client.updatePoolPollingUntilDone(
+    request: UpdatePoolRequest()
       .with {
         $0.pool = Pool().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/pools/\(poolId)"

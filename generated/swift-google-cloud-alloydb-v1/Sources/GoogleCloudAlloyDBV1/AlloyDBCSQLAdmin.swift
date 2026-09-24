@@ -54,14 +54,14 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// Restores an AlloyDB cluster from a CloudSQL resource.
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_RestoreFromCloudSQL")
-  public func restoreFromCloudSql(
-    withPolling: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
+  public func restoreFromCloudSqlPollingUntilDone(
+    request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.restoreFromCloudSql(request: withPolling, options: options)
+    let rawOp = try await self.restoreFromCloudSql(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -147,11 +147,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AlloyDBCSQLAdminProtocol: Sendable {
     /// See `AlloyDBCSQLAdminClient.restoreFromCloudSql`.
-    func restoreFromCloudSql(withPolling: RestoreFromCloudSQLRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
+    func restoreFromCloudSqlPollingUntilDone(request: RestoreFromCloudSQLRequest) async throws
+      -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `AlloyDBCSQLAdminClient.restoreFromCloudSql`.
-    func restoreFromCloudSql(
+    func restoreFromCloudSqlPollingUntilDone(
       parent: Swift.String,
       clusterId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
@@ -162,8 +162,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AlloyDBCSQLAdminClient.restoreFromCloudSql`.
-    func restoreFromCloudSql(
-      withPolling: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
+    func restoreFromCloudSqlPollingUntilDone(
+      request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `AlloyDBCSQLAdminClient.listLocations`.
@@ -207,14 +207,14 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func restoreFromCloudSql(withPolling: RestoreFromCloudSQLRequest) async throws
+  public func restoreFromCloudSqlPollingUntilDone(request: RestoreFromCloudSQLRequest) async throws
     -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.restoreFromCloudSql(withPolling: withPolling, options: .init())
+    try await self.restoreFromCloudSqlPollingUntilDone(request: request, options: .init())
   }
 
-  public func restoreFromCloudSql(
-    withPolling: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
+  public func restoreFromCloudSqlPollingUntilDone(
+    request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -223,7 +223,7 @@ extension Clients.AlloyDBCSQLAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func restoreFromCloudSql(
+  public func restoreFromCloudSqlPollingUntilDone(
     parent: Swift.String,
     clusterId: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
@@ -231,7 +231,7 @@ extension Clients.AlloyDBCSQLAdminProtocol {
       $0.parent = parent
       $0.clusterId = clusterId
     }
-    return try await self.restoreFromCloudSql(withPolling: request)
+    return try await self.restoreFromCloudSqlPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

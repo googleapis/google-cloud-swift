@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataprocMetastoreClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createService(
-    withPolling: CreateServiceRequest()
+  let poller = try await client.createServicePollingUntilDone(
+    request: CreateServiceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.serviceId = "[replace with a valid ID]"

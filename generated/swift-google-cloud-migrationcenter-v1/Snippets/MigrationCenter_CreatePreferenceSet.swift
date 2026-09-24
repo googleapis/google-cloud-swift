@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createPreferenceSet(
-    withPolling: CreatePreferenceSetRequest()
+  let poller = try await client.createPreferenceSetPollingUntilDone(
+    request: CreatePreferenceSetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.preferenceSet = PreferenceSet() /* .with { ... } */

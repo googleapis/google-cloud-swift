@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RapidMigrationAssessmentClient, parent: String) async throws {
-  let poller = try await client.createAnnotation(
-    withPolling: CreateAnnotationRequest()
+  let poller = try await client.createAnnotationPollingUntilDone(
+    request: CreateAnnotationRequest()
       .with {
         $0.parent = "\(parent)"
         $0.annotation = Annotation() /* .with { ... } */

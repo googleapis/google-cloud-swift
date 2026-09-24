@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataMigrationServiceClient) async throws {
-  let poller = try await client.importMappingRules(
-    withPolling: ImportMappingRulesRequest()
+  let poller = try await client.importMappingRulesPollingUntilDone(
+    request: ImportMappingRulesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

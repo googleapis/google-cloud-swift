@@ -83,15 +83,15 @@
     /// command first.
     ///
     /// @Snippet(path: "UserEventService_PurgeUserEvents")
-    public func purgeUserEvents(
-      withPolling: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
+    public func purgeUserEventsPollingUntilDone(
+      request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeUserEventsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State in
         return try op._extractStatus(PurgeUserEventsResponse.self)
       }
-      let rawOp = try await self.purgeUserEvents(request: withPolling, options: options)
+      let rawOp = try await self.purgeUserEvents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State in
@@ -131,15 +131,15 @@
     /// Operation.metadata is of type ImportMetadata.
     ///
     /// @Snippet(path: "UserEventService_ImportUserEvents")
-    public func importUserEvents(
-      withPolling: ImportUserEventsRequest, options: GoogleGax.RequestOptions
+    public func importUserEventsPollingUntilDone(
+      request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportUserEventsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State in
         return try op._extractStatus(ImportUserEventsResponse.self)
       }
-      let rawOp = try await self.importUserEvents(request: withPolling, options: options)
+      let rawOp = try await self.importUserEvents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State in
@@ -197,12 +197,12 @@
     /// and pass a mock implementation in your tests.
     public protocol UserEventServiceProtocol: Sendable {
       /// See `UserEventServiceClient.purgeUserEvents`.
-      func purgeUserEvents(withPolling: PurgeUserEventsRequest) async throws -> any GoogleGax
-        .PollableOperation<PurgeUserEventsResponse>
+      func purgeUserEventsPollingUntilDone(request: PurgeUserEventsRequest) async throws
+        -> any GoogleGax.PollableOperation<PurgeUserEventsResponse>
 
       /// See `UserEventServiceClient.importUserEvents`.
-      func importUserEvents(withPolling: ImportUserEventsRequest) async throws -> any GoogleGax
-        .PollableOperation<ImportUserEventsResponse>
+      func importUserEventsPollingUntilDone(request: ImportUserEventsRequest) async throws
+        -> any GoogleGax.PollableOperation<ImportUserEventsResponse>
 
       /// See `UserEventServiceClient.writeUserEvent`.
       func writeUserEvent(
@@ -220,8 +220,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `UserEventServiceClient.purgeUserEvents`.
-      func purgeUserEvents(
-        withPolling: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
+      func purgeUserEventsPollingUntilDone(
+        request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<PurgeUserEventsResponse>
 
       /// See `UserEventServiceClient.importUserEvents`.
@@ -230,8 +230,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `UserEventServiceClient.importUserEvents`.
-      func importUserEvents(
-        withPolling: ImportUserEventsRequest, options: GoogleGax.RequestOptions
+      func importUserEventsPollingUntilDone(
+        request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ImportUserEventsResponse>
 
       /// See `UserEventServiceClient.listOperations`.
@@ -284,14 +284,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func purgeUserEvents(withPolling: PurgeUserEventsRequest) async throws -> any GoogleGax
-      .PollableOperation<PurgeUserEventsResponse>
+    public func purgeUserEventsPollingUntilDone(request: PurgeUserEventsRequest) async throws
+      -> any GoogleGax.PollableOperation<PurgeUserEventsResponse>
     {
-      try await self.purgeUserEvents(withPolling: withPolling, options: .init())
+      try await self.purgeUserEventsPollingUntilDone(request: request, options: .init())
     }
 
-    public func purgeUserEvents(
-      withPolling: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
+    public func purgeUserEventsPollingUntilDone(
+      request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeUserEventsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State in
@@ -313,14 +313,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importUserEvents(withPolling: ImportUserEventsRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportUserEventsResponse>
+    public func importUserEventsPollingUntilDone(request: ImportUserEventsRequest) async throws
+      -> any GoogleGax.PollableOperation<ImportUserEventsResponse>
     {
-      try await self.importUserEvents(withPolling: withPolling, options: .init())
+      try await self.importUserEventsPollingUntilDone(request: request, options: .init())
     }
 
-    public func importUserEvents(
-      withPolling: ImportUserEventsRequest, options: GoogleGax.RequestOptions
+    public func importUserEventsPollingUntilDone(
+      request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportUserEventsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State in

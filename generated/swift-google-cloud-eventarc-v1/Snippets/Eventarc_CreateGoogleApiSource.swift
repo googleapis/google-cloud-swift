@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGoogleApiSource(
-    withPolling: CreateGoogleApiSourceRequest()
+  let poller = try await client.createGoogleApiSourcePollingUntilDone(
+    request: CreateGoogleApiSourceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.googleApiSource = GoogleApiSource() /* .with { ... } */

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: WarehouseClient, projectId: String, locationId: String, indexEndpointId: String)
   async throws
 {
-  let poller = try await client.deleteIndexEndpoint(
-    withPolling: DeleteIndexEndpointRequest()
+  let poller = try await client.deleteIndexEndpointPollingUntilDone(
+    request: DeleteIndexEndpointRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/indexEndpoints/\(indexEndpointId)"
       }

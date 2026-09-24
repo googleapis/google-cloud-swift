@@ -64,15 +64,15 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "NodeGroupController_CreateNodeGroup")
-  public func createNodeGroup(
-    withPolling: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
+  public func createNodeGroupPollingUntilDone(
+    request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodeGroup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<NodeGroup>.State
       in
       return try op._extractStatus(NodeGroup.self)
     }
-    let rawOp = try await self.createNodeGroup(request: withPolling, options: options)
+    let rawOp = try await self.createNodeGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodeGroup>.State in
       let op = try await self.getOperation(
@@ -107,15 +107,15 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "NodeGroupController_ResizeNodeGroup")
-  public func resizeNodeGroup(
-    withPolling: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
+  public func resizeNodeGroupPollingUntilDone(
+    request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodeGroup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<NodeGroup>.State
       in
       return try op._extractStatus(NodeGroup.self)
     }
-    let rawOp = try await self.resizeNodeGroup(request: withPolling, options: options)
+    let rawOp = try await self.resizeNodeGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodeGroup>.State in
       let op = try await self.getOperation(
@@ -231,22 +231,22 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol NodeGroupControllerProtocol: Sendable {
     /// See `NodeGroupControllerClient.createNodeGroup`.
-    func createNodeGroup(withPolling: CreateNodeGroupRequest) async throws -> any GoogleGax
-      .PollableOperation<NodeGroup>
+    func createNodeGroupPollingUntilDone(request: CreateNodeGroupRequest) async throws
+      -> any GoogleGax.PollableOperation<NodeGroup>
 
     /// See `NodeGroupControllerClient.createNodeGroup`.
-    func createNodeGroup(
+    func createNodeGroupPollingUntilDone(
       parent: Swift.String,
       nodeGroup: NodeGroup?,
       nodeGroupId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
 
     /// See `NodeGroupControllerClient.resizeNodeGroup`.
-    func resizeNodeGroup(withPolling: ResizeNodeGroupRequest) async throws -> any GoogleGax
-      .PollableOperation<NodeGroup>
+    func resizeNodeGroupPollingUntilDone(request: ResizeNodeGroupRequest) async throws
+      -> any GoogleGax.PollableOperation<NodeGroup>
 
     /// See `NodeGroupControllerClient.resizeNodeGroup`.
-    func resizeNodeGroup(
+    func resizeNodeGroupPollingUntilDone(
       name: Swift.String,
       size: Swift.Int32,
     ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
@@ -257,8 +257,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NodeGroupControllerClient.createNodeGroup`.
-    func createNodeGroup(
-      withPolling: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
+    func createNodeGroupPollingUntilDone(
+      request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
 
     /// See `NodeGroupControllerClient.resizeNodeGroup`.
@@ -267,8 +267,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `NodeGroupControllerClient.resizeNodeGroup`.
-    func resizeNodeGroup(
-      withPolling: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
+    func resizeNodeGroupPollingUntilDone(
+      request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<NodeGroup>
 
     /// See `NodeGroupControllerClient.getNodeGroup`.
@@ -322,14 +322,14 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createNodeGroup(withPolling: CreateNodeGroupRequest) async throws -> any GoogleGax
-    .PollableOperation<NodeGroup>
+  public func createNodeGroupPollingUntilDone(request: CreateNodeGroupRequest) async throws
+    -> any GoogleGax.PollableOperation<NodeGroup>
   {
-    try await self.createNodeGroup(withPolling: withPolling, options: .init())
+    try await self.createNodeGroupPollingUntilDone(request: request, options: .init())
   }
 
-  public func createNodeGroup(
-    withPolling: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
+  public func createNodeGroupPollingUntilDone(
+    request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodeGroup> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodeGroup>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -338,7 +338,7 @@ extension Clients.NodeGroupControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createNodeGroup(
+  public func createNodeGroupPollingUntilDone(
     parent: Swift.String,
     nodeGroup: NodeGroup?,
     nodeGroupId: Swift.String,
@@ -348,7 +348,7 @@ extension Clients.NodeGroupControllerProtocol {
       $0.nodeGroup = nodeGroup
       $0.nodeGroupId = nodeGroupId
     }
-    return try await self.createNodeGroup(withPolling: request)
+    return try await self.createNodeGroupPollingUntilDone(request: request)
   }
 
   public func resizeNodeGroup(request: ResizeNodeGroupRequest) async throws
@@ -363,14 +363,14 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func resizeNodeGroup(withPolling: ResizeNodeGroupRequest) async throws -> any GoogleGax
-    .PollableOperation<NodeGroup>
+  public func resizeNodeGroupPollingUntilDone(request: ResizeNodeGroupRequest) async throws
+    -> any GoogleGax.PollableOperation<NodeGroup>
   {
-    try await self.resizeNodeGroup(withPolling: withPolling, options: .init())
+    try await self.resizeNodeGroupPollingUntilDone(request: request, options: .init())
   }
 
-  public func resizeNodeGroup(
-    withPolling: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
+  public func resizeNodeGroupPollingUntilDone(
+    request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodeGroup> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodeGroup>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -379,7 +379,7 @@ extension Clients.NodeGroupControllerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func resizeNodeGroup(
+  public func resizeNodeGroupPollingUntilDone(
     name: Swift.String,
     size: Swift.Int32,
   ) async throws -> any GoogleGax.PollableOperation<NodeGroup> {
@@ -387,7 +387,7 @@ extension Clients.NodeGroupControllerProtocol {
       $0.name = name
       $0.size = size
     }
-    return try await self.resizeNodeGroup(withPolling: request)
+    return try await self.resizeNodeGroupPollingUntilDone(request: request)
   }
 
   public func getNodeGroup(request: GetNodeGroupRequest) async throws

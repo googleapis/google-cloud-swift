@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let poller = try await client.mergePullRequest(
-    withPolling: MergePullRequestRequest()
+  let poller = try await client.mergePullRequestPollingUntilDone(
+    request: MergePullRequestRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

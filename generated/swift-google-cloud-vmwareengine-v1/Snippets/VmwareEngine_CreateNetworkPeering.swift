@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, parent: String) async throws {
-  let poller = try await client.createNetworkPeering(
-    withPolling: CreateNetworkPeeringRequest()
+  let poller = try await client.createNetworkPeeringPollingUntilDone(
+    request: CreateNetworkPeeringRequest()
       .with {
         $0.parent = "\(parent)"
         $0.networkPeering = NetworkPeering() /* .with { ... } */

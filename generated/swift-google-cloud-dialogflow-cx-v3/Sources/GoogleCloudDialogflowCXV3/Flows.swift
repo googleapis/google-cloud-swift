@@ -139,15 +139,15 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Flows_TrainFlow")
-    public func trainFlow(
-      withPolling: TrainFlowRequest, options: GoogleGax.RequestOptions
+    public func trainFlowPollingUntilDone(
+      request: TrainFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.trainFlow(request: withPolling, options: options)
+      let rawOp = try await self.trainFlow(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -225,15 +225,15 @@
     /// [google.cloud.dialogflow.cx.v3.ImportFlowResponse]: <doc:ImportFlowResponse>
     ///
     /// @Snippet(path: "Flows_ImportFlow")
-    public func importFlow(
-      withPolling: ImportFlowRequest, options: GoogleGax.RequestOptions
+    public func importFlowPollingUntilDone(
+      request: ImportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportFlowResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportFlowResponse>.State in
         return try op._extractStatus(ImportFlowResponse.self)
       }
-      let rawOp = try await self.importFlow(request: withPolling, options: options)
+      let rawOp = try await self.importFlow(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportFlowResponse>.State in
         let op = try await self.getOperation(
@@ -288,15 +288,15 @@
     /// [google.cloud.dialogflow.cx.v3.ExportFlowResponse]: <doc:ExportFlowResponse>
     ///
     /// @Snippet(path: "Flows_ExportFlow")
-    public func exportFlow(
-      withPolling: ExportFlowRequest, options: GoogleGax.RequestOptions
+    public func exportFlowPollingUntilDone(
+      request: ExportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportFlowResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportFlowResponse>.State in
         return try op._extractStatus(ExportFlowResponse.self)
       }
-      let rawOp = try await self.exportFlow(request: withPolling, options: options)
+      let rawOp = try await self.exportFlow(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportFlowResponse>.State in
         let op = try await self.getOperation(
@@ -388,21 +388,20 @@
     /// and pass a mock implementation in your tests.
     public protocol FlowsProtocol: Sendable {
       /// See `FlowsClient.trainFlow`.
-      func trainFlow(withPolling: TrainFlowRequest) async throws -> any GoogleGax.PollableOperation<
-        Swift.Void
-      >
+      func trainFlowPollingUntilDone(request: TrainFlowRequest) async throws -> any GoogleGax
+        .PollableOperation<Swift.Void>
 
       /// See `FlowsClient.trainFlow`.
-      func trainFlow(
+      func trainFlowPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FlowsClient.importFlow`.
-      func importFlow(withPolling: ImportFlowRequest) async throws -> any GoogleGax
+      func importFlowPollingUntilDone(request: ImportFlowRequest) async throws -> any GoogleGax
         .PollableOperation<ImportFlowResponse>
 
       /// See `FlowsClient.exportFlow`.
-      func exportFlow(withPolling: ExportFlowRequest) async throws -> any GoogleGax
+      func exportFlowPollingUntilDone(request: ExportFlowRequest) async throws -> any GoogleGax
         .PollableOperation<ExportFlowResponse>
 
       /// See `FlowsClient.createFlow`.
@@ -436,8 +435,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FlowsClient.trainFlow`.
-      func trainFlow(
-        withPolling: TrainFlowRequest, options: GoogleGax.RequestOptions
+      func trainFlowPollingUntilDone(
+        request: TrainFlowRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FlowsClient.validateFlow`.
@@ -456,8 +455,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FlowsClient.importFlow`.
-      func importFlow(
-        withPolling: ImportFlowRequest, options: GoogleGax.RequestOptions
+      func importFlowPollingUntilDone(
+        request: ImportFlowRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ImportFlowResponse>
 
       /// See `FlowsClient.exportFlow`.
@@ -466,8 +465,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FlowsClient.exportFlow`.
-      func exportFlow(
-        withPolling: ExportFlowRequest, options: GoogleGax.RequestOptions
+      func exportFlowPollingUntilDone(
+        request: ExportFlowRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ExportFlowResponse>
 
       /// See `FlowsClient.listLocations`.
@@ -630,14 +629,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func trainFlow(withPolling: TrainFlowRequest) async throws -> any GoogleGax
+    public func trainFlowPollingUntilDone(request: TrainFlowRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
     {
-      try await self.trainFlow(withPolling: withPolling, options: .init())
+      try await self.trainFlowPollingUntilDone(request: request, options: .init())
     }
 
-    public func trainFlow(
-      withPolling: TrainFlowRequest, options: GoogleGax.RequestOptions
+    public func trainFlowPollingUntilDone(
+      request: TrainFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -646,13 +645,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func trainFlow(
+    public func trainFlowPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = TrainFlowRequest().with {
         $0.name = name
       }
-      return try await self.trainFlow(withPolling: request)
+      return try await self.trainFlowPollingUntilDone(request: request)
     }
 
     public func validateFlow(request: ValidateFlowRequest) async throws
@@ -698,14 +697,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importFlow(withPolling: ImportFlowRequest) async throws -> any GoogleGax
+    public func importFlowPollingUntilDone(request: ImportFlowRequest) async throws -> any GoogleGax
       .PollableOperation<ImportFlowResponse>
     {
-      try await self.importFlow(withPolling: withPolling, options: .init())
+      try await self.importFlowPollingUntilDone(request: request, options: .init())
     }
 
-    public func importFlow(
-      withPolling: ImportFlowRequest, options: GoogleGax.RequestOptions
+    public func importFlowPollingUntilDone(
+      request: ImportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportFlowResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportFlowResponse>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -724,14 +723,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportFlow(withPolling: ExportFlowRequest) async throws -> any GoogleGax
+    public func exportFlowPollingUntilDone(request: ExportFlowRequest) async throws -> any GoogleGax
       .PollableOperation<ExportFlowResponse>
     {
-      try await self.exportFlow(withPolling: withPolling, options: .init())
+      try await self.exportFlowPollingUntilDone(request: request, options: .init())
     }
 
-    public func exportFlow(
-      withPolling: ExportFlowRequest, options: GoogleGax.RequestOptions
+    public func exportFlowPollingUntilDone(
+      request: ExportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportFlowResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportFlowResponse>.State in
         throw GoogleGax.RequestError.unimplemented

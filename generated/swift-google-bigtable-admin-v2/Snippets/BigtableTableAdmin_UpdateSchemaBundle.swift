@@ -26,8 +26,8 @@ func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String,
   schemaBundleId: String
 ) async throws {
-  let poller = try await client.updateSchemaBundle(
-    withPolling: UpdateSchemaBundleRequest()
+  let poller = try await client.updateSchemaBundlePollingUntilDone(
+    request: UpdateSchemaBundleRequest()
       .with {
         $0.schemaBundle = SchemaBundle().with {
           $0.name =

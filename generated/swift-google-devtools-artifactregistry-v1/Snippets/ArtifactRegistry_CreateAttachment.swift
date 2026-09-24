@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: ArtifactRegistryClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.createAttachment(
-    withPolling: CreateAttachmentRequest()
+  let poller = try await client.createAttachmentPollingUntilDone(
+    request: CreateAttachmentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
         $0.attachmentId = "[replace with a valid ID]"

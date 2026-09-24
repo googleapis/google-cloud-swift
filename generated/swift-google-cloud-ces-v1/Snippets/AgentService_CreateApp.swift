@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AgentServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createApp(
-    withPolling: CreateAppRequest()
+  let poller = try await client.createAppPollingUntilDone(
+    request: CreateAppRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.appId = "[replace with a valid ID]"

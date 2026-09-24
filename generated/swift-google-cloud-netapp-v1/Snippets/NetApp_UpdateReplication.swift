@@ -26,8 +26,8 @@ func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String,
   replicationId: String
 ) async throws {
-  let poller = try await client.updateReplication(
-    withPolling: UpdateReplicationRequest()
+  let poller = try await client.updateReplicationPollingUntilDone(
+    request: UpdateReplicationRequest()
       .with {
         $0.replication = Replication().with {
           $0.name =

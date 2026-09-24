@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, reportConfigId: String
 ) async throws {
-  let poller = try await client.deleteReportConfig(
-    withPolling: DeleteReportConfigRequest()
+  let poller = try await client.deleteReportConfigPollingUntilDone(
+    request: DeleteReportConfigRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/reportConfigs/\(reportConfigId)"
       }

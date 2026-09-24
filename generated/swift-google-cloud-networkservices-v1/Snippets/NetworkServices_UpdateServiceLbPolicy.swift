@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, serviceLbPolicyId: String
 ) async throws {
-  let poller = try await client.updateServiceLbPolicy(
-    withPolling: UpdateServiceLbPolicyRequest()
+  let poller = try await client.updateServiceLbPolicyPollingUntilDone(
+    request: UpdateServiceLbPolicyRequest()
       .with {
         $0.serviceLbPolicy = ServiceLbPolicy().with {
           $0.name =

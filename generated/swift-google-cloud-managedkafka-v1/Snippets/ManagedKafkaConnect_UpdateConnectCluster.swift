@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: ManagedKafkaConnectClient, projectId: String, locationId: String, connectClusterId: String
 ) async throws {
-  let poller = try await client.updateConnectCluster(
-    withPolling: UpdateConnectClusterRequest()
+  let poller = try await client.updateConnectClusterPollingUntilDone(
+    request: UpdateConnectClusterRequest()
       .with {
         $0.connectCluster = ConnectCluster().with {
           $0.name =

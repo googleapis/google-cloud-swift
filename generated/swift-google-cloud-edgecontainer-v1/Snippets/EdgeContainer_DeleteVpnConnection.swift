@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: EdgeContainerClient, projectId: String, locationId: String, vpnConnectionId: String
 ) async throws {
-  let poller = try await client.deleteVpnConnection(
-    withPolling: DeleteVpnConnectionRequest()
+  let poller = try await client.deleteVpnConnectionPollingUntilDone(
+    request: DeleteVpnConnectionRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/vpnConnections/\(vpnConnectionId)"
       }

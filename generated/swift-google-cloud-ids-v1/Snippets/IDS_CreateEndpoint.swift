@@ -21,8 +21,8 @@ import GoogleCloudIDSV1
 import GoogleLongRunning
 
 func sample(client: IDSClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createEndpoint(
-    withPolling: CreateEndpointRequest()
+  let poller = try await client.createEndpointPollingUntilDone(
+    request: CreateEndpointRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.endpointId = "[replace with a valid ID]"

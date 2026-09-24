@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceGroupManagerResizeRequestsClient) async throws {
-    let poller = try await client.cancel(
-      withPolling: InstanceGroupManagerResizeRequestsClient.CancelRequest()
+    let poller = try await client.cancelPollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.CancelRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

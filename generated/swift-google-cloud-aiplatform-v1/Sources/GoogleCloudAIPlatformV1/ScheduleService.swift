@@ -67,15 +67,15 @@
     /// Deletes a Schedule.
     ///
     /// @Snippet(path: "ScheduleService_DeleteSchedule")
-    public func deleteSchedule(
-      withPolling: DeleteScheduleRequest, options: GoogleGax.RequestOptions
+    public func deleteSchedulePollingUntilDone(
+      request: DeleteScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteSchedule(request: withPolling, options: options)
+      let rawOp = try await self.deleteSchedule(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -277,11 +277,11 @@
     /// and pass a mock implementation in your tests.
     public protocol ScheduleServiceProtocol: Sendable {
       /// See `ScheduleServiceClient.deleteSchedule`.
-      func deleteSchedule(withPolling: DeleteScheduleRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteSchedulePollingUntilDone(request: DeleteScheduleRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ScheduleServiceClient.deleteSchedule`.
-      func deleteSchedule(
+      func deleteSchedulePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -296,8 +296,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ScheduleServiceClient.deleteSchedule`.
-      func deleteSchedule(
-        withPolling: DeleteScheduleRequest, options: GoogleGax.RequestOptions
+      func deleteSchedulePollingUntilDone(
+        request: DeleteScheduleRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ScheduleServiceClient.getSchedule`.
@@ -409,14 +409,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSchedule(withPolling: DeleteScheduleRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteSchedulePollingUntilDone(request: DeleteScheduleRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteSchedule(withPolling: withPolling, options: .init())
+      try await self.deleteSchedulePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteSchedule(
-      withPolling: DeleteScheduleRequest, options: GoogleGax.RequestOptions
+    public func deleteSchedulePollingUntilDone(
+      request: DeleteScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -425,13 +425,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteSchedule(
+    public func deleteSchedulePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteScheduleRequest().with {
         $0.name = name
       }
-      return try await self.deleteSchedule(withPolling: request)
+      return try await self.deleteSchedulePollingUntilDone(request: request)
     }
 
     public func getSchedule(request: GetScheduleRequest) async throws

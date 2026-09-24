@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ProjectsClient) async throws {
-    let poller = try await client.setDefaultNetworkTier(
-      withPolling: ProjectsClient.SetDefaultNetworkTierRequest()
+    let poller = try await client.setDefaultNetworkTierPollingUntilDone(
+      request: ProjectsClient.SetDefaultNetworkTierRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

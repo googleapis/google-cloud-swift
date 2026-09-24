@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.NodeGroupsClient()
-    let poller = try await client.addNodes(
-      withPolling: NodeGroupsClient.AddNodesRequest()
+    let poller = try await client.addNodesPollingUntilDone(
+      request: NodeGroupsClient.AddNodesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

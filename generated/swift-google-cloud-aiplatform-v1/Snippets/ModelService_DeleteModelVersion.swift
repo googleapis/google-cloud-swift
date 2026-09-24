@@ -27,8 +27,8 @@
   func sample(client: ModelServiceClient, projectId: String, locationId: String, modelId: String)
     async throws
   {
-    let poller = try await client.deleteModelVersion(
-      withPolling: DeleteModelVersionRequest()
+    let poller = try await client.deleteModelVersionPollingUntilDone(
+      request: DeleteModelVersionRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/models/\(modelId)"
         }

@@ -26,8 +26,8 @@ func sample(
   client: CertificateManagerClient, projectId: String, locationId: String,
   dnsAuthorizationId: String
 ) async throws {
-  let poller = try await client.updateDnsAuthorization(
-    withPolling: UpdateDnsAuthorizationRequest()
+  let poller = try await client.updateDnsAuthorizationPollingUntilDone(
+    request: UpdateDnsAuthorizationRequest()
       .with {
         $0.dnsAuthorization = DnsAuthorization().with {
           $0.name =

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: AddressGroupServiceClient, projectId: String, locationId: String, addressGroupId: String
 ) async throws {
-  let poller = try await client.deleteAddressGroup(
-    withPolling: DeleteAddressGroupRequest()
+  let poller = try await client.deleteAddressGroupPollingUntilDone(
+    request: DeleteAddressGroupRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/addressGroups/\(addressGroupId)"
       }

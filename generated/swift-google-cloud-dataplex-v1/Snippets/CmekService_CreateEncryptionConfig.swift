@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CmekServiceClient, parent: String) async throws {
-  let poller = try await client.createEncryptionConfig(
-    withPolling: CreateEncryptionConfigRequest()
+  let poller = try await client.createEncryptionConfigPollingUntilDone(
+    request: CreateEncryptionConfigRequest()
       .with {
         $0.parent = "\(parent)"
         $0.encryptionConfig = EncryptionConfig() /* .with { ... } */

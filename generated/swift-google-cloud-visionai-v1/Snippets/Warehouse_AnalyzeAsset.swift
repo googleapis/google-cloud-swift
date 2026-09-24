@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient) async throws {
-  let poller = try await client.analyzeAsset(
-    withPolling: AnalyzeAssetRequest()
+  let poller = try await client.analyzeAssetPollingUntilDone(
+    request: AnalyzeAssetRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

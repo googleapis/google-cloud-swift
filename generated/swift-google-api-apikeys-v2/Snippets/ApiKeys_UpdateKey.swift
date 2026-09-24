@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ApiKeysClient, projectId: String, locationId: String, keyId: String)
   async throws
 {
-  let poller = try await client.updateKey(
-    withPolling: UpdateKeyRequest()
+  let poller = try await client.updateKeyPollingUntilDone(
+    request: UpdateKeyRequest()
       .with {
         $0.key = Key().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/keys/\(keyId)"

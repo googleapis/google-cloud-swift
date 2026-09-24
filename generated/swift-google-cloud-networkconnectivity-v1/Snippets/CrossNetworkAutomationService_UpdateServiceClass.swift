@@ -27,8 +27,8 @@ func sample(
   client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String,
   serviceClassId: String
 ) async throws {
-  let poller = try await client.updateServiceClass(
-    withPolling: UpdateServiceClassRequest()
+  let poller = try await client.updateServiceClassPollingUntilDone(
+    request: UpdateServiceClassRequest()
       .with {
         $0.serviceClass = ServiceClass().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/serviceClasses/\(serviceClassId)"

@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: PrincipalAccessBoundaryPoliciesClient, organizationId: String, locationId: String
 ) async throws {
-  let poller = try await client.createPrincipalAccessBoundaryPolicy(
-    withPolling: CreatePrincipalAccessBoundaryPolicyRequest()
+  let poller = try await client.createPrincipalAccessBoundaryPolicyPollingUntilDone(
+    request: CreatePrincipalAccessBoundaryPolicyRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.principalAccessBoundaryPolicy = PrincipalAccessBoundaryPolicy() /* .with { ... } */

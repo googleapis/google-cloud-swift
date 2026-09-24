@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: AppHubClient, projectId: String, locationId: String, serviceProjectAttachmentId: String
 ) async throws {
-  let poller = try await client.deleteServiceProjectAttachment(
-    withPolling: DeleteServiceProjectAttachmentRequest()
+  let poller = try await client.deleteServiceProjectAttachmentPollingUntilDone(
+    request: DeleteServiceProjectAttachmentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/serviceProjectAttachments/\(serviceProjectAttachmentId)"

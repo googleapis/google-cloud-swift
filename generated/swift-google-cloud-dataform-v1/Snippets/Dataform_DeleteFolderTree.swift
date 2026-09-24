@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let poller = try await client.deleteFolderTree(
-    withPolling: DeleteFolderTreeRequest()
+  let poller = try await client.deleteFolderTreePollingUntilDone(
+    request: DeleteFolderTreeRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

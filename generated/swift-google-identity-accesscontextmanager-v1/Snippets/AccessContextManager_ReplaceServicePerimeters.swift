@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient) async throws {
-  let poller = try await client.replaceServicePerimeters(
-    withPolling: ReplaceServicePerimetersRequest()
+  let poller = try await client.replaceServicePerimetersPollingUntilDone(
+    request: ReplaceServicePerimetersRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

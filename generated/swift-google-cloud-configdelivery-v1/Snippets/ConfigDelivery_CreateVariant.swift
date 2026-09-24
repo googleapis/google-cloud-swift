@@ -26,8 +26,8 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String
 ) async throws {
-  let poller = try await client.createVariant(
-    withPolling: CreateVariantRequest()
+  let poller = try await client.createVariantPollingUntilDone(
+    request: CreateVariantRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/resourceBundles/\(resourceBundleId)/releases/\(releaseId)"

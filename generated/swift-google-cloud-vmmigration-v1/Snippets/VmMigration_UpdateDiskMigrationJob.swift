@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   diskMigrationJobId: String
 ) async throws {
-  let poller = try await client.updateDiskMigrationJob(
-    withPolling: UpdateDiskMigrationJobRequest()
+  let poller = try await client.updateDiskMigrationJobPollingUntilDone(
+    request: UpdateDiskMigrationJobRequest()
       .with {
         $0.diskMigrationJob = DiskMigrationJob().with {
           $0.name =

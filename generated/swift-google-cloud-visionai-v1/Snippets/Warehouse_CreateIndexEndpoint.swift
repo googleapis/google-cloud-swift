@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient, parent: String) async throws {
-  let poller = try await client.createIndexEndpoint(
-    withPolling: CreateIndexEndpointRequest()
+  let poller = try await client.createIndexEndpointPollingUntilDone(
+    request: CreateIndexEndpointRequest()
       .with {
         $0.parent = "\(parent)"
         $0.indexEndpoint = IndexEndpoint() /* .with { ... } */

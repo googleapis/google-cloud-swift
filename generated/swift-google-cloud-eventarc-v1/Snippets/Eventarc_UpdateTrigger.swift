@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, triggerId: String)
   async throws
 {
-  let poller = try await client.updateTrigger(
-    withPolling: UpdateTriggerRequest()
+  let poller = try await client.updateTriggerPollingUntilDone(
+    request: UpdateTriggerRequest()
       .with {
         $0.trigger = Trigger().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/triggers/\(triggerId)"

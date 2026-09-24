@@ -27,8 +27,8 @@ func sample(
   client: AppConnectionsServiceClient, projectId: String, locationId: String,
   appConnectionId: String
 ) async throws {
-  let poller = try await client.updateAppConnection(
-    withPolling: UpdateAppConnectionRequest()
+  let poller = try await client.updateAppConnectionPollingUntilDone(
+    request: UpdateAppConnectionRequest()
       .with {
         $0.appConnection = AppConnection().with {
           $0.name =

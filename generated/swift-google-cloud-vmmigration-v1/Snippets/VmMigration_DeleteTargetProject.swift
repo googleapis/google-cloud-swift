@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: VmMigrationClient, projectId: String, locationId: String, targetProjectId: String
 ) async throws {
-  let poller = try await client.deleteTargetProject(
-    withPolling: DeleteTargetProjectRequest()
+  let poller = try await client.deleteTargetProjectPollingUntilDone(
+    request: DeleteTargetProjectRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/targetProjects/\(targetProjectId)"
       }

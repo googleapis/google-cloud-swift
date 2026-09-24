@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient) async throws {
-  let poller = try await client.exportArtifact(
-    withPolling: ExportArtifactRequest()
+  let poller = try await client.exportArtifactPollingUntilDone(
+    request: ExportArtifactRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -57,14 +57,14 @@
     /// Creates an Index.
     ///
     /// @Snippet(path: "IndexService_CreateIndex")
-    public func createIndex(
-      withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+    public func createIndexPollingUntilDone(
+      request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
         return try op._extractStatus(Index.self)
       }
-      let rawOp = try await self.createIndex(request: withPolling, options: options)
+      let rawOp = try await self.createIndex(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
         let op = try await self.getOperation(
@@ -109,14 +109,14 @@
     /// Updates an Index.
     ///
     /// @Snippet(path: "IndexService_UpdateIndex")
-    public func updateIndex(
-      withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+    public func updateIndexPollingUntilDone(
+      request: UpdateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
         return try op._extractStatus(Index.self)
       }
-      let rawOp = try await self.updateIndex(request: withPolling, options: options)
+      let rawOp = try await self.updateIndex(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
         let op = try await self.getOperation(
@@ -153,15 +153,15 @@
     /// [google.cloud.aiplatform.v1.Index.deployed_indexes]: <doc:Index/deployedIndexes>
     ///
     /// @Snippet(path: "IndexService_DeleteIndex")
-    public func deleteIndex(
-      withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+    public func deleteIndexPollingUntilDone(
+      request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteIndex(request: withPolling, options: options)
+      let rawOp = try await self.deleteIndex(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -314,31 +314,31 @@
     /// and pass a mock implementation in your tests.
     public protocol IndexServiceProtocol: Sendable {
       /// See `IndexServiceClient.createIndex`.
-      func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+      func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
         .PollableOperation<Index>
 
       /// See `IndexServiceClient.createIndex`.
-      func createIndex(
+      func createIndexPollingUntilDone(
         parent: Swift.String,
         index: Index?,
       ) async throws -> any GoogleGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.updateIndex`.
-      func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
+      func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> any GoogleGax
         .PollableOperation<Index>
 
       /// See `IndexServiceClient.updateIndex`.
-      func updateIndex(
+      func updateIndexPollingUntilDone(
         index: Index?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.deleteIndex`.
-      func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+      func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `IndexServiceClient.deleteIndex`.
-      func deleteIndex(
+      func deleteIndexPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -348,8 +348,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexServiceClient.createIndex`.
-      func createIndex(
-        withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+      func createIndexPollingUntilDone(
+        request: CreateIndexRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.getIndex`.
@@ -368,8 +368,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexServiceClient.updateIndex`.
-      func updateIndex(
-        withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+      func updateIndexPollingUntilDone(
+        request: UpdateIndexRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.deleteIndex`.
@@ -378,8 +378,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexServiceClient.deleteIndex`.
-      func deleteIndex(
-        withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+      func deleteIndexPollingUntilDone(
+        request: DeleteIndexRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `IndexServiceClient.upsertDatapoints`.
@@ -452,14 +452,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
-      .PollableOperation<Index>
+    public func createIndexPollingUntilDone(request: CreateIndexRequest) async throws
+      -> any GoogleGax.PollableOperation<Index>
     {
-      try await self.createIndex(withPolling: withPolling, options: .init())
+      try await self.createIndexPollingUntilDone(request: request, options: .init())
     }
 
-    public func createIndex(
-      withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+    public func createIndexPollingUntilDone(
+      request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -468,7 +468,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createIndex(
+    public func createIndexPollingUntilDone(
       parent: Swift.String,
       index: Index?,
     ) async throws -> any GoogleGax.PollableOperation<Index> {
@@ -476,7 +476,7 @@
         $0.parent = parent
         $0.index = index
       }
-      return try await self.createIndex(withPolling: request)
+      return try await self.createIndexPollingUntilDone(request: request)
     }
 
     public func getIndex(request: GetIndexRequest) async throws -> GoogleCloudAIPlatformV1.Index {
@@ -551,14 +551,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
-      .PollableOperation<Index>
+    public func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws
+      -> any GoogleGax.PollableOperation<Index>
     {
-      try await self.updateIndex(withPolling: withPolling, options: .init())
+      try await self.updateIndexPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateIndex(
-      withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+    public func updateIndexPollingUntilDone(
+      request: UpdateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -567,7 +567,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateIndex(
+    public func updateIndexPollingUntilDone(
       index: Index?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index> {
@@ -575,7 +575,7 @@
         $0.index = index
         $0.updateMask = updateMask
       }
-      return try await self.updateIndex(withPolling: request)
+      return try await self.updateIndexPollingUntilDone(request: request)
     }
 
     public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation
@@ -589,14 +589,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteIndex(withPolling: withPolling, options: .init())
+      try await self.deleteIndexPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteIndex(
-      withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+    public func deleteIndexPollingUntilDone(
+      request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -605,13 +605,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteIndex(
+    public func deleteIndexPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteIndexRequest().with {
         $0.name = name
       }
-      return try await self.deleteIndex(withPolling: request)
+      return try await self.deleteIndexPollingUntilDone(request: request)
     }
 
     public func upsertDatapoints(request: UpsertDatapointsRequest) async throws

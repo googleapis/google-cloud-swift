@@ -76,14 +76,14 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// Creates a batch job.
   ///
   /// @Snippet(path: "StorageBatchOperations_CreateJob")
-  public func createJob(
-    withPolling: CreateJobRequest, options: GoogleGax.RequestOptions
+  public func createJobPollingUntilDone(
+    request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Job>.State in
       return try op._extractStatus(Job.self)
     }
-    let rawOp = try await self.createJob(request: withPolling, options: options)
+    let rawOp = try await self.createJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       let op = try await self.getOperation(
@@ -205,12 +205,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol StorageBatchOperationsProtocol: Sendable {
     /// See `StorageBatchOperationsClient.createJob`.
-    func createJob(withPolling: CreateJobRequest) async throws -> any GoogleGax.PollableOperation<
-      Job
-    >
+    func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
+      .PollableOperation<Job>
 
     /// See `StorageBatchOperationsClient.createJob`.
-    func createJob(
+    func createJobPollingUntilDone(
       parent: Swift.String,
       job: Job?,
       jobId: Swift.String,
@@ -232,8 +231,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `StorageBatchOperationsClient.createJob`.
-    func createJob(
-      withPolling: CreateJobRequest, options: GoogleGax.RequestOptions
+    func createJobPollingUntilDone(
+      request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `StorageBatchOperationsClient.deleteJob`.
@@ -357,14 +356,14 @@ extension Clients.StorageBatchOperationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createJob(withPolling: CreateJobRequest) async throws -> any GoogleGax
+  public func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
     .PollableOperation<Job>
   {
-    try await self.createJob(withPolling: withPolling, options: .init())
+    try await self.createJobPollingUntilDone(request: request, options: .init())
   }
 
-  public func createJob(
-    withPolling: CreateJobRequest, options: GoogleGax.RequestOptions
+  public func createJobPollingUntilDone(
+    request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -373,7 +372,7 @@ extension Clients.StorageBatchOperationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createJob(
+  public func createJobPollingUntilDone(
     parent: Swift.String,
     job: Job?,
     jobId: Swift.String,
@@ -383,7 +382,7 @@ extension Clients.StorageBatchOperationsProtocol {
       $0.job = job
       $0.jobId = jobId
     }
-    return try await self.createJob(withPolling: request)
+    return try await self.createJobPollingUntilDone(request: request)
   }
 
   public func deleteJob(request: DeleteJobRequest) async throws {

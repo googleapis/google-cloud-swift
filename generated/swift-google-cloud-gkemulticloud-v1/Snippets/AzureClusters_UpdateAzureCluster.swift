@@ -27,8 +27,8 @@ import GoogleWKT
 func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String
 ) async throws {
-  let poller = try await client.updateAzureCluster(
-    withPolling: UpdateAzureClusterRequest()
+  let poller = try await client.updateAzureClusterPollingUntilDone(
+    request: UpdateAzureClusterRequest()
       .with {
         $0.azureCluster = AzureCluster().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/azureClusters/\(azureClusterId)"

@@ -27,8 +27,8 @@ func sample(
   client: InterceptClient, projectId: String, locationId: String,
   interceptEndpointGroupAssociationId: String
 ) async throws {
-  let poller = try await client.updateInterceptEndpointGroupAssociation(
-    withPolling: UpdateInterceptEndpointGroupAssociationRequest()
+  let poller = try await client.updateInterceptEndpointGroupAssociationPollingUntilDone(
+    request: UpdateInterceptEndpointGroupAssociationRequest()
       .with {
         $0.interceptEndpointGroupAssociation = InterceptEndpointGroupAssociation().with {
           $0.name =

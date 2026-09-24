@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PolicyBindingsClient, organizationId: String, locationId: String) async throws {
-  let poller = try await client.createPolicyBinding(
-    withPolling: CreatePolicyBindingRequest()
+  let poller = try await client.createPolicyBindingPollingUntilDone(
+    request: CreatePolicyBindingRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.policyBinding = PolicyBinding() /* .with { ... } */

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudRedisClusterClient) async throws {
-  let poller = try await client.rescheduleClusterMaintenance(
-    withPolling: RescheduleClusterMaintenanceRequest()
+  let poller = try await client.rescheduleClusterMaintenancePollingUntilDone(
+    request: RescheduleClusterMaintenanceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

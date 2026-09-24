@@ -27,8 +27,8 @@
   func sample(client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let poller = try await client.createFeatureOnlineStore(
-      withPolling: CreateFeatureOnlineStoreRequest()
+    let poller = try await client.createFeatureOnlineStorePollingUntilDone(
+      request: CreateFeatureOnlineStoreRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
           $0.featureOnlineStore = FeatureOnlineStore() /* .with { ... } */

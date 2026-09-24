@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: JobServiceClient) async throws {
-  let poller = try await client.batchUpdateJobs(
-    withPolling: BatchUpdateJobsRequest()
+  let poller = try await client.batchUpdateJobsPollingUntilDone(
+    request: BatchUpdateJobsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

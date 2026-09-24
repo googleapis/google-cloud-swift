@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ReservationsClient) async throws {
-    let poller = try await client.performMaintenance(
-      withPolling: ReservationsClient.PerformMaintenanceRequest()
+    let poller = try await client.performMaintenancePollingUntilDone(
+      request: ReservationsClient.PerformMaintenanceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

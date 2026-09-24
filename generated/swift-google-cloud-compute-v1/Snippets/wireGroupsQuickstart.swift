@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.WireGroupsClient()
-    let poller = try await client.delete(
-      withPolling: WireGroupsClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: WireGroupsClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

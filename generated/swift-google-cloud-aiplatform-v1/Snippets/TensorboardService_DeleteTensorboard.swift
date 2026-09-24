@@ -27,8 +27,8 @@
   func sample(
     client: TensorboardServiceClient, projectId: String, locationId: String, tensorboardId: String
   ) async throws {
-    let poller = try await client.deleteTensorboard(
-      withPolling: DeleteTensorboardRequest()
+    let poller = try await client.deleteTensorboardPollingUntilDone(
+      request: DeleteTensorboardRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/tensorboards/\(tensorboardId)"
         }

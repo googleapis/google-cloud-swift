@@ -28,8 +28,8 @@
     client: FeatureRegistryServiceClient, projectId: String, locationId: String,
     featureGroupId: String
   ) async throws {
-    let poller = try await client.deleteFeatureGroup(
-      withPolling: DeleteFeatureGroupRequest()
+    let poller = try await client.deleteFeatureGroupPollingUntilDone(
+      request: DeleteFeatureGroupRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/featureGroups/\(featureGroupId)"
         }

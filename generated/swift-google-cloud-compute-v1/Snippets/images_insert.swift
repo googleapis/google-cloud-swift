@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ImagesClient) async throws {
-    let poller = try await client.insert(
-      withPolling: ImagesClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: ImagesClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

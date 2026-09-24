@@ -26,8 +26,8 @@ func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String,
   dvrSessionId: String
 ) async throws {
-  let poller = try await client.deleteDvrSession(
-    withPolling: DeleteDvrSessionRequest()
+  let poller = try await client.deleteDvrSessionPollingUntilDone(
+    request: DeleteDvrSessionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)/dvrSessions/\(dvrSessionId)"

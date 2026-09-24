@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.updateDnsForwarding(
-    withPolling: UpdateDnsForwardingRequest()
+  let poller = try await client.updateDnsForwardingPollingUntilDone(
+    request: UpdateDnsForwardingRequest()
       .with {
         $0.dnsForwarding = DnsForwarding().with {
           $0.name =

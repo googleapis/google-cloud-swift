@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let poller = try await client.startPaidService(
-    withPolling: StartPaidServiceRequest()
+  let poller = try await client.startPaidServicePollingUntilDone(
+    request: StartPaidServiceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

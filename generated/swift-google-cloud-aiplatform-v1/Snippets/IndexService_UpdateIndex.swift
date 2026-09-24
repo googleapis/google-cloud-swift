@@ -27,8 +27,8 @@
   func sample(client: IndexServiceClient, projectId: String, locationId: String, indexId: String)
     async throws
   {
-    let poller = try await client.updateIndex(
-      withPolling: UpdateIndexRequest()
+    let poller = try await client.updateIndexPollingUntilDone(
+      request: UpdateIndexRequest()
         .with {
           $0.index = Index().with {
             $0.name = "projects/\(projectId)/locations/\(locationId)/indexes/\(indexId)"

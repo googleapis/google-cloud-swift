@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InterconnectGroupsClient) async throws {
-    let poller = try await client.createMembers(
-      withPolling: InterconnectGroupsClient.CreateMembersRequest()
+    let poller = try await client.createMembersPollingUntilDone(
+      request: InterconnectGroupsClient.CreateMembersRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

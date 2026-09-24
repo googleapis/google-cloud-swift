@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.SecurityPoliciesClient()
-    let poller = try await client.addRule(
-      withPolling: SecurityPoliciesClient.AddRuleRequest()
+    let poller = try await client.addRulePollingUntilDone(
+      request: SecurityPoliciesClient.AddRuleRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -124,15 +124,15 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// progress.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditReport")
-  public func generateAuditReport(
-    withPolling: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
+  public func generateAuditReportPollingUntilDone(
+    request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuditReport>.State in
       return try op._extractStatus(AuditReport.self)
     }
-    let rawOp = try await self.generateAuditReport(request: withPolling, options: options)
+    let rawOp = try await self.generateAuditReport(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
       let op = try await self.getOperation(
@@ -283,14 +283,14 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AuditManagerProtocol: Sendable {
     /// See `AuditManagerClient.generateAuditReport`.
-    func generateAuditReport(withPolling: GenerateAuditReportRequest) async throws -> any GoogleGax
-      .PollableOperation<AuditReport>
+    func generateAuditReportPollingUntilDone(request: GenerateAuditReportRequest) async throws
+      -> any GoogleGax.PollableOperation<AuditReport>
 
     /// See `AuditManagerClient.generateAuditReport`.
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    func generateAuditReport(
+    func generateAuditReportPollingUntilDone(
       scope: Swift.String,
       gcsUri: Swift.String,
       complianceStandard: Swift.String,
@@ -333,8 +333,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AuditManagerClient.generateAuditReport`.
-    func generateAuditReport(
-      withPolling: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
+    func generateAuditReportPollingUntilDone(
+      request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AuditReport>
 
     /// See `AuditManagerClient.listAuditReports`.
@@ -565,14 +565,14 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func generateAuditReport(withPolling: GenerateAuditReportRequest) async throws
+  public func generateAuditReportPollingUntilDone(request: GenerateAuditReportRequest) async throws
     -> any GoogleGax.PollableOperation<AuditReport>
   {
-    try await self.generateAuditReport(withPolling: withPolling, options: .init())
+    try await self.generateAuditReportPollingUntilDone(request: request, options: .init())
   }
 
-  public func generateAuditReport(
-    withPolling: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
+  public func generateAuditReportPollingUntilDone(
+    request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -584,7 +584,7 @@ extension Clients.AuditManagerProtocol {
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func generateAuditReport(
+  public func generateAuditReportPollingUntilDone(
     scope: Swift.String,
     gcsUri: Swift.String,
     complianceStandard: Swift.String,
@@ -596,7 +596,7 @@ extension Clients.AuditManagerProtocol {
       $0.complianceStandard = complianceStandard
       $0.reportFormat = reportFormat
     }
-    return try await self.generateAuditReport(withPolling: request)
+    return try await self.generateAuditReportPollingUntilDone(request: request)
   }
 
   public func listAuditReports(request: ListAuditReportsRequest) async throws

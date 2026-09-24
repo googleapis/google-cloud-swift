@@ -21,8 +21,8 @@ import GoogleCloudMonitoringMetricsScopeV1
 import GoogleLongRunning
 
 func sample(client: MetricsScopesClient, metricsScopeId: String) async throws {
-  let poller = try await client.createMonitoredProject(
-    withPolling: CreateMonitoredProjectRequest()
+  let poller = try await client.createMonitoredProjectPollingUntilDone(
+    request: CreateMonitoredProjectRequest()
       .with {
         $0.parent = "locations/global/metricsScope/\(metricsScopeId)"
         $0.monitoredProject = MonitoredProject() /* .with { ... } */

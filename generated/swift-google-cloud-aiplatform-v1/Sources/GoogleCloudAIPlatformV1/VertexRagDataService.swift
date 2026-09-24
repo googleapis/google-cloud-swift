@@ -57,15 +57,15 @@
     /// Creates a RagCorpus.
     ///
     /// @Snippet(path: "VertexRagDataService_CreateRagCorpus")
-    public func createRagCorpus(
-      withPolling: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
+    public func createRagCorpusPollingUntilDone(
+      request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         return try op._extractStatus(RagCorpus.self)
       }
-      let rawOp = try await self.createRagCorpus(request: withPolling, options: options)
+      let rawOp = try await self.createRagCorpus(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         let op = try await self.getOperation(
@@ -92,15 +92,15 @@
     /// Updates a RagCorpus.
     ///
     /// @Snippet(path: "VertexRagDataService_UpdateRagCorpus")
-    public func updateRagCorpus(
-      withPolling: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
+    public func updateRagCorpusPollingUntilDone(
+      request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         return try op._extractStatus(RagCorpus.self)
       }
-      let rawOp = try await self.updateRagCorpus(request: withPolling, options: options)
+      let rawOp = try await self.updateRagCorpus(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         let op = try await self.getOperation(
@@ -145,15 +145,15 @@
     /// Deletes a RagCorpus.
     ///
     /// @Snippet(path: "VertexRagDataService_DeleteRagCorpus")
-    public func deleteRagCorpus(
-      withPolling: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
+    public func deleteRagCorpusPollingUntilDone(
+      request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteRagCorpus(request: withPolling, options: options)
+      let rawOp = try await self.deleteRagCorpus(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -189,15 +189,15 @@
     /// Import files from Google Cloud Storage or Google Drive into a RagCorpus.
     ///
     /// @Snippet(path: "VertexRagDataService_ImportRagFiles")
-    public func importRagFiles(
-      withPolling: ImportRagFilesRequest, options: GoogleGax.RequestOptions
+    public func importRagFilesPollingUntilDone(
+      request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State in
         return try op._extractStatus(ImportRagFilesResponse.self)
       }
-      let rawOp = try await self.importRagFiles(request: withPolling, options: options)
+      let rawOp = try await self.importRagFiles(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State in
@@ -243,15 +243,15 @@
     /// Deletes a RagFile.
     ///
     /// @Snippet(path: "VertexRagDataService_DeleteRagFile")
-    public func deleteRagFile(
-      withPolling: DeleteRagFileRequest, options: GoogleGax.RequestOptions
+    public func deleteRagFilePollingUntilDone(
+      request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteRagFile(request: withPolling, options: options)
+      let rawOp = try await self.deleteRagFile(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -278,15 +278,15 @@
     /// Updates a RagEngineConfig.
     ///
     /// @Snippet(path: "VertexRagDataService_UpdateRagEngineConfig")
-    public func updateRagEngineConfig(
-      withPolling: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
+    public func updateRagEngineConfigPollingUntilDone(
+      request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
         return try op._extractStatus(RagEngineConfig.self)
       }
-      let rawOp = try await self.updateRagEngineConfig(request: withPolling, options: options)
+      let rawOp = try await self.updateRagEngineConfig(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
         let op = try await self.getOperation(
@@ -430,58 +430,58 @@
     /// and pass a mock implementation in your tests.
     public protocol VertexRagDataServiceProtocol: Sendable {
       /// See `VertexRagDataServiceClient.createRagCorpus`.
-      func createRagCorpus(withPolling: CreateRagCorpusRequest) async throws -> any GoogleGax
-        .PollableOperation<RagCorpus>
+      func createRagCorpusPollingUntilDone(request: CreateRagCorpusRequest) async throws
+        -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.createRagCorpus`.
-      func createRagCorpus(
+      func createRagCorpusPollingUntilDone(
         parent: Swift.String,
         ragCorpus: RagCorpus?,
       ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
-      func updateRagCorpus(withPolling: UpdateRagCorpusRequest) async throws -> any GoogleGax
-        .PollableOperation<RagCorpus>
+      func updateRagCorpusPollingUntilDone(request: UpdateRagCorpusRequest) async throws
+        -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
-      func updateRagCorpus(
+      func updateRagCorpusPollingUntilDone(
         ragCorpus: RagCorpus?,
       ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
-      func deleteRagCorpus(withPolling: DeleteRagCorpusRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteRagCorpusPollingUntilDone(request: DeleteRagCorpusRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
-      func deleteRagCorpus(
+      func deleteRagCorpusPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
-      func importRagFiles(withPolling: ImportRagFilesRequest) async throws -> any GoogleGax
-        .PollableOperation<ImportRagFilesResponse>
+      func importRagFilesPollingUntilDone(request: ImportRagFilesRequest) async throws
+        -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
-      func importRagFiles(
+      func importRagFilesPollingUntilDone(
         parent: Swift.String,
         importRagFilesConfig: ImportRagFilesConfig?,
       ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
 
       /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFile(withPolling: DeleteRagFileRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteRagFilePollingUntilDone(request: DeleteRagFileRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFile(
+      func deleteRagFilePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
-      func updateRagEngineConfig(withPolling: UpdateRagEngineConfigRequest) async throws
+      func updateRagEngineConfigPollingUntilDone(request: UpdateRagEngineConfigRequest) async throws
         -> any GoogleGax.PollableOperation<RagEngineConfig>
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
-      func updateRagEngineConfig(
+      func updateRagEngineConfigPollingUntilDone(
         ragEngineConfig: RagEngineConfig?,
       ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig>
 
@@ -491,8 +491,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.createRagCorpus`.
-      func createRagCorpus(
-        withPolling: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
+      func createRagCorpusPollingUntilDone(
+        request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
@@ -501,8 +501,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
-      func updateRagCorpus(
-        withPolling: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
+      func updateRagCorpusPollingUntilDone(
+        request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<RagCorpus>
 
       /// See `VertexRagDataServiceClient.getRagCorpus`.
@@ -521,8 +521,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
-      func deleteRagCorpus(
-        withPolling: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
+      func deleteRagCorpusPollingUntilDone(
+        request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.uploadRagFile`.
@@ -536,8 +536,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
-      func importRagFiles(
-        withPolling: ImportRagFilesRequest, options: GoogleGax.RequestOptions
+      func importRagFilesPollingUntilDone(
+        request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
 
       /// See `VertexRagDataServiceClient.getRagFile`.
@@ -556,8 +556,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFile(
-        withPolling: DeleteRagFileRequest, options: GoogleGax.RequestOptions
+      func deleteRagFilePollingUntilDone(
+        request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
@@ -566,8 +566,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
-      func updateRagEngineConfig(
-        withPolling: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
+      func updateRagEngineConfigPollingUntilDone(
+        request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig>
 
       /// See `VertexRagDataServiceClient.getRagEngineConfig`.
@@ -636,14 +636,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createRagCorpus(withPolling: CreateRagCorpusRequest) async throws -> any GoogleGax
-      .PollableOperation<RagCorpus>
+    public func createRagCorpusPollingUntilDone(request: CreateRagCorpusRequest) async throws
+      -> any GoogleGax.PollableOperation<RagCorpus>
     {
-      try await self.createRagCorpus(withPolling: withPolling, options: .init())
+      try await self.createRagCorpusPollingUntilDone(request: request, options: .init())
     }
 
-    public func createRagCorpus(
-      withPolling: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
+    public func createRagCorpusPollingUntilDone(
+      request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -652,7 +652,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createRagCorpus(
+    public func createRagCorpusPollingUntilDone(
       parent: Swift.String,
       ragCorpus: RagCorpus?,
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
@@ -660,7 +660,7 @@
         $0.parent = parent
         $0.ragCorpus = ragCorpus
       }
-      return try await self.createRagCorpus(withPolling: request)
+      return try await self.createRagCorpusPollingUntilDone(request: request)
     }
 
     public func updateRagCorpus(request: UpdateRagCorpusRequest) async throws
@@ -675,14 +675,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateRagCorpus(withPolling: UpdateRagCorpusRequest) async throws -> any GoogleGax
-      .PollableOperation<RagCorpus>
+    public func updateRagCorpusPollingUntilDone(request: UpdateRagCorpusRequest) async throws
+      -> any GoogleGax.PollableOperation<RagCorpus>
     {
-      try await self.updateRagCorpus(withPolling: withPolling, options: .init())
+      try await self.updateRagCorpusPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateRagCorpus(
-      withPolling: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
+    public func updateRagCorpusPollingUntilDone(
+      request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -691,13 +691,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateRagCorpus(
+    public func updateRagCorpusPollingUntilDone(
       ragCorpus: RagCorpus?,
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let request = UpdateRagCorpusRequest().with {
         $0.ragCorpus = ragCorpus
       }
-      return try await self.updateRagCorpus(withPolling: request)
+      return try await self.updateRagCorpusPollingUntilDone(request: request)
     }
 
     public func getRagCorpus(request: GetRagCorpusRequest) async throws
@@ -775,14 +775,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteRagCorpus(withPolling: DeleteRagCorpusRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteRagCorpusPollingUntilDone(request: DeleteRagCorpusRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteRagCorpus(withPolling: withPolling, options: .init())
+      try await self.deleteRagCorpusPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteRagCorpus(
-      withPolling: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
+    public func deleteRagCorpusPollingUntilDone(
+      request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -791,13 +791,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteRagCorpus(
+    public func deleteRagCorpusPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteRagCorpusRequest().with {
         $0.name = name
       }
-      return try await self.deleteRagCorpus(withPolling: request)
+      return try await self.deleteRagCorpusPollingUntilDone(request: request)
     }
 
     public func uploadRagFile(request: UploadRagFileRequest) async throws
@@ -837,14 +837,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importRagFiles(withPolling: ImportRagFilesRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportRagFilesResponse>
+    public func importRagFilesPollingUntilDone(request: ImportRagFilesRequest) async throws
+      -> any GoogleGax.PollableOperation<ImportRagFilesResponse>
     {
-      try await self.importRagFiles(withPolling: withPolling, options: .init())
+      try await self.importRagFilesPollingUntilDone(request: request, options: .init())
     }
 
-    public func importRagFiles(
-      withPolling: ImportRagFilesRequest, options: GoogleGax.RequestOptions
+    public func importRagFilesPollingUntilDone(
+      request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State in
@@ -854,7 +854,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func importRagFiles(
+    public func importRagFilesPollingUntilDone(
       parent: Swift.String,
       importRagFilesConfig: ImportRagFilesConfig?,
     ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse> {
@@ -862,7 +862,7 @@
         $0.parent = parent
         $0.importRagFilesConfig = importRagFilesConfig
       }
-      return try await self.importRagFiles(withPolling: request)
+      return try await self.importRagFilesPollingUntilDone(request: request)
     }
 
     public func getRagFile(request: GetRagFileRequest) async throws
@@ -940,14 +940,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteRagFile(withPolling: DeleteRagFileRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteRagFilePollingUntilDone(request: DeleteRagFileRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteRagFile(withPolling: withPolling, options: .init())
+      try await self.deleteRagFilePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteRagFile(
-      withPolling: DeleteRagFileRequest, options: GoogleGax.RequestOptions
+    public func deleteRagFilePollingUntilDone(
+      request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -956,13 +956,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteRagFile(
+    public func deleteRagFilePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteRagFileRequest().with {
         $0.name = name
       }
-      return try await self.deleteRagFile(withPolling: request)
+      return try await self.deleteRagFilePollingUntilDone(request: request)
     }
 
     public func updateRagEngineConfig(request: UpdateRagEngineConfigRequest) async throws
@@ -977,14 +977,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateRagEngineConfig(withPolling: UpdateRagEngineConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<RagEngineConfig>
+    public func updateRagEngineConfigPollingUntilDone(request: UpdateRagEngineConfigRequest)
+      async throws -> any GoogleGax.PollableOperation<RagEngineConfig>
     {
-      try await self.updateRagEngineConfig(withPolling: withPolling, options: .init())
+      try await self.updateRagEngineConfigPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateRagEngineConfig(
-      withPolling: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
+    public func updateRagEngineConfigPollingUntilDone(
+      request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -993,13 +993,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateRagEngineConfig(
+    public func updateRagEngineConfigPollingUntilDone(
       ragEngineConfig: RagEngineConfig?,
     ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig> {
       let request = UpdateRagEngineConfigRequest().with {
         $0.ragEngineConfig = ragEngineConfig
       }
-      return try await self.updateRagEngineConfig(withPolling: request)
+      return try await self.updateRagEngineConfigPollingUntilDone(request: request)
     }
 
     public func getRagEngineConfig(request: GetRagEngineConfigRequest) async throws

@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   backendAuthenticationConfigId: String
 ) async throws {
-  let poller = try await client.deleteBackendAuthenticationConfig(
-    withPolling: DeleteBackendAuthenticationConfigRequest()
+  let poller = try await client.deleteBackendAuthenticationConfigPollingUntilDone(
+    request: DeleteBackendAuthenticationConfigRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/backendAuthenticationConfigs/\(backendAuthenticationConfigId)"

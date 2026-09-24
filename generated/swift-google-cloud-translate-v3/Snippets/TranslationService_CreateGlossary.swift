@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TranslationServiceClient, parent: String) async throws {
-  let poller = try await client.createGlossary(
-    withPolling: CreateGlossaryRequest()
+  let poller = try await client.createGlossaryPollingUntilDone(
+    request: CreateGlossaryRequest()
       .with {
         $0.parent = "\(parent)"
         $0.glossary = Glossary() /* .with { ... } */

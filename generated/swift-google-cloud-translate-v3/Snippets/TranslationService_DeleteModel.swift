@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, modelId: String
 ) async throws {
-  let poller = try await client.deleteModel(
-    withPolling: DeleteModelRequest()
+  let poller = try await client.deleteModelPollingUntilDone(
+    request: DeleteModelRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/models/\(modelId)"
       }

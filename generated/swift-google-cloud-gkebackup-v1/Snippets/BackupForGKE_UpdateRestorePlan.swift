@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restorePlanId: String
 ) async throws {
-  let poller = try await client.updateRestorePlan(
-    withPolling: UpdateRestorePlanRequest()
+  let poller = try await client.updateRestorePlanPollingUntilDone(
+    request: UpdateRestorePlanRequest()
       .with {
         $0.restorePlan = RestorePlan().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/restorePlans/\(restorePlanId)"

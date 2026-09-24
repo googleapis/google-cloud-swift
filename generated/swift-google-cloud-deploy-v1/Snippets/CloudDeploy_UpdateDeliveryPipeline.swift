@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String
 ) async throws {
-  let poller = try await client.updateDeliveryPipeline(
-    withPolling: UpdateDeliveryPipelineRequest()
+  let poller = try await client.updateDeliveryPipelinePollingUntilDone(
+    request: UpdateDeliveryPipelineRequest()
       .with {
         $0.deliveryPipeline = DeliveryPipeline().with {
           $0.name =

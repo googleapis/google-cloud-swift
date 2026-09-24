@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: DisksClient) async throws {
-    let poller = try await client.updateKmsKey(
-      withPolling: DisksClient.UpdateKmsKeyRequest()
+    let poller = try await client.updateKmsKeyPollingUntilDone(
+      request: DisksClient.UpdateKmsKeyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient) async throws {
-  let poller = try await client.pauseMigration(
-    withPolling: PauseMigrationRequest()
+  let poller = try await client.pauseMigrationPollingUntilDone(
+    request: PauseMigrationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -27,8 +27,8 @@ func sample(
   client: MirroringClient, projectId: String, locationId: String,
   mirroringEndpointGroupAssociationId: String
 ) async throws {
-  let poller = try await client.deleteMirroringEndpointGroupAssociation(
-    withPolling: DeleteMirroringEndpointGroupAssociationRequest()
+  let poller = try await client.deleteMirroringEndpointGroupAssociationPollingUntilDone(
+    request: DeleteMirroringEndpointGroupAssociationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/mirroringEndpointGroupAssociations/\(mirroringEndpointGroupAssociationId)"

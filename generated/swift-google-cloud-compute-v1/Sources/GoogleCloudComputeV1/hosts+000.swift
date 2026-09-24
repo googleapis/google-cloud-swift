@@ -62,8 +62,8 @@
     /// Allows customers to get SBOM versions of a host.
     ///
     /// @Snippet(path: "hosts_getVersion")
-    public func getVersion(
-      withPolling: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
+    public func getVersionPollingUntilDone(
+      request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -79,15 +79,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.getVersion(request: withPolling, options: options)
+      let rawOp = try await self.getVersion(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.zone = withPolling.zone
+            $0.project = request.project
+            $0.zone = request.zone
           }, options: options)
         return try extractStatus(op)
       }
@@ -181,14 +181,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func getVersion(
-      withPolling: HostsClient.GetVersionRequest
+    public func getVersionPollingUntilDone(
+      request: HostsClient.GetVersionRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.getVersion(withPolling: withPolling, options: .init())
+      try await self.getVersionPollingUntilDone(request: request, options: .init())
     }
 
-    public func getVersion(
-      withPolling: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
+    public func getVersionPollingUntilDone(
+      request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -198,7 +198,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func getVersion(
+    public func getVersionPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       association: Swift.String,
@@ -212,7 +212,7 @@
         $0.host = host
         $0.body = body
       }
-      return try await self.getVersion(withPolling: request)
+      return try await self.getVersionPollingUntilDone(request: request)
     }
 
     public func list(request: HostsClient.ListRequest) async throws

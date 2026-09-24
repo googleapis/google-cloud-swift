@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: EnvironmentsClient) async throws {
-    let poller = try await client.deployFlow(
-      withPolling: DeployFlowRequest()
+    let poller = try await client.deployFlowPollingUntilDone(
+      request: DeployFlowRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

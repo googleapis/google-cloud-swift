@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPolicyId: String
 ) async throws {
-  let poller = try await client.deleteNetworkPolicy(
-    withPolling: DeleteNetworkPolicyRequest()
+  let poller = try await client.deleteNetworkPolicyPollingUntilDone(
+    request: DeleteNetworkPolicyRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/networkPolicies/\(networkPolicyId)"
       }

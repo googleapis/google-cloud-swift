@@ -26,8 +26,8 @@
   func sample(
     client: VertexRagDataServiceClient, projectId: String, locationId: String, ragCorpusId: String
   ) async throws {
-    let poller = try await client.deleteRagCorpus(
-      withPolling: DeleteRagCorpusRequest()
+    let poller = try await client.deleteRagCorpusPollingUntilDone(
+      request: DeleteRagCorpusRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/ragCorpora/\(ragCorpusId)"
         }

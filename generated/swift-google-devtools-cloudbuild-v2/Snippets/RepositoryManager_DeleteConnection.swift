@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: RepositoryManagerClient, projectId: String, locationId: String, connectionId: String
 ) async throws {
-  let poller = try await client.deleteConnection(
-    withPolling: DeleteConnectionRequest()
+  let poller = try await client.deleteConnectionPollingUntilDone(
+    request: DeleteConnectionRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
       }

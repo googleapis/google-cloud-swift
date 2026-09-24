@@ -100,15 +100,15 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
-  public func createSingleTenantHsmInstance(
-    withPolling: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
+  public func createSingleTenantHsmInstancePollingUntilDone(
+    request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
       return try op._extractStatus(SingleTenantHsmInstance.self)
     }
-    let rawOp = try await self.createSingleTenantHsmInstance(request: withPolling, options: options)
+    let rawOp = try await self.createSingleTenantHsmInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
@@ -148,8 +148,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
-  public func createSingleTenantHsmInstanceProposal(
-    withPolling: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
+  public func createSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
@@ -157,7 +157,7 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
       return try op._extractStatus(SingleTenantHsmInstanceProposal.self)
     }
     let rawOp = try await self.createSingleTenantHsmInstanceProposal(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
@@ -224,8 +224,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]: <doc:SingleTenantHsmInstanceProposal/State/approved>
   ///
   /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
-  public func executeSingleTenantHsmInstanceProposal(
-    withPolling: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
+  public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExecuteSingleTenantHsmInstanceProposalResponse>
   {
     let extractStatus = {
@@ -234,7 +234,7 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
       return try op._extractStatus(ExecuteSingleTenantHsmInstanceProposalResponse.self)
     }
     let rawOp = try await self.executeSingleTenantHsmInstanceProposal(
-      request: withPolling, options: options)
+      request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws
@@ -380,37 +380,38 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol HsmManagementProtocol: Sendable {
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
-    func createSingleTenantHsmInstance(withPolling: CreateSingleTenantHsmInstanceRequest)
-      async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
+    func createSingleTenantHsmInstancePollingUntilDone(
+      request: CreateSingleTenantHsmInstanceRequest
+    ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
 
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
-    func createSingleTenantHsmInstance(
+    func createSingleTenantHsmInstancePollingUntilDone(
       parent: Swift.String,
       singleTenantHsmInstance: SingleTenantHsmInstance?,
       singleTenantHsmInstanceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
-    func createSingleTenantHsmInstanceProposal(
-      withPolling: CreateSingleTenantHsmInstanceProposalRequest
+    func createSingleTenantHsmInstanceProposalPollingUntilDone(
+      request: CreateSingleTenantHsmInstanceProposalRequest
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
-    func createSingleTenantHsmInstanceProposal(
+    func createSingleTenantHsmInstanceProposalPollingUntilDone(
       parent: Swift.String,
       singleTenantHsmInstanceProposal: SingleTenantHsmInstanceProposal?,
       singleTenantHsmInstanceProposalId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
 
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
-    func executeSingleTenantHsmInstanceProposal(
-      withPolling: ExecuteSingleTenantHsmInstanceProposalRequest
+    func executeSingleTenantHsmInstanceProposalPollingUntilDone(
+      request: ExecuteSingleTenantHsmInstanceProposalRequest
     ) async throws -> any GoogleGax.PollableOperation<
       ExecuteSingleTenantHsmInstanceProposalResponse
     >
 
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
-    func executeSingleTenantHsmInstanceProposal(
+    func executeSingleTenantHsmInstanceProposalPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<
       ExecuteSingleTenantHsmInstanceProposalResponse
@@ -432,8 +433,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
-    func createSingleTenantHsmInstance(
-      withPolling: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
+    func createSingleTenantHsmInstancePollingUntilDone(
+      request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
@@ -442,8 +443,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
-    func createSingleTenantHsmInstanceProposal(
-      withPolling: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
+    func createSingleTenantHsmInstanceProposalPollingUntilDone(
+      request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal>
 
     /// See `HsmManagementClient.approveSingleTenantHsmInstanceProposal`.
@@ -457,8 +458,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
-    func executeSingleTenantHsmInstanceProposal(
-      withPolling: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
+    func executeSingleTenantHsmInstanceProposalPollingUntilDone(
+      request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<
       ExecuteSingleTenantHsmInstanceProposalResponse
     >
@@ -585,14 +586,14 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createSingleTenantHsmInstance(withPolling: CreateSingleTenantHsmInstanceRequest)
-    async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance>
-  {
-    try await self.createSingleTenantHsmInstance(withPolling: withPolling, options: .init())
+  public func createSingleTenantHsmInstancePollingUntilDone(
+    request: CreateSingleTenantHsmInstanceRequest
+  ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance> {
+    try await self.createSingleTenantHsmInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createSingleTenantHsmInstance(
-    withPolling: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
+  public func createSingleTenantHsmInstancePollingUntilDone(
+    request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
@@ -602,7 +603,7 @@ extension Clients.HsmManagementProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createSingleTenantHsmInstance(
+  public func createSingleTenantHsmInstancePollingUntilDone(
     parent: Swift.String,
     singleTenantHsmInstance: SingleTenantHsmInstance?,
     singleTenantHsmInstanceId: Swift.String,
@@ -612,7 +613,7 @@ extension Clients.HsmManagementProtocol {
       $0.singleTenantHsmInstance = singleTenantHsmInstance
       $0.singleTenantHsmInstanceId = singleTenantHsmInstanceId
     }
-    return try await self.createSingleTenantHsmInstance(withPolling: request)
+    return try await self.createSingleTenantHsmInstancePollingUntilDone(request: request)
   }
 
   public func createSingleTenantHsmInstanceProposal(
@@ -627,14 +628,15 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createSingleTenantHsmInstanceProposal(
-    withPolling: CreateSingleTenantHsmInstanceProposalRequest
+  public func createSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: CreateSingleTenantHsmInstanceProposalRequest
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal> {
-    try await self.createSingleTenantHsmInstanceProposal(withPolling: withPolling, options: .init())
+    try await self.createSingleTenantHsmInstanceProposalPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func createSingleTenantHsmInstanceProposal(
-    withPolling: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
+  public func createSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
@@ -644,7 +646,7 @@ extension Clients.HsmManagementProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createSingleTenantHsmInstanceProposal(
+  public func createSingleTenantHsmInstanceProposalPollingUntilDone(
     parent: Swift.String,
     singleTenantHsmInstanceProposal: SingleTenantHsmInstanceProposal?,
     singleTenantHsmInstanceProposalId: Swift.String,
@@ -654,7 +656,7 @@ extension Clients.HsmManagementProtocol {
       $0.singleTenantHsmInstanceProposal = singleTenantHsmInstanceProposal
       $0.singleTenantHsmInstanceProposalId = singleTenantHsmInstanceProposalId
     }
-    return try await self.createSingleTenantHsmInstanceProposal(withPolling: request)
+    return try await self.createSingleTenantHsmInstanceProposalPollingUntilDone(request: request)
   }
 
   public func approveSingleTenantHsmInstanceProposal(
@@ -692,16 +694,16 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func executeSingleTenantHsmInstanceProposal(
-    withPolling: ExecuteSingleTenantHsmInstanceProposalRequest
+  public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: ExecuteSingleTenantHsmInstanceProposalRequest
   ) async throws -> any GoogleGax.PollableOperation<ExecuteSingleTenantHsmInstanceProposalResponse>
   {
-    try await self.executeSingleTenantHsmInstanceProposal(
-      withPolling: withPolling, options: .init())
+    try await self.executeSingleTenantHsmInstanceProposalPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func executeSingleTenantHsmInstanceProposal(
-    withPolling: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
+  public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExecuteSingleTenantHsmInstanceProposalResponse>
   {
     let poll = {
@@ -713,14 +715,14 @@ extension Clients.HsmManagementProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func executeSingleTenantHsmInstanceProposal(
+  public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<ExecuteSingleTenantHsmInstanceProposalResponse>
   {
     let request = ExecuteSingleTenantHsmInstanceProposalRequest().with {
       $0.name = name
     }
-    return try await self.executeSingleTenantHsmInstanceProposal(withPolling: request)
+    return try await self.executeSingleTenantHsmInstanceProposalPollingUntilDone(request: request)
   }
 
   public func getSingleTenantHsmInstanceProposal(request: GetSingleTenantHsmInstanceProposalRequest)

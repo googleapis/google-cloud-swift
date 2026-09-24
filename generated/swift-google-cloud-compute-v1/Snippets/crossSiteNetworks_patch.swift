@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: CrossSiteNetworksClient) async throws {
-    let poller = try await client.patch(
-      withPolling: CrossSiteNetworksClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: CrossSiteNetworksClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

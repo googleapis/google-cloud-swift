@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGroup(
-    withPolling: CreateGroupRequest()
+  let poller = try await client.createGroupPollingUntilDone(
+    request: CreateGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.groupId = "[replace with a valid ID]"

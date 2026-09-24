@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupDRClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createManagementServer(
-    withPolling: CreateManagementServerRequest()
+  let poller = try await client.createManagementServerPollingUntilDone(
+    request: CreateManagementServerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.managementServer = ManagementServer() /* .with { ... } */

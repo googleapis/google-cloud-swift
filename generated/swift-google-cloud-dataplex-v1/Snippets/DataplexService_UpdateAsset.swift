@@ -27,8 +27,8 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String, assetId: String
 ) async throws {
-  let poller = try await client.updateAsset(
-    withPolling: UpdateAssetRequest()
+  let poller = try await client.updateAssetPollingUntilDone(
+    request: UpdateAssetRequest()
       .with {
         $0.asset = Asset().with {
           $0.name =

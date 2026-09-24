@@ -21,8 +21,8 @@ import GoogleCloudRunV2
 import GoogleLongRunning
 
 func sample(client: ExecutionsClient) async throws {
-  let poller = try await client.cancelExecution(
-    withPolling: CancelExecutionRequest()
+  let poller = try await client.cancelExecutionPollingUntilDone(
+    request: CancelExecutionRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -61,15 +61,15 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// those resources using the framework's cloud controls.
   ///
   /// @Snippet(path: "Deployment_CreateFrameworkDeployment")
-  public func createFrameworkDeployment(
-    withPolling: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
+  public func createFrameworkDeploymentPollingUntilDone(
+    request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FrameworkDeployment>.State in
       return try op._extractStatus(FrameworkDeployment.self)
     }
-    let rawOp = try await self.createFrameworkDeployment(request: withPolling, options: options)
+    let rawOp = try await self.createFrameworkDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<FrameworkDeployment>.State in
       let op = try await self.getOperation(
@@ -96,15 +96,15 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// Deletes a framework deployment.
   ///
   /// @Snippet(path: "Deployment_DeleteFrameworkDeployment")
-  public func deleteFrameworkDeployment(
-    withPolling: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
+  public func deleteFrameworkDeploymentPollingUntilDone(
+    request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteFrameworkDeployment(request: withPolling, options: options)
+    let rawOp = try await self.deleteFrameworkDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -243,22 +243,22 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DeploymentProtocol: Sendable {
     /// See `DeploymentClient.createFrameworkDeployment`.
-    func createFrameworkDeployment(withPolling: CreateFrameworkDeploymentRequest) async throws
-      -> any GoogleGax.PollableOperation<FrameworkDeployment>
+    func createFrameworkDeploymentPollingUntilDone(request: CreateFrameworkDeploymentRequest)
+      async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
 
     /// See `DeploymentClient.createFrameworkDeployment`.
-    func createFrameworkDeployment(
+    func createFrameworkDeploymentPollingUntilDone(
       parent: Swift.String,
       frameworkDeployment: FrameworkDeployment?,
       frameworkDeploymentId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
 
     /// See `DeploymentClient.deleteFrameworkDeployment`.
-    func deleteFrameworkDeployment(withPolling: DeleteFrameworkDeploymentRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteFrameworkDeploymentPollingUntilDone(request: DeleteFrameworkDeploymentRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DeploymentClient.deleteFrameworkDeployment`.
-    func deleteFrameworkDeployment(
+    func deleteFrameworkDeploymentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -268,8 +268,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DeploymentClient.createFrameworkDeployment`.
-    func createFrameworkDeployment(
-      withPolling: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
+    func createFrameworkDeploymentPollingUntilDone(
+      request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
 
     /// See `DeploymentClient.deleteFrameworkDeployment`.
@@ -278,8 +278,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DeploymentClient.deleteFrameworkDeployment`.
-    func deleteFrameworkDeployment(
-      withPolling: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
+    func deleteFrameworkDeploymentPollingUntilDone(
+      request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DeploymentClient.getFrameworkDeployment`.
@@ -343,14 +343,14 @@ extension Clients.DeploymentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createFrameworkDeployment(withPolling: CreateFrameworkDeploymentRequest) async throws
-    -> any GoogleGax.PollableOperation<FrameworkDeployment>
+  public func createFrameworkDeploymentPollingUntilDone(request: CreateFrameworkDeploymentRequest)
+    async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
   {
-    try await self.createFrameworkDeployment(withPolling: withPolling, options: .init())
+    try await self.createFrameworkDeploymentPollingUntilDone(request: request, options: .init())
   }
 
-  public func createFrameworkDeployment(
-    withPolling: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
+  public func createFrameworkDeploymentPollingUntilDone(
+    request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<FrameworkDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -359,7 +359,7 @@ extension Clients.DeploymentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createFrameworkDeployment(
+  public func createFrameworkDeploymentPollingUntilDone(
     parent: Swift.String,
     frameworkDeployment: FrameworkDeployment?,
     frameworkDeploymentId: Swift.String,
@@ -369,7 +369,7 @@ extension Clients.DeploymentProtocol {
       $0.frameworkDeployment = frameworkDeployment
       $0.frameworkDeploymentId = frameworkDeploymentId
     }
-    return try await self.createFrameworkDeployment(withPolling: request)
+    return try await self.createFrameworkDeploymentPollingUntilDone(request: request)
   }
 
   public func deleteFrameworkDeployment(request: DeleteFrameworkDeploymentRequest) async throws
@@ -384,14 +384,14 @@ extension Clients.DeploymentProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFrameworkDeployment(withPolling: DeleteFrameworkDeploymentRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteFrameworkDeploymentPollingUntilDone(request: DeleteFrameworkDeploymentRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteFrameworkDeployment(withPolling: withPolling, options: .init())
+    try await self.deleteFrameworkDeploymentPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFrameworkDeployment(
-    withPolling: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
+  public func deleteFrameworkDeploymentPollingUntilDone(
+    request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -400,13 +400,13 @@ extension Clients.DeploymentProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteFrameworkDeployment(
+  public func deleteFrameworkDeploymentPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteFrameworkDeploymentRequest().with {
       $0.name = name
     }
-    return try await self.deleteFrameworkDeployment(withPolling: request)
+    return try await self.deleteFrameworkDeploymentPollingUntilDone(request: request)
   }
 
   public func getFrameworkDeployment(request: GetFrameworkDeploymentRequest) async throws

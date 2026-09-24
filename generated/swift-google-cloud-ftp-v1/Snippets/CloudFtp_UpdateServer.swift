@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: CloudFtpClient, projectId: String, locationId: String, serverId: String)
   async throws
 {
-  let poller = try await client.updateServer(
-    withPolling: UpdateServerRequest()
+  let poller = try await client.updateServerPollingUntilDone(
+    request: UpdateServerRequest()
       .with {
         $0.server = Server().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/servers/\(serverId)"

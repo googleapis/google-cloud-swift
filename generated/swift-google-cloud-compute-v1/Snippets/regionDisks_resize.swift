@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionDisksClient) async throws {
-    let poller = try await client.resize(
-      withPolling: RegionDisksClient.ResizeRequest()
+    let poller = try await client.resizePollingUntilDone(
+      request: RegionDisksClient.ResizeRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

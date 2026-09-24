@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(client: VideoStitcherServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createVodConfig(
-    withPolling: CreateVodConfigRequest()
+  let poller = try await client.createVodConfigPollingUntilDone(
+    request: CreateVodConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.vodConfig = VodConfig() /* .with { ... } */

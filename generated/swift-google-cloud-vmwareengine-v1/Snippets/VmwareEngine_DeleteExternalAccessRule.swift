@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPolicyId: String,
   externalAccessRuleId: String
 ) async throws {
-  let poller = try await client.deleteExternalAccessRule(
-    withPolling: DeleteExternalAccessRuleRequest()
+  let poller = try await client.deleteExternalAccessRulePollingUntilDone(
+    request: DeleteExternalAccessRuleRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/networkPolicies/\(networkPolicyId)/externalAccessRules/\(externalAccessRuleId)"

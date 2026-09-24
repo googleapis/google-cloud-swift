@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AddressGroupServiceClient) async throws {
-  let poller = try await client.addAddressGroupItems(
-    withPolling: AddAddressGroupItemsRequest()
+  let poller = try await client.addAddressGroupItemsPollingUntilDone(
+    request: AddAddressGroupItemsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

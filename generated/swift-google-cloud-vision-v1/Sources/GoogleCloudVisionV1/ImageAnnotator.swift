@@ -95,15 +95,15 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
   ///
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
-  public func asyncBatchAnnotateImages(
-    withPolling: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
+  public func asyncBatchAnnotateImagesPollingUntilDone(
+    request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
       return try op._extractStatus(AsyncBatchAnnotateImagesResponse.self)
     }
-    let rawOp = try await self.asyncBatchAnnotateImages(request: withPolling, options: options)
+    let rawOp = try await self.asyncBatchAnnotateImages(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
@@ -141,15 +141,15 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
   ///
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
-  public func asyncBatchAnnotateFiles(
-    withPolling: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
+  public func asyncBatchAnnotateFilesPollingUntilDone(
+    request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
       return try op._extractStatus(AsyncBatchAnnotateFilesResponse.self)
     }
-    let rawOp = try await self.asyncBatchAnnotateFiles(request: withPolling, options: options)
+    let rawOp = try await self.asyncBatchAnnotateFiles(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
@@ -185,21 +185,21 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ImageAnnotatorProtocol: Sendable {
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
-    func asyncBatchAnnotateImages(withPolling: AsyncBatchAnnotateImagesRequest) async throws
-      -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
+    func asyncBatchAnnotateImagesPollingUntilDone(request: AsyncBatchAnnotateImagesRequest)
+      async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
-    func asyncBatchAnnotateImages(
+    func asyncBatchAnnotateImagesPollingUntilDone(
       requests: [AnnotateImageRequest],
       outputConfig: OutputConfig?,
     ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
-    func asyncBatchAnnotateFiles(withPolling: AsyncBatchAnnotateFilesRequest) async throws
-      -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
+    func asyncBatchAnnotateFilesPollingUntilDone(request: AsyncBatchAnnotateFilesRequest)
+      async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
-    func asyncBatchAnnotateFiles(
+    func asyncBatchAnnotateFilesPollingUntilDone(
       requests: [AsyncAnnotateFileRequest],
     ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
 
@@ -219,8 +219,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
-    func asyncBatchAnnotateImages(
-      withPolling: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
+    func asyncBatchAnnotateImagesPollingUntilDone(
+      request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
@@ -229,8 +229,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
-    func asyncBatchAnnotateFiles(
-      withPolling: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
+    func asyncBatchAnnotateFilesPollingUntilDone(
+      request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
   }
 }
@@ -291,14 +291,14 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func asyncBatchAnnotateImages(withPolling: AsyncBatchAnnotateImagesRequest) async throws
-    -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
+  public func asyncBatchAnnotateImagesPollingUntilDone(request: AsyncBatchAnnotateImagesRequest)
+    async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse>
   {
-    try await self.asyncBatchAnnotateImages(withPolling: withPolling, options: .init())
+    try await self.asyncBatchAnnotateImagesPollingUntilDone(request: request, options: .init())
   }
 
-  public func asyncBatchAnnotateImages(
-    withPolling: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
+  public func asyncBatchAnnotateImagesPollingUntilDone(
+    request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
@@ -308,7 +308,7 @@ extension Clients.ImageAnnotatorProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func asyncBatchAnnotateImages(
+  public func asyncBatchAnnotateImagesPollingUntilDone(
     requests: [AnnotateImageRequest],
     outputConfig: OutputConfig?,
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse> {
@@ -316,7 +316,7 @@ extension Clients.ImageAnnotatorProtocol {
       $0.requests = requests
       $0.outputConfig = outputConfig
     }
-    return try await self.asyncBatchAnnotateImages(withPolling: request)
+    return try await self.asyncBatchAnnotateImagesPollingUntilDone(request: request)
   }
 
   public func asyncBatchAnnotateFiles(request: AsyncBatchAnnotateFilesRequest) async throws
@@ -331,14 +331,14 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func asyncBatchAnnotateFiles(withPolling: AsyncBatchAnnotateFilesRequest) async throws
-    -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
+  public func asyncBatchAnnotateFilesPollingUntilDone(request: AsyncBatchAnnotateFilesRequest)
+    async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse>
   {
-    try await self.asyncBatchAnnotateFiles(withPolling: withPolling, options: .init())
+    try await self.asyncBatchAnnotateFilesPollingUntilDone(request: request, options: .init())
   }
 
-  public func asyncBatchAnnotateFiles(
-    withPolling: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
+  public func asyncBatchAnnotateFilesPollingUntilDone(
+    request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
@@ -348,13 +348,13 @@ extension Clients.ImageAnnotatorProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func asyncBatchAnnotateFiles(
+  public func asyncBatchAnnotateFilesPollingUntilDone(
     requests: [AsyncAnnotateFileRequest],
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse> {
     let request = AsyncBatchAnnotateFilesRequest().with {
       $0.requests = requests
     }
-    return try await self.asyncBatchAnnotateFiles(withPolling: request)
+    return try await self.asyncBatchAnnotateFilesPollingUntilDone(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

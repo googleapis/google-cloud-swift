@@ -28,8 +28,8 @@
     client: NotebookServiceClient, projectId: String, locationId: String,
     notebookExecutionJobId: String
   ) async throws {
-    let poller = try await client.deleteNotebookExecutionJob(
-      withPolling: DeleteNotebookExecutionJobRequest()
+    let poller = try await client.deleteNotebookExecutionJobPollingUntilDone(
+      request: DeleteNotebookExecutionJobRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/notebookExecutionJobs/\(notebookExecutionJobId)"

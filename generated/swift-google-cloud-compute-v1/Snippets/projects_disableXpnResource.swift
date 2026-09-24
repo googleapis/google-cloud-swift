@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ProjectsClient) async throws {
-    let poller = try await client.disableXpnResource(
-      withPolling: ProjectsClient.DisableXpnResourceRequest()
+    let poller = try await client.disableXpnResourcePollingUntilDone(
+      request: ProjectsClient.DisableXpnResourceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

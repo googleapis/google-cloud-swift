@@ -27,8 +27,8 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String
 ) async throws {
-  let poller = try await client.updateZone(
-    withPolling: UpdateZoneRequest()
+  let poller = try await client.updateZonePollingUntilDone(
+    request: UpdateZoneRequest()
       .with {
         $0.zone = Zone().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)"

@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: MetadataServiceClient, parent: String) async throws {
-    let poller = try await client.createMetadataStore(
-      withPolling: CreateMetadataStoreRequest()
+    let poller = try await client.createMetadataStorePollingUntilDone(
+      request: CreateMetadataStoreRequest()
         .with {
           $0.parent = "\(parent)"
           $0.metadataStore = MetadataStore() /* .with { ... } */

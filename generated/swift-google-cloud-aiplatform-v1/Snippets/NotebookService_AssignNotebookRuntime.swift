@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: NotebookServiceClient) async throws {
-    let poller = try await client.assignNotebookRuntime(
-      withPolling: AssignNotebookRuntimeRequest()
+    let poller = try await client.assignNotebookRuntimePollingUntilDone(
+      request: AssignNotebookRuntimeRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

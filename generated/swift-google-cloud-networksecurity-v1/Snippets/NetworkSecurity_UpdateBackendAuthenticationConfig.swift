@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   backendAuthenticationConfigId: String
 ) async throws {
-  let poller = try await client.updateBackendAuthenticationConfig(
-    withPolling: UpdateBackendAuthenticationConfigRequest()
+  let poller = try await client.updateBackendAuthenticationConfigPollingUntilDone(
+    request: UpdateBackendAuthenticationConfigRequest()
       .with {
         $0.backendAuthenticationConfig = BackendAuthenticationConfig().with {
           $0.name =

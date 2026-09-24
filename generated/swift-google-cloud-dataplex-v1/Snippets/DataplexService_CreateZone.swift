@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String)
   async throws
 {
-  let poller = try await client.createZone(
-    withPolling: CreateZoneRequest()
+  let poller = try await client.createZonePollingUntilDone(
+    request: CreateZoneRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)"
         $0.zoneId = "[replace with a valid ID]"

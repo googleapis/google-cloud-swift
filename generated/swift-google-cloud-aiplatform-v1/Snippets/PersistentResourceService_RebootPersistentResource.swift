@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: PersistentResourceServiceClient) async throws {
-    let poller = try await client.rebootPersistentResource(
-      withPolling: RebootPersistentResourceRequest()
+    let poller = try await client.rebootPersistentResourcePollingUntilDone(
+      request: RebootPersistentResourceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

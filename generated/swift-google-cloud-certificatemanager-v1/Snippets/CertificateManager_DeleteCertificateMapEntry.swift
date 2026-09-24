@@ -26,8 +26,8 @@ func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String,
   certificateMapEntryId: String
 ) async throws {
-  let poller = try await client.deleteCertificateMapEntry(
-    withPolling: DeleteCertificateMapEntryRequest()
+  let poller = try await client.deleteCertificateMapEntryPollingUntilDone(
+    request: DeleteCertificateMapEntryRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/certificateMaps/\(certificateMapId)/certificateMapEntries/\(certificateMapEntryId)"

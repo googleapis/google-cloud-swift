@@ -60,15 +60,15 @@
     /// Creates a new FeatureGroup in a given project and location.
     ///
     /// @Snippet(path: "FeatureRegistryService_CreateFeatureGroup")
-    public func createFeatureGroup(
-      withPolling: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
+    public func createFeatureGroupPollingUntilDone(
+      request: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureGroup> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<FeatureGroup>.State in
         return try op._extractStatus(FeatureGroup.self)
       }
-      let rawOp = try await self.createFeatureGroup(request: withPolling, options: options)
+      let rawOp = try await self.createFeatureGroup(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureGroup>.State in
         let op = try await self.getOperation(
@@ -113,15 +113,15 @@
     /// Updates the parameters of a single FeatureGroup.
     ///
     /// @Snippet(path: "FeatureRegistryService_UpdateFeatureGroup")
-    public func updateFeatureGroup(
-      withPolling: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
+    public func updateFeatureGroupPollingUntilDone(
+      request: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureGroup> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<FeatureGroup>.State in
         return try op._extractStatus(FeatureGroup.self)
       }
-      let rawOp = try await self.updateFeatureGroup(request: withPolling, options: options)
+      let rawOp = try await self.updateFeatureGroup(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureGroup>.State in
         let op = try await self.getOperation(
@@ -148,15 +148,15 @@
     /// Deletes a single FeatureGroup.
     ///
     /// @Snippet(path: "FeatureRegistryService_DeleteFeatureGroup")
-    public func deleteFeatureGroup(
-      withPolling: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureGroupPollingUntilDone(
+      request: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteFeatureGroup(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeatureGroup(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -183,15 +183,15 @@
     /// Creates a new Feature in a given FeatureGroup.
     ///
     /// @Snippet(path: "FeatureRegistryService_CreateFeature")
-    public func createFeature(
-      withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+    public func createFeaturePollingUntilDone(
+      request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Feature>.State
         in
         return try op._extractStatus(Feature.self)
       }
-      let rawOp = try await self.createFeature(request: withPolling, options: options)
+      let rawOp = try await self.createFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         let op = try await self.getOperation(
@@ -218,15 +218,15 @@
     /// Creates a batch of Features in a given FeatureGroup.
     ///
     /// @Snippet(path: "FeatureRegistryService_BatchCreateFeatures")
-    public func batchCreateFeatures(
-      withPolling: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
+    public func batchCreateFeaturesPollingUntilDone(
+      request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
         return try op._extractStatus(BatchCreateFeaturesResponse.self)
       }
-      let rawOp = try await self.batchCreateFeatures(request: withPolling, options: options)
+      let rawOp = try await self.batchCreateFeatures(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
@@ -272,15 +272,15 @@
     /// Updates the parameters of a single Feature.
     ///
     /// @Snippet(path: "FeatureRegistryService_UpdateFeature")
-    public func updateFeature(
-      withPolling: UpdateFeatureRequest, options: GoogleGax.RequestOptions
+    public func updateFeaturePollingUntilDone(
+      request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Feature>.State
         in
         return try op._extractStatus(Feature.self)
       }
-      let rawOp = try await self.updateFeature(request: withPolling, options: options)
+      let rawOp = try await self.updateFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         let op = try await self.getOperation(
@@ -307,15 +307,15 @@
     /// Deletes a single Feature.
     ///
     /// @Snippet(path: "FeatureRegistryService_DeleteFeature")
-    public func deleteFeature(
-      withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+    public func deleteFeaturePollingUntilDone(
+      request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteFeature(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -450,73 +450,73 @@
     /// and pass a mock implementation in your tests.
     public protocol FeatureRegistryServiceProtocol: Sendable {
       /// See `FeatureRegistryServiceClient.createFeatureGroup`.
-      func createFeatureGroup(withPolling: CreateFeatureGroupRequest) async throws -> any GoogleGax
-        .PollableOperation<FeatureGroup>
+      func createFeatureGroupPollingUntilDone(request: CreateFeatureGroupRequest) async throws
+        -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.createFeatureGroup`.
-      func createFeatureGroup(
+      func createFeatureGroupPollingUntilDone(
         parent: Swift.String,
         featureGroup: FeatureGroup?,
         featureGroupId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
-      func updateFeatureGroup(withPolling: UpdateFeatureGroupRequest) async throws -> any GoogleGax
-        .PollableOperation<FeatureGroup>
+      func updateFeatureGroupPollingUntilDone(request: UpdateFeatureGroupRequest) async throws
+        -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
-      func updateFeatureGroup(
+      func updateFeatureGroupPollingUntilDone(
         featureGroup: FeatureGroup?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
-      func deleteFeatureGroup(withPolling: DeleteFeatureGroupRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteFeatureGroupPollingUntilDone(request: DeleteFeatureGroupRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
-      func deleteFeatureGroup(
+      func deleteFeatureGroupPollingUntilDone(
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.createFeature`.
-      func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
-        .PollableOperation<Feature>
+      func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws
+        -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.createFeature`.
-      func createFeature(
+      func createFeaturePollingUntilDone(
         parent: Swift.String,
         feature: Feature?,
         featureId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
+      func batchCreateFeaturesPollingUntilDone(request: BatchCreateFeaturesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
       /// See `FeatureRegistryServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(
+      func batchCreateFeaturesPollingUntilDone(
         parent: Swift.String,
         requests: [CreateFeatureRequest],
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
       /// See `FeatureRegistryServiceClient.updateFeature`.
-      func updateFeature(withPolling: UpdateFeatureRequest) async throws -> any GoogleGax
-        .PollableOperation<Feature>
+      func updateFeaturePollingUntilDone(request: UpdateFeatureRequest) async throws
+        -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.updateFeature`.
-      func updateFeature(
+      func updateFeaturePollingUntilDone(
         feature: Feature?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
-      func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
-      func deleteFeature(
+      func deleteFeaturePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -526,8 +526,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.createFeatureGroup`.
-      func createFeatureGroup(
-        withPolling: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
+      func createFeatureGroupPollingUntilDone(
+        request: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.getFeatureGroup`.
@@ -546,8 +546,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
-      func updateFeatureGroup(
-        withPolling: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
+      func updateFeatureGroupPollingUntilDone(
+        request: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
@@ -556,8 +556,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
-      func deleteFeatureGroup(
-        withPolling: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
+      func deleteFeatureGroupPollingUntilDone(
+        request: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.createFeature`.
@@ -566,8 +566,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.createFeature`.
-      func createFeature(
-        withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+      func createFeaturePollingUntilDone(
+        request: CreateFeatureRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.batchCreateFeatures`.
@@ -576,8 +576,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(
-        withPolling: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
+      func batchCreateFeaturesPollingUntilDone(
+        request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
       /// See `FeatureRegistryServiceClient.getFeature`.
@@ -596,8 +596,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.updateFeature`.
-      func updateFeature(
-        withPolling: UpdateFeatureRequest, options: GoogleGax.RequestOptions
+      func updateFeaturePollingUntilDone(
+        request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
@@ -606,8 +606,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
-      func deleteFeature(
-        withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+      func deleteFeaturePollingUntilDone(
+        request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.listLocations`.
@@ -671,14 +671,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeatureGroup(withPolling: CreateFeatureGroupRequest) async throws
+    public func createFeatureGroupPollingUntilDone(request: CreateFeatureGroupRequest) async throws
       -> any GoogleGax.PollableOperation<FeatureGroup>
     {
-      try await self.createFeatureGroup(withPolling: withPolling, options: .init())
+      try await self.createFeatureGroupPollingUntilDone(request: request, options: .init())
     }
 
-    public func createFeatureGroup(
-      withPolling: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
+    public func createFeatureGroupPollingUntilDone(
+      request: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureGroup> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureGroup>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -687,7 +687,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createFeatureGroup(
+    public func createFeatureGroupPollingUntilDone(
       parent: Swift.String,
       featureGroup: FeatureGroup?,
       featureGroupId: Swift.String,
@@ -697,7 +697,7 @@
         $0.featureGroup = featureGroup
         $0.featureGroupId = featureGroupId
       }
-      return try await self.createFeatureGroup(withPolling: request)
+      return try await self.createFeatureGroupPollingUntilDone(request: request)
     }
 
     public func getFeatureGroup(request: GetFeatureGroupRequest) async throws
@@ -775,14 +775,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateFeatureGroup(withPolling: UpdateFeatureGroupRequest) async throws
+    public func updateFeatureGroupPollingUntilDone(request: UpdateFeatureGroupRequest) async throws
       -> any GoogleGax.PollableOperation<FeatureGroup>
     {
-      try await self.updateFeatureGroup(withPolling: withPolling, options: .init())
+      try await self.updateFeatureGroupPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateFeatureGroup(
-      withPolling: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
+    public func updateFeatureGroupPollingUntilDone(
+      request: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<FeatureGroup> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<FeatureGroup>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -791,7 +791,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateFeatureGroup(
+    public func updateFeatureGroupPollingUntilDone(
       featureGroup: FeatureGroup?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<FeatureGroup> {
@@ -799,7 +799,7 @@
         $0.featureGroup = featureGroup
         $0.updateMask = updateMask
       }
-      return try await self.updateFeatureGroup(withPolling: request)
+      return try await self.updateFeatureGroupPollingUntilDone(request: request)
     }
 
     public func deleteFeatureGroup(request: DeleteFeatureGroupRequest) async throws
@@ -814,14 +814,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeatureGroup(withPolling: DeleteFeatureGroupRequest) async throws
+    public func deleteFeatureGroupPollingUntilDone(request: DeleteFeatureGroupRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteFeatureGroup(withPolling: withPolling, options: .init())
+      try await self.deleteFeatureGroupPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeatureGroup(
-      withPolling: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureGroupPollingUntilDone(
+      request: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -830,7 +830,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeatureGroup(
+    public func deleteFeatureGroupPollingUntilDone(
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -838,7 +838,7 @@
         $0.name = name
         $0.force = force
       }
-      return try await self.deleteFeatureGroup(withPolling: request)
+      return try await self.deleteFeatureGroupPollingUntilDone(request: request)
     }
 
     public func createFeature(request: CreateFeatureRequest) async throws
@@ -853,14 +853,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
-      .PollableOperation<Feature>
+    public func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws
+      -> any GoogleGax.PollableOperation<Feature>
     {
-      try await self.createFeature(withPolling: withPolling, options: .init())
+      try await self.createFeaturePollingUntilDone(request: request, options: .init())
     }
 
-    public func createFeature(
-      withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+    public func createFeaturePollingUntilDone(
+      request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -869,7 +869,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createFeature(
+    public func createFeaturePollingUntilDone(
       parent: Swift.String,
       feature: Feature?,
       featureId: Swift.String,
@@ -879,7 +879,7 @@
         $0.feature = feature
         $0.featureId = featureId
       }
-      return try await self.createFeature(withPolling: request)
+      return try await self.createFeaturePollingUntilDone(request: request)
     }
 
     public func batchCreateFeatures(request: BatchCreateFeaturesRequest) async throws
@@ -894,14 +894,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
+    public func batchCreateFeaturesPollingUntilDone(request: BatchCreateFeaturesRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
     {
-      try await self.batchCreateFeatures(withPolling: withPolling, options: .init())
+      try await self.batchCreateFeaturesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchCreateFeatures(
-      withPolling: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
+    public func batchCreateFeaturesPollingUntilDone(
+      request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
@@ -911,7 +911,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchCreateFeatures(
+    public func batchCreateFeaturesPollingUntilDone(
       parent: Swift.String,
       requests: [CreateFeatureRequest],
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
@@ -919,7 +919,7 @@
         $0.parent = parent
         $0.requests = requests
       }
-      return try await self.batchCreateFeatures(withPolling: request)
+      return try await self.batchCreateFeaturesPollingUntilDone(request: request)
     }
 
     public func getFeature(request: GetFeatureRequest) async throws
@@ -997,14 +997,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateFeature(withPolling: UpdateFeatureRequest) async throws -> any GoogleGax
-      .PollableOperation<Feature>
+    public func updateFeaturePollingUntilDone(request: UpdateFeatureRequest) async throws
+      -> any GoogleGax.PollableOperation<Feature>
     {
-      try await self.updateFeature(withPolling: withPolling, options: .init())
+      try await self.updateFeaturePollingUntilDone(request: request, options: .init())
     }
 
-    public func updateFeature(
-      withPolling: UpdateFeatureRequest, options: GoogleGax.RequestOptions
+    public func updateFeaturePollingUntilDone(
+      request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1013,7 +1013,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateFeature(
+    public func updateFeaturePollingUntilDone(
       feature: Feature?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
@@ -1021,7 +1021,7 @@
         $0.feature = feature
         $0.updateMask = updateMask
       }
-      return try await self.updateFeature(withPolling: request)
+      return try await self.updateFeaturePollingUntilDone(request: request)
     }
 
     public func deleteFeature(request: DeleteFeatureRequest) async throws
@@ -1036,14 +1036,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteFeature(withPolling: withPolling, options: .init())
+      try await self.deleteFeaturePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeature(
-      withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+    public func deleteFeaturePollingUntilDone(
+      request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1052,13 +1052,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeature(
+    public func deleteFeaturePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteFeatureRequest().with {
         $0.name = name
       }
-      return try await self.deleteFeature(withPolling: request)
+      return try await self.deleteFeaturePollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

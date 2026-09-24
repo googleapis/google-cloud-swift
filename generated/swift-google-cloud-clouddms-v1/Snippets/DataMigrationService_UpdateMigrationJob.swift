@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataMigrationServiceClient, projectId: String, locationId: String, migrationJobId: String
 ) async throws {
-  let poller = try await client.updateMigrationJob(
-    withPolling: UpdateMigrationJobRequest()
+  let poller = try await client.updateMigrationJobPollingUntilDone(
+    request: UpdateMigrationJobRequest()
       .with {
         $0.migrationJob = MigrationJob().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/migrationJobs/\(migrationJobId)"

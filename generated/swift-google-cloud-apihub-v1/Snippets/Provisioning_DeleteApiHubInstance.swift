@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(
   client: ProvisioningClient, projectId: String, locationId: String, apiHubInstanceId: String
 ) async throws {
-  let poller = try await client.deleteApiHubInstance(
-    withPolling: DeleteApiHubInstanceRequest()
+  let poller = try await client.deleteApiHubInstancePollingUntilDone(
+    request: DeleteApiHubInstanceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/apiHubInstances/\(apiHubInstanceId)"

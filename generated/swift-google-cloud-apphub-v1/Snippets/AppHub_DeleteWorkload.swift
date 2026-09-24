@@ -27,8 +27,8 @@ func sample(
   client: AppHubClient, projectId: String, locationId: String, applicationId: String,
   workloadId: String
 ) async throws {
-  let poller = try await client.deleteWorkload(
-    withPolling: DeleteWorkloadRequest()
+  let poller = try await client.deleteWorkloadPollingUntilDone(
+    request: DeleteWorkloadRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)/workloads/\(workloadId)"

@@ -27,8 +27,8 @@ func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restorePlanId: String,
   restoreId: String
 ) async throws {
-  let poller = try await client.deleteRestore(
-    withPolling: DeleteRestoreRequest()
+  let poller = try await client.deleteRestorePollingUntilDone(
+    request: DeleteRestoreRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/restorePlans/\(restorePlanId)/restores/\(restoreId)"

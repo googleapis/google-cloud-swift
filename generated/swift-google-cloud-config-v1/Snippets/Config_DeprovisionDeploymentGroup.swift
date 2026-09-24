@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient) async throws {
-  let poller = try await client.deprovisionDeploymentGroup(
-    withPolling: DeprovisionDeploymentGroupRequest()
+  let poller = try await client.deprovisionDeploymentGroupPollingUntilDone(
+    request: DeprovisionDeploymentGroupRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionTargetHttpProxiesClient) async throws {
-    let poller = try await client.setUrlMap(
-      withPolling: RegionTargetHttpProxiesClient.SetUrlMapRequest()
+    let poller = try await client.setUrlMapPollingUntilDone(
+      request: RegionTargetHttpProxiesClient.SetUrlMapRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

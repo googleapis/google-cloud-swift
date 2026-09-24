@@ -27,8 +27,8 @@ func sample(
   client: VpcFlowLogsServiceClient, projectId: String, locationId: String,
   vpcFlowLogsConfigId: String
 ) async throws {
-  let poller = try await client.deleteVpcFlowLogsConfig(
-    withPolling: DeleteVpcFlowLogsConfigRequest()
+  let poller = try await client.deleteVpcFlowLogsConfigPollingUntilDone(
+    request: DeleteVpcFlowLogsConfigRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/vpcFlowLogsConfigs/\(vpcFlowLogsConfigId)"

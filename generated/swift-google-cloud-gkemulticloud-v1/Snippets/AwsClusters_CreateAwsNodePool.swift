@@ -27,8 +27,8 @@ import GoogleWKT
 func sample(client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String)
   async throws
 {
-  let poller = try await client.createAwsNodePool(
-    withPolling: CreateAwsNodePoolRequest()
+  let poller = try await client.createAwsNodePoolPollingUntilDone(
+    request: CreateAwsNodePoolRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/awsClusters/\(awsClusterId)"
         $0.awsNodePool = AwsNodePool() /* .with { ... } */

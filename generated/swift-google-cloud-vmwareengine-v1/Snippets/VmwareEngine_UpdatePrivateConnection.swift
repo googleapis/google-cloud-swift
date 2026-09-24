@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateConnectionId: String
 ) async throws {
-  let poller = try await client.updatePrivateConnection(
-    withPolling: UpdatePrivateConnectionRequest()
+  let poller = try await client.updatePrivateConnectionPollingUntilDone(
+    request: UpdatePrivateConnectionRequest()
       .with {
         $0.privateConnection = PrivateConnection().with {
           $0.name =

@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String) async throws {
-  let poller = try await client.deleteApi(
-    withPolling: DeleteApiRequest()
+  let poller = try await client.deleteApiPollingUntilDone(
+    request: DeleteApiRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/global/apis/\(apiId)"
       }

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MemorystoreClient) async throws {
-  let poller = try await client.backupInstance(
-    withPolling: BackupInstanceRequest()
+  let poller = try await client.backupInstancePollingUntilDone(
+    request: BackupInstanceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

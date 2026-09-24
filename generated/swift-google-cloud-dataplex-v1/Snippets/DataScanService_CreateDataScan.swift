@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataScanServiceClient, parent: String) async throws {
-  let poller = try await client.createDataScan(
-    withPolling: CreateDataScanRequest()
+  let poller = try await client.createDataScanPollingUntilDone(
+    request: CreateDataScanRequest()
       .with {
         $0.parent = "\(parent)"
         $0.dataScan = DataScan() /* .with { ... } */

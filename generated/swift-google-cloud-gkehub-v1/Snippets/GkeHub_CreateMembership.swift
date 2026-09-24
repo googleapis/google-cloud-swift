@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createMembership(
-    withPolling: CreateMembershipRequest()
+  let poller = try await client.createMembershipPollingUntilDone(
+    request: CreateMembershipRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.membershipId = "[replace with a valid ID]"

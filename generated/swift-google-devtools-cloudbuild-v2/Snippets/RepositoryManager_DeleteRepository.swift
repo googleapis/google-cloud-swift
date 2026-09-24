@@ -26,8 +26,8 @@ func sample(
   client: RepositoryManagerClient, projectId: String, locationId: String, connectionId: String,
   repositoryId: String
 ) async throws {
-  let poller = try await client.deleteRepository(
-    withPolling: DeleteRepositoryRequest()
+  let poller = try await client.deleteRepositoryPollingUntilDone(
+    request: DeleteRepositoryRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)/repositories/\(repositoryId)"

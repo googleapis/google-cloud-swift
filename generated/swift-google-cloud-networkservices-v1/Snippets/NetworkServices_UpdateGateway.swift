@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: NetworkServicesClient, projectId: String, locationId: String, gatewayId: String)
   async throws
 {
-  let poller = try await client.updateGateway(
-    withPolling: UpdateGatewayRequest()
+  let poller = try await client.updateGatewayPollingUntilDone(
+    request: UpdateGatewayRequest()
       .with {
         $0.gateway = Gateway().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/gateways/\(gatewayId)"

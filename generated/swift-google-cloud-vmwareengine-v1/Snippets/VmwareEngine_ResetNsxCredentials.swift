@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient) async throws {
-  let poller = try await client.resetNsxCredentials(
-    withPolling: ResetNsxCredentialsRequest()
+  let poller = try await client.resetNsxCredentialsPollingUntilDone(
+    request: ResetNsxCredentialsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

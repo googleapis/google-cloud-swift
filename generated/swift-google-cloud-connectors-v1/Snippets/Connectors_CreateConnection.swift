@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConnectorsClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createConnection(
-    withPolling: CreateConnectionRequest()
+  let poller = try await client.createConnectionPollingUntilDone(
+    request: CreateConnectionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.connectionId = "[replace with a valid ID]"

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: SecurityPostureClient, organizationId: String, locationId: String, postureId: String
 ) async throws {
-  let poller = try await client.updatePosture(
-    withPolling: UpdatePostureRequest()
+  let poller = try await client.updatePosturePollingUntilDone(
+    request: UpdatePostureRequest()
       .with {
         $0.posture = Posture().with {
           $0.name = "organizations/\(organizationId)/locations/\(locationId)/postures/\(postureId)"

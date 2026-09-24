@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CatalogServiceClient, projectId: String, locationId: String, aspectTypeId: String
 ) async throws {
-  let poller = try await client.deleteAspectType(
-    withPolling: DeleteAspectTypeRequest()
+  let poller = try await client.deleteAspectTypePollingUntilDone(
+    request: DeleteAspectTypeRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/aspectTypes/\(aspectTypeId)"
       }

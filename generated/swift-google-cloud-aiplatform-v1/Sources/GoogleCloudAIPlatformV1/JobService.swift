@@ -85,15 +85,15 @@
     /// Deletes a CustomJob.
     ///
     /// @Snippet(path: "JobService_DeleteCustomJob")
-    public func deleteCustomJob(
-      withPolling: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
+    public func deleteCustomJobPollingUntilDone(
+      request: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteCustomJob(request: withPolling, options: options)
+      let rawOp = try await self.deleteCustomJob(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -173,15 +173,15 @@
     /// Deletes a DataLabelingJob.
     ///
     /// @Snippet(path: "JobService_DeleteDataLabelingJob")
-    public func deleteDataLabelingJob(
-      withPolling: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
+    public func deleteDataLabelingJobPollingUntilDone(
+      request: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteDataLabelingJob(request: withPolling, options: options)
+      let rawOp = try await self.deleteDataLabelingJob(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -244,16 +244,15 @@
     /// Deletes a HyperparameterTuningJob.
     ///
     /// @Snippet(path: "JobService_DeleteHyperparameterTuningJob")
-    public func deleteHyperparameterTuningJob(
-      withPolling: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
+    public func deleteHyperparameterTuningJobPollingUntilDone(
+      request: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteHyperparameterTuningJob(
-        request: withPolling, options: options)
+      let rawOp = try await self.deleteHyperparameterTuningJob(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -334,15 +333,15 @@
     /// Deletes a NasJob.
     ///
     /// @Snippet(path: "JobService_DeleteNasJob")
-    public func deleteNasJob(
-      withPolling: DeleteNasJobRequest, options: GoogleGax.RequestOptions
+    public func deleteNasJobPollingUntilDone(
+      request: DeleteNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteNasJob(request: withPolling, options: options)
+      let rawOp = try await self.deleteNasJob(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -443,15 +442,15 @@
     /// finished.
     ///
     /// @Snippet(path: "JobService_DeleteBatchPredictionJob")
-    public func deleteBatchPredictionJob(
-      withPolling: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
+    public func deleteBatchPredictionJobPollingUntilDone(
+      request: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteBatchPredictionJob(request: withPolling, options: options)
+      let rawOp = try await self.deleteBatchPredictionJob(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -541,8 +540,8 @@
     /// Updates a ModelDeploymentMonitoringJob.
     ///
     /// @Snippet(path: "JobService_UpdateModelDeploymentMonitoringJob")
-    public func updateModelDeploymentMonitoringJob(
-      withPolling: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
+    public func updateModelDeploymentMonitoringJobPollingUntilDone(
+      request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
@@ -550,7 +549,7 @@
         return try op._extractStatus(ModelDeploymentMonitoringJob.self)
       }
       let rawOp = try await self.updateModelDeploymentMonitoringJob(
-        request: withPolling, options: options)
+        request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ModelDeploymentMonitoringJob>.State in
@@ -578,8 +577,8 @@
     /// Deletes a ModelDeploymentMonitoringJob.
     ///
     /// @Snippet(path: "JobService_DeleteModelDeploymentMonitoringJob")
-    public func deleteModelDeploymentMonitoringJob(
-      withPolling: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
+    public func deleteModelDeploymentMonitoringJobPollingUntilDone(
+      request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
@@ -587,7 +586,7 @@
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteModelDeploymentMonitoringJob(
-        request: withPolling, options: options)
+        request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -747,68 +746,69 @@
     /// and pass a mock implementation in your tests.
     public protocol JobServiceProtocol: Sendable {
       /// See `JobServiceClient.deleteCustomJob`.
-      func deleteCustomJob(withPolling: DeleteCustomJobRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteCustomJobPollingUntilDone(request: DeleteCustomJobRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteCustomJob`.
-      func deleteCustomJob(
+      func deleteCustomJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteDataLabelingJob`.
-      func deleteDataLabelingJob(withPolling: DeleteDataLabelingJobRequest) async throws
+      func deleteDataLabelingJobPollingUntilDone(request: DeleteDataLabelingJobRequest) async throws
         -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteDataLabelingJob`.
-      func deleteDataLabelingJob(
+      func deleteDataLabelingJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteHyperparameterTuningJob`.
-      func deleteHyperparameterTuningJob(withPolling: DeleteHyperparameterTuningJobRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteHyperparameterTuningJobPollingUntilDone(
+        request: DeleteHyperparameterTuningJobRequest
+      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteHyperparameterTuningJob`.
-      func deleteHyperparameterTuningJob(
+      func deleteHyperparameterTuningJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteNasJob`.
-      func deleteNasJob(withPolling: DeleteNasJobRequest) async throws -> any GoogleGax
+      func deleteNasJobPollingUntilDone(request: DeleteNasJobRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteNasJob`.
-      func deleteNasJob(
+      func deleteNasJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteBatchPredictionJob`.
-      func deleteBatchPredictionJob(withPolling: DeleteBatchPredictionJobRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteBatchPredictionJobPollingUntilDone(request: DeleteBatchPredictionJobRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteBatchPredictionJob`.
-      func deleteBatchPredictionJob(
+      func deleteBatchPredictionJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.updateModelDeploymentMonitoringJob`.
-      func updateModelDeploymentMonitoringJob(
-        withPolling: UpdateModelDeploymentMonitoringJobRequest
+      func updateModelDeploymentMonitoringJobPollingUntilDone(
+        request: UpdateModelDeploymentMonitoringJobRequest
       ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob>
 
       /// See `JobServiceClient.updateModelDeploymentMonitoringJob`.
-      func updateModelDeploymentMonitoringJob(
+      func updateModelDeploymentMonitoringJobPollingUntilDone(
         modelDeploymentMonitoringJob: ModelDeploymentMonitoringJob?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob>
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
-      func deleteModelDeploymentMonitoringJob(
-        withPolling: DeleteModelDeploymentMonitoringJobRequest
+      func deleteModelDeploymentMonitoringJobPollingUntilDone(
+        request: DeleteModelDeploymentMonitoringJobRequest
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
-      func deleteModelDeploymentMonitoringJob(
+      func deleteModelDeploymentMonitoringJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -833,8 +833,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.deleteCustomJob`.
-      func deleteCustomJob(
-        withPolling: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
+      func deleteCustomJobPollingUntilDone(
+        request: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelCustomJob`.
@@ -863,8 +863,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.deleteDataLabelingJob`.
-      func deleteDataLabelingJob(
-        withPolling: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
+      func deleteDataLabelingJobPollingUntilDone(
+        request: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelDataLabelingJob`.
@@ -893,8 +893,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.deleteHyperparameterTuningJob`.
-      func deleteHyperparameterTuningJob(
-        withPolling: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
+      func deleteHyperparameterTuningJobPollingUntilDone(
+        request: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelHyperparameterTuningJob`.
@@ -923,8 +923,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.deleteNasJob`.
-      func deleteNasJob(
-        withPolling: DeleteNasJobRequest, options: GoogleGax.RequestOptions
+      func deleteNasJobPollingUntilDone(
+        request: DeleteNasJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelNasJob`.
@@ -963,8 +963,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.deleteBatchPredictionJob`.
-      func deleteBatchPredictionJob(
-        withPolling: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
+      func deleteBatchPredictionJobPollingUntilDone(
+        request: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelBatchPredictionJob`.
@@ -1000,8 +1000,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.updateModelDeploymentMonitoringJob`.
-      func updateModelDeploymentMonitoringJob(
-        withPolling: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
+      func updateModelDeploymentMonitoringJobPollingUntilDone(
+        request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob>
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
@@ -1010,8 +1010,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
-      func deleteModelDeploymentMonitoringJob(
-        withPolling: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
+      func deleteModelDeploymentMonitoringJobPollingUntilDone(
+        request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.pauseModelDeploymentMonitoringJob`.
@@ -1171,14 +1171,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteCustomJob(withPolling: DeleteCustomJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteCustomJobPollingUntilDone(request: DeleteCustomJobRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteCustomJob(withPolling: withPolling, options: .init())
+      try await self.deleteCustomJobPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteCustomJob(
-      withPolling: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
+    public func deleteCustomJobPollingUntilDone(
+      request: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1187,13 +1187,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteCustomJob(
+    public func deleteCustomJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteCustomJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteCustomJob(withPolling: request)
+      return try await self.deleteCustomJobPollingUntilDone(request: request)
     }
 
     public func cancelCustomJob(request: CancelCustomJobRequest) async throws {
@@ -1314,14 +1314,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteDataLabelingJob(withPolling: DeleteDataLabelingJobRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteDataLabelingJobPollingUntilDone(request: DeleteDataLabelingJobRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteDataLabelingJob(withPolling: withPolling, options: .init())
+      try await self.deleteDataLabelingJobPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteDataLabelingJob(
-      withPolling: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
+    public func deleteDataLabelingJobPollingUntilDone(
+      request: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1330,13 +1330,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteDataLabelingJob(
+    public func deleteDataLabelingJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteDataLabelingJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteDataLabelingJob(withPolling: request)
+      return try await self.deleteDataLabelingJobPollingUntilDone(request: request)
     }
 
     public func cancelDataLabelingJob(request: CancelDataLabelingJobRequest) async throws {
@@ -1457,14 +1457,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteHyperparameterTuningJob(withPolling: DeleteHyperparameterTuningJobRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-    {
-      try await self.deleteHyperparameterTuningJob(withPolling: withPolling, options: .init())
+    public func deleteHyperparameterTuningJobPollingUntilDone(
+      request: DeleteHyperparameterTuningJobRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+      try await self.deleteHyperparameterTuningJobPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func deleteHyperparameterTuningJob(
-      withPolling: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
+    public func deleteHyperparameterTuningJobPollingUntilDone(
+      request: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1473,13 +1474,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteHyperparameterTuningJob(
+    public func deleteHyperparameterTuningJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteHyperparameterTuningJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteHyperparameterTuningJob(withPolling: request)
+      return try await self.deleteHyperparameterTuningJobPollingUntilDone(request: request)
     }
 
     public func cancelHyperparameterTuningJob(request: CancelHyperparameterTuningJobRequest)
@@ -1600,14 +1601,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteNasJob(withPolling: DeleteNasJobRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteNasJobPollingUntilDone(request: DeleteNasJobRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteNasJob(withPolling: withPolling, options: .init())
+      try await self.deleteNasJobPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteNasJob(
-      withPolling: DeleteNasJobRequest, options: GoogleGax.RequestOptions
+    public func deleteNasJobPollingUntilDone(
+      request: DeleteNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1616,13 +1617,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteNasJob(
+    public func deleteNasJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteNasJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteNasJob(withPolling: request)
+      return try await self.deleteNasJobPollingUntilDone(request: request)
     }
 
     public func cancelNasJob(request: CancelNasJobRequest) async throws {
@@ -1806,14 +1807,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteBatchPredictionJob(withPolling: DeleteBatchPredictionJobRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteBatchPredictionJobPollingUntilDone(request: DeleteBatchPredictionJobRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteBatchPredictionJob(withPolling: withPolling, options: .init())
+      try await self.deleteBatchPredictionJobPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteBatchPredictionJob(
-      withPolling: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
+    public func deleteBatchPredictionJobPollingUntilDone(
+      request: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1822,13 +1823,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteBatchPredictionJob(
+    public func deleteBatchPredictionJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteBatchPredictionJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteBatchPredictionJob(withPolling: request)
+      return try await self.deleteBatchPredictionJobPollingUntilDone(request: request)
     }
 
     public func cancelBatchPredictionJob(request: CancelBatchPredictionJobRequest) async throws {
@@ -2000,14 +2001,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateModelDeploymentMonitoringJob(
-      withPolling: UpdateModelDeploymentMonitoringJobRequest
+    public func updateModelDeploymentMonitoringJobPollingUntilDone(
+      request: UpdateModelDeploymentMonitoringJobRequest
     ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob> {
-      try await self.updateModelDeploymentMonitoringJob(withPolling: withPolling, options: .init())
+      try await self.updateModelDeploymentMonitoringJobPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func updateModelDeploymentMonitoringJob(
-      withPolling: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
+    public func updateModelDeploymentMonitoringJobPollingUntilDone(
+      request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ModelDeploymentMonitoringJob>.State in
@@ -2017,7 +2019,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateModelDeploymentMonitoringJob(
+    public func updateModelDeploymentMonitoringJobPollingUntilDone(
       modelDeploymentMonitoringJob: ModelDeploymentMonitoringJob?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<ModelDeploymentMonitoringJob> {
@@ -2025,7 +2027,7 @@
         $0.modelDeploymentMonitoringJob = modelDeploymentMonitoringJob
         $0.updateMask = updateMask
       }
-      return try await self.updateModelDeploymentMonitoringJob(withPolling: request)
+      return try await self.updateModelDeploymentMonitoringJobPollingUntilDone(request: request)
     }
 
     public func deleteModelDeploymentMonitoringJob(
@@ -2040,14 +2042,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteModelDeploymentMonitoringJob(
-      withPolling: DeleteModelDeploymentMonitoringJobRequest
+    public func deleteModelDeploymentMonitoringJobPollingUntilDone(
+      request: DeleteModelDeploymentMonitoringJobRequest
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      try await self.deleteModelDeploymentMonitoringJob(withPolling: withPolling, options: .init())
+      try await self.deleteModelDeploymentMonitoringJobPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func deleteModelDeploymentMonitoringJob(
-      withPolling: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
+    public func deleteModelDeploymentMonitoringJobPollingUntilDone(
+      request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -2056,13 +2059,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteModelDeploymentMonitoringJob(
+    public func deleteModelDeploymentMonitoringJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteModelDeploymentMonitoringJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteModelDeploymentMonitoringJob(withPolling: request)
+      return try await self.deleteModelDeploymentMonitoringJobPollingUntilDone(request: request)
     }
 
     public func pauseModelDeploymentMonitoringJob(request: PauseModelDeploymentMonitoringJobRequest)

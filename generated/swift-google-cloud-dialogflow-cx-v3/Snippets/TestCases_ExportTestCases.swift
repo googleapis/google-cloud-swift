@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: TestCasesClient) async throws {
-    let poller = try await client.exportTestCases(
-      withPolling: ExportTestCasesRequest()
+    let poller = try await client.exportTestCasesPollingUntilDone(
+      request: ExportTestCasesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

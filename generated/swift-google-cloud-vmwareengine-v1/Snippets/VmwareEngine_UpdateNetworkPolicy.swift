@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPolicyId: String
 ) async throws {
-  let poller = try await client.updateNetworkPolicy(
-    withPolling: UpdateNetworkPolicyRequest()
+  let poller = try await client.updateNetworkPolicyPollingUntilDone(
+    request: UpdateNetworkPolicyRequest()
       .with {
         $0.networkPolicy = NetworkPolicy().with {
           $0.name =

@@ -95,15 +95,15 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ReleaseConfigs, and WorkflowConfigs).
   ///
   /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
-  public func deleteTeamFolderTree(
-    withPolling: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
+  public func deleteTeamFolderTreePollingUntilDone(
+    request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteTeamFolderTree(request: withPolling, options: options)
+    let rawOp = try await self.deleteTeamFolderTree(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -187,15 +187,15 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ReleaseConfigs, and WorkflowConfigs).
   ///
   /// @Snippet(path: "Dataform_DeleteFolderTree")
-  public func deleteFolderTree(
-    withPolling: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
+  public func deleteFolderTreePollingUntilDone(
+    request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteFolderTree(request: withPolling, options: options)
+    let rawOp = try await self.deleteFolderTree(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -242,15 +242,15 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a Folder to a new Folder, TeamFolder, or the root location.
   ///
   /// @Snippet(path: "Dataform_MoveFolder")
-  public func moveFolder(
-    withPolling: MoveFolderRequest, options: GoogleGax.RequestOptions
+  public func moveFolderPollingUntilDone(
+    request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.moveFolder(request: withPolling, options: options)
+    let rawOp = try await self.moveFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -330,15 +330,15 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a Repository to a new location.
   ///
   /// @Snippet(path: "Dataform_MoveRepository")
-  public func moveRepository(
-    withPolling: MoveRepositoryRequest, options: GoogleGax.RequestOptions
+  public func moveRepositoryPollingUntilDone(
+    request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.moveRepository(request: withPolling, options: options)
+    let rawOp = try await self.moveRepository(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -940,42 +940,41 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataformProtocol: Sendable {
     /// See `DataformClient.deleteTeamFolderTree`.
-    func deleteTeamFolderTree(withPolling: DeleteTeamFolderTreeRequest) async throws
+    func deleteTeamFolderTreePollingUntilDone(request: DeleteTeamFolderTreeRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.deleteTeamFolderTree`.
-    func deleteTeamFolderTree(
+    func deleteTeamFolderTreePollingUntilDone(
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.deleteFolderTree`.
-    func deleteFolderTree(withPolling: DeleteFolderTreeRequest) async throws -> any GoogleGax
+    func deleteFolderTreePollingUntilDone(request: DeleteFolderTreeRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
+
+    /// See `DataformClient.deleteFolderTree`.
+    func deleteFolderTreePollingUntilDone(
+      name: Swift.String,
+      force: Swift.Bool,
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+
+    /// See `DataformClient.moveFolder`.
+    func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
-    /// See `DataformClient.deleteFolderTree`.
-    func deleteFolderTree(
-      name: Swift.String,
-      force: Swift.Bool,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
     /// See `DataformClient.moveFolder`.
-    func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleGax.PollableOperation<
-      Swift.Void
-    >
-
-    /// See `DataformClient.moveFolder`.
-    func moveFolder(
+    func moveFolderPollingUntilDone(
       name: Swift.String,
       destinationContainingFolder: Swift.String?,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.moveRepository`.
-    func moveRepository(withPolling: MoveRepositoryRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func moveRepositoryPollingUntilDone(request: MoveRepositoryRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.moveRepository`.
-    func moveRepository(
+    func moveRepositoryPollingUntilDone(
       name: Swift.String,
       destinationContainingFolder: Swift.String?,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
@@ -1006,8 +1005,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataformClient.deleteTeamFolderTree`.
-    func deleteTeamFolderTree(
-      withPolling: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
+    func deleteTeamFolderTreePollingUntilDone(
+      request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.queryTeamFolderContents`.
@@ -1046,8 +1045,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataformClient.deleteFolderTree`.
-    func deleteFolderTree(
-      withPolling: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
+    func deleteFolderTreePollingUntilDone(
+      request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.queryFolderContents`.
@@ -1066,8 +1065,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataformClient.moveFolder`.
-    func moveFolder(
-      withPolling: MoveFolderRequest, options: GoogleGax.RequestOptions
+    func moveFolderPollingUntilDone(
+      request: MoveFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.listRepositories`.
@@ -1101,8 +1100,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataformClient.moveRepository`.
-    func moveRepository(
-      withPolling: MoveRepositoryRequest, options: GoogleGax.RequestOptions
+    func moveRepositoryPollingUntilDone(
+      request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.commitRepositoryChanges`.
@@ -1492,14 +1491,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTeamFolderTree(withPolling: DeleteTeamFolderTreeRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteTeamFolderTreePollingUntilDone(request: DeleteTeamFolderTreeRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteTeamFolderTree(withPolling: withPolling, options: .init())
+    try await self.deleteTeamFolderTreePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteTeamFolderTree(
-    withPolling: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
+  public func deleteTeamFolderTreePollingUntilDone(
+    request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1508,7 +1507,7 @@ extension Clients.DataformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteTeamFolderTree(
+  public func deleteTeamFolderTreePollingUntilDone(
     name: Swift.String,
     force: Swift.Bool,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -1516,7 +1515,7 @@ extension Clients.DataformProtocol {
       $0.name = name
       $0.force = force
     }
-    return try await self.deleteTeamFolderTree(withPolling: request)
+    return try await self.deleteTeamFolderTreePollingUntilDone(request: request)
   }
 
   public func queryTeamFolderContents(request: QueryTeamFolderContentsRequest) async throws
@@ -1691,14 +1690,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFolderTree(withPolling: DeleteFolderTreeRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteFolderTreePollingUntilDone(request: DeleteFolderTreeRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteFolderTree(withPolling: withPolling, options: .init())
+    try await self.deleteFolderTreePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFolderTree(
-    withPolling: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
+  public func deleteFolderTreePollingUntilDone(
+    request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1707,7 +1706,7 @@ extension Clients.DataformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteFolderTree(
+  public func deleteFolderTreePollingUntilDone(
     name: Swift.String,
     force: Swift.Bool,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -1715,7 +1714,7 @@ extension Clients.DataformProtocol {
       $0.name = name
       $0.force = force
     }
-    return try await self.deleteFolderTree(withPolling: request)
+    return try await self.deleteFolderTreePollingUntilDone(request: request)
   }
 
   public func queryFolderContents(request: QueryFolderContentsRequest) async throws
@@ -1814,14 +1813,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleGax
+  public func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.moveFolder(withPolling: withPolling, options: .init())
+    try await self.moveFolderPollingUntilDone(request: request, options: .init())
   }
 
-  public func moveFolder(
-    withPolling: MoveFolderRequest, options: GoogleGax.RequestOptions
+  public func moveFolderPollingUntilDone(
+    request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1830,7 +1829,7 @@ extension Clients.DataformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func moveFolder(
+  public func moveFolderPollingUntilDone(
     name: Swift.String,
     destinationContainingFolder: Swift.String?,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -1838,7 +1837,7 @@ extension Clients.DataformProtocol {
       $0.name = name
       $0.destinationContainingFolder = destinationContainingFolder
     }
-    return try await self.moveFolder(withPolling: request)
+    return try await self.moveFolderPollingUntilDone(request: request)
   }
 
   public func listRepositories(request: ListRepositoriesRequest) async throws
@@ -1986,14 +1985,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func moveRepository(withPolling: MoveRepositoryRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func moveRepositoryPollingUntilDone(request: MoveRepositoryRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.moveRepository(withPolling: withPolling, options: .init())
+    try await self.moveRepositoryPollingUntilDone(request: request, options: .init())
   }
 
-  public func moveRepository(
-    withPolling: MoveRepositoryRequest, options: GoogleGax.RequestOptions
+  public func moveRepositoryPollingUntilDone(
+    request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2002,7 +2001,7 @@ extension Clients.DataformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func moveRepository(
+  public func moveRepositoryPollingUntilDone(
     name: Swift.String,
     destinationContainingFolder: Swift.String?,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -2010,7 +2009,7 @@ extension Clients.DataformProtocol {
       $0.name = name
       $0.destinationContainingFolder = destinationContainingFolder
     }
-    return try await self.moveRepository(withPolling: request)
+    return try await self.moveRepositoryPollingUntilDone(request: request)
   }
 
   public func commitRepositoryChanges(request: CommitRepositoryChangesRequest) async throws

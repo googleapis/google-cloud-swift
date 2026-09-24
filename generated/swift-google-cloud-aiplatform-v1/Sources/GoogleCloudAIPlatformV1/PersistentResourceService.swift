@@ -60,15 +60,15 @@
     /// Creates a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_CreatePersistentResource")
-    public func createPersistentResource(
-      withPolling: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func createPersistentResourcePollingUntilDone(
+      request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         return try op._extractStatus(PersistentResource.self)
       }
-      let rawOp = try await self.createPersistentResource(request: withPolling, options: options)
+      let rawOp = try await self.createPersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         let op = try await self.getOperation(
@@ -113,15 +113,15 @@
     /// Deletes a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
-    public func deletePersistentResource(
-      withPolling: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func deletePersistentResourcePollingUntilDone(
+      request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deletePersistentResource(request: withPolling, options: options)
+      let rawOp = try await self.deletePersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -148,15 +148,15 @@
     /// Updates a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_UpdatePersistentResource")
-    public func updatePersistentResource(
-      withPolling: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func updatePersistentResourcePollingUntilDone(
+      request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         return try op._extractStatus(PersistentResource.self)
       }
-      let rawOp = try await self.updatePersistentResource(request: withPolling, options: options)
+      let rawOp = try await self.updatePersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         let op = try await self.getOperation(
@@ -183,15 +183,15 @@
     /// Reboots a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_RebootPersistentResource")
-    public func rebootPersistentResource(
-      withPolling: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func rebootPersistentResourcePollingUntilDone(
+      request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         return try op._extractStatus(PersistentResource.self)
       }
-      let rawOp = try await self.rebootPersistentResource(request: withPolling, options: options)
+      let rawOp = try await self.rebootPersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         let op = try await self.getOperation(
@@ -326,41 +326,41 @@
     /// and pass a mock implementation in your tests.
     public protocol PersistentResourceServiceProtocol: Sendable {
       /// See `PersistentResourceServiceClient.createPersistentResource`.
-      func createPersistentResource(withPolling: CreatePersistentResourceRequest) async throws
-        -> any GoogleGax.PollableOperation<PersistentResource>
+      func createPersistentResourcePollingUntilDone(request: CreatePersistentResourceRequest)
+        async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.createPersistentResource`.
-      func createPersistentResource(
+      func createPersistentResourcePollingUntilDone(
         parent: Swift.String,
         persistentResource: PersistentResource?,
         persistentResourceId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.deletePersistentResource`.
-      func deletePersistentResource(withPolling: DeletePersistentResourceRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deletePersistentResourcePollingUntilDone(request: DeletePersistentResourceRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PersistentResourceServiceClient.deletePersistentResource`.
-      func deletePersistentResource(
+      func deletePersistentResourcePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
-      func updatePersistentResource(withPolling: UpdatePersistentResourceRequest) async throws
-        -> any GoogleGax.PollableOperation<PersistentResource>
+      func updatePersistentResourcePollingUntilDone(request: UpdatePersistentResourceRequest)
+        async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
-      func updatePersistentResource(
+      func updatePersistentResourcePollingUntilDone(
         persistentResource: PersistentResource?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
-      func rebootPersistentResource(withPolling: RebootPersistentResourceRequest) async throws
-        -> any GoogleGax.PollableOperation<PersistentResource>
+      func rebootPersistentResourcePollingUntilDone(request: RebootPersistentResourceRequest)
+        async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
-      func rebootPersistentResource(
+      func rebootPersistentResourcePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
@@ -370,8 +370,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PersistentResourceServiceClient.createPersistentResource`.
-      func createPersistentResource(
-        withPolling: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
+      func createPersistentResourcePollingUntilDone(
+        request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.getPersistentResource`.
@@ -390,8 +390,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PersistentResourceServiceClient.deletePersistentResource`.
-      func deletePersistentResource(
-        withPolling: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
+      func deletePersistentResourcePollingUntilDone(
+        request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
@@ -400,8 +400,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
-      func updatePersistentResource(
-        withPolling: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
+      func updatePersistentResourcePollingUntilDone(
+        request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
@@ -410,8 +410,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
-      func rebootPersistentResource(
-        withPolling: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
+      func rebootPersistentResourcePollingUntilDone(
+        request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.listLocations`.
@@ -475,14 +475,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createPersistentResource(withPolling: CreatePersistentResourceRequest) async throws
-      -> any GoogleGax.PollableOperation<PersistentResource>
+    public func createPersistentResourcePollingUntilDone(request: CreatePersistentResourceRequest)
+      async throws -> any GoogleGax.PollableOperation<PersistentResource>
     {
-      try await self.createPersistentResource(withPolling: withPolling, options: .init())
+      try await self.createPersistentResourcePollingUntilDone(request: request, options: .init())
     }
 
-    public func createPersistentResource(
-      withPolling: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func createPersistentResourcePollingUntilDone(
+      request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -491,7 +491,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createPersistentResource(
+    public func createPersistentResourcePollingUntilDone(
       parent: Swift.String,
       persistentResource: PersistentResource?,
       persistentResourceId: Swift.String,
@@ -501,7 +501,7 @@
         $0.persistentResource = persistentResource
         $0.persistentResourceId = persistentResourceId
       }
-      return try await self.createPersistentResource(withPolling: request)
+      return try await self.createPersistentResourcePollingUntilDone(request: request)
     }
 
     public func getPersistentResource(request: GetPersistentResourceRequest) async throws
@@ -580,14 +580,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deletePersistentResource(withPolling: DeletePersistentResourceRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deletePersistentResourcePollingUntilDone(request: DeletePersistentResourceRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deletePersistentResource(withPolling: withPolling, options: .init())
+      try await self.deletePersistentResourcePollingUntilDone(request: request, options: .init())
     }
 
-    public func deletePersistentResource(
-      withPolling: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func deletePersistentResourcePollingUntilDone(
+      request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -596,13 +596,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deletePersistentResource(
+    public func deletePersistentResourcePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeletePersistentResourceRequest().with {
         $0.name = name
       }
-      return try await self.deletePersistentResource(withPolling: request)
+      return try await self.deletePersistentResourcePollingUntilDone(request: request)
     }
 
     public func updatePersistentResource(request: UpdatePersistentResourceRequest) async throws
@@ -617,14 +617,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updatePersistentResource(withPolling: UpdatePersistentResourceRequest) async throws
-      -> any GoogleGax.PollableOperation<PersistentResource>
+    public func updatePersistentResourcePollingUntilDone(request: UpdatePersistentResourceRequest)
+      async throws -> any GoogleGax.PollableOperation<PersistentResource>
     {
-      try await self.updatePersistentResource(withPolling: withPolling, options: .init())
+      try await self.updatePersistentResourcePollingUntilDone(request: request, options: .init())
     }
 
-    public func updatePersistentResource(
-      withPolling: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func updatePersistentResourcePollingUntilDone(
+      request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -633,7 +633,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updatePersistentResource(
+    public func updatePersistentResourcePollingUntilDone(
       persistentResource: PersistentResource?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
@@ -641,7 +641,7 @@
         $0.persistentResource = persistentResource
         $0.updateMask = updateMask
       }
-      return try await self.updatePersistentResource(withPolling: request)
+      return try await self.updatePersistentResourcePollingUntilDone(request: request)
     }
 
     public func rebootPersistentResource(request: RebootPersistentResourceRequest) async throws
@@ -656,14 +656,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func rebootPersistentResource(withPolling: RebootPersistentResourceRequest) async throws
-      -> any GoogleGax.PollableOperation<PersistentResource>
+    public func rebootPersistentResourcePollingUntilDone(request: RebootPersistentResourceRequest)
+      async throws -> any GoogleGax.PollableOperation<PersistentResource>
     {
-      try await self.rebootPersistentResource(withPolling: withPolling, options: .init())
+      try await self.rebootPersistentResourcePollingUntilDone(request: request, options: .init())
     }
 
-    public func rebootPersistentResource(
-      withPolling: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
+    public func rebootPersistentResourcePollingUntilDone(
+      request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -672,13 +672,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func rebootPersistentResource(
+    public func rebootPersistentResourcePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let request = RebootPersistentResourceRequest().with {
         $0.name = name
       }
-      return try await self.rebootPersistentResource(withPolling: request)
+      return try await self.rebootPersistentResourcePollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

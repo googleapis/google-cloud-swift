@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NotebookServiceClient) async throws {
-  let poller = try await client.diagnoseInstance(
-    withPolling: DiagnoseInstanceRequest()
+  let poller = try await client.diagnoseInstancePollingUntilDone(
+    request: DiagnoseInstanceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

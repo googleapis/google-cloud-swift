@@ -24,8 +24,8 @@ func sample(
   client: RevisionsClient, projectId: String, locationId: String, serviceId: String,
   revisionId: String
 ) async throws {
-  let poller = try await client.deleteRevision(
-    withPolling: DeleteRevisionRequest()
+  let poller = try await client.deleteRevisionPollingUntilDone(
+    request: DeleteRevisionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)/revisions/\(revisionId)"

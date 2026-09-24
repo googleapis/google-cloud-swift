@@ -27,8 +27,8 @@ func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, wasmPluginId: String,
   wasmPluginVersionId: String
 ) async throws {
-  let poller = try await client.deleteWasmPluginVersion(
-    withPolling: DeleteWasmPluginVersionRequest()
+  let poller = try await client.deleteWasmPluginVersionPollingUntilDone(
+    request: DeleteWasmPluginVersionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/wasmPlugins/\(wasmPluginId)/versions/\(wasmPluginVersionId)"

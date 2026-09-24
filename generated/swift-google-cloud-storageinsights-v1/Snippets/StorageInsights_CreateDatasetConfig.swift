@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StorageInsightsClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createDatasetConfig(
-    withPolling: CreateDatasetConfigRequest()
+  let poller = try await client.createDatasetConfigPollingUntilDone(
+    request: CreateDatasetConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.datasetConfig = DatasetConfig() /* .with { ... } */

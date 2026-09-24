@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataTransferServiceClient, parent: String) async throws {
-  let poller = try await client.createMulticloudDataTransferConfig(
-    withPolling: CreateMulticloudDataTransferConfigRequest()
+  let poller = try await client.createMulticloudDataTransferConfigPollingUntilDone(
+    request: CreateMulticloudDataTransferConfigRequest()
       .with {
         $0.parent = "\(parent)"
         $0.multicloudDataTransferConfig = MulticloudDataTransferConfig() /* .with { ... } */

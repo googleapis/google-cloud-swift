@@ -26,8 +26,8 @@ func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String,
   dvrSessionId: String
 ) async throws {
-  let poller = try await client.updateDvrSession(
-    withPolling: UpdateDvrSessionRequest()
+  let poller = try await client.updateDvrSessionPollingUntilDone(
+    request: UpdateDvrSessionRequest()
       .with {
         $0.dvrSession = DvrSession().with {
           $0.name =

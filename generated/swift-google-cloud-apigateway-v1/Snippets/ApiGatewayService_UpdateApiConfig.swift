@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String, apiConfigId: String)
   async throws
 {
-  let poller = try await client.updateApiConfig(
-    withPolling: UpdateApiConfigRequest()
+  let poller = try await client.updateApiConfigPollingUntilDone(
+    request: UpdateApiConfigRequest()
       .with {
         $0.apiConfig = ApiConfig().with {
           $0.name = "projects/\(projectId)/locations/global/apis/\(apiId)/configs/\(apiConfigId)"

@@ -27,8 +27,8 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let poller = try await client.deleteFeaturestore(
-      withPolling: DeleteFeaturestoreRequest()
+    let poller = try await client.deleteFeaturestorePollingUntilDone(
+      request: DeleteFeaturestoreRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)"
         }

@@ -27,8 +27,8 @@ func sample(
   client: FirewallActivationClient, projectId: String, locationId: String,
   firewallEndpointAssociationId: String
 ) async throws {
-  let poller = try await client.updateFirewallEndpointAssociation(
-    withPolling: UpdateFirewallEndpointAssociationRequest()
+  let poller = try await client.updateFirewallEndpointAssociationPollingUntilDone(
+    request: UpdateFirewallEndpointAssociationRequest()
       .with {
         $0.firewallEndpointAssociation = FirewallEndpointAssociation().with {
           $0.name =

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworkFirewallPoliciesClient) async throws {
-    let poller = try await client.removePacketMirroringRule(
-      withPolling: NetworkFirewallPoliciesClient.RemovePacketMirroringRuleRequest()
+    let poller = try await client.removePacketMirroringRulePollingUntilDone(
+      request: NetworkFirewallPoliciesClient.RemovePacketMirroringRuleRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

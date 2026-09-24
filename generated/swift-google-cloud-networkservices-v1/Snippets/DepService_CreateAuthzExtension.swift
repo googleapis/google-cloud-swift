@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DepServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAuthzExtension(
-    withPolling: CreateAuthzExtensionRequest()
+  let poller = try await client.createAuthzExtensionPollingUntilDone(
+    request: CreateAuthzExtensionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.authzExtension = AuthzExtension() /* .with { ... } */

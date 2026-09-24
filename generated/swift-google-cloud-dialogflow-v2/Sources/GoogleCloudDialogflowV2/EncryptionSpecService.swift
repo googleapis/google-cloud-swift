@@ -73,15 +73,15 @@
     /// location will be encrypted with the existing specification.
     ///
     /// @Snippet(path: "EncryptionSpecService_InitializeEncryptionSpec")
-    public func initializeEncryptionSpec(
-      withPolling: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
+    public func initializeEncryptionSpecPollingUntilDone(
+      request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State in
         return try op._extractStatus(InitializeEncryptionSpecResponse.self)
       }
-      let rawOp = try await self.initializeEncryptionSpec(request: withPolling, options: options)
+      let rawOp = try await self.initializeEncryptionSpec(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State
@@ -175,11 +175,11 @@
     /// and pass a mock implementation in your tests.
     public protocol EncryptionSpecServiceProtocol: Sendable {
       /// See `EncryptionSpecServiceClient.initializeEncryptionSpec`.
-      func initializeEncryptionSpec(withPolling: InitializeEncryptionSpecRequest) async throws
-        -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
+      func initializeEncryptionSpecPollingUntilDone(request: InitializeEncryptionSpecRequest)
+        async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
 
       /// See `EncryptionSpecServiceClient.initializeEncryptionSpec`.
-      func initializeEncryptionSpec(
+      func initializeEncryptionSpecPollingUntilDone(
         encryptionSpec: EncryptionSpec?,
       ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
 
@@ -194,8 +194,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `EncryptionSpecServiceClient.initializeEncryptionSpec`.
-      func initializeEncryptionSpec(
-        withPolling: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
+      func initializeEncryptionSpecPollingUntilDone(
+        request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
 
       /// See `EncryptionSpecServiceClient.listLocations`.
@@ -255,14 +255,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func initializeEncryptionSpec(withPolling: InitializeEncryptionSpecRequest) async throws
-      -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
+    public func initializeEncryptionSpecPollingUntilDone(request: InitializeEncryptionSpecRequest)
+      async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
     {
-      try await self.initializeEncryptionSpec(withPolling: withPolling, options: .init())
+      try await self.initializeEncryptionSpecPollingUntilDone(request: request, options: .init())
     }
 
-    public func initializeEncryptionSpec(
-      withPolling: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
+    public func initializeEncryptionSpecPollingUntilDone(
+      request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State
@@ -273,13 +273,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func initializeEncryptionSpec(
+    public func initializeEncryptionSpecPollingUntilDone(
       encryptionSpec: EncryptionSpec?,
     ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
       let request = InitializeEncryptionSpecRequest().with {
         $0.encryptionSpec = encryptionSpec
       }
-      return try await self.initializeEncryptionSpec(withPolling: request)
+      return try await self.initializeEncryptionSpecPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

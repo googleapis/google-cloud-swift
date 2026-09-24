@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, importJobId: String
 ) async throws {
-  let poller = try await client.createImportDataFile(
-    withPolling: CreateImportDataFileRequest()
+  let poller = try await client.createImportDataFilePollingUntilDone(
+    request: CreateImportDataFileRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/importJobs/\(importJobId)"
         $0.importDataFile = ImportDataFile() /* .with { ... } */

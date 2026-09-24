@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: GkeHubClient, projectId: String, locationId: String, scopeId: String, namespaceId: String
 ) async throws {
-  let poller = try await client.updateScopeNamespace(
-    withPolling: UpdateScopeNamespaceRequest()
+  let poller = try await client.updateScopeNamespacePollingUntilDone(
+    request: UpdateScopeNamespaceRequest()
       .with {
         $0.scopeNamespace = Namespace().with {
           $0.name =

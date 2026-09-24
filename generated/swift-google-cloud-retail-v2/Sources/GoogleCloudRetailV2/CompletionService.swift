@@ -84,15 +84,15 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "CompletionService_ImportCompletionData")
-  public func importCompletionData(
-    withPolling: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
+  public func importCompletionDataPollingUntilDone(
+    request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportCompletionDataResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
       return try op._extractStatus(ImportCompletionDataResponse.self)
     }
-    let rawOp = try await self.importCompletionData(request: withPolling, options: options)
+    let rawOp = try await self.importCompletionData(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
@@ -139,7 +139,7 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol CompletionServiceProtocol: Sendable {
     /// See `CompletionServiceClient.importCompletionData`.
-    func importCompletionData(withPolling: ImportCompletionDataRequest) async throws
+    func importCompletionDataPollingUntilDone(request: ImportCompletionDataRequest) async throws
       -> any GoogleGax.PollableOperation<ImportCompletionDataResponse>
 
     /// See `CompletionServiceClient.completeQuery`.
@@ -153,8 +153,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CompletionServiceClient.importCompletionData`.
-    func importCompletionData(
-      withPolling: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
+    func importCompletionDataPollingUntilDone(
+      request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportCompletionDataResponse>
 
     /// See `CompletionServiceClient.listOperations`.
@@ -190,14 +190,14 @@ extension Clients.CompletionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importCompletionData(withPolling: ImportCompletionDataRequest) async throws
-    -> any GoogleGax.PollableOperation<ImportCompletionDataResponse>
+  public func importCompletionDataPollingUntilDone(request: ImportCompletionDataRequest)
+    async throws -> any GoogleGax.PollableOperation<ImportCompletionDataResponse>
   {
-    try await self.importCompletionData(withPolling: withPolling, options: .init())
+    try await self.importCompletionDataPollingUntilDone(request: request, options: .init())
   }
 
-  public func importCompletionData(
-    withPolling: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
+  public func importCompletionDataPollingUntilDone(
+    request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportCompletionDataResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in

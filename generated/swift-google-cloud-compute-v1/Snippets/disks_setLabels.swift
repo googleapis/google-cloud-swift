@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: DisksClient) async throws {
-    let poller = try await client.setLabels(
-      withPolling: DisksClient.SetLabelsRequest()
+    let poller = try await client.setLabelsPollingUntilDone(
+      request: DisksClient.SetLabelsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

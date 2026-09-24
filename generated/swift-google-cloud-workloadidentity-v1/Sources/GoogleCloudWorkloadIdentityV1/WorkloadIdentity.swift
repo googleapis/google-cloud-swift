@@ -56,15 +56,15 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// producer.
   ///
   /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
-  public func generateServiceAgents(
-    withPolling: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
+  public func generateServiceAgentsPollingUntilDone(
+    request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
       return try op._extractStatus(GenerateServiceAgentsResponse.self)
     }
-    let rawOp = try await self.generateServiceAgents(request: withPolling, options: options)
+    let rawOp = try await self.generateServiceAgents(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
@@ -168,11 +168,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WorkloadIdentityProtocol: Sendable {
     /// See `WorkloadIdentityClient.generateServiceAgents`.
-    func generateServiceAgents(withPolling: GenerateServiceAgentsRequest) async throws
+    func generateServiceAgentsPollingUntilDone(request: GenerateServiceAgentsRequest) async throws
       -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
 
     /// See `WorkloadIdentityClient.generateServiceAgents`.
-    func generateServiceAgents(
+    func generateServiceAgentsPollingUntilDone(
       parent: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
 
@@ -182,8 +182,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkloadIdentityClient.generateServiceAgents`.
-    func generateServiceAgents(
-      withPolling: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
+    func generateServiceAgentsPollingUntilDone(
+      request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
 
     /// See `WorkloadIdentityClient.listLocations`.
@@ -227,14 +227,14 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func generateServiceAgents(withPolling: GenerateServiceAgentsRequest) async throws
-    -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
+  public func generateServiceAgentsPollingUntilDone(request: GenerateServiceAgentsRequest)
+    async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
   {
-    try await self.generateServiceAgents(withPolling: withPolling, options: .init())
+    try await self.generateServiceAgentsPollingUntilDone(request: request, options: .init())
   }
 
-  public func generateServiceAgents(
-    withPolling: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
+  public func generateServiceAgentsPollingUntilDone(
+    request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
@@ -244,13 +244,13 @@ extension Clients.WorkloadIdentityProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func generateServiceAgents(
+  public func generateServiceAgentsPollingUntilDone(
     parent: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
     let request = GenerateServiceAgentsRequest().with {
       $0.parent = parent
     }
-    return try await self.generateServiceAgents(withPolling: request)
+    return try await self.generateServiceAgentsPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

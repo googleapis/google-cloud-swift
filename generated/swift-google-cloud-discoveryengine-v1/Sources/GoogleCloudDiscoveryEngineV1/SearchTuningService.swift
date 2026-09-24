@@ -55,15 +55,15 @@
     /// Trains a custom model.
     ///
     /// @Snippet(path: "SearchTuningService_TrainCustomModel")
-    public func trainCustomModel(
-      withPolling: TrainCustomModelRequest, options: GoogleGax.RequestOptions
+    public func trainCustomModelPollingUntilDone(
+      request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TrainCustomModelResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
         return try op._extractStatus(TrainCustomModelResponse.self)
       }
-      let rawOp = try await self.trainCustomModel(request: withPolling, options: options)
+      let rawOp = try await self.trainCustomModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
@@ -130,8 +130,8 @@
     /// and pass a mock implementation in your tests.
     public protocol SearchTuningServiceProtocol: Sendable {
       /// See `SearchTuningServiceClient.trainCustomModel`.
-      func trainCustomModel(withPolling: TrainCustomModelRequest) async throws -> any GoogleGax
-        .PollableOperation<TrainCustomModelResponse>
+      func trainCustomModelPollingUntilDone(request: TrainCustomModelRequest) async throws
+        -> any GoogleGax.PollableOperation<TrainCustomModelResponse>
 
       /// See `SearchTuningServiceClient.trainCustomModel`.
       func trainCustomModel(
@@ -139,8 +139,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SearchTuningServiceClient.trainCustomModel`.
-      func trainCustomModel(
-        withPolling: TrainCustomModelRequest, options: GoogleGax.RequestOptions
+      func trainCustomModelPollingUntilDone(
+        request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<TrainCustomModelResponse>
 
       /// See `SearchTuningServiceClient.listCustomModels`.
@@ -174,14 +174,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func trainCustomModel(withPolling: TrainCustomModelRequest) async throws -> any GoogleGax
-      .PollableOperation<TrainCustomModelResponse>
+    public func trainCustomModelPollingUntilDone(request: TrainCustomModelRequest) async throws
+      -> any GoogleGax.PollableOperation<TrainCustomModelResponse>
     {
-      try await self.trainCustomModel(withPolling: withPolling, options: .init())
+      try await self.trainCustomModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func trainCustomModel(
-      withPolling: TrainCustomModelRequest, options: GoogleGax.RequestOptions
+    public func trainCustomModelPollingUntilDone(
+      request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TrainCustomModelResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in

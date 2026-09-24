@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataplexServiceClient, parent: String) async throws {
-  let poller = try await client.createLake(
-    withPolling: CreateLakeRequest()
+  let poller = try await client.createLakePollingUntilDone(
+    request: CreateLakeRequest()
       .with {
         $0.parent = "\(parent)"
         $0.lakeId = "[replace with a valid ID]"

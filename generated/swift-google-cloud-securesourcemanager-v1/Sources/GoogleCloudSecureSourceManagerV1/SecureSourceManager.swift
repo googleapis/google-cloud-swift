@@ -77,15 +77,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a new instance in a given project and location.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -112,15 +112,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a single instance.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -174,15 +174,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// using the securesourcemanager.googleapis.com endpoint.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateRepository")
-  public func createRepository(
-    withPolling: CreateRepositoryRequest, options: GoogleGax.RequestOptions
+  public func createRepositoryPollingUntilDone(
+    request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Repository>.State
       in
       return try op._extractStatus(Repository.self)
     }
-    let rawOp = try await self.createRepository(request: withPolling, options: options)
+    let rawOp = try await self.createRepository(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
       let op = try await self.getOperation(
@@ -209,15 +209,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates the metadata of a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateRepository")
-  public func updateRepository(
-    withPolling: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
+  public func updateRepositoryPollingUntilDone(
+    request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Repository>.State
       in
       return try op._extractStatus(Repository.self)
     }
-    let rawOp = try await self.updateRepository(request: withPolling, options: options)
+    let rawOp = try await self.updateRepository(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
       let op = try await self.getOperation(
@@ -244,15 +244,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a Repository.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteRepository")
-  public func deleteRepository(
-    withPolling: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
+  public func deleteRepositoryPollingUntilDone(
+    request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteRepository(request: withPolling, options: options)
+    let rawOp = try await self.deleteRepository(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -297,14 +297,14 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a new hook in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateHook")
-  public func createHook(
-    withPolling: CreateHookRequest, options: GoogleGax.RequestOptions
+  public func createHookPollingUntilDone(
+    request: CreateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hook> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Hook>.State in
       return try op._extractStatus(Hook.self)
     }
-    let rawOp = try await self.createHook(request: withPolling, options: options)
+    let rawOp = try await self.createHook(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hook>.State in
       let op = try await self.getOperation(
@@ -331,14 +331,14 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates the metadata of a hook.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateHook")
-  public func updateHook(
-    withPolling: UpdateHookRequest, options: GoogleGax.RequestOptions
+  public func updateHookPollingUntilDone(
+    request: UpdateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hook> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Hook>.State in
       return try op._extractStatus(Hook.self)
     }
-    let rawOp = try await self.updateHook(request: withPolling, options: options)
+    let rawOp = try await self.updateHook(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hook>.State in
       let op = try await self.getOperation(
@@ -365,15 +365,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a Hook.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteHook")
-  public func deleteHook(
-    withPolling: DeleteHookRequest, options: GoogleGax.RequestOptions
+  public func deleteHookPollingUntilDone(
+    request: DeleteHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteHook(request: withPolling, options: options)
+    let rawOp = try await self.deleteHook(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -428,15 +428,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// CreateBranchRule creates a branch rule in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateBranchRule")
-  public func createBranchRule(
-    withPolling: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
+  public func createBranchRulePollingUntilDone(
+    request: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BranchRule> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<BranchRule>.State
       in
       return try op._extractStatus(BranchRule.self)
     }
-    let rawOp = try await self.createBranchRule(request: withPolling, options: options)
+    let rawOp = try await self.createBranchRule(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BranchRule>.State in
       let op = try await self.getOperation(
@@ -481,15 +481,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// UpdateBranchRule updates a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateBranchRule")
-  public func updateBranchRule(
-    withPolling: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
+  public func updateBranchRulePollingUntilDone(
+    request: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BranchRule> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<BranchRule>.State
       in
       return try op._extractStatus(BranchRule.self)
     }
-    let rawOp = try await self.updateBranchRule(request: withPolling, options: options)
+    let rawOp = try await self.updateBranchRule(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BranchRule>.State in
       let op = try await self.getOperation(
@@ -516,15 +516,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// DeleteBranchRule deletes a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteBranchRule")
-  public func deleteBranchRule(
-    withPolling: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
+  public func deleteBranchRulePollingUntilDone(
+    request: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteBranchRule(request: withPolling, options: options)
+    let rawOp = try await self.deleteBranchRule(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -551,15 +551,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_CreatePullRequest")
-  public func createPullRequest(
-    withPolling: CreatePullRequestRequest, options: GoogleGax.RequestOptions
+  public func createPullRequestPollingUntilDone(
+    request: CreatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       return try op._extractStatus(PullRequest.self)
     }
-    let rawOp = try await self.createPullRequest(request: withPolling, options: options)
+    let rawOp = try await self.createPullRequest(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       let op = try await self.getOperation(
@@ -604,15 +604,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdatePullRequest")
-  public func updatePullRequest(
-    withPolling: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
+  public func updatePullRequestPollingUntilDone(
+    request: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       return try op._extractStatus(PullRequest.self)
     }
-    let rawOp = try await self.updatePullRequest(request: withPolling, options: options)
+    let rawOp = try await self.updatePullRequest(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       let op = try await self.getOperation(
@@ -639,15 +639,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Merges a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_MergePullRequest")
-  public func mergePullRequest(
-    withPolling: MergePullRequestRequest, options: GoogleGax.RequestOptions
+  public func mergePullRequestPollingUntilDone(
+    request: MergePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       return try op._extractStatus(PullRequest.self)
     }
-    let rawOp = try await self.mergePullRequest(request: withPolling, options: options)
+    let rawOp = try await self.mergePullRequest(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       let op = try await self.getOperation(
@@ -674,15 +674,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Opens a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_OpenPullRequest")
-  public func openPullRequest(
-    withPolling: OpenPullRequestRequest, options: GoogleGax.RequestOptions
+  public func openPullRequestPollingUntilDone(
+    request: OpenPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       return try op._extractStatus(PullRequest.self)
     }
-    let rawOp = try await self.openPullRequest(request: withPolling, options: options)
+    let rawOp = try await self.openPullRequest(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       let op = try await self.getOperation(
@@ -709,15 +709,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Closes a pull request without merging.
   ///
   /// @Snippet(path: "SecureSourceManager_ClosePullRequest")
-  public func closePullRequest(
-    withPolling: ClosePullRequestRequest, options: GoogleGax.RequestOptions
+  public func closePullRequestPollingUntilDone(
+    request: ClosePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       return try op._extractStatus(PullRequest.self)
     }
-    let rawOp = try await self.closePullRequest(request: withPolling, options: options)
+    let rawOp = try await self.closePullRequest(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       let op = try await self.getOperation(
@@ -780,14 +780,14 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssue")
-  public func createIssue(
-    withPolling: CreateIssueRequest, options: GoogleGax.RequestOptions
+  public func createIssuePollingUntilDone(
+    request: CreateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       return try op._extractStatus(Issue.self)
     }
-    let rawOp = try await self.createIssue(request: withPolling, options: options)
+    let rawOp = try await self.createIssue(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       let op = try await self.getOperation(
@@ -832,14 +832,14 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a issue.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateIssue")
-  public func updateIssue(
-    withPolling: UpdateIssueRequest, options: GoogleGax.RequestOptions
+  public func updateIssuePollingUntilDone(
+    request: UpdateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       return try op._extractStatus(Issue.self)
     }
-    let rawOp = try await self.updateIssue(request: withPolling, options: options)
+    let rawOp = try await self.updateIssue(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       let op = try await self.getOperation(
@@ -866,15 +866,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteIssue")
-  public func deleteIssue(
-    withPolling: DeleteIssueRequest, options: GoogleGax.RequestOptions
+  public func deleteIssuePollingUntilDone(
+    request: DeleteIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteIssue(request: withPolling, options: options)
+    let rawOp = try await self.deleteIssue(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -901,14 +901,14 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Opens an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_OpenIssue")
-  public func openIssue(
-    withPolling: OpenIssueRequest, options: GoogleGax.RequestOptions
+  public func openIssuePollingUntilDone(
+    request: OpenIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       return try op._extractStatus(Issue.self)
     }
-    let rawOp = try await self.openIssue(request: withPolling, options: options)
+    let rawOp = try await self.openIssue(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       let op = try await self.getOperation(
@@ -935,14 +935,14 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Closes an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CloseIssue")
-  public func closeIssue(
-    withPolling: CloseIssueRequest, options: GoogleGax.RequestOptions
+  public func closeIssuePollingUntilDone(
+    request: CloseIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       return try op._extractStatus(Issue.self)
     }
-    let rawOp = try await self.closeIssue(request: withPolling, options: options)
+    let rawOp = try await self.closeIssue(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       let op = try await self.getOperation(
@@ -995,15 +995,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// code reviews.
   ///
   /// @Snippet(path: "SecureSourceManager_CreatePullRequestComment")
-  public func createPullRequestComment(
-    withPolling: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
+  public func createPullRequestCommentPollingUntilDone(
+    request: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequestComment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequestComment>.State in
       return try op._extractStatus(PullRequestComment.self)
     }
-    let rawOp = try await self.createPullRequestComment(request: withPolling, options: options)
+    let rawOp = try await self.createPullRequestComment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequestComment>.State in
       let op = try await self.getOperation(
@@ -1030,15 +1030,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdatePullRequestComment")
-  public func updatePullRequestComment(
-    withPolling: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
+  public func updatePullRequestCommentPollingUntilDone(
+    request: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequestComment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PullRequestComment>.State in
       return try op._extractStatus(PullRequestComment.self)
     }
-    let rawOp = try await self.updatePullRequestComment(request: withPolling, options: options)
+    let rawOp = try await self.updatePullRequestComment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequestComment>.State in
       let op = try await self.getOperation(
@@ -1065,15 +1065,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_DeletePullRequestComment")
-  public func deletePullRequestComment(
-    withPolling: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
+  public func deletePullRequestCommentPollingUntilDone(
+    request: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deletePullRequestComment(request: withPolling, options: options)
+    let rawOp = try await self.deletePullRequestComment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1108,16 +1108,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// within the request.
   ///
   /// @Snippet(path: "SecureSourceManager_BatchCreatePullRequestComments")
-  public func batchCreatePullRequestComments(
-    withPolling: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func batchCreatePullRequestCommentsPollingUntilDone(
+    request: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchCreatePullRequestCommentsResponse>.State in
       return try op._extractStatus(BatchCreatePullRequestCommentsResponse.self)
     }
-    let rawOp = try await self.batchCreatePullRequestComments(
-      request: withPolling, options: options)
+    let rawOp = try await self.batchCreatePullRequestComments(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws
@@ -1152,15 +1151,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// be resolved.
   ///
   /// @Snippet(path: "SecureSourceManager_ResolvePullRequestComments")
-  public func resolvePullRequestComments(
-    withPolling: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func resolvePullRequestCommentsPollingUntilDone(
+    request: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ResolvePullRequestCommentsResponse>.State in
       return try op._extractStatus(ResolvePullRequestCommentsResponse.self)
     }
-    let rawOp = try await self.resolvePullRequestComments(request: withPolling, options: options)
+    let rawOp = try await self.resolvePullRequestComments(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ResolvePullRequestCommentsResponse>.State
@@ -1195,15 +1194,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// be unresolved.
   ///
   /// @Snippet(path: "SecureSourceManager_UnresolvePullRequestComments")
-  public func unresolvePullRequestComments(
-    withPolling: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func unresolvePullRequestCommentsPollingUntilDone(
+    request: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UnresolvePullRequestCommentsResponse>.State in
       return try op._extractStatus(UnresolvePullRequestCommentsResponse.self)
     }
-    let rawOp = try await self.unresolvePullRequestComments(request: withPolling, options: options)
+    let rawOp = try await self.unresolvePullRequestComments(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws
@@ -1232,15 +1231,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssueComment")
-  public func createIssueComment(
-    withPolling: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
+  public func createIssueCommentPollingUntilDone(
+    request: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IssueComment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<IssueComment>.State in
       return try op._extractStatus(IssueComment.self)
     }
-    let rawOp = try await self.createIssueComment(request: withPolling, options: options)
+    let rawOp = try await self.createIssueComment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IssueComment>.State in
       let op = try await self.getOperation(
@@ -1285,15 +1284,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateIssueComment")
-  public func updateIssueComment(
-    withPolling: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
+  public func updateIssueCommentPollingUntilDone(
+    request: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IssueComment> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<IssueComment>.State in
       return try op._extractStatus(IssueComment.self)
     }
-    let rawOp = try await self.updateIssueComment(request: withPolling, options: options)
+    let rawOp = try await self.updateIssueComment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IssueComment>.State in
       let op = try await self.getOperation(
@@ -1320,15 +1319,15 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteIssueComment")
-  public func deleteIssueComment(
-    withPolling: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
+  public func deleteIssueCommentPollingUntilDone(
+    request: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteIssueComment(request: withPolling, options: options)
+    let rawOp = try await self.deleteIssueComment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1469,299 +1468,295 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol SecureSourceManagerProtocol: Sendable {
     /// See `SecureSourceManagerClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `SecureSourceManagerClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instance: Instance?,
       instanceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `SecureSourceManagerClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.deleteInstance`.
-    func deleteInstance(
+    func deleteInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.createRepository`.
-    func createRepository(withPolling: CreateRepositoryRequest) async throws -> any GoogleGax
-      .PollableOperation<Repository>
+    func createRepositoryPollingUntilDone(request: CreateRepositoryRequest) async throws
+      -> any GoogleGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.createRepository`.
-    func createRepository(
+    func createRepositoryPollingUntilDone(
       parent: Swift.String,
       repository: Repository?,
       repositoryId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.updateRepository`.
-    func updateRepository(withPolling: UpdateRepositoryRequest) async throws -> any GoogleGax
-      .PollableOperation<Repository>
+    func updateRepositoryPollingUntilDone(request: UpdateRepositoryRequest) async throws
+      -> any GoogleGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.updateRepository`.
-    func updateRepository(
+    func updateRepositoryPollingUntilDone(
       repository: Repository?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.deleteRepository`.
-    func deleteRepository(withPolling: DeleteRepositoryRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.deleteRepository`.
-    func deleteRepository(
+    func deleteRepositoryPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.createHook`.
-    func createHook(withPolling: CreateHookRequest) async throws -> any GoogleGax.PollableOperation<
-      Hook
-    >
+    func createHookPollingUntilDone(request: CreateHookRequest) async throws -> any GoogleGax
+      .PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.createHook`.
-    func createHook(
+    func createHookPollingUntilDone(
       parent: Swift.String,
       hook: Hook?,
       hookId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.updateHook`.
-    func updateHook(withPolling: UpdateHookRequest) async throws -> any GoogleGax.PollableOperation<
-      Hook
-    >
+    func updateHookPollingUntilDone(request: UpdateHookRequest) async throws -> any GoogleGax
+      .PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.updateHook`.
-    func updateHook(
+    func updateHookPollingUntilDone(
       hook: Hook?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.deleteHook`.
-    func deleteHook(withPolling: DeleteHookRequest) async throws -> any GoogleGax.PollableOperation<
-      Swift.Void
-    >
+    func deleteHookPollingUntilDone(request: DeleteHookRequest) async throws -> any GoogleGax
+      .PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.deleteHook`.
-    func deleteHook(
+    func deleteHookPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.createBranchRule`.
-    func createBranchRule(withPolling: CreateBranchRuleRequest) async throws -> any GoogleGax
-      .PollableOperation<BranchRule>
+    func createBranchRulePollingUntilDone(request: CreateBranchRuleRequest) async throws
+      -> any GoogleGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.createBranchRule`.
-    func createBranchRule(
+    func createBranchRulePollingUntilDone(
       parent: Swift.String,
       branchRule: BranchRule?,
       branchRuleId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.updateBranchRule`.
-    func updateBranchRule(withPolling: UpdateBranchRuleRequest) async throws -> any GoogleGax
-      .PollableOperation<BranchRule>
+    func updateBranchRulePollingUntilDone(request: UpdateBranchRuleRequest) async throws
+      -> any GoogleGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.updateBranchRule`.
-    func updateBranchRule(
+    func updateBranchRulePollingUntilDone(
       branchRule: BranchRule?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.deleteBranchRule`.
-    func deleteBranchRule(withPolling: DeleteBranchRuleRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `SecureSourceManagerClient.deleteBranchRule`.
-    func deleteBranchRule(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SecureSourceManagerClient.createPullRequest`.
-    func createPullRequest(withPolling: CreatePullRequestRequest) async throws -> any GoogleGax
-      .PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.createPullRequest`.
-    func createPullRequest(
-      parent: Swift.String,
-      pullRequest: PullRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.updatePullRequest`.
-    func updatePullRequest(withPolling: UpdatePullRequestRequest) async throws -> any GoogleGax
-      .PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.updatePullRequest`.
-    func updatePullRequest(
-      pullRequest: PullRequest?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.mergePullRequest`.
-    func mergePullRequest(withPolling: MergePullRequestRequest) async throws -> any GoogleGax
-      .PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.mergePullRequest`.
-    func mergePullRequest(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.openPullRequest`.
-    func openPullRequest(withPolling: OpenPullRequestRequest) async throws -> any GoogleGax
-      .PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.openPullRequest`.
-    func openPullRequest(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.closePullRequest`.
-    func closePullRequest(withPolling: ClosePullRequestRequest) async throws -> any GoogleGax
-      .PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.closePullRequest`.
-    func closePullRequest(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
-
-    /// See `SecureSourceManagerClient.createIssue`.
-    func createIssue(withPolling: CreateIssueRequest) async throws -> any GoogleGax
-      .PollableOperation<Issue>
-
-    /// See `SecureSourceManagerClient.createIssue`.
-    func createIssue(
-      parent: Swift.String,
-      issue: Issue?,
-    ) async throws -> any GoogleGax.PollableOperation<Issue>
-
-    /// See `SecureSourceManagerClient.updateIssue`.
-    func updateIssue(withPolling: UpdateIssueRequest) async throws -> any GoogleGax
-      .PollableOperation<Issue>
-
-    /// See `SecureSourceManagerClient.updateIssue`.
-    func updateIssue(
-      issue: Issue?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Issue>
-
-    /// See `SecureSourceManagerClient.deleteIssue`.
-    func deleteIssue(withPolling: DeleteIssueRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-
-    /// See `SecureSourceManagerClient.deleteIssue`.
-    func deleteIssue(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
-
-    /// See `SecureSourceManagerClient.openIssue`.
-    func openIssue(withPolling: OpenIssueRequest) async throws -> any GoogleGax.PollableOperation<
-      Issue
-    >
-
-    /// See `SecureSourceManagerClient.openIssue`.
-    func openIssue(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Issue>
-
-    /// See `SecureSourceManagerClient.closeIssue`.
-    func closeIssue(withPolling: CloseIssueRequest) async throws -> any GoogleGax.PollableOperation<
-      Issue
-    >
-
-    /// See `SecureSourceManagerClient.closeIssue`.
-    func closeIssue(
-      name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Issue>
-
-    /// See `SecureSourceManagerClient.createPullRequestComment`.
-    func createPullRequestComment(withPolling: CreatePullRequestCommentRequest) async throws
-      -> any GoogleGax.PollableOperation<PullRequestComment>
-
-    /// See `SecureSourceManagerClient.createPullRequestComment`.
-    func createPullRequestComment(
-      parent: Swift.String,
-      pullRequestComment: PullRequestComment?,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequestComment>
-
-    /// See `SecureSourceManagerClient.updatePullRequestComment`.
-    func updatePullRequestComment(withPolling: UpdatePullRequestCommentRequest) async throws
-      -> any GoogleGax.PollableOperation<PullRequestComment>
-
-    /// See `SecureSourceManagerClient.updatePullRequestComment`.
-    func updatePullRequestComment(
-      pullRequestComment: PullRequestComment?,
-      updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<PullRequestComment>
-
-    /// See `SecureSourceManagerClient.deletePullRequestComment`.
-    func deletePullRequestComment(withPolling: DeletePullRequestCommentRequest) async throws
+    func deleteBranchRulePollingUntilDone(request: DeleteBranchRuleRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
+    /// See `SecureSourceManagerClient.deleteBranchRule`.
+    func deleteBranchRulePollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+
+    /// See `SecureSourceManagerClient.createPullRequest`.
+    func createPullRequestPollingUntilDone(request: CreatePullRequestRequest) async throws
+      -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.createPullRequest`.
+    func createPullRequestPollingUntilDone(
+      parent: Swift.String,
+      pullRequest: PullRequest?,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.updatePullRequest`.
+    func updatePullRequestPollingUntilDone(request: UpdatePullRequestRequest) async throws
+      -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.updatePullRequest`.
+    func updatePullRequestPollingUntilDone(
+      pullRequest: PullRequest?,
+      updateMask: GoogleWKT.WKTFieldMask?,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.mergePullRequest`.
+    func mergePullRequestPollingUntilDone(request: MergePullRequestRequest) async throws
+      -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.mergePullRequest`.
+    func mergePullRequestPollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.openPullRequest`.
+    func openPullRequestPollingUntilDone(request: OpenPullRequestRequest) async throws
+      -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.openPullRequest`.
+    func openPullRequestPollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.closePullRequest`.
+    func closePullRequestPollingUntilDone(request: ClosePullRequestRequest) async throws
+      -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.closePullRequest`.
+    func closePullRequestPollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequest>
+
+    /// See `SecureSourceManagerClient.createIssue`.
+    func createIssuePollingUntilDone(request: CreateIssueRequest) async throws -> any GoogleGax
+      .PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.createIssue`.
+    func createIssuePollingUntilDone(
+      parent: Swift.String,
+      issue: Issue?,
+    ) async throws -> any GoogleGax.PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.updateIssue`.
+    func updateIssuePollingUntilDone(request: UpdateIssueRequest) async throws -> any GoogleGax
+      .PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.updateIssue`.
+    func updateIssuePollingUntilDone(
+      issue: Issue?,
+      updateMask: GoogleWKT.WKTFieldMask?,
+    ) async throws -> any GoogleGax.PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.deleteIssue`.
+    func deleteIssuePollingUntilDone(request: DeleteIssueRequest) async throws -> any GoogleGax
+      .PollableOperation<Swift.Void>
+
+    /// See `SecureSourceManagerClient.deleteIssue`.
+    func deleteIssuePollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+
+    /// See `SecureSourceManagerClient.openIssue`.
+    func openIssuePollingUntilDone(request: OpenIssueRequest) async throws -> any GoogleGax
+      .PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.openIssue`.
+    func openIssuePollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.closeIssue`.
+    func closeIssuePollingUntilDone(request: CloseIssueRequest) async throws -> any GoogleGax
+      .PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.closeIssue`.
+    func closeIssuePollingUntilDone(
+      name: Swift.String,
+    ) async throws -> any GoogleGax.PollableOperation<Issue>
+
+    /// See `SecureSourceManagerClient.createPullRequestComment`.
+    func createPullRequestCommentPollingUntilDone(request: CreatePullRequestCommentRequest)
+      async throws -> any GoogleGax.PollableOperation<PullRequestComment>
+
+    /// See `SecureSourceManagerClient.createPullRequestComment`.
+    func createPullRequestCommentPollingUntilDone(
+      parent: Swift.String,
+      pullRequestComment: PullRequestComment?,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequestComment>
+
+    /// See `SecureSourceManagerClient.updatePullRequestComment`.
+    func updatePullRequestCommentPollingUntilDone(request: UpdatePullRequestCommentRequest)
+      async throws -> any GoogleGax.PollableOperation<PullRequestComment>
+
+    /// See `SecureSourceManagerClient.updatePullRequestComment`.
+    func updatePullRequestCommentPollingUntilDone(
+      pullRequestComment: PullRequestComment?,
+      updateMask: GoogleWKT.WKTFieldMask?,
+    ) async throws -> any GoogleGax.PollableOperation<PullRequestComment>
+
     /// See `SecureSourceManagerClient.deletePullRequestComment`.
-    func deletePullRequestComment(
+    func deletePullRequestCommentPollingUntilDone(request: DeletePullRequestCommentRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+
+    /// See `SecureSourceManagerClient.deletePullRequestComment`.
+    func deletePullRequestCommentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.batchCreatePullRequestComments`.
-    func batchCreatePullRequestComments(withPolling: BatchCreatePullRequestCommentsRequest)
-      async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse>
+    func batchCreatePullRequestCommentsPollingUntilDone(
+      request: BatchCreatePullRequestCommentsRequest
+    ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.batchCreatePullRequestComments`.
-    func batchCreatePullRequestComments(
+    func batchCreatePullRequestCommentsPollingUntilDone(
       parent: Swift.String,
       requests: [CreatePullRequestCommentRequest],
     ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.resolvePullRequestComments`.
-    func resolvePullRequestComments(withPolling: ResolvePullRequestCommentsRequest) async throws
-      -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse>
+    func resolvePullRequestCommentsPollingUntilDone(request: ResolvePullRequestCommentsRequest)
+      async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.resolvePullRequestComments`.
-    func resolvePullRequestComments(
+    func resolvePullRequestCommentsPollingUntilDone(
       parent: Swift.String,
       names: [Swift.String],
     ) async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.unresolvePullRequestComments`.
-    func unresolvePullRequestComments(withPolling: UnresolvePullRequestCommentsRequest) async throws
-      -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse>
+    func unresolvePullRequestCommentsPollingUntilDone(request: UnresolvePullRequestCommentsRequest)
+      async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.unresolvePullRequestComments`.
-    func unresolvePullRequestComments(
+    func unresolvePullRequestCommentsPollingUntilDone(
       parent: Swift.String,
       names: [Swift.String],
     ) async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.createIssueComment`.
-    func createIssueComment(withPolling: CreateIssueCommentRequest) async throws -> any GoogleGax
-      .PollableOperation<IssueComment>
+    func createIssueCommentPollingUntilDone(request: CreateIssueCommentRequest) async throws
+      -> any GoogleGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.createIssueComment`.
-    func createIssueComment(
+    func createIssueCommentPollingUntilDone(
       parent: Swift.String,
       issueComment: IssueComment?,
     ) async throws -> any GoogleGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.updateIssueComment`.
-    func updateIssueComment(withPolling: UpdateIssueCommentRequest) async throws -> any GoogleGax
-      .PollableOperation<IssueComment>
+    func updateIssueCommentPollingUntilDone(request: UpdateIssueCommentRequest) async throws
+      -> any GoogleGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.updateIssueComment`.
-    func updateIssueComment(
+    func updateIssueCommentPollingUntilDone(
       issueComment: IssueComment?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.deleteIssueComment`.
-    func deleteIssueComment(withPolling: DeleteIssueCommentRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteIssueCommentPollingUntilDone(request: DeleteIssueCommentRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.deleteIssueComment`.
-    func deleteIssueComment(
+    func deleteIssueCommentPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1781,8 +1776,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `SecureSourceManagerClient.deleteInstance`.
@@ -1791,8 +1786,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.listRepositories`.
@@ -1811,8 +1806,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createRepository`.
-    func createRepository(
-      withPolling: CreateRepositoryRequest, options: GoogleGax.RequestOptions
+    func createRepositoryPollingUntilDone(
+      request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.updateRepository`.
@@ -1821,8 +1816,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updateRepository`.
-    func updateRepository(
-      withPolling: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
+    func updateRepositoryPollingUntilDone(
+      request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.deleteRepository`.
@@ -1831,8 +1826,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deleteRepository`.
-    func deleteRepository(
-      withPolling: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
+    func deleteRepositoryPollingUntilDone(
+      request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.listHooks`.
@@ -1851,8 +1846,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createHook`.
-    func createHook(
-      withPolling: CreateHookRequest, options: GoogleGax.RequestOptions
+    func createHookPollingUntilDone(
+      request: CreateHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.updateHook`.
@@ -1861,8 +1856,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updateHook`.
-    func updateHook(
-      withPolling: UpdateHookRequest, options: GoogleGax.RequestOptions
+    func updateHookPollingUntilDone(
+      request: UpdateHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.deleteHook`.
@@ -1871,8 +1866,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deleteHook`.
-    func deleteHook(
-      withPolling: DeleteHookRequest, options: GoogleGax.RequestOptions
+    func deleteHookPollingUntilDone(
+      request: DeleteHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.getIamPolicyRepo`.
@@ -1896,8 +1891,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createBranchRule`.
-    func createBranchRule(
-      withPolling: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
+    func createBranchRulePollingUntilDone(
+      request: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.listBranchRules`.
@@ -1916,8 +1911,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updateBranchRule`.
-    func updateBranchRule(
-      withPolling: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
+    func updateBranchRulePollingUntilDone(
+      request: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.deleteBranchRule`.
@@ -1926,8 +1921,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deleteBranchRule`.
-    func deleteBranchRule(
-      withPolling: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
+    func deleteBranchRulePollingUntilDone(
+      request: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.createPullRequest`.
@@ -1936,8 +1931,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createPullRequest`.
-    func createPullRequest(
-      withPolling: CreatePullRequestRequest, options: GoogleGax.RequestOptions
+    func createPullRequestPollingUntilDone(
+      request: CreatePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequest>
 
     /// See `SecureSourceManagerClient.getPullRequest`.
@@ -1956,8 +1951,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updatePullRequest`.
-    func updatePullRequest(
-      withPolling: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
+    func updatePullRequestPollingUntilDone(
+      request: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequest>
 
     /// See `SecureSourceManagerClient.mergePullRequest`.
@@ -1966,8 +1961,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.mergePullRequest`.
-    func mergePullRequest(
-      withPolling: MergePullRequestRequest, options: GoogleGax.RequestOptions
+    func mergePullRequestPollingUntilDone(
+      request: MergePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequest>
 
     /// See `SecureSourceManagerClient.openPullRequest`.
@@ -1976,8 +1971,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.openPullRequest`.
-    func openPullRequest(
-      withPolling: OpenPullRequestRequest, options: GoogleGax.RequestOptions
+    func openPullRequestPollingUntilDone(
+      request: OpenPullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequest>
 
     /// See `SecureSourceManagerClient.closePullRequest`.
@@ -1986,8 +1981,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.closePullRequest`.
-    func closePullRequest(
-      withPolling: ClosePullRequestRequest, options: GoogleGax.RequestOptions
+    func closePullRequestPollingUntilDone(
+      request: ClosePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequest>
 
     /// See `SecureSourceManagerClient.listPullRequestFileDiffs`.
@@ -2016,8 +2011,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createIssue`.
-    func createIssue(
-      withPolling: CreateIssueRequest, options: GoogleGax.RequestOptions
+    func createIssuePollingUntilDone(
+      request: CreateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Issue>
 
     /// See `SecureSourceManagerClient.getIssue`.
@@ -2036,8 +2031,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updateIssue`.
-    func updateIssue(
-      withPolling: UpdateIssueRequest, options: GoogleGax.RequestOptions
+    func updateIssuePollingUntilDone(
+      request: UpdateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Issue>
 
     /// See `SecureSourceManagerClient.deleteIssue`.
@@ -2046,8 +2041,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deleteIssue`.
-    func deleteIssue(
-      withPolling: DeleteIssueRequest, options: GoogleGax.RequestOptions
+    func deleteIssuePollingUntilDone(
+      request: DeleteIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.openIssue`.
@@ -2056,8 +2051,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.openIssue`.
-    func openIssue(
-      withPolling: OpenIssueRequest, options: GoogleGax.RequestOptions
+    func openIssuePollingUntilDone(
+      request: OpenIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Issue>
 
     /// See `SecureSourceManagerClient.closeIssue`.
@@ -2066,8 +2061,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.closeIssue`.
-    func closeIssue(
-      withPolling: CloseIssueRequest, options: GoogleGax.RequestOptions
+    func closeIssuePollingUntilDone(
+      request: CloseIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Issue>
 
     /// See `SecureSourceManagerClient.getPullRequestComment`.
@@ -2086,8 +2081,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createPullRequestComment`.
-    func createPullRequestComment(
-      withPolling: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
+    func createPullRequestCommentPollingUntilDone(
+      request: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequestComment>
 
     /// See `SecureSourceManagerClient.updatePullRequestComment`.
@@ -2096,8 +2091,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updatePullRequestComment`.
-    func updatePullRequestComment(
-      withPolling: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
+    func updatePullRequestCommentPollingUntilDone(
+      request: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PullRequestComment>
 
     /// See `SecureSourceManagerClient.deletePullRequestComment`.
@@ -2106,8 +2101,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deletePullRequestComment`.
-    func deletePullRequestComment(
-      withPolling: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
+    func deletePullRequestCommentPollingUntilDone(
+      request: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.batchCreatePullRequestComments`.
@@ -2116,8 +2111,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.batchCreatePullRequestComments`.
-    func batchCreatePullRequestComments(
-      withPolling: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+    func batchCreatePullRequestCommentsPollingUntilDone(
+      request: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.resolvePullRequestComments`.
@@ -2126,8 +2121,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.resolvePullRequestComments`.
-    func resolvePullRequestComments(
-      withPolling: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+    func resolvePullRequestCommentsPollingUntilDone(
+      request: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.unresolvePullRequestComments`.
@@ -2136,8 +2131,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.unresolvePullRequestComments`.
-    func unresolvePullRequestComments(
-      withPolling: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+    func unresolvePullRequestCommentsPollingUntilDone(
+      request: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse>
 
     /// See `SecureSourceManagerClient.createIssueComment`.
@@ -2146,8 +2141,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.createIssueComment`.
-    func createIssueComment(
-      withPolling: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
+    func createIssueCommentPollingUntilDone(
+      request: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.getIssueComment`.
@@ -2166,8 +2161,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.updateIssueComment`.
-    func updateIssueComment(
-      withPolling: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
+    func updateIssueCommentPollingUntilDone(
+      request: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.deleteIssueComment`.
@@ -2176,8 +2171,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `SecureSourceManagerClient.deleteIssueComment`.
-    func deleteIssueComment(
-      withPolling: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
+    func deleteIssueCommentPollingUntilDone(
+      request: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `SecureSourceManagerClient.listLocations`.
@@ -2300,14 +2295,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2316,7 +2311,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
@@ -2326,7 +2321,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.instance = instance
       $0.instanceId = instanceId
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -2341,14 +2336,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2357,13 +2352,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteInstance(
+  public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstance(withPolling: request)
+    return try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func listRepositories(request: ListRepositoriesRequest) async throws
@@ -2445,14 +2440,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createRepository(withPolling: CreateRepositoryRequest) async throws -> any GoogleGax
-    .PollableOperation<Repository>
+  public func createRepositoryPollingUntilDone(request: CreateRepositoryRequest) async throws
+    -> any GoogleGax.PollableOperation<Repository>
   {
-    try await self.createRepository(withPolling: withPolling, options: .init())
+    try await self.createRepositoryPollingUntilDone(request: request, options: .init())
   }
 
-  public func createRepository(
-    withPolling: CreateRepositoryRequest, options: GoogleGax.RequestOptions
+  public func createRepositoryPollingUntilDone(
+    request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2461,7 +2456,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createRepository(
+  public func createRepositoryPollingUntilDone(
     parent: Swift.String,
     repository: Repository?,
     repositoryId: Swift.String,
@@ -2471,7 +2466,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.repository = repository
       $0.repositoryId = repositoryId
     }
-    return try await self.createRepository(withPolling: request)
+    return try await self.createRepositoryPollingUntilDone(request: request)
   }
 
   public func updateRepository(request: UpdateRepositoryRequest) async throws
@@ -2486,14 +2481,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateRepository(withPolling: UpdateRepositoryRequest) async throws -> any GoogleGax
-    .PollableOperation<Repository>
+  public func updateRepositoryPollingUntilDone(request: UpdateRepositoryRequest) async throws
+    -> any GoogleGax.PollableOperation<Repository>
   {
-    try await self.updateRepository(withPolling: withPolling, options: .init())
+    try await self.updateRepositoryPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateRepository(
-    withPolling: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
+  public func updateRepositoryPollingUntilDone(
+    request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2502,7 +2497,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateRepository(
+  public func updateRepositoryPollingUntilDone(
     repository: Repository?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
@@ -2510,7 +2505,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.repository = repository
       $0.updateMask = updateMask
     }
-    return try await self.updateRepository(withPolling: request)
+    return try await self.updateRepositoryPollingUntilDone(request: request)
   }
 
   public func deleteRepository(request: DeleteRepositoryRequest) async throws
@@ -2525,14 +2520,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteRepository(withPolling: DeleteRepositoryRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteRepository(withPolling: withPolling, options: .init())
+    try await self.deleteRepositoryPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteRepository(
-    withPolling: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
+  public func deleteRepositoryPollingUntilDone(
+    request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2541,13 +2536,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteRepository(
+  public func deleteRepositoryPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteRepositoryRequest().with {
       $0.name = name
     }
-    return try await self.deleteRepository(withPolling: request)
+    return try await self.deleteRepositoryPollingUntilDone(request: request)
   }
 
   public func listHooks(request: ListHooksRequest) async throws
@@ -2622,14 +2617,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createHook(withPolling: CreateHookRequest) async throws -> any GoogleGax
+  public func createHookPollingUntilDone(request: CreateHookRequest) async throws -> any GoogleGax
     .PollableOperation<Hook>
   {
-    try await self.createHook(withPolling: withPolling, options: .init())
+    try await self.createHookPollingUntilDone(request: request, options: .init())
   }
 
-  public func createHook(
-    withPolling: CreateHookRequest, options: GoogleGax.RequestOptions
+  public func createHookPollingUntilDone(
+    request: CreateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hook> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hook>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2638,7 +2633,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createHook(
+  public func createHookPollingUntilDone(
     parent: Swift.String,
     hook: Hook?,
     hookId: Swift.String,
@@ -2648,7 +2643,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.hook = hook
       $0.hookId = hookId
     }
-    return try await self.createHook(withPolling: request)
+    return try await self.createHookPollingUntilDone(request: request)
   }
 
   public func updateHook(request: UpdateHookRequest) async throws -> GoogleLongRunning.Operation {
@@ -2661,14 +2656,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateHook(withPolling: UpdateHookRequest) async throws -> any GoogleGax
+  public func updateHookPollingUntilDone(request: UpdateHookRequest) async throws -> any GoogleGax
     .PollableOperation<Hook>
   {
-    try await self.updateHook(withPolling: withPolling, options: .init())
+    try await self.updateHookPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateHook(
-    withPolling: UpdateHookRequest, options: GoogleGax.RequestOptions
+  public func updateHookPollingUntilDone(
+    request: UpdateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Hook> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Hook>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2677,7 +2672,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateHook(
+  public func updateHookPollingUntilDone(
     hook: Hook?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Hook> {
@@ -2685,7 +2680,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.hook = hook
       $0.updateMask = updateMask
     }
-    return try await self.updateHook(withPolling: request)
+    return try await self.updateHookPollingUntilDone(request: request)
   }
 
   public func deleteHook(request: DeleteHookRequest) async throws -> GoogleLongRunning.Operation {
@@ -2698,14 +2693,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteHook(withPolling: DeleteHookRequest) async throws -> any GoogleGax
+  public func deleteHookPollingUntilDone(request: DeleteHookRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteHook(withPolling: withPolling, options: .init())
+    try await self.deleteHookPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteHook(
-    withPolling: DeleteHookRequest, options: GoogleGax.RequestOptions
+  public func deleteHookPollingUntilDone(
+    request: DeleteHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2714,13 +2709,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteHook(
+  public func deleteHookPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteHookRequest().with {
       $0.name = name
     }
-    return try await self.deleteHook(withPolling: request)
+    return try await self.deleteHookPollingUntilDone(request: request)
   }
 
   public func getIamPolicyRepo(request: GoogleIAMV1.GetIamPolicyRequest) async throws
@@ -2798,14 +2793,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBranchRule(withPolling: CreateBranchRuleRequest) async throws -> any GoogleGax
-    .PollableOperation<BranchRule>
+  public func createBranchRulePollingUntilDone(request: CreateBranchRuleRequest) async throws
+    -> any GoogleGax.PollableOperation<BranchRule>
   {
-    try await self.createBranchRule(withPolling: withPolling, options: .init())
+    try await self.createBranchRulePollingUntilDone(request: request, options: .init())
   }
 
-  public func createBranchRule(
-    withPolling: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
+  public func createBranchRulePollingUntilDone(
+    request: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BranchRule> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BranchRule>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2814,7 +2809,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createBranchRule(
+  public func createBranchRulePollingUntilDone(
     parent: Swift.String,
     branchRule: BranchRule?,
     branchRuleId: Swift.String,
@@ -2824,7 +2819,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.branchRule = branchRule
       $0.branchRuleId = branchRuleId
     }
-    return try await self.createBranchRule(withPolling: request)
+    return try await self.createBranchRulePollingUntilDone(request: request)
   }
 
   public func listBranchRules(request: ListBranchRulesRequest) async throws
@@ -2903,14 +2898,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateBranchRule(withPolling: UpdateBranchRuleRequest) async throws -> any GoogleGax
-    .PollableOperation<BranchRule>
+  public func updateBranchRulePollingUntilDone(request: UpdateBranchRuleRequest) async throws
+    -> any GoogleGax.PollableOperation<BranchRule>
   {
-    try await self.updateBranchRule(withPolling: withPolling, options: .init())
+    try await self.updateBranchRulePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateBranchRule(
-    withPolling: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
+  public func updateBranchRulePollingUntilDone(
+    request: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BranchRule> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BranchRule>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2919,7 +2914,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateBranchRule(
+  public func updateBranchRulePollingUntilDone(
     branchRule: BranchRule?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<BranchRule> {
@@ -2927,7 +2922,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.branchRule = branchRule
       $0.updateMask = updateMask
     }
-    return try await self.updateBranchRule(withPolling: request)
+    return try await self.updateBranchRulePollingUntilDone(request: request)
   }
 
   public func deleteBranchRule(request: DeleteBranchRuleRequest) async throws
@@ -2942,14 +2937,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBranchRule(withPolling: DeleteBranchRuleRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteBranchRulePollingUntilDone(request: DeleteBranchRuleRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteBranchRule(withPolling: withPolling, options: .init())
+    try await self.deleteBranchRulePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteBranchRule(
-    withPolling: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
+  public func deleteBranchRulePollingUntilDone(
+    request: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2958,13 +2953,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteBranchRule(
+  public func deleteBranchRulePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteBranchRuleRequest().with {
       $0.name = name
     }
-    return try await self.deleteBranchRule(withPolling: request)
+    return try await self.deleteBranchRulePollingUntilDone(request: request)
   }
 
   public func createPullRequest(request: CreatePullRequestRequest) async throws
@@ -2979,14 +2974,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createPullRequest(withPolling: CreatePullRequestRequest) async throws -> any GoogleGax
-    .PollableOperation<PullRequest>
+  public func createPullRequestPollingUntilDone(request: CreatePullRequestRequest) async throws
+    -> any GoogleGax.PollableOperation<PullRequest>
   {
-    try await self.createPullRequest(withPolling: withPolling, options: .init())
+    try await self.createPullRequestPollingUntilDone(request: request, options: .init())
   }
 
-  public func createPullRequest(
-    withPolling: CreatePullRequestRequest, options: GoogleGax.RequestOptions
+  public func createPullRequestPollingUntilDone(
+    request: CreatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2995,7 +2990,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createPullRequest(
+  public func createPullRequestPollingUntilDone(
     parent: Swift.String,
     pullRequest: PullRequest?,
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
@@ -3003,7 +2998,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.pullRequest = pullRequest
     }
-    return try await self.createPullRequest(withPolling: request)
+    return try await self.createPullRequestPollingUntilDone(request: request)
   }
 
   public func getPullRequest(request: GetPullRequestRequest) async throws
@@ -3082,14 +3077,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updatePullRequest(withPolling: UpdatePullRequestRequest) async throws -> any GoogleGax
-    .PollableOperation<PullRequest>
+  public func updatePullRequestPollingUntilDone(request: UpdatePullRequestRequest) async throws
+    -> any GoogleGax.PollableOperation<PullRequest>
   {
-    try await self.updatePullRequest(withPolling: withPolling, options: .init())
+    try await self.updatePullRequestPollingUntilDone(request: request, options: .init())
   }
 
-  public func updatePullRequest(
-    withPolling: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
+  public func updatePullRequestPollingUntilDone(
+    request: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3098,7 +3093,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updatePullRequest(
+  public func updatePullRequestPollingUntilDone(
     pullRequest: PullRequest?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
@@ -3106,7 +3101,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.pullRequest = pullRequest
       $0.updateMask = updateMask
     }
-    return try await self.updatePullRequest(withPolling: request)
+    return try await self.updatePullRequestPollingUntilDone(request: request)
   }
 
   public func mergePullRequest(request: MergePullRequestRequest) async throws
@@ -3121,14 +3116,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func mergePullRequest(withPolling: MergePullRequestRequest) async throws -> any GoogleGax
-    .PollableOperation<PullRequest>
+  public func mergePullRequestPollingUntilDone(request: MergePullRequestRequest) async throws
+    -> any GoogleGax.PollableOperation<PullRequest>
   {
-    try await self.mergePullRequest(withPolling: withPolling, options: .init())
+    try await self.mergePullRequestPollingUntilDone(request: request, options: .init())
   }
 
-  public func mergePullRequest(
-    withPolling: MergePullRequestRequest, options: GoogleGax.RequestOptions
+  public func mergePullRequestPollingUntilDone(
+    request: MergePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3137,13 +3132,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func mergePullRequest(
+  public func mergePullRequestPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let request = MergePullRequestRequest().with {
       $0.name = name
     }
-    return try await self.mergePullRequest(withPolling: request)
+    return try await self.mergePullRequestPollingUntilDone(request: request)
   }
 
   public func openPullRequest(request: OpenPullRequestRequest) async throws
@@ -3158,14 +3153,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func openPullRequest(withPolling: OpenPullRequestRequest) async throws -> any GoogleGax
-    .PollableOperation<PullRequest>
+  public func openPullRequestPollingUntilDone(request: OpenPullRequestRequest) async throws
+    -> any GoogleGax.PollableOperation<PullRequest>
   {
-    try await self.openPullRequest(withPolling: withPolling, options: .init())
+    try await self.openPullRequestPollingUntilDone(request: request, options: .init())
   }
 
-  public func openPullRequest(
-    withPolling: OpenPullRequestRequest, options: GoogleGax.RequestOptions
+  public func openPullRequestPollingUntilDone(
+    request: OpenPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3174,13 +3169,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func openPullRequest(
+  public func openPullRequestPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let request = OpenPullRequestRequest().with {
       $0.name = name
     }
-    return try await self.openPullRequest(withPolling: request)
+    return try await self.openPullRequestPollingUntilDone(request: request)
   }
 
   public func closePullRequest(request: ClosePullRequestRequest) async throws
@@ -3195,14 +3190,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func closePullRequest(withPolling: ClosePullRequestRequest) async throws -> any GoogleGax
-    .PollableOperation<PullRequest>
+  public func closePullRequestPollingUntilDone(request: ClosePullRequestRequest) async throws
+    -> any GoogleGax.PollableOperation<PullRequest>
   {
-    try await self.closePullRequest(withPolling: withPolling, options: .init())
+    try await self.closePullRequestPollingUntilDone(request: request, options: .init())
   }
 
-  public func closePullRequest(
-    withPolling: ClosePullRequestRequest, options: GoogleGax.RequestOptions
+  public func closePullRequestPollingUntilDone(
+    request: ClosePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequest>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3211,13 +3206,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func closePullRequest(
+  public func closePullRequestPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<PullRequest> {
     let request = ClosePullRequestRequest().with {
       $0.name = name
     }
-    return try await self.closePullRequest(withPolling: request)
+    return try await self.closePullRequestPollingUntilDone(request: request)
   }
 
   public func listPullRequestFileDiffs(request: ListPullRequestFileDiffsRequest) async throws
@@ -3351,14 +3346,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createIssue(withPolling: CreateIssueRequest) async throws -> any GoogleGax
+  public func createIssuePollingUntilDone(request: CreateIssueRequest) async throws -> any GoogleGax
     .PollableOperation<Issue>
   {
-    try await self.createIssue(withPolling: withPolling, options: .init())
+    try await self.createIssuePollingUntilDone(request: request, options: .init())
   }
 
-  public func createIssue(
-    withPolling: CreateIssueRequest, options: GoogleGax.RequestOptions
+  public func createIssuePollingUntilDone(
+    request: CreateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3367,7 +3362,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createIssue(
+  public func createIssuePollingUntilDone(
     parent: Swift.String,
     issue: Issue?,
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
@@ -3375,7 +3370,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.issue = issue
     }
-    return try await self.createIssue(withPolling: request)
+    return try await self.createIssuePollingUntilDone(request: request)
   }
 
   public func getIssue(request: GetIssueRequest) async throws
@@ -3451,14 +3446,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateIssue(withPolling: UpdateIssueRequest) async throws -> any GoogleGax
+  public func updateIssuePollingUntilDone(request: UpdateIssueRequest) async throws -> any GoogleGax
     .PollableOperation<Issue>
   {
-    try await self.updateIssue(withPolling: withPolling, options: .init())
+    try await self.updateIssuePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateIssue(
-    withPolling: UpdateIssueRequest, options: GoogleGax.RequestOptions
+  public func updateIssuePollingUntilDone(
+    request: UpdateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3467,7 +3462,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateIssue(
+  public func updateIssuePollingUntilDone(
     issue: Issue?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
@@ -3475,7 +3470,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.issue = issue
       $0.updateMask = updateMask
     }
-    return try await self.updateIssue(withPolling: request)
+    return try await self.updateIssuePollingUntilDone(request: request)
   }
 
   public func deleteIssue(request: DeleteIssueRequest) async throws -> GoogleLongRunning.Operation {
@@ -3488,14 +3483,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteIssue(withPolling: DeleteIssueRequest) async throws -> any GoogleGax
+  public func deleteIssuePollingUntilDone(request: DeleteIssueRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteIssue(withPolling: withPolling, options: .init())
+    try await self.deleteIssuePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteIssue(
-    withPolling: DeleteIssueRequest, options: GoogleGax.RequestOptions
+  public func deleteIssuePollingUntilDone(
+    request: DeleteIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3504,13 +3499,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteIssue(
+  public func deleteIssuePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteIssueRequest().with {
       $0.name = name
     }
-    return try await self.deleteIssue(withPolling: request)
+    return try await self.deleteIssuePollingUntilDone(request: request)
   }
 
   public func openIssue(request: OpenIssueRequest) async throws -> GoogleLongRunning.Operation {
@@ -3523,14 +3518,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func openIssue(withPolling: OpenIssueRequest) async throws -> any GoogleGax
+  public func openIssuePollingUntilDone(request: OpenIssueRequest) async throws -> any GoogleGax
     .PollableOperation<Issue>
   {
-    try await self.openIssue(withPolling: withPolling, options: .init())
+    try await self.openIssuePollingUntilDone(request: request, options: .init())
   }
 
-  public func openIssue(
-    withPolling: OpenIssueRequest, options: GoogleGax.RequestOptions
+  public func openIssuePollingUntilDone(
+    request: OpenIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3539,13 +3534,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func openIssue(
+  public func openIssuePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let request = OpenIssueRequest().with {
       $0.name = name
     }
-    return try await self.openIssue(withPolling: request)
+    return try await self.openIssuePollingUntilDone(request: request)
   }
 
   public func closeIssue(request: CloseIssueRequest) async throws -> GoogleLongRunning.Operation {
@@ -3558,14 +3553,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func closeIssue(withPolling: CloseIssueRequest) async throws -> any GoogleGax
+  public func closeIssuePollingUntilDone(request: CloseIssueRequest) async throws -> any GoogleGax
     .PollableOperation<Issue>
   {
-    try await self.closeIssue(withPolling: withPolling, options: .init())
+    try await self.closeIssuePollingUntilDone(request: request, options: .init())
   }
 
-  public func closeIssue(
-    withPolling: CloseIssueRequest, options: GoogleGax.RequestOptions
+  public func closeIssuePollingUntilDone(
+    request: CloseIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Issue>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3574,13 +3569,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func closeIssue(
+  public func closeIssuePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Issue> {
     let request = CloseIssueRequest().with {
       $0.name = name
     }
-    return try await self.closeIssue(withPolling: request)
+    return try await self.closeIssuePollingUntilDone(request: request)
   }
 
   public func getPullRequestComment(request: GetPullRequestCommentRequest) async throws
@@ -3659,14 +3654,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createPullRequestComment(withPolling: CreatePullRequestCommentRequest) async throws
-    -> any GoogleGax.PollableOperation<PullRequestComment>
+  public func createPullRequestCommentPollingUntilDone(request: CreatePullRequestCommentRequest)
+    async throws -> any GoogleGax.PollableOperation<PullRequestComment>
   {
-    try await self.createPullRequestComment(withPolling: withPolling, options: .init())
+    try await self.createPullRequestCommentPollingUntilDone(request: request, options: .init())
   }
 
-  public func createPullRequestComment(
-    withPolling: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
+  public func createPullRequestCommentPollingUntilDone(
+    request: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequestComment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequestComment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3675,7 +3670,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createPullRequestComment(
+  public func createPullRequestCommentPollingUntilDone(
     parent: Swift.String,
     pullRequestComment: PullRequestComment?,
   ) async throws -> any GoogleGax.PollableOperation<PullRequestComment> {
@@ -3683,7 +3678,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.pullRequestComment = pullRequestComment
     }
-    return try await self.createPullRequestComment(withPolling: request)
+    return try await self.createPullRequestCommentPollingUntilDone(request: request)
   }
 
   public func updatePullRequestComment(request: UpdatePullRequestCommentRequest) async throws
@@ -3698,14 +3693,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updatePullRequestComment(withPolling: UpdatePullRequestCommentRequest) async throws
-    -> any GoogleGax.PollableOperation<PullRequestComment>
+  public func updatePullRequestCommentPollingUntilDone(request: UpdatePullRequestCommentRequest)
+    async throws -> any GoogleGax.PollableOperation<PullRequestComment>
   {
-    try await self.updatePullRequestComment(withPolling: withPolling, options: .init())
+    try await self.updatePullRequestCommentPollingUntilDone(request: request, options: .init())
   }
 
-  public func updatePullRequestComment(
-    withPolling: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
+  public func updatePullRequestCommentPollingUntilDone(
+    request: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PullRequestComment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PullRequestComment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3714,7 +3709,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updatePullRequestComment(
+  public func updatePullRequestCommentPollingUntilDone(
     pullRequestComment: PullRequestComment?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<PullRequestComment> {
@@ -3722,7 +3717,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.pullRequestComment = pullRequestComment
       $0.updateMask = updateMask
     }
-    return try await self.updatePullRequestComment(withPolling: request)
+    return try await self.updatePullRequestCommentPollingUntilDone(request: request)
   }
 
   public func deletePullRequestComment(request: DeletePullRequestCommentRequest) async throws
@@ -3737,14 +3732,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deletePullRequestComment(withPolling: DeletePullRequestCommentRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deletePullRequestCommentPollingUntilDone(request: DeletePullRequestCommentRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deletePullRequestComment(withPolling: withPolling, options: .init())
+    try await self.deletePullRequestCommentPollingUntilDone(request: request, options: .init())
   }
 
-  public func deletePullRequestComment(
-    withPolling: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
+  public func deletePullRequestCommentPollingUntilDone(
+    request: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3753,13 +3748,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deletePullRequestComment(
+  public func deletePullRequestCommentPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeletePullRequestCommentRequest().with {
       $0.name = name
     }
-    return try await self.deletePullRequestComment(withPolling: request)
+    return try await self.deletePullRequestCommentPollingUntilDone(request: request)
   }
 
   public func batchCreatePullRequestComments(request: BatchCreatePullRequestCommentsRequest)
@@ -3774,14 +3769,15 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func batchCreatePullRequestComments(withPolling: BatchCreatePullRequestCommentsRequest)
-    async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse>
-  {
-    try await self.batchCreatePullRequestComments(withPolling: withPolling, options: .init())
+  public func batchCreatePullRequestCommentsPollingUntilDone(
+    request: BatchCreatePullRequestCommentsRequest
+  ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse> {
+    try await self.batchCreatePullRequestCommentsPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func batchCreatePullRequestComments(
-    withPolling: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func batchCreatePullRequestCommentsPollingUntilDone(
+    request: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse> {
     let poll = {
       () async throws
@@ -3792,7 +3788,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func batchCreatePullRequestComments(
+  public func batchCreatePullRequestCommentsPollingUntilDone(
     parent: Swift.String,
     requests: [CreatePullRequestCommentRequest],
   ) async throws -> any GoogleGax.PollableOperation<BatchCreatePullRequestCommentsResponse> {
@@ -3800,7 +3796,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.requests = requests
     }
-    return try await self.batchCreatePullRequestComments(withPolling: request)
+    return try await self.batchCreatePullRequestCommentsPollingUntilDone(request: request)
   }
 
   public func resolvePullRequestComments(request: ResolvePullRequestCommentsRequest) async throws
@@ -3815,14 +3811,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func resolvePullRequestComments(withPolling: ResolvePullRequestCommentsRequest)
+  public func resolvePullRequestCommentsPollingUntilDone(request: ResolvePullRequestCommentsRequest)
     async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse>
   {
-    try await self.resolvePullRequestComments(withPolling: withPolling, options: .init())
+    try await self.resolvePullRequestCommentsPollingUntilDone(request: request, options: .init())
   }
 
-  public func resolvePullRequestComments(
-    withPolling: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func resolvePullRequestCommentsPollingUntilDone(
+    request: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<ResolvePullRequestCommentsResponse>.State
@@ -3833,7 +3829,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func resolvePullRequestComments(
+  public func resolvePullRequestCommentsPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
   ) async throws -> any GoogleGax.PollableOperation<ResolvePullRequestCommentsResponse> {
@@ -3841,7 +3837,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.names = names
     }
-    return try await self.resolvePullRequestComments(withPolling: request)
+    return try await self.resolvePullRequestCommentsPollingUntilDone(request: request)
   }
 
   public func unresolvePullRequestComments(request: UnresolvePullRequestCommentsRequest)
@@ -3856,14 +3852,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func unresolvePullRequestComments(withPolling: UnresolvePullRequestCommentsRequest)
-    async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse>
-  {
-    try await self.unresolvePullRequestComments(withPolling: withPolling, options: .init())
+  public func unresolvePullRequestCommentsPollingUntilDone(
+    request: UnresolvePullRequestCommentsRequest
+  ) async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse> {
+    try await self.unresolvePullRequestCommentsPollingUntilDone(request: request, options: .init())
   }
 
-  public func unresolvePullRequestComments(
-    withPolling: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func unresolvePullRequestCommentsPollingUntilDone(
+    request: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse> {
     let poll = {
       () async throws
@@ -3874,7 +3870,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func unresolvePullRequestComments(
+  public func unresolvePullRequestCommentsPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
   ) async throws -> any GoogleGax.PollableOperation<UnresolvePullRequestCommentsResponse> {
@@ -3882,7 +3878,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.names = names
     }
-    return try await self.unresolvePullRequestComments(withPolling: request)
+    return try await self.unresolvePullRequestCommentsPollingUntilDone(request: request)
   }
 
   public func createIssueComment(request: CreateIssueCommentRequest) async throws
@@ -3897,14 +3893,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createIssueComment(withPolling: CreateIssueCommentRequest) async throws
+  public func createIssueCommentPollingUntilDone(request: CreateIssueCommentRequest) async throws
     -> any GoogleGax.PollableOperation<IssueComment>
   {
-    try await self.createIssueComment(withPolling: withPolling, options: .init())
+    try await self.createIssueCommentPollingUntilDone(request: request, options: .init())
   }
 
-  public func createIssueComment(
-    withPolling: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
+  public func createIssueCommentPollingUntilDone(
+    request: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IssueComment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IssueComment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3913,7 +3909,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createIssueComment(
+  public func createIssueCommentPollingUntilDone(
     parent: Swift.String,
     issueComment: IssueComment?,
   ) async throws -> any GoogleGax.PollableOperation<IssueComment> {
@@ -3921,7 +3917,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.parent = parent
       $0.issueComment = issueComment
     }
-    return try await self.createIssueComment(withPolling: request)
+    return try await self.createIssueCommentPollingUntilDone(request: request)
   }
 
   public func getIssueComment(request: GetIssueCommentRequest) async throws
@@ -4000,14 +3996,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateIssueComment(withPolling: UpdateIssueCommentRequest) async throws
+  public func updateIssueCommentPollingUntilDone(request: UpdateIssueCommentRequest) async throws
     -> any GoogleGax.PollableOperation<IssueComment>
   {
-    try await self.updateIssueComment(withPolling: withPolling, options: .init())
+    try await self.updateIssueCommentPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateIssueComment(
-    withPolling: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
+  public func updateIssueCommentPollingUntilDone(
+    request: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IssueComment> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IssueComment>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4016,7 +4012,7 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateIssueComment(
+  public func updateIssueCommentPollingUntilDone(
     issueComment: IssueComment?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<IssueComment> {
@@ -4024,7 +4020,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.issueComment = issueComment
       $0.updateMask = updateMask
     }
-    return try await self.updateIssueComment(withPolling: request)
+    return try await self.updateIssueCommentPollingUntilDone(request: request)
   }
 
   public func deleteIssueComment(request: DeleteIssueCommentRequest) async throws
@@ -4039,14 +4035,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteIssueComment(withPolling: DeleteIssueCommentRequest) async throws
+  public func deleteIssueCommentPollingUntilDone(request: DeleteIssueCommentRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteIssueComment(withPolling: withPolling, options: .init())
+    try await self.deleteIssueCommentPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteIssueComment(
-    withPolling: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
+  public func deleteIssueCommentPollingUntilDone(
+    request: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -4055,13 +4051,13 @@ extension Clients.SecureSourceManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteIssueComment(
+  public func deleteIssueCommentPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteIssueCommentRequest().with {
       $0.name = name
     }
-    return try await self.deleteIssueComment(withPolling: request)
+    return try await self.deleteIssueCommentPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: DocumentsClient) async throws {
-    let poller = try await client.importDocuments(
-      withPolling: ImportDocumentsRequest()
+    let poller = try await client.importDocumentsPollingUntilDone(
+      request: ImportDocumentsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

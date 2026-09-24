@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DepServiceClient, projectId: String, locationId: String, lbTrafficExtensionId: String
 ) async throws {
-  let poller = try await client.updateLbTrafficExtension(
-    withPolling: UpdateLbTrafficExtensionRequest()
+  let poller = try await client.updateLbTrafficExtensionPollingUntilDone(
+    request: UpdateLbTrafficExtensionRequest()
       .with {
         $0.lbTrafficExtension = LbTrafficExtension().with {
           $0.name =

@@ -77,15 +77,15 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   /// Creates a new policy-based route in a given project and location.
   ///
   /// @Snippet(path: "PolicyBasedRoutingService_CreatePolicyBasedRoute")
-  public func createPolicyBasedRoute(
-    withPolling: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
+  public func createPolicyBasedRoutePollingUntilDone(
+    request: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PolicyBasedRoute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PolicyBasedRoute>.State in
       return try op._extractStatus(PolicyBasedRoute.self)
     }
-    let rawOp = try await self.createPolicyBasedRoute(request: withPolling, options: options)
+    let rawOp = try await self.createPolicyBasedRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PolicyBasedRoute>.State in
       let op = try await self.getOperation(
@@ -112,15 +112,15 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   /// Deletes a single policy-based route.
   ///
   /// @Snippet(path: "PolicyBasedRoutingService_DeletePolicyBasedRoute")
-  public func deletePolicyBasedRoute(
-    withPolling: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
+  public func deletePolicyBasedRoutePollingUntilDone(
+    request: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deletePolicyBasedRoute(request: withPolling, options: options)
+    let rawOp = try await self.deletePolicyBasedRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -244,22 +244,22 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PolicyBasedRoutingServiceProtocol: Sendable {
     /// See `PolicyBasedRoutingServiceClient.createPolicyBasedRoute`.
-    func createPolicyBasedRoute(withPolling: CreatePolicyBasedRouteRequest) async throws
+    func createPolicyBasedRoutePollingUntilDone(request: CreatePolicyBasedRouteRequest) async throws
       -> any GoogleGax.PollableOperation<PolicyBasedRoute>
 
     /// See `PolicyBasedRoutingServiceClient.createPolicyBasedRoute`.
-    func createPolicyBasedRoute(
+    func createPolicyBasedRoutePollingUntilDone(
       parent: Swift.String,
       policyBasedRoute: PolicyBasedRoute?,
       policyBasedRouteId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<PolicyBasedRoute>
 
     /// See `PolicyBasedRoutingServiceClient.deletePolicyBasedRoute`.
-    func deletePolicyBasedRoute(withPolling: DeletePolicyBasedRouteRequest) async throws
+    func deletePolicyBasedRoutePollingUntilDone(request: DeletePolicyBasedRouteRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `PolicyBasedRoutingServiceClient.deletePolicyBasedRoute`.
-    func deletePolicyBasedRoute(
+    func deletePolicyBasedRoutePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -279,8 +279,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PolicyBasedRoutingServiceClient.createPolicyBasedRoute`.
-    func createPolicyBasedRoute(
-      withPolling: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
+    func createPolicyBasedRoutePollingUntilDone(
+      request: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PolicyBasedRoute>
 
     /// See `PolicyBasedRoutingServiceClient.deletePolicyBasedRoute`.
@@ -289,8 +289,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PolicyBasedRoutingServiceClient.deletePolicyBasedRoute`.
-    func deletePolicyBasedRoute(
-      withPolling: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
+    func deletePolicyBasedRoutePollingUntilDone(
+      request: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `PolicyBasedRoutingServiceClient.listLocations`.
@@ -413,14 +413,14 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createPolicyBasedRoute(withPolling: CreatePolicyBasedRouteRequest) async throws
-    -> any GoogleGax.PollableOperation<PolicyBasedRoute>
+  public func createPolicyBasedRoutePollingUntilDone(request: CreatePolicyBasedRouteRequest)
+    async throws -> any GoogleGax.PollableOperation<PolicyBasedRoute>
   {
-    try await self.createPolicyBasedRoute(withPolling: withPolling, options: .init())
+    try await self.createPolicyBasedRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func createPolicyBasedRoute(
-    withPolling: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
+  public func createPolicyBasedRoutePollingUntilDone(
+    request: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PolicyBasedRoute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<PolicyBasedRoute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -429,7 +429,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createPolicyBasedRoute(
+  public func createPolicyBasedRoutePollingUntilDone(
     parent: Swift.String,
     policyBasedRoute: PolicyBasedRoute?,
     policyBasedRouteId: Swift.String,
@@ -439,7 +439,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
       $0.policyBasedRoute = policyBasedRoute
       $0.policyBasedRouteId = policyBasedRouteId
     }
-    return try await self.createPolicyBasedRoute(withPolling: request)
+    return try await self.createPolicyBasedRoutePollingUntilDone(request: request)
   }
 
   public func deletePolicyBasedRoute(request: DeletePolicyBasedRouteRequest) async throws
@@ -454,14 +454,14 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deletePolicyBasedRoute(withPolling: DeletePolicyBasedRouteRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deletePolicyBasedRoutePollingUntilDone(request: DeletePolicyBasedRouteRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deletePolicyBasedRoute(withPolling: withPolling, options: .init())
+    try await self.deletePolicyBasedRoutePollingUntilDone(request: request, options: .init())
   }
 
-  public func deletePolicyBasedRoute(
-    withPolling: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
+  public func deletePolicyBasedRoutePollingUntilDone(
+    request: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -470,13 +470,13 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deletePolicyBasedRoute(
+  public func deletePolicyBasedRoutePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeletePolicyBasedRouteRequest().with {
       $0.name = name
     }
-    return try await self.deletePolicyBasedRoute(withPolling: request)
+    return try await self.deletePolicyBasedRoutePollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

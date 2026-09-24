@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: VectorSearchServiceClient, projectId: String, locationId: String, collectionId: String
 ) async throws {
-  let poller = try await client.createIndex(
-    withPolling: CreateIndexRequest()
+  let poller = try await client.createIndexPollingUntilDone(
+    request: CreateIndexRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)"
         $0.indexId = "[replace with a valid ID]"

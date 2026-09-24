@@ -80,15 +80,15 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "Workflows_CreateWorkflow")
-  public func createWorkflow(
-    withPolling: CreateWorkflowRequest, options: GoogleGax.RequestOptions
+  public func createWorkflowPollingUntilDone(
+    request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workflow> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Workflow>.State
       in
       return try op._extractStatus(Workflow.self)
     }
-    let rawOp = try await self.createWorkflow(request: withPolling, options: options)
+    let rawOp = try await self.createWorkflow(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workflow>.State in
       let op = try await self.getOperation(
@@ -119,15 +119,15 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// workflow.
   ///
   /// @Snippet(path: "Workflows_DeleteWorkflow")
-  public func deleteWorkflow(
-    withPolling: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkflowPollingUntilDone(
+    request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteWorkflow(request: withPolling, options: options)
+    let rawOp = try await self.deleteWorkflow(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -162,15 +162,15 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// in new workflow executions.
   ///
   /// @Snippet(path: "Workflows_UpdateWorkflow")
-  public func updateWorkflow(
-    withPolling: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
+  public func updateWorkflowPollingUntilDone(
+    request: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workflow> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Workflow>.State
       in
       return try op._extractStatus(Workflow.self)
     }
-    let rawOp = try await self.updateWorkflow(request: withPolling, options: options)
+    let rawOp = try await self.updateWorkflow(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workflow>.State in
       let op = try await self.getOperation(
@@ -254,31 +254,31 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WorkflowsProtocol: Sendable {
     /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflow(withPolling: CreateWorkflowRequest) async throws -> any GoogleGax
-      .PollableOperation<Workflow>
+    func createWorkflowPollingUntilDone(request: CreateWorkflowRequest) async throws
+      -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflow(
+    func createWorkflowPollingUntilDone(
       parent: Swift.String,
       workflow: Workflow?,
       workflowId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflow(withPolling: DeleteWorkflowRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteWorkflowPollingUntilDone(request: DeleteWorkflowRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflow(
+    func deleteWorkflowPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflow(withPolling: UpdateWorkflowRequest) async throws -> any GoogleGax
-      .PollableOperation<Workflow>
+    func updateWorkflowPollingUntilDone(request: UpdateWorkflowRequest) async throws
+      -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflow(
+    func updateWorkflowPollingUntilDone(
       workflow: Workflow?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
@@ -299,8 +299,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflow(
-      withPolling: CreateWorkflowRequest, options: GoogleGax.RequestOptions
+    func createWorkflowPollingUntilDone(
+      request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.deleteWorkflow`.
@@ -309,8 +309,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflow(
-      withPolling: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
+    func deleteWorkflowPollingUntilDone(
+      request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowsClient.updateWorkflow`.
@@ -319,8 +319,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflow(
-      withPolling: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
+    func updateWorkflowPollingUntilDone(
+      request: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.listWorkflowRevisions`.
@@ -428,14 +428,14 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWorkflow(withPolling: CreateWorkflowRequest) async throws -> any GoogleGax
-    .PollableOperation<Workflow>
+  public func createWorkflowPollingUntilDone(request: CreateWorkflowRequest) async throws
+    -> any GoogleGax.PollableOperation<Workflow>
   {
-    try await self.createWorkflow(withPolling: withPolling, options: .init())
+    try await self.createWorkflowPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWorkflow(
-    withPolling: CreateWorkflowRequest, options: GoogleGax.RequestOptions
+  public func createWorkflowPollingUntilDone(
+    request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workflow> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workflow>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -444,7 +444,7 @@ extension Clients.WorkflowsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWorkflow(
+  public func createWorkflowPollingUntilDone(
     parent: Swift.String,
     workflow: Workflow?,
     workflowId: Swift.String,
@@ -454,7 +454,7 @@ extension Clients.WorkflowsProtocol {
       $0.workflow = workflow
       $0.workflowId = workflowId
     }
-    return try await self.createWorkflow(withPolling: request)
+    return try await self.createWorkflowPollingUntilDone(request: request)
   }
 
   public func deleteWorkflow(request: DeleteWorkflowRequest) async throws
@@ -469,14 +469,14 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWorkflow(withPolling: DeleteWorkflowRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteWorkflowPollingUntilDone(request: DeleteWorkflowRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteWorkflow(withPolling: withPolling, options: .init())
+    try await self.deleteWorkflowPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWorkflow(
-    withPolling: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkflowPollingUntilDone(
+    request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -485,13 +485,13 @@ extension Clients.WorkflowsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWorkflow(
+  public func deleteWorkflowPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteWorkflowRequest().with {
       $0.name = name
     }
-    return try await self.deleteWorkflow(withPolling: request)
+    return try await self.deleteWorkflowPollingUntilDone(request: request)
   }
 
   public func updateWorkflow(request: UpdateWorkflowRequest) async throws
@@ -506,14 +506,14 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateWorkflow(withPolling: UpdateWorkflowRequest) async throws -> any GoogleGax
-    .PollableOperation<Workflow>
+  public func updateWorkflowPollingUntilDone(request: UpdateWorkflowRequest) async throws
+    -> any GoogleGax.PollableOperation<Workflow>
   {
-    try await self.updateWorkflow(withPolling: withPolling, options: .init())
+    try await self.updateWorkflowPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateWorkflow(
-    withPolling: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
+  public func updateWorkflowPollingUntilDone(
+    request: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workflow> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workflow>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -522,7 +522,7 @@ extension Clients.WorkflowsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateWorkflow(
+  public func updateWorkflowPollingUntilDone(
     workflow: Workflow?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Workflow> {
@@ -530,7 +530,7 @@ extension Clients.WorkflowsProtocol {
       $0.workflow = workflow
       $0.updateMask = updateMask
     }
-    return try await self.updateWorkflow(withPolling: request)
+    return try await self.updateWorkflowPollingUntilDone(request: request)
   }
 
   public func listWorkflowRevisions(request: ListWorkflowRevisionsRequest) async throws

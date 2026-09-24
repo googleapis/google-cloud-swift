@@ -26,8 +26,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: AuditManagerClient) async throws {
-  let poller = try await client.generateAuditReport(
-    withPolling: GenerateAuditReportRequest()
+  let poller = try await client.generateAuditReportPollingUntilDone(
+    request: GenerateAuditReportRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

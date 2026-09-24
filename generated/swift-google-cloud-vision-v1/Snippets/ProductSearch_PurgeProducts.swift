@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProductSearchClient) async throws {
-  let poller = try await client.purgeProducts(
-    withPolling: PurgeProductsRequest()
+  let poller = try await client.purgeProductsPollingUntilDone(
+    request: PurgeProductsRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ReservationSubBlocksClient) async throws {
-    let poller = try await client.getVersion(
-      withPolling: ReservationSubBlocksClient.GetVersionRequest()
+    let poller = try await client.getVersionPollingUntilDone(
+      request: ReservationSubBlocksClient.GetVersionRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

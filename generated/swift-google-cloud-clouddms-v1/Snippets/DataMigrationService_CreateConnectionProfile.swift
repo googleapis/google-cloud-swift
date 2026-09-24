@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(client: DataMigrationServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createConnectionProfile(
-    withPolling: CreateConnectionProfileRequest()
+  let poller = try await client.createConnectionProfilePollingUntilDone(
+    request: CreateConnectionProfileRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.connectionProfile = ConnectionProfile() /* .with { ... } */

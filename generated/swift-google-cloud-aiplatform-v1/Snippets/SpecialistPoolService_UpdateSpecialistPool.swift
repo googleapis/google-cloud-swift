@@ -28,8 +28,8 @@
     client: SpecialistPoolServiceClient, projectId: String, locationId: String,
     specialistPoolId: String
   ) async throws {
-    let poller = try await client.updateSpecialistPool(
-      withPolling: UpdateSpecialistPoolRequest()
+    let poller = try await client.updateSpecialistPoolPollingUntilDone(
+      request: UpdateSpecialistPoolRequest()
         .with {
           $0.specialistPool = SpecialistPool().with {
             $0.name =

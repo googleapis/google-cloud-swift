@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: BackendServicesClient) async throws {
-    let poller = try await client.setSecurityPolicy(
-      withPolling: BackendServicesClient.SetSecurityPolicyRequest()
+    let poller = try await client.setSecurityPolicyPollingUntilDone(
+      request: BackendServicesClient.SetSecurityPolicyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

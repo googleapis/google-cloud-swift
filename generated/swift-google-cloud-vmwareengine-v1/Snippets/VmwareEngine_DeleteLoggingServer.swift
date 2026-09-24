@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   loggingServerId: String
 ) async throws {
-  let poller = try await client.deleteLoggingServer(
-    withPolling: DeleteLoggingServerRequest()
+  let poller = try await client.deleteLoggingServerPollingUntilDone(
+    request: DeleteLoggingServerRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)/loggingServers/\(loggingServerId)"

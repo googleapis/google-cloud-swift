@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String)
   async throws
 {
-  let poller = try await client.updateLake(
-    withPolling: UpdateLakeRequest()
+  let poller = try await client.updateLakePollingUntilDone(
+    request: UpdateLakeRequest()
       .with {
         $0.lake = Lake().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)"

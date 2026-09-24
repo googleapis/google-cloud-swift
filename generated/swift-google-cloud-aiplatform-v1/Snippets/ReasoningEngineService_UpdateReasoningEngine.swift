@@ -28,8 +28,8 @@
     client: ReasoningEngineServiceClient, projectId: String, locationId: String,
     reasoningEngineId: String
   ) async throws {
-    let poller = try await client.updateReasoningEngine(
-      withPolling: UpdateReasoningEngineRequest()
+    let poller = try await client.updateReasoningEnginePollingUntilDone(
+      request: UpdateReasoningEngineRequest()
         .with {
           $0.reasoningEngine = ReasoningEngine().with {
             $0.name =

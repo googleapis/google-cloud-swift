@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ResourcePoliciesClient) async throws {
-    let poller = try await client.insert(
-      withPolling: ResourcePoliciesClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: ResourcePoliciesClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

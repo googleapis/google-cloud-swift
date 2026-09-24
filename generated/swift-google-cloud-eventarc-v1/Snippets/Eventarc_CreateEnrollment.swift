@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createEnrollment(
-    withPolling: CreateEnrollmentRequest()
+  let poller = try await client.createEnrollmentPollingUntilDone(
+    request: CreateEnrollmentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.enrollmentId = "[replace with a valid ID]"

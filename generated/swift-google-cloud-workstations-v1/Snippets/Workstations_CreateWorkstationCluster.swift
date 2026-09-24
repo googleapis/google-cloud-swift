@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkstationsClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createWorkstationCluster(
-    withPolling: CreateWorkstationClusterRequest()
+  let poller = try await client.createWorkstationClusterPollingUntilDone(
+    request: CreateWorkstationClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.workstationCluster = WorkstationCluster() /* .with { ... } */

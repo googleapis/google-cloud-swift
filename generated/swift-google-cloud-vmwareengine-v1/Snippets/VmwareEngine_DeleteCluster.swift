@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   clusterId: String
 ) async throws {
-  let poller = try await client.deleteCluster(
-    withPolling: DeleteClusterRequest()
+  let poller = try await client.deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)/clusters/\(clusterId)"

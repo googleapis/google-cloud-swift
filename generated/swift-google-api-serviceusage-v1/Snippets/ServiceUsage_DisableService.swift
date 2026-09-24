@@ -21,8 +21,8 @@ import GoogleApiServiceUsageV1
 import GoogleLongRunning
 
 func sample(client: ServiceUsageClient) async throws {
-  let poller = try await client.disableService(
-    withPolling: DisableServiceRequest()
+  let poller = try await client.disableServicePollingUntilDone(
+    request: DisableServiceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

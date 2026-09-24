@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LicenseManagerClient, projectId: String, locationId: String, configurationId: String
 ) async throws {
-  let poller = try await client.deleteConfiguration(
-    withPolling: DeleteConfigurationRequest()
+  let poller = try await client.deleteConfigurationPollingUntilDone(
+    request: DeleteConfigurationRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/configurations/\(configurationId)"
       }

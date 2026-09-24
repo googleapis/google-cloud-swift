@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPolicyId: String
 ) async throws {
-  let poller = try await client.createExternalAccessRule(
-    withPolling: CreateExternalAccessRuleRequest()
+  let poller = try await client.createExternalAccessRulePollingUntilDone(
+    request: CreateExternalAccessRuleRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/networkPolicies/\(networkPolicyId)"

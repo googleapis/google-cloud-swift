@@ -73,15 +73,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Application in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateApplication")
-  public func createApplication(
-    withPolling: CreateApplicationRequest, options: GoogleGax.RequestOptions
+  public func createApplicationPollingUntilDone(
+    request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
       return try op._extractStatus(Application.self)
     }
-    let rawOp = try await self.createApplication(request: withPolling, options: options)
+    let rawOp = try await self.createApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       let op = try await self.getOperation(
@@ -108,15 +108,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Application.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplication")
-  public func updateApplication(
-    withPolling: UpdateApplicationRequest, options: GoogleGax.RequestOptions
+  public func updateApplicationPollingUntilDone(
+    request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
       return try op._extractStatus(Application.self)
     }
-    let rawOp = try await self.updateApplication(request: withPolling, options: options)
+    let rawOp = try await self.updateApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       let op = try await self.getOperation(
@@ -143,15 +143,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Application.
   ///
   /// @Snippet(path: "AppPlatform_DeleteApplication")
-  public func deleteApplication(
-    withPolling: DeleteApplicationRequest, options: GoogleGax.RequestOptions
+  public func deleteApplicationPollingUntilDone(
+    request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteApplication(request: withPolling, options: options)
+    let rawOp = try await self.deleteApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -178,15 +178,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deploys a single Application.
   ///
   /// @Snippet(path: "AppPlatform_DeployApplication")
-  public func deployApplication(
-    withPolling: DeployApplicationRequest, options: GoogleGax.RequestOptions
+  public func deployApplicationPollingUntilDone(
+    request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DeployApplicationResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DeployApplicationResponse>.State in
       return try op._extractStatus(DeployApplicationResponse.self)
     }
-    let rawOp = try await self.deployApplication(request: withPolling, options: options)
+    let rawOp = try await self.deployApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DeployApplicationResponse>.State in
@@ -214,15 +214,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Undeploys a single Application.
   ///
   /// @Snippet(path: "AppPlatform_UndeployApplication")
-  public func undeployApplication(
-    withPolling: UndeployApplicationRequest, options: GoogleGax.RequestOptions
+  public func undeployApplicationPollingUntilDone(
+    request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UndeployApplicationResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UndeployApplicationResponse>.State in
       return try op._extractStatus(UndeployApplicationResponse.self)
     }
-    let rawOp = try await self.undeployApplication(request: withPolling, options: options)
+    let rawOp = try await self.undeployApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<UndeployApplicationResponse>.State in
@@ -256,15 +256,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_AddApplicationStreamInput")
-  public func addApplicationStreamInput(
-    withPolling: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+  public func addApplicationStreamInputPollingUntilDone(
+    request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddApplicationStreamInputResponse>.State in
       return try op._extractStatus(AddApplicationStreamInputResponse.self)
     }
-    let rawOp = try await self.addApplicationStreamInput(request: withPolling, options: options)
+    let rawOp = try await self.addApplicationStreamInput(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AddApplicationStreamInputResponse>.State
@@ -297,15 +297,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// is not in the Application, the RPC will fail.
   ///
   /// @Snippet(path: "AppPlatform_RemoveApplicationStreamInput")
-  public func removeApplicationStreamInput(
-    withPolling: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+  public func removeApplicationStreamInputPollingUntilDone(
+    request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RemoveApplicationStreamInputResponse>.State in
       return try op._extractStatus(RemoveApplicationStreamInputResponse.self)
     }
-    let rawOp = try await self.removeApplicationStreamInput(request: withPolling, options: options)
+    let rawOp = try await self.removeApplicationStreamInput(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws
@@ -338,15 +338,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// CreateOrUpdate behavior, set allow_missing to true.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplicationStreamInput")
-  public func updateApplicationStreamInput(
-    withPolling: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+  public func updateApplicationStreamInputPollingUntilDone(
+    request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UpdateApplicationStreamInputResponse>.State in
       return try op._extractStatus(UpdateApplicationStreamInputResponse.self)
     }
-    let rawOp = try await self.updateApplicationStreamInput(request: withPolling, options: options)
+    let rawOp = try await self.updateApplicationStreamInput(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws
@@ -399,15 +399,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_CreateApplicationInstances")
-  public func createApplicationInstances(
-    withPolling: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
+  public func createApplicationInstancesPollingUntilDone(
+    request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CreateApplicationInstancesResponse>.State in
       return try op._extractStatus(CreateApplicationInstancesResponse.self)
     }
-    let rawOp = try await self.createApplicationInstances(request: withPolling, options: options)
+    let rawOp = try await self.createApplicationInstances(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<CreateApplicationInstancesResponse>.State
@@ -440,15 +440,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// is not in the Application, the RPC will fail.
   ///
   /// @Snippet(path: "AppPlatform_DeleteApplicationInstances")
-  public func deleteApplicationInstances(
-    withPolling: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
+  public func deleteApplicationInstancesPollingUntilDone(
+    request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.deleteApplicationInstances(request: withPolling, options: options)
+    let rawOp = try await self.deleteApplicationInstances(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -481,15 +481,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplicationInstances")
-  public func updateApplicationInstances(
-    withPolling: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
+  public func updateApplicationInstancesPollingUntilDone(
+    request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UpdateApplicationInstancesResponse>.State in
       return try op._extractStatus(UpdateApplicationInstancesResponse.self)
     }
-    let rawOp = try await self.updateApplicationInstances(request: withPolling, options: options)
+    let rawOp = try await self.updateApplicationInstances(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<UpdateApplicationInstancesResponse>.State
@@ -536,14 +536,14 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Draft in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateDraft")
-  public func createDraft(
-    withPolling: CreateDraftRequest, options: GoogleGax.RequestOptions
+  public func createDraftPollingUntilDone(
+    request: CreateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Draft> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Draft>.State in
       return try op._extractStatus(Draft.self)
     }
-    let rawOp = try await self.createDraft(request: withPolling, options: options)
+    let rawOp = try await self.createDraft(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Draft>.State in
       let op = try await self.getOperation(
@@ -570,14 +570,14 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_UpdateDraft")
-  public func updateDraft(
-    withPolling: UpdateDraftRequest, options: GoogleGax.RequestOptions
+  public func updateDraftPollingUntilDone(
+    request: UpdateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Draft> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Draft>.State in
       return try op._extractStatus(Draft.self)
     }
-    let rawOp = try await self.updateDraft(request: withPolling, options: options)
+    let rawOp = try await self.updateDraft(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Draft>.State in
       let op = try await self.getOperation(
@@ -604,15 +604,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_DeleteDraft")
-  public func deleteDraft(
-    withPolling: DeleteDraftRequest, options: GoogleGax.RequestOptions
+  public func deleteDraftPollingUntilDone(
+    request: DeleteDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDraft(request: withPolling, options: options)
+    let rawOp = try await self.deleteDraft(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -667,15 +667,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Processor in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateProcessor")
-  public func createProcessor(
-    withPolling: CreateProcessorRequest, options: GoogleGax.RequestOptions
+  public func createProcessorPollingUntilDone(
+    request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Processor> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Processor>.State
       in
       return try op._extractStatus(Processor.self)
     }
-    let rawOp = try await self.createProcessor(request: withPolling, options: options)
+    let rawOp = try await self.createProcessor(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Processor>.State in
       let op = try await self.getOperation(
@@ -702,15 +702,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_UpdateProcessor")
-  public func updateProcessor(
-    withPolling: UpdateProcessorRequest, options: GoogleGax.RequestOptions
+  public func updateProcessorPollingUntilDone(
+    request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Processor> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Processor>.State
       in
       return try op._extractStatus(Processor.self)
     }
-    let rawOp = try await self.updateProcessor(request: withPolling, options: options)
+    let rawOp = try await self.updateProcessor(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Processor>.State in
       let op = try await self.getOperation(
@@ -737,15 +737,15 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_DeleteProcessor")
-  public func deleteProcessor(
-    withPolling: DeleteProcessorRequest, options: GoogleGax.RequestOptions
+  public func deleteProcessorPollingUntilDone(
+    request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteProcessor(request: withPolling, options: options)
+    let rawOp = try await self.deleteProcessor(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -831,164 +831,164 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AppPlatformProtocol: Sendable {
     /// See `AppPlatformClient.createApplication`.
-    func createApplication(withPolling: CreateApplicationRequest) async throws -> any GoogleGax
-      .PollableOperation<Application>
+    func createApplicationPollingUntilDone(request: CreateApplicationRequest) async throws
+      -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.createApplication`.
-    func createApplication(
+    func createApplicationPollingUntilDone(
       parent: Swift.String,
       application: Application?,
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.updateApplication`.
-    func updateApplication(withPolling: UpdateApplicationRequest) async throws -> any GoogleGax
-      .PollableOperation<Application>
+    func updateApplicationPollingUntilDone(request: UpdateApplicationRequest) async throws
+      -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.updateApplication`.
-    func updateApplication(
+    func updateApplicationPollingUntilDone(
       application: Application?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.deleteApplication`.
-    func deleteApplication(withPolling: DeleteApplicationRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteApplicationPollingUntilDone(request: DeleteApplicationRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.deleteApplication`.
-    func deleteApplication(
+    func deleteApplicationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.deployApplication`.
-    func deployApplication(withPolling: DeployApplicationRequest) async throws -> any GoogleGax
-      .PollableOperation<DeployApplicationResponse>
+    func deployApplicationPollingUntilDone(request: DeployApplicationRequest) async throws
+      -> any GoogleGax.PollableOperation<DeployApplicationResponse>
 
     /// See `AppPlatformClient.deployApplication`.
-    func deployApplication(
+    func deployApplicationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DeployApplicationResponse>
 
     /// See `AppPlatformClient.undeployApplication`.
-    func undeployApplication(withPolling: UndeployApplicationRequest) async throws -> any GoogleGax
-      .PollableOperation<UndeployApplicationResponse>
+    func undeployApplicationPollingUntilDone(request: UndeployApplicationRequest) async throws
+      -> any GoogleGax.PollableOperation<UndeployApplicationResponse>
 
     /// See `AppPlatformClient.undeployApplication`.
-    func undeployApplication(
+    func undeployApplicationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<UndeployApplicationResponse>
 
     /// See `AppPlatformClient.addApplicationStreamInput`.
-    func addApplicationStreamInput(withPolling: AddApplicationStreamInputRequest) async throws
-      -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
+    func addApplicationStreamInputPollingUntilDone(request: AddApplicationStreamInputRequest)
+      async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.addApplicationStreamInput`.
-    func addApplicationStreamInput(
+    func addApplicationStreamInputPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.removeApplicationStreamInput`.
-    func removeApplicationStreamInput(withPolling: RemoveApplicationStreamInputRequest) async throws
-      -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
+    func removeApplicationStreamInputPollingUntilDone(request: RemoveApplicationStreamInputRequest)
+      async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.removeApplicationStreamInput`.
-    func removeApplicationStreamInput(
+    func removeApplicationStreamInputPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.updateApplicationStreamInput`.
-    func updateApplicationStreamInput(withPolling: UpdateApplicationStreamInputRequest) async throws
-      -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
+    func updateApplicationStreamInputPollingUntilDone(request: UpdateApplicationStreamInputRequest)
+      async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.updateApplicationStreamInput`.
-    func updateApplicationStreamInput(
+    func updateApplicationStreamInputPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.createApplicationInstances`.
-    func createApplicationInstances(withPolling: CreateApplicationInstancesRequest) async throws
-      -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse>
+    func createApplicationInstancesPollingUntilDone(request: CreateApplicationInstancesRequest)
+      async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.createApplicationInstances`.
-    func createApplicationInstances(
+    func createApplicationInstancesPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.deleteApplicationInstances`.
-    func deleteApplicationInstances(withPolling: DeleteApplicationInstancesRequest) async throws
-      -> any GoogleGax.PollableOperation<Instance>
+    func deleteApplicationInstancesPollingUntilDone(request: DeleteApplicationInstancesRequest)
+      async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AppPlatformClient.deleteApplicationInstances`.
-    func deleteApplicationInstances(
+    func deleteApplicationInstancesPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AppPlatformClient.updateApplicationInstances`.
-    func updateApplicationInstances(withPolling: UpdateApplicationInstancesRequest) async throws
-      -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse>
+    func updateApplicationInstancesPollingUntilDone(request: UpdateApplicationInstancesRequest)
+      async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.updateApplicationInstances`.
-    func updateApplicationInstances(
+    func updateApplicationInstancesPollingUntilDone(
       name: Swift.String,
       applicationInstances: [UpdateApplicationInstancesRequest.UpdateApplicationInstance],
     ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.createDraft`.
-    func createDraft(withPolling: CreateDraftRequest) async throws -> any GoogleGax
+    func createDraftPollingUntilDone(request: CreateDraftRequest) async throws -> any GoogleGax
       .PollableOperation<Draft>
 
     /// See `AppPlatformClient.createDraft`.
-    func createDraft(
+    func createDraftPollingUntilDone(
       parent: Swift.String,
       draft: Draft?,
       draftId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.updateDraft`.
-    func updateDraft(withPolling: UpdateDraftRequest) async throws -> any GoogleGax
+    func updateDraftPollingUntilDone(request: UpdateDraftRequest) async throws -> any GoogleGax
       .PollableOperation<Draft>
 
     /// See `AppPlatformClient.updateDraft`.
-    func updateDraft(
+    func updateDraftPollingUntilDone(
       draft: Draft?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.deleteDraft`.
-    func deleteDraft(withPolling: DeleteDraftRequest) async throws -> any GoogleGax
+    func deleteDraftPollingUntilDone(request: DeleteDraftRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.deleteDraft`.
-    func deleteDraft(
+    func deleteDraftPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.createProcessor`.
-    func createProcessor(withPolling: CreateProcessorRequest) async throws -> any GoogleGax
-      .PollableOperation<Processor>
+    func createProcessorPollingUntilDone(request: CreateProcessorRequest) async throws
+      -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.createProcessor`.
-    func createProcessor(
+    func createProcessorPollingUntilDone(
       parent: Swift.String,
       processor: Processor?,
       processorId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.updateProcessor`.
-    func updateProcessor(withPolling: UpdateProcessorRequest) async throws -> any GoogleGax
-      .PollableOperation<Processor>
+    func updateProcessorPollingUntilDone(request: UpdateProcessorRequest) async throws
+      -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.updateProcessor`.
-    func updateProcessor(
+    func updateProcessorPollingUntilDone(
       processor: Processor?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.deleteProcessor`.
-    func deleteProcessor(withPolling: DeleteProcessorRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteProcessorPollingUntilDone(request: DeleteProcessorRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.deleteProcessor`.
-    func deleteProcessor(
+    func deleteProcessorPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1008,8 +1008,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createApplication`.
-    func createApplication(
-      withPolling: CreateApplicationRequest, options: GoogleGax.RequestOptions
+    func createApplicationPollingUntilDone(
+      request: CreateApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.updateApplication`.
@@ -1018,8 +1018,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateApplication`.
-    func updateApplication(
-      withPolling: UpdateApplicationRequest, options: GoogleGax.RequestOptions
+    func updateApplicationPollingUntilDone(
+      request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.deleteApplication`.
@@ -1028,8 +1028,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.deleteApplication`.
-    func deleteApplication(
-      withPolling: DeleteApplicationRequest, options: GoogleGax.RequestOptions
+    func deleteApplicationPollingUntilDone(
+      request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.deployApplication`.
@@ -1038,8 +1038,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.deployApplication`.
-    func deployApplication(
-      withPolling: DeployApplicationRequest, options: GoogleGax.RequestOptions
+    func deployApplicationPollingUntilDone(
+      request: DeployApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployApplicationResponse>
 
     /// See `AppPlatformClient.undeployApplication`.
@@ -1048,8 +1048,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.undeployApplication`.
-    func undeployApplication(
-      withPolling: UndeployApplicationRequest, options: GoogleGax.RequestOptions
+    func undeployApplicationPollingUntilDone(
+      request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UndeployApplicationResponse>
 
     /// See `AppPlatformClient.addApplicationStreamInput`.
@@ -1058,8 +1058,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.addApplicationStreamInput`.
-    func addApplicationStreamInput(
-      withPolling: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+    func addApplicationStreamInputPollingUntilDone(
+      request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.removeApplicationStreamInput`.
@@ -1068,8 +1068,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.removeApplicationStreamInput`.
-    func removeApplicationStreamInput(
-      withPolling: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+    func removeApplicationStreamInputPollingUntilDone(
+      request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.updateApplicationStreamInput`.
@@ -1078,8 +1078,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateApplicationStreamInput`.
-    func updateApplicationStreamInput(
-      withPolling: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+    func updateApplicationStreamInputPollingUntilDone(
+      request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
 
     /// See `AppPlatformClient.listInstances`.
@@ -1098,8 +1098,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createApplicationInstances`.
-    func createApplicationInstances(
-      withPolling: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
+    func createApplicationInstancesPollingUntilDone(
+      request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.deleteApplicationInstances`.
@@ -1108,8 +1108,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.deleteApplicationInstances`.
-    func deleteApplicationInstances(
-      withPolling: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
+    func deleteApplicationInstancesPollingUntilDone(
+      request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `AppPlatformClient.updateApplicationInstances`.
@@ -1118,8 +1118,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateApplicationInstances`.
-    func updateApplicationInstances(
-      withPolling: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
+    func updateApplicationInstancesPollingUntilDone(
+      request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse>
 
     /// See `AppPlatformClient.listDrafts`.
@@ -1138,8 +1138,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createDraft`.
-    func createDraft(
-      withPolling: CreateDraftRequest, options: GoogleGax.RequestOptions
+    func createDraftPollingUntilDone(
+      request: CreateDraftRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.updateDraft`.
@@ -1148,8 +1148,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateDraft`.
-    func updateDraft(
-      withPolling: UpdateDraftRequest, options: GoogleGax.RequestOptions
+    func updateDraftPollingUntilDone(
+      request: UpdateDraftRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.deleteDraft`.
@@ -1158,8 +1158,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.deleteDraft`.
-    func deleteDraft(
-      withPolling: DeleteDraftRequest, options: GoogleGax.RequestOptions
+    func deleteDraftPollingUntilDone(
+      request: DeleteDraftRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.listProcessors`.
@@ -1183,8 +1183,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.createProcessor`.
-    func createProcessor(
-      withPolling: CreateProcessorRequest, options: GoogleGax.RequestOptions
+    func createProcessorPollingUntilDone(
+      request: CreateProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.updateProcessor`.
@@ -1193,8 +1193,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.updateProcessor`.
-    func updateProcessor(
-      withPolling: UpdateProcessorRequest, options: GoogleGax.RequestOptions
+    func updateProcessorPollingUntilDone(
+      request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.deleteProcessor`.
@@ -1203,8 +1203,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppPlatformClient.deleteProcessor`.
-    func deleteProcessor(
-      withPolling: DeleteProcessorRequest, options: GoogleGax.RequestOptions
+    func deleteProcessorPollingUntilDone(
+      request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `AppPlatformClient.listLocations`.
@@ -1311,14 +1311,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createApplication(withPolling: CreateApplicationRequest) async throws -> any GoogleGax
-    .PollableOperation<Application>
+  public func createApplicationPollingUntilDone(request: CreateApplicationRequest) async throws
+    -> any GoogleGax.PollableOperation<Application>
   {
-    try await self.createApplication(withPolling: withPolling, options: .init())
+    try await self.createApplicationPollingUntilDone(request: request, options: .init())
   }
 
-  public func createApplication(
-    withPolling: CreateApplicationRequest, options: GoogleGax.RequestOptions
+  public func createApplicationPollingUntilDone(
+    request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1327,7 +1327,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createApplication(
+  public func createApplicationPollingUntilDone(
     parent: Swift.String,
     application: Application?,
   ) async throws -> any GoogleGax.PollableOperation<Application> {
@@ -1335,7 +1335,7 @@ extension Clients.AppPlatformProtocol {
       $0.parent = parent
       $0.application = application
     }
-    return try await self.createApplication(withPolling: request)
+    return try await self.createApplicationPollingUntilDone(request: request)
   }
 
   public func updateApplication(request: UpdateApplicationRequest) async throws
@@ -1350,14 +1350,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateApplication(withPolling: UpdateApplicationRequest) async throws -> any GoogleGax
-    .PollableOperation<Application>
+  public func updateApplicationPollingUntilDone(request: UpdateApplicationRequest) async throws
+    -> any GoogleGax.PollableOperation<Application>
   {
-    try await self.updateApplication(withPolling: withPolling, options: .init())
+    try await self.updateApplicationPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateApplication(
-    withPolling: UpdateApplicationRequest, options: GoogleGax.RequestOptions
+  public func updateApplicationPollingUntilDone(
+    request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1366,7 +1366,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateApplication(
+  public func updateApplicationPollingUntilDone(
     application: Application?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Application> {
@@ -1374,7 +1374,7 @@ extension Clients.AppPlatformProtocol {
       $0.application = application
       $0.updateMask = updateMask
     }
-    return try await self.updateApplication(withPolling: request)
+    return try await self.updateApplicationPollingUntilDone(request: request)
   }
 
   public func deleteApplication(request: DeleteApplicationRequest) async throws
@@ -1389,14 +1389,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteApplication(withPolling: DeleteApplicationRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteApplicationPollingUntilDone(request: DeleteApplicationRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteApplication(withPolling: withPolling, options: .init())
+    try await self.deleteApplicationPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteApplication(
-    withPolling: DeleteApplicationRequest, options: GoogleGax.RequestOptions
+  public func deleteApplicationPollingUntilDone(
+    request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1405,13 +1405,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteApplication(
+  public func deleteApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteApplicationRequest().with {
       $0.name = name
     }
-    return try await self.deleteApplication(withPolling: request)
+    return try await self.deleteApplicationPollingUntilDone(request: request)
   }
 
   public func deployApplication(request: DeployApplicationRequest) async throws
@@ -1426,14 +1426,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deployApplication(withPolling: DeployApplicationRequest) async throws -> any GoogleGax
-    .PollableOperation<DeployApplicationResponse>
+  public func deployApplicationPollingUntilDone(request: DeployApplicationRequest) async throws
+    -> any GoogleGax.PollableOperation<DeployApplicationResponse>
   {
-    try await self.deployApplication(withPolling: withPolling, options: .init())
+    try await self.deployApplicationPollingUntilDone(request: request, options: .init())
   }
 
-  public func deployApplication(
-    withPolling: DeployApplicationRequest, options: GoogleGax.RequestOptions
+  public func deployApplicationPollingUntilDone(
+    request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DeployApplicationResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<DeployApplicationResponse>.State in
@@ -1443,13 +1443,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deployApplication(
+  public func deployApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<DeployApplicationResponse> {
     let request = DeployApplicationRequest().with {
       $0.name = name
     }
-    return try await self.deployApplication(withPolling: request)
+    return try await self.deployApplicationPollingUntilDone(request: request)
   }
 
   public func undeployApplication(request: UndeployApplicationRequest) async throws
@@ -1464,14 +1464,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func undeployApplication(withPolling: UndeployApplicationRequest) async throws
+  public func undeployApplicationPollingUntilDone(request: UndeployApplicationRequest) async throws
     -> any GoogleGax.PollableOperation<UndeployApplicationResponse>
   {
-    try await self.undeployApplication(withPolling: withPolling, options: .init())
+    try await self.undeployApplicationPollingUntilDone(request: request, options: .init())
   }
 
-  public func undeployApplication(
-    withPolling: UndeployApplicationRequest, options: GoogleGax.RequestOptions
+  public func undeployApplicationPollingUntilDone(
+    request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UndeployApplicationResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<UndeployApplicationResponse>.State in
@@ -1481,13 +1481,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func undeployApplication(
+  public func undeployApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<UndeployApplicationResponse> {
     let request = UndeployApplicationRequest().with {
       $0.name = name
     }
-    return try await self.undeployApplication(withPolling: request)
+    return try await self.undeployApplicationPollingUntilDone(request: request)
   }
 
   public func addApplicationStreamInput(request: AddApplicationStreamInputRequest) async throws
@@ -1502,14 +1502,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func addApplicationStreamInput(withPolling: AddApplicationStreamInputRequest) async throws
-    -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
+  public func addApplicationStreamInputPollingUntilDone(request: AddApplicationStreamInputRequest)
+    async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse>
   {
-    try await self.addApplicationStreamInput(withPolling: withPolling, options: .init())
+    try await self.addApplicationStreamInputPollingUntilDone(request: request, options: .init())
   }
 
-  public func addApplicationStreamInput(
-    withPolling: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+  public func addApplicationStreamInputPollingUntilDone(
+    request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<AddApplicationStreamInputResponse>.State
@@ -1520,13 +1520,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func addApplicationStreamInput(
+  public func addApplicationStreamInputPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<AddApplicationStreamInputResponse> {
     let request = AddApplicationStreamInputRequest().with {
       $0.name = name
     }
-    return try await self.addApplicationStreamInput(withPolling: request)
+    return try await self.addApplicationStreamInputPollingUntilDone(request: request)
   }
 
   public func removeApplicationStreamInput(request: RemoveApplicationStreamInputRequest)
@@ -1541,14 +1541,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func removeApplicationStreamInput(withPolling: RemoveApplicationStreamInputRequest)
-    async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse>
-  {
-    try await self.removeApplicationStreamInput(withPolling: withPolling, options: .init())
+  public func removeApplicationStreamInputPollingUntilDone(
+    request: RemoveApplicationStreamInputRequest
+  ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse> {
+    try await self.removeApplicationStreamInputPollingUntilDone(request: request, options: .init())
   }
 
-  public func removeApplicationStreamInput(
-    withPolling: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+  public func removeApplicationStreamInputPollingUntilDone(
+    request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse> {
     let poll = {
       () async throws
@@ -1559,13 +1559,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func removeApplicationStreamInput(
+  public func removeApplicationStreamInputPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<RemoveApplicationStreamInputResponse> {
     let request = RemoveApplicationStreamInputRequest().with {
       $0.name = name
     }
-    return try await self.removeApplicationStreamInput(withPolling: request)
+    return try await self.removeApplicationStreamInputPollingUntilDone(request: request)
   }
 
   public func updateApplicationStreamInput(request: UpdateApplicationStreamInputRequest)
@@ -1580,14 +1580,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateApplicationStreamInput(withPolling: UpdateApplicationStreamInputRequest)
-    async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse>
-  {
-    try await self.updateApplicationStreamInput(withPolling: withPolling, options: .init())
+  public func updateApplicationStreamInputPollingUntilDone(
+    request: UpdateApplicationStreamInputRequest
+  ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse> {
+    try await self.updateApplicationStreamInputPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateApplicationStreamInput(
-    withPolling: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
+  public func updateApplicationStreamInputPollingUntilDone(
+    request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse> {
     let poll = {
       () async throws
@@ -1598,13 +1598,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateApplicationStreamInput(
+  public func updateApplicationStreamInputPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationStreamInputResponse> {
     let request = UpdateApplicationStreamInputRequest().with {
       $0.name = name
     }
-    return try await self.updateApplicationStreamInput(withPolling: request)
+    return try await self.updateApplicationStreamInputPollingUntilDone(request: request)
   }
 
   public func listInstances(request: ListInstancesRequest) async throws
@@ -1681,14 +1681,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createApplicationInstances(withPolling: CreateApplicationInstancesRequest)
+  public func createApplicationInstancesPollingUntilDone(request: CreateApplicationInstancesRequest)
     async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse>
   {
-    try await self.createApplicationInstances(withPolling: withPolling, options: .init())
+    try await self.createApplicationInstancesPollingUntilDone(request: request, options: .init())
   }
 
-  public func createApplicationInstances(
-    withPolling: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
+  public func createApplicationInstancesPollingUntilDone(
+    request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<CreateApplicationInstancesResponse>.State
@@ -1699,13 +1699,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createApplicationInstances(
+  public func createApplicationInstancesPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<CreateApplicationInstancesResponse> {
     let request = CreateApplicationInstancesRequest().with {
       $0.name = name
     }
-    return try await self.createApplicationInstances(withPolling: request)
+    return try await self.createApplicationInstancesPollingUntilDone(request: request)
   }
 
   public func deleteApplicationInstances(request: DeleteApplicationInstancesRequest) async throws
@@ -1720,14 +1720,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteApplicationInstances(withPolling: DeleteApplicationInstancesRequest)
+  public func deleteApplicationInstancesPollingUntilDone(request: DeleteApplicationInstancesRequest)
     async throws -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.deleteApplicationInstances(withPolling: withPolling, options: .init())
+    try await self.deleteApplicationInstancesPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteApplicationInstances(
-    withPolling: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
+  public func deleteApplicationInstancesPollingUntilDone(
+    request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1736,13 +1736,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteApplicationInstances(
+  public func deleteApplicationInstancesPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = DeleteApplicationInstancesRequest().with {
       $0.name = name
     }
-    return try await self.deleteApplicationInstances(withPolling: request)
+    return try await self.deleteApplicationInstancesPollingUntilDone(request: request)
   }
 
   public func updateApplicationInstances(request: UpdateApplicationInstancesRequest) async throws
@@ -1757,14 +1757,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateApplicationInstances(withPolling: UpdateApplicationInstancesRequest)
+  public func updateApplicationInstancesPollingUntilDone(request: UpdateApplicationInstancesRequest)
     async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse>
   {
-    try await self.updateApplicationInstances(withPolling: withPolling, options: .init())
+    try await self.updateApplicationInstancesPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateApplicationInstances(
-    withPolling: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
+  public func updateApplicationInstancesPollingUntilDone(
+    request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<UpdateApplicationInstancesResponse>.State
@@ -1775,7 +1775,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateApplicationInstances(
+  public func updateApplicationInstancesPollingUntilDone(
     name: Swift.String,
     applicationInstances: [UpdateApplicationInstancesRequest.UpdateApplicationInstance],
   ) async throws -> any GoogleGax.PollableOperation<UpdateApplicationInstancesResponse> {
@@ -1783,7 +1783,7 @@ extension Clients.AppPlatformProtocol {
       $0.name = name
       $0.applicationInstances = applicationInstances
     }
-    return try await self.updateApplicationInstances(withPolling: request)
+    return try await self.updateApplicationInstancesPollingUntilDone(request: request)
   }
 
   public func listDrafts(request: ListDraftsRequest) async throws
@@ -1856,14 +1856,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createDraft(withPolling: CreateDraftRequest) async throws -> any GoogleGax
+  public func createDraftPollingUntilDone(request: CreateDraftRequest) async throws -> any GoogleGax
     .PollableOperation<Draft>
   {
-    try await self.createDraft(withPolling: withPolling, options: .init())
+    try await self.createDraftPollingUntilDone(request: request, options: .init())
   }
 
-  public func createDraft(
-    withPolling: CreateDraftRequest, options: GoogleGax.RequestOptions
+  public func createDraftPollingUntilDone(
+    request: CreateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Draft> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Draft>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1872,7 +1872,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createDraft(
+  public func createDraftPollingUntilDone(
     parent: Swift.String,
     draft: Draft?,
     draftId: Swift.String,
@@ -1882,7 +1882,7 @@ extension Clients.AppPlatformProtocol {
       $0.draft = draft
       $0.draftId = draftId
     }
-    return try await self.createDraft(withPolling: request)
+    return try await self.createDraftPollingUntilDone(request: request)
   }
 
   public func updateDraft(request: UpdateDraftRequest) async throws -> GoogleLongRunning.Operation {
@@ -1895,14 +1895,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateDraft(withPolling: UpdateDraftRequest) async throws -> any GoogleGax
+  public func updateDraftPollingUntilDone(request: UpdateDraftRequest) async throws -> any GoogleGax
     .PollableOperation<Draft>
   {
-    try await self.updateDraft(withPolling: withPolling, options: .init())
+    try await self.updateDraftPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateDraft(
-    withPolling: UpdateDraftRequest, options: GoogleGax.RequestOptions
+  public func updateDraftPollingUntilDone(
+    request: UpdateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Draft> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Draft>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1911,7 +1911,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateDraft(
+  public func updateDraftPollingUntilDone(
     draft: Draft?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Draft> {
@@ -1919,7 +1919,7 @@ extension Clients.AppPlatformProtocol {
       $0.draft = draft
       $0.updateMask = updateMask
     }
-    return try await self.updateDraft(withPolling: request)
+    return try await self.updateDraftPollingUntilDone(request: request)
   }
 
   public func deleteDraft(request: DeleteDraftRequest) async throws -> GoogleLongRunning.Operation {
@@ -1932,14 +1932,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDraft(withPolling: DeleteDraftRequest) async throws -> any GoogleGax
+  public func deleteDraftPollingUntilDone(request: DeleteDraftRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteDraft(withPolling: withPolling, options: .init())
+    try await self.deleteDraftPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteDraft(
-    withPolling: DeleteDraftRequest, options: GoogleGax.RequestOptions
+  public func deleteDraftPollingUntilDone(
+    request: DeleteDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1948,13 +1948,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteDraft(
+  public func deleteDraftPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDraftRequest().with {
       $0.name = name
     }
-    return try await self.deleteDraft(withPolling: request)
+    return try await self.deleteDraftPollingUntilDone(request: request)
   }
 
   public func listProcessors(request: ListProcessorsRequest) async throws
@@ -2053,14 +2053,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createProcessor(withPolling: CreateProcessorRequest) async throws -> any GoogleGax
-    .PollableOperation<Processor>
+  public func createProcessorPollingUntilDone(request: CreateProcessorRequest) async throws
+    -> any GoogleGax.PollableOperation<Processor>
   {
-    try await self.createProcessor(withPolling: withPolling, options: .init())
+    try await self.createProcessorPollingUntilDone(request: request, options: .init())
   }
 
-  public func createProcessor(
-    withPolling: CreateProcessorRequest, options: GoogleGax.RequestOptions
+  public func createProcessorPollingUntilDone(
+    request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Processor> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Processor>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2069,7 +2069,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createProcessor(
+  public func createProcessorPollingUntilDone(
     parent: Swift.String,
     processor: Processor?,
     processorId: Swift.String,
@@ -2079,7 +2079,7 @@ extension Clients.AppPlatformProtocol {
       $0.processor = processor
       $0.processorId = processorId
     }
-    return try await self.createProcessor(withPolling: request)
+    return try await self.createProcessorPollingUntilDone(request: request)
   }
 
   public func updateProcessor(request: UpdateProcessorRequest) async throws
@@ -2094,14 +2094,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateProcessor(withPolling: UpdateProcessorRequest) async throws -> any GoogleGax
-    .PollableOperation<Processor>
+  public func updateProcessorPollingUntilDone(request: UpdateProcessorRequest) async throws
+    -> any GoogleGax.PollableOperation<Processor>
   {
-    try await self.updateProcessor(withPolling: withPolling, options: .init())
+    try await self.updateProcessorPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateProcessor(
-    withPolling: UpdateProcessorRequest, options: GoogleGax.RequestOptions
+  public func updateProcessorPollingUntilDone(
+    request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Processor> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Processor>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2110,7 +2110,7 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateProcessor(
+  public func updateProcessorPollingUntilDone(
     processor: Processor?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Processor> {
@@ -2118,7 +2118,7 @@ extension Clients.AppPlatformProtocol {
       $0.processor = processor
       $0.updateMask = updateMask
     }
-    return try await self.updateProcessor(withPolling: request)
+    return try await self.updateProcessorPollingUntilDone(request: request)
   }
 
   public func deleteProcessor(request: DeleteProcessorRequest) async throws
@@ -2133,14 +2133,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteProcessor(withPolling: DeleteProcessorRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteProcessorPollingUntilDone(request: DeleteProcessorRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteProcessor(withPolling: withPolling, options: .init())
+    try await self.deleteProcessorPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteProcessor(
-    withPolling: DeleteProcessorRequest, options: GoogleGax.RequestOptions
+  public func deleteProcessorPollingUntilDone(
+    request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2149,13 +2149,13 @@ extension Clients.AppPlatformProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteProcessor(
+  public func deleteProcessorPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteProcessorRequest().with {
       $0.name = name
     }
-    return try await self.deleteProcessor(withPolling: request)
+    return try await self.deleteProcessorPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

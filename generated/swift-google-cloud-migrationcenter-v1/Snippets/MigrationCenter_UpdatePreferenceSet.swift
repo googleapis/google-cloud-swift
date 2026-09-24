@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, preferenceSetId: String
 ) async throws {
-  let poller = try await client.updatePreferenceSet(
-    withPolling: UpdatePreferenceSetRequest()
+  let poller = try await client.updatePreferenceSetPollingUntilDone(
+    request: UpdatePreferenceSetRequest()
       .with {
         $0.preferenceSet = PreferenceSet().with {
           $0.name =

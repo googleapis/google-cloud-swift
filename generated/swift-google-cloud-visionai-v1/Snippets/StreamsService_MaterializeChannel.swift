@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StreamsServiceClient) async throws {
-  let poller = try await client.materializeChannel(
-    withPolling: MaterializeChannelRequest()
+  let poller = try await client.materializeChannelPollingUntilDone(
+    request: MaterializeChannelRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

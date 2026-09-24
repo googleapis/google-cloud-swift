@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: WorkloadManagerClient, projectId: String, locationId: String, evaluationId: String
 ) async throws {
-  let poller = try await client.updateEvaluation(
-    withPolling: UpdateEvaluationRequest()
+  let poller = try await client.updateEvaluationPollingUntilDone(
+    request: UpdateEvaluationRequest()
       .with {
         $0.evaluation = Evaluation().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/evaluations/\(evaluationId)"

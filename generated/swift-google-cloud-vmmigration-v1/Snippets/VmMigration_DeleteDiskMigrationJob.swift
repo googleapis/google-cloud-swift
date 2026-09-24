@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   diskMigrationJobId: String
 ) async throws {
-  let poller = try await client.deleteDiskMigrationJob(
-    withPolling: DeleteDiskMigrationJobRequest()
+  let poller = try await client.deleteDiskMigrationJobPollingUntilDone(
+    request: DeleteDiskMigrationJobRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/diskMigrationJobs/\(diskMigrationJobId)"

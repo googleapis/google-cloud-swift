@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CloudFilestoreManagerClient, projectId: String, locationId: String, backupId: String
 ) async throws {
-  let poller = try await client.deleteBackup(
-    withPolling: DeleteBackupRequest()
+  let poller = try await client.deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/backups/\(backupId)"
       }

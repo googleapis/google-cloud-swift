@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient) async throws {
-  let poller = try await client.evictVolume(
-    withPolling: EvictVolumeRequest()
+  let poller = try await client.evictVolumePollingUntilDone(
+    request: EvictVolumeRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

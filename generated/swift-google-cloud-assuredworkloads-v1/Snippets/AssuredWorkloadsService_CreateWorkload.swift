@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: AssuredWorkloadsServiceClient, organizationId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createWorkload(
-    withPolling: CreateWorkloadRequest()
+  let poller = try await client.createWorkloadPollingUntilDone(
+    request: CreateWorkloadRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.workload = Workload() /* .with { ... } */

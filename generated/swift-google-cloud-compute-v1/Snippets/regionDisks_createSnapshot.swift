@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionDisksClient) async throws {
-    let poller = try await client.createSnapshot(
-      withPolling: RegionDisksClient.CreateSnapshotRequest()
+    let poller = try await client.createSnapshotPollingUntilDone(
+      request: RegionDisksClient.CreateSnapshotRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

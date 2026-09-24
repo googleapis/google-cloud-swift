@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient) async throws {
-  let poller = try await client.uploadAsset(
-    withPolling: UploadAssetRequest()
+  let poller = try await client.uploadAssetPollingUntilDone(
+    request: UploadAssetRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

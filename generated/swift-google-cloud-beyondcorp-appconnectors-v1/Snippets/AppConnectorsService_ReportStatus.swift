@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppConnectorsServiceClient) async throws {
-  let poller = try await client.reportStatus(
-    withPolling: ReportStatusRequest()
+  let poller = try await client.reportStatusPollingUntilDone(
+    request: ReportStatusRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

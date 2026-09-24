@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppPlatformClient) async throws {
-  let poller = try await client.addApplicationStreamInput(
-    withPolling: AddApplicationStreamInputRequest()
+  let poller = try await client.addApplicationStreamInputPollingUntilDone(
+    request: AddApplicationStreamInputRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

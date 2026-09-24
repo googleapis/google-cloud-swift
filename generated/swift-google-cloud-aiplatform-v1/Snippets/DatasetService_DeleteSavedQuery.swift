@@ -28,8 +28,8 @@
     client: DatasetServiceClient, projectId: String, locationId: String, datasetId: String,
     savedQueryId: String
   ) async throws {
-    let poller = try await client.deleteSavedQuery(
-      withPolling: DeleteSavedQueryRequest()
+    let poller = try await client.deleteSavedQueryPollingUntilDone(
+      request: DeleteSavedQueryRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)/savedQueries/\(savedQueryId)"

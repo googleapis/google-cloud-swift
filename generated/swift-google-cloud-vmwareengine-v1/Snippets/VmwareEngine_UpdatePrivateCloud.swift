@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.updatePrivateCloud(
-    withPolling: UpdatePrivateCloudRequest()
+  let poller = try await client.updatePrivateCloudPollingUntilDone(
+    request: UpdatePrivateCloudRequest()
       .with {
         $0.privateCloud = PrivateCloud().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"

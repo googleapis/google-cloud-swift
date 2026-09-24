@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFilestoreManagerClient) async throws {
-  let poller = try await client.restoreInstance(
-    withPolling: RestoreInstanceRequest()
+  let poller = try await client.restoreInstancePollingUntilDone(
+    request: RestoreInstanceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

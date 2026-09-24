@@ -28,8 +28,8 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String, featureViewId: String
   ) async throws {
-    let poller = try await client.deleteFeatureView(
-      withPolling: DeleteFeatureViewRequest()
+    let poller = try await client.deleteFeatureViewPollingUntilDone(
+      request: DeleteFeatureViewRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/featureOnlineStores/\(featureOnlineStoreId)/featureViews/\(featureViewId)"

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createTargetProject(
-    withPolling: CreateTargetProjectRequest()
+  let poller = try await client.createTargetProjectPollingUntilDone(
+    request: CreateTargetProjectRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.targetProject = TargetProject() /* .with { ... } */

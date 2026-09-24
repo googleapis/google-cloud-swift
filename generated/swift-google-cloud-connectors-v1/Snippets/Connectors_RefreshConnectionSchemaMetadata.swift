@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConnectorsClient) async throws {
-  let poller = try await client.refreshConnectionSchemaMetadata(
-    withPolling: RefreshConnectionSchemaMetadataRequest()
+  let poller = try await client.refreshConnectionSchemaMetadataPollingUntilDone(
+    request: RefreshConnectionSchemaMetadataRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

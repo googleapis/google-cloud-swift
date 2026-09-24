@@ -28,8 +28,8 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String, featureViewId: String
   ) async throws {
-    let poller = try await client.updateFeatureView(
-      withPolling: UpdateFeatureViewRequest()
+    let poller = try await client.updateFeatureViewPollingUntilDone(
+      request: UpdateFeatureViewRequest()
         .with {
           $0.featureView = FeatureView().with {
             $0.name =

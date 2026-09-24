@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: GlobalNetworkEndpointGroupsClient) async throws {
-    let poller = try await client.detachNetworkEndpoints(
-      withPolling: GlobalNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest()
+    let poller = try await client.detachNetworkEndpointsPollingUntilDone(
+      request: GlobalNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

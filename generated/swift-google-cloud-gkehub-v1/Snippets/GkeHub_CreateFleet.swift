@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, parent: String) async throws {
-  let poller = try await client.createFleet(
-    withPolling: CreateFleetRequest()
+  let poller = try await client.createFleetPollingUntilDone(
+    request: CreateFleetRequest()
       .with {
         $0.parent = "\(parent)"
         $0.fleet = Fleet() /* .with { ... } */

@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: NotebookServiceClient, parent: String) async throws {
-    let poller = try await client.createNotebookRuntimeTemplate(
-      withPolling: CreateNotebookRuntimeTemplateRequest()
+    let poller = try await client.createNotebookRuntimeTemplatePollingUntilDone(
+      request: CreateNotebookRuntimeTemplateRequest()
         .with {
           $0.parent = "\(parent)"
           $0.notebookRuntimeTemplate = NotebookRuntimeTemplate() /* .with { ... } */

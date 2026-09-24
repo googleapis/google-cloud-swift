@@ -73,15 +73,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Creates a new Instance in a given project and location.
   ///
   /// @Snippet(path: "Memorystore_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -108,15 +108,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Updates the parameters of a single Instance.
   ///
   /// @Snippet(path: "Memorystore_UpdateInstance")
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.updateInstance(request: withPolling, options: options)
+    let rawOp = try await self.updateInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -143,15 +143,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a single Instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -197,15 +197,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Reschedules upcoming maintenance event.
   ///
   /// @Snippet(path: "Memorystore_RescheduleMaintenance")
-  public func rescheduleMaintenance(
-    withPolling: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  public func rescheduleMaintenancePollingUntilDone(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.rescheduleMaintenance(request: withPolling, options: options)
+    let rawOp = try await self.rescheduleMaintenance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -272,15 +272,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a specific backup.
   ///
   /// @Snippet(path: "Memorystore_DeleteBackup")
-  public func deleteBackup(
-    withPolling: DeleteBackupRequest, options: GoogleGax.RequestOptions
+  public func deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteBackup(request: withPolling, options: options)
+    let rawOp = try await self.deleteBackup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -307,14 +307,14 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Exports a specific backup to a customer target Cloud Storage URI.
   ///
   /// @Snippet(path: "Memorystore_ExportBackup")
-  public func exportBackup(
-    withPolling: ExportBackupRequest, options: GoogleGax.RequestOptions
+  public func exportBackupPollingUntilDone(
+    request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Backup>.State in
       return try op._extractStatus(Backup.self)
     }
-    let rawOp = try await self.exportBackup(request: withPolling, options: options)
+    let rawOp = try await self.exportBackup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
       let op = try await self.getOperation(
@@ -363,15 +363,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// needed for backup.
   ///
   /// @Snippet(path: "Memorystore_BackupInstance")
-  public func backupInstance(
-    withPolling: BackupInstanceRequest, options: GoogleGax.RequestOptions
+  public func backupInstancePollingUntilDone(
+    request: BackupInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.backupInstance(request: withPolling, options: options)
+    let rawOp = try await self.backupInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -412,15 +412,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// 2. Only allow reads.
   ///
   /// @Snippet(path: "Memorystore_StartMigration")
-  public func startMigration(
-    withPolling: StartMigrationRequest, options: GoogleGax.RequestOptions
+  public func startMigrationPollingUntilDone(
+    request: StartMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.startMigration(request: withPolling, options: options)
+    let rawOp = try await self.startMigration(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -457,15 +457,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// 2. Allow both reads and writes.
   ///
   /// @Snippet(path: "Memorystore_FinishMigration")
-  public func finishMigration(
-    withPolling: FinishMigrationRequest, options: GoogleGax.RequestOptions
+  public func finishMigrationPollingUntilDone(
+    request: FinishMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.finishMigration(request: withPolling, options: options)
+    let rawOp = try await self.finishMigration(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -528,15 +528,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Adds a token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_AddTokenAuthUser")
-  public func addTokenAuthUser(
-    withPolling: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  public func addTokenAuthUserPollingUntilDone(
+    request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.addTokenAuthUser(request: withPolling, options: options)
+    let rawOp = try await self.addTokenAuthUser(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -563,15 +563,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteTokenAuthUser")
-  public func deleteTokenAuthUser(
-    withPolling: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  public func deleteTokenAuthUserPollingUntilDone(
+    request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteTokenAuthUser(request: withPolling, options: options)
+    let rawOp = try await self.deleteTokenAuthUser(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -598,15 +598,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Adds a token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_AddAuthToken")
-  public func addAuthToken(
-    withPolling: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+  public func addAuthTokenPollingUntilDone(
+    request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TokenAuthUser> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TokenAuthUser>.State in
       return try op._extractStatus(TokenAuthUser.self)
     }
-    let rawOp = try await self.addAuthToken(request: withPolling, options: options)
+    let rawOp = try await self.addAuthToken(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TokenAuthUser>.State in
       let op = try await self.getOperation(
@@ -633,15 +633,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteAuthToken")
-  public func deleteAuthToken(
-    withPolling: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+  public func deleteAuthTokenPollingUntilDone(
+    request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteAuthToken(request: withPolling, options: options)
+    let rawOp = try await self.deleteAuthToken(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -744,117 +744,117 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol MemorystoreProtocol: Sendable {
     /// See `MemorystoreClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instance: Instance?,
       instanceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.updateInstance`.
-    func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.updateInstance`.
-    func updateInstance(
+    func updateInstancePollingUntilDone(
       instance: Instance?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.deleteInstance`.
-    func deleteInstance(
+    func deleteInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(withPolling: RescheduleMaintenanceRequest) async throws
+    func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest) async throws
       -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(
+    func rescheduleMaintenancePollingUntilDone(
       name: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
       scheduleTime: GoogleWKT.WKTTimestamp?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteBackup`.
-    func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
+    func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.deleteBackup`.
-    func deleteBackup(
+    func deleteBackupPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.exportBackup`.
-    func exportBackup(withPolling: ExportBackupRequest) async throws -> any GoogleGax
+    func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws -> any GoogleGax
       .PollableOperation<Backup>
 
     /// See `MemorystoreClient.backupInstance`.
-    func backupInstance(withPolling: BackupInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func backupInstancePollingUntilDone(request: BackupInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.backupInstance`.
-    func backupInstance(
+    func backupInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.startMigration`.
-    func startMigration(withPolling: StartMigrationRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func startMigrationPollingUntilDone(request: StartMigrationRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.finishMigration`.
-    func finishMigration(withPolling: FinishMigrationRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func finishMigrationPollingUntilDone(request: FinishMigrationRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.finishMigration`.
-    func finishMigration(
+    func finishMigrationPollingUntilDone(
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.addTokenAuthUser`.
-    func addTokenAuthUser(withPolling: AddTokenAuthUserRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func addTokenAuthUserPollingUntilDone(request: AddTokenAuthUserRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.addTokenAuthUser`.
-    func addTokenAuthUser(
+    func addTokenAuthUserPollingUntilDone(
       instance: Swift.String,
       tokenAuthUser: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteTokenAuthUser`.
-    func deleteTokenAuthUser(withPolling: DeleteTokenAuthUserRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteTokenAuthUserPollingUntilDone(request: DeleteTokenAuthUserRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.deleteTokenAuthUser`.
-    func deleteTokenAuthUser(
+    func deleteTokenAuthUserPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.addAuthToken`.
-    func addAuthToken(withPolling: AddAuthTokenRequest) async throws -> any GoogleGax
+    func addAuthTokenPollingUntilDone(request: AddAuthTokenRequest) async throws -> any GoogleGax
       .PollableOperation<TokenAuthUser>
 
     /// See `MemorystoreClient.addAuthToken`.
-    func addAuthToken(
+    func addAuthTokenPollingUntilDone(
       tokenAuthUser: Swift.String,
       authToken: AuthToken?,
     ) async throws -> any GoogleGax.PollableOperation<TokenAuthUser>
 
     /// See `MemorystoreClient.deleteAuthToken`.
-    func deleteAuthToken(withPolling: DeleteAuthTokenRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteAuthTokenPollingUntilDone(request: DeleteAuthTokenRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.deleteAuthToken`.
-    func deleteAuthToken(
+    func deleteAuthTokenPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -874,8 +874,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.updateInstance`.
@@ -884,8 +884,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.updateInstance`.
-    func updateInstance(
-      withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    func updateInstancePollingUntilDone(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteInstance`.
@@ -894,8 +894,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.getCertificateAuthority`.
@@ -914,8 +914,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(
-      withPolling: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+    func rescheduleMaintenancePollingUntilDone(
+      request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.listBackupCollections`.
@@ -944,8 +944,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.deleteBackup`.
-    func deleteBackup(
-      withPolling: DeleteBackupRequest, options: GoogleGax.RequestOptions
+    func deleteBackupPollingUntilDone(
+      request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.exportBackup`.
@@ -954,8 +954,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.exportBackup`.
-    func exportBackup(
-      withPolling: ExportBackupRequest, options: GoogleGax.RequestOptions
+    func exportBackupPollingUntilDone(
+      request: ExportBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Backup>
 
     /// See `MemorystoreClient.backupInstance`.
@@ -964,8 +964,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.backupInstance`.
-    func backupInstance(
-      withPolling: BackupInstanceRequest, options: GoogleGax.RequestOptions
+    func backupInstancePollingUntilDone(
+      request: BackupInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.startMigration`.
@@ -974,8 +974,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.startMigration`.
-    func startMigration(
-      withPolling: StartMigrationRequest, options: GoogleGax.RequestOptions
+    func startMigrationPollingUntilDone(
+      request: StartMigrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.finishMigration`.
@@ -984,8 +984,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.finishMigration`.
-    func finishMigration(
-      withPolling: FinishMigrationRequest, options: GoogleGax.RequestOptions
+    func finishMigrationPollingUntilDone(
+      request: FinishMigrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.listTokenAuthUsers`.
@@ -1014,8 +1014,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.addTokenAuthUser`.
-    func addTokenAuthUser(
-      withPolling: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    func addTokenAuthUserPollingUntilDone(
+      request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteTokenAuthUser`.
@@ -1024,8 +1024,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.deleteTokenAuthUser`.
-    func deleteTokenAuthUser(
-      withPolling: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    func deleteTokenAuthUserPollingUntilDone(
+      request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.addAuthToken`.
@@ -1034,8 +1034,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.addAuthToken`.
-    func addAuthToken(
-      withPolling: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+    func addAuthTokenPollingUntilDone(
+      request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TokenAuthUser>
 
     /// See `MemorystoreClient.deleteAuthToken`.
@@ -1044,8 +1044,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `MemorystoreClient.deleteAuthToken`.
-    func deleteAuthToken(
-      withPolling: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+    func deleteAuthTokenPollingUntilDone(
+      request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `MemorystoreClient.listLocations`.
@@ -1152,14 +1152,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1168,7 +1168,7 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
@@ -1178,7 +1178,7 @@ extension Clients.MemorystoreProtocol {
       $0.instance = instance
       $0.instanceId = instanceId
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
@@ -1193,14 +1193,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.updateInstance(withPolling: withPolling, options: .init())
+    try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1209,7 +1209,7 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateInstance(
+  public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -1217,7 +1217,7 @@ extension Clients.MemorystoreProtocol {
       $0.instance = instance
       $0.updateMask = updateMask
     }
-    return try await self.updateInstance(withPolling: request)
+    return try await self.updateInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -1232,14 +1232,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1248,13 +1248,13 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteInstance(
+  public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstance(withPolling: request)
+    return try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
@@ -1311,14 +1311,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func rescheduleMaintenance(withPolling: RescheduleMaintenanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+  public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
+    async throws -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.rescheduleMaintenance(withPolling: withPolling, options: .init())
+    try await self.rescheduleMaintenancePollingUntilDone(request: request, options: .init())
   }
 
-  public func rescheduleMaintenance(
-    withPolling: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  public func rescheduleMaintenancePollingUntilDone(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1327,7 +1327,7 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func rescheduleMaintenance(
+  public func rescheduleMaintenancePollingUntilDone(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
     scheduleTime: GoogleWKT.WKTTimestamp?,
@@ -1337,7 +1337,7 @@ extension Clients.MemorystoreProtocol {
       $0.rescheduleType = rescheduleType
       $0.scheduleTime = scheduleTime
     }
-    return try await self.rescheduleMaintenance(withPolling: request)
+    return try await self.rescheduleMaintenancePollingUntilDone(request: request)
   }
 
   public func listBackupCollections(request: ListBackupCollectionsRequest) async throws
@@ -1480,14 +1480,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteBackup(withPolling: withPolling, options: .init())
+    try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteBackup(
-    withPolling: DeleteBackupRequest, options: GoogleGax.RequestOptions
+  public func deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1496,13 +1496,13 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteBackup(
+  public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteBackupRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackup(withPolling: request)
+    return try await self.deleteBackupPollingUntilDone(request: request)
   }
 
   public func exportBackup(request: ExportBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -1516,14 +1516,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportBackup(withPolling: ExportBackupRequest) async throws -> any GoogleGax
-    .PollableOperation<Backup>
+  public func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws
+    -> any GoogleGax.PollableOperation<Backup>
   {
-    try await self.exportBackup(withPolling: withPolling, options: .init())
+    try await self.exportBackupPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportBackup(
-    withPolling: ExportBackupRequest, options: GoogleGax.RequestOptions
+  public func exportBackupPollingUntilDone(
+    request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Backup> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1544,14 +1544,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func backupInstance(withPolling: BackupInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func backupInstancePollingUntilDone(request: BackupInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.backupInstance(withPolling: withPolling, options: .init())
+    try await self.backupInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func backupInstance(
-    withPolling: BackupInstanceRequest, options: GoogleGax.RequestOptions
+  public func backupInstancePollingUntilDone(
+    request: BackupInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1560,13 +1560,13 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func backupInstance(
+  public func backupInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let request = BackupInstanceRequest().with {
       $0.name = name
     }
-    return try await self.backupInstance(withPolling: request)
+    return try await self.backupInstancePollingUntilDone(request: request)
   }
 
   public func startMigration(request: StartMigrationRequest) async throws
@@ -1581,14 +1581,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func startMigration(withPolling: StartMigrationRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func startMigrationPollingUntilDone(request: StartMigrationRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.startMigration(withPolling: withPolling, options: .init())
+    try await self.startMigrationPollingUntilDone(request: request, options: .init())
   }
 
-  public func startMigration(
-    withPolling: StartMigrationRequest, options: GoogleGax.RequestOptions
+  public func startMigrationPollingUntilDone(
+    request: StartMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1609,14 +1609,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func finishMigration(withPolling: FinishMigrationRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func finishMigrationPollingUntilDone(request: FinishMigrationRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.finishMigration(withPolling: withPolling, options: .init())
+    try await self.finishMigrationPollingUntilDone(request: request, options: .init())
   }
 
-  public func finishMigration(
-    withPolling: FinishMigrationRequest, options: GoogleGax.RequestOptions
+  public func finishMigrationPollingUntilDone(
+    request: FinishMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1625,7 +1625,7 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func finishMigration(
+  public func finishMigrationPollingUntilDone(
     name: Swift.String,
     force: Swift.Bool,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -1633,7 +1633,7 @@ extension Clients.MemorystoreProtocol {
       $0.name = name
       $0.force = force
     }
-    return try await self.finishMigration(withPolling: request)
+    return try await self.finishMigrationPollingUntilDone(request: request)
   }
 
   public func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
@@ -1774,14 +1774,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func addTokenAuthUser(withPolling: AddTokenAuthUserRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func addTokenAuthUserPollingUntilDone(request: AddTokenAuthUserRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.addTokenAuthUser(withPolling: withPolling, options: .init())
+    try await self.addTokenAuthUserPollingUntilDone(request: request, options: .init())
   }
 
-  public func addTokenAuthUser(
-    withPolling: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  public func addTokenAuthUserPollingUntilDone(
+    request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1790,7 +1790,7 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func addTokenAuthUser(
+  public func addTokenAuthUserPollingUntilDone(
     instance: Swift.String,
     tokenAuthUser: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -1798,7 +1798,7 @@ extension Clients.MemorystoreProtocol {
       $0.instance = instance
       $0.tokenAuthUser = tokenAuthUser
     }
-    return try await self.addTokenAuthUser(withPolling: request)
+    return try await self.addTokenAuthUserPollingUntilDone(request: request)
   }
 
   public func deleteTokenAuthUser(request: DeleteTokenAuthUserRequest) async throws
@@ -1813,14 +1813,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTokenAuthUser(withPolling: DeleteTokenAuthUserRequest) async throws
+  public func deleteTokenAuthUserPollingUntilDone(request: DeleteTokenAuthUserRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteTokenAuthUser(withPolling: withPolling, options: .init())
+    try await self.deleteTokenAuthUserPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteTokenAuthUser(
-    withPolling: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  public func deleteTokenAuthUserPollingUntilDone(
+    request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1829,13 +1829,13 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteTokenAuthUser(
+  public func deleteTokenAuthUserPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteTokenAuthUserRequest().with {
       $0.name = name
     }
-    return try await self.deleteTokenAuthUser(withPolling: request)
+    return try await self.deleteTokenAuthUserPollingUntilDone(request: request)
   }
 
   public func addAuthToken(request: AddAuthTokenRequest) async throws -> GoogleLongRunning.Operation
@@ -1849,14 +1849,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func addAuthToken(withPolling: AddAuthTokenRequest) async throws -> any GoogleGax
-    .PollableOperation<TokenAuthUser>
+  public func addAuthTokenPollingUntilDone(request: AddAuthTokenRequest) async throws
+    -> any GoogleGax.PollableOperation<TokenAuthUser>
   {
-    try await self.addAuthToken(withPolling: withPolling, options: .init())
+    try await self.addAuthTokenPollingUntilDone(request: request, options: .init())
   }
 
-  public func addAuthToken(
-    withPolling: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+  public func addAuthTokenPollingUntilDone(
+    request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TokenAuthUser> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TokenAuthUser>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1865,7 +1865,7 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func addAuthToken(
+  public func addAuthTokenPollingUntilDone(
     tokenAuthUser: Swift.String,
     authToken: AuthToken?,
   ) async throws -> any GoogleGax.PollableOperation<TokenAuthUser> {
@@ -1873,7 +1873,7 @@ extension Clients.MemorystoreProtocol {
       $0.tokenAuthUser = tokenAuthUser
       $0.authToken = authToken
     }
-    return try await self.addAuthToken(withPolling: request)
+    return try await self.addAuthTokenPollingUntilDone(request: request)
   }
 
   public func deleteAuthToken(request: DeleteAuthTokenRequest) async throws
@@ -1888,14 +1888,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAuthToken(withPolling: DeleteAuthTokenRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteAuthTokenPollingUntilDone(request: DeleteAuthTokenRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteAuthToken(withPolling: withPolling, options: .init())
+    try await self.deleteAuthTokenPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteAuthToken(
-    withPolling: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+  public func deleteAuthTokenPollingUntilDone(
+    request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1904,13 +1904,13 @@ extension Clients.MemorystoreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteAuthToken(
+  public func deleteAuthTokenPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteAuthTokenRequest().with {
       $0.name = name
     }
-    return try await self.deleteAuthToken(withPolling: request)
+    return try await self.deleteAuthTokenPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

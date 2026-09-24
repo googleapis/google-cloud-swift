@@ -65,14 +65,14 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Creates a new model.
   ///
   /// @Snippet(path: "ModelService_CreateModel")
-  public func createModel(
-    withPolling: CreateModelRequest, options: GoogleGax.RequestOptions
+  public func createModelPollingUntilDone(
+    request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Model>.State in
       return try op._extractStatus(Model.self)
     }
-    let rawOp = try await self.createModel(request: withPolling, options: options)
+    let rawOp = try await self.createModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       let op = try await self.getOperation(
@@ -156,15 +156,15 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Tunes an existing model.
   ///
   /// @Snippet(path: "ModelService_TuneModel")
-  public func tuneModel(
-    withPolling: TuneModelRequest, options: GoogleGax.RequestOptions
+  public func tuneModelPollingUntilDone(
+    request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
       return try op._extractStatus(TuneModelResponse.self)
     }
-    let rawOp = try await self.tuneModel(request: withPolling, options: options)
+    let rawOp = try await self.tuneModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
       let op = try await self.getOperation(
@@ -210,22 +210,21 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ModelServiceProtocol: Sendable {
     /// See `ModelServiceClient.createModel`.
-    func createModel(withPolling: CreateModelRequest) async throws -> any GoogleGax
+    func createModelPollingUntilDone(request: CreateModelRequest) async throws -> any GoogleGax
       .PollableOperation<Model>
 
     /// See `ModelServiceClient.createModel`.
-    func createModel(
+    func createModelPollingUntilDone(
       parent: Swift.String,
       model: Model?,
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
     /// See `ModelServiceClient.tuneModel`.
-    func tuneModel(withPolling: TuneModelRequest) async throws -> any GoogleGax.PollableOperation<
-      TuneModelResponse
-    >
+    func tuneModelPollingUntilDone(request: TuneModelRequest) async throws -> any GoogleGax
+      .PollableOperation<TuneModelResponse>
 
     /// See `ModelServiceClient.tuneModel`.
-    func tuneModel(
+    func tuneModelPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse>
 
@@ -235,8 +234,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ModelServiceClient.createModel`.
-    func createModel(
-      withPolling: CreateModelRequest, options: GoogleGax.RequestOptions
+    func createModelPollingUntilDone(
+      request: CreateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Model>
 
     /// See `ModelServiceClient.getModel`.
@@ -275,8 +274,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ModelServiceClient.tuneModel`.
-    func tuneModel(
-      withPolling: TuneModelRequest, options: GoogleGax.RequestOptions
+    func tuneModelPollingUntilDone(
+      request: TuneModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse>
 
     /// See `ModelServiceClient.listOperations`.
@@ -298,14 +297,14 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createModel(withPolling: CreateModelRequest) async throws -> any GoogleGax
+  public func createModelPollingUntilDone(request: CreateModelRequest) async throws -> any GoogleGax
     .PollableOperation<Model>
   {
-    try await self.createModel(withPolling: withPolling, options: .init())
+    try await self.createModelPollingUntilDone(request: request, options: .init())
   }
 
-  public func createModel(
-    withPolling: CreateModelRequest, options: GoogleGax.RequestOptions
+  public func createModelPollingUntilDone(
+    request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -314,7 +313,7 @@ extension Clients.ModelServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createModel(
+  public func createModelPollingUntilDone(
     parent: Swift.String,
     model: Model?,
   ) async throws -> any GoogleGax.PollableOperation<Model> {
@@ -322,7 +321,7 @@ extension Clients.ModelServiceProtocol {
       $0.parent = parent
       $0.model = model
     }
-    return try await self.createModel(withPolling: request)
+    return try await self.createModelPollingUntilDone(request: request)
   }
 
   public func getModel(request: GetModelRequest) async throws -> GoogleCloudRetailV2.Model {
@@ -473,14 +472,14 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func tuneModel(withPolling: TuneModelRequest) async throws -> any GoogleGax
+  public func tuneModelPollingUntilDone(request: TuneModelRequest) async throws -> any GoogleGax
     .PollableOperation<TuneModelResponse>
   {
-    try await self.tuneModel(withPolling: withPolling, options: .init())
+    try await self.tuneModelPollingUntilDone(request: request, options: .init())
   }
 
-  public func tuneModel(
-    withPolling: TuneModelRequest, options: GoogleGax.RequestOptions
+  public func tuneModelPollingUntilDone(
+    request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -489,13 +488,13 @@ extension Clients.ModelServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func tuneModel(
+  public func tuneModelPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse> {
     let request = TuneModelRequest().with {
       $0.name = name
     }
-    return try await self.tuneModel(withPolling: request)
+    return try await self.tuneModelPollingUntilDone(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

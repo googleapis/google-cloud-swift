@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: BackendServicesClient) async throws {
-    let poller = try await client.update(
-      withPolling: BackendServicesClient.UpdateRequest()
+    let poller = try await client.updatePollingUntilDone(
+      request: BackendServicesClient.UpdateRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

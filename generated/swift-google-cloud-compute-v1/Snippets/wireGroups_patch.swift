@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: WireGroupsClient) async throws {
-    let poller = try await client.patch(
-      withPolling: WireGroupsClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: WireGroupsClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

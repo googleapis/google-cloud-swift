@@ -28,8 +28,8 @@
     client: NotebookServiceClient, projectId: String, locationId: String,
     notebookRuntimeTemplateId: String
   ) async throws {
-    let poller = try await client.deleteNotebookRuntimeTemplate(
-      withPolling: DeleteNotebookRuntimeTemplateRequest()
+    let poller = try await client.deleteNotebookRuntimeTemplatePollingUntilDone(
+      request: DeleteNotebookRuntimeTemplateRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/notebookRuntimeTemplates/\(notebookRuntimeTemplateId)"

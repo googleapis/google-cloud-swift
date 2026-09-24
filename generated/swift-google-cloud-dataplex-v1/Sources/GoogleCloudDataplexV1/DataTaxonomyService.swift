@@ -61,15 +61,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_CreateDataTaxonomy")
   @available(*, deprecated)
-  public func createDataTaxonomy(
-    withPolling: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
+  public func createDataTaxonomyPollingUntilDone(
+    request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       return try op._extractStatus(DataTaxonomy.self)
     }
-    let rawOp = try await self.createDataTaxonomy(request: withPolling, options: options)
+    let rawOp = try await self.createDataTaxonomy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       let op = try await self.getOperation(
@@ -98,15 +98,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_UpdateDataTaxonomy")
   @available(*, deprecated)
-  public func updateDataTaxonomy(
-    withPolling: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
+  public func updateDataTaxonomyPollingUntilDone(
+    request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       return try op._extractStatus(DataTaxonomy.self)
     }
-    let rawOp = try await self.updateDataTaxonomy(request: withPolling, options: options)
+    let rawOp = try await self.updateDataTaxonomy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       let op = try await self.getOperation(
@@ -137,15 +137,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_DeleteDataTaxonomy")
   @available(*, deprecated)
-  public func deleteDataTaxonomy(
-    withPolling: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
+  public func deleteDataTaxonomyPollingUntilDone(
+    request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDataTaxonomy(request: withPolling, options: options)
+    let rawOp = try await self.deleteDataTaxonomy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -194,15 +194,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_CreateDataAttributeBinding")
   @available(*, deprecated)
-  public func createDataAttributeBinding(
-    withPolling: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+  public func createDataAttributeBindingPollingUntilDone(
+    request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       return try op._extractStatus(DataAttributeBinding.self)
     }
-    let rawOp = try await self.createDataAttributeBinding(request: withPolling, options: options)
+    let rawOp = try await self.createDataAttributeBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       let op = try await self.getOperation(
@@ -231,15 +231,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_UpdateDataAttributeBinding")
   @available(*, deprecated)
-  public func updateDataAttributeBinding(
-    withPolling: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+  public func updateDataAttributeBindingPollingUntilDone(
+    request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       return try op._extractStatus(DataAttributeBinding.self)
     }
-    let rawOp = try await self.updateDataAttributeBinding(request: withPolling, options: options)
+    let rawOp = try await self.updateDataAttributeBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       let op = try await self.getOperation(
@@ -272,15 +272,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_DeleteDataAttributeBinding")
   @available(*, deprecated)
-  public func deleteDataAttributeBinding(
-    withPolling: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteDataAttributeBindingPollingUntilDone(
+    request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDataAttributeBinding(request: withPolling, options: options)
+    let rawOp = try await self.deleteDataAttributeBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -329,15 +329,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_CreateDataAttribute")
   @available(*, deprecated)
-  public func createDataAttribute(
-    withPolling: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
+  public func createDataAttributePollingUntilDone(
+    request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       return try op._extractStatus(DataAttribute.self)
     }
-    let rawOp = try await self.createDataAttribute(request: withPolling, options: options)
+    let rawOp = try await self.createDataAttribute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       let op = try await self.getOperation(
@@ -366,15 +366,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_UpdateDataAttribute")
   @available(*, deprecated)
-  public func updateDataAttribute(
-    withPolling: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
+  public func updateDataAttributePollingUntilDone(
+    request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       return try op._extractStatus(DataAttribute.self)
     }
-    let rawOp = try await self.updateDataAttribute(request: withPolling, options: options)
+    let rawOp = try await self.updateDataAttribute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       let op = try await self.getOperation(
@@ -403,15 +403,15 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// @Snippet(path: "DataTaxonomyService_DeleteDataAttribute")
   @available(*, deprecated)
-  public func deleteDataAttribute(
-    withPolling: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
+  public func deleteDataAttributePollingUntilDone(
+    request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDataAttribute(request: withPolling, options: options)
+    let rawOp = try await self.deleteDataAttribute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -574,12 +574,12 @@ extension Clients {
   public protocol DataTaxonomyServiceProtocol: Sendable {
     /// See `DataTaxonomyServiceClient.createDataTaxonomy`.
     @available(*, deprecated)
-    func createDataTaxonomy(withPolling: CreateDataTaxonomyRequest) async throws -> any GoogleGax
-      .PollableOperation<DataTaxonomy>
+    func createDataTaxonomyPollingUntilDone(request: CreateDataTaxonomyRequest) async throws
+      -> any GoogleGax.PollableOperation<DataTaxonomy>
 
     /// See `DataTaxonomyServiceClient.createDataTaxonomy`.
     @available(*, deprecated)
-    func createDataTaxonomy(
+    func createDataTaxonomyPollingUntilDone(
       parent: Swift.String,
       dataTaxonomy: DataTaxonomy?,
       dataTaxonomyId: Swift.String,
@@ -587,35 +587,35 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
     @available(*, deprecated)
-    func updateDataTaxonomy(withPolling: UpdateDataTaxonomyRequest) async throws -> any GoogleGax
-      .PollableOperation<DataTaxonomy>
+    func updateDataTaxonomyPollingUntilDone(request: UpdateDataTaxonomyRequest) async throws
+      -> any GoogleGax.PollableOperation<DataTaxonomy>
 
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
     @available(*, deprecated)
-    func updateDataTaxonomy(
+    func updateDataTaxonomyPollingUntilDone(
       dataTaxonomy: DataTaxonomy?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy>
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
     @available(*, deprecated)
-    func deleteDataTaxonomy(withPolling: DeleteDataTaxonomyRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteDataTaxonomyPollingUntilDone(request: DeleteDataTaxonomyRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
     @available(*, deprecated)
-    func deleteDataTaxonomy(
+    func deleteDataTaxonomyPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.createDataAttributeBinding`.
     @available(*, deprecated)
-    func createDataAttributeBinding(withPolling: CreateDataAttributeBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<DataAttributeBinding>
+    func createDataAttributeBindingPollingUntilDone(request: CreateDataAttributeBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
 
     /// See `DataTaxonomyServiceClient.createDataAttributeBinding`.
     @available(*, deprecated)
-    func createDataAttributeBinding(
+    func createDataAttributeBindingPollingUntilDone(
       parent: Swift.String,
       dataAttributeBinding: DataAttributeBinding?,
       dataAttributeBindingId: Swift.String,
@@ -623,35 +623,35 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
     @available(*, deprecated)
-    func updateDataAttributeBinding(withPolling: UpdateDataAttributeBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<DataAttributeBinding>
+    func updateDataAttributeBindingPollingUntilDone(request: UpdateDataAttributeBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
 
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
     @available(*, deprecated)
-    func updateDataAttributeBinding(
+    func updateDataAttributeBindingPollingUntilDone(
       dataAttributeBinding: DataAttributeBinding?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
     @available(*, deprecated)
-    func deleteDataAttributeBinding(withPolling: DeleteDataAttributeBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteDataAttributeBindingPollingUntilDone(request: DeleteDataAttributeBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
     @available(*, deprecated)
-    func deleteDataAttributeBinding(
+    func deleteDataAttributeBindingPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.createDataAttribute`.
     @available(*, deprecated)
-    func createDataAttribute(withPolling: CreateDataAttributeRequest) async throws -> any GoogleGax
-      .PollableOperation<DataAttribute>
+    func createDataAttributePollingUntilDone(request: CreateDataAttributeRequest) async throws
+      -> any GoogleGax.PollableOperation<DataAttribute>
 
     /// See `DataTaxonomyServiceClient.createDataAttribute`.
     @available(*, deprecated)
-    func createDataAttribute(
+    func createDataAttributePollingUntilDone(
       parent: Swift.String,
       dataAttribute: DataAttribute?,
       dataAttributeId: Swift.String,
@@ -659,24 +659,24 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
     @available(*, deprecated)
-    func updateDataAttribute(withPolling: UpdateDataAttributeRequest) async throws -> any GoogleGax
-      .PollableOperation<DataAttribute>
+    func updateDataAttributePollingUntilDone(request: UpdateDataAttributeRequest) async throws
+      -> any GoogleGax.PollableOperation<DataAttribute>
 
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
     @available(*, deprecated)
-    func updateDataAttribute(
+    func updateDataAttributePollingUntilDone(
       dataAttribute: DataAttribute?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataAttribute>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
     @available(*, deprecated)
-    func deleteDataAttribute(withPolling: DeleteDataAttributeRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteDataAttributePollingUntilDone(request: DeleteDataAttributeRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
     @available(*, deprecated)
-    func deleteDataAttribute(
+    func deleteDataAttributePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -688,8 +688,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.createDataTaxonomy`.
     @available(*, deprecated)
-    func createDataTaxonomy(
-      withPolling: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
+    func createDataTaxonomyPollingUntilDone(
+      request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy>
 
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
@@ -700,8 +700,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
     @available(*, deprecated)
-    func updateDataTaxonomy(
-      withPolling: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
+    func updateDataTaxonomyPollingUntilDone(
+      request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy>
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
@@ -712,8 +712,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
     @available(*, deprecated)
-    func deleteDataTaxonomy(
-      withPolling: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
+    func deleteDataTaxonomyPollingUntilDone(
+      request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.listDataTaxonomies`.
@@ -736,8 +736,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.createDataAttributeBinding`.
     @available(*, deprecated)
-    func createDataAttributeBinding(
-      withPolling: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+    func createDataAttributeBindingPollingUntilDone(
+      request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
 
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
@@ -748,8 +748,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
     @available(*, deprecated)
-    func updateDataAttributeBinding(
-      withPolling: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+    func updateDataAttributeBindingPollingUntilDone(
+      request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
@@ -760,8 +760,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
     @available(*, deprecated)
-    func deleteDataAttributeBinding(
-      withPolling: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+    func deleteDataAttributeBindingPollingUntilDone(
+      request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.listDataAttributeBindings`.
@@ -784,8 +784,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.createDataAttribute`.
     @available(*, deprecated)
-    func createDataAttribute(
-      withPolling: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
+    func createDataAttributePollingUntilDone(
+      request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataAttribute>
 
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
@@ -796,8 +796,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
     @available(*, deprecated)
-    func updateDataAttribute(
-      withPolling: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
+    func updateDataAttributePollingUntilDone(
+      request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataAttribute>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
@@ -808,8 +808,8 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
     @available(*, deprecated)
-    func deleteDataAttribute(
-      withPolling: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
+    func deleteDataAttributePollingUntilDone(
+      request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataTaxonomyServiceClient.listDataAttributes`.
@@ -884,15 +884,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func createDataTaxonomy(withPolling: CreateDataTaxonomyRequest) async throws
+  public func createDataTaxonomyPollingUntilDone(request: CreateDataTaxonomyRequest) async throws
     -> any GoogleGax.PollableOperation<DataTaxonomy>
   {
-    try await self.createDataTaxonomy(withPolling: withPolling, options: .init())
+    try await self.createDataTaxonomyPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func createDataTaxonomy(
-    withPolling: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
+  public func createDataTaxonomyPollingUntilDone(
+    request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -902,7 +902,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func createDataTaxonomy(
+  public func createDataTaxonomyPollingUntilDone(
     parent: Swift.String,
     dataTaxonomy: DataTaxonomy?,
     dataTaxonomyId: Swift.String,
@@ -912,7 +912,7 @@ extension Clients.DataTaxonomyServiceProtocol {
       $0.dataTaxonomy = dataTaxonomy
       $0.dataTaxonomyId = dataTaxonomyId
     }
-    return try await self.createDataTaxonomy(withPolling: request)
+    return try await self.createDataTaxonomyPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -930,15 +930,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func updateDataTaxonomy(withPolling: UpdateDataTaxonomyRequest) async throws
+  public func updateDataTaxonomyPollingUntilDone(request: UpdateDataTaxonomyRequest) async throws
     -> any GoogleGax.PollableOperation<DataTaxonomy>
   {
-    try await self.updateDataTaxonomy(withPolling: withPolling, options: .init())
+    try await self.updateDataTaxonomyPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func updateDataTaxonomy(
-    withPolling: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
+  public func updateDataTaxonomyPollingUntilDone(
+    request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -948,7 +948,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func updateDataTaxonomy(
+  public func updateDataTaxonomyPollingUntilDone(
     dataTaxonomy: DataTaxonomy?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
@@ -956,7 +956,7 @@ extension Clients.DataTaxonomyServiceProtocol {
       $0.dataTaxonomy = dataTaxonomy
       $0.updateMask = updateMask
     }
-    return try await self.updateDataTaxonomy(withPolling: request)
+    return try await self.updateDataTaxonomyPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -974,15 +974,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteDataTaxonomy(withPolling: DeleteDataTaxonomyRequest) async throws
+  public func deleteDataTaxonomyPollingUntilDone(request: DeleteDataTaxonomyRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteDataTaxonomy(withPolling: withPolling, options: .init())
+    try await self.deleteDataTaxonomyPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func deleteDataTaxonomy(
-    withPolling: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
+  public func deleteDataTaxonomyPollingUntilDone(
+    request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -992,13 +992,13 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteDataTaxonomy(
+  public func deleteDataTaxonomyPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDataTaxonomyRequest().with {
       $0.name = name
     }
-    return try await self.deleteDataTaxonomy(withPolling: request)
+    return try await self.deleteDataTaxonomyPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1087,15 +1087,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func createDataAttributeBinding(withPolling: CreateDataAttributeBindingRequest)
+  public func createDataAttributeBindingPollingUntilDone(request: CreateDataAttributeBindingRequest)
     async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
   {
-    try await self.createDataAttributeBinding(withPolling: withPolling, options: .init())
+    try await self.createDataAttributeBindingPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func createDataAttributeBinding(
-    withPolling: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+  public func createDataAttributeBindingPollingUntilDone(
+    request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1105,7 +1105,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func createDataAttributeBinding(
+  public func createDataAttributeBindingPollingUntilDone(
     parent: Swift.String,
     dataAttributeBinding: DataAttributeBinding?,
     dataAttributeBindingId: Swift.String,
@@ -1115,7 +1115,7 @@ extension Clients.DataTaxonomyServiceProtocol {
       $0.dataAttributeBinding = dataAttributeBinding
       $0.dataAttributeBindingId = dataAttributeBindingId
     }
-    return try await self.createDataAttributeBinding(withPolling: request)
+    return try await self.createDataAttributeBindingPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1133,15 +1133,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func updateDataAttributeBinding(withPolling: UpdateDataAttributeBindingRequest)
+  public func updateDataAttributeBindingPollingUntilDone(request: UpdateDataAttributeBindingRequest)
     async throws -> any GoogleGax.PollableOperation<DataAttributeBinding>
   {
-    try await self.updateDataAttributeBinding(withPolling: withPolling, options: .init())
+    try await self.updateDataAttributeBindingPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func updateDataAttributeBinding(
-    withPolling: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+  public func updateDataAttributeBindingPollingUntilDone(
+    request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1151,7 +1151,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func updateDataAttributeBinding(
+  public func updateDataAttributeBindingPollingUntilDone(
     dataAttributeBinding: DataAttributeBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
@@ -1159,7 +1159,7 @@ extension Clients.DataTaxonomyServiceProtocol {
       $0.dataAttributeBinding = dataAttributeBinding
       $0.updateMask = updateMask
     }
-    return try await self.updateDataAttributeBinding(withPolling: request)
+    return try await self.updateDataAttributeBindingPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1177,15 +1177,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteDataAttributeBinding(withPolling: DeleteDataAttributeBindingRequest)
+  public func deleteDataAttributeBindingPollingUntilDone(request: DeleteDataAttributeBindingRequest)
     async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteDataAttributeBinding(withPolling: withPolling, options: .init())
+    try await self.deleteDataAttributeBindingPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func deleteDataAttributeBinding(
-    withPolling: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteDataAttributeBindingPollingUntilDone(
+    request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1195,13 +1195,13 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteDataAttributeBinding(
+  public func deleteDataAttributeBindingPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDataAttributeBindingRequest().with {
       $0.name = name
     }
-    return try await self.deleteDataAttributeBinding(withPolling: request)
+    return try await self.deleteDataAttributeBindingPollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1291,15 +1291,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func createDataAttribute(withPolling: CreateDataAttributeRequest) async throws
+  public func createDataAttributePollingUntilDone(request: CreateDataAttributeRequest) async throws
     -> any GoogleGax.PollableOperation<DataAttribute>
   {
-    try await self.createDataAttribute(withPolling: withPolling, options: .init())
+    try await self.createDataAttributePollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func createDataAttribute(
-    withPolling: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
+  public func createDataAttributePollingUntilDone(
+    request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1309,7 +1309,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func createDataAttribute(
+  public func createDataAttributePollingUntilDone(
     parent: Swift.String,
     dataAttribute: DataAttribute?,
     dataAttributeId: Swift.String,
@@ -1319,7 +1319,7 @@ extension Clients.DataTaxonomyServiceProtocol {
       $0.dataAttribute = dataAttribute
       $0.dataAttributeId = dataAttributeId
     }
-    return try await self.createDataAttribute(withPolling: request)
+    return try await self.createDataAttributePollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1337,15 +1337,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func updateDataAttribute(withPolling: UpdateDataAttributeRequest) async throws
+  public func updateDataAttributePollingUntilDone(request: UpdateDataAttributeRequest) async throws
     -> any GoogleGax.PollableOperation<DataAttribute>
   {
-    try await self.updateDataAttribute(withPolling: withPolling, options: .init())
+    try await self.updateDataAttributePollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func updateDataAttribute(
-    withPolling: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
+  public func updateDataAttributePollingUntilDone(
+    request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1355,7 +1355,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func updateDataAttribute(
+  public func updateDataAttributePollingUntilDone(
     dataAttribute: DataAttribute?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
@@ -1363,7 +1363,7 @@ extension Clients.DataTaxonomyServiceProtocol {
       $0.dataAttribute = dataAttribute
       $0.updateMask = updateMask
     }
-    return try await self.updateDataAttribute(withPolling: request)
+    return try await self.updateDataAttributePollingUntilDone(request: request)
   }
 
   @available(*, deprecated)
@@ -1381,15 +1381,15 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteDataAttribute(withPolling: DeleteDataAttributeRequest) async throws
+  public func deleteDataAttributePollingUntilDone(request: DeleteDataAttributeRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteDataAttribute(withPolling: withPolling, options: .init())
+    try await self.deleteDataAttributePollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
-  public func deleteDataAttribute(
-    withPolling: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
+  public func deleteDataAttributePollingUntilDone(
+    request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1399,13 +1399,13 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func deleteDataAttribute(
+  public func deleteDataAttributePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDataAttributeRequest().with {
       $0.name = name
     }
-    return try await self.deleteDataAttribute(withPolling: request)
+    return try await self.deleteDataAttributePollingUntilDone(request: request)
   }
 
   @available(*, deprecated)

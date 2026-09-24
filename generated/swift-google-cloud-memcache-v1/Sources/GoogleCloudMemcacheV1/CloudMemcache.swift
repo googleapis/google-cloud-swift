@@ -87,15 +87,15 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// Creates a new Instance in a given location.
   ///
   /// @Snippet(path: "CloudMemcache_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -122,15 +122,15 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// Updates an existing Instance in a given project and location.
   ///
   /// @Snippet(path: "CloudMemcache_UpdateInstance")
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.updateInstance(request: withPolling, options: options)
+    let rawOp = try await self.updateInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -163,15 +163,15 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// instance.
   ///
   /// @Snippet(path: "CloudMemcache_UpdateParameters")
-  public func updateParameters(
-    withPolling: UpdateParametersRequest, options: GoogleGax.RequestOptions
+  public func updateParametersPollingUntilDone(
+    request: UpdateParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.updateParameters(request: withPolling, options: options)
+    let rawOp = try await self.updateParameters(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -198,15 +198,15 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// Deletes a single Instance.
   ///
   /// @Snippet(path: "CloudMemcache_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -235,15 +235,15 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// them to the current set of parameters for the Memcached Instance.
   ///
   /// @Snippet(path: "CloudMemcache_ApplyParameters")
-  public func applyParameters(
-    withPolling: ApplyParametersRequest, options: GoogleGax.RequestOptions
+  public func applyParametersPollingUntilDone(
+    request: ApplyParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.applyParameters(request: withPolling, options: options)
+    let rawOp = try await self.applyParameters(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -270,15 +270,15 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// Reschedules upcoming maintenance event.
   ///
   /// @Snippet(path: "CloudMemcache_RescheduleMaintenance")
-  public func rescheduleMaintenance(
-    withPolling: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  public func rescheduleMaintenancePollingUntilDone(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.rescheduleMaintenance(request: withPolling, options: options)
+    let rawOp = try await self.rescheduleMaintenance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -364,63 +364,63 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol CloudMemcacheProtocol: Sendable {
     /// See `CloudMemcacheClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instance: Instance?,
       instanceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateInstance`.
-    func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateInstance`.
-    func updateInstance(
+    func updateInstancePollingUntilDone(
       instance: Instance?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateParameters`.
-    func updateParameters(withPolling: UpdateParametersRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func updateParametersPollingUntilDone(request: UpdateParametersRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateParameters`.
-    func updateParameters(
+    func updateParametersPollingUntilDone(
       name: Swift.String,
       updateMask: GoogleWKT.WKTFieldMask?,
       parameters: MemcacheParameters?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudMemcacheClient.deleteInstance`.
-    func deleteInstance(
+    func deleteInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudMemcacheClient.applyParameters`.
-    func applyParameters(withPolling: ApplyParametersRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func applyParametersPollingUntilDone(request: ApplyParametersRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.applyParameters`.
-    func applyParameters(
+    func applyParametersPollingUntilDone(
       name: Swift.String,
       nodeIds: [Swift.String],
       applyAll: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(withPolling: RescheduleMaintenanceRequest) async throws
+    func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest) async throws
       -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(
+    func rescheduleMaintenancePollingUntilDone(
       instance: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
       scheduleTime: GoogleWKT.WKTTimestamp?,
@@ -442,8 +442,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudMemcacheClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateInstance`.
@@ -452,8 +452,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudMemcacheClient.updateInstance`.
-    func updateInstance(
-      withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    func updateInstancePollingUntilDone(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateParameters`.
@@ -462,8 +462,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudMemcacheClient.updateParameters`.
-    func updateParameters(
-      withPolling: UpdateParametersRequest, options: GoogleGax.RequestOptions
+    func updateParametersPollingUntilDone(
+      request: UpdateParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.deleteInstance`.
@@ -472,8 +472,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudMemcacheClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `CloudMemcacheClient.applyParameters`.
@@ -482,8 +482,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudMemcacheClient.applyParameters`.
-    func applyParameters(
-      withPolling: ApplyParametersRequest, options: GoogleGax.RequestOptions
+    func applyParametersPollingUntilDone(
+      request: ApplyParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.rescheduleMaintenance`.
@@ -492,8 +492,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudMemcacheClient.rescheduleMaintenance`.
-    func rescheduleMaintenance(
-      withPolling: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+    func rescheduleMaintenancePollingUntilDone(
+      request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.listLocations`.
@@ -600,14 +600,14 @@ extension Clients.CloudMemcacheProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -616,7 +616,7 @@ extension Clients.CloudMemcacheProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
@@ -626,7 +626,7 @@ extension Clients.CloudMemcacheProtocol {
       $0.instance = instance
       $0.instanceId = instanceId
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
@@ -641,14 +641,14 @@ extension Clients.CloudMemcacheProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.updateInstance(withPolling: withPolling, options: .init())
+    try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -657,7 +657,7 @@ extension Clients.CloudMemcacheProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateInstance(
+  public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -665,7 +665,7 @@ extension Clients.CloudMemcacheProtocol {
       $0.instance = instance
       $0.updateMask = updateMask
     }
-    return try await self.updateInstance(withPolling: request)
+    return try await self.updateInstancePollingUntilDone(request: request)
   }
 
   public func updateParameters(request: UpdateParametersRequest) async throws
@@ -680,14 +680,14 @@ extension Clients.CloudMemcacheProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateParameters(withPolling: UpdateParametersRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func updateParametersPollingUntilDone(request: UpdateParametersRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.updateParameters(withPolling: withPolling, options: .init())
+    try await self.updateParametersPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateParameters(
-    withPolling: UpdateParametersRequest, options: GoogleGax.RequestOptions
+  public func updateParametersPollingUntilDone(
+    request: UpdateParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -696,7 +696,7 @@ extension Clients.CloudMemcacheProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateParameters(
+  public func updateParametersPollingUntilDone(
     name: Swift.String,
     updateMask: GoogleWKT.WKTFieldMask?,
     parameters: MemcacheParameters?,
@@ -706,7 +706,7 @@ extension Clients.CloudMemcacheProtocol {
       $0.updateMask = updateMask
       $0.parameters = parameters
     }
-    return try await self.updateParameters(withPolling: request)
+    return try await self.updateParametersPollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -721,14 +721,14 @@ extension Clients.CloudMemcacheProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -737,13 +737,13 @@ extension Clients.CloudMemcacheProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteInstance(
+  public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstance(withPolling: request)
+    return try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func applyParameters(request: ApplyParametersRequest) async throws
@@ -758,14 +758,14 @@ extension Clients.CloudMemcacheProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func applyParameters(withPolling: ApplyParametersRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func applyParametersPollingUntilDone(request: ApplyParametersRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.applyParameters(withPolling: withPolling, options: .init())
+    try await self.applyParametersPollingUntilDone(request: request, options: .init())
   }
 
-  public func applyParameters(
-    withPolling: ApplyParametersRequest, options: GoogleGax.RequestOptions
+  public func applyParametersPollingUntilDone(
+    request: ApplyParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -774,7 +774,7 @@ extension Clients.CloudMemcacheProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func applyParameters(
+  public func applyParametersPollingUntilDone(
     name: Swift.String,
     nodeIds: [Swift.String],
     applyAll: Swift.Bool,
@@ -784,7 +784,7 @@ extension Clients.CloudMemcacheProtocol {
       $0.nodeIds = nodeIds
       $0.applyAll = applyAll
     }
-    return try await self.applyParameters(withPolling: request)
+    return try await self.applyParametersPollingUntilDone(request: request)
   }
 
   public func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
@@ -799,14 +799,14 @@ extension Clients.CloudMemcacheProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func rescheduleMaintenance(withPolling: RescheduleMaintenanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+  public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
+    async throws -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.rescheduleMaintenance(withPolling: withPolling, options: .init())
+    try await self.rescheduleMaintenancePollingUntilDone(request: request, options: .init())
   }
 
-  public func rescheduleMaintenance(
-    withPolling: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  public func rescheduleMaintenancePollingUntilDone(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -815,7 +815,7 @@ extension Clients.CloudMemcacheProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func rescheduleMaintenance(
+  public func rescheduleMaintenancePollingUntilDone(
     instance: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
     scheduleTime: GoogleWKT.WKTTimestamp?,
@@ -825,7 +825,7 @@ extension Clients.CloudMemcacheProtocol {
       $0.rescheduleType = rescheduleType
       $0.scheduleTime = scheduleTime
     }
-    return try await self.rescheduleMaintenance(withPolling: request)
+    return try await self.rescheduleMaintenancePollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

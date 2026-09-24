@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String)
   async throws
 {
-  let poller = try await client.createTask(
-    withPolling: CreateTaskRequest()
+  let poller = try await client.createTaskPollingUntilDone(
+    request: CreateTaskRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)"
         $0.taskId = "[replace with a valid ID]"

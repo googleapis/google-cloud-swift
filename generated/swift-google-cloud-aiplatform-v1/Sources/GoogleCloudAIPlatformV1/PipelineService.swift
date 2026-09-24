@@ -86,15 +86,15 @@
     /// Deletes a TrainingPipeline.
     ///
     /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
-    public func deleteTrainingPipeline(
-      withPolling: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
+    public func deleteTrainingPipelinePollingUntilDone(
+      request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteTrainingPipeline(request: withPolling, options: options)
+      let rawOp = try await self.deleteTrainingPipeline(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -175,15 +175,15 @@
     /// Deletes a PipelineJob.
     ///
     /// @Snippet(path: "PipelineService_DeletePipelineJob")
-    public func deletePipelineJob(
-      withPolling: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
+    public func deletePipelineJobPollingUntilDone(
+      request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deletePipelineJob(request: withPolling, options: options)
+      let rawOp = try await self.deletePipelineJob(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -214,15 +214,15 @@
     /// If it succeeds, all of the PipelineJobs are deleted.
     ///
     /// @Snippet(path: "PipelineService_BatchDeletePipelineJobs")
-    public func batchDeletePipelineJobs(
-      withPolling: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
+    public func batchDeletePipelineJobsPollingUntilDone(
+      request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchDeletePipelineJobsResponse>.State in
         return try op._extractStatus(BatchDeletePipelineJobsResponse.self)
       }
-      let rawOp = try await self.batchDeletePipelineJobs(request: withPolling, options: options)
+      let rawOp = try await self.batchDeletePipelineJobs(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchDeletePipelineJobsResponse>.State
@@ -289,15 +289,15 @@
     /// This operation will return an LRO.
     ///
     /// @Snippet(path: "PipelineService_BatchCancelPipelineJobs")
-    public func batchCancelPipelineJobs(
-      withPolling: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
+    public func batchCancelPipelineJobsPollingUntilDone(
+      request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchCancelPipelineJobsResponse>.State in
         return try op._extractStatus(BatchCancelPipelineJobsResponse.self)
       }
-      let rawOp = try await self.batchCancelPipelineJobs(request: withPolling, options: options)
+      let rawOp = try await self.batchCancelPipelineJobs(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCancelPipelineJobsResponse>.State
@@ -434,39 +434,39 @@
     /// and pass a mock implementation in your tests.
     public protocol PipelineServiceProtocol: Sendable {
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
-      func deleteTrainingPipeline(withPolling: DeleteTrainingPipelineRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteTrainingPipelinePollingUntilDone(request: DeleteTrainingPipelineRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
-      func deleteTrainingPipeline(
+      func deleteTrainingPipelinePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.deletePipelineJob`.
-      func deletePipelineJob(withPolling: DeletePipelineJobRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deletePipelineJobPollingUntilDone(request: DeletePipelineJobRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.deletePipelineJob`.
-      func deletePipelineJob(
+      func deletePipelineJobPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
-      func batchDeletePipelineJobs(withPolling: BatchDeletePipelineJobsRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
+      func batchDeletePipelineJobsPollingUntilDone(request: BatchDeletePipelineJobsRequest)
+        async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
-      func batchDeletePipelineJobs(
+      func batchDeletePipelineJobsPollingUntilDone(
         parent: Swift.String,
         names: [Swift.String],
       ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
 
       /// See `PipelineServiceClient.batchCancelPipelineJobs`.
-      func batchCancelPipelineJobs(withPolling: BatchCancelPipelineJobsRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
+      func batchCancelPipelineJobsPollingUntilDone(request: BatchCancelPipelineJobsRequest)
+        async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
 
       /// See `PipelineServiceClient.batchCancelPipelineJobs`.
-      func batchCancelPipelineJobs(
+      func batchCancelPipelineJobsPollingUntilDone(
         parent: Swift.String,
         names: [Swift.String],
       ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
@@ -492,8 +492,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
-      func deleteTrainingPipeline(
-        withPolling: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
+      func deleteTrainingPipelinePollingUntilDone(
+        request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.cancelTrainingPipeline`.
@@ -522,8 +522,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.deletePipelineJob`.
-      func deletePipelineJob(
-        withPolling: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
+      func deletePipelineJobPollingUntilDone(
+        request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
@@ -532,8 +532,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
-      func batchDeletePipelineJobs(
-        withPolling: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
+      func batchDeletePipelineJobsPollingUntilDone(
+        request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
 
       /// See `PipelineServiceClient.cancelPipelineJob`.
@@ -547,8 +547,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `PipelineServiceClient.batchCancelPipelineJobs`.
-      func batchCancelPipelineJobs(
-        withPolling: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
+      func batchCancelPipelineJobsPollingUntilDone(
+        request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
 
       /// See `PipelineServiceClient.listLocations`.
@@ -699,14 +699,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteTrainingPipeline(withPolling: DeleteTrainingPipelineRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteTrainingPipelinePollingUntilDone(request: DeleteTrainingPipelineRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteTrainingPipeline(withPolling: withPolling, options: .init())
+      try await self.deleteTrainingPipelinePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteTrainingPipeline(
-      withPolling: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
+    public func deleteTrainingPipelinePollingUntilDone(
+      request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -715,13 +715,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteTrainingPipeline(
+    public func deleteTrainingPipelinePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteTrainingPipelineRequest().with {
         $0.name = name
       }
-      return try await self.deleteTrainingPipeline(withPolling: request)
+      return try await self.deleteTrainingPipelinePollingUntilDone(request: request)
     }
 
     public func cancelTrainingPipeline(request: CancelTrainingPipelineRequest) async throws {
@@ -843,14 +843,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deletePipelineJob(withPolling: DeletePipelineJobRequest) async throws
+    public func deletePipelineJobPollingUntilDone(request: DeletePipelineJobRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deletePipelineJob(withPolling: withPolling, options: .init())
+      try await self.deletePipelineJobPollingUntilDone(request: request, options: .init())
     }
 
-    public func deletePipelineJob(
-      withPolling: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
+    public func deletePipelineJobPollingUntilDone(
+      request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -859,13 +859,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deletePipelineJob(
+    public func deletePipelineJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeletePipelineJobRequest().with {
         $0.name = name
       }
-      return try await self.deletePipelineJob(withPolling: request)
+      return try await self.deletePipelineJobPollingUntilDone(request: request)
     }
 
     public func batchDeletePipelineJobs(request: BatchDeletePipelineJobsRequest) async throws
@@ -880,14 +880,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchDeletePipelineJobs(withPolling: BatchDeletePipelineJobsRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
+    public func batchDeletePipelineJobsPollingUntilDone(request: BatchDeletePipelineJobsRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse>
     {
-      try await self.batchDeletePipelineJobs(withPolling: withPolling, options: .init())
+      try await self.batchDeletePipelineJobsPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchDeletePipelineJobs(
-      withPolling: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
+    public func batchDeletePipelineJobsPollingUntilDone(
+      request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchDeletePipelineJobsResponse>.State
@@ -898,7 +898,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchDeletePipelineJobs(
+    public func batchDeletePipelineJobsPollingUntilDone(
       parent: Swift.String,
       names: [Swift.String],
     ) async throws -> any GoogleGax.PollableOperation<BatchDeletePipelineJobsResponse> {
@@ -906,7 +906,7 @@
         $0.parent = parent
         $0.names = names
       }
-      return try await self.batchDeletePipelineJobs(withPolling: request)
+      return try await self.batchDeletePipelineJobsPollingUntilDone(request: request)
     }
 
     public func cancelPipelineJob(request: CancelPipelineJobRequest) async throws {
@@ -940,14 +940,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchCancelPipelineJobs(withPolling: BatchCancelPipelineJobsRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
+    public func batchCancelPipelineJobsPollingUntilDone(request: BatchCancelPipelineJobsRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse>
     {
-      try await self.batchCancelPipelineJobs(withPolling: withPolling, options: .init())
+      try await self.batchCancelPipelineJobsPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchCancelPipelineJobs(
-      withPolling: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
+    public func batchCancelPipelineJobsPollingUntilDone(
+      request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCancelPipelineJobsResponse>.State
@@ -958,7 +958,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchCancelPipelineJobs(
+    public func batchCancelPipelineJobsPollingUntilDone(
       parent: Swift.String,
       names: [Swift.String],
     ) async throws -> any GoogleGax.PollableOperation<BatchCancelPipelineJobsResponse> {
@@ -966,7 +966,7 @@
         $0.parent = parent
         $0.names = names
       }
-      return try await self.batchCancelPipelineJobs(withPolling: request)
+      return try await self.batchCancelPipelineJobsPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

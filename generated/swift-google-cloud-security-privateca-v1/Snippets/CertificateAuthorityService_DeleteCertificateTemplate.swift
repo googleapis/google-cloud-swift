@@ -27,8 +27,8 @@ func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String,
   certificateTemplateId: String
 ) async throws {
-  let poller = try await client.deleteCertificateTemplate(
-    withPolling: DeleteCertificateTemplateRequest()
+  let poller = try await client.deleteCertificateTemplatePollingUntilDone(
+    request: DeleteCertificateTemplateRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/certificateTemplates/\(certificateTemplateId)"

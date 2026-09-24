@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MemorystoreClient) async throws {
-  let poller = try await client.finishMigration(
-    withPolling: FinishMigrationRequest()
+  let poller = try await client.finishMigrationPollingUntilDone(
+    request: FinishMigrationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

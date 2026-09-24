@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   clusterId: String
 ) async throws {
-  let poller = try await client.updateCluster(
-    withPolling: UpdateClusterRequest()
+  let poller = try await client.updateClusterPollingUntilDone(
+    request: UpdateClusterRequest()
       .with {
         $0.cluster = Cluster().with {
           $0.name =

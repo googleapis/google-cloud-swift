@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CatalogServiceClient, projectId: String, locationId: String, entryTypeId: String
 ) async throws {
-  let poller = try await client.updateEntryType(
-    withPolling: UpdateEntryTypeRequest()
+  let poller = try await client.updateEntryTypePollingUntilDone(
+    request: UpdateEntryTypeRequest()
       .with {
         $0.entryType = EntryType().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/entryTypes/\(entryTypeId)"

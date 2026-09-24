@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(client: InternalRangeServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createInternalRange(
-    withPolling: CreateInternalRangeRequest()
+  let poller = try await client.createInternalRangePollingUntilDone(
+    request: CreateInternalRangeRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.internalRange = InternalRange() /* .with { ... } */

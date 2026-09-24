@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LiveVideoAnalyticsClient, parent: String) async throws {
-  let poller = try await client.createOperator(
-    withPolling: CreateOperatorRequest()
+  let poller = try await client.createOperatorPollingUntilDone(
+    request: CreateOperatorRequest()
       .with {
         $0.parent = "\(parent)"
         $0.operatorId = "[replace with a valid ID]"

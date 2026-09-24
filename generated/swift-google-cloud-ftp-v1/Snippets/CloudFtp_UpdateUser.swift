@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CloudFtpClient, projectId: String, locationId: String, serverId: String, userId: String
 ) async throws {
-  let poller = try await client.updateUser(
-    withPolling: UpdateUserRequest()
+  let poller = try await client.updateUserPollingUntilDone(
+    request: UpdateUserRequest()
       .with {
         $0.user = User().with {
           $0.name =

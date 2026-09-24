@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: FunctionServiceClient, projectId: String, locationId: String, functionId: String
 ) async throws {
-  let poller = try await client.updateFunction(
-    withPolling: UpdateFunctionRequest()
+  let poller = try await client.updateFunctionPollingUntilDone(
+    request: UpdateFunctionRequest()
       .with {
         $0.function = Function().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/functions/\(functionId)"

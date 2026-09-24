@@ -27,8 +27,8 @@ func sample(
   client: DataprocMetastoreFederationClient, projectId: String, locationId: String,
   federationId: String
 ) async throws {
-  let poller = try await client.updateFederation(
-    withPolling: UpdateFederationRequest()
+  let poller = try await client.updateFederationPollingUntilDone(
+    request: UpdateFederationRequest()
       .with {
         $0.federation = Federation().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/federations/\(federationId)"

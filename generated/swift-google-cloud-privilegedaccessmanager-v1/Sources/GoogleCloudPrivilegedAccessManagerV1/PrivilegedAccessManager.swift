@@ -117,15 +117,15 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// location.
   ///
   /// @Snippet(path: "PrivilegedAccessManager_CreateEntitlement")
-  public func createEntitlement(
-    withPolling: CreateEntitlementRequest, options: GoogleGax.RequestOptions
+  public func createEntitlementPollingUntilDone(
+    request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
-    let rawOp = try await self.createEntitlement(request: withPolling, options: options)
+    let rawOp = try await self.createEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
@@ -156,15 +156,15 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// entitlement.
   ///
   /// @Snippet(path: "PrivilegedAccessManager_DeleteEntitlement")
-  public func deleteEntitlement(
-    withPolling: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
+  public func deleteEntitlementPollingUntilDone(
+    request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
-    let rawOp = try await self.deleteEntitlement(request: withPolling, options: options)
+    let rawOp = try await self.deleteEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
@@ -229,15 +229,15 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// workflow step.
   ///
   /// @Snippet(path: "PrivilegedAccessManager_UpdateEntitlement")
-  public func updateEntitlement(
-    withPolling: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
+  public func updateEntitlementPollingUntilDone(
+    request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
-    let rawOp = try await self.updateEntitlement(request: withPolling, options: options)
+    let rawOp = try await self.updateEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
@@ -326,14 +326,14 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// can be called when the grant is in a non-terminal state.
   ///
   /// @Snippet(path: "PrivilegedAccessManager_RevokeGrant")
-  public func revokeGrant(
-    withPolling: RevokeGrantRequest, options: GoogleGax.RequestOptions
+  public func revokeGrantPollingUntilDone(
+    request: RevokeGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Grant> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Grant>.State in
       return try op._extractStatus(Grant.self)
     }
-    let rawOp = try await self.revokeGrant(request: withPolling, options: options)
+    let rawOp = try await self.revokeGrant(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Grant>.State in
       let op = try await self.getOperation(
@@ -408,37 +408,37 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PrivilegedAccessManagerProtocol: Sendable {
     /// See `PrivilegedAccessManagerClient.createEntitlement`.
-    func createEntitlement(withPolling: CreateEntitlementRequest) async throws -> any GoogleGax
-      .PollableOperation<Entitlement>
+    func createEntitlementPollingUntilDone(request: CreateEntitlementRequest) async throws
+      -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.createEntitlement`.
-    func createEntitlement(
+    func createEntitlementPollingUntilDone(
       parent: Swift.String,
       entitlement: Entitlement?,
       entitlementId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
-    func deleteEntitlement(withPolling: DeleteEntitlementRequest) async throws -> any GoogleGax
-      .PollableOperation<Entitlement>
+    func deleteEntitlementPollingUntilDone(request: DeleteEntitlementRequest) async throws
+      -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
-    func deleteEntitlement(
+    func deleteEntitlementPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
-    func updateEntitlement(withPolling: UpdateEntitlementRequest) async throws -> any GoogleGax
-      .PollableOperation<Entitlement>
+    func updateEntitlementPollingUntilDone(request: UpdateEntitlementRequest) async throws
+      -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
-    func updateEntitlement(
+    func updateEntitlementPollingUntilDone(
       entitlement: Entitlement?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.revokeGrant`.
-    func revokeGrant(withPolling: RevokeGrantRequest) async throws -> any GoogleGax
+    func revokeGrantPollingUntilDone(request: RevokeGrantRequest) async throws -> any GoogleGax
       .PollableOperation<Grant>
 
     /// See `PrivilegedAccessManagerClient.checkOnboardingStatus`.
@@ -467,8 +467,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrivilegedAccessManagerClient.createEntitlement`.
-    func createEntitlement(
-      withPolling: CreateEntitlementRequest, options: GoogleGax.RequestOptions
+    func createEntitlementPollingUntilDone(
+      request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
@@ -477,8 +477,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrivilegedAccessManagerClient.deleteEntitlement`.
-    func deleteEntitlement(
-      withPolling: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
+    func deleteEntitlementPollingUntilDone(
+      request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
@@ -487,8 +487,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
-    func updateEntitlement(
-      withPolling: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
+    func updateEntitlementPollingUntilDone(
+      request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.listGrants`.
@@ -527,8 +527,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrivilegedAccessManagerClient.revokeGrant`.
-    func revokeGrant(
-      withPolling: RevokeGrantRequest, options: GoogleGax.RequestOptions
+    func revokeGrantPollingUntilDone(
+      request: RevokeGrantRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Grant>
 
     /// See `PrivilegedAccessManagerClient.listLocations`.
@@ -678,14 +678,14 @@ extension Clients.PrivilegedAccessManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createEntitlement(withPolling: CreateEntitlementRequest) async throws -> any GoogleGax
-    .PollableOperation<Entitlement>
+  public func createEntitlementPollingUntilDone(request: CreateEntitlementRequest) async throws
+    -> any GoogleGax.PollableOperation<Entitlement>
   {
-    try await self.createEntitlement(withPolling: withPolling, options: .init())
+    try await self.createEntitlementPollingUntilDone(request: request, options: .init())
   }
 
-  public func createEntitlement(
-    withPolling: CreateEntitlementRequest, options: GoogleGax.RequestOptions
+  public func createEntitlementPollingUntilDone(
+    request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -694,7 +694,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createEntitlement(
+  public func createEntitlementPollingUntilDone(
     parent: Swift.String,
     entitlement: Entitlement?,
     entitlementId: Swift.String,
@@ -704,7 +704,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
       $0.entitlement = entitlement
       $0.entitlementId = entitlementId
     }
-    return try await self.createEntitlement(withPolling: request)
+    return try await self.createEntitlementPollingUntilDone(request: request)
   }
 
   public func deleteEntitlement(request: DeleteEntitlementRequest) async throws
@@ -719,14 +719,14 @@ extension Clients.PrivilegedAccessManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEntitlement(withPolling: DeleteEntitlementRequest) async throws -> any GoogleGax
-    .PollableOperation<Entitlement>
+  public func deleteEntitlementPollingUntilDone(request: DeleteEntitlementRequest) async throws
+    -> any GoogleGax.PollableOperation<Entitlement>
   {
-    try await self.deleteEntitlement(withPolling: withPolling, options: .init())
+    try await self.deleteEntitlementPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteEntitlement(
-    withPolling: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
+  public func deleteEntitlementPollingUntilDone(
+    request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -735,13 +735,13 @@ extension Clients.PrivilegedAccessManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteEntitlement(
+  public func deleteEntitlementPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let request = DeleteEntitlementRequest().with {
       $0.name = name
     }
-    return try await self.deleteEntitlement(withPolling: request)
+    return try await self.deleteEntitlementPollingUntilDone(request: request)
   }
 
   public func updateEntitlement(request: UpdateEntitlementRequest) async throws
@@ -756,14 +756,14 @@ extension Clients.PrivilegedAccessManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateEntitlement(withPolling: UpdateEntitlementRequest) async throws -> any GoogleGax
-    .PollableOperation<Entitlement>
+  public func updateEntitlementPollingUntilDone(request: UpdateEntitlementRequest) async throws
+    -> any GoogleGax.PollableOperation<Entitlement>
   {
-    try await self.updateEntitlement(withPolling: withPolling, options: .init())
+    try await self.updateEntitlementPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateEntitlement(
-    withPolling: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
+  public func updateEntitlementPollingUntilDone(
+    request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -772,7 +772,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateEntitlement(
+  public func updateEntitlementPollingUntilDone(
     entitlement: Entitlement?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
@@ -780,7 +780,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
       $0.entitlement = entitlement
       $0.updateMask = updateMask
     }
-    return try await self.updateEntitlement(withPolling: request)
+    return try await self.updateEntitlementPollingUntilDone(request: request)
   }
 
   public func listGrants(request: ListGrantsRequest) async throws
@@ -939,14 +939,14 @@ extension Clients.PrivilegedAccessManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func revokeGrant(withPolling: RevokeGrantRequest) async throws -> any GoogleGax
+  public func revokeGrantPollingUntilDone(request: RevokeGrantRequest) async throws -> any GoogleGax
     .PollableOperation<Grant>
   {
-    try await self.revokeGrant(withPolling: withPolling, options: .init())
+    try await self.revokeGrantPollingUntilDone(request: request, options: .init())
   }
 
-  public func revokeGrant(
-    withPolling: RevokeGrantRequest, options: GoogleGax.RequestOptions
+  public func revokeGrantPollingUntilDone(
+    request: RevokeGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Grant> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Grant>.State in
       throw GoogleGax.RequestError.unimplemented

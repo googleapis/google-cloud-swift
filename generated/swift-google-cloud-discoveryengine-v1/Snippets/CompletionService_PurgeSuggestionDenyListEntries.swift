@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: CompletionServiceClient) async throws {
-    let poller = try await client.purgeSuggestionDenyListEntries(
-      withPolling: PurgeSuggestionDenyListEntriesRequest()
+    let poller = try await client.purgeSuggestionDenyListEntriesPollingUntilDone(
+      request: PurgeSuggestionDenyListEntriesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

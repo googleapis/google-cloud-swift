@@ -27,8 +27,8 @@ func sample(
   client: BackupDRClient, projectId: String, locationId: String, backupvaultId: String,
   datasourceId: String, backupId: String
 ) async throws {
-  let poller = try await client.updateBackup(
-    withPolling: UpdateBackupRequest()
+  let poller = try await client.updateBackupPollingUntilDone(
+    request: UpdateBackupRequest()
       .with {
         $0.backup = Backup().with {
           $0.name =

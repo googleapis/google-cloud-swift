@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient, folderId: String) async throws {
-  let poller = try await client.undeleteFolder(
-    withPolling: UndeleteFolderRequest()
+  let poller = try await client.undeleteFolderPollingUntilDone(
+    request: UndeleteFolderRequest()
       .with {
         $0.name = "folders/\(folderId)"
       }

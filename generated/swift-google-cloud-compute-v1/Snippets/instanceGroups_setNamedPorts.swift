@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceGroupsClient) async throws {
-    let poller = try await client.setNamedPorts(
-      withPolling: InstanceGroupsClient.SetNamedPortsRequest()
+    let poller = try await client.setNamedPortsPollingUntilDone(
+      request: InstanceGroupsClient.SetNamedPortsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

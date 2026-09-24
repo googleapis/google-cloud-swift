@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: SearchTuningServiceClient) async throws {
-    let poller = try await client.trainCustomModel(
-      withPolling: TrainCustomModelRequest()
+    let poller = try await client.trainCustomModelPollingUntilDone(
+      request: TrainCustomModelRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

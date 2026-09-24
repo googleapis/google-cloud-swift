@@ -59,14 +59,14 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a new CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateCdnKey")
-  public func createCdnKey(
-    withPolling: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
+  public func createCdnKeyPollingUntilDone(
+    request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CdnKey> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<CdnKey>.State in
       return try op._extractStatus(CdnKey.self)
     }
-    let rawOp = try await self.createCdnKey(request: withPolling, options: options)
+    let rawOp = try await self.createCdnKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<CdnKey>.State in
       let op = try await self.getOperation(
@@ -111,15 +111,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteCdnKey")
-  public func deleteCdnKey(
-    withPolling: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
+  public func deleteCdnKeyPollingUntilDone(
+    request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteCdnKey(request: withPolling, options: options)
+    let rawOp = try await self.deleteCdnKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -148,14 +148,14 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateCdnKey")
-  public func updateCdnKey(
-    withPolling: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
+  public func updateCdnKeyPollingUntilDone(
+    request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CdnKey> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<CdnKey>.State in
       return try op._extractStatus(CdnKey.self)
     }
-    let rawOp = try await self.updateCdnKey(request: withPolling, options: options)
+    let rawOp = try await self.updateCdnKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<CdnKey>.State in
       let op = try await self.getOperation(
@@ -257,14 +257,14 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a slate.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateSlate")
-  public func createSlate(
-    withPolling: CreateSlateRequest, options: GoogleGax.RequestOptions
+  public func createSlatePollingUntilDone(
+    request: CreateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Slate> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Slate>.State in
       return try op._extractStatus(Slate.self)
     }
-    let rawOp = try await self.createSlate(request: withPolling, options: options)
+    let rawOp = try await self.createSlate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Slate>.State in
       let op = try await self.getOperation(
@@ -309,14 +309,14 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Updates the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateSlate")
-  public func updateSlate(
-    withPolling: UpdateSlateRequest, options: GoogleGax.RequestOptions
+  public func updateSlatePollingUntilDone(
+    request: UpdateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Slate> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Slate>.State in
       return try op._extractStatus(Slate.self)
     }
-    let rawOp = try await self.updateSlate(request: withPolling, options: options)
+    let rawOp = try await self.updateSlate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Slate>.State in
       let op = try await self.getOperation(
@@ -343,15 +343,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteSlate")
-  public func deleteSlate(
-    withPolling: DeleteSlateRequest, options: GoogleGax.RequestOptions
+  public func deleteSlatePollingUntilDone(
+    request: DeleteSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteSlate(request: withPolling, options: options)
+    let rawOp = try await self.deleteSlate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -398,15 +398,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// the specified region.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateLiveConfig")
-  public func createLiveConfig(
-    withPolling: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
+  public func createLiveConfigPollingUntilDone(
+    request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LiveConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<LiveConfig>.State
       in
       return try op._extractStatus(LiveConfig.self)
     }
-    let rawOp = try await self.createLiveConfig(request: withPolling, options: options)
+    let rawOp = try await self.createLiveConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LiveConfig>.State in
       let op = try await self.getOperation(
@@ -453,15 +453,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified live config.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteLiveConfig")
-  public func deleteLiveConfig(
-    withPolling: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteLiveConfigPollingUntilDone(
+    request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteLiveConfig(request: withPolling, options: options)
+    let rawOp = try await self.deleteLiveConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -490,15 +490,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateLiveConfig")
-  public func updateLiveConfig(
-    withPolling: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
+  public func updateLiveConfigPollingUntilDone(
+    request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LiveConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<LiveConfig>.State
       in
       return try op._extractStatus(LiveConfig.self)
     }
-    let rawOp = try await self.updateLiveConfig(request: withPolling, options: options)
+    let rawOp = try await self.updateLiveConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LiveConfig>.State in
       let op = try await self.getOperation(
@@ -527,15 +527,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// the specified region.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateVodConfig")
-  public func createVodConfig(
-    withPolling: CreateVodConfigRequest, options: GoogleGax.RequestOptions
+  public func createVodConfigPollingUntilDone(
+    request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VodConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<VodConfig>.State
       in
       return try op._extractStatus(VodConfig.self)
     }
-    let rawOp = try await self.createVodConfig(request: withPolling, options: options)
+    let rawOp = try await self.createVodConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<VodConfig>.State in
       let op = try await self.getOperation(
@@ -582,15 +582,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified VOD config.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteVodConfig")
-  public func deleteVodConfig(
-    withPolling: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteVodConfigPollingUntilDone(
+    request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteVodConfig(request: withPolling, options: options)
+    let rawOp = try await self.deleteVodConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -619,15 +619,15 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateVodConfig")
-  public func updateVodConfig(
-    withPolling: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
+  public func updateVodConfigPollingUntilDone(
+    request: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VodConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<VodConfig>.State
       in
       return try op._extractStatus(VodConfig.self)
     }
-    let rawOp = try await self.updateVodConfig(request: withPolling, options: options)
+    let rawOp = try await self.updateVodConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<VodConfig>.State in
       let op = try await self.getOperation(
@@ -695,121 +695,121 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol VideoStitcherServiceProtocol: Sendable {
     /// See `VideoStitcherServiceClient.createCdnKey`.
-    func createCdnKey(withPolling: CreateCdnKeyRequest) async throws -> any GoogleGax
+    func createCdnKeyPollingUntilDone(request: CreateCdnKeyRequest) async throws -> any GoogleGax
       .PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.createCdnKey`.
-    func createCdnKey(
+    func createCdnKeyPollingUntilDone(
       parent: Swift.String,
       cdnKey: CdnKey?,
       cdnKeyId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.deleteCdnKey`.
-    func deleteCdnKey(withPolling: DeleteCdnKeyRequest) async throws -> any GoogleGax
+    func deleteCdnKeyPollingUntilDone(request: DeleteCdnKeyRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.deleteCdnKey`.
-    func deleteCdnKey(
+    func deleteCdnKeyPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.updateCdnKey`.
-    func updateCdnKey(withPolling: UpdateCdnKeyRequest) async throws -> any GoogleGax
+    func updateCdnKeyPollingUntilDone(request: UpdateCdnKeyRequest) async throws -> any GoogleGax
       .PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.updateCdnKey`.
-    func updateCdnKey(
+    func updateCdnKeyPollingUntilDone(
       cdnKey: CdnKey?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.createSlate`.
-    func createSlate(withPolling: CreateSlateRequest) async throws -> any GoogleGax
+    func createSlatePollingUntilDone(request: CreateSlateRequest) async throws -> any GoogleGax
       .PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.createSlate`.
-    func createSlate(
+    func createSlatePollingUntilDone(
       parent: Swift.String,
       slate: Slate?,
       slateId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.updateSlate`.
-    func updateSlate(withPolling: UpdateSlateRequest) async throws -> any GoogleGax
+    func updateSlatePollingUntilDone(request: UpdateSlateRequest) async throws -> any GoogleGax
       .PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.updateSlate`.
-    func updateSlate(
+    func updateSlatePollingUntilDone(
       slate: Slate?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.deleteSlate`.
-    func deleteSlate(withPolling: DeleteSlateRequest) async throws -> any GoogleGax
+    func deleteSlatePollingUntilDone(request: DeleteSlateRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.deleteSlate`.
-    func deleteSlate(
+    func deleteSlatePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.createLiveConfig`.
-    func createLiveConfig(withPolling: CreateLiveConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<LiveConfig>
+    func createLiveConfigPollingUntilDone(request: CreateLiveConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.createLiveConfig`.
-    func createLiveConfig(
+    func createLiveConfigPollingUntilDone(
       parent: Swift.String,
       liveConfig: LiveConfig?,
       liveConfigId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.deleteLiveConfig`.
-    func deleteLiveConfig(withPolling: DeleteLiveConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteLiveConfigPollingUntilDone(request: DeleteLiveConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.deleteLiveConfig`.
-    func deleteLiveConfig(
+    func deleteLiveConfigPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.updateLiveConfig`.
-    func updateLiveConfig(withPolling: UpdateLiveConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<LiveConfig>
+    func updateLiveConfigPollingUntilDone(request: UpdateLiveConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.updateLiveConfig`.
-    func updateLiveConfig(
+    func updateLiveConfigPollingUntilDone(
       liveConfig: LiveConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.createVodConfig`.
-    func createVodConfig(withPolling: CreateVodConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<VodConfig>
+    func createVodConfigPollingUntilDone(request: CreateVodConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.createVodConfig`.
-    func createVodConfig(
+    func createVodConfigPollingUntilDone(
       parent: Swift.String,
       vodConfig: VodConfig?,
       vodConfigId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.deleteVodConfig`.
-    func deleteVodConfig(withPolling: DeleteVodConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteVodConfigPollingUntilDone(request: DeleteVodConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.deleteVodConfig`.
-    func deleteVodConfig(
+    func deleteVodConfigPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.updateVodConfig`.
-    func updateVodConfig(withPolling: UpdateVodConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<VodConfig>
+    func updateVodConfigPollingUntilDone(request: UpdateVodConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.updateVodConfig`.
-    func updateVodConfig(
+    func updateVodConfigPollingUntilDone(
       vodConfig: VodConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<VodConfig>
@@ -820,8 +820,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.createCdnKey`.
-    func createCdnKey(
-      withPolling: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
+    func createCdnKeyPollingUntilDone(
+      request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.listCdnKeys`.
@@ -840,8 +840,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.deleteCdnKey`.
-    func deleteCdnKey(
-      withPolling: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
+    func deleteCdnKeyPollingUntilDone(
+      request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.updateCdnKey`.
@@ -850,8 +850,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.updateCdnKey`.
-    func updateCdnKey(
-      withPolling: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
+    func updateCdnKeyPollingUntilDone(
+      request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.createVodSession`.
@@ -900,8 +900,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.createSlate`.
-    func createSlate(
-      withPolling: CreateSlateRequest, options: GoogleGax.RequestOptions
+    func createSlatePollingUntilDone(
+      request: CreateSlateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.listSlates`.
@@ -920,8 +920,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.updateSlate`.
-    func updateSlate(
-      withPolling: UpdateSlateRequest, options: GoogleGax.RequestOptions
+    func updateSlatePollingUntilDone(
+      request: UpdateSlateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.deleteSlate`.
@@ -930,8 +930,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.deleteSlate`.
-    func deleteSlate(
-      withPolling: DeleteSlateRequest, options: GoogleGax.RequestOptions
+    func deleteSlatePollingUntilDone(
+      request: DeleteSlateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.createLiveSession`.
@@ -950,8 +950,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.createLiveConfig`.
-    func createLiveConfig(
-      withPolling: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
+    func createLiveConfigPollingUntilDone(
+      request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.listLiveConfigs`.
@@ -970,8 +970,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.deleteLiveConfig`.
-    func deleteLiveConfig(
-      withPolling: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
+    func deleteLiveConfigPollingUntilDone(
+      request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.updateLiveConfig`.
@@ -980,8 +980,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.updateLiveConfig`.
-    func updateLiveConfig(
-      withPolling: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
+    func updateLiveConfigPollingUntilDone(
+      request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.createVodConfig`.
@@ -990,8 +990,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.createVodConfig`.
-    func createVodConfig(
-      withPolling: CreateVodConfigRequest, options: GoogleGax.RequestOptions
+    func createVodConfigPollingUntilDone(
+      request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.listVodConfigs`.
@@ -1010,8 +1010,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.deleteVodConfig`.
-    func deleteVodConfig(
-      withPolling: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
+    func deleteVodConfigPollingUntilDone(
+      request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `VideoStitcherServiceClient.updateVodConfig`.
@@ -1020,8 +1020,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `VideoStitcherServiceClient.updateVodConfig`.
-    func updateVodConfig(
-      withPolling: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
+    func updateVodConfigPollingUntilDone(
+      request: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.listOperations`.
@@ -1054,14 +1054,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCdnKey(withPolling: CreateCdnKeyRequest) async throws -> any GoogleGax
-    .PollableOperation<CdnKey>
+  public func createCdnKeyPollingUntilDone(request: CreateCdnKeyRequest) async throws
+    -> any GoogleGax.PollableOperation<CdnKey>
   {
-    try await self.createCdnKey(withPolling: withPolling, options: .init())
+    try await self.createCdnKeyPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCdnKey(
-    withPolling: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
+  public func createCdnKeyPollingUntilDone(
+    request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CdnKey> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<CdnKey>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1070,7 +1070,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCdnKey(
+  public func createCdnKeyPollingUntilDone(
     parent: Swift.String,
     cdnKey: CdnKey?,
     cdnKeyId: Swift.String,
@@ -1080,7 +1080,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.cdnKey = cdnKey
       $0.cdnKeyId = cdnKeyId
     }
-    return try await self.createCdnKey(withPolling: request)
+    return try await self.createCdnKeyPollingUntilDone(request: request)
   }
 
   public func listCdnKeys(request: ListCdnKeysRequest) async throws
@@ -1156,14 +1156,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCdnKey(withPolling: DeleteCdnKeyRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteCdnKeyPollingUntilDone(request: DeleteCdnKeyRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteCdnKey(withPolling: withPolling, options: .init())
+    try await self.deleteCdnKeyPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCdnKey(
-    withPolling: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
+  public func deleteCdnKeyPollingUntilDone(
+    request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1172,13 +1172,13 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCdnKey(
+  public func deleteCdnKeyPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteCdnKeyRequest().with {
       $0.name = name
     }
-    return try await self.deleteCdnKey(withPolling: request)
+    return try await self.deleteCdnKeyPollingUntilDone(request: request)
   }
 
   public func updateCdnKey(request: UpdateCdnKeyRequest) async throws -> GoogleLongRunning.Operation
@@ -1192,14 +1192,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCdnKey(withPolling: UpdateCdnKeyRequest) async throws -> any GoogleGax
-    .PollableOperation<CdnKey>
+  public func updateCdnKeyPollingUntilDone(request: UpdateCdnKeyRequest) async throws
+    -> any GoogleGax.PollableOperation<CdnKey>
   {
-    try await self.updateCdnKey(withPolling: withPolling, options: .init())
+    try await self.updateCdnKeyPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCdnKey(
-    withPolling: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
+  public func updateCdnKeyPollingUntilDone(
+    request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CdnKey> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<CdnKey>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1208,7 +1208,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateCdnKey(
+  public func updateCdnKeyPollingUntilDone(
     cdnKey: CdnKey?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<CdnKey> {
@@ -1216,7 +1216,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.cdnKey = cdnKey
       $0.updateMask = updateMask
     }
-    return try await self.updateCdnKey(withPolling: request)
+    return try await self.updateCdnKeyPollingUntilDone(request: request)
   }
 
   public func createVodSession(request: CreateVodSessionRequest) async throws
@@ -1466,14 +1466,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createSlate(withPolling: CreateSlateRequest) async throws -> any GoogleGax
+  public func createSlatePollingUntilDone(request: CreateSlateRequest) async throws -> any GoogleGax
     .PollableOperation<Slate>
   {
-    try await self.createSlate(withPolling: withPolling, options: .init())
+    try await self.createSlatePollingUntilDone(request: request, options: .init())
   }
 
-  public func createSlate(
-    withPolling: CreateSlateRequest, options: GoogleGax.RequestOptions
+  public func createSlatePollingUntilDone(
+    request: CreateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Slate> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Slate>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1482,7 +1482,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createSlate(
+  public func createSlatePollingUntilDone(
     parent: Swift.String,
     slate: Slate?,
     slateId: Swift.String,
@@ -1492,7 +1492,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.slate = slate
       $0.slateId = slateId
     }
-    return try await self.createSlate(withPolling: request)
+    return try await self.createSlatePollingUntilDone(request: request)
   }
 
   public func listSlates(request: ListSlatesRequest) async throws
@@ -1566,14 +1566,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateSlate(withPolling: UpdateSlateRequest) async throws -> any GoogleGax
+  public func updateSlatePollingUntilDone(request: UpdateSlateRequest) async throws -> any GoogleGax
     .PollableOperation<Slate>
   {
-    try await self.updateSlate(withPolling: withPolling, options: .init())
+    try await self.updateSlatePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateSlate(
-    withPolling: UpdateSlateRequest, options: GoogleGax.RequestOptions
+  public func updateSlatePollingUntilDone(
+    request: UpdateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Slate> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Slate>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1582,7 +1582,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateSlate(
+  public func updateSlatePollingUntilDone(
     slate: Slate?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Slate> {
@@ -1590,7 +1590,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.slate = slate
       $0.updateMask = updateMask
     }
-    return try await self.updateSlate(withPolling: request)
+    return try await self.updateSlatePollingUntilDone(request: request)
   }
 
   public func deleteSlate(request: DeleteSlateRequest) async throws -> GoogleLongRunning.Operation {
@@ -1603,14 +1603,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSlate(withPolling: DeleteSlateRequest) async throws -> any GoogleGax
+  public func deleteSlatePollingUntilDone(request: DeleteSlateRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteSlate(withPolling: withPolling, options: .init())
+    try await self.deleteSlatePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteSlate(
-    withPolling: DeleteSlateRequest, options: GoogleGax.RequestOptions
+  public func deleteSlatePollingUntilDone(
+    request: DeleteSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1619,13 +1619,13 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteSlate(
+  public func deleteSlatePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteSlateRequest().with {
       $0.name = name
     }
-    return try await self.deleteSlate(withPolling: request)
+    return try await self.deleteSlatePollingUntilDone(request: request)
   }
 
   public func createLiveSession(request: CreateLiveSessionRequest) async throws
@@ -1684,14 +1684,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createLiveConfig(withPolling: CreateLiveConfigRequest) async throws -> any GoogleGax
-    .PollableOperation<LiveConfig>
+  public func createLiveConfigPollingUntilDone(request: CreateLiveConfigRequest) async throws
+    -> any GoogleGax.PollableOperation<LiveConfig>
   {
-    try await self.createLiveConfig(withPolling: withPolling, options: .init())
+    try await self.createLiveConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func createLiveConfig(
-    withPolling: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
+  public func createLiveConfigPollingUntilDone(
+    request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LiveConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LiveConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1700,7 +1700,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createLiveConfig(
+  public func createLiveConfigPollingUntilDone(
     parent: Swift.String,
     liveConfig: LiveConfig?,
     liveConfigId: Swift.String,
@@ -1710,7 +1710,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.liveConfig = liveConfig
       $0.liveConfigId = liveConfigId
     }
-    return try await self.createLiveConfig(withPolling: request)
+    return try await self.createLiveConfigPollingUntilDone(request: request)
   }
 
   public func listLiveConfigs(request: ListLiveConfigsRequest) async throws
@@ -1789,14 +1789,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteLiveConfig(withPolling: DeleteLiveConfigRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteLiveConfigPollingUntilDone(request: DeleteLiveConfigRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteLiveConfig(withPolling: withPolling, options: .init())
+    try await self.deleteLiveConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteLiveConfig(
-    withPolling: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteLiveConfigPollingUntilDone(
+    request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1805,13 +1805,13 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteLiveConfig(
+  public func deleteLiveConfigPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteLiveConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteLiveConfig(withPolling: request)
+    return try await self.deleteLiveConfigPollingUntilDone(request: request)
   }
 
   public func updateLiveConfig(request: UpdateLiveConfigRequest) async throws
@@ -1826,14 +1826,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateLiveConfig(withPolling: UpdateLiveConfigRequest) async throws -> any GoogleGax
-    .PollableOperation<LiveConfig>
+  public func updateLiveConfigPollingUntilDone(request: UpdateLiveConfigRequest) async throws
+    -> any GoogleGax.PollableOperation<LiveConfig>
   {
-    try await self.updateLiveConfig(withPolling: withPolling, options: .init())
+    try await self.updateLiveConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateLiveConfig(
-    withPolling: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
+  public func updateLiveConfigPollingUntilDone(
+    request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LiveConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LiveConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1842,7 +1842,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateLiveConfig(
+  public func updateLiveConfigPollingUntilDone(
     liveConfig: LiveConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LiveConfig> {
@@ -1850,7 +1850,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.liveConfig = liveConfig
       $0.updateMask = updateMask
     }
-    return try await self.updateLiveConfig(withPolling: request)
+    return try await self.updateLiveConfigPollingUntilDone(request: request)
   }
 
   public func createVodConfig(request: CreateVodConfigRequest) async throws
@@ -1865,14 +1865,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createVodConfig(withPolling: CreateVodConfigRequest) async throws -> any GoogleGax
-    .PollableOperation<VodConfig>
+  public func createVodConfigPollingUntilDone(request: CreateVodConfigRequest) async throws
+    -> any GoogleGax.PollableOperation<VodConfig>
   {
-    try await self.createVodConfig(withPolling: withPolling, options: .init())
+    try await self.createVodConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func createVodConfig(
-    withPolling: CreateVodConfigRequest, options: GoogleGax.RequestOptions
+  public func createVodConfigPollingUntilDone(
+    request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VodConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<VodConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1881,7 +1881,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createVodConfig(
+  public func createVodConfigPollingUntilDone(
     parent: Swift.String,
     vodConfig: VodConfig?,
     vodConfigId: Swift.String,
@@ -1891,7 +1891,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.vodConfig = vodConfig
       $0.vodConfigId = vodConfigId
     }
-    return try await self.createVodConfig(withPolling: request)
+    return try await self.createVodConfigPollingUntilDone(request: request)
   }
 
   public func listVodConfigs(request: ListVodConfigsRequest) async throws
@@ -1970,14 +1970,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteVodConfig(withPolling: DeleteVodConfigRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteVodConfigPollingUntilDone(request: DeleteVodConfigRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteVodConfig(withPolling: withPolling, options: .init())
+    try await self.deleteVodConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteVodConfig(
-    withPolling: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteVodConfigPollingUntilDone(
+    request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1986,13 +1986,13 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteVodConfig(
+  public func deleteVodConfigPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteVodConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteVodConfig(withPolling: request)
+    return try await self.deleteVodConfigPollingUntilDone(request: request)
   }
 
   public func updateVodConfig(request: UpdateVodConfigRequest) async throws
@@ -2007,14 +2007,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateVodConfig(withPolling: UpdateVodConfigRequest) async throws -> any GoogleGax
-    .PollableOperation<VodConfig>
+  public func updateVodConfigPollingUntilDone(request: UpdateVodConfigRequest) async throws
+    -> any GoogleGax.PollableOperation<VodConfig>
   {
-    try await self.updateVodConfig(withPolling: withPolling, options: .init())
+    try await self.updateVodConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateVodConfig(
-    withPolling: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
+  public func updateVodConfigPollingUntilDone(
+    request: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VodConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<VodConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2023,7 +2023,7 @@ extension Clients.VideoStitcherServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateVodConfig(
+  public func updateVodConfigPollingUntilDone(
     vodConfig: VodConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<VodConfig> {
@@ -2031,7 +2031,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.vodConfig = vodConfig
       $0.updateMask = updateMask
     }
-    return try await self.updateVodConfig(withPolling: request)
+    return try await self.updateVodConfigPollingUntilDone(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

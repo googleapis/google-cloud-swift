@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: MigrationCenterClient, projectId: String, locationId: String, sourceId: String)
   async throws
 {
-  let poller = try await client.deleteSource(
-    withPolling: DeleteSourceRequest()
+  let poller = try await client.deleteSourcePollingUntilDone(
+    request: DeleteSourceRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)"
       }

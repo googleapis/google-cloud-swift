@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String, routerId: String
 ) async throws {
-  let poller = try await client.updateRouter(
-    withPolling: UpdateRouterRequest()
+  let poller = try await client.updateRouterPollingUntilDone(
+    request: UpdateRouterRequest()
       .with {
         $0.router = Router().with {
           $0.name =

@@ -25,8 +25,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: AzureClustersClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAzureClient(
-    withPolling: CreateAzureClientRequest()
+  let poller = try await client.createAzureClientPollingUntilDone(
+    request: CreateAzureClientRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.azureClient = AzureClient() /* .with { ... } */

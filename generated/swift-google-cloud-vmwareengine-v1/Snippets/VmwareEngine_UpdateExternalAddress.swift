@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   externalAddressId: String
 ) async throws {
-  let poller = try await client.updateExternalAddress(
-    withPolling: UpdateExternalAddressRequest()
+  let poller = try await client.updateExternalAddressPollingUntilDone(
+    request: UpdateExternalAddressRequest()
       .with {
         $0.externalAddress = ExternalAddress().with {
           $0.name =

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LivestreamServiceClient) async throws {
-  let poller = try await client.stopDistribution(
-    withPolling: StopDistributionRequest()
+  let poller = try await client.stopDistributionPollingUntilDone(
+    request: StopDistributionRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

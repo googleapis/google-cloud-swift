@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   externalAddressId: String
 ) async throws {
-  let poller = try await client.deleteExternalAddress(
-    withPolling: DeleteExternalAddressRequest()
+  let poller = try await client.deleteExternalAddressPollingUntilDone(
+    request: DeleteExternalAddressRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)/externalAddresses/\(externalAddressId)"

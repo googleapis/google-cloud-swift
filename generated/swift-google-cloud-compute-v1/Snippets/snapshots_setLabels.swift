@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: SnapshotsClient) async throws {
-    let poller = try await client.setLabels(
-      withPolling: SnapshotsClient.SetLabelsRequest()
+    let poller = try await client.setLabelsPollingUntilDone(
+      request: SnapshotsClient.SetLabelsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

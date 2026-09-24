@@ -27,8 +27,8 @@
   func sample(
     client: JobServiceClient, projectId: String, locationId: String, dataLabelingJobId: String
   ) async throws {
-    let poller = try await client.deleteDataLabelingJob(
-      withPolling: DeleteDataLabelingJobRequest()
+    let poller = try await client.deleteDataLabelingJobPollingUntilDone(
+      request: DeleteDataLabelingJobRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/dataLabelingJobs/\(dataLabelingJobId)"

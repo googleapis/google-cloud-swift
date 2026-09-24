@@ -26,8 +26,8 @@ func sample(
   client: BlockchainNodeEngineClient, projectId: String, locationId: String,
   blockchainNodeId: String
 ) async throws {
-  let poller = try await client.updateBlockchainNode(
-    withPolling: UpdateBlockchainNodeRequest()
+  let poller = try await client.updateBlockchainNodePollingUntilDone(
+    request: UpdateBlockchainNodeRequest()
       .with {
         $0.blockchainNode = BlockchainNode().with {
           $0.name =

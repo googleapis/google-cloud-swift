@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let poller = try await client.createEvent(
-    withPolling: CreateEventRequest()
+  let poller = try await client.createEventPollingUntilDone(
+    request: CreateEventRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
         $0.eventId = "[replace with a valid ID]"

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String)
   async throws
 {
-  let poller = try await client.createSubnet(
-    withPolling: CreateSubnetRequest()
+  let poller = try await client.createSubnetPollingUntilDone(
+    request: CreateSubnetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)"
         $0.subnetId = "[replace with a valid ID]"

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceGroupManagerResizeRequestsClient) async throws {
-    let poller = try await client.delete(
-      withPolling: InstanceGroupManagerResizeRequestsClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: InstanceGroupManagerResizeRequestsClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

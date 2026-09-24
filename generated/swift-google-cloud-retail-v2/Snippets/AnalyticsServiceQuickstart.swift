@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudRetailV2.AnalyticsServiceClient()
-  let poller = try await client.exportAnalyticsMetrics(
-    withPolling: ExportAnalyticsMetricsRequest()
+  let poller = try await client.exportAnalyticsMetricsPollingUntilDone(
+    request: ExportAnalyticsMetricsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

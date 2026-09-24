@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.createHook(
-    withPolling: CreateHookRequest()
+  let poller = try await client.createHookPollingUntilDone(
+    request: CreateHookRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
         $0.hookId = "[replace with a valid ID]"

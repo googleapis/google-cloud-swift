@@ -66,15 +66,15 @@
     /// Deploys a model to a new endpoint.
     ///
     /// @Snippet(path: "ModelGardenService_Deploy")
-    public func deploy(
-      withPolling: DeployRequest, options: GoogleGax.RequestOptions
+    public func deployPollingUntilDone(
+      request: DeployRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeployResponse>.State in
         return try op._extractStatus(DeployResponse.self)
       }
-      let rawOp = try await self.deploy(request: withPolling, options: options)
+      let rawOp = try await self.deploy(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployResponse>.State in
         let op = try await self.getOperation(
@@ -209,9 +209,8 @@
     /// and pass a mock implementation in your tests.
     public protocol ModelGardenServiceProtocol: Sendable {
       /// See `ModelGardenServiceClient.deploy`.
-      func deploy(withPolling: DeployRequest) async throws -> any GoogleGax.PollableOperation<
-        DeployResponse
-      >
+      func deployPollingUntilDone(request: DeployRequest) async throws -> any GoogleGax
+        .PollableOperation<DeployResponse>
 
       /// See `ModelGardenServiceClient.getPublisherModel`.
       func getPublisherModel(
@@ -224,8 +223,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ModelGardenServiceClient.deploy`.
-      func deploy(
-        withPolling: DeployRequest, options: GoogleGax.RequestOptions
+      func deployPollingUntilDone(
+        request: DeployRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DeployResponse>
 
       /// See `ModelGardenServiceClient.listLocations`.
@@ -308,14 +307,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deploy(withPolling: DeployRequest) async throws -> any GoogleGax.PollableOperation<
-      DeployResponse
-    > {
-      try await self.deploy(withPolling: withPolling, options: .init())
+    public func deployPollingUntilDone(request: DeployRequest) async throws -> any GoogleGax
+      .PollableOperation<DeployResponse>
+    {
+      try await self.deployPollingUntilDone(request: request, options: .init())
     }
 
-    public func deploy(
-      withPolling: DeployRequest, options: GoogleGax.RequestOptions
+    public func deployPollingUntilDone(
+      request: DeployRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployResponse> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployResponse>.State in
         throw GoogleGax.RequestError.unimplemented

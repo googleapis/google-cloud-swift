@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String)
   async throws
 {
-  let poller = try await client.createCollection(
-    withPolling: CreateCollectionRequest()
+  let poller = try await client.createCollectionPollingUntilDone(
+    request: CreateCollectionRequest()
       .with {
         $0.parent = "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)"
         $0.collectionId = "[replace with a valid ID]"

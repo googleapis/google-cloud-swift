@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: BackupForGKEClient, projectId: String, locationId: String, backupPlanId: String)
   async throws
 {
-  let poller = try await client.createBackup(
-    withPolling: CreateBackupRequest()
+  let poller = try await client.createBackupPollingUntilDone(
+    request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/backupPlans/\(backupPlanId)"
         $0.backupId = "[replace with a valid ID]"

@@ -27,8 +27,8 @@ func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String,
   metadataImportId: String
 ) async throws {
-  let poller = try await client.updateMetadataImport(
-    withPolling: UpdateMetadataImportRequest()
+  let poller = try await client.updateMetadataImportPollingUntilDone(
+    request: UpdateMetadataImportRequest()
       .with {
         $0.metadataImport = MetadataImport().with {
           $0.name =

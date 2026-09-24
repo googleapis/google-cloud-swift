@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.deleteAccessConfig(
-      withPolling: InstancesClient.DeleteAccessConfigRequest()
+    let poller = try await client.deleteAccessConfigPollingUntilDone(
+      request: InstancesClient.DeleteAccessConfigRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

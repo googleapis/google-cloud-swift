@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BigtableInstanceAdminClient) async throws {
-  let poller = try await client.updateCluster(
-    withPolling: Cluster()
+  let poller = try await client.updateClusterPollingUntilDone(
+    request: Cluster()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

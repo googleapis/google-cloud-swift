@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: AuditClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createFrameworkAudit(
-    withPolling: CreateFrameworkAuditRequest()
+  let poller = try await client.createFrameworkAuditPollingUntilDone(
+    request: CreateFrameworkAuditRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.frameworkAudit = FrameworkAudit() /* .with { ... } */

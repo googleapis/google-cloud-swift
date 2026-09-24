@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RolloutsClient) async throws {
-    let poller = try await client.pause(
-      withPolling: RolloutsClient.PauseRequest()
+    let poller = try await client.pausePollingUntilDone(
+      request: RolloutsClient.PauseRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

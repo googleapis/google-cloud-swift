@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AppPlatformClient, projectId: String, locationId: String, applicationId: String)
   async throws
 {
-  let poller = try await client.createDraft(
-    withPolling: CreateDraftRequest()
+  let poller = try await client.createDraftPollingUntilDone(
+    request: CreateDraftRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)"
         $0.draftId = "[replace with a valid ID]"

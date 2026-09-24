@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateAuthorityServiceClient) async throws {
-  let poller = try await client.disableCertificateAuthority(
-    withPolling: DisableCertificateAuthorityRequest()
+  let poller = try await client.disableCertificateAuthorityPollingUntilDone(
+    request: DisableCertificateAuthorityRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

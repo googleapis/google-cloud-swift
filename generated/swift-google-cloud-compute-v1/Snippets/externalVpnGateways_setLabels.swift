@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ExternalVpnGatewaysClient) async throws {
-    let poller = try await client.setLabels(
-      withPolling: ExternalVpnGatewaysClient.SetLabelsRequest()
+    let poller = try await client.setLabelsPollingUntilDone(
+      request: ExternalVpnGatewaysClient.SetLabelsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

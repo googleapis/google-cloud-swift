@@ -61,15 +61,15 @@
     /// [google.cloud.aiplatform.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "SessionService_CreateSession")
-    public func createSession(
-      withPolling: CreateSessionRequest, options: GoogleGax.RequestOptions
+    public func createSessionPollingUntilDone(
+      request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Session> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Session>.State
         in
         return try op._extractStatus(Session.self)
       }
-      let rawOp = try await self.createSession(request: withPolling, options: options)
+      let rawOp = try await self.createSession(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Session>.State in
         let op = try await self.getOperation(
@@ -136,15 +136,15 @@
     /// [google.cloud.aiplatform.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "SessionService_DeleteSession")
-    public func deleteSession(
-      withPolling: DeleteSessionRequest, options: GoogleGax.RequestOptions
+    public func deleteSessionPollingUntilDone(
+      request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteSession(request: withPolling, options: options)
+      let rawOp = try await self.deleteSession(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -299,28 +299,28 @@
     /// and pass a mock implementation in your tests.
     public protocol SessionServiceProtocol: Sendable {
       /// See `SessionServiceClient.createSession`.
-      func createSession(withPolling: CreateSessionRequest) async throws -> any GoogleGax
-        .PollableOperation<Session>
+      func createSessionPollingUntilDone(request: CreateSessionRequest) async throws
+        -> any GoogleGax.PollableOperation<Session>
 
       /// See `SessionServiceClient.createSession`.
-      func createSession(
+      func createSessionPollingUntilDone(
         parent: Swift.String,
         session: Session?,
       ) async throws -> any GoogleGax.PollableOperation<Session>
 
       /// See `SessionServiceClient.createSession`.
-      func createSession(
+      func createSessionPollingUntilDone(
         parent: Swift.String,
         session: Session?,
         sessionId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Session>
 
       /// See `SessionServiceClient.deleteSession`.
-      func deleteSession(withPolling: DeleteSessionRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteSessionPollingUntilDone(request: DeleteSessionRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SessionServiceClient.deleteSession`.
-      func deleteSession(
+      func deleteSessionPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -330,8 +330,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SessionServiceClient.createSession`.
-      func createSession(
-        withPolling: CreateSessionRequest, options: GoogleGax.RequestOptions
+      func createSessionPollingUntilDone(
+        request: CreateSessionRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Session>
 
       /// See `SessionServiceClient.getSession`.
@@ -355,8 +355,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SessionServiceClient.deleteSession`.
-      func deleteSession(
-        withPolling: DeleteSessionRequest, options: GoogleGax.RequestOptions
+      func deleteSessionPollingUntilDone(
+        request: DeleteSessionRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SessionServiceClient.listEvents`.
@@ -430,14 +430,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createSession(withPolling: CreateSessionRequest) async throws -> any GoogleGax
-      .PollableOperation<Session>
+    public func createSessionPollingUntilDone(request: CreateSessionRequest) async throws
+      -> any GoogleGax.PollableOperation<Session>
     {
-      try await self.createSession(withPolling: withPolling, options: .init())
+      try await self.createSessionPollingUntilDone(request: request, options: .init())
     }
 
-    public func createSession(
-      withPolling: CreateSessionRequest, options: GoogleGax.RequestOptions
+    public func createSessionPollingUntilDone(
+      request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Session> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Session>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -446,7 +446,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createSession(
+    public func createSessionPollingUntilDone(
       parent: Swift.String,
       session: Session?,
     ) async throws -> any GoogleGax.PollableOperation<Session> {
@@ -454,10 +454,10 @@
         $0.parent = parent
         $0.session = session
       }
-      return try await self.createSession(withPolling: request)
+      return try await self.createSessionPollingUntilDone(request: request)
     }
 
-    public func createSession(
+    public func createSessionPollingUntilDone(
       parent: Swift.String,
       session: Session?,
       sessionId: Swift.String,
@@ -467,7 +467,7 @@
         $0.session = session
         $0.sessionId = sessionId
       }
-      return try await self.createSession(withPolling: request)
+      return try await self.createSessionPollingUntilDone(request: request)
     }
 
     public func getSession(request: GetSessionRequest) async throws
@@ -571,14 +571,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSession(withPolling: DeleteSessionRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteSessionPollingUntilDone(request: DeleteSessionRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteSession(withPolling: withPolling, options: .init())
+      try await self.deleteSessionPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteSession(
-      withPolling: DeleteSessionRequest, options: GoogleGax.RequestOptions
+    public func deleteSessionPollingUntilDone(
+      request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -587,13 +587,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteSession(
+    public func deleteSessionPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteSessionRequest().with {
         $0.name = name
       }
-      return try await self.deleteSession(withPolling: request)
+      return try await self.deleteSessionPollingUntilDone(request: request)
     }
 
     public func listEvents(request: ListEventsRequest) async throws

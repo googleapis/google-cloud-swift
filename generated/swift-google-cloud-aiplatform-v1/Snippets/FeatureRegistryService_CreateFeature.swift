@@ -28,8 +28,8 @@
     client: FeatureRegistryServiceClient, projectId: String, locationId: String,
     featurestoreId: String, entityTypeId: String
   ) async throws {
-    let poller = try await client.createFeature(
-      withPolling: CreateFeatureRequest()
+    let poller = try await client.createFeaturePollingUntilDone(
+      request: CreateFeatureRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)/entityTypes/\(entityTypeId)"

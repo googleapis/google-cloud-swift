@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, exadbVmClusterId: String
 ) async throws {
-  let poller = try await client.updateExadbVmCluster(
-    withPolling: UpdateExadbVmClusterRequest()
+  let poller = try await client.updateExadbVmClusterPollingUntilDone(
+    request: UpdateExadbVmClusterRequest()
       .with {
         $0.exadbVmCluster = ExadbVmCluster().with {
           $0.name =

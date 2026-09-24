@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: AppConnectorsServiceClient, projectId: String, locationId: String, appConnectorId: String
 ) async throws {
-  let poller = try await client.updateAppConnector(
-    withPolling: UpdateAppConnectorRequest()
+  let poller = try await client.updateAppConnectorPollingUntilDone(
+    request: UpdateAppConnectorRequest()
       .with {
         $0.appConnector = AppConnector().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/appConnectors/\(appConnectorId)"

@@ -66,15 +66,15 @@
     /// This method is used for batch assign/unassign licenses to users.
     ///
     /// @Snippet(path: "UserLicenseService_BatchUpdateUserLicenses")
-    public func batchUpdateUserLicenses(
-      withPolling: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
+    public func batchUpdateUserLicensesPollingUntilDone(
+      request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchUpdateUserLicensesResponse>.State in
         return try op._extractStatus(BatchUpdateUserLicensesResponse.self)
       }
-      let rawOp = try await self.batchUpdateUserLicenses(request: withPolling, options: options)
+      let rawOp = try await self.batchUpdateUserLicenses(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateUserLicensesResponse>.State
@@ -133,8 +133,8 @@
     /// and pass a mock implementation in your tests.
     public protocol UserLicenseServiceProtocol: Sendable {
       /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
-      func batchUpdateUserLicenses(withPolling: BatchUpdateUserLicensesRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
+      func batchUpdateUserLicensesPollingUntilDone(request: BatchUpdateUserLicensesRequest)
+        async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
 
       /// See `UserLicenseServiceClient.listUserLicenses`.
       func listUserLicenses(
@@ -147,8 +147,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
-      func batchUpdateUserLicenses(
-        withPolling: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
+      func batchUpdateUserLicensesPollingUntilDone(
+        request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
 
       /// See `UserLicenseServiceClient.listOperations`.
@@ -220,14 +220,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchUpdateUserLicenses(withPolling: BatchUpdateUserLicensesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
+    public func batchUpdateUserLicensesPollingUntilDone(request: BatchUpdateUserLicensesRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
     {
-      try await self.batchUpdateUserLicenses(withPolling: withPolling, options: .init())
+      try await self.batchUpdateUserLicensesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchUpdateUserLicenses(
-      withPolling: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
+    public func batchUpdateUserLicensesPollingUntilDone(
+      request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateUserLicensesResponse>.State

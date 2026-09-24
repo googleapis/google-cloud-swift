@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let poller = try await client.updateMigratingVm(
-    withPolling: UpdateMigratingVmRequest()
+  let poller = try await client.updateMigratingVmPollingUntilDone(
+    request: UpdateMigratingVmRequest()
       .with {
         $0.migratingVm = MigratingVm().with {
           $0.name =

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String
 ) async throws {
-  let poller = try await client.updateResourceBundle(
-    withPolling: UpdateResourceBundleRequest()
+  let poller = try await client.updateResourceBundlePollingUntilDone(
+    request: UpdateResourceBundleRequest()
       .with {
         $0.resourceBundle = ResourceBundle().with {
           $0.name =

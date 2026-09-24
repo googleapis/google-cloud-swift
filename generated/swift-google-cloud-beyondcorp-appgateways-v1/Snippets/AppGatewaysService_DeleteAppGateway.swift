@@ -25,8 +25,8 @@ import GoogleLongRunning
 func sample(
   client: AppGatewaysServiceClient, projectId: String, locationId: String, appGatewayId: String
 ) async throws {
-  let poller = try await client.deleteAppGateway(
-    withPolling: DeleteAppGatewayRequest()
+  let poller = try await client.deleteAppGatewayPollingUntilDone(
+    request: DeleteAppGatewayRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/appGateways/\(appGatewayId)"
       }

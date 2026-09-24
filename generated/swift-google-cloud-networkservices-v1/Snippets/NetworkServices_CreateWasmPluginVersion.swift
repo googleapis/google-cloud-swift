@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, wasmPluginId: String
 ) async throws {
-  let poller = try await client.createWasmPluginVersion(
-    withPolling: CreateWasmPluginVersionRequest()
+  let poller = try await client.createWasmPluginVersionPollingUntilDone(
+    request: CreateWasmPluginVersionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/wasmPlugins/\(wasmPluginId)"
         $0.wasmPluginVersion = WasmPluginVersion() /* .with { ... } */

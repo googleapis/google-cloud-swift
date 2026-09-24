@@ -58,15 +58,15 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Creates a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_CreateDataScan")
-  public func createDataScan(
-    withPolling: CreateDataScanRequest, options: GoogleGax.RequestOptions
+  public func createDataScanPollingUntilDone(
+    request: CreateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataScan> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<DataScan>.State
       in
       return try op._extractStatus(DataScan.self)
     }
-    let rawOp = try await self.createDataScan(request: withPolling, options: options)
+    let rawOp = try await self.createDataScan(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataScan>.State in
       let op = try await self.getOperation(
@@ -93,15 +93,15 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Updates a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_UpdateDataScan")
-  public func updateDataScan(
-    withPolling: UpdateDataScanRequest, options: GoogleGax.RequestOptions
+  public func updateDataScanPollingUntilDone(
+    request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataScan> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<DataScan>.State
       in
       return try op._extractStatus(DataScan.self)
     }
-    let rawOp = try await self.updateDataScan(request: withPolling, options: options)
+    let rawOp = try await self.updateDataScan(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataScan>.State in
       let op = try await self.getOperation(
@@ -128,15 +128,15 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Deletes a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_DeleteDataScan")
-  public func deleteDataScan(
-    withPolling: DeleteDataScanRequest, options: GoogleGax.RequestOptions
+  public func deleteDataScanPollingUntilDone(
+    request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteDataScan(request: withPolling, options: options)
+    let rawOp = try await self.deleteDataScan(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -343,32 +343,32 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataScanServiceProtocol: Sendable {
     /// See `DataScanServiceClient.createDataScan`.
-    func createDataScan(withPolling: CreateDataScanRequest) async throws -> any GoogleGax
-      .PollableOperation<DataScan>
+    func createDataScanPollingUntilDone(request: CreateDataScanRequest) async throws
+      -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.createDataScan`.
-    func createDataScan(
+    func createDataScanPollingUntilDone(
       parent: Swift.String,
       dataScan: DataScan?,
       dataScanId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.updateDataScan`.
-    func updateDataScan(withPolling: UpdateDataScanRequest) async throws -> any GoogleGax
-      .PollableOperation<DataScan>
+    func updateDataScanPollingUntilDone(request: UpdateDataScanRequest) async throws
+      -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.updateDataScan`.
-    func updateDataScan(
+    func updateDataScanPollingUntilDone(
       dataScan: DataScan?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.deleteDataScan`.
-    func deleteDataScan(withPolling: DeleteDataScanRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteDataScanPollingUntilDone(request: DeleteDataScanRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataScanServiceClient.deleteDataScan`.
-    func deleteDataScan(
+    func deleteDataScanPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -378,8 +378,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataScanServiceClient.createDataScan`.
-    func createDataScan(
-      withPolling: CreateDataScanRequest, options: GoogleGax.RequestOptions
+    func createDataScanPollingUntilDone(
+      request: CreateDataScanRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.updateDataScan`.
@@ -388,8 +388,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataScanServiceClient.updateDataScan`.
-    func updateDataScan(
-      withPolling: UpdateDataScanRequest, options: GoogleGax.RequestOptions
+    func updateDataScanPollingUntilDone(
+      request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.deleteDataScan`.
@@ -398,8 +398,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataScanServiceClient.deleteDataScan`.
-    func deleteDataScan(
-      withPolling: DeleteDataScanRequest, options: GoogleGax.RequestOptions
+    func deleteDataScanPollingUntilDone(
+      request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataScanServiceClient.getDataScan`.
@@ -493,14 +493,14 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createDataScan(withPolling: CreateDataScanRequest) async throws -> any GoogleGax
-    .PollableOperation<DataScan>
+  public func createDataScanPollingUntilDone(request: CreateDataScanRequest) async throws
+    -> any GoogleGax.PollableOperation<DataScan>
   {
-    try await self.createDataScan(withPolling: withPolling, options: .init())
+    try await self.createDataScanPollingUntilDone(request: request, options: .init())
   }
 
-  public func createDataScan(
-    withPolling: CreateDataScanRequest, options: GoogleGax.RequestOptions
+  public func createDataScanPollingUntilDone(
+    request: CreateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataScan> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataScan>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -509,7 +509,7 @@ extension Clients.DataScanServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createDataScan(
+  public func createDataScanPollingUntilDone(
     parent: Swift.String,
     dataScan: DataScan?,
     dataScanId: Swift.String,
@@ -519,7 +519,7 @@ extension Clients.DataScanServiceProtocol {
       $0.dataScan = dataScan
       $0.dataScanId = dataScanId
     }
-    return try await self.createDataScan(withPolling: request)
+    return try await self.createDataScanPollingUntilDone(request: request)
   }
 
   public func updateDataScan(request: UpdateDataScanRequest) async throws
@@ -534,14 +534,14 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateDataScan(withPolling: UpdateDataScanRequest) async throws -> any GoogleGax
-    .PollableOperation<DataScan>
+  public func updateDataScanPollingUntilDone(request: UpdateDataScanRequest) async throws
+    -> any GoogleGax.PollableOperation<DataScan>
   {
-    try await self.updateDataScan(withPolling: withPolling, options: .init())
+    try await self.updateDataScanPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateDataScan(
-    withPolling: UpdateDataScanRequest, options: GoogleGax.RequestOptions
+  public func updateDataScanPollingUntilDone(
+    request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataScan> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataScan>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -550,7 +550,7 @@ extension Clients.DataScanServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateDataScan(
+  public func updateDataScanPollingUntilDone(
     dataScan: DataScan?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<DataScan> {
@@ -558,7 +558,7 @@ extension Clients.DataScanServiceProtocol {
       $0.dataScan = dataScan
       $0.updateMask = updateMask
     }
-    return try await self.updateDataScan(withPolling: request)
+    return try await self.updateDataScanPollingUntilDone(request: request)
   }
 
   public func deleteDataScan(request: DeleteDataScanRequest) async throws
@@ -573,14 +573,14 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDataScan(withPolling: DeleteDataScanRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteDataScanPollingUntilDone(request: DeleteDataScanRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteDataScan(withPolling: withPolling, options: .init())
+    try await self.deleteDataScanPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteDataScan(
-    withPolling: DeleteDataScanRequest, options: GoogleGax.RequestOptions
+  public func deleteDataScanPollingUntilDone(
+    request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -589,13 +589,13 @@ extension Clients.DataScanServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteDataScan(
+  public func deleteDataScanPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteDataScanRequest().with {
       $0.name = name
     }
-    return try await self.deleteDataScan(withPolling: request)
+    return try await self.deleteDataScanPollingUntilDone(request: request)
   }
 
   public func getDataScan(request: GetDataScanRequest) async throws

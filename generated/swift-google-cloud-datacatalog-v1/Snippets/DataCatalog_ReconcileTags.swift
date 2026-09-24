@@ -26,8 +26,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataCatalogClient) async throws {
-  let poller = try await client.reconcileTags(
-    withPolling: ReconcileTagsRequest()
+  let poller = try await client.reconcileTagsPollingUntilDone(
+    request: ReconcileTagsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

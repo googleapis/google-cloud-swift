@@ -27,8 +27,8 @@ func sample(
   client: DataTransferServiceClient, projectId: String, locationId: String,
   multicloudDataTransferConfigId: String
 ) async throws {
-  let poller = try await client.createDestination(
-    withPolling: CreateDestinationRequest()
+  let poller = try await client.createDestinationPollingUntilDone(
+    request: CreateDestinationRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/multicloudDataTransferConfigs/\(multicloudDataTransferConfigId)"

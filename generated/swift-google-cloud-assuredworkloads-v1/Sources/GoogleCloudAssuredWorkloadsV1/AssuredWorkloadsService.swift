@@ -56,15 +56,15 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// Creates Assured Workload.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_CreateWorkload")
-  public func createWorkload(
-    withPolling: CreateWorkloadRequest, options: GoogleGax.RequestOptions
+  public func createWorkloadPollingUntilDone(
+    request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Workload>.State
       in
       return try op._extractStatus(Workload.self)
     }
-    let rawOp = try await self.createWorkload(request: withPolling, options: options)
+    let rawOp = try await self.createWorkload(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       let op = try await self.getOperation(
@@ -165,11 +165,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AssuredWorkloadsServiceProtocol: Sendable {
     /// See `AssuredWorkloadsServiceClient.createWorkload`.
-    func createWorkload(withPolling: CreateWorkloadRequest) async throws -> any GoogleGax
-      .PollableOperation<Workload>
+    func createWorkloadPollingUntilDone(request: CreateWorkloadRequest) async throws
+      -> any GoogleGax.PollableOperation<Workload>
 
     /// See `AssuredWorkloadsServiceClient.createWorkload`.
-    func createWorkload(
+    func createWorkloadPollingUntilDone(
       parent: Swift.String,
       workload: Workload?,
     ) async throws -> any GoogleGax.PollableOperation<Workload>
@@ -180,8 +180,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AssuredWorkloadsServiceClient.createWorkload`.
-    func createWorkload(
-      withPolling: CreateWorkloadRequest, options: GoogleGax.RequestOptions
+    func createWorkloadPollingUntilDone(
+      request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workload>
 
     /// See `AssuredWorkloadsServiceClient.updateWorkload`.
@@ -230,14 +230,14 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWorkload(withPolling: CreateWorkloadRequest) async throws -> any GoogleGax
-    .PollableOperation<Workload>
+  public func createWorkloadPollingUntilDone(request: CreateWorkloadRequest) async throws
+    -> any GoogleGax.PollableOperation<Workload>
   {
-    try await self.createWorkload(withPolling: withPolling, options: .init())
+    try await self.createWorkloadPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWorkload(
-    withPolling: CreateWorkloadRequest, options: GoogleGax.RequestOptions
+  public func createWorkloadPollingUntilDone(
+    request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -246,7 +246,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWorkload(
+  public func createWorkloadPollingUntilDone(
     parent: Swift.String,
     workload: Workload?,
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
@@ -254,7 +254,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
       $0.parent = parent
       $0.workload = workload
     }
-    return try await self.createWorkload(withPolling: request)
+    return try await self.createWorkloadPollingUntilDone(request: request)
   }
 
   public func updateWorkload(request: UpdateWorkloadRequest) async throws

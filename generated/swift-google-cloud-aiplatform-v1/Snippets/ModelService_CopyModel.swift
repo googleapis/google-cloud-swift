@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: ModelServiceClient) async throws {
-    let poller = try await client.copyModel(
-      withPolling: CopyModelRequest()
+    let poller = try await client.copyModelPollingUntilDone(
+      request: CopyModelRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

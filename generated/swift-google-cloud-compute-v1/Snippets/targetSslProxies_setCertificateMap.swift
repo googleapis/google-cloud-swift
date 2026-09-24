@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetSslProxiesClient) async throws {
-    let poller = try await client.setCertificateMap(
-      withPolling: TargetSslProxiesClient.SetCertificateMapRequest()
+    let poller = try await client.setCertificateMapPollingUntilDone(
+      request: TargetSslProxiesClient.SetCertificateMapRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

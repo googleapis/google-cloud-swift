@@ -78,15 +78,15 @@
     /// Async query using a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineExecutionService_AsyncQueryReasoningEngine")
-    public func asyncQueryReasoningEngine(
-      withPolling: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
+    public func asyncQueryReasoningEnginePollingUntilDone(
+      request: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<AsyncQueryReasoningEngineResponse>.State in
         return try op._extractStatus(AsyncQueryReasoningEngineResponse.self)
       }
-      let rawOp = try await self.asyncQueryReasoningEngine(request: withPolling, options: options)
+      let rawOp = try await self.asyncQueryReasoningEngine(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<AsyncQueryReasoningEngineResponse>.State
@@ -232,8 +232,8 @@
     /// and pass a mock implementation in your tests.
     public protocol ReasoningEngineExecutionServiceProtocol: Sendable {
       /// See `ReasoningEngineExecutionServiceClient.asyncQueryReasoningEngine`.
-      func asyncQueryReasoningEngine(withPolling: AsyncQueryReasoningEngineRequest) async throws
-        -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse>
+      func asyncQueryReasoningEnginePollingUntilDone(request: AsyncQueryReasoningEngineRequest)
+        async throws -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse>
 
       /// See `ReasoningEngineExecutionServiceClient.queryReasoningEngine`.
       func queryReasoningEngine(
@@ -251,8 +251,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ReasoningEngineExecutionServiceClient.asyncQueryReasoningEngine`.
-      func asyncQueryReasoningEngine(
-        withPolling: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
+      func asyncQueryReasoningEnginePollingUntilDone(
+        request: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse>
 
       /// See `ReasoningEngineExecutionServiceClient.cancelAsyncQueryReasoningEngine`.
@@ -345,14 +345,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func asyncQueryReasoningEngine(withPolling: AsyncQueryReasoningEngineRequest)
+    public func asyncQueryReasoningEnginePollingUntilDone(request: AsyncQueryReasoningEngineRequest)
       async throws -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse>
     {
-      try await self.asyncQueryReasoningEngine(withPolling: withPolling, options: .init())
+      try await self.asyncQueryReasoningEnginePollingUntilDone(request: request, options: .init())
     }
 
-    public func asyncQueryReasoningEngine(
-      withPolling: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
+    public func asyncQueryReasoningEnginePollingUntilDone(
+      request: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AsyncQueryReasoningEngineResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<AsyncQueryReasoningEngineResponse>.State

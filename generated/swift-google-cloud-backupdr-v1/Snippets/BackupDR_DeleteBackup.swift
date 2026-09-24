@@ -27,8 +27,8 @@ func sample(
   client: BackupDRClient, projectId: String, locationId: String, backupvaultId: String,
   datasourceId: String, backupId: String
 ) async throws {
-  let poller = try await client.deleteBackup(
-    withPolling: DeleteBackupRequest()
+  let poller = try await client.deleteBackupPollingUntilDone(
+    request: DeleteBackupRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/backupVaults/\(backupvaultId)/dataSources/\(datasourceId)/backups/\(backupId)"

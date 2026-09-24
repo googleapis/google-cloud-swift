@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createPipeline(
-    withPolling: CreatePipelineRequest()
+  let poller = try await client.createPipelinePollingUntilDone(
+    request: CreatePipelineRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.pipelineId = "[replace with a valid ID]"

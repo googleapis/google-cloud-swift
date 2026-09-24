@@ -26,8 +26,8 @@ func sample(
   client: VectorSearchServiceClient, projectId: String, locationId: String, collectionId: String,
   indexId: String
 ) async throws {
-  let poller = try await client.updateIndex(
-    withPolling: UpdateIndexRequest()
+  let poller = try await client.updateIndexPollingUntilDone(
+    request: UpdateIndexRequest()
       .with {
         $0.index = Index().with {
           $0.name =

@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudDatastoreAdminV1.DatastoreAdminClient()
-  let poller = try await client.exportEntities(
-    withPolling: ExportEntitiesRequest()
+  let poller = try await client.exportEntitiesPollingUntilDone(
+    request: ExportEntitiesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

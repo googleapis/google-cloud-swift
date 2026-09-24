@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: AccessContextManagerClient, organizationId: String, gcpUserAccessBindingId: String
 ) async throws {
-  let poller = try await client.deleteGcpUserAccessBinding(
-    withPolling: DeleteGcpUserAccessBindingRequest()
+  let poller = try await client.deleteGcpUserAccessBindingPollingUntilDone(
+    request: DeleteGcpUserAccessBindingRequest()
       .with {
         $0.name = "organizations/\(organizationId)/gcpUserAccessBindings/\(gcpUserAccessBindingId)"
       }

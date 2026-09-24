@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let poller = try await client.updateMemoryLayer(
-    withPolling: UpdateMemoryLayerRequest()
+  let poller = try await client.updateMemoryLayerPollingUntilDone(
+    request: UpdateMemoryLayerRequest()
       .with {
         $0.memoryLayer = MemoryLayer().with {
           $0.name =

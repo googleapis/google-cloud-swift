@@ -27,8 +27,8 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String
 ) async throws {
-  let poller = try await client.createAsset(
-    withPolling: CreateAssetRequest()
+  let poller = try await client.createAssetPollingUntilDone(
+    request: CreateAssetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)"
         $0.assetId = "[replace with a valid ID]"

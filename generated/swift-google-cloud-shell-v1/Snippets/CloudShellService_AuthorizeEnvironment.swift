@@ -21,8 +21,8 @@ import GoogleCloudShellV1
 import GoogleLongRunning
 
 func sample(client: CloudShellServiceClient) async throws {
-  let poller = try await client.authorizeEnvironment(
-    withPolling: AuthorizeEnvironmentRequest()
+  let poller = try await client.authorizeEnvironmentPollingUntilDone(
+    request: AuthorizeEnvironmentRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

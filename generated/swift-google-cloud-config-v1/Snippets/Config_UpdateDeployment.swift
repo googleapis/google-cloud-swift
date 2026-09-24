@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, deploymentId: String)
   async throws
 {
-  let poller = try await client.updateDeployment(
-    withPolling: UpdateDeploymentRequest()
+  let poller = try await client.updateDeploymentPollingUntilDone(
+    request: UpdateDeploymentRequest()
       .with {
         $0.deployment = Deployment().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/deployments/\(deploymentId)"

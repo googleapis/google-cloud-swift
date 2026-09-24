@@ -25,8 +25,8 @@
     client: IdentityMappingStoreServiceClient, projectId: String, locationId: String,
     identityMappingStoreId: String
   ) async throws {
-    let poller = try await client.deleteIdentityMappingStore(
-      withPolling: DeleteIdentityMappingStoreRequest()
+    let poller = try await client.deleteIdentityMappingStorePollingUntilDone(
+      request: DeleteIdentityMappingStoreRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/identityMappingStores/\(identityMappingStoreId)"

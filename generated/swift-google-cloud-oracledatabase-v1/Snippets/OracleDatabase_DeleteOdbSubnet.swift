@@ -26,8 +26,8 @@ func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, odbNetworkId: String,
   odbSubnetId: String
 ) async throws {
-  let poller = try await client.deleteOdbSubnet(
-    withPolling: DeleteOdbSubnetRequest()
+  let poller = try await client.deleteOdbSubnetPollingUntilDone(
+    request: DeleteOdbSubnetRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/odbNetworks/\(odbNetworkId)/odbSubnets/\(odbSubnetId)"

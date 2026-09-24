@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: CompletionServiceClient) async throws {
-    let poller = try await client.purgeCompletionSuggestions(
-      withPolling: PurgeCompletionSuggestionsRequest()
+    let poller = try await client.purgeCompletionSuggestionsPollingUntilDone(
+      request: PurgeCompletionSuggestionsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

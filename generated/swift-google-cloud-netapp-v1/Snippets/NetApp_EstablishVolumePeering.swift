@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient) async throws {
-  let poller = try await client.establishVolumePeering(
-    withPolling: EstablishVolumePeeringRequest()
+  let poller = try await client.establishVolumePeeringPollingUntilDone(
+    request: EstablishVolumePeeringRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

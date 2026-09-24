@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.createPullRequest(
-    withPolling: CreatePullRequestRequest()
+  let poller = try await client.createPullRequestPollingUntilDone(
+    request: CreatePullRequestRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
         $0.pullRequest = PullRequest() /* .with { ... } */

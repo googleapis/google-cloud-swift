@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: DeveloperConnectClient, projectId: String, locationId: String, accountConnectorId: String
 ) async throws {
-  let poller = try await client.updateAccountConnector(
-    withPolling: UpdateAccountConnectorRequest()
+  let poller = try await client.updateAccountConnectorPollingUntilDone(
+    request: UpdateAccountConnectorRequest()
       .with {
         $0.accountConnector = AccountConnector().with {
           $0.name =

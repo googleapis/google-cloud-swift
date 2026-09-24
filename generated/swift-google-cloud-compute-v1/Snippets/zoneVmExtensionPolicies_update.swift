@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ZoneVmExtensionPoliciesClient) async throws {
-    let poller = try await client.update(
-      withPolling: ZoneVmExtensionPoliciesClient.UpdateRequest()
+    let poller = try await client.updatePollingUntilDone(
+      request: ZoneVmExtensionPoliciesClient.UpdateRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

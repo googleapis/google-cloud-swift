@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createVolume(
-    withPolling: CreateVolumeRequest()
+  let poller = try await client.createVolumePollingUntilDone(
+    request: CreateVolumeRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.volumeId = "[replace with a valid ID]"

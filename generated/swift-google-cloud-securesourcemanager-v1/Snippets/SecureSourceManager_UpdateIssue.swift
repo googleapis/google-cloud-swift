@@ -27,8 +27,8 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   issueId: String
 ) async throws {
-  let poller = try await client.updateIssue(
-    withPolling: UpdateIssueRequest()
+  let poller = try await client.updateIssuePollingUntilDone(
+    request: UpdateIssueRequest()
       .with {
         $0.issue = Issue().with {
           $0.name =

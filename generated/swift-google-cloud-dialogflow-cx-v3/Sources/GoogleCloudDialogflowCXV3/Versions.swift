@@ -107,15 +107,15 @@
     /// [google.cloud.dialogflow.cx.v3.Version]: <doc:Version>
     ///
     /// @Snippet(path: "Versions_CreateVersion")
-    public func createVersion(
-      withPolling: CreateVersionRequest, options: GoogleGax.RequestOptions
+    public func createVersionPollingUntilDone(
+      request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Version> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Version>.State
         in
         return try op._extractStatus(Version.self)
       }
-      let rawOp = try await self.createVersion(request: withPolling, options: options)
+      let rawOp = try await self.createVersion(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Version>.State in
         let op = try await self.getOperation(
@@ -182,15 +182,15 @@
     ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
     ///
     /// @Snippet(path: "Versions_LoadVersion")
-    public func loadVersion(
-      withPolling: LoadVersionRequest, options: GoogleGax.RequestOptions
+    public func loadVersionPollingUntilDone(
+      request: LoadVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.loadVersion(request: withPolling, options: options)
+      let rawOp = try await self.loadVersion(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -291,21 +291,21 @@
     /// and pass a mock implementation in your tests.
     public protocol VersionsProtocol: Sendable {
       /// See `VersionsClient.createVersion`.
-      func createVersion(withPolling: CreateVersionRequest) async throws -> any GoogleGax
-        .PollableOperation<Version>
+      func createVersionPollingUntilDone(request: CreateVersionRequest) async throws
+        -> any GoogleGax.PollableOperation<Version>
 
       /// See `VersionsClient.createVersion`.
-      func createVersion(
+      func createVersionPollingUntilDone(
         parent: Swift.String,
         version: Version?,
       ) async throws -> any GoogleGax.PollableOperation<Version>
 
       /// See `VersionsClient.loadVersion`.
-      func loadVersion(withPolling: LoadVersionRequest) async throws -> any GoogleGax
+      func loadVersionPollingUntilDone(request: LoadVersionRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `VersionsClient.loadVersion`.
-      func loadVersion(
+      func loadVersionPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -325,8 +325,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VersionsClient.createVersion`.
-      func createVersion(
-        withPolling: CreateVersionRequest, options: GoogleGax.RequestOptions
+      func createVersionPollingUntilDone(
+        request: CreateVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Version>
 
       /// See `VersionsClient.updateVersion`.
@@ -345,8 +345,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VersionsClient.loadVersion`.
-      func loadVersion(
-        withPolling: LoadVersionRequest, options: GoogleGax.RequestOptions
+      func loadVersionPollingUntilDone(
+        request: LoadVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `VersionsClient.compareVersions`.
@@ -456,14 +456,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createVersion(withPolling: CreateVersionRequest) async throws -> any GoogleGax
-      .PollableOperation<Version>
+    public func createVersionPollingUntilDone(request: CreateVersionRequest) async throws
+      -> any GoogleGax.PollableOperation<Version>
     {
-      try await self.createVersion(withPolling: withPolling, options: .init())
+      try await self.createVersionPollingUntilDone(request: request, options: .init())
     }
 
-    public func createVersion(
-      withPolling: CreateVersionRequest, options: GoogleGax.RequestOptions
+    public func createVersionPollingUntilDone(
+      request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Version> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Version>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -472,7 +472,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createVersion(
+    public func createVersionPollingUntilDone(
       parent: Swift.String,
       version: Version?,
     ) async throws -> any GoogleGax.PollableOperation<Version> {
@@ -480,7 +480,7 @@
         $0.parent = parent
         $0.version = version
       }
-      return try await self.createVersion(withPolling: request)
+      return try await self.createVersionPollingUntilDone(request: request)
     }
 
     public func updateVersion(request: UpdateVersionRequest) async throws
@@ -536,14 +536,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func loadVersion(withPolling: LoadVersionRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func loadVersionPollingUntilDone(request: LoadVersionRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.loadVersion(withPolling: withPolling, options: .init())
+      try await self.loadVersionPollingUntilDone(request: request, options: .init())
     }
 
-    public func loadVersion(
-      withPolling: LoadVersionRequest, options: GoogleGax.RequestOptions
+    public func loadVersionPollingUntilDone(
+      request: LoadVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -552,13 +552,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func loadVersion(
+    public func loadVersionPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = LoadVersionRequest().with {
         $0.name = name
       }
-      return try await self.loadVersion(withPolling: request)
+      return try await self.loadVersionPollingUntilDone(request: request)
     }
 
     public func compareVersions(request: CompareVersionsRequest) async throws

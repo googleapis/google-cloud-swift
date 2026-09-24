@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AccessContextManagerClient, accessPolicyId: String, servicePerimeterId: String)
   async throws
 {
-  let poller = try await client.updateServicePerimeter(
-    withPolling: UpdateServicePerimeterRequest()
+  let poller = try await client.updateServicePerimeterPollingUntilDone(
+    request: UpdateServicePerimeterRequest()
       .with {
         $0.servicePerimeter = ServicePerimeter().with {
           $0.name = "accessPolicies/\(accessPolicyId)/servicePerimeters/\(servicePerimeterId)"

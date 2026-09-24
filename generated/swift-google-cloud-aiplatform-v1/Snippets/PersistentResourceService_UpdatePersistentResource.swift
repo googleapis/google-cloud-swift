@@ -28,8 +28,8 @@
     client: PersistentResourceServiceClient, projectId: String, locationId: String,
     persistentResourceId: String
   ) async throws {
-    let poller = try await client.updatePersistentResource(
-      withPolling: UpdatePersistentResourceRequest()
+    let poller = try await client.updatePersistentResourcePollingUntilDone(
+      request: UpdatePersistentResourceRequest()
         .with {
           $0.persistentResource = PersistentResource().with {
             $0.name =

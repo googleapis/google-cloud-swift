@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, kmsConfigId: String)
   async throws
 {
-  let poller = try await client.updateKmsConfig(
-    withPolling: UpdateKmsConfigRequest()
+  let poller = try await client.updateKmsConfigPollingUntilDone(
+    request: UpdateKmsConfigRequest()
       .with {
         $0.kmsConfig = KmsConfig().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/kmsConfigs/\(kmsConfigId)"

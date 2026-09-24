@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: StorageInsightsClient, projectId: String, locationId: String, datasetConfigId: String
 ) async throws {
-  let poller = try await client.updateDatasetConfig(
-    withPolling: UpdateDatasetConfigRequest()
+  let poller = try await client.updateDatasetConfigPollingUntilDone(
+    request: UpdateDatasetConfigRequest()
       .with {
         $0.datasetConfig = DatasetConfig().with {
           $0.name =

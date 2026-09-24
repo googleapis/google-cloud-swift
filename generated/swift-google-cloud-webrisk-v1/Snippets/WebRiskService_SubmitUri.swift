@@ -21,8 +21,8 @@ import GoogleCloudWebRiskV1
 import GoogleLongRunning
 
 func sample(client: WebRiskServiceClient) async throws {
-  let poller = try await client.submitUri(
-    withPolling: SubmitUriRequest()
+  let poller = try await client.submitUriPollingUntilDone(
+    request: SubmitUriRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

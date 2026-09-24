@@ -26,8 +26,8 @@ func sample(
   client: AppPlatformClient, projectId: String, locationId: String, applicationId: String,
   draftId: String
 ) async throws {
-  let poller = try await client.updateDraft(
-    withPolling: UpdateDraftRequest()
+  let poller = try await client.updateDraftPollingUntilDone(
+    request: UpdateDraftRequest()
       .with {
         $0.draft = Draft().with {
           $0.name =

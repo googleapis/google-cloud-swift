@@ -23,8 +23,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudDiscoveryEngineV1.SearchTuningServiceClient()
-    let poller = try await client.trainCustomModel(
-      withPolling: TrainCustomModelRequest()
+    let poller = try await client.trainCustomModelPollingUntilDone(
+      request: TrainCustomModelRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

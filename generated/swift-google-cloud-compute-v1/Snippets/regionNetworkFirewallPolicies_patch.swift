@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionNetworkFirewallPoliciesClient) async throws {
-    let poller = try await client.patch(
-      withPolling: RegionNetworkFirewallPoliciesClient.PatchRequest()
+    let poller = try await client.patchPollingUntilDone(
+      request: RegionNetworkFirewallPoliciesClient.PatchRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

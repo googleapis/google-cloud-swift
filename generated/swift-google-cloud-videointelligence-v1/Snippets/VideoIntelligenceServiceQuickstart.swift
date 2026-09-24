@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudVideoIntelligenceV1.VideoIntelligenceServiceClient()
-  let poller = try await client.annotateVideo(
-    withPolling: AnnotateVideoRequest()
+  let poller = try await client.annotateVideoPollingUntilDone(
+    request: AnnotateVideoRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

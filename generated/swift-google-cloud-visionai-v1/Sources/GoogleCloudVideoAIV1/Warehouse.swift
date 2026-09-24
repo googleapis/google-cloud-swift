@@ -91,15 +91,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Deletes asset inside corpus.
   ///
   /// @Snippet(path: "Warehouse_DeleteAsset")
-  public func deleteAsset(
-    withPolling: DeleteAssetRequest, options: GoogleGax.RequestOptions
+  public func deleteAssetPollingUntilDone(
+    request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteAsset(request: withPolling, options: options)
+    let rawOp = try await self.deleteAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -144,15 +144,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// account.
   ///
   /// @Snippet(path: "Warehouse_UploadAsset")
-  public func uploadAsset(
-    withPolling: UploadAssetRequest, options: GoogleGax.RequestOptions
+  public func uploadAssetPollingUntilDone(
+    request: UploadAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UploadAssetResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UploadAssetResponse>.State in
       return try op._extractStatus(UploadAssetResponse.self)
     }
-    let rawOp = try await self.uploadAsset(request: withPolling, options: options)
+    let rawOp = try await self.uploadAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<UploadAssetResponse>.State in
       let op = try await self.getOperation(
@@ -190,15 +190,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Analyze asset to power search capability.
   ///
   /// @Snippet(path: "Warehouse_AnalyzeAsset")
-  public func analyzeAsset(
-    withPolling: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
+  public func analyzeAssetPollingUntilDone(
+    request: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnalyzeAssetResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnalyzeAssetResponse>.State in
       return try op._extractStatus(AnalyzeAssetResponse.self)
     }
-    let rawOp = try await self.analyzeAsset(request: withPolling, options: options)
+    let rawOp = try await self.analyzeAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnalyzeAssetResponse>.State in
       let op = try await self.getOperation(
@@ -227,15 +227,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Supported corpus type: Corpus.Type.VIDEO_ON_DEMAND
   ///
   /// @Snippet(path: "Warehouse_IndexAsset")
-  public func indexAsset(
-    withPolling: IndexAssetRequest, options: GoogleGax.RequestOptions
+  public func indexAssetPollingUntilDone(
+    request: IndexAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IndexAssetResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<IndexAssetResponse>.State in
       return try op._extractStatus(IndexAssetResponse.self)
     }
-    let rawOp = try await self.indexAsset(request: withPolling, options: options)
+    let rawOp = try await self.indexAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IndexAssetResponse>.State in
       let op = try await self.getOperation(
@@ -264,15 +264,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Supported corpus type: Corpus.Type.VIDEO_ON_DEMAND
   ///
   /// @Snippet(path: "Warehouse_RemoveIndexAsset")
-  public func removeIndexAsset(
-    withPolling: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
+  public func removeIndexAssetPollingUntilDone(
+    request: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveIndexAssetResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RemoveIndexAssetResponse>.State in
       return try op._extractStatus(RemoveIndexAssetResponse.self)
     }
-    let rawOp = try await self.removeIndexAsset(request: withPolling, options: options)
+    let rawOp = try await self.removeIndexAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<RemoveIndexAssetResponse>.State in
@@ -309,14 +309,14 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Creates an Index under the corpus.
   ///
   /// @Snippet(path: "Warehouse_CreateIndex")
-  public func createIndex(
-    withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+  public func createIndexPollingUntilDone(
+    request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
-    let rawOp = try await self.createIndex(request: withPolling, options: options)
+    let rawOp = try await self.createIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
@@ -347,14 +347,14 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// with different update_mask values.
   ///
   /// @Snippet(path: "Warehouse_UpdateIndex")
-  public func updateIndex(
-    withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+  public func updateIndexPollingUntilDone(
+    request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
-    let rawOp = try await self.updateIndex(request: withPolling, options: options)
+    let rawOp = try await self.updateIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
@@ -401,15 +401,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// make sure that it is not deployed to any index endpoint.
   ///
   /// @Snippet(path: "Warehouse_DeleteIndex")
-  public func deleteIndex(
-    withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteIndex(request: withPolling, options: options)
+    let rawOp = try await self.deleteIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -436,14 +436,14 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Creates a corpus inside a project.
   ///
   /// @Snippet(path: "Warehouse_CreateCorpus")
-  public func createCorpus(
-    withPolling: CreateCorpusRequest, options: GoogleGax.RequestOptions
+  public func createCorpusPollingUntilDone(
+    request: CreateCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Corpus> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Corpus>.State in
       return try op._extractStatus(Corpus.self)
     }
-    let rawOp = try await self.createCorpus(request: withPolling, options: options)
+    let rawOp = try await self.createCorpus(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Corpus>.State in
       let op = try await self.getOperation(
@@ -507,15 +507,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Analyzes a corpus.
   ///
   /// @Snippet(path: "Warehouse_AnalyzeCorpus")
-  public func analyzeCorpus(
-    withPolling: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
+  public func analyzeCorpusPollingUntilDone(
+    request: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnalyzeCorpusResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnalyzeCorpusResponse>.State in
       return try op._extractStatus(AnalyzeCorpusResponse.self)
     }
-    let rawOp = try await self.analyzeCorpus(request: withPolling, options: options)
+    let rawOp = try await self.analyzeCorpus(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnalyzeCorpusResponse>.State in
       let op = try await self.getOperation(
@@ -661,15 +661,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// cloud storage uri) and its annotations.
   ///
   /// @Snippet(path: "Warehouse_ImportAssets")
-  public func importAssets(
-    withPolling: ImportAssetsRequest, options: GoogleGax.RequestOptions
+  public func importAssetsPollingUntilDone(
+    request: ImportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportAssetsResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportAssetsResponse>.State in
       return try op._extractStatus(ImportAssetsResponse.self)
     }
-    let rawOp = try await self.importAssets(request: withPolling, options: options)
+    let rawOp = try await self.importAssets(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportAssetsResponse>.State in
       let op = try await self.getOperation(
@@ -834,15 +834,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Creates an IndexEndpoint.
   ///
   /// @Snippet(path: "Warehouse_CreateIndexEndpoint")
-  public func createIndexEndpoint(
-    withPolling: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func createIndexEndpointPollingUntilDone(
+    request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<IndexEndpoint>.State in
       return try op._extractStatus(IndexEndpoint.self)
     }
-    let rawOp = try await self.createIndexEndpoint(request: withPolling, options: options)
+    let rawOp = try await self.createIndexEndpoint(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IndexEndpoint>.State in
       let op = try await self.getOperation(
@@ -887,15 +887,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Updates an IndexEndpoint.
   ///
   /// @Snippet(path: "Warehouse_UpdateIndexEndpoint")
-  public func updateIndexEndpoint(
-    withPolling: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func updateIndexEndpointPollingUntilDone(
+    request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<IndexEndpoint>.State in
       return try op._extractStatus(IndexEndpoint.self)
     }
-    let rawOp = try await self.updateIndexEndpoint(request: withPolling, options: options)
+    let rawOp = try await self.updateIndexEndpoint(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IndexEndpoint>.State in
       let op = try await self.getOperation(
@@ -922,15 +922,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Deletes an IndexEndpoint.
   ///
   /// @Snippet(path: "Warehouse_DeleteIndexEndpoint")
-  public func deleteIndexEndpoint(
-    withPolling: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexEndpointPollingUntilDone(
+    request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteIndexEndpoint(request: withPolling, options: options)
+    let rawOp = try await self.deleteIndexEndpoint(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -957,15 +957,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Deploys an Index to IndexEndpoint.
   ///
   /// @Snippet(path: "Warehouse_DeployIndex")
-  public func deployIndex(
-    withPolling: DeployIndexRequest, options: GoogleGax.RequestOptions
+  public func deployIndexPollingUntilDone(
+    request: DeployIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DeployIndexResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DeployIndexResponse>.State in
       return try op._extractStatus(DeployIndexResponse.self)
     }
-    let rawOp = try await self.deployIndex(request: withPolling, options: options)
+    let rawOp = try await self.deployIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployIndexResponse>.State in
       let op = try await self.getOperation(
@@ -992,15 +992,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Undeploys an Index from IndexEndpoint.
   ///
   /// @Snippet(path: "Warehouse_UndeployIndex")
-  public func undeployIndex(
-    withPolling: UndeployIndexRequest, options: GoogleGax.RequestOptions
+  public func undeployIndexPollingUntilDone(
+    request: UndeployIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UndeployIndexResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UndeployIndexResponse>.State in
       return try op._extractStatus(UndeployIndexResponse.self)
     }
-    let rawOp = try await self.undeployIndex(request: withPolling, options: options)
+    let rawOp = try await self.undeployIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<UndeployIndexResponse>.State in
       let op = try await self.getOperation(
@@ -1027,15 +1027,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Creates a collection.
   ///
   /// @Snippet(path: "Warehouse_CreateCollection")
-  public func createCollection(
-    withPolling: CreateCollectionRequest, options: GoogleGax.RequestOptions
+  public func createCollectionPollingUntilDone(
+    request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collection>.State
       in
       return try op._extractStatus(Collection.self)
     }
-    let rawOp = try await self.createCollection(request: withPolling, options: options)
+    let rawOp = try await self.createCollection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collection>.State in
       let op = try await self.getOperation(
@@ -1062,15 +1062,15 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// Deletes a collection.
   ///
   /// @Snippet(path: "Warehouse_DeleteCollection")
-  public func deleteCollection(
-    withPolling: DeleteCollectionRequest, options: GoogleGax.RequestOptions
+  public func deleteCollectionPollingUntilDone(
+    request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteCollection(request: withPolling, options: options)
+    let rawOp = try await self.deleteCollection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1210,134 +1210,133 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WarehouseProtocol: Sendable {
     /// See `WarehouseClient.deleteAsset`.
-    func deleteAsset(withPolling: DeleteAssetRequest) async throws -> any GoogleGax
+    func deleteAssetPollingUntilDone(request: DeleteAssetRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deleteAsset`.
-    func deleteAsset(
+    func deleteAssetPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.uploadAsset`.
-    func uploadAsset(withPolling: UploadAssetRequest) async throws -> any GoogleGax
+    func uploadAssetPollingUntilDone(request: UploadAssetRequest) async throws -> any GoogleGax
       .PollableOperation<UploadAssetResponse>
 
     /// See `WarehouseClient.analyzeAsset`.
-    func analyzeAsset(withPolling: AnalyzeAssetRequest) async throws -> any GoogleGax
+    func analyzeAssetPollingUntilDone(request: AnalyzeAssetRequest) async throws -> any GoogleGax
       .PollableOperation<AnalyzeAssetResponse>
 
     /// See `WarehouseClient.indexAsset`.
-    func indexAsset(withPolling: IndexAssetRequest) async throws -> any GoogleGax.PollableOperation<
-      IndexAssetResponse
-    >
+    func indexAssetPollingUntilDone(request: IndexAssetRequest) async throws -> any GoogleGax
+      .PollableOperation<IndexAssetResponse>
 
     /// See `WarehouseClient.removeIndexAsset`.
-    func removeIndexAsset(withPolling: RemoveIndexAssetRequest) async throws -> any GoogleGax
-      .PollableOperation<RemoveIndexAssetResponse>
+    func removeIndexAssetPollingUntilDone(request: RemoveIndexAssetRequest) async throws
+      -> any GoogleGax.PollableOperation<RemoveIndexAssetResponse>
 
     /// See `WarehouseClient.createIndex`.
-    func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+    func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
     /// See `WarehouseClient.createIndex`.
-    func createIndex(
+    func createIndexPollingUntilDone(
       parent: Swift.String,
       index: Index?,
       indexId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `WarehouseClient.updateIndex`.
-    func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
+    func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Index>
 
     /// See `WarehouseClient.updateIndex`.
-    func updateIndex(
+    func updateIndexPollingUntilDone(
       index: Index?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `WarehouseClient.deleteIndex`.
-    func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+    func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deleteIndex`.
-    func deleteIndex(
+    func deleteIndexPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.createCorpus`.
-    func createCorpus(withPolling: CreateCorpusRequest) async throws -> any GoogleGax
+    func createCorpusPollingUntilDone(request: CreateCorpusRequest) async throws -> any GoogleGax
       .PollableOperation<Corpus>
 
     /// See `WarehouseClient.createCorpus`.
-    func createCorpus(
+    func createCorpusPollingUntilDone(
       parent: Swift.String,
       corpus: Corpus?,
     ) async throws -> any GoogleGax.PollableOperation<Corpus>
 
     /// See `WarehouseClient.analyzeCorpus`.
-    func analyzeCorpus(withPolling: AnalyzeCorpusRequest) async throws -> any GoogleGax
+    func analyzeCorpusPollingUntilDone(request: AnalyzeCorpusRequest) async throws -> any GoogleGax
       .PollableOperation<AnalyzeCorpusResponse>
 
     /// See `WarehouseClient.importAssets`.
-    func importAssets(withPolling: ImportAssetsRequest) async throws -> any GoogleGax
+    func importAssetsPollingUntilDone(request: ImportAssetsRequest) async throws -> any GoogleGax
       .PollableOperation<ImportAssetsResponse>
 
     /// See `WarehouseClient.createIndexEndpoint`.
-    func createIndexEndpoint(withPolling: CreateIndexEndpointRequest) async throws -> any GoogleGax
-      .PollableOperation<IndexEndpoint>
+    func createIndexEndpointPollingUntilDone(request: CreateIndexEndpointRequest) async throws
+      -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.createIndexEndpoint`.
-    func createIndexEndpoint(
+    func createIndexEndpointPollingUntilDone(
       parent: Swift.String,
       indexEndpoint: IndexEndpoint?,
       indexEndpointId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.updateIndexEndpoint`.
-    func updateIndexEndpoint(withPolling: UpdateIndexEndpointRequest) async throws -> any GoogleGax
-      .PollableOperation<IndexEndpoint>
+    func updateIndexEndpointPollingUntilDone(request: UpdateIndexEndpointRequest) async throws
+      -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.updateIndexEndpoint`.
-    func updateIndexEndpoint(
+    func updateIndexEndpointPollingUntilDone(
       indexEndpoint: IndexEndpoint?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.deleteIndexEndpoint`.
-    func deleteIndexEndpoint(withPolling: DeleteIndexEndpointRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteIndexEndpointPollingUntilDone(request: DeleteIndexEndpointRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deleteIndexEndpoint`.
-    func deleteIndexEndpoint(
+    func deleteIndexEndpointPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deployIndex`.
-    func deployIndex(withPolling: DeployIndexRequest) async throws -> any GoogleGax
+    func deployIndexPollingUntilDone(request: DeployIndexRequest) async throws -> any GoogleGax
       .PollableOperation<DeployIndexResponse>
 
     /// See `WarehouseClient.undeployIndex`.
-    func undeployIndex(withPolling: UndeployIndexRequest) async throws -> any GoogleGax
+    func undeployIndexPollingUntilDone(request: UndeployIndexRequest) async throws -> any GoogleGax
       .PollableOperation<UndeployIndexResponse>
 
     /// See `WarehouseClient.createCollection`.
-    func createCollection(withPolling: CreateCollectionRequest) async throws -> any GoogleGax
-      .PollableOperation<Collection>
+    func createCollectionPollingUntilDone(request: CreateCollectionRequest) async throws
+      -> any GoogleGax.PollableOperation<Collection>
 
     /// See `WarehouseClient.createCollection`.
-    func createCollection(
+    func createCollectionPollingUntilDone(
       parent: Swift.String,
       collection: Collection?,
       collectionId: Swift.String?,
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `WarehouseClient.deleteCollection`.
-    func deleteCollection(withPolling: DeleteCollectionRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteCollectionPollingUntilDone(request: DeleteCollectionRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deleteCollection`.
-    func deleteCollection(
+    func deleteCollectionPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1367,8 +1366,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.deleteAsset`.
-    func deleteAsset(
-      withPolling: DeleteAssetRequest, options: GoogleGax.RequestOptions
+    func deleteAssetPollingUntilDone(
+      request: DeleteAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.uploadAsset`.
@@ -1377,8 +1376,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.uploadAsset`.
-    func uploadAsset(
-      withPolling: UploadAssetRequest, options: GoogleGax.RequestOptions
+    func uploadAssetPollingUntilDone(
+      request: UploadAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UploadAssetResponse>
 
     /// See `WarehouseClient.generateRetrievalUrl`.
@@ -1392,8 +1391,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.analyzeAsset`.
-    func analyzeAsset(
-      withPolling: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
+    func analyzeAssetPollingUntilDone(
+      request: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AnalyzeAssetResponse>
 
     /// See `WarehouseClient.indexAsset`.
@@ -1402,8 +1401,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.indexAsset`.
-    func indexAsset(
-      withPolling: IndexAssetRequest, options: GoogleGax.RequestOptions
+    func indexAssetPollingUntilDone(
+      request: IndexAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<IndexAssetResponse>
 
     /// See `WarehouseClient.removeIndexAsset`.
@@ -1412,8 +1411,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.removeIndexAsset`.
-    func removeIndexAsset(
-      withPolling: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
+    func removeIndexAssetPollingUntilDone(
+      request: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RemoveIndexAssetResponse>
 
     /// See `WarehouseClient.viewIndexedAssets`.
@@ -1427,8 +1426,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createIndex`.
-    func createIndex(
-      withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+    func createIndexPollingUntilDone(
+      request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `WarehouseClient.updateIndex`.
@@ -1437,8 +1436,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.updateIndex`.
-    func updateIndex(
-      withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+    func updateIndexPollingUntilDone(
+      request: UpdateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Index>
 
     /// See `WarehouseClient.getIndex`.
@@ -1457,8 +1456,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.deleteIndex`.
-    func deleteIndex(
-      withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+    func deleteIndexPollingUntilDone(
+      request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.createCorpus`.
@@ -1467,8 +1466,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createCorpus`.
-    func createCorpus(
-      withPolling: CreateCorpusRequest, options: GoogleGax.RequestOptions
+    func createCorpusPollingUntilDone(
+      request: CreateCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Corpus>
 
     /// See `WarehouseClient.getCorpus`.
@@ -1497,8 +1496,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.analyzeCorpus`.
-    func analyzeCorpus(
-      withPolling: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
+    func analyzeCorpusPollingUntilDone(
+      request: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AnalyzeCorpusResponse>
 
     /// See `WarehouseClient.createDataSchema`.
@@ -1567,8 +1566,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.importAssets`.
-    func importAssets(
-      withPolling: ImportAssetsRequest, options: GoogleGax.RequestOptions
+    func importAssetsPollingUntilDone(
+      request: ImportAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportAssetsResponse>
 
     /// See `WarehouseClient.createSearchConfig`.
@@ -1637,8 +1636,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createIndexEndpoint`.
-    func createIndexEndpoint(
-      withPolling: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
+    func createIndexEndpointPollingUntilDone(
+      request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.getIndexEndpoint`.
@@ -1657,8 +1656,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.updateIndexEndpoint`.
-    func updateIndexEndpoint(
-      withPolling: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
+    func updateIndexEndpointPollingUntilDone(
+      request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.deleteIndexEndpoint`.
@@ -1667,8 +1666,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.deleteIndexEndpoint`.
-    func deleteIndexEndpoint(
-      withPolling: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
+    func deleteIndexEndpointPollingUntilDone(
+      request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.deployIndex`.
@@ -1677,8 +1676,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.deployIndex`.
-    func deployIndex(
-      withPolling: DeployIndexRequest, options: GoogleGax.RequestOptions
+    func deployIndexPollingUntilDone(
+      request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployIndexResponse>
 
     /// See `WarehouseClient.undeployIndex`.
@@ -1687,8 +1686,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.undeployIndex`.
-    func undeployIndex(
-      withPolling: UndeployIndexRequest, options: GoogleGax.RequestOptions
+    func undeployIndexPollingUntilDone(
+      request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UndeployIndexResponse>
 
     /// See `WarehouseClient.createCollection`.
@@ -1697,8 +1696,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.createCollection`.
-    func createCollection(
-      withPolling: CreateCollectionRequest, options: GoogleGax.RequestOptions
+    func createCollectionPollingUntilDone(
+      request: CreateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Collection>
 
     /// See `WarehouseClient.deleteCollection`.
@@ -1707,8 +1706,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WarehouseClient.deleteCollection`.
-    func deleteCollection(
-      withPolling: DeleteCollectionRequest, options: GoogleGax.RequestOptions
+    func deleteCollectionPollingUntilDone(
+      request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `WarehouseClient.getCollection`.
@@ -1884,14 +1883,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAsset(withPolling: DeleteAssetRequest) async throws -> any GoogleGax
+  public func deleteAssetPollingUntilDone(request: DeleteAssetRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteAsset(withPolling: withPolling, options: .init())
+    try await self.deleteAssetPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteAsset(
-    withPolling: DeleteAssetRequest, options: GoogleGax.RequestOptions
+  public func deleteAssetPollingUntilDone(
+    request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1900,13 +1899,13 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteAsset(
+  public func deleteAssetPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteAssetRequest().with {
       $0.name = name
     }
-    return try await self.deleteAsset(withPolling: request)
+    return try await self.deleteAssetPollingUntilDone(request: request)
   }
 
   public func uploadAsset(request: UploadAssetRequest) async throws -> GoogleLongRunning.Operation {
@@ -1919,14 +1918,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func uploadAsset(withPolling: UploadAssetRequest) async throws -> any GoogleGax
+  public func uploadAssetPollingUntilDone(request: UploadAssetRequest) async throws -> any GoogleGax
     .PollableOperation<UploadAssetResponse>
   {
-    try await self.uploadAsset(withPolling: withPolling, options: .init())
+    try await self.uploadAssetPollingUntilDone(request: request, options: .init())
   }
 
-  public func uploadAsset(
-    withPolling: UploadAssetRequest, options: GoogleGax.RequestOptions
+  public func uploadAssetPollingUntilDone(
+    request: UploadAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UploadAssetResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<UploadAssetResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1958,14 +1957,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func analyzeAsset(withPolling: AnalyzeAssetRequest) async throws -> any GoogleGax
-    .PollableOperation<AnalyzeAssetResponse>
+  public func analyzeAssetPollingUntilDone(request: AnalyzeAssetRequest) async throws
+    -> any GoogleGax.PollableOperation<AnalyzeAssetResponse>
   {
-    try await self.analyzeAsset(withPolling: withPolling, options: .init())
+    try await self.analyzeAssetPollingUntilDone(request: request, options: .init())
   }
 
-  public func analyzeAsset(
-    withPolling: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
+  public func analyzeAssetPollingUntilDone(
+    request: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnalyzeAssetResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnalyzeAssetResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1984,14 +1983,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func indexAsset(withPolling: IndexAssetRequest) async throws -> any GoogleGax
+  public func indexAssetPollingUntilDone(request: IndexAssetRequest) async throws -> any GoogleGax
     .PollableOperation<IndexAssetResponse>
   {
-    try await self.indexAsset(withPolling: withPolling, options: .init())
+    try await self.indexAssetPollingUntilDone(request: request, options: .init())
   }
 
-  public func indexAsset(
-    withPolling: IndexAssetRequest, options: GoogleGax.RequestOptions
+  public func indexAssetPollingUntilDone(
+    request: IndexAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IndexAssetResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IndexAssetResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2012,14 +2011,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func removeIndexAsset(withPolling: RemoveIndexAssetRequest) async throws -> any GoogleGax
-    .PollableOperation<RemoveIndexAssetResponse>
+  public func removeIndexAssetPollingUntilDone(request: RemoveIndexAssetRequest) async throws
+    -> any GoogleGax.PollableOperation<RemoveIndexAssetResponse>
   {
-    try await self.removeIndexAsset(withPolling: withPolling, options: .init())
+    try await self.removeIndexAssetPollingUntilDone(request: request, options: .init())
   }
 
-  public func removeIndexAsset(
-    withPolling: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
+  public func removeIndexAssetPollingUntilDone(
+    request: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveIndexAssetResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<RemoveIndexAssetResponse>.State in
@@ -2081,14 +2080,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleGax
+  public func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Index>
   {
-    try await self.createIndex(withPolling: withPolling, options: .init())
+    try await self.createIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func createIndex(
-    withPolling: CreateIndexRequest, options: GoogleGax.RequestOptions
+  public func createIndexPollingUntilDone(
+    request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2097,7 +2096,7 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createIndex(
+  public func createIndexPollingUntilDone(
     parent: Swift.String,
     index: Index?,
     indexId: Swift.String,
@@ -2107,7 +2106,7 @@ extension Clients.WarehouseProtocol {
       $0.index = index
       $0.indexId = indexId
     }
-    return try await self.createIndex(withPolling: request)
+    return try await self.createIndexPollingUntilDone(request: request)
   }
 
   public func updateIndex(request: UpdateIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -2120,14 +2119,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateIndex(withPolling: UpdateIndexRequest) async throws -> any GoogleGax
+  public func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Index>
   {
-    try await self.updateIndex(withPolling: withPolling, options: .init())
+    try await self.updateIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateIndex(
-    withPolling: UpdateIndexRequest, options: GoogleGax.RequestOptions
+  public func updateIndexPollingUntilDone(
+    request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2136,7 +2135,7 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateIndex(
+  public func updateIndexPollingUntilDone(
     index: Index?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Index> {
@@ -2144,7 +2143,7 @@ extension Clients.WarehouseProtocol {
       $0.index = index
       $0.updateMask = updateMask
     }
-    return try await self.updateIndex(withPolling: request)
+    return try await self.updateIndexPollingUntilDone(request: request)
   }
 
   public func getIndex(request: GetIndexRequest) async throws -> GoogleCloudVideoAIV1.Index {
@@ -2218,14 +2217,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleGax
+  public func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteIndex(withPolling: withPolling, options: .init())
+    try await self.deleteIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteIndex(
-    withPolling: DeleteIndexRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2234,13 +2233,13 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteIndex(
+  public func deleteIndexPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteIndexRequest().with {
       $0.name = name
     }
-    return try await self.deleteIndex(withPolling: request)
+    return try await self.deleteIndexPollingUntilDone(request: request)
   }
 
   public func createCorpus(request: CreateCorpusRequest) async throws -> GoogleLongRunning.Operation
@@ -2254,14 +2253,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCorpus(withPolling: CreateCorpusRequest) async throws -> any GoogleGax
-    .PollableOperation<Corpus>
+  public func createCorpusPollingUntilDone(request: CreateCorpusRequest) async throws
+    -> any GoogleGax.PollableOperation<Corpus>
   {
-    try await self.createCorpus(withPolling: withPolling, options: .init())
+    try await self.createCorpusPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCorpus(
-    withPolling: CreateCorpusRequest, options: GoogleGax.RequestOptions
+  public func createCorpusPollingUntilDone(
+    request: CreateCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Corpus> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Corpus>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2270,7 +2269,7 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCorpus(
+  public func createCorpusPollingUntilDone(
     parent: Swift.String,
     corpus: Corpus?,
   ) async throws -> any GoogleGax.PollableOperation<Corpus> {
@@ -2278,7 +2277,7 @@ extension Clients.WarehouseProtocol {
       $0.parent = parent
       $0.corpus = corpus
     }
-    return try await self.createCorpus(withPolling: request)
+    return try await self.createCorpusPollingUntilDone(request: request)
   }
 
   public func getCorpus(request: GetCorpusRequest) async throws -> GoogleCloudVideoAIV1.Corpus {
@@ -2395,14 +2394,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func analyzeCorpus(withPolling: AnalyzeCorpusRequest) async throws -> any GoogleGax
-    .PollableOperation<AnalyzeCorpusResponse>
+  public func analyzeCorpusPollingUntilDone(request: AnalyzeCorpusRequest) async throws
+    -> any GoogleGax.PollableOperation<AnalyzeCorpusResponse>
   {
-    try await self.analyzeCorpus(withPolling: withPolling, options: .init())
+    try await self.analyzeCorpusPollingUntilDone(request: request, options: .init())
   }
 
-  public func analyzeCorpus(
-    withPolling: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
+  public func analyzeCorpusPollingUntilDone(
+    request: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnalyzeCorpusResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnalyzeCorpusResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2704,14 +2703,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importAssets(withPolling: ImportAssetsRequest) async throws -> any GoogleGax
-    .PollableOperation<ImportAssetsResponse>
+  public func importAssetsPollingUntilDone(request: ImportAssetsRequest) async throws
+    -> any GoogleGax.PollableOperation<ImportAssetsResponse>
   {
-    try await self.importAssets(withPolling: withPolling, options: .init())
+    try await self.importAssetsPollingUntilDone(request: request, options: .init())
   }
 
-  public func importAssets(
-    withPolling: ImportAssetsRequest, options: GoogleGax.RequestOptions
+  public func importAssetsPollingUntilDone(
+    request: ImportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportAssetsResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportAssetsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3058,14 +3057,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createIndexEndpoint(withPolling: CreateIndexEndpointRequest) async throws
+  public func createIndexEndpointPollingUntilDone(request: CreateIndexEndpointRequest) async throws
     -> any GoogleGax.PollableOperation<IndexEndpoint>
   {
-    try await self.createIndexEndpoint(withPolling: withPolling, options: .init())
+    try await self.createIndexEndpointPollingUntilDone(request: request, options: .init())
   }
 
-  public func createIndexEndpoint(
-    withPolling: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func createIndexEndpointPollingUntilDone(
+    request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IndexEndpoint>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3074,7 +3073,7 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createIndexEndpoint(
+  public func createIndexEndpointPollingUntilDone(
     parent: Swift.String,
     indexEndpoint: IndexEndpoint?,
     indexEndpointId: Swift.String,
@@ -3084,7 +3083,7 @@ extension Clients.WarehouseProtocol {
       $0.indexEndpoint = indexEndpoint
       $0.indexEndpointId = indexEndpointId
     }
-    return try await self.createIndexEndpoint(withPolling: request)
+    return try await self.createIndexEndpointPollingUntilDone(request: request)
   }
 
   public func getIndexEndpoint(request: GetIndexEndpointRequest) async throws
@@ -3162,14 +3161,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateIndexEndpoint(withPolling: UpdateIndexEndpointRequest) async throws
+  public func updateIndexEndpointPollingUntilDone(request: UpdateIndexEndpointRequest) async throws
     -> any GoogleGax.PollableOperation<IndexEndpoint>
   {
-    try await self.updateIndexEndpoint(withPolling: withPolling, options: .init())
+    try await self.updateIndexEndpointPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateIndexEndpoint(
-    withPolling: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func updateIndexEndpointPollingUntilDone(
+    request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<IndexEndpoint>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3178,7 +3177,7 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateIndexEndpoint(
+  public func updateIndexEndpointPollingUntilDone(
     indexEndpoint: IndexEndpoint?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<IndexEndpoint> {
@@ -3186,7 +3185,7 @@ extension Clients.WarehouseProtocol {
       $0.indexEndpoint = indexEndpoint
       $0.updateMask = updateMask
     }
-    return try await self.updateIndexEndpoint(withPolling: request)
+    return try await self.updateIndexEndpointPollingUntilDone(request: request)
   }
 
   public func deleteIndexEndpoint(request: DeleteIndexEndpointRequest) async throws
@@ -3201,14 +3200,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteIndexEndpoint(withPolling: DeleteIndexEndpointRequest) async throws
+  public func deleteIndexEndpointPollingUntilDone(request: DeleteIndexEndpointRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteIndexEndpoint(withPolling: withPolling, options: .init())
+    try await self.deleteIndexEndpointPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteIndexEndpoint(
-    withPolling: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func deleteIndexEndpointPollingUntilDone(
+    request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3217,13 +3216,13 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteIndexEndpoint(
+  public func deleteIndexEndpointPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteIndexEndpointRequest().with {
       $0.name = name
     }
-    return try await self.deleteIndexEndpoint(withPolling: request)
+    return try await self.deleteIndexEndpointPollingUntilDone(request: request)
   }
 
   public func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -3236,14 +3235,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deployIndex(withPolling: DeployIndexRequest) async throws -> any GoogleGax
+  public func deployIndexPollingUntilDone(request: DeployIndexRequest) async throws -> any GoogleGax
     .PollableOperation<DeployIndexResponse>
   {
-    try await self.deployIndex(withPolling: withPolling, options: .init())
+    try await self.deployIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func deployIndex(
-    withPolling: DeployIndexRequest, options: GoogleGax.RequestOptions
+  public func deployIndexPollingUntilDone(
+    request: DeployIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DeployIndexResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployIndexResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3264,14 +3263,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func undeployIndex(withPolling: UndeployIndexRequest) async throws -> any GoogleGax
-    .PollableOperation<UndeployIndexResponse>
+  public func undeployIndexPollingUntilDone(request: UndeployIndexRequest) async throws
+    -> any GoogleGax.PollableOperation<UndeployIndexResponse>
   {
-    try await self.undeployIndex(withPolling: withPolling, options: .init())
+    try await self.undeployIndexPollingUntilDone(request: request, options: .init())
   }
 
-  public func undeployIndex(
-    withPolling: UndeployIndexRequest, options: GoogleGax.RequestOptions
+  public func undeployIndexPollingUntilDone(
+    request: UndeployIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UndeployIndexResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<UndeployIndexResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3292,14 +3291,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCollection(withPolling: CreateCollectionRequest) async throws -> any GoogleGax
-    .PollableOperation<Collection>
+  public func createCollectionPollingUntilDone(request: CreateCollectionRequest) async throws
+    -> any GoogleGax.PollableOperation<Collection>
   {
-    try await self.createCollection(withPolling: withPolling, options: .init())
+    try await self.createCollectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCollection(
-    withPolling: CreateCollectionRequest, options: GoogleGax.RequestOptions
+  public func createCollectionPollingUntilDone(
+    request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collection> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collection>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3308,7 +3307,7 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCollection(
+  public func createCollectionPollingUntilDone(
     parent: Swift.String,
     collection: Collection?,
     collectionId: Swift.String?,
@@ -3318,7 +3317,7 @@ extension Clients.WarehouseProtocol {
       $0.collection = collection
       $0.collectionId = collectionId
     }
-    return try await self.createCollection(withPolling: request)
+    return try await self.createCollectionPollingUntilDone(request: request)
   }
 
   public func deleteCollection(request: DeleteCollectionRequest) async throws
@@ -3333,14 +3332,14 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCollection(withPolling: DeleteCollectionRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteCollectionPollingUntilDone(request: DeleteCollectionRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteCollection(withPolling: withPolling, options: .init())
+    try await self.deleteCollectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCollection(
-    withPolling: DeleteCollectionRequest, options: GoogleGax.RequestOptions
+  public func deleteCollectionPollingUntilDone(
+    request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3349,13 +3348,13 @@ extension Clients.WarehouseProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCollection(
+  public func deleteCollectionPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteCollectionRequest().with {
       $0.name = name
     }
-    return try await self.deleteCollection(withPolling: request)
+    return try await self.deleteCollectionPollingUntilDone(request: request)
   }
 
   public func getCollection(request: GetCollectionRequest) async throws

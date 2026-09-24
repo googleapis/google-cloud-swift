@@ -26,8 +26,8 @@
 
   func sample(client: FeaturestoreServiceClient, projectId: String, locationId: String) async throws
   {
-    let poller = try await client.createFeaturestore(
-      withPolling: CreateFeaturestoreRequest()
+    let poller = try await client.createFeaturestorePollingUntilDone(
+      request: CreateFeaturestoreRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
           $0.featurestoreId = "[replace with a valid ID]"

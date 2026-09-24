@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: ModelServiceClient) async throws {
-    let poller = try await client.uploadModel(
-      withPolling: UploadModelRequest()
+    let poller = try await client.uploadModelPollingUntilDone(
+      request: UploadModelRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

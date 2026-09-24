@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworksClient) async throws {
-    let poller = try await client.updatePeering(
-      withPolling: NetworksClient.UpdatePeeringRequest()
+    let poller = try await client.updatePeeringPollingUntilDone(
+      request: NetworksClient.UpdatePeeringRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: WorkflowsClient, projectId: String, locationId: String, workflowId: String)
   async throws
 {
-  let poller = try await client.updateWorkflow(
-    withPolling: UpdateWorkflowRequest()
+  let poller = try await client.updateWorkflowPollingUntilDone(
+    request: UpdateWorkflowRequest()
       .with {
         $0.workflow = Workflow().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/workflows/\(workflowId)"

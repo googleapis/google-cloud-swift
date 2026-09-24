@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: TpuClient, projectId: String, locationId: String, queuedResourceId: String)
   async throws
 {
-  let poller = try await client.deleteQueuedResource(
-    withPolling: DeleteQueuedResourceRequest()
+  let poller = try await client.deleteQueuedResourcePollingUntilDone(
+    request: DeleteQueuedResourceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/queuedResources/\(queuedResourceId)"

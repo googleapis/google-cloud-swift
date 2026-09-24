@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: SnapshotsClient) async throws {
-    let poller = try await client.updateKmsKey(
-      withPolling: SnapshotsClient.UpdateKmsKeyRequest()
+    let poller = try await client.updateKmsKeyPollingUntilDone(
+      request: SnapshotsClient.UpdateKmsKeyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

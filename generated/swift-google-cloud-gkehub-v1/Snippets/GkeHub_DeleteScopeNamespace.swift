@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: GkeHubClient, projectId: String, locationId: String, scopeId: String, namespaceId: String
 ) async throws {
-  let poller = try await client.deleteScopeNamespace(
-    withPolling: DeleteScopeNamespaceRequest()
+  let poller = try await client.deleteScopeNamespacePollingUntilDone(
+    request: DeleteScopeNamespaceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)/namespaces/\(namespaceId)"

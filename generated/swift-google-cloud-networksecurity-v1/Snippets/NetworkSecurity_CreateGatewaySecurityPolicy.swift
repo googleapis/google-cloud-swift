@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGatewaySecurityPolicy(
-    withPolling: CreateGatewaySecurityPolicyRequest()
+  let poller = try await client.createGatewaySecurityPolicyPollingUntilDone(
+    request: CreateGatewaySecurityPolicyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.gatewaySecurityPolicy = GatewaySecurityPolicy() /* .with { ... } */

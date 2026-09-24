@@ -26,8 +26,8 @@ func sample(
   client: BlockchainNodeEngineClient, projectId: String, locationId: String,
   blockchainNodeId: String
 ) async throws {
-  let poller = try await client.deleteBlockchainNode(
-    withPolling: DeleteBlockchainNodeRequest()
+  let poller = try await client.deleteBlockchainNodePollingUntilDone(
+    request: DeleteBlockchainNodeRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/blockchainNodes/\(blockchainNodeId)"

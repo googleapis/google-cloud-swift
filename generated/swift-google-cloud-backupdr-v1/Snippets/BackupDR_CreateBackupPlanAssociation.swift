@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupDRClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createBackupPlanAssociation(
-    withPolling: CreateBackupPlanAssociationRequest()
+  let poller = try await client.createBackupPlanAssociationPollingUntilDone(
+    request: CreateBackupPlanAssociationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.backupPlanAssociation = BackupPlanAssociation() /* .with { ... } */

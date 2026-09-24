@@ -26,8 +26,8 @@ func sample(
   client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String,
   indexId: String
 ) async throws {
-  let poller = try await client.deleteIndex(
-    withPolling: DeleteIndexRequest()
+  let poller = try await client.deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest()
       .with {
         $0.name =
           "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/indexes/\(indexId)"

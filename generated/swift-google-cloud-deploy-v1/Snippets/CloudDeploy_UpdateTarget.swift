@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: CloudDeployClient, projectId: String, locationId: String, targetId: String)
   async throws
 {
-  let poller = try await client.updateTarget(
-    withPolling: UpdateTargetRequest()
+  let poller = try await client.updateTargetPollingUntilDone(
+    request: UpdateTargetRequest()
       .with {
         $0.target = Target().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/targets/\(targetId)"

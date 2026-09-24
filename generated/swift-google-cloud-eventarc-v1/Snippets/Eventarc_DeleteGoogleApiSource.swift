@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: EventarcClient, projectId: String, locationId: String, googleApiSourceId: String
 ) async throws {
-  let poller = try await client.deleteGoogleApiSource(
-    withPolling: DeleteGoogleApiSourceRequest()
+  let poller = try await client.deleteGoogleApiSourcePollingUntilDone(
+    request: DeleteGoogleApiSourceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/googleApiSources/\(googleApiSourceId)"

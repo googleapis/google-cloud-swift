@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppHubClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createServiceProjectAttachment(
-    withPolling: CreateServiceProjectAttachmentRequest()
+  let poller = try await client.createServiceProjectAttachmentPollingUntilDone(
+    request: CreateServiceProjectAttachmentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.serviceProjectAttachment = ServiceProjectAttachment() /* .with { ... } */

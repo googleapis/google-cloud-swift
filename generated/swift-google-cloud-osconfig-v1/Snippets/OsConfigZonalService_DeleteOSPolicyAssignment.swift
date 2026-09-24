@@ -25,8 +25,8 @@ func sample(
   client: OsConfigZonalServiceClient, projectId: String, locationId: String,
   osPolicyAssignmentId: String
 ) async throws {
-  let poller = try await client.deleteOspolicyAssignment(
-    withPolling: DeleteOSPolicyAssignmentRequest()
+  let poller = try await client.deleteOspolicyAssignmentPollingUntilDone(
+    request: DeleteOSPolicyAssignmentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/osPolicyAssignments/\(osPolicyAssignmentId)"

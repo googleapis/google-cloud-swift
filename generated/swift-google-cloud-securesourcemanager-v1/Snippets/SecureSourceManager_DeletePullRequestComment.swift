@@ -27,8 +27,8 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   pullRequestId: String, commentId: String
 ) async throws {
-  let poller = try await client.deletePullRequestComment(
-    withPolling: DeletePullRequestCommentRequest()
+  let poller = try await client.deletePullRequestCommentPollingUntilDone(
+    request: DeletePullRequestCommentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/pullRequests/\(pullRequestId)/pullRequestComments/\(commentId)"

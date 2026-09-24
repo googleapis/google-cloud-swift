@@ -28,8 +28,8 @@
     client: FeatureRegistryServiceClient, projectId: String, locationId: String,
     featureGroupId: String
   ) async throws {
-    let poller = try await client.updateFeatureGroup(
-      withPolling: UpdateFeatureGroupRequest()
+    let poller = try await client.updateFeatureGroupPollingUntilDone(
+      request: UpdateFeatureGroupRequest()
         .with {
           $0.featureGroup = FeatureGroup().with {
             $0.name =

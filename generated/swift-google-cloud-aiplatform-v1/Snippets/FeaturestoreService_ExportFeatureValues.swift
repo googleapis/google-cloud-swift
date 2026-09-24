@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: FeaturestoreServiceClient) async throws {
-    let poller = try await client.exportFeatureValues(
-      withPolling: ExportFeatureValuesRequest()
+    let poller = try await client.exportFeatureValuesPollingUntilDone(
+      request: ExportFeatureValuesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

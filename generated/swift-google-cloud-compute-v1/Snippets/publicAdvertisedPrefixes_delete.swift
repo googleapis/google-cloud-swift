@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: PublicAdvertisedPrefixesClient) async throws {
-    let poller = try await client.delete(
-      withPolling: PublicAdvertisedPrefixesClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: PublicAdvertisedPrefixesClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

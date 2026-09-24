@@ -71,14 +71,14 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Updates the configuration of the specified service.
   ///
   /// @Snippet(path: "Services_UpdateService")
-  public func updateService(
-    withPolling: UpdateServiceRequest, options: GoogleGax.RequestOptions
+  public func updateServicePollingUntilDone(
+    request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Service>.State in
       return try op._extractStatus(Service.self)
     }
-    let rawOp = try await self.updateService(request: withPolling, options: options)
+    let rawOp = try await self.updateService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       let op = try await self.getOperation(
@@ -105,15 +105,15 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Deletes the specified service and all enclosed versions.
   ///
   /// @Snippet(path: "Services_DeleteService")
-  public func deleteService(
-    withPolling: DeleteServiceRequest, options: GoogleGax.RequestOptions
+  public func deleteServicePollingUntilDone(
+    request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteService(request: withPolling, options: options)
+    let rawOp = try await self.deleteService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -159,11 +159,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ServicesProtocol: Sendable {
     /// See `ServicesClient.updateService`.
-    func updateService(withPolling: UpdateServiceRequest) async throws -> any GoogleGax
+    func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Service>
 
     /// See `ServicesClient.deleteService`.
-    func deleteService(withPolling: DeleteServiceRequest) async throws -> any GoogleGax
+    func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `ServicesClient.listServices`.
@@ -182,8 +182,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ServicesClient.updateService`.
-    func updateService(
-      withPolling: UpdateServiceRequest, options: GoogleGax.RequestOptions
+    func updateServicePollingUntilDone(
+      request: UpdateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Service>
 
     /// See `ServicesClient.deleteService`.
@@ -192,8 +192,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `ServicesClient.deleteService`.
-    func deleteService(
-      withPolling: DeleteServiceRequest, options: GoogleGax.RequestOptions
+    func deleteServicePollingUntilDone(
+      request: DeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `ServicesClient.listOperations`.
@@ -259,14 +259,14 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateService(withPolling: UpdateServiceRequest) async throws -> any GoogleGax
-    .PollableOperation<Service>
+  public func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws
+    -> any GoogleGax.PollableOperation<Service>
   {
-    try await self.updateService(withPolling: withPolling, options: .init())
+    try await self.updateServicePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateService(
-    withPolling: UpdateServiceRequest, options: GoogleGax.RequestOptions
+  public func updateServicePollingUntilDone(
+    request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -287,14 +287,14 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteService(withPolling: DeleteServiceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteService(withPolling: withPolling, options: .init())
+    try await self.deleteServicePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteService(
-    withPolling: DeleteServiceRequest, options: GoogleGax.RequestOptions
+  public func deleteServicePollingUntilDone(
+    request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented

@@ -95,15 +95,15 @@
     /// Asynchronous API to retrieves relevant contexts for a query.
     ///
     /// @Snippet(path: "VertexRagService_AsyncRetrieveContexts")
-    public func asyncRetrieveContexts(
-      withPolling: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
+    public func asyncRetrieveContextsPollingUntilDone(
+      request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<AsyncRetrieveContextsResponse>.State in
         return try op._extractStatus(AsyncRetrieveContextsResponse.self)
       }
-      let rawOp = try await self.asyncRetrieveContexts(request: withPolling, options: options)
+      let rawOp = try await self.asyncRetrieveContexts(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<AsyncRetrieveContextsResponse>.State in
@@ -239,11 +239,11 @@
     /// and pass a mock implementation in your tests.
     public protocol VertexRagServiceProtocol: Sendable {
       /// See `VertexRagServiceClient.asyncRetrieveContexts`.
-      func asyncRetrieveContexts(withPolling: AsyncRetrieveContextsRequest) async throws
+      func asyncRetrieveContextsPollingUntilDone(request: AsyncRetrieveContextsRequest) async throws
         -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
 
       /// See `VertexRagServiceClient.asyncRetrieveContexts`.
-      func asyncRetrieveContexts(
+      func asyncRetrieveContextsPollingUntilDone(
         parent: Swift.String,
         query: RagQuery?,
       ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
@@ -274,8 +274,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagServiceClient.asyncRetrieveContexts`.
-      func asyncRetrieveContexts(
-        withPolling: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
+      func asyncRetrieveContextsPollingUntilDone(
+        request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
 
       /// See `VertexRagServiceClient.listLocations`.
@@ -435,14 +435,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func asyncRetrieveContexts(withPolling: AsyncRetrieveContextsRequest) async throws
-      -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
+    public func asyncRetrieveContextsPollingUntilDone(request: AsyncRetrieveContextsRequest)
+      async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
     {
-      try await self.asyncRetrieveContexts(withPolling: withPolling, options: .init())
+      try await self.asyncRetrieveContextsPollingUntilDone(request: request, options: .init())
     }
 
-    public func asyncRetrieveContexts(
-      withPolling: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
+    public func asyncRetrieveContextsPollingUntilDone(
+      request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<AsyncRetrieveContextsResponse>.State in
@@ -452,7 +452,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func asyncRetrieveContexts(
+    public func asyncRetrieveContextsPollingUntilDone(
       parent: Swift.String,
       query: RagQuery?,
     ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse> {
@@ -460,7 +460,7 @@
         $0.parent = parent
         $0.query = query
       }
-      return try await self.asyncRetrieveContexts(withPolling: request)
+      return try await self.asyncRetrieveContextsPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

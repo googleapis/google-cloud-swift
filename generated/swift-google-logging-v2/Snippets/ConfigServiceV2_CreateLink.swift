@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ConfigServiceV2Client, projectId: String, locationId: String, bucketId: String)
   async throws
 {
-  let poller = try await client.createLink(
-    withPolling: CreateLinkRequest()
+  let poller = try await client.createLinkPollingUntilDone(
+    request: CreateLinkRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/buckets/\(bucketId)"
         $0.linkId = "[replace with a valid ID]"

@@ -53,15 +53,15 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
   /// Run a predefined pipeline.
   ///
   /// @Snippet(path: "PipelineService_RunPipeline")
-  public func runPipeline(
-    withPolling: RunPipelineRequest, options: GoogleGax.RequestOptions
+  public func runPipelinePollingUntilDone(
+    request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
       return try op._extractStatus(RunPipelineResponse.self)
     }
-    let rawOp = try await self.runPipeline(request: withPolling, options: options)
+    let rawOp = try await self.runPipeline(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
       let op = try await self.getOperation(
@@ -96,11 +96,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol PipelineServiceProtocol: Sendable {
     /// See `PipelineServiceClient.runPipeline`.
-    func runPipeline(withPolling: RunPipelineRequest) async throws -> any GoogleGax
+    func runPipelinePollingUntilDone(request: RunPipelineRequest) async throws -> any GoogleGax
       .PollableOperation<RunPipelineResponse>
 
     /// See `PipelineServiceClient.runPipeline`.
-    func runPipeline(
+    func runPipelinePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse>
 
@@ -110,8 +110,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `PipelineServiceClient.runPipeline`.
-    func runPipeline(
-      withPolling: RunPipelineRequest, options: GoogleGax.RequestOptions
+    func runPipelinePollingUntilDone(
+      request: RunPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse>
   }
 }
@@ -128,14 +128,14 @@ extension Clients.PipelineServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runPipeline(withPolling: RunPipelineRequest) async throws -> any GoogleGax
+  public func runPipelinePollingUntilDone(request: RunPipelineRequest) async throws -> any GoogleGax
     .PollableOperation<RunPipelineResponse>
   {
-    try await self.runPipeline(withPolling: withPolling, options: .init())
+    try await self.runPipelinePollingUntilDone(request: request, options: .init())
   }
 
-  public func runPipeline(
-    withPolling: RunPipelineRequest, options: GoogleGax.RequestOptions
+  public func runPipelinePollingUntilDone(
+    request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -144,13 +144,13 @@ extension Clients.PipelineServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func runPipeline(
+  public func runPipelinePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
     let request = RunPipelineRequest().with {
       $0.name = name
     }
-    return try await self.runPipeline(withPolling: request)
+    return try await self.runPipelinePollingUntilDone(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

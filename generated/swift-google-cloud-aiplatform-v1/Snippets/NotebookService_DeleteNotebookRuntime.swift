@@ -27,8 +27,8 @@
   func sample(
     client: NotebookServiceClient, projectId: String, locationId: String, notebookRuntimeId: String
   ) async throws {
-    let poller = try await client.deleteNotebookRuntime(
-      withPolling: DeleteNotebookRuntimeRequest()
+    let poller = try await client.deleteNotebookRuntimePollingUntilDone(
+      request: DeleteNotebookRuntimeRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/notebookRuntimes/\(notebookRuntimeId)"

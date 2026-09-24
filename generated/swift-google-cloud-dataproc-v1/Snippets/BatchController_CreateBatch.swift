@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: BatchControllerClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createBatch(
-    withPolling: CreateBatchRequest()
+  let poller = try await client.createBatchPollingUntilDone(
+    request: CreateBatchRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.batchId = "[replace with a valid ID]"

@@ -75,15 +75,15 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Creates a new blockchain node in a given project and location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_CreateBlockchainNode")
-  public func createBlockchainNode(
-    withPolling: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
+  public func createBlockchainNodePollingUntilDone(
+    request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BlockchainNode> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BlockchainNode>.State in
       return try op._extractStatus(BlockchainNode.self)
     }
-    let rawOp = try await self.createBlockchainNode(request: withPolling, options: options)
+    let rawOp = try await self.createBlockchainNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BlockchainNode>.State in
       let op = try await self.getOperation(
@@ -110,15 +110,15 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Updates the parameters of a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_UpdateBlockchainNode")
-  public func updateBlockchainNode(
-    withPolling: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
+  public func updateBlockchainNodePollingUntilDone(
+    request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BlockchainNode> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BlockchainNode>.State in
       return try op._extractStatus(BlockchainNode.self)
     }
-    let rawOp = try await self.updateBlockchainNode(request: withPolling, options: options)
+    let rawOp = try await self.updateBlockchainNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BlockchainNode>.State in
       let op = try await self.getOperation(
@@ -145,15 +145,15 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Deletes a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_DeleteBlockchainNode")
-  public func deleteBlockchainNode(
-    withPolling: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
+  public func deleteBlockchainNodePollingUntilDone(
+    request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteBlockchainNode(request: withPolling, options: options)
+    let rawOp = try await self.deleteBlockchainNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -239,32 +239,32 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol BlockchainNodeEngineProtocol: Sendable {
     /// See `BlockchainNodeEngineClient.createBlockchainNode`.
-    func createBlockchainNode(withPolling: CreateBlockchainNodeRequest) async throws
+    func createBlockchainNodePollingUntilDone(request: CreateBlockchainNodeRequest) async throws
       -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.createBlockchainNode`.
-    func createBlockchainNode(
+    func createBlockchainNodePollingUntilDone(
       parent: Swift.String,
       blockchainNode: BlockchainNode?,
       blockchainNodeId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
-    func updateBlockchainNode(withPolling: UpdateBlockchainNodeRequest) async throws
+    func updateBlockchainNodePollingUntilDone(request: UpdateBlockchainNodeRequest) async throws
       -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
-    func updateBlockchainNode(
+    func updateBlockchainNodePollingUntilDone(
       blockchainNode: BlockchainNode?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
-    func deleteBlockchainNode(withPolling: DeleteBlockchainNodeRequest) async throws
+    func deleteBlockchainNodePollingUntilDone(request: DeleteBlockchainNodeRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
-    func deleteBlockchainNode(
+    func deleteBlockchainNodePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -284,8 +284,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BlockchainNodeEngineClient.createBlockchainNode`.
-    func createBlockchainNode(
-      withPolling: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
+    func createBlockchainNodePollingUntilDone(
+      request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
@@ -294,8 +294,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
-    func updateBlockchainNode(
-      withPolling: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
+    func updateBlockchainNodePollingUntilDone(
+      request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
@@ -304,8 +304,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
-    func deleteBlockchainNode(
-      withPolling: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
+    func deleteBlockchainNodePollingUntilDone(
+      request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `BlockchainNodeEngineClient.listLocations`.
@@ -413,14 +413,14 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBlockchainNode(withPolling: CreateBlockchainNodeRequest) async throws
-    -> any GoogleGax.PollableOperation<BlockchainNode>
+  public func createBlockchainNodePollingUntilDone(request: CreateBlockchainNodeRequest)
+    async throws -> any GoogleGax.PollableOperation<BlockchainNode>
   {
-    try await self.createBlockchainNode(withPolling: withPolling, options: .init())
+    try await self.createBlockchainNodePollingUntilDone(request: request, options: .init())
   }
 
-  public func createBlockchainNode(
-    withPolling: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
+  public func createBlockchainNodePollingUntilDone(
+    request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BlockchainNode> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BlockchainNode>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -429,7 +429,7 @@ extension Clients.BlockchainNodeEngineProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createBlockchainNode(
+  public func createBlockchainNodePollingUntilDone(
     parent: Swift.String,
     blockchainNode: BlockchainNode?,
     blockchainNodeId: Swift.String,
@@ -439,7 +439,7 @@ extension Clients.BlockchainNodeEngineProtocol {
       $0.blockchainNode = blockchainNode
       $0.blockchainNodeId = blockchainNodeId
     }
-    return try await self.createBlockchainNode(withPolling: request)
+    return try await self.createBlockchainNodePollingUntilDone(request: request)
   }
 
   public func updateBlockchainNode(request: UpdateBlockchainNodeRequest) async throws
@@ -454,14 +454,14 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateBlockchainNode(withPolling: UpdateBlockchainNodeRequest) async throws
-    -> any GoogleGax.PollableOperation<BlockchainNode>
+  public func updateBlockchainNodePollingUntilDone(request: UpdateBlockchainNodeRequest)
+    async throws -> any GoogleGax.PollableOperation<BlockchainNode>
   {
-    try await self.updateBlockchainNode(withPolling: withPolling, options: .init())
+    try await self.updateBlockchainNodePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateBlockchainNode(
-    withPolling: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
+  public func updateBlockchainNodePollingUntilDone(
+    request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BlockchainNode> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<BlockchainNode>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -470,7 +470,7 @@ extension Clients.BlockchainNodeEngineProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateBlockchainNode(
+  public func updateBlockchainNodePollingUntilDone(
     blockchainNode: BlockchainNode?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<BlockchainNode> {
@@ -478,7 +478,7 @@ extension Clients.BlockchainNodeEngineProtocol {
       $0.blockchainNode = blockchainNode
       $0.updateMask = updateMask
     }
-    return try await self.updateBlockchainNode(withPolling: request)
+    return try await self.updateBlockchainNodePollingUntilDone(request: request)
   }
 
   public func deleteBlockchainNode(request: DeleteBlockchainNodeRequest) async throws
@@ -493,14 +493,14 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBlockchainNode(withPolling: DeleteBlockchainNodeRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteBlockchainNodePollingUntilDone(request: DeleteBlockchainNodeRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteBlockchainNode(withPolling: withPolling, options: .init())
+    try await self.deleteBlockchainNodePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteBlockchainNode(
-    withPolling: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
+  public func deleteBlockchainNodePollingUntilDone(
+    request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -509,13 +509,13 @@ extension Clients.BlockchainNodeEngineProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteBlockchainNode(
+  public func deleteBlockchainNodePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteBlockchainNodeRequest().with {
       $0.name = name
     }
-    return try await self.deleteBlockchainNode(withPolling: request)
+    return try await self.deleteBlockchainNodePollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

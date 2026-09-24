@@ -26,8 +26,8 @@ func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String,
   certificateMapEntryId: String
 ) async throws {
-  let poller = try await client.updateCertificateMapEntry(
-    withPolling: UpdateCertificateMapEntryRequest()
+  let poller = try await client.updateCertificateMapEntryPollingUntilDone(
+    request: UpdateCertificateMapEntryRequest()
       .with {
         $0.certificateMapEntry = CertificateMapEntry().with {
           $0.name =

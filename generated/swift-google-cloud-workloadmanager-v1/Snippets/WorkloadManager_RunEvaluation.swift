@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkloadManagerClient) async throws {
-  let poller = try await client.runEvaluation(
-    withPolling: RunEvaluationRequest()
+  let poller = try await client.runEvaluationPollingUntilDone(
+    request: RunEvaluationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

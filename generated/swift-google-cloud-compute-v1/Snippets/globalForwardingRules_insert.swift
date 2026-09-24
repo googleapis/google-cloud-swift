@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: GlobalForwardingRulesClient) async throws {
-    let poller = try await client.insert(
-      withPolling: GlobalForwardingRulesClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: GlobalForwardingRulesClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

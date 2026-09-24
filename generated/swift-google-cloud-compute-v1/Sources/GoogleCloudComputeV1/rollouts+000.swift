@@ -53,8 +53,8 @@
     /// Advances a Rollout to the next wave, or completes it if no waves remain.
     ///
     /// @Snippet(path: "rollouts_advance")
-    public func advance(
-      withPolling: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
+    public func advancePollingUntilDone(
+      request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -70,14 +70,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.advance(request: withPolling, options: options)
+      let rawOp = try await self.advance(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -101,8 +101,8 @@
     /// Cancels a Rollout.
     ///
     /// @Snippet(path: "rollouts_cancel")
-    public func cancel(
-      withPolling: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
+    public func cancelPollingUntilDone(
+      request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -118,14 +118,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.cancel(request: withPolling, options: options)
+      let rawOp = try await self.cancel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -149,8 +149,8 @@
     /// Deletes a Rollout.
     ///
     /// @Snippet(path: "rollouts_delete")
-    public func delete(
-      withPolling: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -166,14 +166,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.delete(request: withPolling, options: options)
+      let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -215,8 +215,8 @@
     /// Pauses a Rollout.
     ///
     /// @Snippet(path: "rollouts_pause")
-    public func pause(
-      withPolling: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
+    public func pausePollingUntilDone(
+      request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -232,14 +232,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.pause(request: withPolling, options: options)
+      let rawOp = try await self.pause(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -263,8 +263,8 @@
     /// Resumes a Rollout.
     ///
     /// @Snippet(path: "rollouts_resume")
-    public func resume(
-      withPolling: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
+    public func resumePollingUntilDone(
+      request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -280,14 +280,14 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.resume(request: withPolling, options: options)
+      let rawOp = try await self.resume(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
+            $0.project = request.project
           }, options: options)
         return try extractStatus(op)
       }
@@ -367,14 +367,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func advance(
-      withPolling: RolloutsClient.AdvanceRequest
+    public func advancePollingUntilDone(
+      request: RolloutsClient.AdvanceRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.advance(withPolling: withPolling, options: .init())
+      try await self.advancePollingUntilDone(request: request, options: .init())
     }
 
-    public func advance(
-      withPolling: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
+    public func advancePollingUntilDone(
+      request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -384,7 +384,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func advance(
+    public func advancePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -392,7 +392,7 @@
         $0.project = project
         $0.rollout = rollout
       }
-      return try await self.advance(withPolling: request)
+      return try await self.advancePollingUntilDone(request: request)
     }
 
     public func cancel(request: RolloutsClient.CancelRequest) async throws
@@ -407,14 +407,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func cancel(
-      withPolling: RolloutsClient.CancelRequest
+    public func cancelPollingUntilDone(
+      request: RolloutsClient.CancelRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.cancel(withPolling: withPolling, options: .init())
+      try await self.cancelPollingUntilDone(request: request, options: .init())
     }
 
-    public func cancel(
-      withPolling: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
+    public func cancelPollingUntilDone(
+      request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -424,7 +424,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func cancel(
+    public func cancelPollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -432,7 +432,7 @@
         $0.project = project
         $0.rollout = rollout
       }
-      return try await self.cancel(withPolling: request)
+      return try await self.cancelPollingUntilDone(request: request)
     }
 
     public func delete(request: RolloutsClient.DeleteRequest) async throws
@@ -447,14 +447,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func delete(
-      withPolling: RolloutsClient.DeleteRequest
+    public func deletePollingUntilDone(
+      request: RolloutsClient.DeleteRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.delete(withPolling: withPolling, options: .init())
+      try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
-    public func delete(
-      withPolling: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
+    public func deletePollingUntilDone(
+      request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -464,7 +464,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func delete(
+    public func deletePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -472,7 +472,7 @@
         $0.project = project
         $0.rollout = rollout
       }
-      return try await self.delete(withPolling: request)
+      return try await self.deletePollingUntilDone(request: request)
     }
 
     public func `get`(request: RolloutsClient.GetRequest) async throws
@@ -552,14 +552,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func pause(
-      withPolling: RolloutsClient.PauseRequest
+    public func pausePollingUntilDone(
+      request: RolloutsClient.PauseRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.pause(withPolling: withPolling, options: .init())
+      try await self.pausePollingUntilDone(request: request, options: .init())
     }
 
-    public func pause(
-      withPolling: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
+    public func pausePollingUntilDone(
+      request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -569,7 +569,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func pause(
+    public func pausePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -577,7 +577,7 @@
         $0.project = project
         $0.rollout = rollout
       }
-      return try await self.pause(withPolling: request)
+      return try await self.pausePollingUntilDone(request: request)
     }
 
     public func resume(request: RolloutsClient.ResumeRequest) async throws
@@ -592,14 +592,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func resume(
-      withPolling: RolloutsClient.ResumeRequest
+    public func resumePollingUntilDone(
+      request: RolloutsClient.ResumeRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.resume(withPolling: withPolling, options: .init())
+      try await self.resumePollingUntilDone(request: request, options: .init())
     }
 
-    public func resume(
-      withPolling: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
+    public func resumePollingUntilDone(
+      request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -609,7 +609,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func resume(
+    public func resumePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -617,7 +617,7 @@
         $0.project = project
         $0.rollout = rollout
       }
-      return try await self.resume(withPolling: request)
+      return try await self.resumePollingUntilDone(request: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

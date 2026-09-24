@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient) async throws {
-  let poller = try await client.batchDeleteVersions(
-    withPolling: BatchDeleteVersionsRequest()
+  let poller = try await client.batchDeleteVersionsPollingUntilDone(
+    request: BatchDeleteVersionsRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

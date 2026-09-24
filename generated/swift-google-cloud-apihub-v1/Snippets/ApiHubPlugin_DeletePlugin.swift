@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: ApiHubPluginClient, projectId: String, locationId: String, pluginId: String)
   async throws
 {
-  let poller = try await client.deletePlugin(
-    withPolling: DeletePluginRequest()
+  let poller = try await client.deletePluginPollingUntilDone(
+    request: DeletePluginRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/plugins/\(pluginId)"
       }

@@ -27,8 +27,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataTaxonomyServiceClient, parent: String) async throws {
-  let poller = try await client.createDataAttributeBinding(
-    withPolling: CreateDataAttributeBindingRequest()
+  let poller = try await client.createDataAttributeBindingPollingUntilDone(
+    request: CreateDataAttributeBindingRequest()
       .with {
         $0.parent = "\(parent)"
         $0.dataAttributeBinding = DataAttributeBinding() /* .with { ... } */

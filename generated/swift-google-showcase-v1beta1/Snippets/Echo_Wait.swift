@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: EchoClient) async throws {
-  let poller = try await client.wait(
-    withPolling: WaitRequest()
+  let poller = try await client.waitPollingUntilDone(
+    request: WaitRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

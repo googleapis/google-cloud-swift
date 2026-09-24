@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DatastreamClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createStream(
-    withPolling: CreateStreamRequest()
+  let poller = try await client.createStreamPollingUntilDone(
+    request: CreateStreamRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.streamId = "[replace with a valid ID]"

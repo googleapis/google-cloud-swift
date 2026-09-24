@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: LineageClient, projectId: String, locationId: String, processId: String)
   async throws
 {
-  let poller = try await client.deleteProcess(
-    withPolling: DeleteProcessRequest()
+  let poller = try await client.deleteProcessPollingUntilDone(
+    request: DeleteProcessRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/processes/\(processId)"
       }

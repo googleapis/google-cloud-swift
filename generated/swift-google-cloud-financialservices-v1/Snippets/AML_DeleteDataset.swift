@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String, datasetId: String
 ) async throws {
-  let poller = try await client.deleteDataset(
-    withPolling: DeleteDatasetRequest()
+  let poller = try await client.deleteDatasetPollingUntilDone(
+    request: DeleteDatasetRequest()
       .with {
         $0.name =
           "projects/\(projectNumId)/locations/\(locationId)/instances/\(instanceId)/datasets/\(datasetId)"

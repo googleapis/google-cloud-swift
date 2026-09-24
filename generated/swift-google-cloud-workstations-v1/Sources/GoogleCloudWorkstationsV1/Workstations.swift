@@ -73,15 +73,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Creates a new workstation cluster.
   ///
   /// @Snippet(path: "Workstations_CreateWorkstationCluster")
-  public func createWorkstationCluster(
-    withPolling: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
+  public func createWorkstationClusterPollingUntilDone(
+    request: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       return try op._extractStatus(WorkstationCluster.self)
     }
-    let rawOp = try await self.createWorkstationCluster(request: withPolling, options: options)
+    let rawOp = try await self.createWorkstationCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       let op = try await self.getOperation(
@@ -108,15 +108,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Updates an existing workstation cluster.
   ///
   /// @Snippet(path: "Workstations_UpdateWorkstationCluster")
-  public func updateWorkstationCluster(
-    withPolling: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
+  public func updateWorkstationClusterPollingUntilDone(
+    request: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       return try op._extractStatus(WorkstationCluster.self)
     }
-    let rawOp = try await self.updateWorkstationCluster(request: withPolling, options: options)
+    let rawOp = try await self.updateWorkstationCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       let op = try await self.getOperation(
@@ -143,15 +143,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Deletes the specified workstation cluster.
   ///
   /// @Snippet(path: "Workstations_DeleteWorkstationCluster")
-  public func deleteWorkstationCluster(
-    withPolling: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkstationClusterPollingUntilDone(
+    request: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       return try op._extractStatus(WorkstationCluster.self)
     }
-    let rawOp = try await self.deleteWorkstationCluster(request: withPolling, options: options)
+    let rawOp = try await self.deleteWorkstationCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       let op = try await self.getOperation(
@@ -206,15 +206,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Creates a new workstation configuration.
   ///
   /// @Snippet(path: "Workstations_CreateWorkstationConfig")
-  public func createWorkstationConfig(
-    withPolling: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
+  public func createWorkstationConfigPollingUntilDone(
+    request: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       return try op._extractStatus(WorkstationConfig.self)
     }
-    let rawOp = try await self.createWorkstationConfig(request: withPolling, options: options)
+    let rawOp = try await self.createWorkstationConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       let op = try await self.getOperation(
@@ -241,15 +241,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Updates an existing workstation configuration.
   ///
   /// @Snippet(path: "Workstations_UpdateWorkstationConfig")
-  public func updateWorkstationConfig(
-    withPolling: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
+  public func updateWorkstationConfigPollingUntilDone(
+    request: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       return try op._extractStatus(WorkstationConfig.self)
     }
-    let rawOp = try await self.updateWorkstationConfig(request: withPolling, options: options)
+    let rawOp = try await self.updateWorkstationConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       let op = try await self.getOperation(
@@ -276,15 +276,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Deletes the specified workstation configuration.
   ///
   /// @Snippet(path: "Workstations_DeleteWorkstationConfig")
-  public func deleteWorkstationConfig(
-    withPolling: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkstationConfigPollingUntilDone(
+    request: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       return try op._extractStatus(WorkstationConfig.self)
     }
-    let rawOp = try await self.deleteWorkstationConfig(request: withPolling, options: options)
+    let rawOp = try await self.deleteWorkstationConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       let op = try await self.getOperation(
@@ -339,15 +339,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Creates a new workstation.
   ///
   /// @Snippet(path: "Workstations_CreateWorkstation")
-  public func createWorkstation(
-    withPolling: CreateWorkstationRequest, options: GoogleGax.RequestOptions
+  public func createWorkstationPollingUntilDone(
+    request: CreateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Workstation>.State in
       return try op._extractStatus(Workstation.self)
     }
-    let rawOp = try await self.createWorkstation(request: withPolling, options: options)
+    let rawOp = try await self.createWorkstation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       let op = try await self.getOperation(
@@ -374,15 +374,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Updates an existing workstation.
   ///
   /// @Snippet(path: "Workstations_UpdateWorkstation")
-  public func updateWorkstation(
-    withPolling: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
+  public func updateWorkstationPollingUntilDone(
+    request: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Workstation>.State in
       return try op._extractStatus(Workstation.self)
     }
-    let rawOp = try await self.updateWorkstation(request: withPolling, options: options)
+    let rawOp = try await self.updateWorkstation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       let op = try await self.getOperation(
@@ -409,15 +409,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Deletes the specified workstation.
   ///
   /// @Snippet(path: "Workstations_DeleteWorkstation")
-  public func deleteWorkstation(
-    withPolling: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkstationPollingUntilDone(
+    request: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Workstation>.State in
       return try op._extractStatus(Workstation.self)
     }
-    let rawOp = try await self.deleteWorkstation(request: withPolling, options: options)
+    let rawOp = try await self.deleteWorkstation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       let op = try await self.getOperation(
@@ -444,15 +444,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Starts running a workstation so that users can connect to it.
   ///
   /// @Snippet(path: "Workstations_StartWorkstation")
-  public func startWorkstation(
-    withPolling: StartWorkstationRequest, options: GoogleGax.RequestOptions
+  public func startWorkstationPollingUntilDone(
+    request: StartWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Workstation>.State in
       return try op._extractStatus(Workstation.self)
     }
-    let rawOp = try await self.startWorkstation(request: withPolling, options: options)
+    let rawOp = try await self.startWorkstation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       let op = try await self.getOperation(
@@ -479,15 +479,15 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// Stops running a workstation, reducing costs.
   ///
   /// @Snippet(path: "Workstations_StopWorkstation")
-  public func stopWorkstation(
-    withPolling: StopWorkstationRequest, options: GoogleGax.RequestOptions
+  public func stopWorkstationPollingUntilDone(
+    request: StopWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Workstation>.State in
       return try op._extractStatus(Workstation.self)
     }
-    let rawOp = try await self.stopWorkstation(request: withPolling, options: options)
+    let rawOp = try await self.stopWorkstation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       let op = try await self.getOperation(
@@ -605,110 +605,110 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol WorkstationsProtocol: Sendable {
     /// See `WorkstationsClient.createWorkstationCluster`.
-    func createWorkstationCluster(withPolling: CreateWorkstationClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkstationCluster>
+    func createWorkstationClusterPollingUntilDone(request: CreateWorkstationClusterRequest)
+      async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.createWorkstationCluster`.
-    func createWorkstationCluster(
+    func createWorkstationClusterPollingUntilDone(
       parent: Swift.String,
       workstationCluster: WorkstationCluster?,
       workstationClusterId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.updateWorkstationCluster`.
-    func updateWorkstationCluster(withPolling: UpdateWorkstationClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkstationCluster>
+    func updateWorkstationClusterPollingUntilDone(request: UpdateWorkstationClusterRequest)
+      async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.updateWorkstationCluster`.
-    func updateWorkstationCluster(
+    func updateWorkstationClusterPollingUntilDone(
       workstationCluster: WorkstationCluster?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.deleteWorkstationCluster`.
-    func deleteWorkstationCluster(withPolling: DeleteWorkstationClusterRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkstationCluster>
+    func deleteWorkstationClusterPollingUntilDone(request: DeleteWorkstationClusterRequest)
+      async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.deleteWorkstationCluster`.
-    func deleteWorkstationCluster(
+    func deleteWorkstationClusterPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.createWorkstationConfig`.
-    func createWorkstationConfig(withPolling: CreateWorkstationConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkstationConfig>
+    func createWorkstationConfigPollingUntilDone(request: CreateWorkstationConfigRequest)
+      async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.createWorkstationConfig`.
-    func createWorkstationConfig(
+    func createWorkstationConfigPollingUntilDone(
       parent: Swift.String,
       workstationConfig: WorkstationConfig?,
       workstationConfigId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.updateWorkstationConfig`.
-    func updateWorkstationConfig(withPolling: UpdateWorkstationConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkstationConfig>
+    func updateWorkstationConfigPollingUntilDone(request: UpdateWorkstationConfigRequest)
+      async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.updateWorkstationConfig`.
-    func updateWorkstationConfig(
+    func updateWorkstationConfigPollingUntilDone(
       workstationConfig: WorkstationConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.deleteWorkstationConfig`.
-    func deleteWorkstationConfig(withPolling: DeleteWorkstationConfigRequest) async throws
-      -> any GoogleGax.PollableOperation<WorkstationConfig>
+    func deleteWorkstationConfigPollingUntilDone(request: DeleteWorkstationConfigRequest)
+      async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.deleteWorkstationConfig`.
-    func deleteWorkstationConfig(
+    func deleteWorkstationConfigPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.createWorkstation`.
-    func createWorkstation(withPolling: CreateWorkstationRequest) async throws -> any GoogleGax
-      .PollableOperation<Workstation>
+    func createWorkstationPollingUntilDone(request: CreateWorkstationRequest) async throws
+      -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.createWorkstation`.
-    func createWorkstation(
+    func createWorkstationPollingUntilDone(
       parent: Swift.String,
       workstation: Workstation?,
       workstationId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.updateWorkstation`.
-    func updateWorkstation(withPolling: UpdateWorkstationRequest) async throws -> any GoogleGax
-      .PollableOperation<Workstation>
+    func updateWorkstationPollingUntilDone(request: UpdateWorkstationRequest) async throws
+      -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.updateWorkstation`.
-    func updateWorkstation(
+    func updateWorkstationPollingUntilDone(
       workstation: Workstation?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.deleteWorkstation`.
-    func deleteWorkstation(withPolling: DeleteWorkstationRequest) async throws -> any GoogleGax
-      .PollableOperation<Workstation>
+    func deleteWorkstationPollingUntilDone(request: DeleteWorkstationRequest) async throws
+      -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.deleteWorkstation`.
-    func deleteWorkstation(
+    func deleteWorkstationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.startWorkstation`.
-    func startWorkstation(withPolling: StartWorkstationRequest) async throws -> any GoogleGax
-      .PollableOperation<Workstation>
+    func startWorkstationPollingUntilDone(request: StartWorkstationRequest) async throws
+      -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.startWorkstation`.
-    func startWorkstation(
+    func startWorkstationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.stopWorkstation`.
-    func stopWorkstation(withPolling: StopWorkstationRequest) async throws -> any GoogleGax
-      .PollableOperation<Workstation>
+    func stopWorkstationPollingUntilDone(request: StopWorkstationRequest) async throws
+      -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.stopWorkstation`.
-    func stopWorkstation(
+    func stopWorkstationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
@@ -728,8 +728,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.createWorkstationCluster`.
-    func createWorkstationCluster(
-      withPolling: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
+    func createWorkstationClusterPollingUntilDone(
+      request: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.updateWorkstationCluster`.
@@ -738,8 +738,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.updateWorkstationCluster`.
-    func updateWorkstationCluster(
-      withPolling: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
+    func updateWorkstationClusterPollingUntilDone(
+      request: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.deleteWorkstationCluster`.
@@ -748,8 +748,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.deleteWorkstationCluster`.
-    func deleteWorkstationCluster(
-      withPolling: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
+    func deleteWorkstationClusterPollingUntilDone(
+      request: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.getWorkstationConfig`.
@@ -773,8 +773,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.createWorkstationConfig`.
-    func createWorkstationConfig(
-      withPolling: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
+    func createWorkstationConfigPollingUntilDone(
+      request: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.updateWorkstationConfig`.
@@ -783,8 +783,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.updateWorkstationConfig`.
-    func updateWorkstationConfig(
-      withPolling: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
+    func updateWorkstationConfigPollingUntilDone(
+      request: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.deleteWorkstationConfig`.
@@ -793,8 +793,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.deleteWorkstationConfig`.
-    func deleteWorkstationConfig(
-      withPolling: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
+    func deleteWorkstationConfigPollingUntilDone(
+      request: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.getWorkstation`.
@@ -818,8 +818,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.createWorkstation`.
-    func createWorkstation(
-      withPolling: CreateWorkstationRequest, options: GoogleGax.RequestOptions
+    func createWorkstationPollingUntilDone(
+      request: CreateWorkstationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.updateWorkstation`.
@@ -828,8 +828,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.updateWorkstation`.
-    func updateWorkstation(
-      withPolling: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
+    func updateWorkstationPollingUntilDone(
+      request: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.deleteWorkstation`.
@@ -838,8 +838,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.deleteWorkstation`.
-    func deleteWorkstation(
-      withPolling: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
+    func deleteWorkstationPollingUntilDone(
+      request: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.startWorkstation`.
@@ -848,8 +848,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.startWorkstation`.
-    func startWorkstation(
-      withPolling: StartWorkstationRequest, options: GoogleGax.RequestOptions
+    func startWorkstationPollingUntilDone(
+      request: StartWorkstationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.stopWorkstation`.
@@ -858,8 +858,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkstationsClient.stopWorkstation`.
-    func stopWorkstation(
-      withPolling: StopWorkstationRequest, options: GoogleGax.RequestOptions
+    func stopWorkstationPollingUntilDone(
+      request: StopWorkstationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.generateAccessToken`.
@@ -977,14 +977,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWorkstationCluster(withPolling: CreateWorkstationClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkstationCluster>
+  public func createWorkstationClusterPollingUntilDone(request: CreateWorkstationClusterRequest)
+    async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
   {
-    try await self.createWorkstationCluster(withPolling: withPolling, options: .init())
+    try await self.createWorkstationClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWorkstationCluster(
-    withPolling: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
+  public func createWorkstationClusterPollingUntilDone(
+    request: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -993,7 +993,7 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWorkstationCluster(
+  public func createWorkstationClusterPollingUntilDone(
     parent: Swift.String,
     workstationCluster: WorkstationCluster?,
     workstationClusterId: Swift.String,
@@ -1003,7 +1003,7 @@ extension Clients.WorkstationsProtocol {
       $0.workstationCluster = workstationCluster
       $0.workstationClusterId = workstationClusterId
     }
-    return try await self.createWorkstationCluster(withPolling: request)
+    return try await self.createWorkstationClusterPollingUntilDone(request: request)
   }
 
   public func updateWorkstationCluster(request: UpdateWorkstationClusterRequest) async throws
@@ -1018,14 +1018,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateWorkstationCluster(withPolling: UpdateWorkstationClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkstationCluster>
+  public func updateWorkstationClusterPollingUntilDone(request: UpdateWorkstationClusterRequest)
+    async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
   {
-    try await self.updateWorkstationCluster(withPolling: withPolling, options: .init())
+    try await self.updateWorkstationClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateWorkstationCluster(
-    withPolling: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
+  public func updateWorkstationClusterPollingUntilDone(
+    request: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1034,7 +1034,7 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateWorkstationCluster(
+  public func updateWorkstationClusterPollingUntilDone(
     workstationCluster: WorkstationCluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
@@ -1042,7 +1042,7 @@ extension Clients.WorkstationsProtocol {
       $0.workstationCluster = workstationCluster
       $0.updateMask = updateMask
     }
-    return try await self.updateWorkstationCluster(withPolling: request)
+    return try await self.updateWorkstationClusterPollingUntilDone(request: request)
   }
 
   public func deleteWorkstationCluster(request: DeleteWorkstationClusterRequest) async throws
@@ -1057,14 +1057,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWorkstationCluster(withPolling: DeleteWorkstationClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkstationCluster>
+  public func deleteWorkstationClusterPollingUntilDone(request: DeleteWorkstationClusterRequest)
+    async throws -> any GoogleGax.PollableOperation<WorkstationCluster>
   {
-    try await self.deleteWorkstationCluster(withPolling: withPolling, options: .init())
+    try await self.deleteWorkstationClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWorkstationCluster(
-    withPolling: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkstationClusterPollingUntilDone(
+    request: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationCluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1073,13 +1073,13 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWorkstationCluster(
+  public func deleteWorkstationClusterPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<WorkstationCluster> {
     let request = DeleteWorkstationClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteWorkstationCluster(withPolling: request)
+    return try await self.deleteWorkstationClusterPollingUntilDone(request: request)
   }
 
   public func getWorkstationConfig(request: GetWorkstationConfigRequest) async throws
@@ -1202,14 +1202,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWorkstationConfig(withPolling: CreateWorkstationConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkstationConfig>
+  public func createWorkstationConfigPollingUntilDone(request: CreateWorkstationConfigRequest)
+    async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
   {
-    try await self.createWorkstationConfig(withPolling: withPolling, options: .init())
+    try await self.createWorkstationConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWorkstationConfig(
-    withPolling: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
+  public func createWorkstationConfigPollingUntilDone(
+    request: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1218,7 +1218,7 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWorkstationConfig(
+  public func createWorkstationConfigPollingUntilDone(
     parent: Swift.String,
     workstationConfig: WorkstationConfig?,
     workstationConfigId: Swift.String,
@@ -1228,7 +1228,7 @@ extension Clients.WorkstationsProtocol {
       $0.workstationConfig = workstationConfig
       $0.workstationConfigId = workstationConfigId
     }
-    return try await self.createWorkstationConfig(withPolling: request)
+    return try await self.createWorkstationConfigPollingUntilDone(request: request)
   }
 
   public func updateWorkstationConfig(request: UpdateWorkstationConfigRequest) async throws
@@ -1243,14 +1243,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateWorkstationConfig(withPolling: UpdateWorkstationConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkstationConfig>
+  public func updateWorkstationConfigPollingUntilDone(request: UpdateWorkstationConfigRequest)
+    async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
   {
-    try await self.updateWorkstationConfig(withPolling: withPolling, options: .init())
+    try await self.updateWorkstationConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateWorkstationConfig(
-    withPolling: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
+  public func updateWorkstationConfigPollingUntilDone(
+    request: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1259,7 +1259,7 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateWorkstationConfig(
+  public func updateWorkstationConfigPollingUntilDone(
     workstationConfig: WorkstationConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
@@ -1267,7 +1267,7 @@ extension Clients.WorkstationsProtocol {
       $0.workstationConfig = workstationConfig
       $0.updateMask = updateMask
     }
-    return try await self.updateWorkstationConfig(withPolling: request)
+    return try await self.updateWorkstationConfigPollingUntilDone(request: request)
   }
 
   public func deleteWorkstationConfig(request: DeleteWorkstationConfigRequest) async throws
@@ -1282,14 +1282,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWorkstationConfig(withPolling: DeleteWorkstationConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkstationConfig>
+  public func deleteWorkstationConfigPollingUntilDone(request: DeleteWorkstationConfigRequest)
+    async throws -> any GoogleGax.PollableOperation<WorkstationConfig>
   {
-    try await self.deleteWorkstationConfig(withPolling: withPolling, options: .init())
+    try await self.deleteWorkstationConfigPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWorkstationConfig(
-    withPolling: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkstationConfigPollingUntilDone(
+    request: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<WorkstationConfig>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1298,13 +1298,13 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWorkstationConfig(
+  public func deleteWorkstationConfigPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<WorkstationConfig> {
     let request = DeleteWorkstationConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteWorkstationConfig(withPolling: request)
+    return try await self.deleteWorkstationConfigPollingUntilDone(request: request)
   }
 
   public func getWorkstation(request: GetWorkstationRequest) async throws
@@ -1426,14 +1426,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createWorkstation(withPolling: CreateWorkstationRequest) async throws -> any GoogleGax
-    .PollableOperation<Workstation>
+  public func createWorkstationPollingUntilDone(request: CreateWorkstationRequest) async throws
+    -> any GoogleGax.PollableOperation<Workstation>
   {
-    try await self.createWorkstation(withPolling: withPolling, options: .init())
+    try await self.createWorkstationPollingUntilDone(request: request, options: .init())
   }
 
-  public func createWorkstation(
-    withPolling: CreateWorkstationRequest, options: GoogleGax.RequestOptions
+  public func createWorkstationPollingUntilDone(
+    request: CreateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1442,7 +1442,7 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createWorkstation(
+  public func createWorkstationPollingUntilDone(
     parent: Swift.String,
     workstation: Workstation?,
     workstationId: Swift.String,
@@ -1452,7 +1452,7 @@ extension Clients.WorkstationsProtocol {
       $0.workstation = workstation
       $0.workstationId = workstationId
     }
-    return try await self.createWorkstation(withPolling: request)
+    return try await self.createWorkstationPollingUntilDone(request: request)
   }
 
   public func updateWorkstation(request: UpdateWorkstationRequest) async throws
@@ -1467,14 +1467,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateWorkstation(withPolling: UpdateWorkstationRequest) async throws -> any GoogleGax
-    .PollableOperation<Workstation>
+  public func updateWorkstationPollingUntilDone(request: UpdateWorkstationRequest) async throws
+    -> any GoogleGax.PollableOperation<Workstation>
   {
-    try await self.updateWorkstation(withPolling: withPolling, options: .init())
+    try await self.updateWorkstationPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateWorkstation(
-    withPolling: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
+  public func updateWorkstationPollingUntilDone(
+    request: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1483,7 +1483,7 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateWorkstation(
+  public func updateWorkstationPollingUntilDone(
     workstation: Workstation?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
@@ -1491,7 +1491,7 @@ extension Clients.WorkstationsProtocol {
       $0.workstation = workstation
       $0.updateMask = updateMask
     }
-    return try await self.updateWorkstation(withPolling: request)
+    return try await self.updateWorkstationPollingUntilDone(request: request)
   }
 
   public func deleteWorkstation(request: DeleteWorkstationRequest) async throws
@@ -1506,14 +1506,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteWorkstation(withPolling: DeleteWorkstationRequest) async throws -> any GoogleGax
-    .PollableOperation<Workstation>
+  public func deleteWorkstationPollingUntilDone(request: DeleteWorkstationRequest) async throws
+    -> any GoogleGax.PollableOperation<Workstation>
   {
-    try await self.deleteWorkstation(withPolling: withPolling, options: .init())
+    try await self.deleteWorkstationPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteWorkstation(
-    withPolling: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
+  public func deleteWorkstationPollingUntilDone(
+    request: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1522,13 +1522,13 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteWorkstation(
+  public func deleteWorkstationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let request = DeleteWorkstationRequest().with {
       $0.name = name
     }
-    return try await self.deleteWorkstation(withPolling: request)
+    return try await self.deleteWorkstationPollingUntilDone(request: request)
   }
 
   public func startWorkstation(request: StartWorkstationRequest) async throws
@@ -1543,14 +1543,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func startWorkstation(withPolling: StartWorkstationRequest) async throws -> any GoogleGax
-    .PollableOperation<Workstation>
+  public func startWorkstationPollingUntilDone(request: StartWorkstationRequest) async throws
+    -> any GoogleGax.PollableOperation<Workstation>
   {
-    try await self.startWorkstation(withPolling: withPolling, options: .init())
+    try await self.startWorkstationPollingUntilDone(request: request, options: .init())
   }
 
-  public func startWorkstation(
-    withPolling: StartWorkstationRequest, options: GoogleGax.RequestOptions
+  public func startWorkstationPollingUntilDone(
+    request: StartWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1559,13 +1559,13 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func startWorkstation(
+  public func startWorkstationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let request = StartWorkstationRequest().with {
       $0.name = name
     }
-    return try await self.startWorkstation(withPolling: request)
+    return try await self.startWorkstationPollingUntilDone(request: request)
   }
 
   public func stopWorkstation(request: StopWorkstationRequest) async throws
@@ -1580,14 +1580,14 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func stopWorkstation(withPolling: StopWorkstationRequest) async throws -> any GoogleGax
-    .PollableOperation<Workstation>
+  public func stopWorkstationPollingUntilDone(request: StopWorkstationRequest) async throws
+    -> any GoogleGax.PollableOperation<Workstation>
   {
-    try await self.stopWorkstation(withPolling: withPolling, options: .init())
+    try await self.stopWorkstationPollingUntilDone(request: request, options: .init())
   }
 
-  public func stopWorkstation(
-    withPolling: StopWorkstationRequest, options: GoogleGax.RequestOptions
+  public func stopWorkstationPollingUntilDone(
+    request: StopWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workstation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1596,13 +1596,13 @@ extension Clients.WorkstationsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func stopWorkstation(
+  public func stopWorkstationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Workstation> {
     let request = StopWorkstationRequest().with {
       $0.name = name
     }
-    return try await self.stopWorkstation(withPolling: request)
+    return try await self.stopWorkstationPollingUntilDone(request: request)
   }
 
   public func generateAccessToken(request: GenerateAccessTokenRequest) async throws

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BigtableTableAdminClient) async throws {
-  let poller = try await client.snapshotTable(
-    withPolling: SnapshotTableRequest()
+  let poller = try await client.snapshotTablePollingUntilDone(
+    request: SnapshotTableRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

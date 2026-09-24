@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BareMetalSolutionClient, projectId: String, locationId: String, volumeId: String
 ) async throws {
-  let poller = try await client.updateVolume(
-    withPolling: UpdateVolumeRequest()
+  let poller = try await client.updateVolumePollingUntilDone(
+    request: UpdateVolumeRequest()
       .with {
         $0.volume = Volume().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"

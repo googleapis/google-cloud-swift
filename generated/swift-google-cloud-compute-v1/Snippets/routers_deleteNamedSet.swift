@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let poller = try await client.deleteNamedSet(
-      withPolling: RoutersClient.DeleteNamedSetRequest()
+    let poller = try await client.deleteNamedSetPollingUntilDone(
+      request: RoutersClient.DeleteNamedSetRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

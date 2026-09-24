@@ -28,8 +28,8 @@
     client: DatasetServiceClient, projectId: String, locationId: String, datasetId: String,
     datasetVersionId: String
   ) async throws {
-    let poller = try await client.deleteDatasetVersion(
-      withPolling: DeleteDatasetVersionRequest()
+    let poller = try await client.deleteDatasetVersionPollingUntilDone(
+      request: DeleteDatasetVersionRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)/datasetVersions/\(datasetVersionId)"

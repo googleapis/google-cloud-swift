@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createUrlList(
-    withPolling: CreateUrlListRequest()
+  let poller = try await client.createUrlListPollingUntilDone(
+    request: CreateUrlListRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.urlList = UrlList() /* .with { ... } */

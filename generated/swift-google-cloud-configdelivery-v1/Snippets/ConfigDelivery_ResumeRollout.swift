@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigDeliveryClient) async throws {
-  let poller = try await client.resumeRollout(
-    withPolling: ResumeRolloutRequest()
+  let poller = try await client.resumeRolloutPollingUntilDone(
+    request: ResumeRolloutRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

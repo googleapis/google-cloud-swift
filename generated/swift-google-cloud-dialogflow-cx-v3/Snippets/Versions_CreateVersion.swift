@@ -26,8 +26,8 @@
   func sample(
     client: VersionsClient, projectId: String, locationId: String, agentId: String, flowId: String
   ) async throws {
-    let poller = try await client.createVersion(
-      withPolling: CreateVersionRequest()
+    let poller = try await client.createVersionPollingUntilDone(
+      request: CreateVersionRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/flows/\(flowId)"

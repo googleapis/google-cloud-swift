@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createNetworkPolicy(
-    withPolling: CreateNetworkPolicyRequest()
+  let poller = try await client.createNetworkPolicyPollingUntilDone(
+    request: CreateNetworkPolicyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.networkPolicy = NetworkPolicy() /* .with { ... } */

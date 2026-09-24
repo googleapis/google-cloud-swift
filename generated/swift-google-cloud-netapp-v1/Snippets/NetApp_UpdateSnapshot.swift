@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String, snapshotId: String
 ) async throws {
-  let poller = try await client.updateSnapshot(
-    withPolling: UpdateSnapshotRequest()
+  let poller = try await client.updateSnapshotPollingUntilDone(
+    request: UpdateSnapshotRequest()
       .with {
         $0.snapshot = Snapshot().with {
           $0.name =

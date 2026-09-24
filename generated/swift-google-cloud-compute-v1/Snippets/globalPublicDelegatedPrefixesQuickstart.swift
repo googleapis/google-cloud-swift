@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.GlobalPublicDelegatedPrefixesClient()
-    let poller = try await client.delete(
-      withPolling: GlobalPublicDelegatedPrefixesClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: GlobalPublicDelegatedPrefixesClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

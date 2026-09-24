@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String
 ) async throws {
-  let poller = try await client.updateDataProduct(
-    withPolling: UpdateDataProductRequest()
+  let poller = try await client.updateDataProductPollingUntilDone(
+    request: UpdateDataProductRequest()
       .with {
         $0.dataProduct = DataProduct().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/dataProducts/\(dataProductId)"

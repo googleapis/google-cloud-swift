@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String, snapshotId: String
 ) async throws {
-  let poller = try await client.deleteSnapshot(
-    withPolling: DeleteSnapshotRequest()
+  let poller = try await client.deleteSnapshotPollingUntilDone(
+    request: DeleteSnapshotRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)/snapshots/\(snapshotId)"

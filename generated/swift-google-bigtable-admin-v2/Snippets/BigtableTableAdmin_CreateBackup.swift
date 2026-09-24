@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let poller = try await client.createBackup(
-    withPolling: CreateBackupRequest()
+  let poller = try await client.createBackupPollingUntilDone(
+    request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
         $0.backupId = "[replace with a valid ID]"

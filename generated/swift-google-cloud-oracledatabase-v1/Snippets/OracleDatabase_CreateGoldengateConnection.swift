@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGoldengateConnection(
-    withPolling: CreateGoldengateConnectionRequest()
+  let poller = try await client.createGoldengateConnectionPollingUntilDone(
+    request: CreateGoldengateConnectionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.goldengateConnection = GoldengateConnection() /* .with { ... } */

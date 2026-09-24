@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(client: SecurityPostureClient, organizationId: String, locationId: String) async throws
 {
-  let poller = try await client.createPosture(
-    withPolling: CreatePostureRequest()
+  let poller = try await client.createPosturePollingUntilDone(
+    request: CreatePostureRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.postureId = "[replace with a valid ID]"

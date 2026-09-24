@@ -26,8 +26,8 @@ func sample(
   client: DeveloperConnectClient, projectId: String, locationId: String, accountConnectorId: String,
   userId: String
 ) async throws {
-  let poller = try await client.deleteUser(
-    withPolling: DeleteUserRequest()
+  let poller = try await client.deleteUserPollingUntilDone(
+    request: DeleteUserRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/accountConnectors/\(accountConnectorId)/users/\(userId)"

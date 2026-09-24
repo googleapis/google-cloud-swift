@@ -28,8 +28,8 @@
     client: TensorboardServiceClient, projectId: String, locationId: String, tensorboardId: String,
     experimentId: String, runId: String
   ) async throws {
-    let poller = try await client.deleteTensorboardRun(
-      withPolling: DeleteTensorboardRunRequest()
+    let poller = try await client.deleteTensorboardRunPollingUntilDone(
+      request: DeleteTensorboardRunRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/tensorboards/\(tensorboardId)/experiments/\(experimentId)/runs/\(runId)"

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: InterceptClient, projectId: String, locationId: String, interceptDeploymentGroupId: String
 ) async throws {
-  let poller = try await client.updateInterceptDeploymentGroup(
-    withPolling: UpdateInterceptDeploymentGroupRequest()
+  let poller = try await client.updateInterceptDeploymentGroupPollingUntilDone(
+    request: UpdateInterceptDeploymentGroupRequest()
       .with {
         $0.interceptDeploymentGroup = InterceptDeploymentGroup().with {
           $0.name =

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: ClientConnectorServicesServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createClientConnectorService(
-    withPolling: CreateClientConnectorServiceRequest()
+  let poller = try await client.createClientConnectorServicePollingUntilDone(
+    request: CreateClientConnectorServiceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.clientConnectorService = ClientConnectorService() /* .with { ... } */

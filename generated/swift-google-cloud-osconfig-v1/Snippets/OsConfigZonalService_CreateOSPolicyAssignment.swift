@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigZonalServiceClient, parent: String) async throws {
-  let poller = try await client.createOspolicyAssignment(
-    withPolling: CreateOSPolicyAssignmentRequest()
+  let poller = try await client.createOspolicyAssignmentPollingUntilDone(
+    request: CreateOSPolicyAssignmentRequest()
       .with {
         $0.parent = "\(parent)"
         $0.osPolicyAssignment = OSPolicyAssignment() /* .with { ... } */

@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: FlowsClient) async throws {
-    let poller = try await client.importFlow(
-      withPolling: ImportFlowRequest()
+    let poller = try await client.importFlowPollingUntilDone(
+      request: ImportFlowRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

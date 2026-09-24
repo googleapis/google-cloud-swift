@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String
 ) async throws {
-  let poller = try await client.createSchemaBundle(
-    withPolling: CreateSchemaBundleRequest()
+  let poller = try await client.createSchemaBundlePollingUntilDone(
+    request: CreateSchemaBundleRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/tables/\(tableId)"
         $0.schemaBundle = SchemaBundle() /* .with { ... } */

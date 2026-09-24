@@ -26,8 +26,8 @@ func sample(
   client: HsmManagementClient, projectId: String, locationId: String,
   singleTenantHsmInstanceId: String
 ) async throws {
-  let poller = try await client.createSingleTenantHsmInstanceProposal(
-    withPolling: CreateSingleTenantHsmInstanceProposalRequest()
+  let poller = try await client.createSingleTenantHsmInstanceProposalPollingUntilDone(
+    request: CreateSingleTenantHsmInstanceProposalRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/singleTenantHsmInstances/\(singleTenantHsmInstanceId)"

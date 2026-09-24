@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ServiceManagerClient) async throws {
-  let poller = try await client.deleteService(
-    withPolling: DeleteServiceRequest()
+  let poller = try await client.deleteServicePollingUntilDone(
+    request: DeleteServiceRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

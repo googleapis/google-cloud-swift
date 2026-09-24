@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudDeployClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createDeployPolicy(
-    withPolling: CreateDeployPolicyRequest()
+  let poller = try await client.createDeployPolicyPollingUntilDone(
+    request: CreateDeployPolicyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.deployPolicy = DeployPolicy() /* .with { ... } */

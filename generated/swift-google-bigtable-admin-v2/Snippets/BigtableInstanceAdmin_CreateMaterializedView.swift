@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(client: BigtableInstanceAdminClient, projectId: String, instanceId: String) async throws
 {
-  let poller = try await client.createMaterializedView(
-    withPolling: CreateMaterializedViewRequest()
+  let poller = try await client.createMaterializedViewPollingUntilDone(
+    request: CreateMaterializedViewRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)"
         $0.materializedView = MaterializedView() /* .with { ... } */

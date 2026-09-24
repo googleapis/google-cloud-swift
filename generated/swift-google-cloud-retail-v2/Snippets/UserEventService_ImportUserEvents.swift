@@ -22,8 +22,8 @@ import GoogleApi
 import GoogleLongRunning
 
 func sample(client: UserEventServiceClient) async throws {
-  let poller = try await client.importUserEvents(
-    withPolling: ImportUserEventsRequest()
+  let poller = try await client.importUserEventsPollingUntilDone(
+    request: ImportUserEventsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

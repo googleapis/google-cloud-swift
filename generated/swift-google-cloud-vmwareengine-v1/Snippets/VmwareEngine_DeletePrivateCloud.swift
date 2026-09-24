@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.deletePrivateCloud(
-    withPolling: DeletePrivateCloudRequest()
+  let poller = try await client.deletePrivateCloudPollingUntilDone(
+    request: DeletePrivateCloudRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
       }

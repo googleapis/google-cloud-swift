@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGrpcRoute(
-    withPolling: CreateGrpcRouteRequest()
+  let poller = try await client.createGrpcRoutePollingUntilDone(
+    request: CreateGrpcRouteRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.grpcRoute = GrpcRoute() /* .with { ... } */

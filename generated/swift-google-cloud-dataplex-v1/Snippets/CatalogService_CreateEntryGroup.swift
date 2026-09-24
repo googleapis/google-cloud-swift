@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient, parent: String) async throws {
-  let poller = try await client.createEntryGroup(
-    withPolling: CreateEntryGroupRequest()
+  let poller = try await client.createEntryGroupPollingUntilDone(
+    request: CreateEntryGroupRequest()
       .with {
         $0.parent = "\(parent)"
         $0.entryGroup = EntryGroup() /* .with { ... } */

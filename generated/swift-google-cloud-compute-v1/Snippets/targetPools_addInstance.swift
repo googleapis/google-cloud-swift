@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetPoolsClient) async throws {
-    let poller = try await client.addInstance(
-      withPolling: TargetPoolsClient.AddInstanceRequest()
+    let poller = try await client.addInstancePollingUntilDone(
+      request: TargetPoolsClient.AddInstanceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient) async throws {
-  let poller = try await client.encryptVolumes(
-    withPolling: EncryptVolumesRequest()
+  let poller = try await client.encryptVolumesPollingUntilDone(
+    request: EncryptVolumesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

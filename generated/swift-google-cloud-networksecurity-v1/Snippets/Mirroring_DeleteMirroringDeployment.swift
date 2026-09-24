@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: MirroringClient, projectId: String, locationId: String, mirroringDeploymentId: String
 ) async throws {
-  let poller = try await client.deleteMirroringDeployment(
-    withPolling: DeleteMirroringDeploymentRequest()
+  let poller = try await client.deleteMirroringDeploymentPollingUntilDone(
+    request: DeleteMirroringDeploymentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/mirroringDeployments/\(mirroringDeploymentId)"

@@ -60,15 +60,15 @@
     /// selected location.
     ///
     /// @Snippet(path: "CmekConfigService_UpdateCmekConfig")
-    public func updateCmekConfig(
-      withPolling: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+    public func updateCmekConfigPollingUntilDone(
+      request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CmekConfig> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<CmekConfig>.State in
         return try op._extractStatus(CmekConfig.self)
       }
-      let rawOp = try await self.updateCmekConfig(request: withPolling, options: options)
+      let rawOp = try await self.updateCmekConfig(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<CmekConfig>.State in
         let op = try await self.getOperation(
@@ -118,15 +118,15 @@
     /// De-provisions a CmekConfig.
     ///
     /// @Snippet(path: "CmekConfigService_DeleteCmekConfig")
-    public func deleteCmekConfig(
-      withPolling: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
+    public func deleteCmekConfigPollingUntilDone(
+      request: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteCmekConfig(request: withPolling, options: options)
+      let rawOp = try await self.deleteCmekConfig(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -183,20 +183,20 @@
     /// and pass a mock implementation in your tests.
     public protocol CmekConfigServiceProtocol: Sendable {
       /// See `CmekConfigServiceClient.updateCmekConfig`.
-      func updateCmekConfig(withPolling: UpdateCmekConfigRequest) async throws -> any GoogleGax
-        .PollableOperation<CmekConfig>
+      func updateCmekConfigPollingUntilDone(request: UpdateCmekConfigRequest) async throws
+        -> any GoogleGax.PollableOperation<CmekConfig>
 
       /// See `CmekConfigServiceClient.updateCmekConfig`.
-      func updateCmekConfig(
+      func updateCmekConfigPollingUntilDone(
         config: CmekConfig?,
       ) async throws -> any GoogleGax.PollableOperation<CmekConfig>
 
       /// See `CmekConfigServiceClient.deleteCmekConfig`.
-      func deleteCmekConfig(withPolling: DeleteCmekConfigRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteCmekConfigPollingUntilDone(request: DeleteCmekConfigRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `CmekConfigServiceClient.deleteCmekConfig`.
-      func deleteCmekConfig(
+      func deleteCmekConfigPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -206,8 +206,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `CmekConfigServiceClient.updateCmekConfig`.
-      func updateCmekConfig(
-        withPolling: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+      func updateCmekConfigPollingUntilDone(
+        request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<CmekConfig>
 
       /// See `CmekConfigServiceClient.getCmekConfig`.
@@ -226,8 +226,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `CmekConfigServiceClient.deleteCmekConfig`.
-      func deleteCmekConfig(
-        withPolling: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
+      func deleteCmekConfigPollingUntilDone(
+        request: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `CmekConfigServiceClient.listOperations`.
@@ -256,14 +256,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateCmekConfig(withPolling: UpdateCmekConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<CmekConfig>
+    public func updateCmekConfigPollingUntilDone(request: UpdateCmekConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<CmekConfig>
     {
-      try await self.updateCmekConfig(withPolling: withPolling, options: .init())
+      try await self.updateCmekConfigPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateCmekConfig(
-      withPolling: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+    public func updateCmekConfigPollingUntilDone(
+      request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CmekConfig> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<CmekConfig>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -272,13 +272,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateCmekConfig(
+    public func updateCmekConfigPollingUntilDone(
       config: CmekConfig?,
     ) async throws -> any GoogleGax.PollableOperation<CmekConfig> {
       let request = UpdateCmekConfigRequest().with {
         $0.config = config
       }
-      return try await self.updateCmekConfig(withPolling: request)
+      return try await self.updateCmekConfigPollingUntilDone(request: request)
     }
 
     public func getCmekConfig(request: GetCmekConfigRequest) async throws
@@ -335,14 +335,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteCmekConfig(withPolling: DeleteCmekConfigRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteCmekConfigPollingUntilDone(request: DeleteCmekConfigRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteCmekConfig(withPolling: withPolling, options: .init())
+      try await self.deleteCmekConfigPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteCmekConfig(
-      withPolling: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
+    public func deleteCmekConfigPollingUntilDone(
+      request: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -351,13 +351,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteCmekConfig(
+    public func deleteCmekConfigPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteCmekConfigRequest().with {
         $0.name = name
       }
-      return try await self.deleteCmekConfig(withPolling: request)
+      return try await self.deleteCmekConfigPollingUntilDone(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

@@ -21,8 +21,8 @@ import GoogleCloudRetailV2
 import GoogleLongRunning
 
 func sample(client: CompletionServiceClient) async throws {
-  let poller = try await client.importCompletionData(
-    withPolling: ImportCompletionDataRequest()
+  let poller = try await client.importCompletionDataPollingUntilDone(
+    request: ImportCompletionDataRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

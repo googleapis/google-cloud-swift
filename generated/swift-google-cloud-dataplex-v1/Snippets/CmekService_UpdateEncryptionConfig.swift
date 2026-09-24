@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CmekServiceClient, organizationId: String, locationId: String, encryptionConfigId: String
 ) async throws {
-  let poller = try await client.updateEncryptionConfig(
-    withPolling: UpdateEncryptionConfigRequest()
+  let poller = try await client.updateEncryptionConfigPollingUntilDone(
+    request: UpdateEncryptionConfigRequest()
       .with {
         $0.encryptionConfig = EncryptionConfig().with {
           $0.name =

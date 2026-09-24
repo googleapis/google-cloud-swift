@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: EventarcClient, projectId: String, locationId: String, googleApiSourceId: String
 ) async throws {
-  let poller = try await client.updateGoogleApiSource(
-    withPolling: UpdateGoogleApiSourceRequest()
+  let poller = try await client.updateGoogleApiSourcePollingUntilDone(
+    request: UpdateGoogleApiSourceRequest()
       .with {
         $0.googleApiSource = GoogleApiSource().with {
           $0.name =

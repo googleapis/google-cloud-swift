@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.setMachineResources(
-      withPolling: InstancesClient.SetMachineResourcesRequest()
+    let poller = try await client.setMachineResourcesPollingUntilDone(
+      request: InstancesClient.SetMachineResourcesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

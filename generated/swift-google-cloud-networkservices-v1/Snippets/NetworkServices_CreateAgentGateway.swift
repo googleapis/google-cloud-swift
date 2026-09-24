@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAgentGateway(
-    withPolling: CreateAgentGatewayRequest()
+  let poller = try await client.createAgentGatewayPollingUntilDone(
+    request: CreateAgentGatewayRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.agentGateway = AgentGateway() /* .with { ... } */

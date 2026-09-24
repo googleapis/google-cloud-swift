@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.ProjectsClient()
-    let poller = try await client.disableXpnHost(
-      withPolling: ProjectsClient.DisableXpnHostRequest()
+    let poller = try await client.disableXpnHostPollingUntilDone(
+      request: ProjectsClient.DisableXpnHostRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

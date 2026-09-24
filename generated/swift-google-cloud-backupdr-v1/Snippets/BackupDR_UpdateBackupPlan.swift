@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: BackupDRClient, projectId: String, locationId: String, backupPlanId: String)
   async throws
 {
-  let poller = try await client.updateBackupPlan(
-    withPolling: UpdateBackupPlanRequest()
+  let poller = try await client.updateBackupPlanPollingUntilDone(
+    request: UpdateBackupPlanRequest()
       .with {
         $0.backupPlan = BackupPlan().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/backupPlans/\(backupPlanId)"

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AccessContextManagerClient, accessPolicyId: String, accessLevelId: String)
   async throws
 {
-  let poller = try await client.updateAccessLevel(
-    withPolling: UpdateAccessLevelRequest()
+  let poller = try await client.updateAccessLevelPollingUntilDone(
+    request: UpdateAccessLevelRequest()
       .with {
         $0.accessLevel = AccessLevel().with {
           $0.name = "accessPolicies/\(accessPolicyId)/accessLevels/\(accessLevelId)"

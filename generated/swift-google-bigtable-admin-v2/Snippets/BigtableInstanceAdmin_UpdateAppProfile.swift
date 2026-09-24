@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, appProfileId: String
 ) async throws {
-  let poller = try await client.updateAppProfile(
-    withPolling: UpdateAppProfileRequest()
+  let poller = try await client.updateAppProfilePollingUntilDone(
+    request: UpdateAppProfileRequest()
       .with {
         $0.appProfile = AppProfile().with {
           $0.name = "projects/\(projectId)/instances/\(instanceId)/appProfiles/\(appProfileId)"

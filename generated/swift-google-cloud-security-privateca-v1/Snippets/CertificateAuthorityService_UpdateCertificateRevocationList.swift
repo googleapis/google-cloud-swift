@@ -27,8 +27,8 @@ func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String,
   caPoolId: String, certificateAuthorityId: String, certificateRevocationListId: String
 ) async throws {
-  let poller = try await client.updateCertificateRevocationList(
-    withPolling: UpdateCertificateRevocationListRequest()
+  let poller = try await client.updateCertificateRevocationListPollingUntilDone(
+    request: UpdateCertificateRevocationListRequest()
       .with {
         $0.certificateRevocationList = CertificateRevocationList().with {
           $0.name =

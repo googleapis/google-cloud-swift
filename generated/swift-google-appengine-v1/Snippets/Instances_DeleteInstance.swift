@@ -21,8 +21,8 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: InstancesClient) async throws {
-  let poller = try await client.deleteInstance(
-    withPolling: DeleteInstanceRequest()
+  let poller = try await client.deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest()
       /* set fields using .with { $0... } */
   )
   try await poller.wait()

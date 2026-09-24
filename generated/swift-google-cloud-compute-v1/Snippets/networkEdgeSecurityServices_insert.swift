@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworkEdgeSecurityServicesClient) async throws {
-    let poller = try await client.insert(
-      withPolling: NetworkEdgeSecurityServicesClient.InsertRequest()
+    let poller = try await client.insertPollingUntilDone(
+      request: NetworkEdgeSecurityServicesClient.InsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

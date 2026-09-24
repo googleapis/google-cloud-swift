@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: BackupDRClient, projectId: String, locationId: String, backupPlanAssociationId: String
 ) async throws {
-  let poller = try await client.deleteBackupPlanAssociation(
-    withPolling: DeleteBackupPlanAssociationRequest()
+  let poller = try await client.deleteBackupPlanAssociationPollingUntilDone(
+    request: DeleteBackupPlanAssociationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/backupPlanAssociations/\(backupPlanAssociationId)"

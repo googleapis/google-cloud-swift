@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createBackupVault(
-    withPolling: CreateBackupVaultRequest()
+  let poller = try await client.createBackupVaultPollingUntilDone(
+    request: CreateBackupVaultRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.backupVault = BackupVault() /* .with { ... } */

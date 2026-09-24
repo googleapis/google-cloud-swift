@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String, modelId: String
 ) async throws {
-  let poller = try await client.updateModel(
-    withPolling: UpdateModelRequest()
+  let poller = try await client.updateModelPollingUntilDone(
+    request: UpdateModelRequest()
       .with {
         $0.model = Model().with {
           $0.name =

@@ -127,15 +127,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
   ///
   /// @Snippet(path: "GkeHub_CreateMembership")
-  public func createMembership(
-    withPolling: CreateMembershipRequest, options: GoogleGax.RequestOptions
+  public func createMembershipPollingUntilDone(
+    request: CreateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Membership> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Membership>.State
       in
       return try op._extractStatus(Membership.self)
     }
-    let rawOp = try await self.createMembership(request: withPolling, options: options)
+    let rawOp = try await self.createMembership(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Membership>.State in
       let op = try await self.getOperation(
@@ -162,14 +162,14 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Adds a new Feature.
   ///
   /// @Snippet(path: "GkeHub_CreateFeature")
-  public func createFeature(
-    withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+  public func createFeaturePollingUntilDone(
+    request: CreateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Feature> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Feature>.State in
       return try op._extractStatus(Feature.self)
     }
-    let rawOp = try await self.createFeature(request: withPolling, options: options)
+    let rawOp = try await self.createFeature(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
       let op = try await self.getOperation(
@@ -204,15 +204,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembership")
-  public func deleteMembership(
-    withPolling: DeleteMembershipRequest, options: GoogleGax.RequestOptions
+  public func deleteMembershipPollingUntilDone(
+    request: DeleteMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMembership(request: withPolling, options: options)
+    let rawOp = try await self.deleteMembership(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -239,15 +239,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Removes a Feature.
   ///
   /// @Snippet(path: "GkeHub_DeleteFeature")
-  public func deleteFeature(
-    withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+  public func deleteFeaturePollingUntilDone(
+    request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteFeature(request: withPolling, options: options)
+    let rawOp = try await self.deleteFeature(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -274,15 +274,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates an existing Membership.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembership")
-  public func updateMembership(
-    withPolling: UpdateMembershipRequest, options: GoogleGax.RequestOptions
+  public func updateMembershipPollingUntilDone(
+    request: UpdateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Membership> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Membership>.State
       in
       return try op._extractStatus(Membership.self)
     }
-    let rawOp = try await self.updateMembership(request: withPolling, options: options)
+    let rawOp = try await self.updateMembership(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Membership>.State in
       let op = try await self.getOperation(
@@ -309,14 +309,14 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates an existing Feature.
   ///
   /// @Snippet(path: "GkeHub_UpdateFeature")
-  public func updateFeature(
-    withPolling: UpdateFeatureRequest, options: GoogleGax.RequestOptions
+  public func updateFeaturePollingUntilDone(
+    request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Feature> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Feature>.State in
       return try op._extractStatus(Feature.self)
     }
-    let rawOp = try await self.updateFeature(request: withPolling, options: options)
+    let rawOp = try await self.updateFeature(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
       let op = try await self.getOperation(
@@ -355,14 +355,14 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a fleet.
   ///
   /// @Snippet(path: "GkeHub_CreateFleet")
-  public func createFleet(
-    withPolling: CreateFleetRequest, options: GoogleGax.RequestOptions
+  public func createFleetPollingUntilDone(
+    request: CreateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Fleet>.State in
       return try op._extractStatus(Fleet.self)
     }
-    let rawOp = try await self.createFleet(request: withPolling, options: options)
+    let rawOp = try await self.createFleet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Fleet>.State in
       let op = try await self.getOperation(
@@ -398,14 +398,14 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a fleet.
   ///
   /// @Snippet(path: "GkeHub_UpdateFleet")
-  public func updateFleet(
-    withPolling: UpdateFleetRequest, options: GoogleGax.RequestOptions
+  public func updateFleetPollingUntilDone(
+    request: UpdateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Fleet>.State in
       return try op._extractStatus(Fleet.self)
     }
-    let rawOp = try await self.updateFleet(request: withPolling, options: options)
+    let rawOp = try await self.updateFleet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Fleet>.State in
       let op = try await self.getOperation(
@@ -432,15 +432,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Removes a Fleet. There must be no memberships remaining in the Fleet.
   ///
   /// @Snippet(path: "GkeHub_DeleteFleet")
-  public func deleteFleet(
-    withPolling: DeleteFleetRequest, options: GoogleGax.RequestOptions
+  public func deleteFleetPollingUntilDone(
+    request: DeleteFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteFleet(request: withPolling, options: options)
+    let rawOp = try await self.deleteFleet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -486,15 +486,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_CreateScopeNamespace")
-  public func createScopeNamespace(
-    withPolling: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
+  public func createScopeNamespacePollingUntilDone(
+    request: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Namespace> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Namespace>.State
       in
       return try op._extractStatus(Namespace.self)
     }
-    let rawOp = try await self.createScopeNamespace(request: withPolling, options: options)
+    let rawOp = try await self.createScopeNamespace(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Namespace>.State in
       let op = try await self.getOperation(
@@ -521,15 +521,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
-  public func updateScopeNamespace(
-    withPolling: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
+  public func updateScopeNamespacePollingUntilDone(
+    request: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Namespace> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Namespace>.State
       in
       return try op._extractStatus(Namespace.self)
     }
-    let rawOp = try await self.updateScopeNamespace(request: withPolling, options: options)
+    let rawOp = try await self.updateScopeNamespace(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Namespace>.State in
       let op = try await self.getOperation(
@@ -556,15 +556,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
-  public func deleteScopeNamespace(
-    withPolling: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
+  public func deleteScopeNamespacePollingUntilDone(
+    request: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteScopeNamespace(request: withPolling, options: options)
+    let rawOp = try await self.deleteScopeNamespace(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -609,15 +609,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
-  public func createScopeRbacroleBinding(
-    withPolling: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func createScopeRbacroleBindingPollingUntilDone(
+    request: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       return try op._extractStatus(RBACRoleBinding.self)
     }
-    let rawOp = try await self.createScopeRbacroleBinding(request: withPolling, options: options)
+    let rawOp = try await self.createScopeRbacroleBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       let op = try await self.getOperation(
@@ -644,15 +644,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
-  public func updateScopeRbacroleBinding(
-    withPolling: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func updateScopeRbacroleBindingPollingUntilDone(
+    request: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       return try op._extractStatus(RBACRoleBinding.self)
     }
-    let rawOp = try await self.updateScopeRbacroleBinding(request: withPolling, options: options)
+    let rawOp = try await self.updateScopeRbacroleBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       let op = try await self.getOperation(
@@ -679,15 +679,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
-  public func deleteScopeRbacroleBinding(
-    withPolling: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteScopeRbacroleBindingPollingUntilDone(
+    request: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteScopeRbacroleBinding(request: withPolling, options: options)
+    let rawOp = try await self.deleteScopeRbacroleBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -732,14 +732,14 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Scope.
   ///
   /// @Snippet(path: "GkeHub_CreateScope")
-  public func createScope(
-    withPolling: CreateScopeRequest, options: GoogleGax.RequestOptions
+  public func createScopePollingUntilDone(
+    request: CreateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Scope> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Scope>.State in
       return try op._extractStatus(Scope.self)
     }
-    let rawOp = try await self.createScope(request: withPolling, options: options)
+    let rawOp = try await self.createScope(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Scope>.State in
       let op = try await self.getOperation(
@@ -766,14 +766,14 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a scopes.
   ///
   /// @Snippet(path: "GkeHub_UpdateScope")
-  public func updateScope(
-    withPolling: UpdateScopeRequest, options: GoogleGax.RequestOptions
+  public func updateScopePollingUntilDone(
+    request: UpdateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Scope> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Scope>.State in
       return try op._extractStatus(Scope.self)
     }
-    let rawOp = try await self.updateScope(request: withPolling, options: options)
+    let rawOp = try await self.updateScope(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Scope>.State in
       let op = try await self.getOperation(
@@ -800,15 +800,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Scope.
   ///
   /// @Snippet(path: "GkeHub_DeleteScope")
-  public func deleteScope(
-    withPolling: DeleteScopeRequest, options: GoogleGax.RequestOptions
+  public func deleteScopePollingUntilDone(
+    request: DeleteScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteScope(request: withPolling, options: options)
+    let rawOp = try await self.deleteScope(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -862,15 +862,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateMembershipBinding")
-  public func createMembershipBinding(
-    withPolling: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
+  public func createMembershipBindingPollingUntilDone(
+    request: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MembershipBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MembershipBinding>.State in
       return try op._extractStatus(MembershipBinding.self)
     }
-    let rawOp = try await self.createMembershipBinding(request: withPolling, options: options)
+    let rawOp = try await self.createMembershipBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MembershipBinding>.State in
       let op = try await self.getOperation(
@@ -897,15 +897,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
-  public func updateMembershipBinding(
-    withPolling: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
+  public func updateMembershipBindingPollingUntilDone(
+    request: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MembershipBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MembershipBinding>.State in
       return try op._extractStatus(MembershipBinding.self)
     }
-    let rawOp = try await self.updateMembershipBinding(request: withPolling, options: options)
+    let rawOp = try await self.updateMembershipBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MembershipBinding>.State in
       let op = try await self.getOperation(
@@ -932,15 +932,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
-  public func deleteMembershipBinding(
-    withPolling: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteMembershipBindingPollingUntilDone(
+    request: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMembershipBinding(request: withPolling, options: options)
+    let rawOp = try await self.deleteMembershipBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -985,16 +985,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
-  public func createMembershipRbacroleBinding(
-    withPolling: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func createMembershipRbacroleBindingPollingUntilDone(
+    request: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       return try op._extractStatus(RBACRoleBinding.self)
     }
-    let rawOp = try await self.createMembershipRbacroleBinding(
-      request: withPolling, options: options)
+    let rawOp = try await self.createMembershipRbacroleBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       let op = try await self.getOperation(
@@ -1021,16 +1020,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
-  public func updateMembershipRbacroleBinding(
-    withPolling: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func updateMembershipRbacroleBindingPollingUntilDone(
+    request: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       return try op._extractStatus(RBACRoleBinding.self)
     }
-    let rawOp = try await self.updateMembershipRbacroleBinding(
-      request: withPolling, options: options)
+    let rawOp = try await self.updateMembershipRbacroleBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       let op = try await self.getOperation(
@@ -1057,16 +1055,15 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
-  public func deleteMembershipRbacroleBinding(
-    withPolling: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteMembershipRbacroleBindingPollingUntilDone(
+    request: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteMembershipRbacroleBinding(
-      request: withPolling, options: options)
+    let rawOp = try await self.deleteMembershipRbacroleBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -1153,243 +1150,246 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol GkeHubProtocol: Sendable {
     /// See `GkeHubClient.createMembership`.
-    func createMembership(withPolling: CreateMembershipRequest) async throws -> any GoogleGax
-      .PollableOperation<Membership>
+    func createMembershipPollingUntilDone(request: CreateMembershipRequest) async throws
+      -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.createMembership`.
-    func createMembership(
+    func createMembershipPollingUntilDone(
       parent: Swift.String,
       resource: Membership?,
       membershipId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.createFeature`.
-    func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
+    func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws -> any GoogleGax
       .PollableOperation<Feature>
 
     /// See `GkeHubClient.createFeature`.
-    func createFeature(
+    func createFeaturePollingUntilDone(
       parent: Swift.String,
       resource: Feature?,
       featureId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Feature>
 
     /// See `GkeHubClient.deleteMembership`.
-    func deleteMembership(withPolling: DeleteMembershipRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteMembershipPollingUntilDone(request: DeleteMembershipRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteMembership`.
-    func deleteMembership(
+    func deleteMembershipPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteFeature`.
-    func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
+    func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteFeature`.
-    func deleteFeature(
+    func deleteFeaturePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.updateMembership`.
-    func updateMembership(withPolling: UpdateMembershipRequest) async throws -> any GoogleGax
-      .PollableOperation<Membership>
+    func updateMembershipPollingUntilDone(request: UpdateMembershipRequest) async throws
+      -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.updateMembership`.
-    func updateMembership(
+    func updateMembershipPollingUntilDone(
       name: Swift.String,
       resource: Membership?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.updateFeature`.
-    func updateFeature(withPolling: UpdateFeatureRequest) async throws -> any GoogleGax
+    func updateFeaturePollingUntilDone(request: UpdateFeatureRequest) async throws -> any GoogleGax
       .PollableOperation<Feature>
 
     /// See `GkeHubClient.updateFeature`.
-    func updateFeature(
+    func updateFeaturePollingUntilDone(
       name: Swift.String,
       resource: Feature?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Feature>
 
     /// See `GkeHubClient.createFleet`.
-    func createFleet(withPolling: CreateFleetRequest) async throws -> any GoogleGax
+    func createFleetPollingUntilDone(request: CreateFleetRequest) async throws -> any GoogleGax
       .PollableOperation<Fleet>
 
     /// See `GkeHubClient.createFleet`.
-    func createFleet(
+    func createFleetPollingUntilDone(
       parent: Swift.String,
       fleet: Fleet?,
     ) async throws -> any GoogleGax.PollableOperation<Fleet>
 
     /// See `GkeHubClient.updateFleet`.
-    func updateFleet(withPolling: UpdateFleetRequest) async throws -> any GoogleGax
+    func updateFleetPollingUntilDone(request: UpdateFleetRequest) async throws -> any GoogleGax
       .PollableOperation<Fleet>
 
     /// See `GkeHubClient.updateFleet`.
-    func updateFleet(
+    func updateFleetPollingUntilDone(
       fleet: Fleet?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Fleet>
 
     /// See `GkeHubClient.deleteFleet`.
-    func deleteFleet(withPolling: DeleteFleetRequest) async throws -> any GoogleGax
+    func deleteFleetPollingUntilDone(request: DeleteFleetRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteFleet`.
-    func deleteFleet(
+    func deleteFleetPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.createScopeNamespace`.
-    func createScopeNamespace(withPolling: CreateScopeNamespaceRequest) async throws
+    func createScopeNamespacePollingUntilDone(request: CreateScopeNamespaceRequest) async throws
       -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.createScopeNamespace`.
-    func createScopeNamespace(
+    func createScopeNamespacePollingUntilDone(
       parent: Swift.String,
       scopeNamespace: Namespace?,
       scopeNamespaceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.updateScopeNamespace`.
-    func updateScopeNamespace(withPolling: UpdateScopeNamespaceRequest) async throws
+    func updateScopeNamespacePollingUntilDone(request: UpdateScopeNamespaceRequest) async throws
       -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.updateScopeNamespace`.
-    func updateScopeNamespace(
+    func updateScopeNamespacePollingUntilDone(
       scopeNamespace: Namespace?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.deleteScopeNamespace`.
-    func deleteScopeNamespace(withPolling: DeleteScopeNamespaceRequest) async throws
+    func deleteScopeNamespacePollingUntilDone(request: DeleteScopeNamespaceRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteScopeNamespace`.
-    func deleteScopeNamespace(
+    func deleteScopeNamespacePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.createScopeRbacroleBinding`.
-    func createScopeRbacroleBinding(withPolling: CreateScopeRBACRoleBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<RBACRoleBinding>
+    func createScopeRbacroleBindingPollingUntilDone(request: CreateScopeRBACRoleBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.createScopeRbacroleBinding`.
-    func createScopeRbacroleBinding(
+    func createScopeRbacroleBindingPollingUntilDone(
       parent: Swift.String,
       rbacrolebinding: RBACRoleBinding?,
       rbacrolebindingId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
-    func updateScopeRbacroleBinding(withPolling: UpdateScopeRBACRoleBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<RBACRoleBinding>
+    func updateScopeRbacroleBindingPollingUntilDone(request: UpdateScopeRBACRoleBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
-    func updateScopeRbacroleBinding(
+    func updateScopeRbacroleBindingPollingUntilDone(
       rbacrolebinding: RBACRoleBinding?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
-    func deleteScopeRbacroleBinding(withPolling: DeleteScopeRBACRoleBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteScopeRbacroleBindingPollingUntilDone(request: DeleteScopeRBACRoleBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
-    func deleteScopeRbacroleBinding(
+    func deleteScopeRbacroleBindingPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.createScope`.
-    func createScope(withPolling: CreateScopeRequest) async throws -> any GoogleGax
+    func createScopePollingUntilDone(request: CreateScopeRequest) async throws -> any GoogleGax
       .PollableOperation<Scope>
 
     /// See `GkeHubClient.createScope`.
-    func createScope(
+    func createScopePollingUntilDone(
       parent: Swift.String,
       scope: Scope?,
       scopeId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.updateScope`.
-    func updateScope(withPolling: UpdateScopeRequest) async throws -> any GoogleGax
+    func updateScopePollingUntilDone(request: UpdateScopeRequest) async throws -> any GoogleGax
       .PollableOperation<Scope>
 
     /// See `GkeHubClient.updateScope`.
-    func updateScope(
+    func updateScopePollingUntilDone(
       scope: Scope?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.deleteScope`.
-    func deleteScope(withPolling: DeleteScopeRequest) async throws -> any GoogleGax
+    func deleteScopePollingUntilDone(request: DeleteScopeRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteScope`.
-    func deleteScope(
+    func deleteScopePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.createMembershipBinding`.
-    func createMembershipBinding(withPolling: CreateMembershipBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<MembershipBinding>
+    func createMembershipBindingPollingUntilDone(request: CreateMembershipBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.createMembershipBinding`.
-    func createMembershipBinding(
+    func createMembershipBindingPollingUntilDone(
       parent: Swift.String,
       membershipBinding: MembershipBinding?,
       membershipBindingId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.updateMembershipBinding`.
-    func updateMembershipBinding(withPolling: UpdateMembershipBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<MembershipBinding>
+    func updateMembershipBindingPollingUntilDone(request: UpdateMembershipBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.updateMembershipBinding`.
-    func updateMembershipBinding(
+    func updateMembershipBindingPollingUntilDone(
       membershipBinding: MembershipBinding?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.deleteMembershipBinding`.
-    func deleteMembershipBinding(withPolling: DeleteMembershipBindingRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteMembershipBindingPollingUntilDone(request: DeleteMembershipBindingRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteMembershipBinding`.
-    func deleteMembershipBinding(
+    func deleteMembershipBindingPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
-    func createMembershipRbacroleBinding(withPolling: CreateMembershipRBACRoleBindingRequest)
-      async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
+    func createMembershipRbacroleBindingPollingUntilDone(
+      request: CreateMembershipRBACRoleBindingRequest
+    ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
-    func createMembershipRbacroleBinding(
+    func createMembershipRbacroleBindingPollingUntilDone(
       parent: Swift.String,
       rbacrolebinding: RBACRoleBinding?,
       rbacrolebindingId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
-    func updateMembershipRbacroleBinding(withPolling: UpdateMembershipRBACRoleBindingRequest)
-      async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
+    func updateMembershipRbacroleBindingPollingUntilDone(
+      request: UpdateMembershipRBACRoleBindingRequest
+    ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
-    func updateMembershipRbacroleBinding(
+    func updateMembershipRbacroleBindingPollingUntilDone(
       rbacrolebinding: RBACRoleBinding?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
-    func deleteMembershipRbacroleBinding(withPolling: DeleteMembershipRBACRoleBindingRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    func deleteMembershipRbacroleBindingPollingUntilDone(
+      request: DeleteMembershipRBACRoleBindingRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
-    func deleteMembershipRbacroleBinding(
+    func deleteMembershipRbacroleBindingPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -1424,8 +1424,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembership`.
-    func createMembership(
-      withPolling: CreateMembershipRequest, options: GoogleGax.RequestOptions
+    func createMembershipPollingUntilDone(
+      request: CreateMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.createFeature`.
@@ -1434,8 +1434,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createFeature`.
-    func createFeature(
-      withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+    func createFeaturePollingUntilDone(
+      request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature>
 
     /// See `GkeHubClient.deleteMembership`.
@@ -1444,8 +1444,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembership`.
-    func deleteMembership(
-      withPolling: DeleteMembershipRequest, options: GoogleGax.RequestOptions
+    func deleteMembershipPollingUntilDone(
+      request: DeleteMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.deleteFeature`.
@@ -1454,8 +1454,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteFeature`.
-    func deleteFeature(
-      withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+    func deleteFeaturePollingUntilDone(
+      request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.updateMembership`.
@@ -1464,8 +1464,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembership`.
-    func updateMembership(
-      withPolling: UpdateMembershipRequest, options: GoogleGax.RequestOptions
+    func updateMembershipPollingUntilDone(
+      request: UpdateMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.updateFeature`.
@@ -1474,8 +1474,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateFeature`.
-    func updateFeature(
-      withPolling: UpdateFeatureRequest, options: GoogleGax.RequestOptions
+    func updateFeaturePollingUntilDone(
+      request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature>
 
     /// See `GkeHubClient.generateConnectManifest`.
@@ -1489,8 +1489,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createFleet`.
-    func createFleet(
-      withPolling: CreateFleetRequest, options: GoogleGax.RequestOptions
+    func createFleetPollingUntilDone(
+      request: CreateFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Fleet>
 
     /// See `GkeHubClient.getFleet`.
@@ -1504,8 +1504,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateFleet`.
-    func updateFleet(
-      withPolling: UpdateFleetRequest, options: GoogleGax.RequestOptions
+    func updateFleetPollingUntilDone(
+      request: UpdateFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Fleet>
 
     /// See `GkeHubClient.deleteFleet`.
@@ -1514,8 +1514,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteFleet`.
-    func deleteFleet(
-      withPolling: DeleteFleetRequest, options: GoogleGax.RequestOptions
+    func deleteFleetPollingUntilDone(
+      request: DeleteFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.listFleets`.
@@ -1534,8 +1534,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScopeNamespace`.
-    func createScopeNamespace(
-      withPolling: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
+    func createScopeNamespacePollingUntilDone(
+      request: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.updateScopeNamespace`.
@@ -1544,8 +1544,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScopeNamespace`.
-    func updateScopeNamespace(
-      withPolling: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
+    func updateScopeNamespacePollingUntilDone(
+      request: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Namespace>
 
     /// See `GkeHubClient.deleteScopeNamespace`.
@@ -1554,8 +1554,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScopeNamespace`.
-    func deleteScopeNamespace(
-      withPolling: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
+    func deleteScopeNamespacePollingUntilDone(
+      request: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.listScopeNamespaces`.
@@ -1574,8 +1574,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScopeRbacroleBinding`.
-    func createScopeRbacroleBinding(
-      withPolling: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+    func createScopeRbacroleBindingPollingUntilDone(
+      request: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
@@ -1584,8 +1584,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
-    func updateScopeRbacroleBinding(
-      withPolling: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+    func updateScopeRbacroleBindingPollingUntilDone(
+      request: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
@@ -1594,8 +1594,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
-    func deleteScopeRbacroleBinding(
-      withPolling: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+    func deleteScopeRbacroleBindingPollingUntilDone(
+      request: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.listScopeRbacroleBindings`.
@@ -1614,8 +1614,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScope`.
-    func createScope(
-      withPolling: CreateScopeRequest, options: GoogleGax.RequestOptions
+    func createScopePollingUntilDone(
+      request: CreateScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.updateScope`.
@@ -1624,8 +1624,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScope`.
-    func updateScope(
-      withPolling: UpdateScopeRequest, options: GoogleGax.RequestOptions
+    func updateScopePollingUntilDone(
+      request: UpdateScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.deleteScope`.
@@ -1634,8 +1634,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScope`.
-    func deleteScope(
-      withPolling: DeleteScopeRequest, options: GoogleGax.RequestOptions
+    func deleteScopePollingUntilDone(
+      request: DeleteScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.listScopes`.
@@ -1659,8 +1659,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembershipBinding`.
-    func createMembershipBinding(
-      withPolling: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
+    func createMembershipBindingPollingUntilDone(
+      request: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.updateMembershipBinding`.
@@ -1669,8 +1669,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembershipBinding`.
-    func updateMembershipBinding(
-      withPolling: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
+    func updateMembershipBindingPollingUntilDone(
+      request: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MembershipBinding>
 
     /// See `GkeHubClient.deleteMembershipBinding`.
@@ -1679,8 +1679,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembershipBinding`.
-    func deleteMembershipBinding(
-      withPolling: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
+    func deleteMembershipBindingPollingUntilDone(
+      request: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.listMembershipBindings`.
@@ -1699,8 +1699,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
-    func createMembershipRbacroleBinding(
-      withPolling: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+    func createMembershipRbacroleBindingPollingUntilDone(
+      request: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
@@ -1709,8 +1709,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
-    func updateMembershipRbacroleBinding(
-      withPolling: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+    func updateMembershipRbacroleBindingPollingUntilDone(
+      request: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
@@ -1719,8 +1719,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
-    func deleteMembershipRbacroleBinding(
-      withPolling: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+    func deleteMembershipRbacroleBindingPollingUntilDone(
+      request: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `GkeHubClient.listMembershipRbacroleBindings`.
@@ -1931,14 +1931,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMembership(withPolling: CreateMembershipRequest) async throws -> any GoogleGax
-    .PollableOperation<Membership>
+  public func createMembershipPollingUntilDone(request: CreateMembershipRequest) async throws
+    -> any GoogleGax.PollableOperation<Membership>
   {
-    try await self.createMembership(withPolling: withPolling, options: .init())
+    try await self.createMembershipPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMembership(
-    withPolling: CreateMembershipRequest, options: GoogleGax.RequestOptions
+  public func createMembershipPollingUntilDone(
+    request: CreateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Membership> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Membership>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1947,7 +1947,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMembership(
+  public func createMembershipPollingUntilDone(
     parent: Swift.String,
     resource: Membership?,
     membershipId: Swift.String,
@@ -1957,7 +1957,7 @@ extension Clients.GkeHubProtocol {
       $0.resource = resource
       $0.membershipId = membershipId
     }
-    return try await self.createMembership(withPolling: request)
+    return try await self.createMembershipPollingUntilDone(request: request)
   }
 
   public func createFeature(request: CreateFeatureRequest) async throws
@@ -1972,14 +1972,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
-    .PollableOperation<Feature>
+  public func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws
+    -> any GoogleGax.PollableOperation<Feature>
   {
-    try await self.createFeature(withPolling: withPolling, options: .init())
+    try await self.createFeaturePollingUntilDone(request: request, options: .init())
   }
 
-  public func createFeature(
-    withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+  public func createFeaturePollingUntilDone(
+    request: CreateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Feature> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1988,7 +1988,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createFeature(
+  public func createFeaturePollingUntilDone(
     parent: Swift.String,
     resource: Feature?,
     featureId: Swift.String,
@@ -1998,7 +1998,7 @@ extension Clients.GkeHubProtocol {
       $0.resource = resource
       $0.featureId = featureId
     }
-    return try await self.createFeature(withPolling: request)
+    return try await self.createFeaturePollingUntilDone(request: request)
   }
 
   public func deleteMembership(request: DeleteMembershipRequest) async throws
@@ -2013,14 +2013,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMembership(withPolling: DeleteMembershipRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteMembershipPollingUntilDone(request: DeleteMembershipRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteMembership(withPolling: withPolling, options: .init())
+    try await self.deleteMembershipPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteMembership(
-    withPolling: DeleteMembershipRequest, options: GoogleGax.RequestOptions
+  public func deleteMembershipPollingUntilDone(
+    request: DeleteMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2029,13 +2029,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMembership(
+  public func deleteMembershipPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMembershipRequest().with {
       $0.name = name
     }
-    return try await self.deleteMembership(withPolling: request)
+    return try await self.deleteMembershipPollingUntilDone(request: request)
   }
 
   public func deleteFeature(request: DeleteFeatureRequest) async throws
@@ -2050,14 +2050,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteFeature(withPolling: withPolling, options: .init())
+    try await self.deleteFeaturePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFeature(
-    withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+  public func deleteFeaturePollingUntilDone(
+    request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2066,13 +2066,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteFeature(
+  public func deleteFeaturePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteFeatureRequest().with {
       $0.name = name
     }
-    return try await self.deleteFeature(withPolling: request)
+    return try await self.deleteFeaturePollingUntilDone(request: request)
   }
 
   public func updateMembership(request: UpdateMembershipRequest) async throws
@@ -2087,14 +2087,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMembership(withPolling: UpdateMembershipRequest) async throws -> any GoogleGax
-    .PollableOperation<Membership>
+  public func updateMembershipPollingUntilDone(request: UpdateMembershipRequest) async throws
+    -> any GoogleGax.PollableOperation<Membership>
   {
-    try await self.updateMembership(withPolling: withPolling, options: .init())
+    try await self.updateMembershipPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMembership(
-    withPolling: UpdateMembershipRequest, options: GoogleGax.RequestOptions
+  public func updateMembershipPollingUntilDone(
+    request: UpdateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Membership> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Membership>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2103,7 +2103,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMembership(
+  public func updateMembershipPollingUntilDone(
     name: Swift.String,
     resource: Membership?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2113,7 +2113,7 @@ extension Clients.GkeHubProtocol {
       $0.resource = resource
       $0.updateMask = updateMask
     }
-    return try await self.updateMembership(withPolling: request)
+    return try await self.updateMembershipPollingUntilDone(request: request)
   }
 
   public func updateFeature(request: UpdateFeatureRequest) async throws
@@ -2128,14 +2128,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateFeature(withPolling: UpdateFeatureRequest) async throws -> any GoogleGax
-    .PollableOperation<Feature>
+  public func updateFeaturePollingUntilDone(request: UpdateFeatureRequest) async throws
+    -> any GoogleGax.PollableOperation<Feature>
   {
-    try await self.updateFeature(withPolling: withPolling, options: .init())
+    try await self.updateFeaturePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateFeature(
-    withPolling: UpdateFeatureRequest, options: GoogleGax.RequestOptions
+  public func updateFeaturePollingUntilDone(
+    request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Feature> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2144,7 +2144,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateFeature(
+  public func updateFeaturePollingUntilDone(
     name: Swift.String,
     resource: Feature?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2154,7 +2154,7 @@ extension Clients.GkeHubProtocol {
       $0.resource = resource
       $0.updateMask = updateMask
     }
-    return try await self.updateFeature(withPolling: request)
+    return try await self.updateFeaturePollingUntilDone(request: request)
   }
 
   public func generateConnectManifest(request: GenerateConnectManifestRequest) async throws
@@ -2179,14 +2179,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createFleet(withPolling: CreateFleetRequest) async throws -> any GoogleGax
+  public func createFleetPollingUntilDone(request: CreateFleetRequest) async throws -> any GoogleGax
     .PollableOperation<Fleet>
   {
-    try await self.createFleet(withPolling: withPolling, options: .init())
+    try await self.createFleetPollingUntilDone(request: request, options: .init())
   }
 
-  public func createFleet(
-    withPolling: CreateFleetRequest, options: GoogleGax.RequestOptions
+  public func createFleetPollingUntilDone(
+    request: CreateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Fleet>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2195,7 +2195,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createFleet(
+  public func createFleetPollingUntilDone(
     parent: Swift.String,
     fleet: Fleet?,
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
@@ -2203,7 +2203,7 @@ extension Clients.GkeHubProtocol {
       $0.parent = parent
       $0.fleet = fleet
     }
-    return try await self.createFleet(withPolling: request)
+    return try await self.createFleetPollingUntilDone(request: request)
   }
 
   public func getFleet(request: GetFleetRequest) async throws -> GoogleCloudGKEHubV1.Fleet {
@@ -2235,14 +2235,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateFleet(withPolling: UpdateFleetRequest) async throws -> any GoogleGax
+  public func updateFleetPollingUntilDone(request: UpdateFleetRequest) async throws -> any GoogleGax
     .PollableOperation<Fleet>
   {
-    try await self.updateFleet(withPolling: withPolling, options: .init())
+    try await self.updateFleetPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateFleet(
-    withPolling: UpdateFleetRequest, options: GoogleGax.RequestOptions
+  public func updateFleetPollingUntilDone(
+    request: UpdateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Fleet>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2251,7 +2251,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateFleet(
+  public func updateFleetPollingUntilDone(
     fleet: Fleet?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Fleet> {
@@ -2259,7 +2259,7 @@ extension Clients.GkeHubProtocol {
       $0.fleet = fleet
       $0.updateMask = updateMask
     }
-    return try await self.updateFleet(withPolling: request)
+    return try await self.updateFleetPollingUntilDone(request: request)
   }
 
   public func deleteFleet(request: DeleteFleetRequest) async throws -> GoogleLongRunning.Operation {
@@ -2272,14 +2272,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFleet(withPolling: DeleteFleetRequest) async throws -> any GoogleGax
+  public func deleteFleetPollingUntilDone(request: DeleteFleetRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteFleet(withPolling: withPolling, options: .init())
+    try await self.deleteFleetPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFleet(
-    withPolling: DeleteFleetRequest, options: GoogleGax.RequestOptions
+  public func deleteFleetPollingUntilDone(
+    request: DeleteFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2288,13 +2288,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteFleet(
+  public func deleteFleetPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteFleetRequest().with {
       $0.name = name
     }
-    return try await self.deleteFleet(withPolling: request)
+    return try await self.deleteFleetPollingUntilDone(request: request)
   }
 
   public func listFleets(request: ListFleetsRequest) async throws
@@ -2372,14 +2372,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createScopeNamespace(withPolling: CreateScopeNamespaceRequest) async throws
-    -> any GoogleGax.PollableOperation<Namespace>
+  public func createScopeNamespacePollingUntilDone(request: CreateScopeNamespaceRequest)
+    async throws -> any GoogleGax.PollableOperation<Namespace>
   {
-    try await self.createScopeNamespace(withPolling: withPolling, options: .init())
+    try await self.createScopeNamespacePollingUntilDone(request: request, options: .init())
   }
 
-  public func createScopeNamespace(
-    withPolling: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
+  public func createScopeNamespacePollingUntilDone(
+    request: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Namespace> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Namespace>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2388,7 +2388,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createScopeNamespace(
+  public func createScopeNamespacePollingUntilDone(
     parent: Swift.String,
     scopeNamespace: Namespace?,
     scopeNamespaceId: Swift.String,
@@ -2398,7 +2398,7 @@ extension Clients.GkeHubProtocol {
       $0.scopeNamespace = scopeNamespace
       $0.scopeNamespaceId = scopeNamespaceId
     }
-    return try await self.createScopeNamespace(withPolling: request)
+    return try await self.createScopeNamespacePollingUntilDone(request: request)
   }
 
   public func updateScopeNamespace(request: UpdateScopeNamespaceRequest) async throws
@@ -2413,14 +2413,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateScopeNamespace(withPolling: UpdateScopeNamespaceRequest) async throws
-    -> any GoogleGax.PollableOperation<Namespace>
+  public func updateScopeNamespacePollingUntilDone(request: UpdateScopeNamespaceRequest)
+    async throws -> any GoogleGax.PollableOperation<Namespace>
   {
-    try await self.updateScopeNamespace(withPolling: withPolling, options: .init())
+    try await self.updateScopeNamespacePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateScopeNamespace(
-    withPolling: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
+  public func updateScopeNamespacePollingUntilDone(
+    request: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Namespace> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Namespace>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2429,7 +2429,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateScopeNamespace(
+  public func updateScopeNamespacePollingUntilDone(
     scopeNamespace: Namespace?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Namespace> {
@@ -2437,7 +2437,7 @@ extension Clients.GkeHubProtocol {
       $0.scopeNamespace = scopeNamespace
       $0.updateMask = updateMask
     }
-    return try await self.updateScopeNamespace(withPolling: request)
+    return try await self.updateScopeNamespacePollingUntilDone(request: request)
   }
 
   public func deleteScopeNamespace(request: DeleteScopeNamespaceRequest) async throws
@@ -2452,14 +2452,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteScopeNamespace(withPolling: DeleteScopeNamespaceRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteScopeNamespacePollingUntilDone(request: DeleteScopeNamespaceRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteScopeNamespace(withPolling: withPolling, options: .init())
+    try await self.deleteScopeNamespacePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteScopeNamespace(
-    withPolling: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
+  public func deleteScopeNamespacePollingUntilDone(
+    request: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2468,13 +2468,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteScopeNamespace(
+  public func deleteScopeNamespacePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteScopeNamespaceRequest().with {
       $0.name = name
     }
-    return try await self.deleteScopeNamespace(withPolling: request)
+    return try await self.deleteScopeNamespacePollingUntilDone(request: request)
   }
 
   public func listScopeNamespaces(request: ListScopeNamespacesRequest) async throws
@@ -2552,14 +2552,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createScopeRbacroleBinding(withPolling: CreateScopeRBACRoleBindingRequest)
+  public func createScopeRbacroleBindingPollingUntilDone(request: CreateScopeRBACRoleBindingRequest)
     async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
   {
-    try await self.createScopeRbacroleBinding(withPolling: withPolling, options: .init())
+    try await self.createScopeRbacroleBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func createScopeRbacroleBinding(
-    withPolling: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func createScopeRbacroleBindingPollingUntilDone(
+    request: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2568,7 +2568,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createScopeRbacroleBinding(
+  public func createScopeRbacroleBindingPollingUntilDone(
     parent: Swift.String,
     rbacrolebinding: RBACRoleBinding?,
     rbacrolebindingId: Swift.String,
@@ -2578,7 +2578,7 @@ extension Clients.GkeHubProtocol {
       $0.rbacrolebinding = rbacrolebinding
       $0.rbacrolebindingId = rbacrolebindingId
     }
-    return try await self.createScopeRbacroleBinding(withPolling: request)
+    return try await self.createScopeRbacroleBindingPollingUntilDone(request: request)
   }
 
   public func updateScopeRbacroleBinding(request: UpdateScopeRBACRoleBindingRequest) async throws
@@ -2593,14 +2593,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateScopeRbacroleBinding(withPolling: UpdateScopeRBACRoleBindingRequest)
+  public func updateScopeRbacroleBindingPollingUntilDone(request: UpdateScopeRBACRoleBindingRequest)
     async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
   {
-    try await self.updateScopeRbacroleBinding(withPolling: withPolling, options: .init())
+    try await self.updateScopeRbacroleBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateScopeRbacroleBinding(
-    withPolling: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func updateScopeRbacroleBindingPollingUntilDone(
+    request: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2609,7 +2609,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateScopeRbacroleBinding(
+  public func updateScopeRbacroleBindingPollingUntilDone(
     rbacrolebinding: RBACRoleBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
@@ -2617,7 +2617,7 @@ extension Clients.GkeHubProtocol {
       $0.rbacrolebinding = rbacrolebinding
       $0.updateMask = updateMask
     }
-    return try await self.updateScopeRbacroleBinding(withPolling: request)
+    return try await self.updateScopeRbacroleBindingPollingUntilDone(request: request)
   }
 
   public func deleteScopeRbacroleBinding(request: DeleteScopeRBACRoleBindingRequest) async throws
@@ -2632,14 +2632,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteScopeRbacroleBinding(withPolling: DeleteScopeRBACRoleBindingRequest)
+  public func deleteScopeRbacroleBindingPollingUntilDone(request: DeleteScopeRBACRoleBindingRequest)
     async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteScopeRbacroleBinding(withPolling: withPolling, options: .init())
+    try await self.deleteScopeRbacroleBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteScopeRbacroleBinding(
-    withPolling: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteScopeRbacroleBindingPollingUntilDone(
+    request: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2648,13 +2648,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteScopeRbacroleBinding(
+  public func deleteScopeRbacroleBindingPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteScopeRBACRoleBindingRequest().with {
       $0.name = name
     }
-    return try await self.deleteScopeRbacroleBinding(withPolling: request)
+    return try await self.deleteScopeRbacroleBindingPollingUntilDone(request: request)
   }
 
   public func listScopeRbacroleBindings(request: ListScopeRBACRoleBindingsRequest) async throws
@@ -2728,14 +2728,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createScope(withPolling: CreateScopeRequest) async throws -> any GoogleGax
+  public func createScopePollingUntilDone(request: CreateScopeRequest) async throws -> any GoogleGax
     .PollableOperation<Scope>
   {
-    try await self.createScope(withPolling: withPolling, options: .init())
+    try await self.createScopePollingUntilDone(request: request, options: .init())
   }
 
-  public func createScope(
-    withPolling: CreateScopeRequest, options: GoogleGax.RequestOptions
+  public func createScopePollingUntilDone(
+    request: CreateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Scope> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Scope>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2744,7 +2744,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createScope(
+  public func createScopePollingUntilDone(
     parent: Swift.String,
     scope: Scope?,
     scopeId: Swift.String,
@@ -2754,7 +2754,7 @@ extension Clients.GkeHubProtocol {
       $0.scope = scope
       $0.scopeId = scopeId
     }
-    return try await self.createScope(withPolling: request)
+    return try await self.createScopePollingUntilDone(request: request)
   }
 
   public func updateScope(request: UpdateScopeRequest) async throws -> GoogleLongRunning.Operation {
@@ -2767,14 +2767,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateScope(withPolling: UpdateScopeRequest) async throws -> any GoogleGax
+  public func updateScopePollingUntilDone(request: UpdateScopeRequest) async throws -> any GoogleGax
     .PollableOperation<Scope>
   {
-    try await self.updateScope(withPolling: withPolling, options: .init())
+    try await self.updateScopePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateScope(
-    withPolling: UpdateScopeRequest, options: GoogleGax.RequestOptions
+  public func updateScopePollingUntilDone(
+    request: UpdateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Scope> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Scope>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2783,7 +2783,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateScope(
+  public func updateScopePollingUntilDone(
     scope: Scope?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Scope> {
@@ -2791,7 +2791,7 @@ extension Clients.GkeHubProtocol {
       $0.scope = scope
       $0.updateMask = updateMask
     }
-    return try await self.updateScope(withPolling: request)
+    return try await self.updateScopePollingUntilDone(request: request)
   }
 
   public func deleteScope(request: DeleteScopeRequest) async throws -> GoogleLongRunning.Operation {
@@ -2804,14 +2804,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteScope(withPolling: DeleteScopeRequest) async throws -> any GoogleGax
+  public func deleteScopePollingUntilDone(request: DeleteScopeRequest) async throws -> any GoogleGax
     .PollableOperation<Swift.Void>
   {
-    try await self.deleteScope(withPolling: withPolling, options: .init())
+    try await self.deleteScopePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteScope(
-    withPolling: DeleteScopeRequest, options: GoogleGax.RequestOptions
+  public func deleteScopePollingUntilDone(
+    request: DeleteScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2820,13 +2820,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteScope(
+  public func deleteScopePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteScopeRequest().with {
       $0.name = name
     }
-    return try await self.deleteScope(withPolling: request)
+    return try await self.deleteScopePollingUntilDone(request: request)
   }
 
   public func listScopes(request: ListScopesRequest) async throws
@@ -2945,14 +2945,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMembershipBinding(withPolling: CreateMembershipBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<MembershipBinding>
+  public func createMembershipBindingPollingUntilDone(request: CreateMembershipBindingRequest)
+    async throws -> any GoogleGax.PollableOperation<MembershipBinding>
   {
-    try await self.createMembershipBinding(withPolling: withPolling, options: .init())
+    try await self.createMembershipBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMembershipBinding(
-    withPolling: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
+  public func createMembershipBindingPollingUntilDone(
+    request: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MembershipBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MembershipBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2961,7 +2961,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMembershipBinding(
+  public func createMembershipBindingPollingUntilDone(
     parent: Swift.String,
     membershipBinding: MembershipBinding?,
     membershipBindingId: Swift.String,
@@ -2971,7 +2971,7 @@ extension Clients.GkeHubProtocol {
       $0.membershipBinding = membershipBinding
       $0.membershipBindingId = membershipBindingId
     }
-    return try await self.createMembershipBinding(withPolling: request)
+    return try await self.createMembershipBindingPollingUntilDone(request: request)
   }
 
   public func updateMembershipBinding(request: UpdateMembershipBindingRequest) async throws
@@ -2986,14 +2986,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMembershipBinding(withPolling: UpdateMembershipBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<MembershipBinding>
+  public func updateMembershipBindingPollingUntilDone(request: UpdateMembershipBindingRequest)
+    async throws -> any GoogleGax.PollableOperation<MembershipBinding>
   {
-    try await self.updateMembershipBinding(withPolling: withPolling, options: .init())
+    try await self.updateMembershipBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMembershipBinding(
-    withPolling: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
+  public func updateMembershipBindingPollingUntilDone(
+    request: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MembershipBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MembershipBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3002,7 +3002,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMembershipBinding(
+  public func updateMembershipBindingPollingUntilDone(
     membershipBinding: MembershipBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MembershipBinding> {
@@ -3010,7 +3010,7 @@ extension Clients.GkeHubProtocol {
       $0.membershipBinding = membershipBinding
       $0.updateMask = updateMask
     }
-    return try await self.updateMembershipBinding(withPolling: request)
+    return try await self.updateMembershipBindingPollingUntilDone(request: request)
   }
 
   public func deleteMembershipBinding(request: DeleteMembershipBindingRequest) async throws
@@ -3025,14 +3025,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMembershipBinding(withPolling: DeleteMembershipBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
+  public func deleteMembershipBindingPollingUntilDone(request: DeleteMembershipBindingRequest)
+    async throws -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteMembershipBinding(withPolling: withPolling, options: .init())
+    try await self.deleteMembershipBindingPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteMembershipBinding(
-    withPolling: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteMembershipBindingPollingUntilDone(
+    request: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3041,13 +3041,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMembershipBinding(
+  public func deleteMembershipBindingPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMembershipBindingRequest().with {
       $0.name = name
     }
-    return try await self.deleteMembershipBinding(withPolling: request)
+    return try await self.deleteMembershipBindingPollingUntilDone(request: request)
   }
 
   public func listMembershipBindings(request: ListMembershipBindingsRequest) async throws
@@ -3125,14 +3125,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMembershipRbacroleBinding(withPolling: CreateMembershipRBACRoleBindingRequest)
-    async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
-  {
-    try await self.createMembershipRbacroleBinding(withPolling: withPolling, options: .init())
+  public func createMembershipRbacroleBindingPollingUntilDone(
+    request: CreateMembershipRBACRoleBindingRequest
+  ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
+    try await self.createMembershipRbacroleBindingPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func createMembershipRbacroleBinding(
-    withPolling: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func createMembershipRbacroleBindingPollingUntilDone(
+    request: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3141,7 +3142,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMembershipRbacroleBinding(
+  public func createMembershipRbacroleBindingPollingUntilDone(
     parent: Swift.String,
     rbacrolebinding: RBACRoleBinding?,
     rbacrolebindingId: Swift.String,
@@ -3151,7 +3152,7 @@ extension Clients.GkeHubProtocol {
       $0.rbacrolebinding = rbacrolebinding
       $0.rbacrolebindingId = rbacrolebindingId
     }
-    return try await self.createMembershipRbacroleBinding(withPolling: request)
+    return try await self.createMembershipRbacroleBindingPollingUntilDone(request: request)
   }
 
   public func updateMembershipRbacroleBinding(request: UpdateMembershipRBACRoleBindingRequest)
@@ -3166,14 +3167,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMembershipRbacroleBinding(withPolling: UpdateMembershipRBACRoleBindingRequest)
-    async throws -> any GoogleGax.PollableOperation<RBACRoleBinding>
-  {
-    try await self.updateMembershipRbacroleBinding(withPolling: withPolling, options: .init())
+  public func updateMembershipRbacroleBindingPollingUntilDone(
+    request: UpdateMembershipRBACRoleBindingRequest
+  ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
+    try await self.updateMembershipRbacroleBindingPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func updateMembershipRbacroleBinding(
-    withPolling: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func updateMembershipRbacroleBindingPollingUntilDone(
+    request: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<RBACRoleBinding>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3182,7 +3184,7 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMembershipRbacroleBinding(
+  public func updateMembershipRbacroleBindingPollingUntilDone(
     rbacrolebinding: RBACRoleBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<RBACRoleBinding> {
@@ -3190,7 +3192,7 @@ extension Clients.GkeHubProtocol {
       $0.rbacrolebinding = rbacrolebinding
       $0.updateMask = updateMask
     }
-    return try await self.updateMembershipRbacroleBinding(withPolling: request)
+    return try await self.updateMembershipRbacroleBindingPollingUntilDone(request: request)
   }
 
   public func deleteMembershipRbacroleBinding(request: DeleteMembershipRBACRoleBindingRequest)
@@ -3205,14 +3207,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMembershipRbacroleBinding(withPolling: DeleteMembershipRBACRoleBindingRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
-  {
-    try await self.deleteMembershipRbacroleBinding(withPolling: withPolling, options: .init())
+  public func deleteMembershipRbacroleBindingPollingUntilDone(
+    request: DeleteMembershipRBACRoleBindingRequest
+  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    try await self.deleteMembershipRbacroleBindingPollingUntilDone(
+      request: request, options: .init())
   }
 
-  public func deleteMembershipRbacroleBinding(
-    withPolling: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
+  public func deleteMembershipRbacroleBindingPollingUntilDone(
+    request: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -3221,13 +3224,13 @@ extension Clients.GkeHubProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteMembershipRbacroleBinding(
+  public func deleteMembershipRbacroleBindingPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteMembershipRBACRoleBindingRequest().with {
       $0.name = name
     }
-    return try await self.deleteMembershipRbacroleBinding(withPolling: request)
+    return try await self.deleteMembershipRbacroleBindingPollingUntilDone(request: request)
   }
 
   public func listMembershipRbacroleBindings(request: ListMembershipRBACRoleBindingsRequest)

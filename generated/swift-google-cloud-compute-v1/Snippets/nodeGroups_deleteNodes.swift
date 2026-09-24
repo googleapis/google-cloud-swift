@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NodeGroupsClient) async throws {
-    let poller = try await client.deleteNodes(
-      withPolling: NodeGroupsClient.DeleteNodesRequest()
+    let poller = try await client.deleteNodesPollingUntilDone(
+      request: NodeGroupsClient.DeleteNodesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

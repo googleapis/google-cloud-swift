@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, featureId: String)
   async throws
 {
-  let poller = try await client.updateFeature(
-    withPolling: UpdateFeatureRequest()
+  let poller = try await client.updateFeaturePollingUntilDone(
+    request: UpdateFeatureRequest()
       .with {
         $0.resource = Feature().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/features/\(featureId)"

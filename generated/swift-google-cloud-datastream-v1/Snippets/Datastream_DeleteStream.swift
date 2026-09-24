@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: DatastreamClient, projectId: String, locationId: String, streamId: String)
   async throws
 {
-  let poller = try await client.deleteStream(
-    withPolling: DeleteStreamRequest()
+  let poller = try await client.deleteStreamPollingUntilDone(
+    request: DeleteStreamRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/streams/\(streamId)"
       }

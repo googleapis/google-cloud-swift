@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudRedisClient) async throws {
-  let poller = try await client.upgradeInstance(
-    withPolling: UpgradeInstanceRequest()
+  let poller = try await client.upgradeInstancePollingUntilDone(
+    request: UpgradeInstanceRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

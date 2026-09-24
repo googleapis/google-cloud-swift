@@ -26,8 +26,8 @@ func sample(
   client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String,
   eventId: String
 ) async throws {
-  let poller = try await client.updateEvent(
-    withPolling: UpdateEventRequest()
+  let poller = try await client.updateEventPollingUntilDone(
+    request: UpdateEventRequest()
       .with {
         $0.event = Event().with {
           $0.name =

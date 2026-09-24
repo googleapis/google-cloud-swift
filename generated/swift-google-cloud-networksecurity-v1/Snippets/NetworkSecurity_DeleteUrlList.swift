@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String, urlListId: String)
   async throws
 {
-  let poller = try await client.deleteUrlList(
-    withPolling: DeleteUrlListRequest()
+  let poller = try await client.deleteUrlListPollingUntilDone(
+    request: DeleteUrlListRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/urlLists/\(urlListId)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, projectId: String, hubId: String) async throws {
-  let poller = try await client.updateHub(
-    withPolling: UpdateHubRequest()
+  let poller = try await client.updateHubPollingUntilDone(
+    request: UpdateHubRequest()
       .with {
         $0.hub = Hub().with {
           $0.name = "projects/\(projectId)/locations/global/hubs/\(hubId)"

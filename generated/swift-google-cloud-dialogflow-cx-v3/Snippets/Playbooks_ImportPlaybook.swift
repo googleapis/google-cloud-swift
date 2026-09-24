@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: PlaybooksClient) async throws {
-    let poller = try await client.importPlaybook(
-      withPolling: ImportPlaybookRequest()
+    let poller = try await client.importPlaybookPollingUntilDone(
+      request: ImportPlaybookRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

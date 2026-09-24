@@ -27,8 +27,8 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let poller = try await client.createEntityType(
-      withPolling: CreateEntityTypeRequest()
+    let poller = try await client.createEntityTypePollingUntilDone(
+      request: CreateEntityTypeRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)"

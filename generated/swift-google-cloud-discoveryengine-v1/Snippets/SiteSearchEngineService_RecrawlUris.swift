@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: SiteSearchEngineServiceClient) async throws {
-    let poller = try await client.recrawlUris(
-      withPolling: RecrawlUrisRequest()
+    let poller = try await client.recrawlUrisPollingUntilDone(
+      request: RecrawlUrisRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

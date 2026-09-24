@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TagValuesClient, tagValueId: String) async throws {
-  let poller = try await client.updateTagValue(
-    withPolling: UpdateTagValueRequest()
+  let poller = try await client.updateTagValuePollingUntilDone(
+    request: UpdateTagValueRequest()
       .with {
         $0.tagValue = TagValue().with {
           $0.name = "tagValues/\(tagValueId)"

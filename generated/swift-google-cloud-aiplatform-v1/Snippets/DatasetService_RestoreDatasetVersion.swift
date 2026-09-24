@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: DatasetServiceClient) async throws {
-    let poller = try await client.restoreDatasetVersion(
-      withPolling: RestoreDatasetVersionRequest()
+    let poller = try await client.restoreDatasetVersionPollingUntilDone(
+      request: RestoreDatasetVersionRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

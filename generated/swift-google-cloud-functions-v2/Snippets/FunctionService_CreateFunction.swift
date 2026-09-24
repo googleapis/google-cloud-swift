@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FunctionServiceClient, parent: String) async throws {
-  let poller = try await client.createFunction(
-    withPolling: CreateFunctionRequest()
+  let poller = try await client.createFunctionPollingUntilDone(
+    request: CreateFunctionRequest()
       .with {
         $0.parent = "\(parent)"
         $0.functionId = "[replace with a valid ID]"

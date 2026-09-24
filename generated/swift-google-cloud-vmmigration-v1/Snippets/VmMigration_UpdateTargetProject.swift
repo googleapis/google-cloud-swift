@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: VmMigrationClient, projectId: String, locationId: String, targetProjectId: String
 ) async throws {
-  let poller = try await client.updateTargetProject(
-    withPolling: UpdateTargetProjectRequest()
+  let poller = try await client.updateTargetProjectPollingUntilDone(
+    request: UpdateTargetProjectRequest()
       .with {
         $0.targetProject = TargetProject().with {
           $0.name =

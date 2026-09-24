@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.updateAutoMigrationConfig(
-    withPolling: UpdateAutoMigrationConfigRequest()
+  let poller = try await client.updateAutoMigrationConfigPollingUntilDone(
+    request: UpdateAutoMigrationConfigRequest()
       .with {
         $0.autoMigrationConfig = AutoMigrationConfig().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/autoMigrationConfig"

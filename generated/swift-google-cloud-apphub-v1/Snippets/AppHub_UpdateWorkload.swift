@@ -27,8 +27,8 @@ func sample(
   client: AppHubClient, projectId: String, locationId: String, applicationId: String,
   workloadId: String
 ) async throws {
-  let poller = try await client.updateWorkload(
-    withPolling: UpdateWorkloadRequest()
+  let poller = try await client.updateWorkloadPollingUntilDone(
+    request: UpdateWorkloadRequest()
       .with {
         $0.workload = Workload().with {
           $0.name =

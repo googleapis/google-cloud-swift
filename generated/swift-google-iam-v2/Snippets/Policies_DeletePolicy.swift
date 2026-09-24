@@ -21,8 +21,8 @@ import GoogleIAMV2
 import GoogleLongRunning
 
 func sample(client: PoliciesClient) async throws {
-  let poller = try await client.deletePolicy(
-    withPolling: DeletePolicyRequest()
+  let poller = try await client.deletePolicyPollingUntilDone(
+    request: DeletePolicyRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

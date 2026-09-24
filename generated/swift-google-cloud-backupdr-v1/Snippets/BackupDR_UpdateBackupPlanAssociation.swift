@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: BackupDRClient, projectId: String, locationId: String, backupPlanAssociationId: String
 ) async throws {
-  let poller = try await client.updateBackupPlanAssociation(
-    withPolling: UpdateBackupPlanAssociationRequest()
+  let poller = try await client.updateBackupPlanAssociationPollingUntilDone(
+    request: UpdateBackupPlanAssociationRequest()
       .with {
         $0.backupPlanAssociation = BackupPlanAssociation().with {
           $0.name =

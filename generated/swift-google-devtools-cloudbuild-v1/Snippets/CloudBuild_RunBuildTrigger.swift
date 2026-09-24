@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudBuildClient) async throws {
-  let poller = try await client.runBuildTrigger(
-    withPolling: RunBuildTriggerRequest()
+  let poller = try await client.runBuildTriggerPollingUntilDone(
+    request: RunBuildTriggerRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

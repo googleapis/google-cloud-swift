@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetTcpProxiesClient) async throws {
-    let poller = try await client.setBackendService(
-      withPolling: TargetTcpProxiesClient.SetBackendServiceRequest()
+    let poller = try await client.setBackendServicePollingUntilDone(
+      request: TargetTcpProxiesClient.SetBackendServiceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

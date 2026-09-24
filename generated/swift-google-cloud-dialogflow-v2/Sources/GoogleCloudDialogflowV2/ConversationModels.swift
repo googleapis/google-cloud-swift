@@ -80,15 +80,15 @@
     /// [google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]: <doc:CreateConversationModelOperationMetadata>
     ///
     /// @Snippet(path: "ConversationModels_CreateConversationModel")
-    public func createConversationModel(
-      withPolling: CreateConversationModelRequest, options: GoogleGax.RequestOptions
+    public func createConversationModelPollingUntilDone(
+      request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationModel> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ConversationModel>.State in
         return try op._extractStatus(ConversationModel.self)
       }
-      let rawOp = try await self.createConversationModel(request: withPolling, options: options)
+      let rawOp = try await self.createConversationModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationModel>.State in
         let op = try await self.getOperation(
@@ -155,15 +155,15 @@
     /// [google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]: <doc:DeleteConversationModelOperationMetadata>
     ///
     /// @Snippet(path: "ConversationModels_DeleteConversationModel")
-    public func deleteConversationModel(
-      withPolling: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
+    public func deleteConversationModelPollingUntilDone(
+      request: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteConversationModel(request: withPolling, options: options)
+      let rawOp = try await self.deleteConversationModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -218,15 +218,15 @@
     /// [google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]: <doc:DeployConversationModelOperationMetadata>
     ///
     /// @Snippet(path: "ConversationModels_DeployConversationModel")
-    public func deployConversationModel(
-      withPolling: DeployConversationModelRequest, options: GoogleGax.RequestOptions
+    public func deployConversationModelPollingUntilDone(
+      request: DeployConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deployConversationModel(request: withPolling, options: options)
+      let rawOp = try await self.deployConversationModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -281,15 +281,15 @@
     /// [google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]: <doc:UndeployConversationModelOperationMetadata>
     ///
     /// @Snippet(path: "ConversationModels_UndeployConversationModel")
-    public func undeployConversationModel(
-      withPolling: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
+    public func undeployConversationModelPollingUntilDone(
+      request: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.undeployConversationModel(request: withPolling, options: options)
+      let rawOp = try await self.undeployConversationModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -334,8 +334,8 @@
     /// Creates evaluation of a conversation model.
     ///
     /// @Snippet(path: "ConversationModels_CreateConversationModelEvaluation")
-    public func createConversationModelEvaluation(
-      withPolling: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
+    public func createConversationModelEvaluationPollingUntilDone(
+      request: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
@@ -343,7 +343,7 @@
         return try op._extractStatus(ConversationModelEvaluation.self)
       }
       let rawOp = try await self.createConversationModelEvaluation(
-        request: withPolling, options: options)
+        request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ConversationModelEvaluation>.State in
@@ -436,38 +436,39 @@
     /// and pass a mock implementation in your tests.
     public protocol ConversationModelsProtocol: Sendable {
       /// See `ConversationModelsClient.createConversationModel`.
-      func createConversationModel(withPolling: CreateConversationModelRequest) async throws
-        -> any GoogleGax.PollableOperation<ConversationModel>
+      func createConversationModelPollingUntilDone(request: CreateConversationModelRequest)
+        async throws -> any GoogleGax.PollableOperation<ConversationModel>
 
       /// See `ConversationModelsClient.createConversationModel`.
-      func createConversationModel(
+      func createConversationModelPollingUntilDone(
         parent: Swift.String,
         conversationModel: ConversationModel?,
       ) async throws -> any GoogleGax.PollableOperation<ConversationModel>
 
       /// See `ConversationModelsClient.deleteConversationModel`.
-      func deleteConversationModel(withPolling: DeleteConversationModelRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteConversationModelPollingUntilDone(request: DeleteConversationModelRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.deleteConversationModel`.
-      func deleteConversationModel(
+      func deleteConversationModelPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.deployConversationModel`.
-      func deployConversationModel(withPolling: DeployConversationModelRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func deployConversationModelPollingUntilDone(request: DeployConversationModelRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.undeployConversationModel`.
-      func undeployConversationModel(withPolling: UndeployConversationModelRequest) async throws
-        -> any GoogleGax.PollableOperation<Swift.Void>
+      func undeployConversationModelPollingUntilDone(request: UndeployConversationModelRequest)
+        async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.createConversationModelEvaluation`.
-      func createConversationModelEvaluation(withPolling: CreateConversationModelEvaluationRequest)
-        async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation>
+      func createConversationModelEvaluationPollingUntilDone(
+        request: CreateConversationModelEvaluationRequest
+      ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation>
 
       /// See `ConversationModelsClient.createConversationModelEvaluation`.
-      func createConversationModelEvaluation(
+      func createConversationModelEvaluationPollingUntilDone(
         parent: Swift.String,
         conversationModelEvaluation: ConversationModelEvaluation?,
       ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation>
@@ -478,8 +479,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ConversationModelsClient.createConversationModel`.
-      func createConversationModel(
-        withPolling: CreateConversationModelRequest, options: GoogleGax.RequestOptions
+      func createConversationModelPollingUntilDone(
+        request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ConversationModel>
 
       /// See `ConversationModelsClient.getConversationModel`.
@@ -498,8 +499,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ConversationModelsClient.deleteConversationModel`.
-      func deleteConversationModel(
-        withPolling: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
+      func deleteConversationModelPollingUntilDone(
+        request: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.deployConversationModel`.
@@ -508,8 +509,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ConversationModelsClient.deployConversationModel`.
-      func deployConversationModel(
-        withPolling: DeployConversationModelRequest, options: GoogleGax.RequestOptions
+      func deployConversationModelPollingUntilDone(
+        request: DeployConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.undeployConversationModel`.
@@ -518,8 +519,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ConversationModelsClient.undeployConversationModel`.
-      func undeployConversationModel(
-        withPolling: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
+      func undeployConversationModelPollingUntilDone(
+        request: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `ConversationModelsClient.getConversationModelEvaluation`.
@@ -538,8 +539,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `ConversationModelsClient.createConversationModelEvaluation`.
-      func createConversationModelEvaluation(
-        withPolling: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
+      func createConversationModelEvaluationPollingUntilDone(
+        request: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation>
 
       /// See `ConversationModelsClient.listLocations`.
@@ -578,14 +579,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createConversationModel(withPolling: CreateConversationModelRequest) async throws
-      -> any GoogleGax.PollableOperation<ConversationModel>
+    public func createConversationModelPollingUntilDone(request: CreateConversationModelRequest)
+      async throws -> any GoogleGax.PollableOperation<ConversationModel>
     {
-      try await self.createConversationModel(withPolling: withPolling, options: .init())
+      try await self.createConversationModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func createConversationModel(
-      withPolling: CreateConversationModelRequest, options: GoogleGax.RequestOptions
+    public func createConversationModelPollingUntilDone(
+      request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationModel> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationModel>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -594,7 +595,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createConversationModel(
+    public func createConversationModelPollingUntilDone(
       parent: Swift.String,
       conversationModel: ConversationModel?,
     ) async throws -> any GoogleGax.PollableOperation<ConversationModel> {
@@ -602,7 +603,7 @@
         $0.parent = parent
         $0.conversationModel = conversationModel
       }
-      return try await self.createConversationModel(withPolling: request)
+      return try await self.createConversationModelPollingUntilDone(request: request)
     }
 
     public func getConversationModel(request: GetConversationModelRequest) async throws
@@ -681,14 +682,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteConversationModel(withPolling: DeleteConversationModelRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deleteConversationModelPollingUntilDone(request: DeleteConversationModelRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteConversationModel(withPolling: withPolling, options: .init())
+      try await self.deleteConversationModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteConversationModel(
-      withPolling: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
+    public func deleteConversationModelPollingUntilDone(
+      request: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -697,13 +698,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteConversationModel(
+    public func deleteConversationModelPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteConversationModelRequest().with {
         $0.name = name
       }
-      return try await self.deleteConversationModel(withPolling: request)
+      return try await self.deleteConversationModelPollingUntilDone(request: request)
     }
 
     public func deployConversationModel(request: DeployConversationModelRequest) async throws
@@ -718,14 +719,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deployConversationModel(withPolling: DeployConversationModelRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
+    public func deployConversationModelPollingUntilDone(request: DeployConversationModelRequest)
+      async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deployConversationModel(withPolling: withPolling, options: .init())
+      try await self.deployConversationModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func deployConversationModel(
-      withPolling: DeployConversationModelRequest, options: GoogleGax.RequestOptions
+    public func deployConversationModelPollingUntilDone(
+      request: DeployConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -746,14 +747,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func undeployConversationModel(withPolling: UndeployConversationModelRequest)
+    public func undeployConversationModelPollingUntilDone(request: UndeployConversationModelRequest)
       async throws -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.undeployConversationModel(withPolling: withPolling, options: .init())
+      try await self.undeployConversationModelPollingUntilDone(request: request, options: .init())
     }
 
-    public func undeployConversationModel(
-      withPolling: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
+    public func undeployConversationModelPollingUntilDone(
+      request: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -838,14 +839,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createConversationModelEvaluation(
-      withPolling: CreateConversationModelEvaluationRequest
+    public func createConversationModelEvaluationPollingUntilDone(
+      request: CreateConversationModelEvaluationRequest
     ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation> {
-      try await self.createConversationModelEvaluation(withPolling: withPolling, options: .init())
+      try await self.createConversationModelEvaluationPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func createConversationModelEvaluation(
-      withPolling: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
+    public func createConversationModelEvaluationPollingUntilDone(
+      request: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ConversationModelEvaluation>.State in
@@ -855,7 +857,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createConversationModelEvaluation(
+    public func createConversationModelEvaluationPollingUntilDone(
       parent: Swift.String,
       conversationModelEvaluation: ConversationModelEvaluation?,
     ) async throws -> any GoogleGax.PollableOperation<ConversationModelEvaluation> {
@@ -863,7 +865,7 @@
         $0.parent = parent
         $0.conversationModelEvaluation = conversationModelEvaluation
       }
-      return try await self.createConversationModelEvaluation(withPolling: request)
+      return try await self.createConversationModelEvaluationPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

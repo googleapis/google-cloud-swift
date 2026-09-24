@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.createBranchRule(
-    withPolling: CreateBranchRuleRequest()
+  let poller = try await client.createBranchRulePollingUntilDone(
+    request: CreateBranchRuleRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
         $0.branchRule = BranchRule() /* .with { ... } */

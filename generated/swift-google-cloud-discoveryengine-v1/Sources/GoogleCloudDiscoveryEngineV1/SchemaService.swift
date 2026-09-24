@@ -82,15 +82,15 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_CreateSchema")
-    public func createSchema(
-      withPolling: CreateSchemaRequest, options: GoogleGax.RequestOptions
+    public func createSchemaPollingUntilDone(
+      request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Schema>.State
         in
         return try op._extractStatus(Schema.self)
       }
-      let rawOp = try await self.createSchema(request: withPolling, options: options)
+      let rawOp = try await self.createSchema(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         let op = try await self.getOperation(
@@ -121,15 +121,15 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_UpdateSchema")
-    public func updateSchema(
-      withPolling: UpdateSchemaRequest, options: GoogleGax.RequestOptions
+    public func updateSchemaPollingUntilDone(
+      request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Schema>.State
         in
         return try op._extractStatus(Schema.self)
       }
-      let rawOp = try await self.updateSchema(request: withPolling, options: options)
+      let rawOp = try await self.updateSchema(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         let op = try await self.getOperation(
@@ -160,15 +160,15 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_DeleteSchema")
-    public func deleteSchema(
-      withPolling: DeleteSchemaRequest, options: GoogleGax.RequestOptions
+    public func deleteSchemaPollingUntilDone(
+      request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteSchema(request: withPolling, options: options)
+      let rawOp = try await self.deleteSchema(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -225,26 +225,26 @@
     /// and pass a mock implementation in your tests.
     public protocol SchemaServiceProtocol: Sendable {
       /// See `SchemaServiceClient.createSchema`.
-      func createSchema(withPolling: CreateSchemaRequest) async throws -> any GoogleGax
+      func createSchemaPollingUntilDone(request: CreateSchemaRequest) async throws -> any GoogleGax
         .PollableOperation<Schema>
 
       /// See `SchemaServiceClient.createSchema`.
-      func createSchema(
+      func createSchemaPollingUntilDone(
         parent: Swift.String,
         schema: Schema?,
         schemaId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Schema>
 
       /// See `SchemaServiceClient.updateSchema`.
-      func updateSchema(withPolling: UpdateSchemaRequest) async throws -> any GoogleGax
+      func updateSchemaPollingUntilDone(request: UpdateSchemaRequest) async throws -> any GoogleGax
         .PollableOperation<Schema>
 
       /// See `SchemaServiceClient.deleteSchema`.
-      func deleteSchema(withPolling: DeleteSchemaRequest) async throws -> any GoogleGax
+      func deleteSchemaPollingUntilDone(request: DeleteSchemaRequest) async throws -> any GoogleGax
         .PollableOperation<Swift.Void>
 
       /// See `SchemaServiceClient.deleteSchema`.
-      func deleteSchema(
+      func deleteSchemaPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -264,8 +264,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SchemaServiceClient.createSchema`.
-      func createSchema(
-        withPolling: CreateSchemaRequest, options: GoogleGax.RequestOptions
+      func createSchemaPollingUntilDone(
+        request: CreateSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Schema>
 
       /// See `SchemaServiceClient.updateSchema`.
@@ -274,8 +274,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SchemaServiceClient.updateSchema`.
-      func updateSchema(
-        withPolling: UpdateSchemaRequest, options: GoogleGax.RequestOptions
+      func updateSchemaPollingUntilDone(
+        request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Schema>
 
       /// See `SchemaServiceClient.deleteSchema`.
@@ -284,8 +284,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `SchemaServiceClient.deleteSchema`.
-      func deleteSchema(
-        withPolling: DeleteSchemaRequest, options: GoogleGax.RequestOptions
+      func deleteSchemaPollingUntilDone(
+        request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `SchemaServiceClient.listOperations`.
@@ -379,14 +379,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createSchema(withPolling: CreateSchemaRequest) async throws -> any GoogleGax
-      .PollableOperation<Schema>
+    public func createSchemaPollingUntilDone(request: CreateSchemaRequest) async throws
+      -> any GoogleGax.PollableOperation<Schema>
     {
-      try await self.createSchema(withPolling: withPolling, options: .init())
+      try await self.createSchemaPollingUntilDone(request: request, options: .init())
     }
 
-    public func createSchema(
-      withPolling: CreateSchemaRequest, options: GoogleGax.RequestOptions
+    public func createSchemaPollingUntilDone(
+      request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -395,7 +395,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createSchema(
+    public func createSchemaPollingUntilDone(
       parent: Swift.String,
       schema: Schema?,
       schemaId: Swift.String,
@@ -405,7 +405,7 @@
         $0.schema = schema
         $0.schemaId = schemaId
       }
-      return try await self.createSchema(withPolling: request)
+      return try await self.createSchemaPollingUntilDone(request: request)
     }
 
     public func updateSchema(request: UpdateSchemaRequest) async throws
@@ -420,14 +420,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateSchema(withPolling: UpdateSchemaRequest) async throws -> any GoogleGax
-      .PollableOperation<Schema>
+    public func updateSchemaPollingUntilDone(request: UpdateSchemaRequest) async throws
+      -> any GoogleGax.PollableOperation<Schema>
     {
-      try await self.updateSchema(withPolling: withPolling, options: .init())
+      try await self.updateSchemaPollingUntilDone(request: request, options: .init())
     }
 
-    public func updateSchema(
-      withPolling: UpdateSchemaRequest, options: GoogleGax.RequestOptions
+    public func updateSchemaPollingUntilDone(
+      request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -448,14 +448,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSchema(withPolling: DeleteSchemaRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteSchemaPollingUntilDone(request: DeleteSchemaRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteSchema(withPolling: withPolling, options: .init())
+      try await self.deleteSchemaPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteSchema(
-      withPolling: DeleteSchemaRequest, options: GoogleGax.RequestOptions
+    public func deleteSchemaPollingUntilDone(
+      request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -464,13 +464,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteSchema(
+    public func deleteSchemaPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteSchemaRequest().with {
         $0.name = name
       }
-      return try await self.deleteSchema(withPolling: request)
+      return try await self.deleteSchemaPollingUntilDone(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

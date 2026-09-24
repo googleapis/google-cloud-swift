@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EnvironmentsClient) async throws {
-  let poller = try await client.loadSnapshot(
-    withPolling: LoadSnapshotRequest()
+  let poller = try await client.loadSnapshotPollingUntilDone(
+    request: LoadSnapshotRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

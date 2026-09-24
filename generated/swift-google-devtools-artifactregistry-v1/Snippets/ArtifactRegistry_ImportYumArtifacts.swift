@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient) async throws {
-  let poller = try await client.importYumArtifacts(
-    withPolling: ImportYumArtifactsRequest()
+  let poller = try await client.importYumArtifactsPollingUntilDone(
+    request: ImportYumArtifactsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

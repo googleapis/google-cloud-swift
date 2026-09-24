@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AgentServiceClient) async throws {
-  let poller = try await client.importApp(
-    withPolling: ImportAppRequest()
+  let poller = try await client.importAppPollingUntilDone(
+    request: ImportAppRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

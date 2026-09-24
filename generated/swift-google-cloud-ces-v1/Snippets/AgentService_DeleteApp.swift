@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AgentServiceClient, projectId: String, locationId: String, appId: String)
   async throws
 {
-  let poller = try await client.deleteApp(
-    withPolling: DeleteAppRequest()
+  let poller = try await client.deleteAppPollingUntilDone(
+    request: DeleteAppRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/apps/\(appId)"
       }

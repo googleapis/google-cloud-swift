@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: EntityTypesClient) async throws {
-    let poller = try await client.importEntityTypes(
-      withPolling: ImportEntityTypesRequest()
+    let poller = try await client.importEntityTypesPollingUntilDone(
+      request: ImportEntityTypesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

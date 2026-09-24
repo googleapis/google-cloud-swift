@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createScope(
-    withPolling: CreateScopeRequest()
+  let poller = try await client.createScopePollingUntilDone(
+    request: CreateScopeRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.scopeId = "[replace with a valid ID]"

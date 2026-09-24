@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: HostsClient) async throws {
-    let poller = try await client.getVersion(
-      withPolling: HostsClient.GetVersionRequest()
+    let poller = try await client.getVersionPollingUntilDone(
+      request: HostsClient.GetVersionRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, datasetId: String
 ) async throws {
-  let poller = try await client.deleteDataset(
-    withPolling: DeleteDatasetRequest()
+  let poller = try await client.deleteDatasetPollingUntilDone(
+    request: DeleteDatasetRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)"
       }

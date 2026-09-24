@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient) async throws {
-  let poller = try await client.detachLun(
-    withPolling: DetachLunRequest()
+  let poller = try await client.detachLunPollingUntilDone(
+    request: DetachLunRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

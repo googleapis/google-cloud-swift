@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let poller = try await client.createDeployment(
-    withPolling: CreateDeploymentRequest()
+  let poller = try await client.createDeploymentPollingUntilDone(
+    request: CreateDeploymentRequest()
       .with {
         $0.parent = "\(parent)"
         $0.deploymentId = "[replace with a valid ID]"

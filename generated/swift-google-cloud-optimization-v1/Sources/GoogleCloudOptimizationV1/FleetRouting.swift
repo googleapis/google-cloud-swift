@@ -109,15 +109,15 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   /// vehicles minimizing the overall cost.
   ///
   /// @Snippet(path: "FleetRouting_BatchOptimizeTours")
-  public func batchOptimizeTours(
-    withPolling: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
+  public func batchOptimizeToursPollingUntilDone(
+    request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchOptimizeToursResponse>.State in
       return try op._extractStatus(BatchOptimizeToursResponse.self)
     }
-    let rawOp = try await self.batchOptimizeTours(request: withPolling, options: options)
+    let rawOp = try await self.batchOptimizeTours(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BatchOptimizeToursResponse>.State in
@@ -153,8 +153,8 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol FleetRoutingProtocol: Sendable {
     /// See `FleetRoutingClient.batchOptimizeTours`.
-    func batchOptimizeTours(withPolling: BatchOptimizeToursRequest) async throws -> any GoogleGax
-      .PollableOperation<BatchOptimizeToursResponse>
+    func batchOptimizeToursPollingUntilDone(request: BatchOptimizeToursRequest) async throws
+      -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse>
 
     /// See `FleetRoutingClient.optimizeTours`.
     func optimizeTours(
@@ -167,8 +167,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `FleetRoutingClient.batchOptimizeTours`.
-    func batchOptimizeTours(
-      withPolling: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
+    func batchOptimizeToursPollingUntilDone(
+      request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse>
   }
 }
@@ -199,14 +199,14 @@ extension Clients.FleetRoutingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func batchOptimizeTours(withPolling: BatchOptimizeToursRequest) async throws
+  public func batchOptimizeToursPollingUntilDone(request: BatchOptimizeToursRequest) async throws
     -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse>
   {
-    try await self.batchOptimizeTours(withPolling: withPolling, options: .init())
+    try await self.batchOptimizeToursPollingUntilDone(request: request, options: .init())
   }
 
-  public func batchOptimizeTours(
-    withPolling: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
+  public func batchOptimizeToursPollingUntilDone(
+    request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse> {
     let poll = {
       () async throws -> GoogleGax._PollableOperationImpl<BatchOptimizeToursResponse>.State in

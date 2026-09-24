@@ -74,14 +74,14 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Creates a new Cluster in a given project and location.
   ///
   /// @Snippet(path: "EdgeContainer_CreateCluster")
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.createCluster(request: withPolling, options: options)
+    let rawOp = try await self.createCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -108,14 +108,14 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Updates the parameters of a single Cluster.
   ///
   /// @Snippet(path: "EdgeContainer_UpdateCluster")
-  public func updateCluster(
-    withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.updateCluster(request: withPolling, options: options)
+    let rawOp = try await self.updateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -142,14 +142,14 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Upgrades a single cluster.
   ///
   /// @Snippet(path: "EdgeContainer_UpgradeCluster")
-  public func upgradeCluster(
-    withPolling: UpgradeClusterRequest, options: GoogleGax.RequestOptions
+  public func upgradeClusterPollingUntilDone(
+    request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.upgradeCluster(request: withPolling, options: options)
+    let rawOp = try await self.upgradeCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -176,15 +176,15 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Deletes a single Cluster.
   ///
   /// @Snippet(path: "EdgeContainer_DeleteCluster")
-  public func deleteCluster(
-    withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteCluster(request: withPolling, options: options)
+    let rawOp = try await self.deleteCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -247,15 +247,15 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Creates a new NodePool in a given project and location.
   ///
   /// @Snippet(path: "EdgeContainer_CreateNodePool")
-  public func createNodePool(
-    withPolling: CreateNodePoolRequest, options: GoogleGax.RequestOptions
+  public func createNodePoolPollingUntilDone(
+    request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodePool> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<NodePool>.State
       in
       return try op._extractStatus(NodePool.self)
     }
-    let rawOp = try await self.createNodePool(request: withPolling, options: options)
+    let rawOp = try await self.createNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodePool>.State in
       let op = try await self.getOperation(
@@ -282,15 +282,15 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Updates the parameters of a single NodePool.
   ///
   /// @Snippet(path: "EdgeContainer_UpdateNodePool")
-  public func updateNodePool(
-    withPolling: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
+  public func updateNodePoolPollingUntilDone(
+    request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodePool> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<NodePool>.State
       in
       return try op._extractStatus(NodePool.self)
     }
-    let rawOp = try await self.updateNodePool(request: withPolling, options: options)
+    let rawOp = try await self.updateNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodePool>.State in
       let op = try await self.getOperation(
@@ -317,15 +317,15 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Deletes a single NodePool.
   ///
   /// @Snippet(path: "EdgeContainer_DeleteNodePool")
-  public func deleteNodePool(
-    withPolling: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
+  public func deleteNodePoolPollingUntilDone(
+    request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteNodePool(request: withPolling, options: options)
+    let rawOp = try await self.deleteNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -388,15 +388,15 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Creates a new VPN connection in a given project and location.
   ///
   /// @Snippet(path: "EdgeContainer_CreateVpnConnection")
-  public func createVpnConnection(
-    withPolling: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
+  public func createVpnConnectionPollingUntilDone(
+    request: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VpnConnection> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<VpnConnection>.State in
       return try op._extractStatus(VpnConnection.self)
     }
-    let rawOp = try await self.createVpnConnection(request: withPolling, options: options)
+    let rawOp = try await self.createVpnConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<VpnConnection>.State in
       let op = try await self.getOperation(
@@ -423,15 +423,15 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// Deletes a single VPN connection.
   ///
   /// @Snippet(path: "EdgeContainer_DeleteVpnConnection")
-  public func deleteVpnConnection(
-    withPolling: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
+  public func deleteVpnConnectionPollingUntilDone(
+    request: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteVpnConnection(request: withPolling, options: options)
+    let rawOp = try await self.deleteVpnConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -526,93 +526,93 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol EdgeContainerProtocol: Sendable {
     /// See `EdgeContainerClient.createCluster`.
-    func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
+    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.createCluster`.
-    func createCluster(
+    func createClusterPollingUntilDone(
       parent: Swift.String,
       cluster: Cluster?,
       clusterId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.updateCluster`.
-    func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
+    func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.updateCluster`.
-    func updateCluster(
+    func updateClusterPollingUntilDone(
       cluster: Cluster?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.upgradeCluster`.
-    func upgradeCluster(withPolling: UpgradeClusterRequest) async throws -> any GoogleGax
-      .PollableOperation<Cluster>
+    func upgradeClusterPollingUntilDone(request: UpgradeClusterRequest) async throws
+      -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.upgradeCluster`.
-    func upgradeCluster(
+    func upgradeClusterPollingUntilDone(
       name: Swift.String,
       targetVersion: Swift.String,
       schedule: UpgradeClusterRequest.Schedule,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.deleteCluster`.
-    func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
+    func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.deleteCluster`.
-    func deleteCluster(
+    func deleteClusterPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.createNodePool`.
-    func createNodePool(withPolling: CreateNodePoolRequest) async throws -> any GoogleGax
-      .PollableOperation<NodePool>
+    func createNodePoolPollingUntilDone(request: CreateNodePoolRequest) async throws
+      -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.createNodePool`.
-    func createNodePool(
+    func createNodePoolPollingUntilDone(
       parent: Swift.String,
       nodePool: NodePool?,
       nodePoolId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.updateNodePool`.
-    func updateNodePool(withPolling: UpdateNodePoolRequest) async throws -> any GoogleGax
-      .PollableOperation<NodePool>
+    func updateNodePoolPollingUntilDone(request: UpdateNodePoolRequest) async throws
+      -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.updateNodePool`.
-    func updateNodePool(
+    func updateNodePoolPollingUntilDone(
       nodePool: NodePool?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.deleteNodePool`.
-    func deleteNodePool(withPolling: DeleteNodePoolRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteNodePoolPollingUntilDone(request: DeleteNodePoolRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.deleteNodePool`.
-    func deleteNodePool(
+    func deleteNodePoolPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.createVpnConnection`.
-    func createVpnConnection(withPolling: CreateVpnConnectionRequest) async throws -> any GoogleGax
-      .PollableOperation<VpnConnection>
+    func createVpnConnectionPollingUntilDone(request: CreateVpnConnectionRequest) async throws
+      -> any GoogleGax.PollableOperation<VpnConnection>
 
     /// See `EdgeContainerClient.createVpnConnection`.
-    func createVpnConnection(
+    func createVpnConnectionPollingUntilDone(
       parent: Swift.String,
       vpnConnection: VpnConnection?,
       vpnConnectionId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<VpnConnection>
 
     /// See `EdgeContainerClient.deleteVpnConnection`.
-    func deleteVpnConnection(withPolling: DeleteVpnConnectionRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteVpnConnectionPollingUntilDone(request: DeleteVpnConnectionRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.deleteVpnConnection`.
-    func deleteVpnConnection(
+    func deleteVpnConnectionPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -632,8 +632,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.createCluster`.
-    func createCluster(
-      withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+    func createClusterPollingUntilDone(
+      request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.updateCluster`.
@@ -642,8 +642,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.updateCluster`.
-    func updateCluster(
-      withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+    func updateClusterPollingUntilDone(
+      request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.upgradeCluster`.
@@ -652,8 +652,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.upgradeCluster`.
-    func upgradeCluster(
-      withPolling: UpgradeClusterRequest, options: GoogleGax.RequestOptions
+    func upgradeClusterPollingUntilDone(
+      request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.deleteCluster`.
@@ -662,8 +662,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.deleteCluster`.
-    func deleteCluster(
-      withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+    func deleteClusterPollingUntilDone(
+      request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.generateAccessToken`.
@@ -692,8 +692,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.createNodePool`.
-    func createNodePool(
-      withPolling: CreateNodePoolRequest, options: GoogleGax.RequestOptions
+    func createNodePoolPollingUntilDone(
+      request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.updateNodePool`.
@@ -702,8 +702,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.updateNodePool`.
-    func updateNodePool(
-      withPolling: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
+    func updateNodePoolPollingUntilDone(
+      request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.deleteNodePool`.
@@ -712,8 +712,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.deleteNodePool`.
-    func deleteNodePool(
-      withPolling: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
+    func deleteNodePoolPollingUntilDone(
+      request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.listMachines`.
@@ -742,8 +742,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.createVpnConnection`.
-    func createVpnConnection(
-      withPolling: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
+    func createVpnConnectionPollingUntilDone(
+      request: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<VpnConnection>
 
     /// See `EdgeContainerClient.deleteVpnConnection`.
@@ -752,8 +752,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `EdgeContainerClient.deleteVpnConnection`.
-    func deleteVpnConnection(
-      withPolling: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
+    func deleteVpnConnectionPollingUntilDone(
+      request: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `EdgeContainerClient.getServerConfig`.
@@ -865,14 +865,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.createCluster(withPolling: withPolling, options: .init())
+    try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -881,7 +881,7 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCluster(
+  public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
     clusterId: Swift.String,
@@ -891,7 +891,7 @@ extension Clients.EdgeContainerProtocol {
       $0.cluster = cluster
       $0.clusterId = clusterId
     }
-    return try await self.createCluster(withPolling: request)
+    return try await self.createClusterPollingUntilDone(request: request)
   }
 
   public func updateCluster(request: UpdateClusterRequest) async throws
@@ -906,14 +906,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCluster(withPolling: UpdateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.updateCluster(withPolling: withPolling, options: .init())
+    try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCluster(
-    withPolling: UpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -922,7 +922,7 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateCluster(
+  public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
@@ -930,7 +930,7 @@ extension Clients.EdgeContainerProtocol {
       $0.cluster = cluster
       $0.updateMask = updateMask
     }
-    return try await self.updateCluster(withPolling: request)
+    return try await self.updateClusterPollingUntilDone(request: request)
   }
 
   public func upgradeCluster(request: UpgradeClusterRequest) async throws
@@ -945,14 +945,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func upgradeCluster(withPolling: UpgradeClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func upgradeClusterPollingUntilDone(request: UpgradeClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.upgradeCluster(withPolling: withPolling, options: .init())
+    try await self.upgradeClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func upgradeCluster(
-    withPolling: UpgradeClusterRequest, options: GoogleGax.RequestOptions
+  public func upgradeClusterPollingUntilDone(
+    request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -961,7 +961,7 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func upgradeCluster(
+  public func upgradeClusterPollingUntilDone(
     name: Swift.String,
     targetVersion: Swift.String,
     schedule: UpgradeClusterRequest.Schedule,
@@ -971,7 +971,7 @@ extension Clients.EdgeContainerProtocol {
       $0.targetVersion = targetVersion
       $0.schedule = schedule
     }
-    return try await self.upgradeCluster(withPolling: request)
+    return try await self.upgradeClusterPollingUntilDone(request: request)
   }
 
   public func deleteCluster(request: DeleteClusterRequest) async throws
@@ -986,14 +986,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCluster(withPolling: DeleteClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteCluster(withPolling: withPolling, options: .init())
+    try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteCluster(
-    withPolling: DeleteClusterRequest, options: GoogleGax.RequestOptions
+  public func deleteClusterPollingUntilDone(
+    request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1002,13 +1002,13 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteCluster(
+  public func deleteClusterPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteCluster(withPolling: request)
+    return try await self.deleteClusterPollingUntilDone(request: request)
   }
 
   public func generateAccessToken(request: GenerateAccessTokenRequest) async throws
@@ -1128,14 +1128,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createNodePool(withPolling: CreateNodePoolRequest) async throws -> any GoogleGax
-    .PollableOperation<NodePool>
+  public func createNodePoolPollingUntilDone(request: CreateNodePoolRequest) async throws
+    -> any GoogleGax.PollableOperation<NodePool>
   {
-    try await self.createNodePool(withPolling: withPolling, options: .init())
+    try await self.createNodePoolPollingUntilDone(request: request, options: .init())
   }
 
-  public func createNodePool(
-    withPolling: CreateNodePoolRequest, options: GoogleGax.RequestOptions
+  public func createNodePoolPollingUntilDone(
+    request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodePool> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodePool>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1144,7 +1144,7 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createNodePool(
+  public func createNodePoolPollingUntilDone(
     parent: Swift.String,
     nodePool: NodePool?,
     nodePoolId: Swift.String,
@@ -1154,7 +1154,7 @@ extension Clients.EdgeContainerProtocol {
       $0.nodePool = nodePool
       $0.nodePoolId = nodePoolId
     }
-    return try await self.createNodePool(withPolling: request)
+    return try await self.createNodePoolPollingUntilDone(request: request)
   }
 
   public func updateNodePool(request: UpdateNodePoolRequest) async throws
@@ -1169,14 +1169,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateNodePool(withPolling: UpdateNodePoolRequest) async throws -> any GoogleGax
-    .PollableOperation<NodePool>
+  public func updateNodePoolPollingUntilDone(request: UpdateNodePoolRequest) async throws
+    -> any GoogleGax.PollableOperation<NodePool>
   {
-    try await self.updateNodePool(withPolling: withPolling, options: .init())
+    try await self.updateNodePoolPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateNodePool(
-    withPolling: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
+  public func updateNodePoolPollingUntilDone(
+    request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NodePool> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<NodePool>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1185,7 +1185,7 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateNodePool(
+  public func updateNodePoolPollingUntilDone(
     nodePool: NodePool?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<NodePool> {
@@ -1193,7 +1193,7 @@ extension Clients.EdgeContainerProtocol {
       $0.nodePool = nodePool
       $0.updateMask = updateMask
     }
-    return try await self.updateNodePool(withPolling: request)
+    return try await self.updateNodePoolPollingUntilDone(request: request)
   }
 
   public func deleteNodePool(request: DeleteNodePoolRequest) async throws
@@ -1208,14 +1208,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteNodePool(withPolling: DeleteNodePoolRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteNodePoolPollingUntilDone(request: DeleteNodePoolRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteNodePool(withPolling: withPolling, options: .init())
+    try await self.deleteNodePoolPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteNodePool(
-    withPolling: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
+  public func deleteNodePoolPollingUntilDone(
+    request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1224,13 +1224,13 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteNodePool(
+  public func deleteNodePoolPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteNodePoolRequest().with {
       $0.name = name
     }
-    return try await self.deleteNodePool(withPolling: request)
+    return try await self.deleteNodePoolPollingUntilDone(request: request)
   }
 
   public func listMachines(request: ListMachinesRequest) async throws
@@ -1371,14 +1371,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createVpnConnection(withPolling: CreateVpnConnectionRequest) async throws
+  public func createVpnConnectionPollingUntilDone(request: CreateVpnConnectionRequest) async throws
     -> any GoogleGax.PollableOperation<VpnConnection>
   {
-    try await self.createVpnConnection(withPolling: withPolling, options: .init())
+    try await self.createVpnConnectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func createVpnConnection(
-    withPolling: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
+  public func createVpnConnectionPollingUntilDone(
+    request: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VpnConnection> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<VpnConnection>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1387,7 +1387,7 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createVpnConnection(
+  public func createVpnConnectionPollingUntilDone(
     parent: Swift.String,
     vpnConnection: VpnConnection?,
     vpnConnectionId: Swift.String,
@@ -1397,7 +1397,7 @@ extension Clients.EdgeContainerProtocol {
       $0.vpnConnection = vpnConnection
       $0.vpnConnectionId = vpnConnectionId
     }
-    return try await self.createVpnConnection(withPolling: request)
+    return try await self.createVpnConnectionPollingUntilDone(request: request)
   }
 
   public func deleteVpnConnection(request: DeleteVpnConnectionRequest) async throws
@@ -1412,14 +1412,14 @@ extension Clients.EdgeContainerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteVpnConnection(withPolling: DeleteVpnConnectionRequest) async throws
+  public func deleteVpnConnectionPollingUntilDone(request: DeleteVpnConnectionRequest) async throws
     -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteVpnConnection(withPolling: withPolling, options: .init())
+    try await self.deleteVpnConnectionPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteVpnConnection(
-    withPolling: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
+  public func deleteVpnConnectionPollingUntilDone(
+    request: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1428,13 +1428,13 @@ extension Clients.EdgeContainerProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteVpnConnection(
+  public func deleteVpnConnectionPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteVpnConnectionRequest().with {
       $0.name = name
     }
-    return try await self.deleteVpnConnection(withPolling: request)
+    return try await self.deleteVpnConnectionPollingUntilDone(request: request)
   }
 
   public func getServerConfig(request: GetServerConfigRequest) async throws

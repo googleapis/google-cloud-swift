@@ -70,15 +70,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// enabled.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -136,15 +136,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// fields of an Instance and is the preferred way to update an Instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_PartialUpdateInstance")
-  public func partialUpdateInstance(
-    withPolling: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func partialUpdateInstancePollingUntilDone(
+    request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.partialUpdateInstance(request: withPolling, options: options)
+    let rawOp = try await self.partialUpdateInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -192,14 +192,14 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// enabled.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_CreateCluster")
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.createCluster(request: withPolling, options: options)
+    let rawOp = try await self.createCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -252,14 +252,14 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// must use PartialUpdateCluster.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_UpdateCluster")
-  public func updateCluster(
-    withPolling: Cluster, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: Cluster, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.updateCluster(request: withPolling, options: options)
+    let rawOp = try await self.updateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -308,14 +308,14 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// and explicitly set a serve_node count via the update_mask.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_PartialUpdateCluster")
-  public func partialUpdateCluster(
-    withPolling: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func partialUpdateClusterPollingUntilDone(
+    request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
-    let rawOp = try await self.partialUpdateCluster(request: withPolling, options: options)
+    let rawOp = try await self.partialUpdateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
@@ -357,15 +357,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// To disable the memory layer, unset the memory_config.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_UpdateMemoryLayer")
-  public func updateMemoryLayer(
-    withPolling: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+  public func updateMemoryLayerPollingUntilDone(
+    request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MemoryLayer>.State in
       return try op._extractStatus(MemoryLayer.self)
     }
-    let rawOp = try await self.updateMemoryLayer(request: withPolling, options: options)
+    let rawOp = try await self.updateMemoryLayer(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MemoryLayer>.State in
       let op = try await self.getOperation(
@@ -437,15 +437,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// Updates an app profile within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_UpdateAppProfile")
-  public func updateAppProfile(
-    withPolling: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
+  public func updateAppProfilePollingUntilDone(
+    request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AppProfile> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<AppProfile>.State
       in
       return try op._extractStatus(AppProfile.self)
     }
-    let rawOp = try await self.updateAppProfile(request: withPolling, options: options)
+    let rawOp = try await self.updateAppProfile(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AppProfile>.State in
       let op = try await self.getOperation(
@@ -520,15 +520,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// Creates a logical view within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_CreateLogicalView")
-  public func createLogicalView(
-    withPolling: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
+  public func createLogicalViewPollingUntilDone(
+    request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LogicalView> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LogicalView>.State in
       return try op._extractStatus(LogicalView.self)
     }
-    let rawOp = try await self.createLogicalView(request: withPolling, options: options)
+    let rawOp = try await self.createLogicalView(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LogicalView>.State in
       let op = try await self.getOperation(
@@ -573,15 +573,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// Updates a logical view within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_UpdateLogicalView")
-  public func updateLogicalView(
-    withPolling: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
+  public func updateLogicalViewPollingUntilDone(
+    request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LogicalView> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LogicalView>.State in
       return try op._extractStatus(LogicalView.self)
     }
-    let rawOp = try await self.updateLogicalView(request: withPolling, options: options)
+    let rawOp = try await self.updateLogicalView(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LogicalView>.State in
       let op = try await self.getOperation(
@@ -617,15 +617,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// Creates a materialized view within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_CreateMaterializedView")
-  public func createMaterializedView(
-    withPolling: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
+  public func createMaterializedViewPollingUntilDone(
+    request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MaterializedView> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MaterializedView>.State in
       return try op._extractStatus(MaterializedView.self)
     }
-    let rawOp = try await self.createMaterializedView(request: withPolling, options: options)
+    let rawOp = try await self.createMaterializedView(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MaterializedView>.State in
       let op = try await self.getOperation(
@@ -670,15 +670,15 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// Updates a materialized view within an instance.
   ///
   /// @Snippet(path: "BigtableInstanceAdmin_UpdateMaterializedView")
-  public func updateMaterializedView(
-    withPolling: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
+  public func updateMaterializedViewPollingUntilDone(
+    request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MaterializedView> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MaterializedView>.State in
       return try op._extractStatus(MaterializedView.self)
     }
-    let rawOp = try await self.updateMaterializedView(request: withPolling, options: options)
+    let rawOp = try await self.updateMaterializedView(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MaterializedView>.State in
       let op = try await self.getOperation(
@@ -755,11 +755,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol BigtableInstanceAdminProtocol: Sendable {
     /// See `BigtableInstanceAdminClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instanceId: Swift.String,
       instance: Instance?,
@@ -767,99 +767,98 @@ extension Clients {
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
-    func partialUpdateInstance(withPolling: PartialUpdateInstanceRequest) async throws
+    func partialUpdateInstancePollingUntilDone(request: PartialUpdateInstanceRequest) async throws
       -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
-    func partialUpdateInstance(
+    func partialUpdateInstancePollingUntilDone(
       instance: Instance?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.createCluster`.
-    func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
+    func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> any GoogleGax
       .PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.createCluster`.
-    func createCluster(
+    func createClusterPollingUntilDone(
       parent: Swift.String,
       clusterId: Swift.String,
       cluster: Cluster?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.updateCluster`.
-    func updateCluster(withPolling: Cluster) async throws -> any GoogleGax.PollableOperation<
-      Cluster
-    >
+    func updateClusterPollingUntilDone(request: Cluster) async throws -> any GoogleGax
+      .PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
-    func partialUpdateCluster(withPolling: PartialUpdateClusterRequest) async throws
+    func partialUpdateClusterPollingUntilDone(request: PartialUpdateClusterRequest) async throws
       -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
-    func partialUpdateCluster(
+    func partialUpdateClusterPollingUntilDone(
       cluster: Cluster?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
-    func updateMemoryLayer(withPolling: UpdateMemoryLayerRequest) async throws -> any GoogleGax
-      .PollableOperation<MemoryLayer>
+    func updateMemoryLayerPollingUntilDone(request: UpdateMemoryLayerRequest) async throws
+      -> any GoogleGax.PollableOperation<MemoryLayer>
 
     /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
-    func updateMemoryLayer(
+    func updateMemoryLayerPollingUntilDone(
       memoryLayer: MemoryLayer?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MemoryLayer>
 
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
-    func updateAppProfile(withPolling: UpdateAppProfileRequest) async throws -> any GoogleGax
-      .PollableOperation<AppProfile>
+    func updateAppProfilePollingUntilDone(request: UpdateAppProfileRequest) async throws
+      -> any GoogleGax.PollableOperation<AppProfile>
 
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
-    func updateAppProfile(
+    func updateAppProfilePollingUntilDone(
       appProfile: AppProfile?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<AppProfile>
 
     /// See `BigtableInstanceAdminClient.createLogicalView`.
-    func createLogicalView(withPolling: CreateLogicalViewRequest) async throws -> any GoogleGax
-      .PollableOperation<LogicalView>
+    func createLogicalViewPollingUntilDone(request: CreateLogicalViewRequest) async throws
+      -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.createLogicalView`.
-    func createLogicalView(
+    func createLogicalViewPollingUntilDone(
       parent: Swift.String,
       logicalView: LogicalView?,
       logicalViewId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
-    func updateLogicalView(withPolling: UpdateLogicalViewRequest) async throws -> any GoogleGax
-      .PollableOperation<LogicalView>
+    func updateLogicalViewPollingUntilDone(request: UpdateLogicalViewRequest) async throws
+      -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
-    func updateLogicalView(
+    func updateLogicalViewPollingUntilDone(
       logicalView: LogicalView?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.createMaterializedView`.
-    func createMaterializedView(withPolling: CreateMaterializedViewRequest) async throws
+    func createMaterializedViewPollingUntilDone(request: CreateMaterializedViewRequest) async throws
       -> any GoogleGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.createMaterializedView`.
-    func createMaterializedView(
+    func createMaterializedViewPollingUntilDone(
       parent: Swift.String,
       materializedView: MaterializedView?,
       materializedViewId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
-    func updateMaterializedView(withPolling: UpdateMaterializedViewRequest) async throws
+    func updateMaterializedViewPollingUntilDone(request: UpdateMaterializedViewRequest) async throws
       -> any GoogleGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
-    func updateMaterializedView(
+    func updateMaterializedViewPollingUntilDone(
       materializedView: MaterializedView?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
@@ -870,8 +869,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.getInstance`.
@@ -895,8 +894,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
-    func partialUpdateInstance(
-      withPolling: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
+    func partialUpdateInstancePollingUntilDone(
+      request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.deleteInstance`.
@@ -910,8 +909,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createCluster`.
-    func createCluster(
-      withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+    func createClusterPollingUntilDone(
+      request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.getCluster`.
@@ -930,8 +929,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.updateCluster`.
-    func updateCluster(
-      withPolling: Cluster, options: GoogleGax.RequestOptions
+    func updateClusterPollingUntilDone(
+      request: Cluster, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
@@ -940,8 +939,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
-    func partialUpdateCluster(
-      withPolling: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
+    func partialUpdateClusterPollingUntilDone(
+      request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.deleteCluster`.
@@ -955,8 +954,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.updateMemoryLayer`.
-    func updateMemoryLayer(
-      withPolling: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+    func updateMemoryLayerPollingUntilDone(
+      request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MemoryLayer>
 
     /// See `BigtableInstanceAdminClient.listMemoryLayers`.
@@ -990,8 +989,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
-    func updateAppProfile(
-      withPolling: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
+    func updateAppProfilePollingUntilDone(
+      request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<AppProfile>
 
     /// See `BigtableInstanceAdminClient.deleteAppProfile`.
@@ -1025,8 +1024,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createLogicalView`.
-    func createLogicalView(
-      withPolling: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
+    func createLogicalViewPollingUntilDone(
+      request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.getLogicalView`.
@@ -1045,8 +1044,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
-    func updateLogicalView(
-      withPolling: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
+    func updateLogicalViewPollingUntilDone(
+      request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.deleteLogicalView`.
@@ -1060,8 +1059,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.createMaterializedView`.
-    func createMaterializedView(
-      withPolling: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
+    func createMaterializedViewPollingUntilDone(
+      request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.getMaterializedView`.
@@ -1080,8 +1079,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
-    func updateMaterializedView(
-      withPolling: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
+    func updateMaterializedViewPollingUntilDone(
+      request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.deleteMaterializedView`.
@@ -1120,14 +1119,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1136,7 +1135,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instanceId: Swift.String,
     instance: Instance?,
@@ -1148,7 +1147,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.instance = instance
       $0.clusters = clusters
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws
@@ -1216,14 +1215,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func partialUpdateInstance(withPolling: PartialUpdateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+  public func partialUpdateInstancePollingUntilDone(request: PartialUpdateInstanceRequest)
+    async throws -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.partialUpdateInstance(withPolling: withPolling, options: .init())
+    try await self.partialUpdateInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func partialUpdateInstance(
-    withPolling: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func partialUpdateInstancePollingUntilDone(
+    request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1232,7 +1231,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func partialUpdateInstance(
+  public func partialUpdateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -1240,7 +1239,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.instance = instance
       $0.updateMask = updateMask
     }
-    return try await self.partialUpdateInstance(withPolling: request)
+    return try await self.partialUpdateInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws {
@@ -1274,14 +1273,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createCluster(withPolling: CreateClusterRequest) async throws -> any GoogleGax
-    .PollableOperation<Cluster>
+  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws
+    -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.createCluster(withPolling: withPolling, options: .init())
+    try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func createCluster(
-    withPolling: CreateClusterRequest, options: GoogleGax.RequestOptions
+  public func createClusterPollingUntilDone(
+    request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1290,7 +1289,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createCluster(
+  public func createClusterPollingUntilDone(
     parent: Swift.String,
     clusterId: Swift.String,
     cluster: Cluster?,
@@ -1300,7 +1299,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.clusterId = clusterId
       $0.cluster = cluster
     }
-    return try await self.createCluster(withPolling: request)
+    return try await self.createClusterPollingUntilDone(request: request)
   }
 
   public func getCluster(request: GetClusterRequest) async throws
@@ -1355,14 +1354,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateCluster(withPolling: Cluster) async throws -> any GoogleGax.PollableOperation<
-    Cluster
-  > {
-    try await self.updateCluster(withPolling: withPolling, options: .init())
+  public func updateClusterPollingUntilDone(request: Cluster) async throws -> any GoogleGax
+    .PollableOperation<Cluster>
+  {
+    try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateCluster(
-    withPolling: Cluster, options: GoogleGax.RequestOptions
+  public func updateClusterPollingUntilDone(
+    request: Cluster, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1383,14 +1382,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func partialUpdateCluster(withPolling: PartialUpdateClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Cluster>
+  public func partialUpdateClusterPollingUntilDone(request: PartialUpdateClusterRequest)
+    async throws -> any GoogleGax.PollableOperation<Cluster>
   {
-    try await self.partialUpdateCluster(withPolling: withPolling, options: .init())
+    try await self.partialUpdateClusterPollingUntilDone(request: request, options: .init())
   }
 
-  public func partialUpdateCluster(
-    withPolling: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
+  public func partialUpdateClusterPollingUntilDone(
+    request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1399,7 +1398,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func partialUpdateCluster(
+  public func partialUpdateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
@@ -1407,7 +1406,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.cluster = cluster
       $0.updateMask = updateMask
     }
-    return try await self.partialUpdateCluster(withPolling: request)
+    return try await self.partialUpdateClusterPollingUntilDone(request: request)
   }
 
   public func deleteCluster(request: DeleteClusterRequest) async throws {
@@ -1441,14 +1440,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMemoryLayer(withPolling: UpdateMemoryLayerRequest) async throws -> any GoogleGax
-    .PollableOperation<MemoryLayer>
+  public func updateMemoryLayerPollingUntilDone(request: UpdateMemoryLayerRequest) async throws
+    -> any GoogleGax.PollableOperation<MemoryLayer>
   {
-    try await self.updateMemoryLayer(withPolling: withPolling, options: .init())
+    try await self.updateMemoryLayerPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMemoryLayer(
-    withPolling: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
+  public func updateMemoryLayerPollingUntilDone(
+    request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MemoryLayer>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1457,7 +1456,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMemoryLayer(
+  public func updateMemoryLayerPollingUntilDone(
     memoryLayer: MemoryLayer?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MemoryLayer> {
@@ -1465,7 +1464,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.memoryLayer = memoryLayer
       $0.updateMask = updateMask
     }
-    return try await self.updateMemoryLayer(withPolling: request)
+    return try await self.updateMemoryLayerPollingUntilDone(request: request)
   }
 
   public func listMemoryLayers(request: ListMemoryLayersRequest) async throws
@@ -1631,14 +1630,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateAppProfile(withPolling: UpdateAppProfileRequest) async throws -> any GoogleGax
-    .PollableOperation<AppProfile>
+  public func updateAppProfilePollingUntilDone(request: UpdateAppProfileRequest) async throws
+    -> any GoogleGax.PollableOperation<AppProfile>
   {
-    try await self.updateAppProfile(withPolling: withPolling, options: .init())
+    try await self.updateAppProfilePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateAppProfile(
-    withPolling: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
+  public func updateAppProfilePollingUntilDone(
+    request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AppProfile> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<AppProfile>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1647,7 +1646,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateAppProfile(
+  public func updateAppProfilePollingUntilDone(
     appProfile: AppProfile?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<AppProfile> {
@@ -1655,7 +1654,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.appProfile = appProfile
       $0.updateMask = updateMask
     }
-    return try await self.updateAppProfile(withPolling: request)
+    return try await self.updateAppProfilePollingUntilDone(request: request)
   }
 
   public func deleteAppProfile(request: DeleteAppProfileRequest) async throws {
@@ -1810,14 +1809,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createLogicalView(withPolling: CreateLogicalViewRequest) async throws -> any GoogleGax
-    .PollableOperation<LogicalView>
+  public func createLogicalViewPollingUntilDone(request: CreateLogicalViewRequest) async throws
+    -> any GoogleGax.PollableOperation<LogicalView>
   {
-    try await self.createLogicalView(withPolling: withPolling, options: .init())
+    try await self.createLogicalViewPollingUntilDone(request: request, options: .init())
   }
 
-  public func createLogicalView(
-    withPolling: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
+  public func createLogicalViewPollingUntilDone(
+    request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LogicalView> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LogicalView>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1826,7 +1825,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createLogicalView(
+  public func createLogicalViewPollingUntilDone(
     parent: Swift.String,
     logicalView: LogicalView?,
     logicalViewId: Swift.String,
@@ -1836,7 +1835,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.logicalView = logicalView
       $0.logicalViewId = logicalViewId
     }
-    return try await self.createLogicalView(withPolling: request)
+    return try await self.createLogicalViewPollingUntilDone(request: request)
   }
 
   public func getLogicalView(request: GetLogicalViewRequest) async throws
@@ -1914,14 +1913,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateLogicalView(withPolling: UpdateLogicalViewRequest) async throws -> any GoogleGax
-    .PollableOperation<LogicalView>
+  public func updateLogicalViewPollingUntilDone(request: UpdateLogicalViewRequest) async throws
+    -> any GoogleGax.PollableOperation<LogicalView>
   {
-    try await self.updateLogicalView(withPolling: withPolling, options: .init())
+    try await self.updateLogicalViewPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateLogicalView(
-    withPolling: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
+  public func updateLogicalViewPollingUntilDone(
+    request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LogicalView> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<LogicalView>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1930,7 +1929,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateLogicalView(
+  public func updateLogicalViewPollingUntilDone(
     logicalView: LogicalView?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<LogicalView> {
@@ -1938,7 +1937,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.logicalView = logicalView
       $0.updateMask = updateMask
     }
-    return try await self.updateLogicalView(withPolling: request)
+    return try await self.updateLogicalViewPollingUntilDone(request: request)
   }
 
   public func deleteLogicalView(request: DeleteLogicalViewRequest) async throws {
@@ -1972,14 +1971,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createMaterializedView(withPolling: CreateMaterializedViewRequest) async throws
-    -> any GoogleGax.PollableOperation<MaterializedView>
+  public func createMaterializedViewPollingUntilDone(request: CreateMaterializedViewRequest)
+    async throws -> any GoogleGax.PollableOperation<MaterializedView>
   {
-    try await self.createMaterializedView(withPolling: withPolling, options: .init())
+    try await self.createMaterializedViewPollingUntilDone(request: request, options: .init())
   }
 
-  public func createMaterializedView(
-    withPolling: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
+  public func createMaterializedViewPollingUntilDone(
+    request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MaterializedView> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MaterializedView>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -1988,7 +1987,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createMaterializedView(
+  public func createMaterializedViewPollingUntilDone(
     parent: Swift.String,
     materializedView: MaterializedView?,
     materializedViewId: Swift.String,
@@ -1998,7 +1997,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.materializedView = materializedView
       $0.materializedViewId = materializedViewId
     }
-    return try await self.createMaterializedView(withPolling: request)
+    return try await self.createMaterializedViewPollingUntilDone(request: request)
   }
 
   public func getMaterializedView(request: GetMaterializedViewRequest) async throws
@@ -2077,14 +2076,14 @@ extension Clients.BigtableInstanceAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateMaterializedView(withPolling: UpdateMaterializedViewRequest) async throws
-    -> any GoogleGax.PollableOperation<MaterializedView>
+  public func updateMaterializedViewPollingUntilDone(request: UpdateMaterializedViewRequest)
+    async throws -> any GoogleGax.PollableOperation<MaterializedView>
   {
-    try await self.updateMaterializedView(withPolling: withPolling, options: .init())
+    try await self.updateMaterializedViewPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateMaterializedView(
-    withPolling: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
+  public func updateMaterializedViewPollingUntilDone(
+    request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MaterializedView> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<MaterializedView>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -2093,7 +2092,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateMaterializedView(
+  public func updateMaterializedViewPollingUntilDone(
     materializedView: MaterializedView?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<MaterializedView> {
@@ -2101,7 +2100,7 @@ extension Clients.BigtableInstanceAdminProtocol {
       $0.materializedView = materializedView
       $0.updateMask = updateMask
     }
-    return try await self.updateMaterializedView(withPolling: request)
+    return try await self.updateMaterializedViewPollingUntilDone(request: request)
   }
 
   public func deleteMaterializedView(request: DeleteMaterializedViewRequest) async throws {

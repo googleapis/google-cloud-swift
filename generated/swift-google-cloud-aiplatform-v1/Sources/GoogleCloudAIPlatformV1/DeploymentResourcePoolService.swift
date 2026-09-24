@@ -60,16 +60,15 @@
     /// Create a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_CreateDeploymentResourcePool")
-    public func createDeploymentResourcePool(
-      withPolling: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+    public func createDeploymentResourcePoolPollingUntilDone(
+      request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeploymentResourcePool>.State in
         return try op._extractStatus(DeploymentResourcePool.self)
       }
-      let rawOp = try await self.createDeploymentResourcePool(
-        request: withPolling, options: options)
+      let rawOp = try await self.createDeploymentResourcePool(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DeploymentResourcePool>.State in
@@ -115,16 +114,15 @@
     /// Update a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
-    public func updateDeploymentResourcePool(
-      withPolling: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+    public func updateDeploymentResourcePoolPollingUntilDone(
+      request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeploymentResourcePool>.State in
         return try op._extractStatus(DeploymentResourcePool.self)
       }
-      let rawOp = try await self.updateDeploymentResourcePool(
-        request: withPolling, options: options)
+      let rawOp = try await self.updateDeploymentResourcePool(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DeploymentResourcePool>.State in
@@ -152,16 +150,15 @@
     /// Delete a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_DeleteDeploymentResourcePool")
-    public func deleteDeploymentResourcePool(
-      withPolling: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+    public func deleteDeploymentResourcePoolPollingUntilDone(
+      request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteDeploymentResourcePool(
-        request: withPolling, options: options)
+      let rawOp = try await self.deleteDeploymentResourcePool(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -305,32 +302,35 @@
     /// and pass a mock implementation in your tests.
     public protocol DeploymentResourcePoolServiceProtocol: Sendable {
       /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
-      func createDeploymentResourcePool(withPolling: CreateDeploymentResourcePoolRequest)
-        async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
+      func createDeploymentResourcePoolPollingUntilDone(
+        request: CreateDeploymentResourcePoolRequest
+      ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
-      func createDeploymentResourcePool(
+      func createDeploymentResourcePoolPollingUntilDone(
         parent: Swift.String,
         deploymentResourcePool: DeploymentResourcePool?,
         deploymentResourcePoolId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
-      func updateDeploymentResourcePool(withPolling: UpdateDeploymentResourcePoolRequest)
-        async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
+      func updateDeploymentResourcePoolPollingUntilDone(
+        request: UpdateDeploymentResourcePoolRequest
+      ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
-      func updateDeploymentResourcePool(
+      func updateDeploymentResourcePoolPollingUntilDone(
         deploymentResourcePool: DeploymentResourcePool?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
-      func deleteDeploymentResourcePool(withPolling: DeleteDeploymentResourcePoolRequest)
-        async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      func deleteDeploymentResourcePoolPollingUntilDone(
+        request: DeleteDeploymentResourcePoolRequest
+      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
-      func deleteDeploymentResourcePool(
+      func deleteDeploymentResourcePoolPollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -340,8 +340,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `DeploymentResourcePoolServiceClient.createDeploymentResourcePool`.
-      func createDeploymentResourcePool(
-        withPolling: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+      func createDeploymentResourcePoolPollingUntilDone(
+        request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.getDeploymentResourcePool`.
@@ -360,8 +360,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
-      func updateDeploymentResourcePool(
-        withPolling: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+      func updateDeploymentResourcePoolPollingUntilDone(
+        request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
@@ -370,8 +370,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
-      func deleteDeploymentResourcePool(
-        withPolling: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+      func deleteDeploymentResourcePoolPollingUntilDone(
+        request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `DeploymentResourcePoolServiceClient.queryDeployedModels`.
@@ -440,14 +440,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createDeploymentResourcePool(withPolling: CreateDeploymentResourcePoolRequest)
-      async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-    {
-      try await self.createDeploymentResourcePool(withPolling: withPolling, options: .init())
+    public func createDeploymentResourcePoolPollingUntilDone(
+      request: CreateDeploymentResourcePoolRequest
+    ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
+      try await self.createDeploymentResourcePoolPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func createDeploymentResourcePool(
-      withPolling: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+    public func createDeploymentResourcePoolPollingUntilDone(
+      request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DeploymentResourcePool>.State in
@@ -457,7 +458,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createDeploymentResourcePool(
+    public func createDeploymentResourcePoolPollingUntilDone(
       parent: Swift.String,
       deploymentResourcePool: DeploymentResourcePool?,
       deploymentResourcePoolId: Swift.String,
@@ -467,7 +468,7 @@
         $0.deploymentResourcePool = deploymentResourcePool
         $0.deploymentResourcePoolId = deploymentResourcePoolId
       }
-      return try await self.createDeploymentResourcePool(withPolling: request)
+      return try await self.createDeploymentResourcePoolPollingUntilDone(request: request)
     }
 
     public func getDeploymentResourcePool(request: GetDeploymentResourcePoolRequest) async throws
@@ -546,14 +547,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateDeploymentResourcePool(withPolling: UpdateDeploymentResourcePoolRequest)
-      async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool>
-    {
-      try await self.updateDeploymentResourcePool(withPolling: withPolling, options: .init())
+    public func updateDeploymentResourcePoolPollingUntilDone(
+      request: UpdateDeploymentResourcePoolRequest
+    ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
+      try await self.updateDeploymentResourcePoolPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func updateDeploymentResourcePool(
-      withPolling: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+    public func updateDeploymentResourcePoolPollingUntilDone(
+      request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DeploymentResourcePool>.State in
@@ -563,7 +565,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateDeploymentResourcePool(
+    public func updateDeploymentResourcePoolPollingUntilDone(
       deploymentResourcePool: DeploymentResourcePool?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<DeploymentResourcePool> {
@@ -571,7 +573,7 @@
         $0.deploymentResourcePool = deploymentResourcePool
         $0.updateMask = updateMask
       }
-      return try await self.updateDeploymentResourcePool(withPolling: request)
+      return try await self.updateDeploymentResourcePoolPollingUntilDone(request: request)
     }
 
     public func deleteDeploymentResourcePool(request: DeleteDeploymentResourcePoolRequest)
@@ -586,14 +588,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteDeploymentResourcePool(withPolling: DeleteDeploymentResourcePoolRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
-    {
-      try await self.deleteDeploymentResourcePool(withPolling: withPolling, options: .init())
+    public func deleteDeploymentResourcePoolPollingUntilDone(
+      request: DeleteDeploymentResourcePoolRequest
+    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+      try await self.deleteDeploymentResourcePoolPollingUntilDone(
+        request: request, options: .init())
     }
 
-    public func deleteDeploymentResourcePool(
-      withPolling: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
+    public func deleteDeploymentResourcePoolPollingUntilDone(
+      request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -602,13 +605,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteDeploymentResourcePool(
+    public func deleteDeploymentResourcePoolPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteDeploymentResourcePoolRequest().with {
         $0.name = name
       }
-      return try await self.deleteDeploymentResourcePool(withPolling: request)
+      return try await self.deleteDeploymentResourcePoolPollingUntilDone(request: request)
     }
 
     public func queryDeployedModels(request: QueryDeployedModelsRequest) async throws

@@ -117,15 +117,15 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// Create a Retrohunt.
   ///
   /// @Snippet(path: "RuleService_CreateRetrohunt")
-  public func createRetrohunt(
-    withPolling: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
+  public func createRetrohuntPollingUntilDone(
+    request: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Retrohunt> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Retrohunt>.State
       in
       return try op._extractStatus(Retrohunt.self)
     }
-    let rawOp = try await self.createRetrohunt(request: withPolling, options: options)
+    let rawOp = try await self.createRetrohunt(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Retrohunt>.State in
       let op = try await self.getOperation(
@@ -241,11 +241,11 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol RuleServiceProtocol: Sendable {
     /// See `RuleServiceClient.createRetrohunt`.
-    func createRetrohunt(withPolling: CreateRetrohuntRequest) async throws -> any GoogleGax
-      .PollableOperation<Retrohunt>
+    func createRetrohuntPollingUntilDone(request: CreateRetrohuntRequest) async throws
+      -> any GoogleGax.PollableOperation<Retrohunt>
 
     /// See `RuleServiceClient.createRetrohunt`.
-    func createRetrohunt(
+    func createRetrohuntPollingUntilDone(
       parent: Swift.String,
       retrohunt: Retrohunt?,
     ) async throws -> any GoogleGax.PollableOperation<Retrohunt>
@@ -291,8 +291,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `RuleServiceClient.createRetrohunt`.
-    func createRetrohunt(
-      withPolling: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
+    func createRetrohuntPollingUntilDone(
+      request: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Retrohunt>
 
     /// See `RuleServiceClient.getRetrohunt`.
@@ -538,14 +538,14 @@ extension Clients.RuleServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createRetrohunt(withPolling: CreateRetrohuntRequest) async throws -> any GoogleGax
-    .PollableOperation<Retrohunt>
+  public func createRetrohuntPollingUntilDone(request: CreateRetrohuntRequest) async throws
+    -> any GoogleGax.PollableOperation<Retrohunt>
   {
-    try await self.createRetrohunt(withPolling: withPolling, options: .init())
+    try await self.createRetrohuntPollingUntilDone(request: request, options: .init())
   }
 
-  public func createRetrohunt(
-    withPolling: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
+  public func createRetrohuntPollingUntilDone(
+    request: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Retrohunt> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Retrohunt>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -554,7 +554,7 @@ extension Clients.RuleServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createRetrohunt(
+  public func createRetrohuntPollingUntilDone(
     parent: Swift.String,
     retrohunt: Retrohunt?,
   ) async throws -> any GoogleGax.PollableOperation<Retrohunt> {
@@ -562,7 +562,7 @@ extension Clients.RuleServiceProtocol {
       $0.parent = parent
       $0.retrohunt = retrohunt
     }
-    return try await self.createRetrohunt(withPolling: request)
+    return try await self.createRetrohuntPollingUntilDone(request: request)
   }
 
   public func getRetrohunt(request: GetRetrohuntRequest) async throws

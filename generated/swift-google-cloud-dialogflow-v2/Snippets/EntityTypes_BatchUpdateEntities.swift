@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: EntityTypesClient) async throws {
-    let poller = try await client.batchUpdateEntities(
-      withPolling: BatchUpdateEntitiesRequest()
+    let poller = try await client.batchUpdateEntitiesPollingUntilDone(
+      request: BatchUpdateEntitiesRequest()
         /* set fields using .with { $0... } */
     )
     try await poller.wait()

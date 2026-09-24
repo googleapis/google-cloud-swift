@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: ApiGatewayServiceClient, projectId: String, locationId: String, gatewayId: String
 ) async throws {
-  let poller = try await client.deleteGateway(
-    withPolling: DeleteGatewayRequest()
+  let poller = try await client.deleteGatewayPollingUntilDone(
+    request: DeleteGatewayRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/gateways/\(gatewayId)"
       }

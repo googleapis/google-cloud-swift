@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VectorSearchServiceClient) async throws {
-  let poller = try await client.exportDataObjects(
-    withPolling: ExportDataObjectsRequest()
+  let poller = try await client.exportDataObjectsPollingUntilDone(
+    request: ExportDataObjectsRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createStoragePool(
-    withPolling: CreateStoragePoolRequest()
+  let poller = try await client.createStoragePoolPollingUntilDone(
+    request: CreateStoragePoolRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.storagePool = StoragePool() /* .with { ... } */

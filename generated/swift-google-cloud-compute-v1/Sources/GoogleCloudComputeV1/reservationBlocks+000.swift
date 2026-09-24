@@ -81,9 +81,8 @@
     /// Allows customers to perform maintenance on a reservation block
     ///
     /// @Snippet(path: "reservationBlocks_performMaintenance")
-    public func performMaintenance(
-      withPolling: ReservationBlocksClient.PerformMaintenanceRequest,
-      options: GoogleGax.RequestOptions
+    public func performMaintenancePollingUntilDone(
+      request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -99,15 +98,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.performMaintenance(request: withPolling, options: options)
+      let rawOp = try await self.performMaintenance(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.zone = withPolling.zone
+            $0.project = request.project
+            $0.zone = request.zone
           }, options: options)
         return try extractStatus(op)
       }
@@ -303,15 +302,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func performMaintenance(
-      withPolling: ReservationBlocksClient.PerformMaintenanceRequest
+    public func performMaintenancePollingUntilDone(
+      request: ReservationBlocksClient.PerformMaintenanceRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.performMaintenance(withPolling: withPolling, options: .init())
+      try await self.performMaintenancePollingUntilDone(request: request, options: .init())
     }
 
-    public func performMaintenance(
-      withPolling: ReservationBlocksClient.PerformMaintenanceRequest,
-      options: GoogleGax.RequestOptions
+    public func performMaintenancePollingUntilDone(
+      request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -321,7 +319,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func performMaintenance(
+    public func performMaintenancePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       reservation: Swift.String,
@@ -335,7 +333,7 @@
         $0.reservationBlock = reservationBlock
         $0.body = body
       }
-      return try await self.performMaintenance(withPolling: request)
+      return try await self.performMaintenancePollingUntilDone(request: request)
     }
 
     public func setIamPolicy(request: ReservationBlocksClient.SetIamPolicyRequest) async throws

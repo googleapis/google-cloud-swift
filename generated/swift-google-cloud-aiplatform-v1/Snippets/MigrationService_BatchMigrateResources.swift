@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: MigrationServiceClient) async throws {
-    let poller = try await client.batchMigrateResources(
-      withPolling: BatchMigrateResourcesRequest()
+    let poller = try await client.batchMigrateResourcesPollingUntilDone(
+      request: BatchMigrateResourcesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

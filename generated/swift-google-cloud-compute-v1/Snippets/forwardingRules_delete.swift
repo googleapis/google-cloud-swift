@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ForwardingRulesClient) async throws {
-    let poller = try await client.delete(
-      withPolling: ForwardingRulesClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: ForwardingRulesClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

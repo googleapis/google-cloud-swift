@@ -26,8 +26,8 @@
   func sample(
     client: VertexRagDataServiceClient, projectId: String, locationId: String, ragCorpusId: String
   ) async throws {
-    let poller = try await client.updateRagCorpus(
-      withPolling: UpdateRagCorpusRequest()
+    let poller = try await client.updateRagCorpusPollingUntilDone(
+      request: UpdateRagCorpusRequest()
         .with {
           $0.ragCorpus = RagCorpus().with {
             $0.name = "projects/\(projectId)/locations/\(locationId)/ragCorpora/\(ragCorpusId)"

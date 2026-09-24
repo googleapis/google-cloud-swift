@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateAuthorityServiceClient, parent: String) async throws {
-  let poller = try await client.createCertificateTemplate(
-    withPolling: CreateCertificateTemplateRequest()
+  let poller = try await client.createCertificateTemplatePollingUntilDone(
+    request: CreateCertificateTemplateRequest()
       .with {
         $0.parent = "\(parent)"
         $0.certificateTemplate = CertificateTemplate() /* .with { ... } */

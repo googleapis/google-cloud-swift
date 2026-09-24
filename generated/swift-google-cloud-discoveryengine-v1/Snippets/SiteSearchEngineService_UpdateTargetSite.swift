@@ -25,8 +25,8 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String, targetSiteId: String
   ) async throws {
-    let poller = try await client.updateTargetSite(
-      withPolling: UpdateTargetSiteRequest()
+    let poller = try await client.updateTargetSitePollingUntilDone(
+      request: UpdateTargetSiteRequest()
         .with {
           $0.targetSite = TargetSite().with {
             $0.name =

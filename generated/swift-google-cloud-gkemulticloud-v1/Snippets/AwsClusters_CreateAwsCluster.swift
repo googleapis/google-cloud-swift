@@ -25,8 +25,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: AwsClustersClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAwsCluster(
-    withPolling: CreateAwsClusterRequest()
+  let poller = try await client.createAwsClusterPollingUntilDone(
+    request: CreateAwsClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.awsCluster = AwsCluster() /* .with { ... } */

@@ -30,8 +30,8 @@ func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String,
   dataAttributeBindingId: String
 ) async throws {
-  let poller = try await client.updateDataAttributeBinding(
-    withPolling: UpdateDataAttributeBindingRequest()
+  let poller = try await client.updateDataAttributeBindingPollingUntilDone(
+    request: UpdateDataAttributeBindingRequest()
       .with {
         $0.dataAttributeBinding = DataAttributeBinding().with {
           $0.name =

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.detachDisk(
-      withPolling: InstancesClient.DetachDiskRequest()
+    let poller = try await client.detachDiskPollingUntilDone(
+      request: InstancesClient.DetachDiskRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

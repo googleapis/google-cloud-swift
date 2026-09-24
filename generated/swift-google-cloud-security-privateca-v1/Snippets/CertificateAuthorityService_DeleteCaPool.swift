@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String, caPoolId: String
 ) async throws {
-  let poller = try await client.deleteCaPool(
-    withPolling: DeleteCaPoolRequest()
+  let poller = try await client.deleteCaPoolPollingUntilDone(
+    request: DeleteCaPoolRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/caPools/\(caPoolId)"
       }

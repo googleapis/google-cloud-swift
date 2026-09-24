@@ -89,15 +89,15 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// Creates a metastore federation in a project and location.
   ///
   /// @Snippet(path: "DataprocMetastoreFederation_CreateFederation")
-  public func createFederation(
-    withPolling: CreateFederationRequest, options: GoogleGax.RequestOptions
+  public func createFederationPollingUntilDone(
+    request: CreateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Federation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Federation>.State
       in
       return try op._extractStatus(Federation.self)
     }
-    let rawOp = try await self.createFederation(request: withPolling, options: options)
+    let rawOp = try await self.createFederation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Federation>.State in
       let op = try await self.getOperation(
@@ -124,15 +124,15 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// Updates the fields of a federation.
   ///
   /// @Snippet(path: "DataprocMetastoreFederation_UpdateFederation")
-  public func updateFederation(
-    withPolling: UpdateFederationRequest, options: GoogleGax.RequestOptions
+  public func updateFederationPollingUntilDone(
+    request: UpdateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Federation> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Federation>.State
       in
       return try op._extractStatus(Federation.self)
     }
-    let rawOp = try await self.updateFederation(request: withPolling, options: options)
+    let rawOp = try await self.updateFederation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Federation>.State in
       let op = try await self.getOperation(
@@ -159,15 +159,15 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// Deletes a single federation.
   ///
   /// @Snippet(path: "DataprocMetastoreFederation_DeleteFederation")
-  public func deleteFederation(
-    withPolling: DeleteFederationRequest, options: GoogleGax.RequestOptions
+  public func deleteFederationPollingUntilDone(
+    request: DeleteFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteFederation(request: withPolling, options: options)
+    let rawOp = try await self.deleteFederation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -291,32 +291,32 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DataprocMetastoreFederationProtocol: Sendable {
     /// See `DataprocMetastoreFederationClient.createFederation`.
-    func createFederation(withPolling: CreateFederationRequest) async throws -> any GoogleGax
-      .PollableOperation<Federation>
+    func createFederationPollingUntilDone(request: CreateFederationRequest) async throws
+      -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.createFederation`.
-    func createFederation(
+    func createFederationPollingUntilDone(
       parent: Swift.String,
       federation: Federation?,
       federationId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.updateFederation`.
-    func updateFederation(withPolling: UpdateFederationRequest) async throws -> any GoogleGax
-      .PollableOperation<Federation>
+    func updateFederationPollingUntilDone(request: UpdateFederationRequest) async throws
+      -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.updateFederation`.
-    func updateFederation(
+    func updateFederationPollingUntilDone(
       federation: Federation?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
-    func deleteFederation(withPolling: DeleteFederationRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteFederationPollingUntilDone(request: DeleteFederationRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
-    func deleteFederation(
+    func deleteFederationPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
@@ -336,8 +336,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreFederationClient.createFederation`.
-    func createFederation(
-      withPolling: CreateFederationRequest, options: GoogleGax.RequestOptions
+    func createFederationPollingUntilDone(
+      request: CreateFederationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.updateFederation`.
@@ -346,8 +346,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreFederationClient.updateFederation`.
-    func updateFederation(
-      withPolling: UpdateFederationRequest, options: GoogleGax.RequestOptions
+    func updateFederationPollingUntilDone(
+      request: UpdateFederationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
@@ -356,8 +356,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
-    func deleteFederation(
-      withPolling: DeleteFederationRequest, options: GoogleGax.RequestOptions
+    func deleteFederationPollingUntilDone(
+      request: DeleteFederationRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `DataprocMetastoreFederationClient.listLocations`.
@@ -479,14 +479,14 @@ extension Clients.DataprocMetastoreFederationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createFederation(withPolling: CreateFederationRequest) async throws -> any GoogleGax
-    .PollableOperation<Federation>
+  public func createFederationPollingUntilDone(request: CreateFederationRequest) async throws
+    -> any GoogleGax.PollableOperation<Federation>
   {
-    try await self.createFederation(withPolling: withPolling, options: .init())
+    try await self.createFederationPollingUntilDone(request: request, options: .init())
   }
 
-  public func createFederation(
-    withPolling: CreateFederationRequest, options: GoogleGax.RequestOptions
+  public func createFederationPollingUntilDone(
+    request: CreateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Federation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Federation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -495,7 +495,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createFederation(
+  public func createFederationPollingUntilDone(
     parent: Swift.String,
     federation: Federation?,
     federationId: Swift.String,
@@ -505,7 +505,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
       $0.federation = federation
       $0.federationId = federationId
     }
-    return try await self.createFederation(withPolling: request)
+    return try await self.createFederationPollingUntilDone(request: request)
   }
 
   public func updateFederation(request: UpdateFederationRequest) async throws
@@ -520,14 +520,14 @@ extension Clients.DataprocMetastoreFederationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateFederation(withPolling: UpdateFederationRequest) async throws -> any GoogleGax
-    .PollableOperation<Federation>
+  public func updateFederationPollingUntilDone(request: UpdateFederationRequest) async throws
+    -> any GoogleGax.PollableOperation<Federation>
   {
-    try await self.updateFederation(withPolling: withPolling, options: .init())
+    try await self.updateFederationPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateFederation(
-    withPolling: UpdateFederationRequest, options: GoogleGax.RequestOptions
+  public func updateFederationPollingUntilDone(
+    request: UpdateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Federation> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Federation>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -536,7 +536,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateFederation(
+  public func updateFederationPollingUntilDone(
     federation: Federation?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Federation> {
@@ -544,7 +544,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
       $0.federation = federation
       $0.updateMask = updateMask
     }
-    return try await self.updateFederation(withPolling: request)
+    return try await self.updateFederationPollingUntilDone(request: request)
   }
 
   public func deleteFederation(request: DeleteFederationRequest) async throws
@@ -559,14 +559,14 @@ extension Clients.DataprocMetastoreFederationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteFederation(withPolling: DeleteFederationRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteFederationPollingUntilDone(request: DeleteFederationRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteFederation(withPolling: withPolling, options: .init())
+    try await self.deleteFederationPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteFederation(
-    withPolling: DeleteFederationRequest, options: GoogleGax.RequestOptions
+  public func deleteFederationPollingUntilDone(
+    request: DeleteFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -575,13 +575,13 @@ extension Clients.DataprocMetastoreFederationProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteFederation(
+  public func deleteFederationPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteFederationRequest().with {
       $0.name = name
     }
-    return try await self.deleteFederation(withPolling: request)
+    return try await self.deleteFederationPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

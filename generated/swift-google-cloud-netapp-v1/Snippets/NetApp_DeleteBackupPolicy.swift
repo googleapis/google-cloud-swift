@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, backupPolicyId: String)
   async throws
 {
-  let poller = try await client.deleteBackupPolicy(
-    withPolling: DeleteBackupPolicyRequest()
+  let poller = try await client.deleteBackupPolicyPollingUntilDone(
+    request: DeleteBackupPolicyRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/backupPolicies/\(backupPolicyId)"
       }

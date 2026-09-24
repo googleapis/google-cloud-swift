@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: HsmManagementClient, parent: String) async throws {
-  let poller = try await client.createSingleTenantHsmInstance(
-    withPolling: CreateSingleTenantHsmInstanceRequest()
+  let poller = try await client.createSingleTenantHsmInstancePollingUntilDone(
+    request: CreateSingleTenantHsmInstanceRequest()
       .with {
         $0.parent = "\(parent)"
         $0.singleTenantHsmInstance = SingleTenantHsmInstance() /* .with { ... } */

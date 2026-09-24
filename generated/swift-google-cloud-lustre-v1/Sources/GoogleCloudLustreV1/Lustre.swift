@@ -73,15 +73,15 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a new instance in a given project and location.
   ///
   /// @Snippet(path: "Lustre_CreateInstance")
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.createInstance(request: withPolling, options: options)
+    let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -108,15 +108,15 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Updates the parameters of a single instance.
   ///
   /// @Snippet(path: "Lustre_UpdateInstance")
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
       in
       return try op._extractStatus(Instance.self)
     }
-    let rawOp = try await self.updateInstance(request: withPolling, options: options)
+    let rawOp = try await self.updateInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
@@ -143,15 +143,15 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a single instance.
   ///
   /// @Snippet(path: "Lustre_DeleteInstance")
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
       in
       return try op._extractStatusEmpty()
     }
-    let rawOp = try await self.deleteInstance(request: withPolling, options: options)
+    let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
@@ -178,15 +178,15 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Imports data from Cloud Storage to a Managed Lustre instance.
   ///
   /// @Snippet(path: "Lustre_ImportData")
-  public func importData(
-    withPolling: ImportDataRequest, options: GoogleGax.RequestOptions
+  public func importDataPollingUntilDone(
+    request: ImportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportDataResponse>.State in
       return try op._extractStatus(ImportDataResponse.self)
     }
-    let rawOp = try await self.importData(request: withPolling, options: options)
+    let rawOp = try await self.importData(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportDataResponse>.State in
       let op = try await self.getOperation(
@@ -213,15 +213,15 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Exports data from a Managed Lustre instance to Cloud Storage.
   ///
   /// @Snippet(path: "Lustre_ExportData")
-  public func exportData(
-    withPolling: ExportDataRequest, options: GoogleGax.RequestOptions
+  public func exportDataPollingUntilDone(
+    request: ExportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportDataResponse>.State in
       return try op._extractStatus(ExportDataResponse.self)
     }
-    let rawOp = try await self.exportData(request: withPolling, options: options)
+    let rawOp = try await self.exportData(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportDataResponse>.State in
       let op = try await self.getOperation(
@@ -307,49 +307,47 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol LustreProtocol: Sendable {
     /// See `LustreClient.createInstance`.
-    func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.createInstance`.
-    func createInstance(
+    func createInstancePollingUntilDone(
       parent: Swift.String,
       instance: Instance?,
       instanceId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.updateInstance`.
-    func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Instance>
+    func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.updateInstance`.
-    func updateInstance(
+    func updateInstancePollingUntilDone(
       instance: Instance?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.deleteInstance`.
-    func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `LustreClient.deleteInstance`.
-    func deleteInstance(
+    func deleteInstancePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `LustreClient.importData`.
-    func importData(withPolling: ImportDataRequest) async throws -> any GoogleGax.PollableOperation<
-      ImportDataResponse
-    >
+    func importDataPollingUntilDone(request: ImportDataRequest) async throws -> any GoogleGax
+      .PollableOperation<ImportDataResponse>
 
     /// See `LustreClient.importData`.
-    func importData(
+    func importDataPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse>
 
     /// See `LustreClient.exportData`.
-    func exportData(withPolling: ExportDataRequest) async throws -> any GoogleGax.PollableOperation<
-      ExportDataResponse
-    >
+    func exportDataPollingUntilDone(request: ExportDataRequest) async throws -> any GoogleGax
+      .PollableOperation<ExportDataResponse>
 
     /// See `LustreClient.listInstances`.
     func listInstances(
@@ -367,8 +365,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `LustreClient.createInstance`.
-    func createInstance(
-      withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    func createInstancePollingUntilDone(
+      request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.updateInstance`.
@@ -377,8 +375,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `LustreClient.updateInstance`.
-    func updateInstance(
-      withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    func updateInstancePollingUntilDone(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Instance>
 
     /// See `LustreClient.deleteInstance`.
@@ -387,8 +385,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `LustreClient.deleteInstance`.
-    func deleteInstance(
-      withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+    func deleteInstancePollingUntilDone(
+      request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
     /// See `LustreClient.importData`.
@@ -397,8 +395,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `LustreClient.importData`.
-    func importData(
-      withPolling: ImportDataRequest, options: GoogleGax.RequestOptions
+    func importDataPollingUntilDone(
+      request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse>
 
     /// See `LustreClient.exportData`.
@@ -407,8 +405,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `LustreClient.exportData`.
-    func exportData(
-      withPolling: ExportDataRequest, options: GoogleGax.RequestOptions
+    func exportDataPollingUntilDone(
+      request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse>
 
     /// See `LustreClient.listLocations`.
@@ -514,14 +512,14 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.createInstance(withPolling: withPolling, options: .init())
+    try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func createInstance(
-    withPolling: CreateInstanceRequest, options: GoogleGax.RequestOptions
+  public func createInstancePollingUntilDone(
+    request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -530,7 +528,7 @@ extension Clients.LustreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createInstance(
+  public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
@@ -540,7 +538,7 @@ extension Clients.LustreProtocol {
       $0.instance = instance
       $0.instanceId = instanceId
     }
-    return try await self.createInstance(withPolling: request)
+    return try await self.createInstancePollingUntilDone(request: request)
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
@@ -555,14 +553,14 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
+  public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Instance>
   {
-    try await self.updateInstance(withPolling: withPolling, options: .init())
+    try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func updateInstance(
-    withPolling: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -571,7 +569,7 @@ extension Clients.LustreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateInstance(
+  public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
@@ -579,7 +577,7 @@ extension Clients.LustreProtocol {
       $0.instance = instance
       $0.updateMask = updateMask
     }
-    return try await self.updateInstance(withPolling: request)
+    return try await self.updateInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -594,14 +592,14 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
+    -> any GoogleGax.PollableOperation<Swift.Void>
   {
-    try await self.deleteInstance(withPolling: withPolling, options: .init())
+    try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteInstance(
-    withPolling: DeleteInstanceRequest, options: GoogleGax.RequestOptions
+  public func deleteInstancePollingUntilDone(
+    request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -610,13 +608,13 @@ extension Clients.LustreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteInstance(
+  public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstance(withPolling: request)
+    return try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation {
@@ -629,14 +627,14 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importData(withPolling: ImportDataRequest) async throws -> any GoogleGax
+  public func importDataPollingUntilDone(request: ImportDataRequest) async throws -> any GoogleGax
     .PollableOperation<ImportDataResponse>
   {
-    try await self.importData(withPolling: withPolling, options: .init())
+    try await self.importDataPollingUntilDone(request: request, options: .init())
   }
 
-  public func importData(
-    withPolling: ImportDataRequest, options: GoogleGax.RequestOptions
+  public func importDataPollingUntilDone(
+    request: ImportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportDataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -645,13 +643,13 @@ extension Clients.LustreProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func importData(
+  public func importDataPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse> {
     let request = ImportDataRequest().with {
       $0.name = name
     }
-    return try await self.importData(withPolling: request)
+    return try await self.importDataPollingUntilDone(request: request)
   }
 
   public func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation {
@@ -664,14 +662,14 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportData(withPolling: ExportDataRequest) async throws -> any GoogleGax
+  public func exportDataPollingUntilDone(request: ExportDataRequest) async throws -> any GoogleGax
     .PollableOperation<ExportDataResponse>
   {
-    try await self.exportData(withPolling: withPolling, options: .init())
+    try await self.exportDataPollingUntilDone(request: request, options: .init())
   }
 
-  public func exportData(
-    withPolling: ExportDataRequest, options: GoogleGax.RequestOptions
+  public func exportDataPollingUntilDone(
+    request: ExportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportDataResponse>.State in
       throw GoogleGax.RequestError.unimplemented

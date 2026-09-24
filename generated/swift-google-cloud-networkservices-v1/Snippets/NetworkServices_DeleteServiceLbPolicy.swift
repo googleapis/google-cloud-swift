@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, serviceLbPolicyId: String
 ) async throws {
-  let poller = try await client.deleteServiceLbPolicy(
-    withPolling: DeleteServiceLbPolicyRequest()
+  let poller = try await client.deleteServiceLbPolicyPollingUntilDone(
+    request: DeleteServiceLbPolicyRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/serviceLbPolicies/\(serviceLbPolicyId)"

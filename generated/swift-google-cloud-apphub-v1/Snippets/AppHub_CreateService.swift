@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: AppHubClient, projectId: String, locationId: String, applicationId: String)
   async throws
 {
-  let poller = try await client.createService(
-    withPolling: CreateServiceRequest()
+  let poller = try await client.createServicePollingUntilDone(
+    request: CreateServiceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)"
         $0.serviceId = "[replace with a valid ID]"

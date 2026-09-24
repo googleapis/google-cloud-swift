@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: VertexRagServiceClient) async throws {
-    let poller = try await client.asyncRetrieveContexts(
-      withPolling: AsyncRetrieveContextsRequest()
+    let poller = try await client.asyncRetrieveContextsPollingUntilDone(
+      request: AsyncRetrieveContextsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

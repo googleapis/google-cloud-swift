@@ -21,8 +21,8 @@ import GoogleCloudVisionV1
 import GoogleLongRunning
 
 func sample(client: ImageAnnotatorClient) async throws {
-  let poller = try await client.asyncBatchAnnotateImages(
-    withPolling: AsyncBatchAnnotateImagesRequest()
+  let poller = try await client.asyncBatchAnnotateImagesPollingUntilDone(
+    request: AsyncBatchAnnotateImagesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

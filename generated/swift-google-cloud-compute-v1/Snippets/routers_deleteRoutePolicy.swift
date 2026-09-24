@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let poller = try await client.deleteRoutePolicy(
-      withPolling: RoutersClient.DeleteRoutePolicyRequest()
+    let poller = try await client.deleteRoutePolicyPollingUntilDone(
+      request: RoutersClient.DeleteRoutePolicyRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

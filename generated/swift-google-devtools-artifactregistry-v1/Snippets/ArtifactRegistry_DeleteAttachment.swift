@@ -27,8 +27,8 @@ func sample(
   client: ArtifactRegistryClient, projectId: String, locationId: String, repositoryId: String,
   attachmentId: String
 ) async throws {
-  let poller = try await client.deleteAttachment(
-    withPolling: DeleteAttachmentRequest()
+  let poller = try await client.deleteAttachmentPollingUntilDone(
+    request: DeleteAttachmentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/attachments/\(attachmentId)"

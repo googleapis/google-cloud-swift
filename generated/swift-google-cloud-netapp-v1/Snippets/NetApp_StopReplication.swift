@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient) async throws {
-  let poller = try await client.stopReplication(
-    withPolling: StopReplicationRequest()
+  let poller = try await client.stopReplicationPollingUntilDone(
+    request: StopReplicationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

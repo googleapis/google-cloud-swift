@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: FutureReservationsClient) async throws {
-    let poller = try await client.delete(
-      withPolling: FutureReservationsClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: FutureReservationsClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

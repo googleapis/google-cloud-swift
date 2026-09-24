@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: OrganizationSecurityProfileGroupServiceClient, organizationId: String, locationId: String
 ) async throws {
-  let poller = try await client.createSecurityProfile(
-    withPolling: CreateSecurityProfileRequest()
+  let poller = try await client.createSecurityProfilePollingUntilDone(
+    request: CreateSecurityProfileRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.securityProfile = SecurityProfile() /* .with { ... } */

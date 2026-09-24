@@ -58,15 +58,15 @@
     /// Creates a new Featurestore in a given project and location.
     ///
     /// @Snippet(path: "FeaturestoreService_CreateFeaturestore")
-    public func createFeaturestore(
-      withPolling: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
+    public func createFeaturestorePollingUntilDone(
+      request: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         return try op._extractStatus(Featurestore.self)
       }
-      let rawOp = try await self.createFeaturestore(request: withPolling, options: options)
+      let rawOp = try await self.createFeaturestore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         let op = try await self.getOperation(
@@ -111,15 +111,15 @@
     /// Updates the parameters of a single Featurestore.
     ///
     /// @Snippet(path: "FeaturestoreService_UpdateFeaturestore")
-    public func updateFeaturestore(
-      withPolling: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
+    public func updateFeaturestorePollingUntilDone(
+      request: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         return try op._extractStatus(Featurestore.self)
       }
-      let rawOp = try await self.updateFeaturestore(request: withPolling, options: options)
+      let rawOp = try await self.updateFeaturestore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         let op = try await self.getOperation(
@@ -148,15 +148,15 @@
     /// EntityTypes or `force` must be set to true for the request to succeed.
     ///
     /// @Snippet(path: "FeaturestoreService_DeleteFeaturestore")
-    public func deleteFeaturestore(
-      withPolling: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
+    public func deleteFeaturestorePollingUntilDone(
+      request: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteFeaturestore(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeaturestore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -183,15 +183,15 @@
     /// Creates a new EntityType in a given Featurestore.
     ///
     /// @Snippet(path: "FeaturestoreService_CreateEntityType")
-    public func createEntityType(
-      withPolling: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
+    public func createEntityTypePollingUntilDone(
+      request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EntityType> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<EntityType>.State in
         return try op._extractStatus(EntityType.self)
       }
-      let rawOp = try await self.createEntityType(request: withPolling, options: options)
+      let rawOp = try await self.createEntityType(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntityType>.State in
         let op = try await self.getOperation(
@@ -247,15 +247,15 @@
     /// or `force` must be set to true for the request to succeed.
     ///
     /// @Snippet(path: "FeaturestoreService_DeleteEntityType")
-    public func deleteEntityType(
-      withPolling: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
+    public func deleteEntityTypePollingUntilDone(
+      request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteEntityType(request: withPolling, options: options)
+      let rawOp = try await self.deleteEntityType(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -282,15 +282,15 @@
     /// Creates a new Feature in a given EntityType.
     ///
     /// @Snippet(path: "FeaturestoreService_CreateFeature")
-    public func createFeature(
-      withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+    public func createFeaturePollingUntilDone(
+      request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Feature>.State
         in
         return try op._extractStatus(Feature.self)
       }
-      let rawOp = try await self.createFeature(request: withPolling, options: options)
+      let rawOp = try await self.createFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         let op = try await self.getOperation(
@@ -317,15 +317,15 @@
     /// Creates a batch of Features in a given EntityType.
     ///
     /// @Snippet(path: "FeaturestoreService_BatchCreateFeatures")
-    public func batchCreateFeatures(
-      withPolling: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
+    public func batchCreateFeaturesPollingUntilDone(
+      request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
         return try op._extractStatus(BatchCreateFeaturesResponse.self)
       }
-      let rawOp = try await self.batchCreateFeatures(request: withPolling, options: options)
+      let rawOp = try await self.batchCreateFeatures(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
@@ -380,15 +380,15 @@
     /// Deletes a single Feature.
     ///
     /// @Snippet(path: "FeaturestoreService_DeleteFeature")
-    public func deleteFeature(
-      withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+    public func deleteFeaturePollingUntilDone(
+      request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
-      let rawOp = try await self.deleteFeature(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
@@ -453,15 +453,15 @@
     ///  - Online serving cluster is under-provisioned.
     ///
     /// @Snippet(path: "FeaturestoreService_ImportFeatureValues")
-    public func importFeatureValues(
-      withPolling: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func importFeatureValuesPollingUntilDone(
+      request: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
         return try op._extractStatus(ImportFeatureValuesResponse.self)
       }
-      let rawOp = try await self.importFeatureValues(request: withPolling, options: options)
+      let rawOp = try await self.importFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
@@ -499,15 +499,15 @@
     /// values of each read instance as of each instance's read timestamp.
     ///
     /// @Snippet(path: "FeaturestoreService_BatchReadFeatureValues")
-    public func batchReadFeatureValues(
-      withPolling: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func batchReadFeatureValuesPollingUntilDone(
+      request: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
         return try op._extractStatus(BatchReadFeatureValuesResponse.self)
       }
-      let rawOp = try await self.batchReadFeatureValues(request: withPolling, options: options)
+      let rawOp = try await self.batchReadFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
@@ -535,15 +535,15 @@
     /// Exports Feature values from all the entities of a target EntityType.
     ///
     /// @Snippet(path: "FeaturestoreService_ExportFeatureValues")
-    public func exportFeatureValues(
-      withPolling: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func exportFeatureValuesPollingUntilDone(
+      request: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
         return try op._extractStatus(ExportFeatureValuesResponse.self)
       }
-      let rawOp = try await self.exportFeatureValues(request: withPolling, options: options)
+      let rawOp = try await self.exportFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
@@ -589,15 +589,15 @@
     /// the new operation returned is marked as successfully done.
     ///
     /// @Snippet(path: "FeaturestoreService_DeleteFeatureValues")
-    public func deleteFeatureValues(
-      withPolling: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureValuesPollingUntilDone(
+      request: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
         return try op._extractStatus(DeleteFeatureValuesResponse.self)
       }
-      let rawOp = try await self.deleteFeatureValues(request: withPolling, options: options)
+      let rawOp = try await self.deleteFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
@@ -742,148 +742,148 @@
     /// and pass a mock implementation in your tests.
     public protocol FeaturestoreServiceProtocol: Sendable {
       /// See `FeaturestoreServiceClient.createFeaturestore`.
-      func createFeaturestore(withPolling: CreateFeaturestoreRequest) async throws -> any GoogleGax
-        .PollableOperation<Featurestore>
+      func createFeaturestorePollingUntilDone(request: CreateFeaturestoreRequest) async throws
+        -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
-      func createFeaturestore(
+      func createFeaturestorePollingUntilDone(
         parent: Swift.String,
         featurestore: Featurestore?,
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
-      func createFeaturestore(
+      func createFeaturestorePollingUntilDone(
         parent: Swift.String,
         featurestore: Featurestore?,
         featurestoreId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
-      func updateFeaturestore(withPolling: UpdateFeaturestoreRequest) async throws -> any GoogleGax
-        .PollableOperation<Featurestore>
+      func updateFeaturestorePollingUntilDone(request: UpdateFeaturestoreRequest) async throws
+        -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
-      func updateFeaturestore(
+      func updateFeaturestorePollingUntilDone(
         featurestore: Featurestore?,
         updateMask: GoogleWKT.WKTFieldMask?,
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
-      func deleteFeaturestore(withPolling: DeleteFeaturestoreRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteFeaturestorePollingUntilDone(request: DeleteFeaturestoreRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
-      func deleteFeaturestore(
+      func deleteFeaturestorePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
-      func deleteFeaturestore(
+      func deleteFeaturestorePollingUntilDone(
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.createEntityType`.
-      func createEntityType(withPolling: CreateEntityTypeRequest) async throws -> any GoogleGax
-        .PollableOperation<EntityType>
+      func createEntityTypePollingUntilDone(request: CreateEntityTypeRequest) async throws
+        -> any GoogleGax.PollableOperation<EntityType>
 
       /// See `FeaturestoreServiceClient.createEntityType`.
-      func createEntityType(
+      func createEntityTypePollingUntilDone(
         parent: Swift.String,
         entityType: EntityType?,
       ) async throws -> any GoogleGax.PollableOperation<EntityType>
 
       /// See `FeaturestoreServiceClient.createEntityType`.
-      func createEntityType(
+      func createEntityTypePollingUntilDone(
         parent: Swift.String,
         entityType: EntityType?,
         entityTypeId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<EntityType>
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
-      func deleteEntityType(withPolling: DeleteEntityTypeRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteEntityTypePollingUntilDone(request: DeleteEntityTypeRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
-      func deleteEntityType(
+      func deleteEntityTypePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
-      func deleteEntityType(
+      func deleteEntityTypePollingUntilDone(
         name: Swift.String,
         force: Swift.Bool,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.createFeature`.
-      func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
-        .PollableOperation<Feature>
+      func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws
+        -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeaturestoreServiceClient.createFeature`.
-      func createFeature(
+      func createFeaturePollingUntilDone(
         parent: Swift.String,
         feature: Feature?,
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeaturestoreServiceClient.createFeature`.
-      func createFeature(
+      func createFeaturePollingUntilDone(
         parent: Swift.String,
         feature: Feature?,
         featureId: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
+      func batchCreateFeaturesPollingUntilDone(request: BatchCreateFeaturesRequest) async throws
         -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(
+      func batchCreateFeaturesPollingUntilDone(
         parent: Swift.String,
         requests: [CreateFeatureRequest],
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
-      func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
-        .PollableOperation<Swift.Void>
+      func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws
+        -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
-      func deleteFeature(
+      func deleteFeaturePollingUntilDone(
         name: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
-      func importFeatureValues(withPolling: ImportFeatureValuesRequest) async throws
+      func importFeatureValuesPollingUntilDone(request: ImportFeatureValuesRequest) async throws
         -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
-      func importFeatureValues(
+      func importFeatureValuesPollingUntilDone(
         entityType: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
-      func batchReadFeatureValues(withPolling: BatchReadFeatureValuesRequest) async throws
-        -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
+      func batchReadFeatureValuesPollingUntilDone(request: BatchReadFeatureValuesRequest)
+        async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
-      func batchReadFeatureValues(
+      func batchReadFeatureValuesPollingUntilDone(
         featurestore: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
-      func exportFeatureValues(withPolling: ExportFeatureValuesRequest) async throws
+      func exportFeatureValuesPollingUntilDone(request: ExportFeatureValuesRequest) async throws
         -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
-      func exportFeatureValues(
+      func exportFeatureValuesPollingUntilDone(
         entityType: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
-      func deleteFeatureValues(withPolling: DeleteFeatureValuesRequest) async throws
+      func deleteFeatureValuesPollingUntilDone(request: DeleteFeatureValuesRequest) async throws
         -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
-      func deleteFeatureValues(
+      func deleteFeatureValuesPollingUntilDone(
         entityType: Swift.String,
       ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
 
@@ -893,8 +893,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
-      func createFeaturestore(
-        withPolling: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
+      func createFeaturestorePollingUntilDone(
+        request: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.getFeaturestore`.
@@ -913,8 +913,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
-      func updateFeaturestore(
-        withPolling: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
+      func updateFeaturestorePollingUntilDone(
+        request: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
@@ -923,8 +923,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
-      func deleteFeaturestore(
-        withPolling: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
+      func deleteFeaturestorePollingUntilDone(
+        request: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.createEntityType`.
@@ -933,8 +933,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createEntityType`.
-      func createEntityType(
-        withPolling: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
+      func createEntityTypePollingUntilDone(
+        request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<EntityType>
 
       /// See `FeaturestoreServiceClient.getEntityType`.
@@ -958,8 +958,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
-      func deleteEntityType(
-        withPolling: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
+      func deleteEntityTypePollingUntilDone(
+        request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.createFeature`.
@@ -968,8 +968,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeature`.
-      func createFeature(
-        withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+      func createFeaturePollingUntilDone(
+        request: CreateFeatureRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Feature>
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
@@ -978,8 +978,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
-      func batchCreateFeatures(
-        withPolling: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
+      func batchCreateFeaturesPollingUntilDone(
+        request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
 
       /// See `FeaturestoreServiceClient.getFeature`.
@@ -1003,8 +1003,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
-      func deleteFeature(
-        withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+      func deleteFeaturePollingUntilDone(
+        request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
@@ -1013,8 +1013,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
-      func importFeatureValues(
-        withPolling: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
+      func importFeatureValuesPollingUntilDone(
+        request: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
@@ -1023,8 +1023,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
-      func batchReadFeatureValues(
-        withPolling: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
+      func batchReadFeatureValuesPollingUntilDone(
+        request: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
@@ -1033,8 +1033,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
-      func exportFeatureValues(
-        withPolling: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
+      func exportFeatureValuesPollingUntilDone(
+        request: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
@@ -1043,8 +1043,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
-      func deleteFeatureValues(
-        withPolling: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
+      func deleteFeatureValuesPollingUntilDone(
+        request: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
 
       /// See `FeaturestoreServiceClient.searchFeatures`.
@@ -1113,14 +1113,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeaturestore(withPolling: CreateFeaturestoreRequest) async throws
+    public func createFeaturestorePollingUntilDone(request: CreateFeaturestoreRequest) async throws
       -> any GoogleGax.PollableOperation<Featurestore>
     {
-      try await self.createFeaturestore(withPolling: withPolling, options: .init())
+      try await self.createFeaturestorePollingUntilDone(request: request, options: .init())
     }
 
-    public func createFeaturestore(
-      withPolling: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
+    public func createFeaturestorePollingUntilDone(
+      request: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1129,7 +1129,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createFeaturestore(
+    public func createFeaturestorePollingUntilDone(
       parent: Swift.String,
       featurestore: Featurestore?,
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
@@ -1137,10 +1137,10 @@
         $0.parent = parent
         $0.featurestore = featurestore
       }
-      return try await self.createFeaturestore(withPolling: request)
+      return try await self.createFeaturestorePollingUntilDone(request: request)
     }
 
-    public func createFeaturestore(
+    public func createFeaturestorePollingUntilDone(
       parent: Swift.String,
       featurestore: Featurestore?,
       featurestoreId: Swift.String,
@@ -1150,7 +1150,7 @@
         $0.featurestore = featurestore
         $0.featurestoreId = featurestoreId
       }
-      return try await self.createFeaturestore(withPolling: request)
+      return try await self.createFeaturestorePollingUntilDone(request: request)
     }
 
     public func getFeaturestore(request: GetFeaturestoreRequest) async throws
@@ -1228,14 +1228,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func updateFeaturestore(withPolling: UpdateFeaturestoreRequest) async throws
+    public func updateFeaturestorePollingUntilDone(request: UpdateFeaturestoreRequest) async throws
       -> any GoogleGax.PollableOperation<Featurestore>
     {
-      try await self.updateFeaturestore(withPolling: withPolling, options: .init())
+      try await self.updateFeaturestorePollingUntilDone(request: request, options: .init())
     }
 
-    public func updateFeaturestore(
-      withPolling: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
+    public func updateFeaturestorePollingUntilDone(
+      request: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1244,7 +1244,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func updateFeaturestore(
+    public func updateFeaturestorePollingUntilDone(
       featurestore: Featurestore?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
@@ -1252,7 +1252,7 @@
         $0.featurestore = featurestore
         $0.updateMask = updateMask
       }
-      return try await self.updateFeaturestore(withPolling: request)
+      return try await self.updateFeaturestorePollingUntilDone(request: request)
     }
 
     public func deleteFeaturestore(request: DeleteFeaturestoreRequest) async throws
@@ -1267,14 +1267,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeaturestore(withPolling: DeleteFeaturestoreRequest) async throws
+    public func deleteFeaturestorePollingUntilDone(request: DeleteFeaturestoreRequest) async throws
       -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteFeaturestore(withPolling: withPolling, options: .init())
+      try await self.deleteFeaturestorePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeaturestore(
-      withPolling: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
+    public func deleteFeaturestorePollingUntilDone(
+      request: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1283,16 +1283,16 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeaturestore(
+    public func deleteFeaturestorePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteFeaturestoreRequest().with {
         $0.name = name
       }
-      return try await self.deleteFeaturestore(withPolling: request)
+      return try await self.deleteFeaturestorePollingUntilDone(request: request)
     }
 
-    public func deleteFeaturestore(
+    public func deleteFeaturestorePollingUntilDone(
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -1300,7 +1300,7 @@
         $0.name = name
         $0.force = force
       }
-      return try await self.deleteFeaturestore(withPolling: request)
+      return try await self.deleteFeaturestorePollingUntilDone(request: request)
     }
 
     public func createEntityType(request: CreateEntityTypeRequest) async throws
@@ -1315,14 +1315,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createEntityType(withPolling: CreateEntityTypeRequest) async throws -> any GoogleGax
-      .PollableOperation<EntityType>
+    public func createEntityTypePollingUntilDone(request: CreateEntityTypeRequest) async throws
+      -> any GoogleGax.PollableOperation<EntityType>
     {
-      try await self.createEntityType(withPolling: withPolling, options: .init())
+      try await self.createEntityTypePollingUntilDone(request: request, options: .init())
     }
 
-    public func createEntityType(
-      withPolling: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
+    public func createEntityTypePollingUntilDone(
+      request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EntityType> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntityType>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1331,7 +1331,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createEntityType(
+    public func createEntityTypePollingUntilDone(
       parent: Swift.String,
       entityType: EntityType?,
     ) async throws -> any GoogleGax.PollableOperation<EntityType> {
@@ -1339,10 +1339,10 @@
         $0.parent = parent
         $0.entityType = entityType
       }
-      return try await self.createEntityType(withPolling: request)
+      return try await self.createEntityTypePollingUntilDone(request: request)
     }
 
-    public func createEntityType(
+    public func createEntityTypePollingUntilDone(
       parent: Swift.String,
       entityType: EntityType?,
       entityTypeId: Swift.String,
@@ -1352,7 +1352,7 @@
         $0.entityType = entityType
         $0.entityTypeId = entityTypeId
       }
-      return try await self.createEntityType(withPolling: request)
+      return try await self.createEntityTypePollingUntilDone(request: request)
     }
 
     public func getEntityType(request: GetEntityTypeRequest) async throws
@@ -1453,14 +1453,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteEntityType(withPolling: DeleteEntityTypeRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteEntityTypePollingUntilDone(request: DeleteEntityTypeRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteEntityType(withPolling: withPolling, options: .init())
+      try await self.deleteEntityTypePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteEntityType(
-      withPolling: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
+    public func deleteEntityTypePollingUntilDone(
+      request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1469,16 +1469,16 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteEntityType(
+    public func deleteEntityTypePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteEntityTypeRequest().with {
         $0.name = name
       }
-      return try await self.deleteEntityType(withPolling: request)
+      return try await self.deleteEntityTypePollingUntilDone(request: request)
     }
 
-    public func deleteEntityType(
+    public func deleteEntityTypePollingUntilDone(
       name: Swift.String,
       force: Swift.Bool,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
@@ -1486,7 +1486,7 @@
         $0.name = name
         $0.force = force
       }
-      return try await self.deleteEntityType(withPolling: request)
+      return try await self.deleteEntityTypePollingUntilDone(request: request)
     }
 
     public func createFeature(request: CreateFeatureRequest) async throws
@@ -1501,14 +1501,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleGax
-      .PollableOperation<Feature>
+    public func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws
+      -> any GoogleGax.PollableOperation<Feature>
     {
-      try await self.createFeature(withPolling: withPolling, options: .init())
+      try await self.createFeaturePollingUntilDone(request: request, options: .init())
     }
 
-    public func createFeature(
-      withPolling: CreateFeatureRequest, options: GoogleGax.RequestOptions
+    public func createFeaturePollingUntilDone(
+      request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1517,7 +1517,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func createFeature(
+    public func createFeaturePollingUntilDone(
       parent: Swift.String,
       feature: Feature?,
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
@@ -1525,10 +1525,10 @@
         $0.parent = parent
         $0.feature = feature
       }
-      return try await self.createFeature(withPolling: request)
+      return try await self.createFeaturePollingUntilDone(request: request)
     }
 
-    public func createFeature(
+    public func createFeaturePollingUntilDone(
       parent: Swift.String,
       feature: Feature?,
       featureId: Swift.String,
@@ -1538,7 +1538,7 @@
         $0.feature = feature
         $0.featureId = featureId
       }
-      return try await self.createFeature(withPolling: request)
+      return try await self.createFeaturePollingUntilDone(request: request)
     }
 
     public func batchCreateFeatures(request: BatchCreateFeaturesRequest) async throws
@@ -1553,14 +1553,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
+    public func batchCreateFeaturesPollingUntilDone(request: BatchCreateFeaturesRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse>
     {
-      try await self.batchCreateFeatures(withPolling: withPolling, options: .init())
+      try await self.batchCreateFeaturesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchCreateFeatures(
-      withPolling: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
+    public func batchCreateFeaturesPollingUntilDone(
+      request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
@@ -1570,7 +1570,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchCreateFeatures(
+    public func batchCreateFeaturesPollingUntilDone(
       parent: Swift.String,
       requests: [CreateFeatureRequest],
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
@@ -1578,7 +1578,7 @@
         $0.parent = parent
         $0.requests = requests
       }
-      return try await self.batchCreateFeatures(withPolling: request)
+      return try await self.batchCreateFeaturesPollingUntilDone(request: request)
     }
 
     public func getFeature(request: GetFeatureRequest) async throws
@@ -1679,14 +1679,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
+    public func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws
+      -> any GoogleGax.PollableOperation<Swift.Void>
     {
-      try await self.deleteFeature(withPolling: withPolling, options: .init())
+      try await self.deleteFeaturePollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeature(
-      withPolling: DeleteFeatureRequest, options: GoogleGax.RequestOptions
+    public func deleteFeaturePollingUntilDone(
+      request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
@@ -1695,13 +1695,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeature(
+    public func deleteFeaturePollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let request = DeleteFeatureRequest().with {
         $0.name = name
       }
-      return try await self.deleteFeature(withPolling: request)
+      return try await self.deleteFeaturePollingUntilDone(request: request)
     }
 
     public func importFeatureValues(request: ImportFeatureValuesRequest) async throws
@@ -1716,14 +1716,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importFeatureValues(withPolling: ImportFeatureValuesRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
+    public func importFeatureValuesPollingUntilDone(request: ImportFeatureValuesRequest)
+      async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse>
     {
-      try await self.importFeatureValues(withPolling: withPolling, options: .init())
+      try await self.importFeatureValuesPollingUntilDone(request: request, options: .init())
     }
 
-    public func importFeatureValues(
-      withPolling: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func importFeatureValuesPollingUntilDone(
+      request: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
@@ -1733,13 +1733,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func importFeatureValues(
+    public func importFeatureValuesPollingUntilDone(
       entityType: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse> {
       let request = ImportFeatureValuesRequest().with {
         $0.entityType = entityType
       }
-      return try await self.importFeatureValues(withPolling: request)
+      return try await self.importFeatureValuesPollingUntilDone(request: request)
     }
 
     public func batchReadFeatureValues(request: BatchReadFeatureValuesRequest) async throws
@@ -1754,14 +1754,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func batchReadFeatureValues(withPolling: BatchReadFeatureValuesRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
+    public func batchReadFeatureValuesPollingUntilDone(request: BatchReadFeatureValuesRequest)
+      async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse>
     {
-      try await self.batchReadFeatureValues(withPolling: withPolling, options: .init())
+      try await self.batchReadFeatureValuesPollingUntilDone(request: request, options: .init())
     }
 
-    public func batchReadFeatureValues(
-      withPolling: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func batchReadFeatureValuesPollingUntilDone(
+      request: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
@@ -1771,13 +1771,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func batchReadFeatureValues(
+    public func batchReadFeatureValuesPollingUntilDone(
       featurestore: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse> {
       let request = BatchReadFeatureValuesRequest().with {
         $0.featurestore = featurestore
       }
-      return try await self.batchReadFeatureValues(withPolling: request)
+      return try await self.batchReadFeatureValuesPollingUntilDone(request: request)
     }
 
     public func exportFeatureValues(request: ExportFeatureValuesRequest) async throws
@@ -1792,14 +1792,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportFeatureValues(withPolling: ExportFeatureValuesRequest) async throws
-      -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
+    public func exportFeatureValuesPollingUntilDone(request: ExportFeatureValuesRequest)
+      async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse>
     {
-      try await self.exportFeatureValues(withPolling: withPolling, options: .init())
+      try await self.exportFeatureValuesPollingUntilDone(request: request, options: .init())
     }
 
-    public func exportFeatureValues(
-      withPolling: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func exportFeatureValuesPollingUntilDone(
+      request: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
@@ -1809,13 +1809,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func exportFeatureValues(
+    public func exportFeatureValuesPollingUntilDone(
       entityType: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse> {
       let request = ExportFeatureValuesRequest().with {
         $0.entityType = entityType
       }
-      return try await self.exportFeatureValues(withPolling: request)
+      return try await self.exportFeatureValuesPollingUntilDone(request: request)
     }
 
     public func deleteFeatureValues(request: DeleteFeatureValuesRequest) async throws
@@ -1830,14 +1830,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteFeatureValues(withPolling: DeleteFeatureValuesRequest) async throws
-      -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
+    public func deleteFeatureValuesPollingUntilDone(request: DeleteFeatureValuesRequest)
+      async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse>
     {
-      try await self.deleteFeatureValues(withPolling: withPolling, options: .init())
+      try await self.deleteFeatureValuesPollingUntilDone(request: request, options: .init())
     }
 
-    public func deleteFeatureValues(
-      withPolling: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
+    public func deleteFeatureValuesPollingUntilDone(
+      request: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
@@ -1847,13 +1847,13 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func deleteFeatureValues(
+    public func deleteFeatureValuesPollingUntilDone(
       entityType: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse> {
       let request = DeleteFeatureValuesRequest().with {
         $0.entityType = entityType
       }
-      return try await self.deleteFeatureValues(withPolling: request)
+      return try await self.deleteFeatureValuesPollingUntilDone(request: request)
     }
 
     public func searchFeatures(request: SearchFeaturesRequest) async throws

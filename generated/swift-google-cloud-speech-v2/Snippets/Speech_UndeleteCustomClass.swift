@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: SpeechClient, projectId: String, locationId: String, customClassId: String)
   async throws
 {
-  let poller = try await client.undeleteCustomClass(
-    withPolling: UndeleteCustomClassRequest()
+  let poller = try await client.undeleteCustomClassPollingUntilDone(
+    request: UndeleteCustomClassRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/customClasses/\(customClassId)"
       }

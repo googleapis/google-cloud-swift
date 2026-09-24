@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createRepository(
-    withPolling: CreateRepositoryRequest()
+  let poller = try await client.createRepositoryPollingUntilDone(
+    request: CreateRepositoryRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.repositoryId = "[replace with a valid ID]"

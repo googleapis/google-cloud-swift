@@ -26,8 +26,8 @@
   func sample(client: VertexRagDataServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let poller = try await client.updateRagEngineConfig(
-      withPolling: UpdateRagEngineConfigRequest()
+    let poller = try await client.updateRagEngineConfigPollingUntilDone(
+      request: UpdateRagEngineConfigRequest()
         .with {
           $0.ragEngineConfig = RagEngineConfig().with {
             $0.name = "projects/\(projectId)/locations/\(locationId)/ragEngineConfig"

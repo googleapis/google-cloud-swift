@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: CompletionServiceClient) async throws {
-    let poller = try await client.importSuggestionDenyListEntries(
-      withPolling: ImportSuggestionDenyListEntriesRequest()
+    let poller = try await client.importSuggestionDenyListEntriesPollingUntilDone(
+      request: ImportSuggestionDenyListEntriesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

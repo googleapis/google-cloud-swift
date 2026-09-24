@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: VpnTunnelsClient) async throws {
-    let poller = try await client.setLabels(
-      withPolling: VpnTunnelsClient.SetLabelsRequest()
+    let poller = try await client.setLabelsPollingUntilDone(
+      request: VpnTunnelsClient.SetLabelsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

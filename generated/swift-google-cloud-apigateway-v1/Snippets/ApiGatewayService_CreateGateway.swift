@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, parent: String) async throws {
-  let poller = try await client.createGateway(
-    withPolling: CreateGatewayRequest()
+  let poller = try await client.createGatewayPollingUntilDone(
+    request: CreateGatewayRequest()
       .with {
         $0.parent = "\(parent)"
         $0.gatewayId = "[replace with a valid ID]"

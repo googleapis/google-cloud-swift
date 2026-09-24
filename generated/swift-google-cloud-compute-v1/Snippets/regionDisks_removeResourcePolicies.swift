@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionDisksClient) async throws {
-    let poller = try await client.removeResourcePolicies(
-      withPolling: RegionDisksClient.RemoveResourcePoliciesRequest()
+    let poller = try await client.removeResourcePoliciesPollingUntilDone(
+      request: RegionDisksClient.RemoveResourcePoliciesRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, parent: String) async throws {
-  let poller = try await client.createHub(
-    withPolling: CreateHubRequest()
+  let poller = try await client.createHubPollingUntilDone(
+    request: CreateHubRequest()
       .with {
         $0.parent = "\(parent)"
         $0.hubId = "[replace with a valid ID]"

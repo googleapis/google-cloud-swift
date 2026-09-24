@@ -21,8 +21,8 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: DomainMappingsClient) async throws {
-  let poller = try await client.updateDomainMapping(
-    withPolling: UpdateDomainMappingRequest()
+  let poller = try await client.updateDomainMappingPollingUntilDone(
+    request: UpdateDomainMappingRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, parent: String) async throws {
-  let poller = try await client.createGcpUserAccessBinding(
-    withPolling: CreateGcpUserAccessBindingRequest()
+  let poller = try await client.createGcpUserAccessBindingPollingUntilDone(
+    request: CreateGcpUserAccessBindingRequest()
       .with {
         $0.parent = "\(parent)"
         $0.gcpUserAccessBinding = GcpUserAccessBinding() /* .with { ... } */

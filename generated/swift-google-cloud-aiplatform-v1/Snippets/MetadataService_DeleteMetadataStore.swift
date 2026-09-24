@@ -30,8 +30,8 @@
   func sample(
     client: MetadataServiceClient, projectId: String, locationId: String, metadataStoreId: String
   ) async throws {
-    let poller = try await client.deleteMetadataStore(
-      withPolling: DeleteMetadataStoreRequest()
+    let poller = try await client.deleteMetadataStorePollingUntilDone(
+      request: DeleteMetadataStoreRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/metadataStores/\(metadataStoreId)"

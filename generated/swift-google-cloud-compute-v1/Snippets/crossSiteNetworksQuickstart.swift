@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.CrossSiteNetworksClient()
-    let poller = try await client.delete(
-      withPolling: CrossSiteNetworksClient.DeleteRequest()
+    let poller = try await client.deletePollingUntilDone(
+      request: CrossSiteNetworksClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

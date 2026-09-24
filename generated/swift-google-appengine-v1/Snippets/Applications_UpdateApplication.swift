@@ -21,8 +21,8 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: ApplicationsClient) async throws {
-  let poller = try await client.updateApplication(
-    withPolling: UpdateApplicationRequest()
+  let poller = try await client.updateApplicationPollingUntilDone(
+    request: UpdateApplicationRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

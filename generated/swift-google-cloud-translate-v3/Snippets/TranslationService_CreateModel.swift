@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TranslationServiceClient, parent: String) async throws {
-  let poller = try await client.createModel(
-    withPolling: CreateModelRequest()
+  let poller = try await client.createModelPollingUntilDone(
+    request: CreateModelRequest()
       .with {
         $0.parent = "\(parent)"
         $0.model = Model() /* .with { ... } */

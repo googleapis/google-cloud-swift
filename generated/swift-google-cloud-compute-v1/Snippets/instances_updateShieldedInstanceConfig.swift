@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.updateShieldedInstanceConfig(
-      withPolling: InstancesClient.UpdateShieldedInstanceConfigRequest()
+    let poller = try await client.updateShieldedInstanceConfigPollingUntilDone(
+      request: InstancesClient.UpdateShieldedInstanceConfigRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

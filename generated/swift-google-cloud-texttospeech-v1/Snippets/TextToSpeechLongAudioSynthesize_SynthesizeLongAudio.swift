@@ -21,8 +21,8 @@ import GoogleCloudTextToSpeechV1
 import GoogleLongRunning
 
 func sample(client: TextToSpeechLongAudioSynthesizeClient) async throws {
-  let poller = try await client.synthesizeLongAudio(
-    withPolling: SynthesizeLongAudioRequest()
+  let poller = try await client.synthesizeLongAudioPollingUntilDone(
+    request: SynthesizeLongAudioRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

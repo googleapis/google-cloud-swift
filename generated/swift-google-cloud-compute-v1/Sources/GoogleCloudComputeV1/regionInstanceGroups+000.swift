@@ -85,9 +85,8 @@
     /// Sets the named ports for the specified regional instance group.
     ///
     /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
-    public func setNamedPorts(
-      withPolling: RegionInstanceGroupsClient.SetNamedPortsRequest,
-      options: GoogleGax.RequestOptions
+    public func setNamedPortsPollingUntilDone(
+      request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
         (op: GoogleCloudComputeV1.Operation) throws
@@ -103,15 +102,15 @@
         }
         return .init(done: true, result: .success(op))
       }
-      let rawOp = try await self.setNamedPorts(request: withPolling, options: options)
+      let rawOp = try await self.setNamedPorts(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
-            $0.project = withPolling.project
-            $0.region = withPolling.region
+            $0.project = request.project
+            $0.region = request.region
           }, options: options)
         return try extractStatus(op)
       }
@@ -314,15 +313,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func setNamedPorts(
-      withPolling: RegionInstanceGroupsClient.SetNamedPortsRequest
+    public func setNamedPortsPollingUntilDone(
+      request: RegionInstanceGroupsClient.SetNamedPortsRequest
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setNamedPorts(withPolling: withPolling, options: .init())
+      try await self.setNamedPortsPollingUntilDone(request: request, options: .init())
     }
 
-    public func setNamedPorts(
-      withPolling: RegionInstanceGroupsClient.SetNamedPortsRequest,
-      options: GoogleGax.RequestOptions
+    public func setNamedPortsPollingUntilDone(
+      request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -332,7 +330,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
-    public func setNamedPorts(
+    public func setNamedPortsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       instanceGroup: Swift.String,
@@ -344,7 +342,7 @@
         $0.instanceGroup = instanceGroup
         $0.body = body
       }
-      return try await self.setNamedPorts(withPolling: request)
+      return try await self.setNamedPortsPollingUntilDone(request: request)
     }
 
     public func testIamPermissions(request: RegionInstanceGroupsClient.TestIamPermissionsRequest)

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppPlatformClient) async throws {
-  let poller = try await client.updateApplicationInstances(
-    withPolling: UpdateApplicationInstancesRequest()
+  let poller = try await client.updateApplicationInstancesPollingUntilDone(
+    request: UpdateApplicationInstancesRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -27,8 +27,8 @@
   func sample(
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String
   ) async throws {
-    let poller = try await client.createSession(
-      withPolling: CreateSessionRequest()
+    let poller = try await client.createSessionPollingUntilDone(
+      request: CreateSessionRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/reasoningEngines/\(reasoningEngineId)"

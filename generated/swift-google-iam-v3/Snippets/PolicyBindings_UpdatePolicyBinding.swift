@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: PolicyBindingsClient, organizationId: String, locationId: String, policyBindingId: String
 ) async throws {
-  let poller = try await client.updatePolicyBinding(
-    withPolling: UpdatePolicyBindingRequest()
+  let poller = try await client.updatePolicyBindingPollingUntilDone(
+    request: UpdatePolicyBindingRequest()
       .with {
         $0.policyBinding = PolicyBinding().with {
           $0.name =

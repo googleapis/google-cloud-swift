@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RapidMigrationAssessmentClient, parent: String) async throws {
-  let poller = try await client.createCollector(
-    withPolling: CreateCollectorRequest()
+  let poller = try await client.createCollectorPollingUntilDone(
+    request: CreateCollectorRequest()
       .with {
         $0.parent = "\(parent)"
         $0.collectorId = "[replace with a valid ID]"

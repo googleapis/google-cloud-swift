@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionInstancesClient()
-    let poller = try await client.bulkInsert(
-      withPolling: RegionInstancesClient.BulkInsertRequest()
+    let poller = try await client.bulkInsertPollingUntilDone(
+      request: RegionInstancesClient.BulkInsertRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

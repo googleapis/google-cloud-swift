@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProjectsClient) async throws {
-  let poller = try await client.createProject(
-    withPolling: CreateProjectRequest()
+  let poller = try await client.createProjectPollingUntilDone(
+    request: CreateProjectRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

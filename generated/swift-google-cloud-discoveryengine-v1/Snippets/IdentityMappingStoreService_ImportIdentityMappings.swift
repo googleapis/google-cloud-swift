@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: IdentityMappingStoreServiceClient) async throws {
-    let poller = try await client.importIdentityMappings(
-      withPolling: ImportIdentityMappingsRequest()
+    let poller = try await client.importIdentityMappingsPollingUntilDone(
+      request: ImportIdentityMappingsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

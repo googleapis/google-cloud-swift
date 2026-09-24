@@ -27,8 +27,8 @@ func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String,
   dataAssetId: String
 ) async throws {
-  let poller = try await client.updateDataAsset(
-    withPolling: UpdateDataAssetRequest()
+  let poller = try await client.updateDataAssetPollingUntilDone(
+    request: UpdateDataAssetRequest()
       .with {
         $0.dataAsset = DataAsset().with {
           $0.name =

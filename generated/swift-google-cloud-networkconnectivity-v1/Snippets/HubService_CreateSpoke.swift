@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, parent: String) async throws {
-  let poller = try await client.createSpoke(
-    withPolling: CreateSpokeRequest()
+  let poller = try await client.createSpokePollingUntilDone(
+    request: CreateSpokeRequest()
       .with {
         $0.parent = "\(parent)"
         $0.spokeId = "[replace with a valid ID]"

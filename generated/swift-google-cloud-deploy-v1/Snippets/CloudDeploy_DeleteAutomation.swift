@@ -27,8 +27,8 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   automationId: String
 ) async throws {
-  let poller = try await client.deleteAutomation(
-    withPolling: DeleteAutomationRequest()
+  let poller = try await client.deleteAutomationPollingUntilDone(
+    request: DeleteAutomationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/deliveryPipelines/\(deliveryPipelineId)/automations/\(automationId)"

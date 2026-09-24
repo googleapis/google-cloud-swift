@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String
 ) async throws {
-  let poller = try await client.createBackup(
-    withPolling: CreateBackupRequest()
+  let poller = try await client.createBackupPollingUntilDone(
+    request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"
         $0.backupId = "[replace with a valid ID]"

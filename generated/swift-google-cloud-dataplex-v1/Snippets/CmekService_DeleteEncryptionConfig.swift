@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CmekServiceClient, organizationId: String, locationId: String, encryptionConfigId: String
 ) async throws {
-  let poller = try await client.deleteEncryptionConfig(
-    withPolling: DeleteEncryptionConfigRequest()
+  let poller = try await client.deleteEncryptionConfigPollingUntilDone(
+    request: DeleteEncryptionConfigRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/encryptionConfigs/\(encryptionConfigId)"

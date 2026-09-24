@@ -21,8 +21,8 @@ import GoogleCloudDatastoreAdminV1
 import GoogleLongRunning
 
 func sample(client: DatastoreAdminClient) async throws {
-  let poller = try await client.createIndex(
-    withPolling: CreateIndexRequest()
+  let poller = try await client.createIndexPollingUntilDone(
+    request: CreateIndexRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: VmMigrationClient, projectId: String, locationId: String, sourceId: String)
   async throws
 {
-  let poller = try await client.createDiskMigrationJob(
-    withPolling: CreateDiskMigrationJobRequest()
+  let poller = try await client.createDiskMigrationJobPollingUntilDone(
+    request: CreateDiskMigrationJobRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)"
         $0.diskMigrationJob = DiskMigrationJob() /* .with { ... } */

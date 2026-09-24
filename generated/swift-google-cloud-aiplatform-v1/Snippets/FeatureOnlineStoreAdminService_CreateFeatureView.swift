@@ -28,8 +28,8 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String
   ) async throws {
-    let poller = try await client.createFeatureView(
-      withPolling: CreateFeatureViewRequest()
+    let poller = try await client.createFeatureViewPollingUntilDone(
+      request: CreateFeatureViewRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featureOnlineStores/\(featureOnlineStoreId)"

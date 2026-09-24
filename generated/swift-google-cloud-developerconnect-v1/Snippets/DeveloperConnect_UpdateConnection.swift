@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: DeveloperConnectClient, projectId: String, locationId: String, connectionId: String
 ) async throws {
-  let poller = try await client.updateConnection(
-    withPolling: UpdateConnectionRequest()
+  let poller = try await client.updateConnectionPollingUntilDone(
+    request: UpdateConnectionRequest()
       .with {
         $0.connection = Connection().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"

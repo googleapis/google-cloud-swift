@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupDRClient) async throws {
-  let poller = try await client.restoreBackup(
-    withPolling: RestoreBackupRequest()
+  let poller = try await client.restoreBackupPollingUntilDone(
+    request: RestoreBackupRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

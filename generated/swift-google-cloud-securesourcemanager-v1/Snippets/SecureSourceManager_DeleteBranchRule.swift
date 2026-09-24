@@ -27,8 +27,8 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   branchRuleId: String
 ) async throws {
-  let poller = try await client.deleteBranchRule(
-    withPolling: DeleteBranchRuleRequest()
+  let poller = try await client.deleteBranchRulePollingUntilDone(
+    request: DeleteBranchRuleRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/branchRules/\(branchRuleId)"

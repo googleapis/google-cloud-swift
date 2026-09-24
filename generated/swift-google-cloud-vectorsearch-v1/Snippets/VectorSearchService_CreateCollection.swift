@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VectorSearchServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createCollection(
-    withPolling: CreateCollectionRequest()
+  let poller = try await client.createCollectionPollingUntilDone(
+    request: CreateCollectionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.collectionId = "[replace with a valid ID]"

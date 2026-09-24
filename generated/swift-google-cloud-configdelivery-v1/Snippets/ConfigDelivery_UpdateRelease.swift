@@ -26,8 +26,8 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String
 ) async throws {
-  let poller = try await client.updateRelease(
-    withPolling: UpdateReleaseRequest()
+  let poller = try await client.updateReleasePollingUntilDone(
+    request: UpdateReleaseRequest()
       .with {
         $0.release = Release().with {
           $0.name =

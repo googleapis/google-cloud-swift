@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let poller = try await client.createCloneJob(
-    withPolling: CreateCloneJobRequest()
+  let poller = try await client.createCloneJobPollingUntilDone(
+    request: CreateCloneJobRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/migratingVms/\(migratingVmId)"

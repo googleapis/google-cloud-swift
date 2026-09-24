@@ -54,14 +54,14 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Creates a Job.
   ///
   /// @Snippet(path: "Jobs_CreateJob")
-  public func createJob(
-    withPolling: CreateJobRequest, options: GoogleGax.RequestOptions
+  public func createJobPollingUntilDone(
+    request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Job>.State in
       return try op._extractStatus(Job.self)
     }
-    let rawOp = try await self.createJob(request: withPolling, options: options)
+    let rawOp = try await self.createJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       let op = try await self.getOperation(
@@ -106,14 +106,14 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Updates a Job.
   ///
   /// @Snippet(path: "Jobs_UpdateJob")
-  public func updateJob(
-    withPolling: UpdateJobRequest, options: GoogleGax.RequestOptions
+  public func updateJobPollingUntilDone(
+    request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Job>.State in
       return try op._extractStatus(Job.self)
     }
-    let rawOp = try await self.updateJob(request: withPolling, options: options)
+    let rawOp = try await self.updateJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       let op = try await self.getOperation(
@@ -140,14 +140,14 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Deletes a Job.
   ///
   /// @Snippet(path: "Jobs_DeleteJob")
-  public func deleteJob(
-    withPolling: DeleteJobRequest, options: GoogleGax.RequestOptions
+  public func deleteJobPollingUntilDone(
+    request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Job>.State in
       return try op._extractStatus(Job.self)
     }
-    let rawOp = try await self.deleteJob(request: withPolling, options: options)
+    let rawOp = try await self.deleteJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       let op = try await self.getOperation(
@@ -174,15 +174,15 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Triggers creation of a new Execution of this Job.
   ///
   /// @Snippet(path: "Jobs_RunJob")
-  public func runJob(
-    withPolling: RunJobRequest, options: GoogleGax.RequestOptions
+  public func runJobPollingUntilDone(
+    request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Execution>.State
       in
       return try op._extractStatus(Execution.self)
     }
-    let rawOp = try await self.runJob(request: withPolling, options: options)
+    let rawOp = try await self.runJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
       let op = try await self.getOperation(
@@ -281,44 +281,40 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol JobsProtocol: Sendable {
     /// See `JobsClient.createJob`.
-    func createJob(withPolling: CreateJobRequest) async throws -> any GoogleGax.PollableOperation<
-      Job
-    >
+    func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
+      .PollableOperation<Job>
 
     /// See `JobsClient.createJob`.
-    func createJob(
+    func createJobPollingUntilDone(
       parent: Swift.String,
       job: Job?,
       jobId: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobsClient.updateJob`.
-    func updateJob(withPolling: UpdateJobRequest) async throws -> any GoogleGax.PollableOperation<
-      Job
-    >
+    func updateJobPollingUntilDone(request: UpdateJobRequest) async throws -> any GoogleGax
+      .PollableOperation<Job>
 
     /// See `JobsClient.updateJob`.
-    func updateJob(
+    func updateJobPollingUntilDone(
       job: Job?,
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobsClient.deleteJob`.
-    func deleteJob(withPolling: DeleteJobRequest) async throws -> any GoogleGax.PollableOperation<
-      Job
-    >
+    func deleteJobPollingUntilDone(request: DeleteJobRequest) async throws -> any GoogleGax
+      .PollableOperation<Job>
 
     /// See `JobsClient.deleteJob`.
-    func deleteJob(
+    func deleteJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobsClient.runJob`.
-    func runJob(withPolling: RunJobRequest) async throws -> any GoogleGax.PollableOperation<
-      Execution
-    >
+    func runJobPollingUntilDone(request: RunJobRequest) async throws -> any GoogleGax
+      .PollableOperation<Execution>
 
     /// See `JobsClient.runJob`.
-    func runJob(
+    func runJobPollingUntilDone(
       name: Swift.String,
     ) async throws -> any GoogleGax.PollableOperation<Execution>
 
@@ -328,8 +324,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `JobsClient.createJob`.
-    func createJob(
-      withPolling: CreateJobRequest, options: GoogleGax.RequestOptions
+    func createJobPollingUntilDone(
+      request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobsClient.getJob`.
@@ -348,8 +344,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `JobsClient.updateJob`.
-    func updateJob(
-      withPolling: UpdateJobRequest, options: GoogleGax.RequestOptions
+    func updateJobPollingUntilDone(
+      request: UpdateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobsClient.deleteJob`.
@@ -358,8 +354,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `JobsClient.deleteJob`.
-    func deleteJob(
-      withPolling: DeleteJobRequest, options: GoogleGax.RequestOptions
+    func deleteJobPollingUntilDone(
+      request: DeleteJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Job>
 
     /// See `JobsClient.runJob`.
@@ -368,8 +364,8 @@ extension Clients {
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `JobsClient.runJob`.
-    func runJob(
-      withPolling: RunJobRequest, options: GoogleGax.RequestOptions
+    func runJobPollingUntilDone(
+      request: RunJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Execution>
 
     /// See `JobsClient.getIamPolicy`.
@@ -416,14 +412,14 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createJob(withPolling: CreateJobRequest) async throws -> any GoogleGax
+  public func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
     .PollableOperation<Job>
   {
-    try await self.createJob(withPolling: withPolling, options: .init())
+    try await self.createJobPollingUntilDone(request: request, options: .init())
   }
 
-  public func createJob(
-    withPolling: CreateJobRequest, options: GoogleGax.RequestOptions
+  public func createJobPollingUntilDone(
+    request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -432,7 +428,7 @@ extension Clients.JobsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func createJob(
+  public func createJobPollingUntilDone(
     parent: Swift.String,
     job: Job?,
     jobId: Swift.String,
@@ -442,7 +438,7 @@ extension Clients.JobsProtocol {
       $0.job = job
       $0.jobId = jobId
     }
-    return try await self.createJob(withPolling: request)
+    return try await self.createJobPollingUntilDone(request: request)
   }
 
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudRunV2.Job {
@@ -513,14 +509,14 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateJob(withPolling: UpdateJobRequest) async throws -> any GoogleGax
+  public func updateJobPollingUntilDone(request: UpdateJobRequest) async throws -> any GoogleGax
     .PollableOperation<Job>
   {
-    try await self.updateJob(withPolling: withPolling, options: .init())
+    try await self.updateJobPollingUntilDone(request: request, options: .init())
   }
 
-  public func updateJob(
-    withPolling: UpdateJobRequest, options: GoogleGax.RequestOptions
+  public func updateJobPollingUntilDone(
+    request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -529,13 +525,13 @@ extension Clients.JobsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func updateJob(
+  public func updateJobPollingUntilDone(
     job: Job?,
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let request = UpdateJobRequest().with {
       $0.job = job
     }
-    return try await self.updateJob(withPolling: request)
+    return try await self.updateJobPollingUntilDone(request: request)
   }
 
   public func deleteJob(request: DeleteJobRequest) async throws -> GoogleLongRunning.Operation {
@@ -548,14 +544,14 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteJob(withPolling: DeleteJobRequest) async throws -> any GoogleGax
+  public func deleteJobPollingUntilDone(request: DeleteJobRequest) async throws -> any GoogleGax
     .PollableOperation<Job>
   {
-    try await self.deleteJob(withPolling: withPolling, options: .init())
+    try await self.deleteJobPollingUntilDone(request: request, options: .init())
   }
 
-  public func deleteJob(
-    withPolling: DeleteJobRequest, options: GoogleGax.RequestOptions
+  public func deleteJobPollingUntilDone(
+    request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -564,13 +560,13 @@ extension Clients.JobsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteJob(
+  public func deleteJobPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let request = DeleteJobRequest().with {
       $0.name = name
     }
-    return try await self.deleteJob(withPolling: request)
+    return try await self.deleteJobPollingUntilDone(request: request)
   }
 
   public func runJob(request: RunJobRequest) async throws -> GoogleLongRunning.Operation {
@@ -583,14 +579,14 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runJob(withPolling: RunJobRequest) async throws -> any GoogleGax.PollableOperation<
-    Execution
-  > {
-    try await self.runJob(withPolling: withPolling, options: .init())
+  public func runJobPollingUntilDone(request: RunJobRequest) async throws -> any GoogleGax
+    .PollableOperation<Execution>
+  {
+    try await self.runJobPollingUntilDone(request: request, options: .init())
   }
 
-  public func runJob(
-    withPolling: RunJobRequest, options: GoogleGax.RequestOptions
+  public func runJobPollingUntilDone(
+    request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
     let poll = { () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
       throw GoogleGax.RequestError.unimplemented
@@ -599,13 +595,13 @@ extension Clients.JobsProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func runJob(
+  public func runJobPollingUntilDone(
     name: Swift.String,
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
     let request = RunJobRequest().with {
       $0.name = name
     }
-    return try await self.runJob(withPolling: request)
+    return try await self.runJobPollingUntilDone(request: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

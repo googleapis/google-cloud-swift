@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createServiceConnectionMap(
-    withPolling: CreateServiceConnectionMapRequest()
+  let poller = try await client.createServiceConnectionMapPollingUntilDone(
+    request: CreateServiceConnectionMapRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.serviceConnectionMap = ServiceConnectionMap() /* .with { ... } */

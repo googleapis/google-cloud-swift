@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MemorystoreClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createInstance(
-    withPolling: CreateInstanceRequest()
+  let poller = try await client.createInstancePollingUntilDone(
+    request: CreateInstanceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.instanceId = "[replace with a valid ID]"

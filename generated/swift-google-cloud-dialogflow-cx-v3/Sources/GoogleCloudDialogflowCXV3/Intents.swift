@@ -139,15 +139,15 @@
     /// [google.cloud.dialogflow.cx.v3.ImportIntentsResponse]: <doc:ImportIntentsResponse>
     ///
     /// @Snippet(path: "Intents_ImportIntents")
-    public func importIntents(
-      withPolling: ImportIntentsRequest, options: GoogleGax.RequestOptions
+    public func importIntentsPollingUntilDone(
+      request: ImportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportIntentsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State in
         return try op._extractStatus(ImportIntentsResponse.self)
       }
-      let rawOp = try await self.importIntents(request: withPolling, options: options)
+      let rawOp = try await self.importIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State in
@@ -199,15 +199,15 @@
     /// [google.cloud.dialogflow.cx.v3.ExportIntentsResponse]: <doc:ExportIntentsResponse>
     ///
     /// @Snippet(path: "Intents_ExportIntents")
-    public func exportIntents(
-      withPolling: ExportIntentsRequest, options: GoogleGax.RequestOptions
+    public func exportIntentsPollingUntilDone(
+      request: ExportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportIntentsResponse> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State in
         return try op._extractStatus(ExportIntentsResponse.self)
       }
-      let rawOp = try await self.exportIntents(request: withPolling, options: options)
+      let rawOp = try await self.exportIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State in
@@ -300,12 +300,12 @@
     /// and pass a mock implementation in your tests.
     public protocol IntentsProtocol: Sendable {
       /// See `IntentsClient.importIntents`.
-      func importIntents(withPolling: ImportIntentsRequest) async throws -> any GoogleGax
-        .PollableOperation<ImportIntentsResponse>
+      func importIntentsPollingUntilDone(request: ImportIntentsRequest) async throws
+        -> any GoogleGax.PollableOperation<ImportIntentsResponse>
 
       /// See `IntentsClient.exportIntents`.
-      func exportIntents(withPolling: ExportIntentsRequest) async throws -> any GoogleGax
-        .PollableOperation<ExportIntentsResponse>
+      func exportIntentsPollingUntilDone(request: ExportIntentsRequest) async throws
+        -> any GoogleGax.PollableOperation<ExportIntentsResponse>
 
       /// See `IntentsClient.listIntents`.
       func listIntents(
@@ -338,8 +338,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IntentsClient.importIntents`.
-      func importIntents(
-        withPolling: ImportIntentsRequest, options: GoogleGax.RequestOptions
+      func importIntentsPollingUntilDone(
+        request: ImportIntentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ImportIntentsResponse>
 
       /// See `IntentsClient.exportIntents`.
@@ -348,8 +348,8 @@
       ) async throws -> GoogleLongRunning.Operation
 
       /// See `IntentsClient.exportIntents`.
-      func exportIntents(
-        withPolling: ExportIntentsRequest, options: GoogleGax.RequestOptions
+      func exportIntentsPollingUntilDone(
+        request: ExportIntentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> any GoogleGax.PollableOperation<ExportIntentsResponse>
 
       /// See `IntentsClient.listLocations`.
@@ -516,14 +516,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importIntents(withPolling: ImportIntentsRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportIntentsResponse>
+    public func importIntentsPollingUntilDone(request: ImportIntentsRequest) async throws
+      -> any GoogleGax.PollableOperation<ImportIntentsResponse>
     {
-      try await self.importIntents(withPolling: withPolling, options: .init())
+      try await self.importIntentsPollingUntilDone(request: request, options: .init())
     }
 
-    public func importIntents(
-      withPolling: ImportIntentsRequest, options: GoogleGax.RequestOptions
+    public func importIntentsPollingUntilDone(
+      request: ImportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportIntentsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State in
@@ -545,14 +545,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportIntents(withPolling: ExportIntentsRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportIntentsResponse>
+    public func exportIntentsPollingUntilDone(request: ExportIntentsRequest) async throws
+      -> any GoogleGax.PollableOperation<ExportIntentsResponse>
     {
-      try await self.exportIntents(withPolling: withPolling, options: .init())
+      try await self.exportIntentsPollingUntilDone(request: request, options: .init())
     }
 
-    public func exportIntents(
-      withPolling: ExportIntentsRequest, options: GoogleGax.RequestOptions
+    public func exportIntentsPollingUntilDone(
+      request: ExportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportIntentsResponse> {
       let poll = {
         () async throws -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State in

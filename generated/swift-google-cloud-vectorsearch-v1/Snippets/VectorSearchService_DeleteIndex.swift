@@ -26,8 +26,8 @@ func sample(
   client: VectorSearchServiceClient, projectId: String, locationId: String, collectionId: String,
   indexId: String
 ) async throws {
-  let poller = try await client.deleteIndex(
-    withPolling: DeleteIndexRequest()
+  let poller = try await client.deleteIndexPollingUntilDone(
+    request: DeleteIndexRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)/indexes/\(indexId)"

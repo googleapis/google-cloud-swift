@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: StorageInsightsClient, projectId: String, locationId: String, datasetConfigId: String
 ) async throws {
-  let poller = try await client.deleteDatasetConfig(
-    withPolling: DeleteDatasetConfigRequest()
+  let poller = try await client.deleteDatasetConfigPollingUntilDone(
+    request: DeleteDatasetConfigRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/datasetConfigs/\(datasetConfigId)"
       }

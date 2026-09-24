@@ -21,8 +21,8 @@ import GoogleCloudCommerceConsumerProcurementV1
 import GoogleLongRunning
 
 func sample(client: ConsumerProcurementServiceClient) async throws {
-  let poller = try await client.modifyOrder(
-    withPolling: ModifyOrderRequest()
+  let poller = try await client.modifyOrderPollingUntilDone(
+    request: ModifyOrderRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

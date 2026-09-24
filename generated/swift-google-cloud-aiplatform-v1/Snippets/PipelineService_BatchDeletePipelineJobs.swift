@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: PipelineServiceClient) async throws {
-    let poller = try await client.batchDeletePipelineJobs(
-      withPolling: BatchDeletePipelineJobsRequest()
+    let poller = try await client.batchDeletePipelineJobsPollingUntilDone(
+      request: BatchDeletePipelineJobsRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

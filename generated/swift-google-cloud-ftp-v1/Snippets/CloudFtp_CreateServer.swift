@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFtpClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createServer(
-    withPolling: CreateServerRequest()
+  let poller = try await client.createServerPollingUntilDone(
+    request: CreateServerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.serverId = "[replace with a valid ID]"

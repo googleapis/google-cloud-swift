@@ -25,8 +25,8 @@ func sample(
   client: DeploymentClient, organizationId: String, locationId: String,
   frameworkDeploymentId: String
 ) async throws {
-  let poller = try await client.deleteFrameworkDeployment(
-    withPolling: DeleteFrameworkDeploymentRequest()
+  let poller = try await client.deleteFrameworkDeploymentPollingUntilDone(
+    request: DeleteFrameworkDeploymentRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/frameworkDeployments/\(frameworkDeploymentId)"

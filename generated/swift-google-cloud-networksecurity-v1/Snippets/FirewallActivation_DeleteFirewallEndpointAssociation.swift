@@ -27,8 +27,8 @@ func sample(
   client: FirewallActivationClient, projectId: String, locationId: String,
   firewallEndpointAssociationId: String
 ) async throws {
-  let poller = try await client.deleteFirewallEndpointAssociation(
-    withPolling: DeleteFirewallEndpointAssociationRequest()
+  let poller = try await client.deleteFirewallEndpointAssociationPollingUntilDone(
+    request: DeleteFirewallEndpointAssociationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/firewallEndpointAssociations/\(firewallEndpointAssociationId)"

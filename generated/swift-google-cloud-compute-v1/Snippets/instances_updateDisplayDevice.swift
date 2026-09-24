@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.updateDisplayDevice(
-      withPolling: InstancesClient.UpdateDisplayDeviceRequest()
+    let poller = try await client.updateDisplayDevicePollingUntilDone(
+      request: InstancesClient.UpdateDisplayDeviceRequest()
         /* set fields using .with { $0... } */
     )
     let response = try await poller.wait()

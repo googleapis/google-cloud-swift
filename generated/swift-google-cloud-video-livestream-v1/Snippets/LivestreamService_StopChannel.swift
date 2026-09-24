@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LivestreamServiceClient) async throws {
-  let poller = try await client.stopChannel(
-    withPolling: StopChannelRequest()
+  let poller = try await client.stopChannelPollingUntilDone(
+    request: StopChannelRequest()
       /* set fields using .with { $0... } */
   )
   let response = try await poller.wait()

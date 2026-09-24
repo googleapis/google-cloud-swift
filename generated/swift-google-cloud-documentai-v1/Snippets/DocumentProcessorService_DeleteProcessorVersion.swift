@@ -25,8 +25,8 @@ func sample(
   client: DocumentProcessorServiceClient, projectId: String, locationId: String,
   processorId: String, processorVersionId: String
 ) async throws {
-  let poller = try await client.deleteProcessorVersion(
-    withPolling: DeleteProcessorVersionRequest()
+  let poller = try await client.deleteProcessorVersionPollingUntilDone(
+    request: DeleteProcessorVersionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/processors/\(processorId)/processorVersions/\(processorVersionId)"
