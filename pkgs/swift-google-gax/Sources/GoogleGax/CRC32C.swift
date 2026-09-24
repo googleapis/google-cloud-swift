@@ -38,23 +38,31 @@ public import Foundation
   }
 
   public mutating func update(_ data: Data) {
+    // `Foundation.Data.withUnsafeBytes` is not yet marked `@safe` in `FoundationEssentials`,
+    // so SE-0458 infers `@unsafe` from its `UnsafeRawBufferPointer` closure parameter.
     unsafe data.withUnsafeBytes { buffer in
       update(buffer)
     }
   }
 
+  // Marked `@safe` to override SE-0458's implicit `@unsafe` inference on `UnsafeRawBufferPointer`
+  // parameters. All memory accesses are bounded by `buffer.count`, stopping viral `unsafe` propagation.
   @safe
   public mutating func update(_ buffer: UnsafeRawBufferPointer) {
+    // `UnsafeRawBufferPointer.isEmpty` requires `unsafe` because its `Collection` conformance is `@unsafe`.
     guard let baseAddress = buffer.baseAddress, unsafe !buffer.isEmpty else { return }
     if Self.isHardwareAccelerated {
+      // SAFETY: `baseAddress` is non-nil and `buffer.count` bounds the read to the buffer's extent.
       value = unsafe googleGax_crc32c_hw(value, baseAddress, buffer.count)
     } else {
       updateSoftware(buffer)
     }
   }
 
+  // Marked `@safe` to override SE-0458's implicit `@unsafe` inference on `UnsafeRawBufferPointer`.
   @safe
   mutating func updateSoftware(_ buffer: UnsafeRawBufferPointer) {
+    // `UnsafeRawBufferPointer`'s `Sequence` conformance is `@unsafe` under SE-0458.
     // `swift-format` 6.3 misformats `for unsafe byte` as `for unsafebyte`.
     // swift-format-ignore
     for unsafe byte in unsafe buffer {
@@ -78,6 +86,7 @@ public import Foundation
     return crc.finalize()
   }
 
+  // Marked `@safe` to override SE-0458's implicit `@unsafe` inference on `UnsafeRawBufferPointer`.
   @safe
   public static func compute(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
     var crc = Self()
@@ -91,6 +100,7 @@ public import Foundation
     }
   }
 
+  // Marked `@safe` to override SE-0458's implicit `@unsafe` inference on `UnsafeRawBufferPointer`.
   @safe
   static func computeSoftware(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
     var crc = Self()

@@ -67,6 +67,8 @@ struct MD5Calculator: ChecksumCalculator {
   init() {}
 
   mutating func update(_ buffer: ByteChunk) {
+    // SAFETY: `Insecure.MD5.update(bufferPointer:)` is implicitly `@unsafe` due to its
+    // `UnsafeRawBufferPointer` parameter; `ByteChunk.withUnsafeBytes` guarantees pointer validity.
     buffer.withUnsafeBytes { unsafe md5.update(bufferPointer: $0) }
   }
 

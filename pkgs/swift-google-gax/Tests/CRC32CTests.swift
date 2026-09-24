@@ -44,6 +44,9 @@ import Testing
     #expect(helloCRC32C == got)
 
     var swChecksum = _CRC32C()
+    // `Data.withUnsafeBytes` and `Array.withUnsafeBytes` are not marked `@safe` in the Swift 6.3
+    // stdlib/`FoundationEssentials`, so SE-0458 infers `@unsafe` from their `UnsafeRawBufferPointer`
+    // closure parameter. Inside the closures, `_CRC32C` methods are `@safe` and need no `unsafe`.
     unsafe Data("Hello".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
     unsafe Data(" ".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
     unsafe Data("World".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }

@@ -984,6 +984,8 @@ extension StorageClient {
       if trimmed.hasPrefix("crc32c=") {
         let b64 = String(trimmed.dropFirst("crc32c=".count))
         guard let data = Data(base64Encoded: b64), data.count == 4 else { return nil }
+        // SAFETY: `data.count == 4` matches `MemoryLayout<UInt32>.size`, and `loadUnaligned`
+        // avoids alignment requirements on `Data`'s backing buffer.
         let bigEndian = unsafe data.withUnsafeBytes { unsafe $0.loadUnaligned(as: UInt32.self) }
         return UInt32(bigEndian: bigEndian)
       }

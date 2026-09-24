@@ -90,11 +90,14 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
 
   /// The Base64-encoded string representation of the encryption key.
   public var keyBase64: String {
+    // SAFETY: `SymmetricKey.withUnsafeBytes` and `Data.init(_: UnsafeRawBufferPointer)` are
+    // implicitly `@unsafe` under SE-0458; `Data($0)` copies the bytes before the closure returns.
     unsafe key.withUnsafeBytes { unsafe Data($0).base64EncodedString() }
   }
 
   /// The Base64-encoded SHA-256 digest of the key material used for header validation.
   public var keyHashBase64: String {
+    // SAFETY: `Data($0)` copies the key bytes before the closure returns.
     let data = unsafe key.withUnsafeBytes { unsafe Data($0) }
     let hash = SHA256.hash(data: data)
     return Data(hash).base64EncodedString()

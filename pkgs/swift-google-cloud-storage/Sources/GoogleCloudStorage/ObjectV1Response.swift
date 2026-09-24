@@ -122,6 +122,8 @@ package struct ObjectV1Response: Decodable, Sendable {
         checksums.crc32C = val
         hasChecksums = true
       } else if let data = Data(base64Encoded: crc32c), data.count == 4 {
+        // SAFETY: `data.count == 4` matches `MemoryLayout<UInt32>.size`, and `loadUnaligned`
+        // avoids alignment requirements on `Data`'s backing buffer.
         let val = unsafe data.withUnsafeBytes { unsafe $0.loadUnaligned(as: UInt32.self).bigEndian }
         checksums.crc32C = val
         hasChecksums = true
