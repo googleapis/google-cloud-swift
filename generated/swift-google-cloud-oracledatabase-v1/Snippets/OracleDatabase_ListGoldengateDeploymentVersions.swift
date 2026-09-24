@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = client.listGoldengateDeploymentVersions(
-    byItem: ListGoldengateDeploymentVersionsRequest()
+  let items = client.listGoldengateDeploymentVersionsByItems(
+    request: ListGoldengateDeploymentVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

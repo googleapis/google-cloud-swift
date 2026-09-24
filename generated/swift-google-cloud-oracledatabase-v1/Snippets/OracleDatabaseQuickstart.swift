@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudOracleDatabaseV1.OracleDatabaseClient()
-  let items = client.listCloudExadataInfrastructures(
-    byItem: ListCloudExadataInfrastructuresRequest()
+  let items = client.listCloudExadataInfrastructuresByItems(
+    request: ListCloudExadataInfrastructuresRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

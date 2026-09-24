@@ -346,34 +346,34 @@ extension Clients.TagKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTagKeys(
-    byItem: ListTagKeysRequest
+  public func listTagKeysByItems(
+    request: ListTagKeysRequest
   ) -> any AsyncSequence<TagKey, Swift.Error> {
-    self.listTagKeys(byItem: byItem, options: .init())
+    self.listTagKeysByItems(request: request, options: .init())
   }
 
   /// Lists all TagKeys for a parent resource.
   ///
   /// @Snippet(path: "TagKeys_ListTagKeys")
-  public func listTagKeys(
-    byItem: ListTagKeysRequest, options: GoogleGax.RequestOptions
+  public func listTagKeysByItems(
+    request: ListTagKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TagKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagKeysResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTagKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTagKeys(
+  public func listTagKeysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TagKey, Swift.Error> {
     let request = ListTagKeysRequest().with {
       $0.parent = parent
     }
-    return self.listTagKeys(byItem: request)
+    return self.listTagKeysByItems(request: request)
   }
 
   public func getTagKey(request: GetTagKeyRequest) async throws

@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataprocV1.AutoscalingPolicyServiceClient()
-  let items = client.listAutoscalingPolicies(
-    byItem: ListAutoscalingPoliciesRequest()
+  let items = client.listAutoscalingPoliciesByItems(
+    request: ListAutoscalingPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

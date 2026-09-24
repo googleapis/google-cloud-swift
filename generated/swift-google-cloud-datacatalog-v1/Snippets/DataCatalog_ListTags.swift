@@ -29,8 +29,8 @@ func sample(
   client: DataCatalogClient, projectId: String, locationId: String, entryGroupId: String,
   entryId: String
 ) async throws {
-  let items = client.listTags(
-    byItem: ListTagsRequest()
+  let items = client.listTagsByItems(
+    request: ListTagsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/entryGroups/\(entryGroupId)/entries/\(entryId)"

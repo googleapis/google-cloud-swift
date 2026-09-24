@@ -365,10 +365,10 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listKeyHandles(
-    byItem: ListKeyHandlesRequest
+  public func listKeyHandlesByItems(
+    request: ListKeyHandlesRequest
   ) -> any AsyncSequence<KeyHandle, Swift.Error> {
-    self.listKeyHandles(byItem: byItem, options: .init())
+    self.listKeyHandlesByItems(request: request, options: .init())
   }
 
   /// Lists [KeyHandles][google.cloud.kms.v1.KeyHandle].
@@ -376,24 +376,24 @@ extension Clients.AutokeyProtocol {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "Autokey_ListKeyHandles")
-  public func listKeyHandles(
-    byItem: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
+  public func listKeyHandlesByItems(
+    request: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<KeyHandle, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listKeyHandles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listKeyHandles(
+  public func listKeyHandlesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<KeyHandle, Swift.Error> {
     let request = ListKeyHandlesRequest().with {
       $0.parent = parent
     }
-    return self.listKeyHandles(byItem: request)
+    return self.listKeyHandlesByItems(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -408,10 +408,10 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -434,12 +434,12 @@ extension Clients.AutokeyProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Autokey_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

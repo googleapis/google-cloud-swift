@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ConfigServiceV2Client, projectId: String, locationId: String, bucketId: String)
   async throws
 {
-  let items = client.listLinks(
-    byItem: ListLinksRequest()
+  let items = client.listLinksByItems(
+    request: ListLinksRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/buckets/\(bucketId)"
       }

@@ -26,8 +26,8 @@ func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String,
   cloudExadataInfrastructureId: String
 ) async throws {
-  let items = client.listDbServers(
-    byItem: ListDbServersRequest()
+  let items = client.listDbServersByItems(
+    request: ListDbServersRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/cloudExadataInfrastructures/\(cloudExadataInfrastructureId)"

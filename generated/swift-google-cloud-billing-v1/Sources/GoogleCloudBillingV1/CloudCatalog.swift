@@ -90,21 +90,21 @@ extension Clients.CloudCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServices(
-    byItem: ListServicesRequest
+  public func listServicesByItems(
+    request: ListServicesRequest
   ) -> any AsyncSequence<Service, Swift.Error> {
-    self.listServices(byItem: byItem, options: .init())
+    self.listServicesByItems(request: request, options: .init())
   }
 
   /// Lists all public cloud services.
   ///
   /// @Snippet(path: "CloudCatalog_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
+  public func listServicesByItems(
+    request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListServicesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
@@ -123,32 +123,32 @@ extension Clients.CloudCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSkus(
-    byItem: ListSkusRequest
+  public func listSkusByItems(
+    request: ListSkusRequest
   ) -> any AsyncSequence<Sku, Swift.Error> {
-    self.listSkus(byItem: byItem, options: .init())
+    self.listSkusByItems(request: request, options: .init())
   }
 
   /// Lists all publicly available SKUs for a given cloud service.
   ///
   /// @Snippet(path: "CloudCatalog_ListSkus")
-  public func listSkus(
-    byItem: ListSkusRequest, options: GoogleGax.RequestOptions
+  public func listSkusByItems(
+    request: ListSkusRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Sku, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBillingV1.ListSkusResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSkus(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSkus(
+  public func listSkusByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Sku, Swift.Error> {
     let request = ListSkusRequest().with {
       $0.parent = parent
     }
-    return self.listSkus(byItem: request)
+    return self.listSkusByItems(request: request)
   }
 }

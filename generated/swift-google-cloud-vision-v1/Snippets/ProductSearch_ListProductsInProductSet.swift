@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProductSearchClient) async throws {
-  let items = client.listProductsInProductSet(
-    byItem: ListProductsInProductSetRequest()
+  let items = client.listProductsInProductSetByItems(
+    request: ListProductsInProductSetRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

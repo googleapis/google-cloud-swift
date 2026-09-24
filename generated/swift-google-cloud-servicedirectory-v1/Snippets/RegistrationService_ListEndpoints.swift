@@ -26,8 +26,8 @@ func sample(
   client: RegistrationServiceClient, projectId: String, locationId: String, namespaceId: String,
   serviceId: String
 ) async throws {
-  let items = client.listEndpoints(
-    byItem: ListEndpointsRequest()
+  let items = client.listEndpointsByItems(
+    request: ListEndpointsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/namespaces/\(namespaceId)/services/\(serviceId)"

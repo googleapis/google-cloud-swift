@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient) async throws {
-  let items = client.fetchNetworkPolicyExternalAddresses(
-    byItem: FetchNetworkPolicyExternalAddressesRequest()
+  let items = client.fetchNetworkPolicyExternalAddressesByItems(
+    request: FetchNetworkPolicyExternalAddressesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

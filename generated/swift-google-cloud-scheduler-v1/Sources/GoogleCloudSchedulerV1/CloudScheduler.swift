@@ -244,33 +244,33 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listJobs(
-    byItem: ListJobsRequest
+  public func listJobsByItems(
+    request: ListJobsRequest
   ) -> any AsyncSequence<Job, Swift.Error> {
-    self.listJobs(byItem: byItem, options: .init())
+    self.listJobsByItems(request: request, options: .init())
   }
 
   /// Lists jobs.
   ///
   /// @Snippet(path: "CloudScheduler_ListJobs")
-  public func listJobs(
-    byItem: ListJobsRequest, options: GoogleGax.RequestOptions
+  public func listJobsByItems(
+    request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudSchedulerV1.ListJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listJobs(
+  public func listJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Job, Swift.Error> {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
-    return self.listJobs(byItem: request)
+    return self.listJobsByItems(request: request)
   }
 
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
@@ -422,21 +422,21 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudScheduler_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

@@ -25,8 +25,8 @@
   func sample(
     client: GeneratorEvaluationsClient, projectId: String, locationId: String, generatorId: String
   ) async throws {
-    let items = client.listGeneratorEvaluations(
-      byItem: ListGeneratorEvaluationsRequest()
+    let items = client.listGeneratorEvaluationsByItems(
+      request: ListGeneratorEvaluationsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/generators/\(generatorId)"
         }

@@ -216,29 +216,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionInstanceGroupsClient.ListRequest
+    public func listByItems(
+      request: RegionInstanceGroupsClient.ListRequest
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of instance group resources contained within
     /// the specified region.
     ///
     /// @Snippet(path: "regionInstanceGroups_list")
-    public func list(
-      byItem: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
@@ -246,7 +246,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listInstances(request: RegionInstanceGroupsClient.ListInstancesRequest) async throws
@@ -261,10 +261,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listInstances(
-      byItem: RegionInstanceGroupsClient.ListInstancesRequest
+    public func listInstancesByItems(
+      request: RegionInstanceGroupsClient.ListInstancesRequest
     ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
-      self.listInstances(byItem: byItem, options: .init())
+      self.listInstancesByItems(request: request, options: .init())
     }
 
     /// Lists the instances in the specified instance group and displays
@@ -273,20 +273,20 @@
     /// The orderBy query parameter is not supported.
     ///
     /// @Snippet(path: "regionInstanceGroups_listInstances")
-    public func listInstances(
-      byItem: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
+    public func listInstancesByItems(
+      request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
         in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listInstances(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listInstances(
+    public func listInstancesByItems(
       project: Swift.String,
       region: Swift.String,
       instanceGroup: Swift.String,
@@ -298,7 +298,7 @@
         $0.instanceGroup = instanceGroup
         $0.body = body
       }
-      return self.listInstances(byItem: request)
+      return self.listInstancesByItems(request: request)
     }
 
     public func setNamedPorts(request: RegionInstanceGroupsClient.SetNamedPortsRequest) async throws

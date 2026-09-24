@@ -21,8 +21,8 @@ import GoogleGrafeasV1
 import GoogleWKT
 
 func sample(client: GrafeasClient, parent: String) async throws {
-  let items = client.listNotes(
-    byItem: ListNotesRequest()
+  let items = client.listNotesByItems(
+    request: ListNotesRequest()
       .with {
         $0.parent = "\(parent)"
       }

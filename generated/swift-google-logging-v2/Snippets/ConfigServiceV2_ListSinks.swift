@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client, projectId: String) async throws {
-  let items = client.listSinks(
-    byItem: ListSinksRequest()
+  let items = client.listSinksByItems(
+    request: ListSinksRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

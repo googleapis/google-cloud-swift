@@ -645,34 +645,34 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDomains(
-    byItem: ListDomainsRequest
+  public func listDomainsByItems(
+    request: ListDomainsRequest
   ) -> any AsyncSequence<Domain, Swift.Error> {
-    self.listDomains(byItem: byItem, options: .init())
+    self.listDomainsByItems(request: request, options: .init())
   }
 
   /// Lists domains in a project.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
-  public func listDomains(
-    byItem: ListDomainsRequest, options: GoogleGax.RequestOptions
+  public func listDomainsByItems(
+    request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Domain, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDomains(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDomains(
+  public func listDomainsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Domain, Swift.Error> {
     let request = ListDomainsRequest().with {
       $0.parent = parent
     }
-    return self.listDomains(byItem: request)
+    return self.listDomainsByItems(request: request)
   }
 
   public func getDomain(request: GetDomainRequest) async throws
@@ -936,10 +936,10 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -947,19 +947,19 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -967,7 +967,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

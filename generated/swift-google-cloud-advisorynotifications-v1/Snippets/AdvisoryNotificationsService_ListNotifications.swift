@@ -22,8 +22,8 @@ import GoogleCloudAdvisoryNotificationsV1
 func sample(client: AdvisoryNotificationsServiceClient, organizationId: String, locationId: String)
   async throws
 {
-  let items = client.listNotifications(
-    byItem: ListNotificationsRequest()
+  let items = client.listNotificationsByItems(
+    request: ListNotificationsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

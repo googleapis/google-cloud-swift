@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = client.listPluggableDatabases(
-    byItem: ListPluggableDatabasesRequest()
+  let items = client.listPluggableDatabasesByItems(
+    request: ListPluggableDatabasesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

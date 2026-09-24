@@ -1716,34 +1716,34 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInstances(
-    byItem: ListInstancesRequest
+  public func listInstancesByItems(
+    request: ListInstancesRequest
   ) -> any AsyncSequence<Instance, Swift.Error> {
-    self.listInstances(byItem: byItem, options: .init())
+    self.listInstancesByItems(request: request, options: .init())
   }
 
   /// Lists instances.
   ///
   /// @Snippet(path: "AML_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
+  public func listInstancesByItems(
+    request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInstances(
+  public func listInstancesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
-    return self.listInstances(byItem: request)
+    return self.listInstancesByItems(request: request)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws
@@ -1982,34 +1982,34 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDatasets(
-    byItem: ListDatasetsRequest
+  public func listDatasetsByItems(
+    request: ListDatasetsRequest
   ) -> any AsyncSequence<Dataset, Swift.Error> {
-    self.listDatasets(byItem: byItem, options: .init())
+    self.listDatasetsByItems(request: request, options: .init())
   }
 
   /// Lists datasets.
   ///
   /// @Snippet(path: "AML_ListDatasets")
-  public func listDatasets(
-    byItem: ListDatasetsRequest, options: GoogleGax.RequestOptions
+  public func listDatasetsByItems(
+    request: ListDatasetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Dataset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDatasets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDatasets(
+  public func listDatasetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Dataset, Swift.Error> {
     let request = ListDatasetsRequest().with {
       $0.parent = parent
     }
-    return self.listDatasets(byItem: request)
+    return self.listDatasetsByItems(request: request)
   }
 
   public func getDataset(request: GetDatasetRequest) async throws
@@ -2162,34 +2162,34 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listModels(
-    byItem: ListModelsRequest
+  public func listModelsByItems(
+    request: ListModelsRequest
   ) -> any AsyncSequence<Model, Swift.Error> {
-    self.listModels(byItem: byItem, options: .init())
+    self.listModelsByItems(request: request, options: .init())
   }
 
   /// Lists models.
   ///
   /// @Snippet(path: "AML_ListModels")
-  public func listModels(
-    byItem: ListModelsRequest, options: GoogleGax.RequestOptions
+  public func listModelsByItems(
+    request: ListModelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Model, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listModels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listModels(
+  public func listModelsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Model, Swift.Error> {
     let request = ListModelsRequest().with {
       $0.parent = parent
     }
-    return self.listModels(byItem: request)
+    return self.listModelsByItems(request: request)
   }
 
   public func getModel(request: GetModelRequest) async throws
@@ -2376,35 +2376,35 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEngineConfigs(
-    byItem: ListEngineConfigsRequest
+  public func listEngineConfigsByItems(
+    request: ListEngineConfigsRequest
   ) -> any AsyncSequence<EngineConfig, Swift.Error> {
-    self.listEngineConfigs(byItem: byItem, options: .init())
+    self.listEngineConfigsByItems(request: request, options: .init())
   }
 
   /// Lists engine configs.
   ///
   /// @Snippet(path: "AML_ListEngineConfigs")
-  public func listEngineConfigs(
-    byItem: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
+  public func listEngineConfigsByItems(
+    request: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EngineConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEngineConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEngineConfigs(
+  public func listEngineConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EngineConfig, Swift.Error> {
     let request = ListEngineConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listEngineConfigs(byItem: request)
+    return self.listEngineConfigsByItems(request: request)
   }
 
   public func getEngineConfig(request: GetEngineConfigRequest) async throws
@@ -2619,35 +2619,35 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEngineVersions(
-    byItem: ListEngineVersionsRequest
+  public func listEngineVersionsByItems(
+    request: ListEngineVersionsRequest
   ) -> any AsyncSequence<EngineVersion, Swift.Error> {
-    self.listEngineVersions(byItem: byItem, options: .init())
+    self.listEngineVersionsByItems(request: request, options: .init())
   }
 
   /// Lists EngineVersions for given location.
   ///
   /// @Snippet(path: "AML_ListEngineVersions")
-  public func listEngineVersions(
-    byItem: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
+  public func listEngineVersionsByItems(
+    request: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EngineVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEngineVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEngineVersions(
+  public func listEngineVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EngineVersion, Swift.Error> {
     let request = ListEngineVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listEngineVersions(byItem: request)
+    return self.listEngineVersionsByItems(request: request)
   }
 
   public func listPredictionResults(request: ListPredictionResultsRequest) async throws
@@ -2662,35 +2662,35 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPredictionResults(
-    byItem: ListPredictionResultsRequest
+  public func listPredictionResultsByItems(
+    request: ListPredictionResultsRequest
   ) -> any AsyncSequence<PredictionResult, Swift.Error> {
-    self.listPredictionResults(byItem: byItem, options: .init())
+    self.listPredictionResultsByItems(request: request, options: .init())
   }
 
   /// List PredictionResults.
   ///
   /// @Snippet(path: "AML_ListPredictionResults")
-  public func listPredictionResults(
-    byItem: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
+  public func listPredictionResultsByItems(
+    request: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PredictionResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPredictionResults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPredictionResults(
+  public func listPredictionResultsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PredictionResult, Swift.Error> {
     let request = ListPredictionResultsRequest().with {
       $0.parent = parent
     }
-    return self.listPredictionResults(byItem: request)
+    return self.listPredictionResultsByItems(request: request)
   }
 
   public func getPredictionResult(request: GetPredictionResultRequest) async throws
@@ -2885,35 +2885,35 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBacktestResults(
-    byItem: ListBacktestResultsRequest
+  public func listBacktestResultsByItems(
+    request: ListBacktestResultsRequest
   ) -> any AsyncSequence<BacktestResult, Swift.Error> {
-    self.listBacktestResults(byItem: byItem, options: .init())
+    self.listBacktestResultsByItems(request: request, options: .init())
   }
 
   /// List BacktestResults.
   ///
   /// @Snippet(path: "AML_ListBacktestResults")
-  public func listBacktestResults(
-    byItem: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
+  public func listBacktestResultsByItems(
+    request: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BacktestResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBacktestResults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBacktestResults(
+  public func listBacktestResultsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<BacktestResult, Swift.Error> {
     let request = ListBacktestResultsRequest().with {
       $0.parent = parent
     }
-    return self.listBacktestResults(byItem: request)
+    return self.listBacktestResultsByItems(request: request)
   }
 
   public func getBacktestResult(request: GetBacktestResultRequest) async throws
@@ -3107,21 +3107,21 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AML_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -3152,10 +3152,10 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -3163,19 +3163,19 @@ extension Clients.AMLProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AML_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -3183,7 +3183,7 @@ extension Clients.AMLProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

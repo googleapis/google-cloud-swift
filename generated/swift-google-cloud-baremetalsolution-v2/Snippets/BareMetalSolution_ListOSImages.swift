@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {
-  let items = client.listOsimages(
-    byItem: ListOSImagesRequest()
+  let items = client.listOsimagesByItems(
+    request: ListOSImagesRequest()
       .with {
         $0.parent = "\(parent)"
       }

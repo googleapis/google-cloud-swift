@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleCloudSecuritypostureV1.SecurityPostureClient()
-  let items = client.listPostures(
-    byItem: ListPosturesRequest()
+  let items = client.listPosturesByItems(
+    request: ListPosturesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

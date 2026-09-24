@@ -119,34 +119,34 @@ extension Clients.CaseAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAttachments(
-    byItem: ListAttachmentsRequest
+  public func listAttachmentsByItems(
+    request: ListAttachmentsRequest
   ) -> any AsyncSequence<Attachment, Swift.Error> {
-    self.listAttachments(byItem: byItem, options: .init())
+    self.listAttachmentsByItems(request: request, options: .init())
   }
 
   /// List all the attachments associated with a support case.
   ///
   /// @Snippet(path: "CaseAttachmentService_ListAttachments")
-  public func listAttachments(
-    byItem: ListAttachmentsRequest, options: GoogleGax.RequestOptions
+  public func listAttachmentsByItems(
+    request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Attachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAttachments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAttachments(
+  public func listAttachmentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Attachment, Swift.Error> {
     let request = ListAttachmentsRequest().with {
       $0.parent = parent
     }
-    return self.listAttachments(byItem: request)
+    return self.listAttachmentsByItems(request: request)
   }
 
   public func getAttachment(request: GetAttachmentRequest) async throws

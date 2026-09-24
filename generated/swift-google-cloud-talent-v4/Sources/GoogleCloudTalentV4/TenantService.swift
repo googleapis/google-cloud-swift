@@ -225,33 +225,33 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTenants(
-    byItem: ListTenantsRequest
+  public func listTenantsByItems(
+    request: ListTenantsRequest
   ) -> any AsyncSequence<Tenant, Swift.Error> {
-    self.listTenants(byItem: byItem, options: .init())
+    self.listTenantsByItems(request: request, options: .init())
   }
 
   /// Lists all tenants associated with the project.
   ///
   /// @Snippet(path: "TenantService_ListTenants")
-  public func listTenants(
-    byItem: ListTenantsRequest, options: GoogleGax.RequestOptions
+  public func listTenantsByItems(
+    request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Tenant, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListTenantsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTenants(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTenants(
+  public func listTenantsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Tenant, Swift.Error> {
     let request = ListTenantsRequest().with {
       $0.parent = parent
     }
-    return self.listTenants(byItem: request)
+    return self.listTenantsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

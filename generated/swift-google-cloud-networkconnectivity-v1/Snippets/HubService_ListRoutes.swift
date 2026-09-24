@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: HubServiceClient, projectId: String, hubId: String, routeTableId: String)
   async throws
 {
-  let items = client.listRoutes(
-    byItem: ListRoutesRequest()
+  let items = client.listRoutesByItems(
+    request: ListRoutesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/global/hubs/\(hubId)/routeTables/\(routeTableId)"

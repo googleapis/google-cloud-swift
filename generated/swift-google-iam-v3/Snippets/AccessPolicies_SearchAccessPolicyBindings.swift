@@ -21,8 +21,8 @@ import GoogleIAMV3
 import GoogleLongRunning
 
 func sample(client: AccessPoliciesClient) async throws {
-  let items = client.searchAccessPolicyBindings(
-    byItem: SearchAccessPolicyBindingsRequest()
+  let items = client.searchAccessPolicyBindingsByItems(
+    request: SearchAccessPolicyBindingsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

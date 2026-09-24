@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: ManagedZoneOperationsClient) async throws {
-  let items = client.list(
-    byItem: ManagedZoneOperationsClient.ListRequest()
+  let items = client.listByItems(
+    request: ManagedZoneOperationsClient.ListRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

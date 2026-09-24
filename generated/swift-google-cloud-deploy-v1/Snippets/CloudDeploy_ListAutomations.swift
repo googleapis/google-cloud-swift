@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String
 ) async throws {
-  let items = client.listAutomations(
-    byItem: ListAutomationsRequest()
+  let items = client.listAutomationsByItems(
+    request: ListAutomationsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/deliveryPipelines/\(deliveryPipelineId)"

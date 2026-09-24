@@ -92,21 +92,21 @@ extension Clients.LocationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: ListLocationsRequest
+  public func listLocationsByItems(
+    request: ListLocationsRequest
   ) -> any AsyncSequence<Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Locations_ListLocations")
-  public func listLocations(
-    byItem: ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

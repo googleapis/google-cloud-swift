@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(client: SecurityCenterClient, organizationId: String, simulationId: String) async throws
 {
-  let items = client.listValuedResources(
-    byItem: ListValuedResourcesRequest()
+  let items = client.listValuedResourcesByItems(
+    request: ListValuedResourcesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/simulations/\(simulationId)"
       }

@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigZonalServiceClient, parent: String) async throws {
-  let items = client.listOspolicyAssignmentReports(
-    byItem: ListOSPolicyAssignmentReportsRequest()
+  let items = client.listOspolicyAssignmentReportsByItems(
+    request: ListOSPolicyAssignmentReportsRequest()
       .with {
         $0.parent = "\(parent)"
       }

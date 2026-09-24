@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.RuleExecutionErrorServiceClient()
-  let items = client.listRuleExecutionErrors(
-    byItem: ListRuleExecutionErrorsRequest()
+  let items = client.listRuleExecutionErrorsByItems(
+    request: ListRuleExecutionErrorsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

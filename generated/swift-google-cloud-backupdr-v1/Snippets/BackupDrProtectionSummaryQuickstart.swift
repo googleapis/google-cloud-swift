@@ -24,8 +24,8 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBackupDRV1.BackupDrProtectionSummaryClient()
-  let items = client.listResourceBackupConfigs(
-    byItem: ListResourceBackupConfigsRequest()
+  let items = client.listResourceBackupConfigsByItems(
+    request: ListResourceBackupConfigsRequest()
       .with {
         $0.parent = "\(parent)"
       }

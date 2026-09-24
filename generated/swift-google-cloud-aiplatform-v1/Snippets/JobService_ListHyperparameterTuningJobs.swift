@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: JobServiceClient, parent: String) async throws {
-    let items = client.listHyperparameterTuningJobs(
-      byItem: ListHyperparameterTuningJobsRequest()
+    let items = client.listHyperparameterTuningJobsByItems(
+      request: ListHyperparameterTuningJobsRequest()
         .with {
           $0.parent = "\(parent)"
         }

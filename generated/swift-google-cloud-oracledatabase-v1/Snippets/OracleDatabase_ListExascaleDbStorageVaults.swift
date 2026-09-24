@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = client.listExascaleDbStorageVaults(
-    byItem: ListExascaleDbStorageVaultsRequest()
+  let items = client.listExascaleDbStorageVaultsByItems(
+    request: ListExascaleDbStorageVaultsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

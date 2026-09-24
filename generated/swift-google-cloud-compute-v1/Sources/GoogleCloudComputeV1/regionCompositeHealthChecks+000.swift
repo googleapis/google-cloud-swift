@@ -328,10 +328,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: RegionCompositeHealthChecksClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: RegionCompositeHealthChecksClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all CompositeHealthCheck resources (all
@@ -341,27 +341,27 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_aggregatedList")
-    public func aggregatedList(
-      byItem: RegionCompositeHealthChecksClient.AggregatedListRequest,
+    public func aggregatedListByItems(
+      request: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.CompositeHealthCheckAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> {
       let request = RegionCompositeHealthChecksClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: RegionCompositeHealthChecksClient.DeleteRequest) async throws
@@ -510,28 +510,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionCompositeHealthChecksClient.ListRequest
+    public func listByItems(
+      request: RegionCompositeHealthChecksClient.ListRequest
     ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists the CompositeHealthChecks for a project in the given region.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_list")
-    public func list(
-      byItem: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.CompositeHealthCheckList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> {
@@ -539,7 +539,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: RegionCompositeHealthChecksClient.PatchRequest) async throws

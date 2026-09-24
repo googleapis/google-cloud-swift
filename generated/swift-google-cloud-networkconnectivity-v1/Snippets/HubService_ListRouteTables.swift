@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, projectId: String, hubId: String) async throws {
-  let items = client.listRouteTables(
-    byItem: ListRouteTablesRequest()
+  let items = client.listRouteTablesByItems(
+    request: ListRouteTablesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/global/hubs/\(hubId)"
       }

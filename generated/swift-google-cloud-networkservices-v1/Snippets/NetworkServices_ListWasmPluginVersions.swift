@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, wasmPluginId: String
 ) async throws {
-  let items = client.listWasmPluginVersions(
-    byItem: ListWasmPluginVersionsRequest()
+  let items = client.listWasmPluginVersionsByItems(
+    request: ListWasmPluginVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/wasmPlugins/\(wasmPluginId)"
       }

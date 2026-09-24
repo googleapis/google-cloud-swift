@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataprocV1.BatchControllerClient()
-  let items = client.listBatches(
-    byItem: ListBatchesRequest()
+  let items = client.listBatchesByItems(
+    request: ListBatchesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

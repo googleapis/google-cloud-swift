@@ -21,8 +21,8 @@ import GoogleCloudTraceV1
 
 func sample() async throws {
   let client = try GoogleCloudTraceV1.TraceServiceClient()
-  let items = client.listTraces(
-    byItem: ListTracesRequest()
+  let items = client.listTracesByItems(
+    request: ListTracesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

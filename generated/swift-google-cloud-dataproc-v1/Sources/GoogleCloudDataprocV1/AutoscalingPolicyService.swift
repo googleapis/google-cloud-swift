@@ -317,34 +317,34 @@ extension Clients.AutoscalingPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAutoscalingPolicies(
-    byItem: ListAutoscalingPoliciesRequest
+  public func listAutoscalingPoliciesByItems(
+    request: ListAutoscalingPoliciesRequest
   ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
-    self.listAutoscalingPolicies(byItem: byItem, options: .init())
+    self.listAutoscalingPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists autoscaling policies in the project.
   ///
   /// @Snippet(path: "AutoscalingPolicyService_ListAutoscalingPolicies")
-  public func listAutoscalingPolicies(
-    byItem: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listAutoscalingPoliciesByItems(
+    request: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListAutoscalingPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAutoscalingPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAutoscalingPolicies(
+  public func listAutoscalingPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AutoscalingPolicy, Swift.Error> {
     let request = ListAutoscalingPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listAutoscalingPolicies(byItem: request)
+    return self.listAutoscalingPoliciesByItems(request: request)
   }
 
   public func deleteAutoscalingPolicy(request: DeleteAutoscalingPolicyRequest) async throws {
@@ -414,10 +414,10 @@ extension Clients.AutoscalingPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -425,19 +425,19 @@ extension Clients.AutoscalingPolicyServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AutoscalingPolicyService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -445,7 +445,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

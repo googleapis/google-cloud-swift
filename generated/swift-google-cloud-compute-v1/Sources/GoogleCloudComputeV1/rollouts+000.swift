@@ -510,34 +510,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RolloutsClient.ListRequest
+    public func listByItems(
+      request: RolloutsClient.ListRequest
     ) -> any AsyncSequence<Rollout, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists Rollouts in a given project and location.
     ///
     /// @Snippet(path: "rollouts_list")
-    public func list(
-      byItem: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Rollout, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutsListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<Rollout, Swift.Error> {
       let request = RolloutsClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func pause(request: RolloutsClient.PauseRequest) async throws

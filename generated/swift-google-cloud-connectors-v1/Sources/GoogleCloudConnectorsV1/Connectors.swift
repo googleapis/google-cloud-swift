@@ -613,34 +613,34 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConnections(
-    byItem: ListConnectionsRequest
+  public func listConnectionsByItems(
+    request: ListConnectionsRequest
   ) -> any AsyncSequence<Connection, Swift.Error> {
-    self.listConnections(byItem: byItem, options: .init())
+    self.listConnectionsByItems(request: request, options: .init())
   }
 
   /// Lists Connections in a given project and location.
   ///
   /// @Snippet(path: "Connectors_ListConnections")
-  public func listConnections(
-    byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listConnectionsByItems(
+    request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConnections(
+  public func listConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listConnections(byItem: request)
+    return self.listConnectionsByItems(request: request)
   }
 
   public func getConnection(request: GetConnectionRequest) async throws
@@ -793,34 +793,34 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listProviders(
-    byItem: ListProvidersRequest
+  public func listProvidersByItems(
+    request: ListProvidersRequest
   ) -> any AsyncSequence<Provider, Swift.Error> {
-    self.listProviders(byItem: byItem, options: .init())
+    self.listProvidersByItems(request: request, options: .init())
   }
 
   /// Lists Providers in a given project and location.
   ///
   /// @Snippet(path: "Connectors_ListProviders")
-  public func listProviders(
-    byItem: ListProvidersRequest, options: GoogleGax.RequestOptions
+  public func listProvidersByItems(
+    request: ListProvidersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Provider, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListProvidersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listProviders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listProviders(
+  public func listProvidersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Provider, Swift.Error> {
     let request = ListProvidersRequest().with {
       $0.parent = parent
     }
-    return self.listProviders(byItem: request)
+    return self.listProvidersByItems(request: request)
   }
 
   public func getProvider(request: GetProviderRequest) async throws
@@ -856,34 +856,34 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConnectors(
-    byItem: ListConnectorsRequest
+  public func listConnectorsByItems(
+    request: ListConnectorsRequest
   ) -> any AsyncSequence<Connector, Swift.Error> {
-    self.listConnectors(byItem: byItem, options: .init())
+    self.listConnectorsByItems(request: request, options: .init())
   }
 
   /// Lists Connectors in a given project and location.
   ///
   /// @Snippet(path: "Connectors_ListConnectors")
-  public func listConnectors(
-    byItem: ListConnectorsRequest, options: GoogleGax.RequestOptions
+  public func listConnectorsByItems(
+    request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListConnectorsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConnectors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConnectors(
+  public func listConnectorsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Connector, Swift.Error> {
     let request = ListConnectorsRequest().with {
       $0.parent = parent
     }
-    return self.listConnectors(byItem: request)
+    return self.listConnectorsByItems(request: request)
   }
 
   public func getConnector(request: GetConnectorRequest) async throws
@@ -919,34 +919,34 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConnectorVersions(
-    byItem: ListConnectorVersionsRequest
+  public func listConnectorVersionsByItems(
+    request: ListConnectorVersionsRequest
   ) -> any AsyncSequence<ConnectorVersion, Swift.Error> {
-    self.listConnectorVersions(byItem: byItem, options: .init())
+    self.listConnectorVersionsByItems(request: request, options: .init())
   }
 
   /// Lists Connector Versions in a given project and location.
   ///
   /// @Snippet(path: "Connectors_ListConnectorVersions")
-  public func listConnectorVersions(
-    byItem: ListConnectorVersionsRequest, options: GoogleGax.RequestOptions
+  public func listConnectorVersionsByItems(
+    request: ListConnectorVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ConnectorVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListConnectorVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConnectorVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConnectorVersions(
+  public func listConnectorVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ConnectorVersion, Swift.Error> {
     let request = ListConnectorVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listConnectorVersions(byItem: request)
+    return self.listConnectorVersionsByItems(request: request)
   }
 
   public func getConnectorVersion(request: GetConnectorVersionRequest) async throws
@@ -1042,35 +1042,35 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRuntimeEntitySchemas(
-    byItem: ListRuntimeEntitySchemasRequest
+  public func listRuntimeEntitySchemasByItems(
+    request: ListRuntimeEntitySchemasRequest
   ) -> any AsyncSequence<RuntimeEntitySchema, Swift.Error> {
-    self.listRuntimeEntitySchemas(byItem: byItem, options: .init())
+    self.listRuntimeEntitySchemasByItems(request: request, options: .init())
   }
 
   /// List schema of a runtime entities filtered by entity name.
   ///
   /// @Snippet(path: "Connectors_ListRuntimeEntitySchemas")
-  public func listRuntimeEntitySchemas(
-    byItem: ListRuntimeEntitySchemasRequest, options: GoogleGax.RequestOptions
+  public func listRuntimeEntitySchemasByItems(
+    request: ListRuntimeEntitySchemasRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RuntimeEntitySchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListRuntimeEntitySchemasResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRuntimeEntitySchemas(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRuntimeEntitySchemas(
+  public func listRuntimeEntitySchemasByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RuntimeEntitySchema, Swift.Error> {
     let request = ListRuntimeEntitySchemasRequest().with {
       $0.parent = parent
     }
-    return self.listRuntimeEntitySchemas(byItem: request)
+    return self.listRuntimeEntitySchemasByItems(request: request)
   }
 
   public func listRuntimeActionSchemas(request: ListRuntimeActionSchemasRequest) async throws
@@ -1085,35 +1085,35 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRuntimeActionSchemas(
-    byItem: ListRuntimeActionSchemasRequest
+  public func listRuntimeActionSchemasByItems(
+    request: ListRuntimeActionSchemasRequest
   ) -> any AsyncSequence<RuntimeActionSchema, Swift.Error> {
-    self.listRuntimeActionSchemas(byItem: byItem, options: .init())
+    self.listRuntimeActionSchemasByItems(request: request, options: .init())
   }
 
   /// List schema of a runtime actions filtered by action name.
   ///
   /// @Snippet(path: "Connectors_ListRuntimeActionSchemas")
-  public func listRuntimeActionSchemas(
-    byItem: ListRuntimeActionSchemasRequest, options: GoogleGax.RequestOptions
+  public func listRuntimeActionSchemasByItems(
+    request: ListRuntimeActionSchemasRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RuntimeActionSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListRuntimeActionSchemasResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRuntimeActionSchemas(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRuntimeActionSchemas(
+  public func listRuntimeActionSchemasByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RuntimeActionSchema, Swift.Error> {
     let request = ListRuntimeActionSchemasRequest().with {
       $0.parent = parent
     }
-    return self.listRuntimeActionSchemas(byItem: request)
+    return self.listRuntimeActionSchemasByItems(request: request)
   }
 
   public func getRuntimeConfig(request: GetRuntimeConfigRequest) async throws
@@ -1170,21 +1170,21 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Connectors_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1251,29 +1251,29 @@ extension Clients.ConnectorsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Lists operations that match the specified filter in the request. If
   /// the server doesn't support this method, it returns `UNIMPLEMENTED`.
   ///
   /// @Snippet(path: "Connectors_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1281,7 +1281,7 @@ extension Clients.ConnectorsProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

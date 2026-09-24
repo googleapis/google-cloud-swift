@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String
 ) async throws {
-  let items = client.listAuthorizedViews(
-    byItem: ListAuthorizedViewsRequest()
+  let items = client.listAuthorizedViewsByItems(
+    request: ListAuthorizedViewsRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/tables/\(tableId)"
       }

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, reportConfigId: String
 ) async throws {
-  let items = client.listReports(
-    byItem: ListReportsRequest()
+  let items = client.listReportsByItems(
+    request: ListReportsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/reportConfigs/\(reportConfigId)"
       }

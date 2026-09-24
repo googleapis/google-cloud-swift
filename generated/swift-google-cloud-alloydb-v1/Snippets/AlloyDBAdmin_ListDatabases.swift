@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AlloyDBAdminClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let items = client.listDatabases(
-    byItem: ListDatabasesRequest()
+  let items = client.listDatabasesByItems(
+    request: ListDatabasesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
       }

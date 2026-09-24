@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: ModelServiceClient, parent: String) async throws {
-    let items = client.listModels(
-      byItem: ListModelsRequest()
+    let items = client.listModelsByItems(
+      request: ListModelsRequest()
         .with {
           $0.parent = "\(parent)"
         }

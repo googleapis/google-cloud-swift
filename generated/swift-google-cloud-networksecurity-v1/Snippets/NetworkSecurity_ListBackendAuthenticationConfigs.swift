@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, parent: String) async throws {
-  let items = client.listBackendAuthenticationConfigs(
-    byItem: ListBackendAuthenticationConfigsRequest()
+  let items = client.listBackendAuthenticationConfigsByItems(
+    request: ListBackendAuthenticationConfigsRequest()
       .with {
         $0.parent = "\(parent)"
       }

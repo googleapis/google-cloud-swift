@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: PacketMirroringsClient) async throws {
-    let items = client.aggregatedList(
-      byItem: PacketMirroringsClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: PacketMirroringsClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

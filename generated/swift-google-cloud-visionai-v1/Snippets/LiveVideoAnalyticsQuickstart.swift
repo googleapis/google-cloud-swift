@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudVideoAIV1.LiveVideoAnalyticsClient()
-  let items = client.listPublicOperators(
-    byItem: ListPublicOperatorsRequest()
+  let items = client.listPublicOperatorsByItems(
+    request: ListPublicOperatorsRequest()
       .with {
         $0.parent = "\(parent)"
       }

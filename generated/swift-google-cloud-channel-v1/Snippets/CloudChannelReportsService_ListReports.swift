@@ -24,8 +24,8 @@ import GoogleLongRunning
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: CloudChannelReportsServiceClient, parent: String) async throws {
-  let items = client.listReports(
-    byItem: ListReportsRequest()
+  let items = client.listReportsByItems(
+    request: ListReportsRequest()
       .with {
         $0.parent = "\(parent)"
       }

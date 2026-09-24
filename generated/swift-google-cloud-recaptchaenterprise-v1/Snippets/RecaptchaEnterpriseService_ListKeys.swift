@@ -21,8 +21,8 @@ import GoogleCloudRecaptchaEnterpriseV1
 import GoogleWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient, parent: String) async throws {
-  let items = client.listKeys(
-    byItem: ListKeysRequest()
+  let items = client.listKeysByItems(
+    request: ListKeysRequest()
       .with {
         $0.parent = "\(parent)"
       }

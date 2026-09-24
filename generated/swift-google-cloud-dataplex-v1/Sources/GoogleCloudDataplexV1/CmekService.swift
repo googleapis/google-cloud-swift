@@ -535,34 +535,34 @@ extension Clients.CmekServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEncryptionConfigs(
-    byItem: ListEncryptionConfigsRequest
+  public func listEncryptionConfigsByItems(
+    request: ListEncryptionConfigsRequest
   ) -> any AsyncSequence<EncryptionConfig, Swift.Error> {
-    self.listEncryptionConfigs(byItem: byItem, options: .init())
+    self.listEncryptionConfigsByItems(request: request, options: .init())
   }
 
   /// List EncryptionConfigs.
   ///
   /// @Snippet(path: "CmekService_ListEncryptionConfigs")
-  public func listEncryptionConfigs(
-    byItem: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
+  public func listEncryptionConfigsByItems(
+    request: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EncryptionConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEncryptionConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEncryptionConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEncryptionConfigs(
+  public func listEncryptionConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EncryptionConfig, Swift.Error> {
     let request = ListEncryptionConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listEncryptionConfigs(byItem: request)
+    return self.listEncryptionConfigsByItems(request: request)
   }
 
   public func getEncryptionConfig(request: GetEncryptionConfigRequest) async throws
@@ -598,10 +598,10 @@ extension Clients.CmekServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -624,12 +624,12 @@ extension Clients.CmekServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CmekService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -696,10 +696,10 @@ extension Clients.CmekServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -707,19 +707,19 @@ extension Clients.CmekServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CmekService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -727,7 +727,7 @@ extension Clients.CmekServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

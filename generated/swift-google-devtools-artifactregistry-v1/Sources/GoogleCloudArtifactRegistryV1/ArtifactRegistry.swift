@@ -1293,35 +1293,35 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDockerImages(
-    byItem: ListDockerImagesRequest
+  public func listDockerImagesByItems(
+    request: ListDockerImagesRequest
   ) -> any AsyncSequence<DockerImage, Swift.Error> {
-    self.listDockerImages(byItem: byItem, options: .init())
+    self.listDockerImagesByItems(request: request, options: .init())
   }
 
   /// Lists docker images.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListDockerImages")
-  public func listDockerImages(
-    byItem: ListDockerImagesRequest, options: GoogleGax.RequestOptions
+  public func listDockerImagesByItems(
+    request: ListDockerImagesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DockerImage, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDockerImages(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDockerImages(
+  public func listDockerImagesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DockerImage, Swift.Error> {
     let request = ListDockerImagesRequest().with {
       $0.parent = parent
     }
-    return self.listDockerImages(byItem: request)
+    return self.listDockerImagesByItems(request: request)
   }
 
   public func getDockerImage(request: GetDockerImageRequest) async throws
@@ -1357,35 +1357,35 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMavenArtifacts(
-    byItem: ListMavenArtifactsRequest
+  public func listMavenArtifactsByItems(
+    request: ListMavenArtifactsRequest
   ) -> any AsyncSequence<MavenArtifact, Swift.Error> {
-    self.listMavenArtifacts(byItem: byItem, options: .init())
+    self.listMavenArtifactsByItems(request: request, options: .init())
   }
 
   /// Lists maven artifacts.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListMavenArtifacts")
-  public func listMavenArtifacts(
-    byItem: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
+  public func listMavenArtifactsByItems(
+    request: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MavenArtifact, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListMavenArtifactsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMavenArtifacts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMavenArtifacts(
+  public func listMavenArtifactsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MavenArtifact, Swift.Error> {
     let request = ListMavenArtifactsRequest().with {
       $0.parent = parent
     }
-    return self.listMavenArtifacts(byItem: request)
+    return self.listMavenArtifactsByItems(request: request)
   }
 
   public func getMavenArtifact(request: GetMavenArtifactRequest) async throws
@@ -1421,34 +1421,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNpmPackages(
-    byItem: ListNpmPackagesRequest
+  public func listNpmPackagesByItems(
+    request: ListNpmPackagesRequest
   ) -> any AsyncSequence<NpmPackage, Swift.Error> {
-    self.listNpmPackages(byItem: byItem, options: .init())
+    self.listNpmPackagesByItems(request: request, options: .init())
   }
 
   /// Lists npm packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListNpmPackages")
-  public func listNpmPackages(
-    byItem: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
+  public func listNpmPackagesByItems(
+    request: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<NpmPackage, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListNpmPackagesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNpmPackages(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNpmPackages(
+  public func listNpmPackagesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<NpmPackage, Swift.Error> {
     let request = ListNpmPackagesRequest().with {
       $0.parent = parent
     }
-    return self.listNpmPackages(byItem: request)
+    return self.listNpmPackagesByItems(request: request)
   }
 
   public func getNpmPackage(request: GetNpmPackageRequest) async throws
@@ -1484,35 +1484,35 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPythonPackages(
-    byItem: ListPythonPackagesRequest
+  public func listPythonPackagesByItems(
+    request: ListPythonPackagesRequest
   ) -> any AsyncSequence<PythonPackage, Swift.Error> {
-    self.listPythonPackages(byItem: byItem, options: .init())
+    self.listPythonPackagesByItems(request: request, options: .init())
   }
 
   /// Lists python packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListPythonPackages")
-  public func listPythonPackages(
-    byItem: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
+  public func listPythonPackagesByItems(
+    request: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PythonPackage, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListPythonPackagesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPythonPackages(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPythonPackages(
+  public func listPythonPackagesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PythonPackage, Swift.Error> {
     let request = ListPythonPackagesRequest().with {
       $0.parent = parent
     }
-    return self.listPythonPackages(byItem: request)
+    return self.listPythonPackagesByItems(request: request)
   }
 
   public func getPythonPackage(request: GetPythonPackageRequest) async throws
@@ -1606,35 +1606,35 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRepositories(
-    byItem: ListRepositoriesRequest
+  public func listRepositoriesByItems(
+    request: ListRepositoriesRequest
   ) -> any AsyncSequence<Repository, Swift.Error> {
-    self.listRepositories(byItem: byItem, options: .init())
+    self.listRepositoriesByItems(request: request, options: .init())
   }
 
   /// Lists repositories.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListRepositories")
-  public func listRepositories(
-    byItem: ListRepositoriesRequest, options: GoogleGax.RequestOptions
+  public func listRepositoriesByItems(
+    request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListRepositoriesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRepositories(
+  public func listRepositoriesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let request = ListRepositoriesRequest().with {
       $0.parent = parent
     }
-    return self.listRepositories(byItem: request)
+    return self.listRepositoriesByItems(request: request)
   }
 
   public func getRepository(request: GetRepositoryRequest) async throws
@@ -1771,34 +1771,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPackages(
-    byItem: ListPackagesRequest
+  public func listPackagesByItems(
+    request: ListPackagesRequest
   ) -> any AsyncSequence<Package, Swift.Error> {
-    self.listPackages(byItem: byItem, options: .init())
+    self.listPackagesByItems(request: request, options: .init())
   }
 
   /// Lists packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListPackages")
-  public func listPackages(
-    byItem: ListPackagesRequest, options: GoogleGax.RequestOptions
+  public func listPackagesByItems(
+    request: ListPackagesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Package, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListPackagesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPackages(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPackages(
+  public func listPackagesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Package, Swift.Error> {
     let request = ListPackagesRequest().with {
       $0.parent = parent
     }
-    return self.listPackages(byItem: request)
+    return self.listPackagesByItems(request: request)
   }
 
   public func getPackage(request: GetPackageRequest) async throws
@@ -1871,34 +1871,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVersions(
-    byItem: ListVersionsRequest
+  public func listVersionsByItems(
+    request: ListVersionsRequest
   ) -> any AsyncSequence<Version, Swift.Error> {
-    self.listVersions(byItem: byItem, options: .init())
+    self.listVersionsByItems(request: request, options: .init())
   }
 
   /// Lists versions.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListVersions")
-  public func listVersions(
-    byItem: ListVersionsRequest, options: GoogleGax.RequestOptions
+  public func listVersionsByItems(
+    request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVersions(
+  public func listVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Version, Swift.Error> {
     let request = ListVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listVersions(byItem: request)
+    return self.listVersionsByItems(request: request)
   }
 
   public func getVersion(request: GetVersionRequest) async throws
@@ -2033,34 +2033,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFiles(
-    byItem: ListFilesRequest
+  public func listFilesByItems(
+    request: ListFilesRequest
   ) -> any AsyncSequence<File, Swift.Error> {
-    self.listFiles(byItem: byItem, options: .init())
+    self.listFilesByItems(request: request, options: .init())
   }
 
   /// Lists files.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListFiles")
-  public func listFiles(
-    byItem: ListFilesRequest, options: GoogleGax.RequestOptions
+  public func listFilesByItems(
+    request: ListFilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<File, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListFilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFiles(
+  public func listFilesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<File, Swift.Error> {
     let request = ListFilesRequest().with {
       $0.parent = parent
     }
-    return self.listFiles(byItem: request)
+    return self.listFilesByItems(request: request)
   }
 
   public func getFile(request: GetFileRequest) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -2152,34 +2152,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTags(
-    byItem: ListTagsRequest
+  public func listTagsByItems(
+    request: ListTagsRequest
   ) -> any AsyncSequence<Tag, Swift.Error> {
-    self.listTags(byItem: byItem, options: .init())
+    self.listTagsByItems(request: request, options: .init())
   }
 
   /// Lists tags.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListTags")
-  public func listTags(
-    byItem: ListTagsRequest, options: GoogleGax.RequestOptions
+  public func listTagsByItems(
+    request: ListTagsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Tag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListTagsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTags(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTags(
+  public func listTagsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Tag, Swift.Error> {
     let request = ListTagsRequest().with {
       $0.parent = parent
     }
-    return self.listTags(byItem: request)
+    return self.listTagsByItems(request: request)
   }
 
   public func getTag(request: GetTagRequest) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -2303,34 +2303,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRules(
-    byItem: ListRulesRequest
+  public func listRulesByItems(
+    request: ListRulesRequest
   ) -> any AsyncSequence<Rule, Swift.Error> {
-    self.listRules(byItem: byItem, options: .init())
+    self.listRulesByItems(request: request, options: .init())
   }
 
   /// Lists rules.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListRules")
-  public func listRules(
-    byItem: ListRulesRequest, options: GoogleGax.RequestOptions
+  public func listRulesByItems(
+    request: ListRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Rule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListRulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRules(
+  public func listRulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Rule, Swift.Error> {
     let request = ListRulesRequest().with {
       $0.parent = parent
     }
-    return self.listRules(byItem: request)
+    return self.listRulesByItems(request: request)
   }
 
   public func getRule(request: GetRuleRequest) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -2553,34 +2553,34 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAttachments(
-    byItem: ListAttachmentsRequest
+  public func listAttachmentsByItems(
+    request: ListAttachmentsRequest
   ) -> any AsyncSequence<Attachment, Swift.Error> {
-    self.listAttachments(byItem: byItem, options: .init())
+    self.listAttachmentsByItems(request: request, options: .init())
   }
 
   /// Lists attachments.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListAttachments")
-  public func listAttachments(
-    byItem: ListAttachmentsRequest, options: GoogleGax.RequestOptions
+  public func listAttachmentsByItems(
+    request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Attachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudArtifactRegistryV1.ListAttachmentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAttachments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAttachments(
+  public func listAttachmentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Attachment, Swift.Error> {
     let request = ListAttachmentsRequest().with {
       $0.parent = parent
     }
-    return self.listAttachments(byItem: request)
+    return self.listAttachmentsByItems(request: request)
   }
 
   public func getAttachment(request: GetAttachmentRequest) async throws
@@ -2723,10 +2723,10 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -2739,12 +2739,12 @@ extension Clients.ArtifactRegistryProtocol {
   /// to the project.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

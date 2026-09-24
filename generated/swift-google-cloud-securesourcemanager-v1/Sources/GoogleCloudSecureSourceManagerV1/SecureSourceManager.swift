@@ -2231,35 +2231,35 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInstances(
-    byItem: ListInstancesRequest
+  public func listInstancesByItems(
+    request: ListInstancesRequest
   ) -> any AsyncSequence<Instance, Swift.Error> {
-    self.listInstances(byItem: byItem, options: .init())
+    self.listInstancesByItems(request: request, options: .init())
   }
 
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "SecureSourceManager_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
+  public func listInstancesByItems(
+    request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.ListInstancesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInstances(
+  public func listInstancesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
-    return self.listInstances(byItem: request)
+    return self.listInstancesByItems(request: request)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws
@@ -2373,10 +2373,10 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRepositories(
-    byItem: ListRepositoriesRequest
+  public func listRepositoriesByItems(
+    request: ListRepositoriesRequest
   ) -> any AsyncSequence<Repository, Swift.Error> {
-    self.listRepositories(byItem: byItem, options: .init())
+    self.listRepositoriesByItems(request: request, options: .init())
   }
 
   /// Lists Repositories in a given project and location.
@@ -2385,26 +2385,26 @@ extension Clients.SecureSourceManagerProtocol {
   /// the securesourcemanager.googleapis.com endpoint.
   ///
   /// @Snippet(path: "SecureSourceManager_ListRepositories")
-  public func listRepositories(
-    byItem: ListRepositoriesRequest, options: GoogleGax.RequestOptions
+  public func listRepositoriesByItems(
+    request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListRepositoriesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRepositories(
+  public func listRepositoriesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let request = ListRepositoriesRequest().with {
       $0.parent = parent
     }
-    return self.listRepositories(byItem: request)
+    return self.listRepositoriesByItems(request: request)
   }
 
   public func getRepository(request: GetRepositoryRequest) async throws
@@ -2557,34 +2557,34 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listHooks(
-    byItem: ListHooksRequest
+  public func listHooksByItems(
+    request: ListHooksRequest
   ) -> any AsyncSequence<Hook, Swift.Error> {
-    self.listHooks(byItem: byItem, options: .init())
+    self.listHooksByItems(request: request, options: .init())
   }
 
   /// Lists hooks in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListHooks")
-  public func listHooks(
-    byItem: ListHooksRequest, options: GoogleGax.RequestOptions
+  public func listHooksByItems(
+    request: ListHooksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Hook, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.ListHooksResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listHooks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listHooks(
+  public func listHooksByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Hook, Swift.Error> {
     let request = ListHooksRequest().with {
       $0.parent = parent
     }
-    return self.listHooks(byItem: request)
+    return self.listHooksByItems(request: request)
   }
 
   public func getHook(request: GetHookRequest) async throws -> GoogleCloudSecureSourceManagerV1.Hook
@@ -2834,35 +2834,35 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBranchRules(
-    byItem: ListBranchRulesRequest
+  public func listBranchRulesByItems(
+    request: ListBranchRulesRequest
   ) -> any AsyncSequence<BranchRule, Swift.Error> {
-    self.listBranchRules(byItem: byItem, options: .init())
+    self.listBranchRulesByItems(request: request, options: .init())
   }
 
   /// ListBranchRules lists branch rules in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListBranchRules")
-  public func listBranchRules(
-    byItem: ListBranchRulesRequest, options: GoogleGax.RequestOptions
+  public func listBranchRulesByItems(
+    request: ListBranchRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BranchRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.ListBranchRulesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBranchRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBranchRules(
+  public func listBranchRulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<BranchRule, Swift.Error> {
     let request = ListBranchRulesRequest().with {
       $0.parent = parent
     }
-    return self.listBranchRules(byItem: request)
+    return self.listBranchRulesByItems(request: request)
   }
 
   public func getBranchRule(request: GetBranchRuleRequest) async throws
@@ -3034,35 +3034,35 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPullRequests(
-    byItem: ListPullRequestsRequest
+  public func listPullRequestsByItems(
+    request: ListPullRequestsRequest
   ) -> any AsyncSequence<PullRequest, Swift.Error> {
-    self.listPullRequests(byItem: byItem, options: .init())
+    self.listPullRequestsByItems(request: request, options: .init())
   }
 
   /// Lists pull requests in a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequests")
-  public func listPullRequests(
-    byItem: ListPullRequestsRequest, options: GoogleGax.RequestOptions
+  public func listPullRequestsByItems(
+    request: ListPullRequestsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PullRequest, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListPullRequestsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPullRequests(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPullRequests(
+  public func listPullRequestsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PullRequest, Swift.Error> {
     let request = ListPullRequestsRequest().with {
       $0.parent = parent
     }
-    return self.listPullRequests(byItem: request)
+    return self.listPullRequestsByItems(request: request)
   }
 
   public func updatePullRequest(request: UpdatePullRequestRequest) async throws
@@ -3227,35 +3227,35 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPullRequestFileDiffs(
-    byItem: ListPullRequestFileDiffsRequest
+  public func listPullRequestFileDiffsByItems(
+    request: ListPullRequestFileDiffsRequest
   ) -> any AsyncSequence<FileDiff, Swift.Error> {
-    self.listPullRequestFileDiffs(byItem: byItem, options: .init())
+    self.listPullRequestFileDiffsByItems(request: request, options: .init())
   }
 
   /// Lists a pull request's file diffs.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
-  public func listPullRequestFileDiffs(
-    byItem: ListPullRequestFileDiffsRequest, options: GoogleGax.RequestOptions
+  public func listPullRequestFileDiffsByItems(
+    request: ListPullRequestFileDiffsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FileDiff, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListPullRequestFileDiffsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPullRequestFileDiffs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPullRequestFileDiffs(
+  public func listPullRequestFileDiffsByItems(
     name: Swift.String,
   ) -> any AsyncSequence<FileDiff, Swift.Error> {
     let request = ListPullRequestFileDiffsRequest().with {
       $0.name = name
     }
-    return self.listPullRequestFileDiffs(byItem: request)
+    return self.listPullRequestFileDiffsByItems(request: request)
   }
 
   public func fetchTree(request: FetchTreeRequest) async throws
@@ -3270,21 +3270,21 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func fetchTree(
-    byItem: FetchTreeRequest
+  public func fetchTreeByItems(
+    request: FetchTreeRequest
   ) -> any AsyncSequence<TreeEntry, Swift.Error> {
-    self.fetchTree(byItem: byItem, options: .init())
+    self.fetchTreeByItems(request: request, options: .init())
   }
 
   /// Fetches a tree from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchTree")
-  public func fetchTree(
-    byItem: FetchTreeRequest, options: GoogleGax.RequestOptions
+  public func fetchTreeByItems(
+    request: FetchTreeRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TreeEntry, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.FetchTreeResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.fetchTree(request: request, options: options)
     }
@@ -3315,21 +3315,21 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func fetchRefs(
-    byItem: FetchRefsRequest
+  public func fetchRefsByItems(
+    request: FetchRefsRequest
   ) -> any AsyncSequence<Ref, Swift.Error> {
-    self.fetchRefs(byItem: byItem, options: .init())
+    self.fetchRefsByItems(request: request, options: .init())
   }
 
   /// Fetches git references from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchRefs")
-  public func fetchRefs(
-    byItem: FetchRefsRequest, options: GoogleGax.RequestOptions
+  public func fetchRefsByItems(
+    request: FetchRefsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Ref, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.fetchRefs(request: request, options: options)
     }
@@ -3406,34 +3406,34 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIssues(
-    byItem: ListIssuesRequest
+  public func listIssuesByItems(
+    request: ListIssuesRequest
   ) -> any AsyncSequence<Issue, Swift.Error> {
-    self.listIssues(byItem: byItem, options: .init())
+    self.listIssuesByItems(request: request, options: .init())
   }
 
   /// Lists issues in a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListIssues")
-  public func listIssues(
-    byItem: ListIssuesRequest, options: GoogleGax.RequestOptions
+  public func listIssuesByItems(
+    request: ListIssuesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Issue, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSecureSourceManagerV1.ListIssuesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIssues(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listIssues(
+  public func listIssuesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Issue, Swift.Error> {
     let request = ListIssuesRequest().with {
       $0.parent = parent
     }
-    return self.listIssues(byItem: request)
+    return self.listIssuesByItems(request: request)
   }
 
   public func updateIssue(request: UpdateIssueRequest) async throws -> GoogleLongRunning.Operation {
@@ -3611,35 +3611,35 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPullRequestComments(
-    byItem: ListPullRequestCommentsRequest
+  public func listPullRequestCommentsByItems(
+    request: ListPullRequestCommentsRequest
   ) -> any AsyncSequence<PullRequestComment, Swift.Error> {
-    self.listPullRequestComments(byItem: byItem, options: .init())
+    self.listPullRequestCommentsByItems(request: request, options: .init())
   }
 
   /// Lists pull request comments.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
-  public func listPullRequestComments(
-    byItem: ListPullRequestCommentsRequest, options: GoogleGax.RequestOptions
+  public func listPullRequestCommentsByItems(
+    request: ListPullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PullRequestComment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListPullRequestCommentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPullRequestComments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPullRequestComments(
+  public func listPullRequestCommentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PullRequestComment, Swift.Error> {
     let request = ListPullRequestCommentsRequest().with {
       $0.parent = parent
     }
-    return self.listPullRequestComments(byItem: request)
+    return self.listPullRequestCommentsByItems(request: request)
   }
 
   public func createPullRequestComment(request: CreatePullRequestCommentRequest) async throws
@@ -3953,35 +3953,35 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIssueComments(
-    byItem: ListIssueCommentsRequest
+  public func listIssueCommentsByItems(
+    request: ListIssueCommentsRequest
   ) -> any AsyncSequence<IssueComment, Swift.Error> {
-    self.listIssueComments(byItem: byItem, options: .init())
+    self.listIssueCommentsByItems(request: request, options: .init())
   }
 
   /// Lists comments in an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_ListIssueComments")
-  public func listIssueComments(
-    byItem: ListIssueCommentsRequest, options: GoogleGax.RequestOptions
+  public func listIssueCommentsByItems(
+    request: ListIssueCommentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IssueComment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListIssueCommentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIssueComments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listIssueComments(
+  public func listIssueCommentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<IssueComment, Swift.Error> {
     let request = ListIssueCommentsRequest().with {
       $0.parent = parent
     }
-    return self.listIssueComments(byItem: request)
+    return self.listIssueCommentsByItems(request: request)
   }
 
   public func updateIssueComment(request: UpdateIssueCommentRequest) async throws
@@ -4072,10 +4072,10 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -4098,12 +4098,12 @@ extension Clients.SecureSourceManagerProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SecureSourceManager_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -4170,10 +4170,10 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -4181,19 +4181,19 @@ extension Clients.SecureSourceManagerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecureSourceManager_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -4201,7 +4201,7 @@ extension Clients.SecureSourceManagerProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

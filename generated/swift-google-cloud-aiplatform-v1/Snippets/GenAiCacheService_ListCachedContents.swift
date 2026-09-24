@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: GenAiCacheServiceClient, projectId: String, locationId: String) async throws {
-    let items = client.listCachedContents(
-      byItem: ListCachedContentsRequest()
+    let items = client.listCachedContentsByItems(
+      request: ListCachedContentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

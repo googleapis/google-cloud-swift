@@ -25,8 +25,8 @@
 
   func sample(projectId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.IntentsClient()
-    let items = client.listIntents(
-      byItem: ListIntentsRequest()
+    let items = client.listIntentsByItems(
+      request: ListIntentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent"
         }

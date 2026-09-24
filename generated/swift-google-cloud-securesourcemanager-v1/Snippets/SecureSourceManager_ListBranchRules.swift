@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let items = client.listBranchRules(
-    byItem: ListBranchRulesRequest()
+  let items = client.listBranchRulesByItems(
+    request: ListBranchRulesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
       }

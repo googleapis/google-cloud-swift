@@ -24,8 +24,8 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudKMSV1.HsmManagementClient()
-  let items = client.listSingleTenantHsmInstances(
-    byItem: ListSingleTenantHsmInstancesRequest()
+  let items = client.listSingleTenantHsmInstancesByItems(
+    request: ListSingleTenantHsmInstancesRequest()
       .with {
         $0.parent = "\(parent)"
       }

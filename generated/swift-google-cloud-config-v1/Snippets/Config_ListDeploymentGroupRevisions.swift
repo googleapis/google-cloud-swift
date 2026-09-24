@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, deploymentGroupId: String)
   async throws
 {
-  let items = client.listDeploymentGroupRevisions(
-    byItem: ListDeploymentGroupRevisionsRequest()
+  let items = client.listDeploymentGroupRevisionsByItems(
+    request: ListDeploymentGroupRevisionsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/deploymentGroups/\(deploymentGroupId)"

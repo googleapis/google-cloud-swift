@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: DataAccessControlServiceClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = client.listDataAccessScopes(
-    byItem: ListDataAccessScopesRequest()
+  let items = client.listDataAccessScopesByItems(
+    request: ListDataAccessScopesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

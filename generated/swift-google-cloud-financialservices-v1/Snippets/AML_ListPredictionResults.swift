@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let items = client.listPredictionResults(
-    byItem: ListPredictionResultsRequest()
+  let items = client.listPredictionResultsByItems(
+    request: ListPredictionResultsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

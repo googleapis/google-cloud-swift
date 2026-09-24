@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudWebSecurityScannerV1
 
 func sample(client: WebSecurityScannerClient, parent: String) async throws {
-  let items = client.listFindings(
-    byItem: ListFindingsRequest()
+  let items = client.listFindingsByItems(
+    request: ListFindingsRequest()
       .with {
         $0.parent = "\(parent)"
       }

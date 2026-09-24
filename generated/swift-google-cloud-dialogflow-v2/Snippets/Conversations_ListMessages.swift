@@ -23,8 +23,8 @@
   import GoogleLongRunning
 
   func sample(client: ConversationsClient, projectId: String, conversationId: String) async throws {
-    let items = client.listMessages(
-      byItem: ListMessagesRequest()
+    let items = client.listMessagesByItems(
+      request: ListMessagesRequest()
         .with {
           $0.parent = "projects/\(projectId)/conversations/\(conversationId)"
         }

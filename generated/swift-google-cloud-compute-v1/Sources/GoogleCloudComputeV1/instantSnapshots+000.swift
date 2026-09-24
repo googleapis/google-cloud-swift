@@ -344,10 +344,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: InstantSnapshotsClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: InstantSnapshotsClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of instantSnapshots.
@@ -356,25 +356,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instantSnapshots_aggregatedList")
-    public func aggregatedList(
-      byItem: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
       let request = InstantSnapshotsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: InstantSnapshotsClient.DeleteRequest) async throws
@@ -523,29 +523,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: InstantSnapshotsClient.ListRequest
+    public func listByItems(
+      request: InstantSnapshotsClient.ListRequest
     ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of InstantSnapshot resources contained within
     /// the specified zone.
     ///
     /// @Snippet(path: "instantSnapshots_list")
-    public func list(
-      byItem: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
@@ -553,7 +553,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setIamPolicy(request: InstantSnapshotsClient.SetIamPolicyRequest) async throws

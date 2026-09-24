@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: DataTableServiceClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = client.listDataTables(
-    byItem: ListDataTablesRequest()
+  let items = client.listDataTablesByItems(
+    request: ListDataTablesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

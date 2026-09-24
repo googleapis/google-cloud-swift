@@ -444,34 +444,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: MachineImagesClient.ListRequest
+    public func listByItems(
+      request: MachineImagesClient.ListRequest
     ) -> any AsyncSequence<MachineImage, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of machine images that are contained within
     /// the specified project.
     ///
     /// @Snippet(path: "machineImages_list")
-    public func list(
-      byItem: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<MachineImage, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.MachineImageList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<MachineImage, Swift.Error> {
       let request = MachineImagesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setIamPolicy(request: MachineImagesClient.SetIamPolicyRequest) async throws

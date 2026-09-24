@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let items = client.listPurchasableSkus(
-    byItem: ListPurchasableSkusRequest()
+  let items = client.listPurchasableSkusByItems(
+    request: ListPurchasableSkusRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

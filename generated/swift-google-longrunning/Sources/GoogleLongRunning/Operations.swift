@@ -146,29 +146,29 @@ extension Clients.OperationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: ListOperationsRequest
+  public func listOperationsByItems(
+    request: ListOperationsRequest
   ) -> any AsyncSequence<Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Lists operations that match the specified filter in the request. If the
   /// server doesn't support this method, it returns `UNIMPLEMENTED`.
   ///
   /// @Snippet(path: "Operations_ListOperations")
-  public func listOperations(
-    byItem: ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<Operation, Swift.Error> {
@@ -176,7 +176,7 @@ extension Clients.OperationsProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GetOperationRequest) async throws -> GoogleLongRunning.Operation

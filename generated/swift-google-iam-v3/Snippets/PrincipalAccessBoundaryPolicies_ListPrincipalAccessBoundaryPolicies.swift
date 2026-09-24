@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: PrincipalAccessBoundaryPoliciesClient, organizationId: String, locationId: String
 ) async throws {
-  let items = client.listPrincipalAccessBoundaryPolicies(
-    byItem: ListPrincipalAccessBoundaryPoliciesRequest()
+  let items = client.listPrincipalAccessBoundaryPoliciesByItems(
+    request: ListPrincipalAccessBoundaryPoliciesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

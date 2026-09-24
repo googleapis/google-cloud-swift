@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiHubClient, projectId: String, locationId: String) async throws {
-  let items = client.listDeployments(
-    byItem: ListDeploymentsRequest()
+  let items = client.listDeploymentsByItems(
+    request: ListDeploymentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

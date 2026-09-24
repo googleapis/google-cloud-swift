@@ -26,8 +26,8 @@
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.TensorboardServiceClient()
-    let items = client.listTensorboards(
-      byItem: ListTensorboardsRequest()
+    let items = client.listTensorboardsByItems(
+      request: ListTensorboardsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

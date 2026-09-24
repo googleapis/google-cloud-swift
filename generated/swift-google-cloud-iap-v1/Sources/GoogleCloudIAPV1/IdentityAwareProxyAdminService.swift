@@ -303,10 +303,10 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTunnelDestGroups(
-    byItem: ListTunnelDestGroupsRequest
+  public func listTunnelDestGroupsByItems(
+    request: ListTunnelDestGroupsRequest
   ) -> any AsyncSequence<TunnelDestGroup, Swift.Error> {
-    self.listTunnelDestGroups(byItem: byItem, options: .init())
+    self.listTunnelDestGroupsByItems(request: request, options: .init())
   }
 
   /// Lists the existing TunnelDestGroups. To group across all locations, use a
@@ -314,25 +314,25 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
   /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
-  public func listTunnelDestGroups(
-    byItem: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
+  public func listTunnelDestGroupsByItems(
+    request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TunnelDestGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTunnelDestGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTunnelDestGroups(
+  public func listTunnelDestGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TunnelDestGroup, Swift.Error> {
     let request = ListTunnelDestGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listTunnelDestGroups(byItem: request)
+    return self.listTunnelDestGroupsByItems(request: request)
   }
 
   public func createTunnelDestGroup(request: CreateTunnelDestGroupRequest) async throws

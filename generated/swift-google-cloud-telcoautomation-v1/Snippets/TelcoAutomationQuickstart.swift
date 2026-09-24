@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudTelcoAutomationV1.TelcoAutomationClient()
-  let items = client.listOrchestrationClusters(
-    byItem: ListOrchestrationClustersRequest()
+  let items = client.listOrchestrationClustersByItems(
+    request: ListOrchestrationClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

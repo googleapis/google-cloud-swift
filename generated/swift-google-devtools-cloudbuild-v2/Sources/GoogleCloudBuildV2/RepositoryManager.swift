@@ -653,34 +653,34 @@ extension Clients.RepositoryManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConnections(
-    byItem: ListConnectionsRequest
+  public func listConnectionsByItems(
+    request: ListConnectionsRequest
   ) -> any AsyncSequence<Connection, Swift.Error> {
-    self.listConnections(byItem: byItem, options: .init())
+    self.listConnectionsByItems(request: request, options: .init())
   }
 
   /// Lists Connections in a given project and location.
   ///
   /// @Snippet(path: "RepositoryManager_ListConnections")
-  public func listConnections(
-    byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listConnectionsByItems(
+    request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.ListConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConnections(
+  public func listConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listConnections(byItem: request)
+    return self.listConnectionsByItems(request: request)
   }
 
   public func updateConnection(request: UpdateConnectionRequest) async throws
@@ -873,34 +873,34 @@ extension Clients.RepositoryManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRepositories(
-    byItem: ListRepositoriesRequest
+  public func listRepositoriesByItems(
+    request: ListRepositoriesRequest
   ) -> any AsyncSequence<Repository, Swift.Error> {
-    self.listRepositories(byItem: byItem, options: .init())
+    self.listRepositoriesByItems(request: request, options: .init())
   }
 
   /// Lists Repositories in a given connection.
   ///
   /// @Snippet(path: "RepositoryManager_ListRepositories")
-  public func listRepositories(
-    byItem: ListRepositoriesRequest, options: GoogleGax.RequestOptions
+  public func listRepositoriesByItems(
+    request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRepositories(
+  public func listRepositoriesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let request = ListRepositoriesRequest().with {
       $0.parent = parent
     }
-    return self.listRepositories(byItem: request)
+    return self.listRepositoriesByItems(request: request)
   }
 
   public func deleteRepository(request: DeleteRepositoryRequest) async throws
@@ -994,22 +994,22 @@ extension Clients.RepositoryManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func fetchLinkableRepositories(
-    byItem: FetchLinkableRepositoriesRequest
+  public func fetchLinkableRepositoriesByItems(
+    request: FetchLinkableRepositoriesRequest
   ) -> any AsyncSequence<Repository, Swift.Error> {
-    self.fetchLinkableRepositories(byItem: byItem, options: .init())
+    self.fetchLinkableRepositoriesByItems(request: request, options: .init())
   }
 
   /// FetchLinkableRepositories get repositories from SCM that are
   /// accessible and could be added to the connection.
   ///
   /// @Snippet(path: "RepositoryManager_FetchLinkableRepositories")
-  public func fetchLinkableRepositories(
-    byItem: FetchLinkableRepositoriesRequest, options: GoogleGax.RequestOptions
+  public func fetchLinkableRepositoriesByItems(
+    request: FetchLinkableRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.fetchLinkableRepositories(request: request, options: options)
     }

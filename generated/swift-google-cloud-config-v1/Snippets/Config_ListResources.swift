@@ -27,8 +27,8 @@ func sample(
   client: ConfigClient, projectId: String, locationId: String, deploymentId: String,
   revisionId: String
 ) async throws {
-  let items = client.listResources(
-    byItem: ListResourcesRequest()
+  let items = client.listResourcesByItems(
+    request: ListResourcesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/deployments/\(deploymentId)/revisions/\(revisionId)"

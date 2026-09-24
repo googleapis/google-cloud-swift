@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: IdentityClient) async throws {
-  let items = client.listUsers(
-    byItem: ListUsersRequest()
+  let items = client.listUsersByItems(
+    request: ListUsersRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AuditManagerClient, parent: String) async throws {
-  let items = client.listResourceEnrollmentStatuses(
-    byItem: ListResourceEnrollmentStatusesRequest()
+  let items = client.listResourceEnrollmentStatusesByItems(
+    request: ListResourceEnrollmentStatusesRequest()
       .with {
         $0.parent = "\(parent)"
       }

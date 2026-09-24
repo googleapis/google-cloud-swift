@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ManagedKafkaConnectClient, projectId: String, locationId: String) async throws {
-  let items = client.listConnectClusters(
-    byItem: ListConnectClustersRequest()
+  let items = client.listConnectClustersByItems(
+    request: ListConnectClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

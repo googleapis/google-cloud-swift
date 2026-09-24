@@ -496,35 +496,35 @@ extension Clients.VpcFlowLogsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVpcFlowLogsConfigs(
-    byItem: ListVpcFlowLogsConfigsRequest
+  public func listVpcFlowLogsConfigsByItems(
+    request: ListVpcFlowLogsConfigsRequest
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
-    self.listVpcFlowLogsConfigs(byItem: byItem, options: .init())
+    self.listVpcFlowLogsConfigsByItems(request: request, options: .init())
   }
 
   /// Lists all `VpcFlowLogsConfigs` in a given project.
   ///
   /// @Snippet(path: "VpcFlowLogsService_ListVpcFlowLogsConfigs")
-  public func listVpcFlowLogsConfigs(
-    byItem: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
+  public func listVpcFlowLogsConfigsByItems(
+    request: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVpcFlowLogsConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVpcFlowLogsConfigs(
+  public func listVpcFlowLogsConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
     let request = ListVpcFlowLogsConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listVpcFlowLogsConfigs(byItem: request)
+    return self.listVpcFlowLogsConfigsByItems(request: request)
   }
 
   public func getVpcFlowLogsConfig(request: GetVpcFlowLogsConfigRequest) async throws
@@ -677,23 +677,23 @@ extension Clients.VpcFlowLogsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func queryOrgVpcFlowLogsConfigs(
-    byItem: QueryOrgVpcFlowLogsConfigsRequest
+  public func queryOrgVpcFlowLogsConfigsByItems(
+    request: QueryOrgVpcFlowLogsConfigsRequest
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
-    self.queryOrgVpcFlowLogsConfigs(byItem: byItem, options: .init())
+    self.queryOrgVpcFlowLogsConfigsByItems(request: request, options: .init())
   }
 
   /// QueryOrgVpcFlowLogsConfigs returns a list of all organization-level VPC
   /// Flow Logs configurations applicable to the specified project.
   ///
   /// @Snippet(path: "VpcFlowLogsService_QueryOrgVpcFlowLogsConfigs")
-  public func queryOrgVpcFlowLogsConfigs(
-    byItem: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
+  public func queryOrgVpcFlowLogsConfigsByItems(
+    request: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VpcFlowLogsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.QueryOrgVpcFlowLogsConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.queryOrgVpcFlowLogsConfigs(request: request, options: options)
     }
@@ -712,23 +712,23 @@ extension Clients.VpcFlowLogsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func showEffectiveFlowLogsConfigs(
-    byItem: ShowEffectiveFlowLogsConfigsRequest
+  public func showEffectiveFlowLogsConfigsByItems(
+    request: ShowEffectiveFlowLogsConfigsRequest
   ) -> any AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error> {
-    self.showEffectiveFlowLogsConfigs(byItem: byItem, options: .init())
+    self.showEffectiveFlowLogsConfigsByItems(request: request, options: .init())
   }
 
   /// ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs
   /// configurations applicable to a specified resource.
   ///
   /// @Snippet(path: "VpcFlowLogsService_ShowEffectiveFlowLogsConfigs")
-  public func showEffectiveFlowLogsConfigs(
-    byItem: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
+  public func showEffectiveFlowLogsConfigsByItems(
+    request: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.showEffectiveFlowLogsConfigs(request: request, options: options)
     }
@@ -747,10 +747,10 @@ extension Clients.VpcFlowLogsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -763,12 +763,12 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// to the project.
   ///
   /// @Snippet(path: "VpcFlowLogsService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -835,10 +835,10 @@ extension Clients.VpcFlowLogsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -846,19 +846,19 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VpcFlowLogsService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -866,7 +866,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

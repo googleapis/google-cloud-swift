@@ -1184,10 +1184,10 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInspectTemplates(
-    byItem: ListInspectTemplatesRequest
+  public func listInspectTemplatesByItems(
+    request: ListInspectTemplatesRequest
   ) -> any AsyncSequence<InspectTemplate, Swift.Error> {
-    self.listInspectTemplates(byItem: byItem, options: .init())
+    self.listInspectTemplatesByItems(request: request, options: .init())
   }
 
   /// Lists InspectTemplates.
@@ -1196,25 +1196,25 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInspectTemplates")
-  public func listInspectTemplates(
-    byItem: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
+  public func listInspectTemplatesByItems(
+    request: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InspectTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListInspectTemplatesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInspectTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInspectTemplates(
+  public func listInspectTemplatesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<InspectTemplate, Swift.Error> {
     let request = ListInspectTemplatesRequest().with {
       $0.parent = parent
     }
-    return self.listInspectTemplates(byItem: request)
+    return self.listInspectTemplatesByItems(request: request)
   }
 
   public func deleteInspectTemplate(request: DeleteInspectTemplateRequest) async throws {
@@ -1317,10 +1317,10 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDeidentifyTemplates(
-    byItem: ListDeidentifyTemplatesRequest
+  public func listDeidentifyTemplatesByItems(
+    request: ListDeidentifyTemplatesRequest
   ) -> any AsyncSequence<DeidentifyTemplate, Swift.Error> {
-    self.listDeidentifyTemplates(byItem: byItem, options: .init())
+    self.listDeidentifyTemplatesByItems(request: request, options: .init())
   }
 
   /// Lists DeidentifyTemplates.
@@ -1329,25 +1329,25 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
-  public func listDeidentifyTemplates(
-    byItem: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
+  public func listDeidentifyTemplatesByItems(
+    request: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DeidentifyTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListDeidentifyTemplatesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDeidentifyTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDeidentifyTemplates(
+  public func listDeidentifyTemplatesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DeidentifyTemplate, Swift.Error> {
     let request = ListDeidentifyTemplatesRequest().with {
       $0.parent = parent
     }
-    return self.listDeidentifyTemplates(byItem: request)
+    return self.listDeidentifyTemplatesByItems(request: request)
   }
 
   public func deleteDeidentifyTemplate(request: DeleteDeidentifyTemplateRequest) async throws {
@@ -1471,10 +1471,10 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listJobTriggers(
-    byItem: ListJobTriggersRequest
+  public func listJobTriggersByItems(
+    request: ListJobTriggersRequest
   ) -> any AsyncSequence<JobTrigger, Swift.Error> {
-    self.listJobTriggers(byItem: byItem, options: .init())
+    self.listJobTriggersByItems(request: request, options: .init())
   }
 
   /// Lists job triggers.
@@ -1483,25 +1483,25 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListJobTriggers")
-  public func listJobTriggers(
-    byItem: ListJobTriggersRequest, options: GoogleGax.RequestOptions
+  public func listJobTriggersByItems(
+    request: ListJobTriggersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<JobTrigger, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListJobTriggersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listJobTriggers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listJobTriggers(
+  public func listJobTriggersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<JobTrigger, Swift.Error> {
     let request = ListJobTriggersRequest().with {
       $0.parent = parent
     }
-    return self.listJobTriggers(byItem: request)
+    return self.listJobTriggersByItems(request: request)
   }
 
   public func deleteJobTrigger(request: DeleteJobTriggerRequest) async throws {
@@ -1616,34 +1616,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDiscoveryConfigs(
-    byItem: ListDiscoveryConfigsRequest
+  public func listDiscoveryConfigsByItems(
+    request: ListDiscoveryConfigsRequest
   ) -> any AsyncSequence<DiscoveryConfig, Swift.Error> {
-    self.listDiscoveryConfigs(byItem: byItem, options: .init())
+    self.listDiscoveryConfigsByItems(request: request, options: .init())
   }
 
   /// Lists discovery configurations.
   ///
   /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
-  public func listDiscoveryConfigs(
-    byItem: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
+  public func listDiscoveryConfigsByItems(
+    request: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DiscoveryConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListDiscoveryConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDiscoveryConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDiscoveryConfigs(
+  public func listDiscoveryConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DiscoveryConfig, Swift.Error> {
     let request = ListDiscoveryConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listDiscoveryConfigs(byItem: request)
+    return self.listDiscoveryConfigsByItems(request: request)
   }
 
   public func deleteDiscoveryConfig(request: DeleteDiscoveryConfigRequest) async throws {
@@ -1709,10 +1709,10 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDlpJobs(
-    byItem: ListDlpJobsRequest
+  public func listDlpJobsByItems(
+    request: ListDlpJobsRequest
   ) -> any AsyncSequence<DlpJob, Swift.Error> {
-    self.listDlpJobs(byItem: byItem, options: .init())
+    self.listDlpJobsByItems(request: request, options: .init())
   }
 
   /// Lists DlpJobs that match the specified filter in the request.
@@ -1723,24 +1723,24 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDlpJobs")
-  public func listDlpJobs(
-    byItem: ListDlpJobsRequest, options: GoogleGax.RequestOptions
+  public func listDlpJobsByItems(
+    request: ListDlpJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DlpJob, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudDLPV2.ListDlpJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDlpJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDlpJobs(
+  public func listDlpJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DlpJob, Swift.Error> {
     let request = ListDlpJobsRequest().with {
       $0.parent = parent
     }
-    return self.listDlpJobs(byItem: request)
+    return self.listDlpJobsByItems(request: request)
   }
 
   public func getDlpJob(request: GetDlpJobRequest) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -1872,10 +1872,10 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listStoredInfoTypes(
-    byItem: ListStoredInfoTypesRequest
+  public func listStoredInfoTypesByItems(
+    request: ListStoredInfoTypesRequest
   ) -> any AsyncSequence<StoredInfoType, Swift.Error> {
-    self.listStoredInfoTypes(byItem: byItem, options: .init())
+    self.listStoredInfoTypesByItems(request: request, options: .init())
   }
 
   /// Lists stored infoTypes.
@@ -1884,25 +1884,25 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListStoredInfoTypes")
-  public func listStoredInfoTypes(
-    byItem: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
+  public func listStoredInfoTypesByItems(
+    request: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<StoredInfoType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListStoredInfoTypesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listStoredInfoTypes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listStoredInfoTypes(
+  public func listStoredInfoTypesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<StoredInfoType, Swift.Error> {
     let request = ListStoredInfoTypesRequest().with {
       $0.parent = parent
     }
-    return self.listStoredInfoTypes(byItem: request)
+    return self.listStoredInfoTypesByItems(request: request)
   }
 
   public func deleteStoredInfoType(request: DeleteStoredInfoTypeRequest) async throws {
@@ -1936,34 +1936,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listProjectDataProfiles(
-    byItem: ListProjectDataProfilesRequest
+  public func listProjectDataProfilesByItems(
+    request: ListProjectDataProfilesRequest
   ) -> any AsyncSequence<ProjectDataProfile, Swift.Error> {
-    self.listProjectDataProfiles(byItem: byItem, options: .init())
+    self.listProjectDataProfilesByItems(request: request, options: .init())
   }
 
   /// Lists project data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListProjectDataProfiles")
-  public func listProjectDataProfiles(
-    byItem: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
+  public func listProjectDataProfilesByItems(
+    request: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ProjectDataProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListProjectDataProfilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listProjectDataProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listProjectDataProfiles(
+  public func listProjectDataProfilesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ProjectDataProfile, Swift.Error> {
     let request = ListProjectDataProfilesRequest().with {
       $0.parent = parent
     }
-    return self.listProjectDataProfiles(byItem: request)
+    return self.listProjectDataProfilesByItems(request: request)
   }
 
   public func listTableDataProfiles(request: ListTableDataProfilesRequest) async throws
@@ -1978,34 +1978,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTableDataProfiles(
-    byItem: ListTableDataProfilesRequest
+  public func listTableDataProfilesByItems(
+    request: ListTableDataProfilesRequest
   ) -> any AsyncSequence<TableDataProfile, Swift.Error> {
-    self.listTableDataProfiles(byItem: byItem, options: .init())
+    self.listTableDataProfilesByItems(request: request, options: .init())
   }
 
   /// Lists table data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListTableDataProfiles")
-  public func listTableDataProfiles(
-    byItem: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
+  public func listTableDataProfilesByItems(
+    request: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TableDataProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListTableDataProfilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTableDataProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTableDataProfiles(
+  public func listTableDataProfilesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TableDataProfile, Swift.Error> {
     let request = ListTableDataProfilesRequest().with {
       $0.parent = parent
     }
-    return self.listTableDataProfiles(byItem: request)
+    return self.listTableDataProfilesByItems(request: request)
   }
 
   public func listColumnDataProfiles(request: ListColumnDataProfilesRequest) async throws
@@ -2020,34 +2020,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listColumnDataProfiles(
-    byItem: ListColumnDataProfilesRequest
+  public func listColumnDataProfilesByItems(
+    request: ListColumnDataProfilesRequest
   ) -> any AsyncSequence<ColumnDataProfile, Swift.Error> {
-    self.listColumnDataProfiles(byItem: byItem, options: .init())
+    self.listColumnDataProfilesByItems(request: request, options: .init())
   }
 
   /// Lists column data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListColumnDataProfiles")
-  public func listColumnDataProfiles(
-    byItem: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
+  public func listColumnDataProfilesByItems(
+    request: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ColumnDataProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListColumnDataProfilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listColumnDataProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listColumnDataProfiles(
+  public func listColumnDataProfilesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ColumnDataProfile, Swift.Error> {
     let request = ListColumnDataProfilesRequest().with {
       $0.parent = parent
     }
-    return self.listColumnDataProfiles(byItem: request)
+    return self.listColumnDataProfilesByItems(request: request)
   }
 
   public func getProjectDataProfile(request: GetProjectDataProfileRequest) async throws
@@ -2083,34 +2083,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFileStoreDataProfiles(
-    byItem: ListFileStoreDataProfilesRequest
+  public func listFileStoreDataProfilesByItems(
+    request: ListFileStoreDataProfilesRequest
   ) -> any AsyncSequence<FileStoreDataProfile, Swift.Error> {
-    self.listFileStoreDataProfiles(byItem: byItem, options: .init())
+    self.listFileStoreDataProfilesByItems(request: request, options: .init())
   }
 
   /// Lists file store data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
-  public func listFileStoreDataProfiles(
-    byItem: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
+  public func listFileStoreDataProfilesByItems(
+    request: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FileStoreDataProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListFileStoreDataProfilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFileStoreDataProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFileStoreDataProfiles(
+  public func listFileStoreDataProfilesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<FileStoreDataProfile, Swift.Error> {
     let request = ListFileStoreDataProfilesRequest().with {
       $0.parent = parent
     }
-    return self.listFileStoreDataProfiles(byItem: request)
+    return self.listFileStoreDataProfilesByItems(request: request)
   }
 
   public func getFileStoreDataProfile(request: GetFileStoreDataProfileRequest) async throws
@@ -2301,35 +2301,35 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConnections(
-    byItem: ListConnectionsRequest
+  public func listConnectionsByItems(
+    request: ListConnectionsRequest
   ) -> any AsyncSequence<Connection, Swift.Error> {
-    self.listConnections(byItem: byItem, options: .init())
+    self.listConnectionsByItems(request: request, options: .init())
   }
 
   /// Lists Connections in a parent. Use SearchConnections to see all connections
   /// within an organization.
   ///
   /// @Snippet(path: "DlpService_ListConnections")
-  public func listConnections(
-    byItem: ListConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listConnectionsByItems(
+    request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConnections(
+  public func listConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listConnections(byItem: request)
+    return self.listConnectionsByItems(request: request)
   }
 
   public func searchConnections(request: SearchConnectionsRequest) async throws
@@ -2344,34 +2344,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchConnections(
-    byItem: SearchConnectionsRequest
+  public func searchConnectionsByItems(
+    request: SearchConnectionsRequest
   ) -> any AsyncSequence<Connection, Swift.Error> {
-    self.searchConnections(byItem: byItem, options: .init())
+    self.searchConnectionsByItems(request: request, options: .init())
   }
 
   /// Searches for Connections in a parent.
   ///
   /// @Snippet(path: "DlpService_SearchConnections")
-  public func searchConnections(
-    byItem: SearchConnectionsRequest, options: GoogleGax.RequestOptions
+  public func searchConnectionsByItems(
+    request: SearchConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.SearchConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchConnections(
+  public func searchConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Connection, Swift.Error> {
     let request = SearchConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.searchConnections(byItem: request)
+    return self.searchConnectionsByItems(request: request)
   }
 
   public func deleteConnection(request: DeleteConnectionRequest) async throws {
@@ -2495,34 +2495,34 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listContentPolicies(
-    byItem: ListContentPoliciesRequest
+  public func listContentPoliciesByItems(
+    request: ListContentPoliciesRequest
   ) -> any AsyncSequence<ContentPolicy, Swift.Error> {
-    self.listContentPolicies(byItem: byItem, options: .init())
+    self.listContentPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists ContentPolicies in a parent.
   ///
   /// @Snippet(path: "DlpService_ListContentPolicies")
-  public func listContentPolicies(
-    byItem: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listContentPoliciesByItems(
+    request: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ContentPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listContentPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listContentPolicies(
+  public func listContentPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ContentPolicy, Swift.Error> {
     let request = ListContentPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listContentPolicies(byItem: request)
+    return self.listContentPoliciesByItems(request: request)
   }
 
   public func deleteContentPolicy(request: DeleteContentPolicyRequest) async throws {

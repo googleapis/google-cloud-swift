@@ -23,8 +23,8 @@ import GoogleLongRunning
 func sample(
   client: OrgPolicyViolationsPreviewServiceClient, organizationId: String, locationId: String
 ) async throws {
-  let items = client.listOrgPolicyViolationsPreviews(
-    byItem: ListOrgPolicyViolationsPreviewsRequest()
+  let items = client.listOrgPolicyViolationsPreviewsByItems(
+    request: ListOrgPolicyViolationsPreviewsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

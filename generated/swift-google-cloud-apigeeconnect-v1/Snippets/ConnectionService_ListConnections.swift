@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudApigeeConnectV1
 
 func sample(client: ConnectionServiceClient) async throws {
-  let items = client.listConnections(
-    byItem: ListConnectionsRequest()
+  let items = client.listConnectionsByItems(
+    request: ListConnectionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

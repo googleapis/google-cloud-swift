@@ -1047,36 +1047,36 @@ extension Clients.InterceptProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInterceptEndpointGroups(
-    byItem: ListInterceptEndpointGroupsRequest
+  public func listInterceptEndpointGroupsByItems(
+    request: ListInterceptEndpointGroupsRequest
   ) -> any AsyncSequence<InterceptEndpointGroup, Swift.Error> {
-    self.listInterceptEndpointGroups(byItem: byItem, options: .init())
+    self.listInterceptEndpointGroupsByItems(request: request, options: .init())
   }
 
   /// Lists endpoint groups in a given project and location.
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Intercept_ListInterceptEndpointGroups")
-  public func listInterceptEndpointGroups(
-    byItem: ListInterceptEndpointGroupsRequest, options: GoogleGax.RequestOptions
+  public func listInterceptEndpointGroupsByItems(
+    request: ListInterceptEndpointGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InterceptEndpointGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInterceptEndpointGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInterceptEndpointGroups(
+  public func listInterceptEndpointGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<InterceptEndpointGroup, Swift.Error> {
     let request = ListInterceptEndpointGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listInterceptEndpointGroups(byItem: request)
+    return self.listInterceptEndpointGroupsByItems(request: request)
   }
 
   public func getInterceptEndpointGroup(request: GetInterceptEndpointGroupRequest) async throws
@@ -1231,23 +1231,23 @@ extension Clients.InterceptProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInterceptEndpointGroupAssociations(
-    byItem: ListInterceptEndpointGroupAssociationsRequest
+  public func listInterceptEndpointGroupAssociationsByItems(
+    request: ListInterceptEndpointGroupAssociationsRequest
   ) -> any AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> {
-    self.listInterceptEndpointGroupAssociations(byItem: byItem, options: .init())
+    self.listInterceptEndpointGroupAssociationsByItems(request: request, options: .init())
   }
 
   /// Lists associations in a given project and location.
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Intercept_ListInterceptEndpointGroupAssociations")
-  public func listInterceptEndpointGroupAssociations(
-    byItem: ListInterceptEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
+  public func listInterceptEndpointGroupAssociationsByItems(
+    request: ListInterceptEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupAssociationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInterceptEndpointGroupAssociations(
         request: request, options: options)
@@ -1255,13 +1255,13 @@ extension Clients.InterceptProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInterceptEndpointGroupAssociations(
+  public func listInterceptEndpointGroupAssociationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> {
     let request = ListInterceptEndpointGroupAssociationsRequest().with {
       $0.parent = parent
     }
-    return self.listInterceptEndpointGroupAssociations(byItem: request)
+    return self.listInterceptEndpointGroupAssociationsByItems(request: request)
   }
 
   public func getInterceptEndpointGroupAssociation(
@@ -1421,36 +1421,36 @@ extension Clients.InterceptProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInterceptDeploymentGroups(
-    byItem: ListInterceptDeploymentGroupsRequest
+  public func listInterceptDeploymentGroupsByItems(
+    request: ListInterceptDeploymentGroupsRequest
   ) -> any AsyncSequence<InterceptDeploymentGroup, Swift.Error> {
-    self.listInterceptDeploymentGroups(byItem: byItem, options: .init())
+    self.listInterceptDeploymentGroupsByItems(request: request, options: .init())
   }
 
   /// Lists deployment groups in a given project and location.
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Intercept_ListInterceptDeploymentGroups")
-  public func listInterceptDeploymentGroups(
-    byItem: ListInterceptDeploymentGroupsRequest, options: GoogleGax.RequestOptions
+  public func listInterceptDeploymentGroupsByItems(
+    request: ListInterceptDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InterceptDeploymentGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInterceptDeploymentGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInterceptDeploymentGroups(
+  public func listInterceptDeploymentGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<InterceptDeploymentGroup, Swift.Error> {
     let request = ListInterceptDeploymentGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listInterceptDeploymentGroups(byItem: request)
+    return self.listInterceptDeploymentGroupsByItems(request: request)
   }
 
   public func getInterceptDeploymentGroup(request: GetInterceptDeploymentGroupRequest) async throws
@@ -1608,36 +1608,36 @@ extension Clients.InterceptProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInterceptDeployments(
-    byItem: ListInterceptDeploymentsRequest
+  public func listInterceptDeploymentsByItems(
+    request: ListInterceptDeploymentsRequest
   ) -> any AsyncSequence<InterceptDeployment, Swift.Error> {
-    self.listInterceptDeployments(byItem: byItem, options: .init())
+    self.listInterceptDeploymentsByItems(request: request, options: .init())
   }
 
   /// Lists deployments in a given project and location.
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Intercept_ListInterceptDeployments")
-  public func listInterceptDeployments(
-    byItem: ListInterceptDeploymentsRequest, options: GoogleGax.RequestOptions
+  public func listInterceptDeploymentsByItems(
+    request: ListInterceptDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<InterceptDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInterceptDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInterceptDeployments(
+  public func listInterceptDeploymentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<InterceptDeployment, Swift.Error> {
     let request = ListInterceptDeploymentsRequest().with {
       $0.parent = parent
     }
-    return self.listInterceptDeployments(byItem: request)
+    return self.listInterceptDeploymentsByItems(request: request)
   }
 
   public func getInterceptDeployment(request: GetInterceptDeploymentRequest) async throws
@@ -1790,10 +1790,10 @@ extension Clients.InterceptProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -1816,12 +1816,12 @@ extension Clients.InterceptProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Intercept_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1888,10 +1888,10 @@ extension Clients.InterceptProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1899,19 +1899,19 @@ extension Clients.InterceptProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Intercept_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1919,7 +1919,7 @@ extension Clients.InterceptProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

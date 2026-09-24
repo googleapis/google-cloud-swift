@@ -782,28 +782,28 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listClusters(
-    byItem: ListClustersRequest
+  public func listClustersByItems(
+    request: ListClustersRequest
   ) -> any AsyncSequence<Cluster, Swift.Error> {
-    self.listClusters(byItem: byItem, options: .init())
+    self.listClustersByItems(request: request, options: .init())
   }
 
   /// Lists all regions/{region}/clusters in a project alphabetically.
   ///
   /// @Snippet(path: "ClusterController_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
+  public func listClustersByItems(
+    request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListClustersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listClusters(
+  public func listClustersByItems(
     projectId: Swift.String,
     region: Swift.String,
   ) -> any AsyncSequence<Cluster, Swift.Error> {
@@ -811,10 +811,10 @@ extension Clients.ClusterControllerProtocol {
       $0.projectId = projectId
       $0.region = region
     }
-    return self.listClusters(byItem: request)
+    return self.listClustersByItems(request: request)
   }
 
-  public func listClusters(
+  public func listClustersByItems(
     projectId: Swift.String,
     region: Swift.String,
     filter: Swift.String,
@@ -824,7 +824,7 @@ extension Clients.ClusterControllerProtocol {
       $0.region = region
       $0.filter = filter
     }
-    return self.listClusters(byItem: request)
+    return self.listClustersByItems(request: request)
   }
 
   public func diagnoseCluster(request: DiagnoseClusterRequest) async throws
@@ -917,10 +917,10 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -928,19 +928,19 @@ extension Clients.ClusterControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClusterController_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -948,7 +948,7 @@ extension Clients.ClusterControllerProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

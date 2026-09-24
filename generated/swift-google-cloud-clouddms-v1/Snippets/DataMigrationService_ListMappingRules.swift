@@ -27,8 +27,8 @@ func sample(
   client: DataMigrationServiceClient, projectId: String, locationId: String,
   conversionWorkspaceId: String
 ) async throws {
-  let items = client.listMappingRules(
-    byItem: ListMappingRulesRequest()
+  let items = client.listMappingRulesByItems(
+    request: ListMappingRulesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/conversionWorkspaces/\(conversionWorkspaceId)"

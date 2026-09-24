@@ -389,34 +389,34 @@ extension Clients.RegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNamespaces(
-    byItem: ListNamespacesRequest
+  public func listNamespacesByItems(
+    request: ListNamespacesRequest
   ) -> any AsyncSequence<Namespace, Swift.Error> {
-    self.listNamespaces(byItem: byItem, options: .init())
+    self.listNamespacesByItems(request: request, options: .init())
   }
 
   /// Lists all namespaces.
   ///
   /// @Snippet(path: "RegistrationService_ListNamespaces")
-  public func listNamespaces(
-    byItem: ListNamespacesRequest, options: GoogleGax.RequestOptions
+  public func listNamespacesByItems(
+    request: ListNamespacesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Namespace, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNamespaces(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNamespaces(
+  public func listNamespacesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Namespace, Swift.Error> {
     let request = ListNamespacesRequest().with {
       $0.parent = parent
     }
-    return self.listNamespaces(byItem: request)
+    return self.listNamespacesByItems(request: request)
   }
 
   public func getNamespace(request: GetNamespaceRequest) async throws
@@ -519,34 +519,34 @@ extension Clients.RegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServices(
-    byItem: ListServicesRequest
+  public func listServicesByItems(
+    request: ListServicesRequest
   ) -> any AsyncSequence<Service, Swift.Error> {
-    self.listServices(byItem: byItem, options: .init())
+    self.listServicesByItems(request: request, options: .init())
   }
 
   /// Lists all services belonging to a namespace.
   ///
   /// @Snippet(path: "RegistrationService_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
+  public func listServicesByItems(
+    request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServices(
+  public func listServicesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Service, Swift.Error> {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
-    return self.listServices(byItem: request)
+    return self.listServicesByItems(request: request)
   }
 
   public func getService(request: GetServiceRequest) async throws
@@ -649,34 +649,34 @@ extension Clients.RegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEndpoints(
-    byItem: ListEndpointsRequest
+  public func listEndpointsByItems(
+    request: ListEndpointsRequest
   ) -> any AsyncSequence<Endpoint, Swift.Error> {
-    self.listEndpoints(byItem: byItem, options: .init())
+    self.listEndpointsByItems(request: request, options: .init())
   }
 
   /// Lists all endpoints.
   ///
   /// @Snippet(path: "RegistrationService_ListEndpoints")
-  public func listEndpoints(
-    byItem: ListEndpointsRequest, options: GoogleGax.RequestOptions
+  public func listEndpointsByItems(
+    request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEndpoints(
+  public func listEndpointsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Endpoint, Swift.Error> {
     let request = ListEndpointsRequest().with {
       $0.parent = parent
     }
-    return self.listEndpoints(byItem: request)
+    return self.listEndpointsByItems(request: request)
   }
 
   public func getEndpoint(request: GetEndpointRequest) async throws
@@ -790,21 +790,21 @@ extension Clients.RegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "RegistrationService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

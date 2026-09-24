@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: TestingClient) async throws {
-  let items = client.listSessions(
-    byItem: ListSessionsRequest()
+  let items = client.listSessionsByItems(
+    request: ListSessionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

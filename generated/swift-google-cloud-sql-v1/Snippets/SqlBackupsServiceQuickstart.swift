@@ -23,8 +23,8 @@
 
   func sample(projectId: String, ) async throws {
     let client = try GoogleCloudSqlV1.SqlBackupsServiceClient()
-    let items = client.listBackups(
-      byItem: ListBackupsRequest()
+    let items = client.listBackupsByItems(
+      request: ListBackupsRequest()
         .with {
           $0.parent = "projects/\(projectId)"
         }

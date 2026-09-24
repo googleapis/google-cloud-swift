@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let items = client.listPreferenceSets(
-    byItem: ListPreferenceSetsRequest()
+  let items = client.listPreferenceSetsByItems(
+    request: ListPreferenceSetsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

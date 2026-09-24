@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiKeysClient, projectId: String, locationId: String) async throws {
-  let items = client.listKeys(
-    byItem: ListKeysRequest()
+  let items = client.listKeysByItems(
+    request: ListKeysRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

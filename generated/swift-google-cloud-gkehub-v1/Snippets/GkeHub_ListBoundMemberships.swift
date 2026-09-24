@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient) async throws {
-  let items = client.listBoundMemberships(
-    byItem: ListBoundMembershipsRequest()
+  let items = client.listBoundMembershipsByItems(
+    request: ListBoundMembershipsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

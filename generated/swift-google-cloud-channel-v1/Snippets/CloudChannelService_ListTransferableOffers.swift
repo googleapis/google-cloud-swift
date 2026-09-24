@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let items = client.listTransferableOffers(
-    byItem: ListTransferableOffersRequest()
+  let items = client.listTransferableOffersByItems(
+    request: ListTransferableOffersRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

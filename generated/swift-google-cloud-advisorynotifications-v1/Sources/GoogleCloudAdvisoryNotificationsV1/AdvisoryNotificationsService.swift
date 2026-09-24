@@ -119,35 +119,35 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNotifications(
-    byItem: ListNotificationsRequest
+  public func listNotificationsByItems(
+    request: ListNotificationsRequest
   ) -> any AsyncSequence<Notification, Swift.Error> {
-    self.listNotifications(byItem: byItem, options: .init())
+    self.listNotificationsByItems(request: request, options: .init())
   }
 
   /// Lists notifications under a given parent.
   ///
   /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
-  public func listNotifications(
-    byItem: ListNotificationsRequest, options: GoogleGax.RequestOptions
+  public func listNotificationsByItems(
+    request: ListNotificationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Notification, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNotifications(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNotifications(
+  public func listNotificationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Notification, Swift.Error> {
     let request = ListNotificationsRequest().with {
       $0.parent = parent
     }
-    return self.listNotifications(byItem: request)
+    return self.listNotificationsByItems(request: request)
   }
 
   public func getNotification(request: GetNotificationRequest) async throws

@@ -27,8 +27,8 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let items = client.listEntityTypes(
-      byItem: ListEntityTypesRequest()
+    let items = client.listEntityTypesByItems(
+      request: ListEntityTypesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)"

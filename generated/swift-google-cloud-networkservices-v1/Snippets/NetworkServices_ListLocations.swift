@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient) async throws {
-  let items = client.listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest()
+  let items = client.listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -324,29 +324,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionTargetTcpProxiesClient.ListRequest
+    public func listByItems(
+      request: RegionTargetTcpProxiesClient.ListRequest
     ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of TargetTcpProxy resources
     /// available to the specified project in a given region.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_list")
-    public func list(
-      byItem: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<TargetTcpProxy, Swift.Error> {
@@ -354,7 +354,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

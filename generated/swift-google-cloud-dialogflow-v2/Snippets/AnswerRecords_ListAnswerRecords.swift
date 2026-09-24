@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: AnswerRecordsClient, projectId: String) async throws {
-    let items = client.listAnswerRecords(
-      byItem: ListAnswerRecordsRequest()
+    let items = client.listAnswerRecordsByItems(
+      request: ListAnswerRecordsRequest()
         .with {
           $0.parent = "projects/\(projectId)"
         }

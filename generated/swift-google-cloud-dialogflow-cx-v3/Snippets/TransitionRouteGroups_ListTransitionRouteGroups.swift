@@ -27,8 +27,8 @@
     client: TransitionRouteGroupsClient, projectId: String, locationId: String, agentId: String,
     flowId: String
   ) async throws {
-    let items = client.listTransitionRouteGroups(
-      byItem: ListTransitionRouteGroupsRequest()
+    let items = client.listTransitionRouteGroupsByItems(
+      request: ListTransitionRouteGroupsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/flows/\(flowId)"

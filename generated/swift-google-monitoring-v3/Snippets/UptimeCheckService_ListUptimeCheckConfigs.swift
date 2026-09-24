@@ -21,8 +21,8 @@ import GoogleCloudMonitoringV3
 import GoogleWKT
 
 func sample(client: UptimeCheckServiceClient, projectId: String) async throws {
-  let items = client.listUptimeCheckConfigs(
-    byItem: ListUptimeCheckConfigsRequest()
+  let items = client.listUptimeCheckConfigsByItems(
+    request: ListUptimeCheckConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

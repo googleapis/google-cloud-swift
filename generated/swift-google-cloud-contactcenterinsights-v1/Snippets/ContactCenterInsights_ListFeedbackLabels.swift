@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: ContactCenterInsightsClient, projectId: String, locationId: String, conversationId: String
 ) async throws {
-  let items = client.listFeedbackLabels(
-    byItem: ListFeedbackLabelsRequest()
+  let items = client.listFeedbackLabelsByItems(
+    request: ListFeedbackLabelsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/conversations/\(conversationId)"
       }

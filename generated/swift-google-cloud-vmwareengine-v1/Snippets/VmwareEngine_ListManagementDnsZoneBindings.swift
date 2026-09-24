@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let items = client.listManagementDnsZoneBindings(
-    byItem: ListManagementDnsZoneBindingsRequest()
+  let items = client.listManagementDnsZoneBindingsByItems(
+    request: ListManagementDnsZoneBindingsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
       }

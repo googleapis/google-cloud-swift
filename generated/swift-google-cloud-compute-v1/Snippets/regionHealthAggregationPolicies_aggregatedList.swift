@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionHealthAggregationPoliciesClient) async throws {
-    let items = client.aggregatedList(
-      byItem: RegionHealthAggregationPoliciesClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: RegionHealthAggregationPoliciesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

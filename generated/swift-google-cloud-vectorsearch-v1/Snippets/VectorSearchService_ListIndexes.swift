@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: VectorSearchServiceClient, projectId: String, locationId: String, collectionId: String
 ) async throws {
-  let items = client.listIndexes(
-    byItem: ListIndexesRequest()
+  let items = client.listIndexesByItems(
+    request: ListIndexesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)"
       }

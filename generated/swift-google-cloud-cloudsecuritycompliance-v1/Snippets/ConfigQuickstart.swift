@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleCloudSecurityComplianceV1.ConfigClient()
-  let items = client.listFrameworks(
-    byItem: ListFrameworksRequest()
+  let items = client.listFrameworksByItems(
+    request: ListFrameworksRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

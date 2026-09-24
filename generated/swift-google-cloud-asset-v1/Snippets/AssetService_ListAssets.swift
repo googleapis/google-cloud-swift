@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient, parent: String) async throws {
-  let items = client.listAssets(
-    byItem: ListAssetsRequest()
+  let items = client.listAssetsByItems(
+    request: ListAssetsRequest()
       .with {
         $0.parent = "\(parent)"
       }

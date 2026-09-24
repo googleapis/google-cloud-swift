@@ -146,35 +146,35 @@ extension Clients.SnoozeServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSnoozes(
-    byItem: ListSnoozesRequest
+  public func listSnoozesByItems(
+    request: ListSnoozesRequest
   ) -> any AsyncSequence<Snooze, Swift.Error> {
-    self.listSnoozes(byItem: byItem, options: .init())
+    self.listSnoozesByItems(request: request, options: .init())
   }
 
   /// Lists the `Snooze`s associated with a project. Can optionally pass in
   /// `filter`, which specifies predicates to match `Snooze`s.
   ///
   /// @Snippet(path: "SnoozeService_ListSnoozes")
-  public func listSnoozes(
-    byItem: ListSnoozesRequest, options: GoogleGax.RequestOptions
+  public func listSnoozesByItems(
+    request: ListSnoozesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Snooze, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSnoozes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSnoozes(
+  public func listSnoozesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Snooze, Swift.Error> {
     let request = ListSnoozesRequest().with {
       $0.parent = parent
     }
-    return self.listSnoozes(byItem: request)
+    return self.listSnoozesByItems(request: request)
   }
 
   public func getSnooze(request: GetSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze {

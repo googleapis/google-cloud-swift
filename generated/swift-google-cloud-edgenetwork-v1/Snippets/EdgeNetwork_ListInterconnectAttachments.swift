@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String)
   async throws
 {
-  let items = client.listInterconnectAttachments(
-    byItem: ListInterconnectAttachmentsRequest()
+  let items = client.listInterconnectAttachmentsByItems(
+    request: ListInterconnectAttachmentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let items = client.listPullRequestFileDiffs(
-    byItem: ListPullRequestFileDiffsRequest()
+  let items = client.listPullRequestFileDiffsByItems(
+    request: ListPullRequestFileDiffsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

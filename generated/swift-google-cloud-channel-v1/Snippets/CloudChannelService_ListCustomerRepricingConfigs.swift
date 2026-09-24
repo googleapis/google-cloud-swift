@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, accountId: String, customerId: String) async throws {
-  let items = client.listCustomerRepricingConfigs(
-    byItem: ListCustomerRepricingConfigsRequest()
+  let items = client.listCustomerRepricingConfigsByItems(
+    request: ListCustomerRepricingConfigsRequest()
       .with {
         $0.parent = "accounts/\(accountId)/customers/\(customerId)"
       }

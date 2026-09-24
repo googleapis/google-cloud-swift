@@ -26,8 +26,8 @@
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.FeaturestoreServiceClient()
-    let items = client.listFeaturestores(
-      byItem: ListFeaturestoresRequest()
+    let items = client.listFeaturestoresByItems(
+      request: ListFeaturestoresRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

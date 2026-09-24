@@ -279,22 +279,22 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listScanConfigs(
-    byItem: ListScanConfigsRequest
+  public func listScanConfigsByItems(
+    request: ListScanConfigsRequest
   ) -> any AsyncSequence<ScanConfig, Swift.Error> {
-    self.listScanConfigs(byItem: byItem, options: .init())
+    self.listScanConfigsByItems(request: request, options: .init())
   }
 
   /// Lists ScanConfigs under a given project.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
-  public func listScanConfigs(
-    byItem: ListScanConfigsRequest, options: GoogleGax.RequestOptions
+  public func listScanConfigsByItems(
+    request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ScanConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listScanConfigs(request: request, options: options)
     }
@@ -349,22 +349,22 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listScanRuns(
-    byItem: ListScanRunsRequest
+  public func listScanRunsByItems(
+    request: ListScanRunsRequest
   ) -> any AsyncSequence<ScanRun, Swift.Error> {
-    self.listScanRuns(byItem: byItem, options: .init())
+    self.listScanRunsByItems(request: request, options: .init())
   }
 
   /// Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
   /// stop time.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
-  public func listScanRuns(
-    byItem: ListScanRunsRequest, options: GoogleGax.RequestOptions
+  public func listScanRunsByItems(
+    request: ListScanRunsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ScanRun, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listScanRuns(request: request, options: options)
     }
@@ -395,22 +395,22 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCrawledUrls(
-    byItem: ListCrawledUrlsRequest
+  public func listCrawledUrlsByItems(
+    request: ListCrawledUrlsRequest
   ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
-    self.listCrawledUrls(byItem: byItem, options: .init())
+    self.listCrawledUrlsByItems(request: request, options: .init())
   }
 
   /// List CrawledUrls under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
-  public func listCrawledUrls(
-    byItem: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
+  public func listCrawledUrlsByItems(
+    request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCrawledUrls(request: request, options: options)
     }
@@ -441,21 +441,21 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFindings(
-    byItem: ListFindingsRequest
+  public func listFindingsByItems(
+    request: ListFindingsRequest
   ) -> any AsyncSequence<Finding, Swift.Error> {
-    self.listFindings(byItem: byItem, options: .init())
+    self.listFindingsByItems(request: request, options: .init())
   }
 
   /// List Findings under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListFindings")
-  public func listFindings(
-    byItem: ListFindingsRequest, options: GoogleGax.RequestOptions
+  public func listFindingsByItems(
+    request: ListFindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Finding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFindings(request: request, options: options)
     }

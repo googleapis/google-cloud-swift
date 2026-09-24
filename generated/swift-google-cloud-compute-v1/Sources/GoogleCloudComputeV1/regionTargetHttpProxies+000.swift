@@ -379,29 +379,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionTargetHttpProxiesClient.ListRequest
+    public func listByItems(
+      request: RegionTargetHttpProxiesClient.ListRequest
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of TargetHttpProxy resources available
     /// to the specified project in the specified region.
     ///
     /// @Snippet(path: "regionTargetHttpProxies_list")
-    public func list(
-      byItem: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
@@ -409,7 +409,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setUrlMap(request: RegionTargetHttpProxiesClient.SetUrlMapRequest) async throws

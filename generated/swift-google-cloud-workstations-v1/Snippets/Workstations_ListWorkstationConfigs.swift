@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String
 ) async throws {
-  let items = client.listWorkstationConfigs(
-    byItem: ListWorkstationConfigsRequest()
+  let items = client.listWorkstationConfigsByItems(
+    request: ListWorkstationConfigsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/workstationClusters/\(workstationClusterId)"

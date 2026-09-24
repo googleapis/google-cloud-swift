@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: ApiHubPluginClient, projectId: String, locationId: String, pluginId: String)
   async throws
 {
-  let items = client.listPluginInstances(
-    byItem: ListPluginInstancesRequest()
+  let items = client.listPluginInstancesByItems(
+    request: ListPluginInstancesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/plugins/\(pluginId)"
       }

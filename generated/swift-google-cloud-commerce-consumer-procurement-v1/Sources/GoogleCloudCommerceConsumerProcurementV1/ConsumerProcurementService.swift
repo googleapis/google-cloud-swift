@@ -352,10 +352,10 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOrders(
-    byItem: ListOrdersRequest
+  public func listOrdersByItems(
+    request: ListOrdersRequest
   ) -> any AsyncSequence<Order, Swift.Error> {
-    self.listOrders(byItem: byItem, options: .init())
+    self.listOrdersByItems(request: request, options: .init())
   }
 
   /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
@@ -365,26 +365,26 @@ extension Clients.ConsumerProcurementServiceProtocol {
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_ListOrders")
-  public func listOrders(
-    byItem: ListOrdersRequest, options: GoogleGax.RequestOptions
+  public func listOrdersByItems(
+    request: ListOrdersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Order, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOrders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOrders(
+  public func listOrdersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Order, Swift.Error> {
     let request = ListOrdersRequest().with {
       $0.parent = parent
     }
-    return self.listOrders(byItem: request)
+    return self.listOrdersByItems(request: request)
   }
 
   public func modifyOrder(request: ModifyOrderRequest) async throws -> GoogleLongRunning.Operation {

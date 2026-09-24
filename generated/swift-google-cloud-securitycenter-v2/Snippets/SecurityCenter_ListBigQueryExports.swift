@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecurityCenterClient, organizationId: String, locationId: String) async throws {
-  let items = client.listBigQueryExports(
-    byItem: ListBigQueryExportsRequest()
+  let items = client.listBigQueryExportsByItems(
+    request: ListBigQueryExportsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

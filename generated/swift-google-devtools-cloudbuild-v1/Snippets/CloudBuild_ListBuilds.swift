@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudBuildClient, projectId: String) async throws {
-  let items = client.listBuilds(
-    byItem: ListBuildsRequest()
+  let items = client.listBuildsByItems(
+    request: ListBuildsRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

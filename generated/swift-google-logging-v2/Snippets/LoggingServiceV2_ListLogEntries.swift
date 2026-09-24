@@ -22,8 +22,8 @@ import GoogleApi
 import GoogleLongRunning
 
 func sample(client: LoggingServiceV2Client, projectId: String) async throws {
-  let items = client.listLogEntries(
-    byItem: ListLogEntriesRequest()
+  let items = client.listLogEntriesByItems(
+    request: ListLogEntriesRequest()
       .with {
         $0.resourceNames = ["projects/\(projectId)"]
       }

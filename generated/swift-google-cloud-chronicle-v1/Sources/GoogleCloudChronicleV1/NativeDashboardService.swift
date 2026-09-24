@@ -334,34 +334,34 @@ extension Clients.NativeDashboardServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNativeDashboards(
-    byItem: ListNativeDashboardsRequest
+  public func listNativeDashboardsByItems(
+    request: ListNativeDashboardsRequest
   ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
-    self.listNativeDashboards(byItem: byItem, options: .init())
+    self.listNativeDashboardsByItems(request: request, options: .init())
   }
 
   /// List all dashboards.
   ///
   /// @Snippet(path: "NativeDashboardService_ListNativeDashboards")
-  public func listNativeDashboards(
-    byItem: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
+  public func listNativeDashboardsByItems(
+    request: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListNativeDashboardsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNativeDashboards(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNativeDashboards(
+  public func listNativeDashboardsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<NativeDashboard, Swift.Error> {
     let request = ListNativeDashboardsRequest().with {
       $0.parent = parent
     }
-    return self.listNativeDashboards(byItem: request)
+    return self.listNativeDashboardsByItems(request: request)
   }
 
   public func updateNativeDashboard(request: UpdateNativeDashboardRequest) async throws
@@ -581,10 +581,10 @@ extension Clients.NativeDashboardServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -592,19 +592,19 @@ extension Clients.NativeDashboardServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NativeDashboardService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -612,7 +612,7 @@ extension Clients.NativeDashboardServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -21,8 +21,8 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient, projectId: String) async throws {
-  let items = client.listJobTriggers(
-    byItem: ListJobTriggersRequest()
+  let items = client.listJobTriggersByItems(
+    request: ListJobTriggersRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

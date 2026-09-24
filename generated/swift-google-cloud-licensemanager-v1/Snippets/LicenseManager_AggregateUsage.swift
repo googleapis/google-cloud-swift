@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LicenseManagerClient) async throws {
-  let items = client.aggregateUsage(
-    byItem: AggregateUsageRequest()
+  let items = client.aggregateUsageByItems(
+    request: AggregateUsageRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

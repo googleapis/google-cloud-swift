@@ -372,34 +372,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: TargetGrpcProxiesClient.ListRequest
+    public func listByItems(
+      request: TargetGrpcProxiesClient.ListRequest
     ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists the TargetGrpcProxies for a project in the given scope.
     ///
     /// @Snippet(path: "targetGrpcProxies_list")
-    public func list(
-      byItem: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<TargetGrpcProxy, Swift.Error> {
       let request = TargetGrpcProxiesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: TargetGrpcProxiesClient.PatchRequest) async throws

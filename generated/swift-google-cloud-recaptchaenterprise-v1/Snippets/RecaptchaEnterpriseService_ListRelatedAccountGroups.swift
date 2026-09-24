@@ -21,8 +21,8 @@ import GoogleCloudRecaptchaEnterpriseV1
 import GoogleWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient, projectId: String) async throws {
-  let items = client.listRelatedAccountGroups(
-    byItem: ListRelatedAccountGroupsRequest()
+  let items = client.listRelatedAccountGroupsByItems(
+    request: ListRelatedAccountGroupsRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

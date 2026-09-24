@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudBillingV1
 
 func sample(client: CloudCatalogClient) async throws {
-  let items = client.listServices(
-    byItem: ListServicesRequest()
+  let items = client.listServicesByItems(
+    request: ListServicesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

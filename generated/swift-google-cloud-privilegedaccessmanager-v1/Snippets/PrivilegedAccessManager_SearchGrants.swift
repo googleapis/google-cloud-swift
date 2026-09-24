@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PrivilegedAccessManagerClient) async throws {
-  let items = client.searchGrants(
-    byItem: SearchGrantsRequest()
+  let items = client.searchGrantsByItems(
+    request: SearchGrantsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudLocation
 
 func sample(client: LocationsClient) async throws {
-  let items = client.listLocations(
-    byItem: ListLocationsRequest()
+  let items = client.listLocationsByItems(
+    request: ListLocationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

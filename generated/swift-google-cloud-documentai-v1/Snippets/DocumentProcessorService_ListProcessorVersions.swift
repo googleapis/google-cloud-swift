@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(
   client: DocumentProcessorServiceClient, projectId: String, locationId: String, processorId: String
 ) async throws {
-  let items = client.listProcessorVersions(
-    byItem: ListProcessorVersionsRequest()
+  let items = client.listProcessorVersionsByItems(
+    request: ListProcessorVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/processors/\(processorId)"
       }

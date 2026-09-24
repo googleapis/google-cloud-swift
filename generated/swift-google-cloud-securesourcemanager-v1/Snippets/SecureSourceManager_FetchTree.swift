@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let items = client.fetchTree(
-    byItem: FetchTreeRequest()
+  let items = client.fetchTreeByItems(
+    request: FetchTreeRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

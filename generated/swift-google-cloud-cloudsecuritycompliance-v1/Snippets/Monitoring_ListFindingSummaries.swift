@@ -25,8 +25,8 @@ import GoogleLongRunning
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: MonitoringClient, projectId: String, locationId: String) async throws {
-  let items = client.listFindingSummaries(
-    byItem: ListFindingSummariesRequest()
+  let items = client.listFindingSummariesByItems(
+    request: ListFindingSummariesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

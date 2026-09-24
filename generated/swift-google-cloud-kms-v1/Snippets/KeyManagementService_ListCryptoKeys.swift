@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: KeyManagementServiceClient, projectId: String, locationId: String, keyRingId: String
 ) async throws {
-  let items = client.listCryptoKeys(
-    byItem: ListCryptoKeysRequest()
+  let items = client.listCryptoKeysByItems(
+    request: ListCryptoKeysRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/keyRings/\(keyRingId)"
       }

@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudApiHubV1.ApiHubDependenciesClient()
-  let items = client.listDependencies(
-    byItem: ListDependenciesRequest()
+  let items = client.listDependenciesByItems(
+    request: ListDependenciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

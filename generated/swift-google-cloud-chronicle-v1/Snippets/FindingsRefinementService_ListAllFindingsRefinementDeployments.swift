@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FindingsRefinementServiceClient) async throws {
-  let items = client.listAllFindingsRefinementDeployments(
-    byItem: ListAllFindingsRefinementDeploymentsRequest()
+  let items = client.listAllFindingsRefinementDeploymentsByItems(
+    request: ListAllFindingsRefinementDeploymentsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

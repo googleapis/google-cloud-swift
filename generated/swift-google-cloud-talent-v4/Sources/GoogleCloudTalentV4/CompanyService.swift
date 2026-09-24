@@ -228,34 +228,34 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCompanies(
-    byItem: ListCompaniesRequest
+  public func listCompaniesByItems(
+    request: ListCompaniesRequest
   ) -> any AsyncSequence<Company, Swift.Error> {
-    self.listCompanies(byItem: byItem, options: .init())
+    self.listCompaniesByItems(request: request, options: .init())
   }
 
   /// Lists all companies associated with the project.
   ///
   /// @Snippet(path: "CompanyService_ListCompanies")
-  public func listCompanies(
-    byItem: ListCompaniesRequest, options: GoogleGax.RequestOptions
+  public func listCompaniesByItems(
+    request: ListCompaniesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Company, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCompanies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCompanies(
+  public func listCompaniesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Company, Swift.Error> {
     let request = ListCompaniesRequest().with {
       $0.parent = parent
     }
-    return self.listCompanies(byItem: request)
+    return self.listCompaniesByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

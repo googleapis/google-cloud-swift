@@ -280,10 +280,10 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchDocuments(
-    byItem: SearchDocumentsRequest
+  public func searchDocumentsByItems(
+    request: SearchDocumentsRequest
   ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
-    self.searchDocuments(byItem: byItem, options: .init())
+    self.searchDocumentsByItems(request: request, options: .init())
   }
 
   /// Searches for documents using provided
@@ -294,25 +294,25 @@ extension Clients.DocumentServiceProtocol {
   /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
   ///
   /// @Snippet(path: "DocumentService_SearchDocuments")
-  public func searchDocuments(
-    byItem: SearchDocumentsRequest, options: GoogleGax.RequestOptions
+  public func searchDocumentsByItems(
+    request: SearchDocumentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchDocuments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchDocuments(
+  public func searchDocumentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> {
     let request = SearchDocumentsRequest().with {
       $0.parent = parent
     }
-    return self.searchDocuments(byItem: request)
+    return self.searchDocumentsByItems(request: request)
   }
 
   public func lockDocument(request: LockDocumentRequest) async throws

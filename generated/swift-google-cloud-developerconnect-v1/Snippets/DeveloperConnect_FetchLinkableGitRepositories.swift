@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DeveloperConnectClient) async throws {
-  let items = client.fetchLinkableGitRepositories(
-    byItem: FetchLinkableGitRepositoriesRequest()
+  let items = client.fetchLinkableGitRepositoriesByItems(
+    request: FetchLinkableGitRepositoriesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

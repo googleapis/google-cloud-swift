@@ -21,8 +21,8 @@ import GoogleApiServiceUsageV1
 import GoogleLongRunning
 
 func sample(client: ServiceUsageClient, parent: String) async throws {
-  let items = client.listServices(
-    byItem: ListServicesRequest()
+  let items = client.listServicesByItems(
+    request: ListServicesRequest()
       .with {
         $0.parent = "\(parent)"
       }

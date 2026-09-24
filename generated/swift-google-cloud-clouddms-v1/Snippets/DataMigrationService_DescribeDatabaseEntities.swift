@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataMigrationServiceClient) async throws {
-  let items = client.describeDatabaseEntities(
-    byItem: DescribeDatabaseEntitiesRequest()
+  let items = client.describeDatabaseEntitiesByItems(
+    request: DescribeDatabaseEntitiesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

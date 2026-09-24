@@ -25,8 +25,8 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: AwsClustersClient) async throws {
-  let items = client.listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest()
+  let items = client.listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

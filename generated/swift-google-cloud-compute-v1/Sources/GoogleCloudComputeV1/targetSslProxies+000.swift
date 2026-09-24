@@ -599,35 +599,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: TargetSslProxiesClient.ListRequest
+    public func listByItems(
+      request: TargetSslProxiesClient.ListRequest
     ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of TargetSslProxy resources
     /// available to the specified project.
     ///
     /// @Snippet(path: "targetSslProxies_list")
-    public func list(
-      byItem: TargetSslProxiesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: TargetSslProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetSslProxyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<TargetSslProxy, Swift.Error> {
       let request = TargetSslProxiesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setBackendService(request: TargetSslProxiesClient.SetBackendServiceRequest)

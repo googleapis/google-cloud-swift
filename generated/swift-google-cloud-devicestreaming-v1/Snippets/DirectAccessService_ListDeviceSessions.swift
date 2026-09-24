@@ -21,8 +21,8 @@ import GoogleCloudDeviceStreamingV1
 import GoogleWKT
 
 func sample(client: DirectAccessServiceClient, parent: String) async throws {
-  let items = client.listDeviceSessions(
-    byItem: ListDeviceSessionsRequest()
+  let items = client.listDeviceSessionsByItems(
+    request: ListDeviceSessionsRequest()
       .with {
         $0.parent = "\(parent)"
       }

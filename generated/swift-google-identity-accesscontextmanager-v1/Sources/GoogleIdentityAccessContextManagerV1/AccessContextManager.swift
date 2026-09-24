@@ -1298,10 +1298,10 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAccessPolicies(
-    byItem: ListAccessPoliciesRequest
+  public func listAccessPoliciesByItems(
+    request: ListAccessPoliciesRequest
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
-    self.listAccessPolicies(byItem: byItem, options: .init())
+    self.listAccessPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists all [access policies]
@@ -1309,13 +1309,13 @@ extension Clients.AccessContextManagerProtocol {
   /// organization.
   ///
   /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
-  public func listAccessPolicies(
-    byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listAccessPoliciesByItems(
+    request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAccessPolicies(request: request, options: options)
     }
@@ -1458,10 +1458,10 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAccessLevels(
-    byItem: ListAccessLevelsRequest
+  public func listAccessLevelsByItems(
+    request: ListAccessLevelsRequest
   ) -> any AsyncSequence<AccessLevel, Swift.Error> {
-    self.listAccessLevels(byItem: byItem, options: .init())
+    self.listAccessLevelsByItems(request: request, options: .init())
   }
 
   /// Lists all [access levels]
@@ -1469,26 +1469,26 @@ extension Clients.AccessContextManagerProtocol {
   /// policy.
   ///
   /// @Snippet(path: "AccessContextManager_ListAccessLevels")
-  public func listAccessLevels(
-    byItem: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
+  public func listAccessLevelsByItems(
+    request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccessLevel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAccessLevels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAccessLevels(
+  public func listAccessLevelsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AccessLevel, Swift.Error> {
     let request = ListAccessLevelsRequest().with {
       $0.parent = parent
     }
-    return self.listAccessLevels(byItem: request)
+    return self.listAccessLevelsByItems(request: request)
   }
 
   public func getAccessLevel(request: GetAccessLevelRequest) async throws
@@ -1668,10 +1668,10 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServicePerimeters(
-    byItem: ListServicePerimetersRequest
+  public func listServicePerimetersByItems(
+    request: ListServicePerimetersRequest
   ) -> any AsyncSequence<ServicePerimeter, Swift.Error> {
-    self.listServicePerimeters(byItem: byItem, options: .init())
+    self.listServicePerimetersByItems(request: request, options: .init())
   }
 
   /// Lists all [service perimeters]
@@ -1679,26 +1679,26 @@ extension Clients.AccessContextManagerProtocol {
   /// access policy.
   ///
   /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
-  public func listServicePerimeters(
-    byItem: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
+  public func listServicePerimetersByItems(
+    request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServicePerimeter, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServicePerimeters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServicePerimeters(
+  public func listServicePerimetersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ServicePerimeter, Swift.Error> {
     let request = ListServicePerimetersRequest().with {
       $0.parent = parent
     }
-    return self.listServicePerimeters(byItem: request)
+    return self.listServicePerimetersByItems(request: request)
   }
 
   public func getServicePerimeter(request: GetServicePerimeterRequest) async throws
@@ -1907,10 +1907,10 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGcpUserAccessBindings(
-    byItem: ListGcpUserAccessBindingsRequest
+  public func listGcpUserAccessBindingsByItems(
+    request: ListGcpUserAccessBindingsRequest
   ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error> {
-    self.listGcpUserAccessBindings(byItem: byItem, options: .init())
+    self.listGcpUserAccessBindingsByItems(request: request, options: .init())
   }
 
   /// Lists all [GcpUserAccessBindings]
@@ -1918,26 +1918,26 @@ extension Clients.AccessContextManagerProtocol {
   /// Google Cloud organization.
   ///
   /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
-  public func listGcpUserAccessBindings(
-    byItem: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
+  public func listGcpUserAccessBindingsByItems(
+    request: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGcpUserAccessBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGcpUserAccessBindings(
+  public func listGcpUserAccessBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GcpUserAccessBinding, Swift.Error> {
     let request = ListGcpUserAccessBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listGcpUserAccessBindings(byItem: request)
+    return self.listGcpUserAccessBindingsByItems(request: request)
   }
 
   public func getGcpUserAccessBinding(request: GetGcpUserAccessBindingRequest) async throws

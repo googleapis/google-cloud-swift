@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LivestreamServiceClient, projectId: String, locationId: String) async throws {
-  let items = client.listInputs(
-    byItem: ListInputsRequest()
+  let items = client.listInputsByItems(
+    request: ListInputsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

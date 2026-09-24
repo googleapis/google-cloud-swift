@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PolicyBindingsClient) async throws {
-  let items = client.searchTargetPolicyBindings(
-    byItem: SearchTargetPolicyBindingsRequest()
+  let items = client.searchTargetPolicyBindingsByItems(
+    request: SearchTargetPolicyBindingsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

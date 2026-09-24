@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: SipTrunksClient, projectId: String, locationId: String) async throws {
-    let items = client.listSipTrunks(
-      byItem: ListSipTrunksRequest()
+    let items = client.listSipTrunksByItems(
+      request: ListSipTrunksRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

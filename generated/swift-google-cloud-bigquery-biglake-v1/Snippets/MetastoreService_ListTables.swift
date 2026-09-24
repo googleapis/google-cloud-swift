@@ -24,8 +24,8 @@ func sample(
   client: MetastoreServiceClient, projectId: String, locationId: String, catalogId: String,
   databaseId: String
 ) async throws {
-  let items = client.listTables(
-    byItem: ListTablesRequest()
+  let items = client.listTablesByItems(
+    request: ListTablesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)/databases/\(databaseId)"

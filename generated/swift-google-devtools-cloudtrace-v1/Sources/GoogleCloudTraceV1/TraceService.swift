@@ -110,33 +110,33 @@ extension Clients.TraceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTraces(
-    byItem: ListTracesRequest
+  public func listTracesByItems(
+    request: ListTracesRequest
   ) -> any AsyncSequence<Trace, Swift.Error> {
-    self.listTraces(byItem: byItem, options: .init())
+    self.listTracesByItems(request: request, options: .init())
   }
 
   /// Returns of a list of traces that match the specified filter conditions.
   ///
   /// @Snippet(path: "TraceService_ListTraces")
-  public func listTraces(
-    byItem: ListTracesRequest, options: GoogleGax.RequestOptions
+  public func listTracesByItems(
+    request: ListTracesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Trace, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTraceV1.ListTracesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTraces(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTraces(
+  public func listTracesByItems(
     projectId: Swift.String,
   ) -> any AsyncSequence<Trace, Swift.Error> {
     let request = ListTracesRequest().with {
       $0.projectId = projectId
     }
-    return self.listTraces(byItem: request)
+    return self.listTracesByItems(request: request)
   }
 
   public func getTrace(request: GetTraceRequest) async throws -> GoogleCloudTraceV1.Trace {

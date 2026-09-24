@@ -21,8 +21,8 @@ import GoogleCloudRecaptchaEnterpriseV1
 import GoogleWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient, parent: String) async throws {
-  let items = client.listFirewallPolicies(
-    byItem: ListFirewallPoliciesRequest()
+  let items = client.listFirewallPoliciesByItems(
+    request: ListFirewallPoliciesRequest()
       .with {
         $0.parent = "\(parent)"
       }

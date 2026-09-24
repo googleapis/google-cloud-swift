@@ -22,8 +22,8 @@
   import GoogleWKT
 
   func sample(client: SqlBackupsServiceClient, projectId: String) async throws {
-    let items = client.listBackups(
-      byItem: ListBackupsRequest()
+    let items = client.listBackupsByItems(
+      request: ListBackupsRequest()
         .with {
           $0.parent = "projects/\(projectId)"
         }

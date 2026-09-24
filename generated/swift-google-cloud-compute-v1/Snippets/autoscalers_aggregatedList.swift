@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: AutoscalersClient) async throws {
-    let items = client.aggregatedList(
-      byItem: AutoscalersClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: AutoscalersClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

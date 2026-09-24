@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: EntityServiceClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let items = client.listWatchlists(
-    byItem: ListWatchlistsRequest()
+  let items = client.listWatchlistsByItems(
+    request: ListWatchlistsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

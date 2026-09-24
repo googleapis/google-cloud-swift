@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.DomainMappingsClient()
-  let items = client.listDomainMappings(
-    byItem: ListDomainMappingsRequest()
+  let items = client.listDomainMappingsByItems(
+    request: ListDomainMappingsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -802,10 +802,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: RoutersClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: RoutersClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of routers.
@@ -814,25 +814,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "routers_aggregatedList")
-    public func aggregatedList(
-      byItem: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RouterAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> {
       let request = RoutersClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: RoutersClient.DeleteRequest) async throws
@@ -1047,28 +1047,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func getNatMappingInfo(
-      byItem: RoutersClient.GetNatMappingInfoRequest
+    public func getNatMappingInfoByItems(
+      request: RoutersClient.GetNatMappingInfoRequest
     ) -> any AsyncSequence<VmEndpointNatMappings, Swift.Error> {
-      self.getNatMappingInfo(byItem: byItem, options: .init())
+      self.getNatMappingInfoByItems(request: request, options: .init())
     }
 
     /// Retrieves runtime Nat mapping information of VM endpoints.
     ///
     /// @Snippet(path: "routers_getNatMappingInfo")
-    public func getNatMappingInfo(
-      byItem: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
+    public func getNatMappingInfoByItems(
+      request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<VmEndpointNatMappings, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.VmEndpointNatMappingsList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.getNatMappingInfo(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func getNatMappingInfo(
+    public func getNatMappingInfoByItems(
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
@@ -1078,7 +1078,7 @@
         $0.region = region
         $0.router = router
       }
-      return self.getNatMappingInfo(byItem: request)
+      return self.getNatMappingInfoByItems(request: request)
     }
 
     public func getRoutePolicy(request: RoutersClient.GetRoutePolicyRequest) async throws
@@ -1185,27 +1185,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RoutersClient.ListRequest
+    public func listByItems(
+      request: RoutersClient.ListRequest
     ) -> any AsyncSequence<Router, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of Router resources available to the specified project.
     ///
     /// @Snippet(path: "routers_list")
-    public func list(
-      byItem: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Router, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.RouterList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<Router, Swift.Error> {
@@ -1213,7 +1213,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listBgpRoutes(request: RoutersClient.ListBgpRoutesRequest) async throws
@@ -1228,28 +1228,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listBgpRoutes(
-      byItem: RoutersClient.ListBgpRoutesRequest
+    public func listBgpRoutesByItems(
+      request: RoutersClient.ListBgpRoutesRequest
     ) -> any AsyncSequence<BgpRoute, Swift.Error> {
-      self.listBgpRoutes(byItem: byItem, options: .init())
+      self.listBgpRoutesByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of router bgp routes available to the specified project.
     ///
     /// @Snippet(path: "routers_listBgpRoutes")
-    public func listBgpRoutes(
-      byItem: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
+    public func listBgpRoutesByItems(
+      request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BgpRoute, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RoutersListBgpRoutes in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listBgpRoutes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listBgpRoutes(
+    public func listBgpRoutesByItems(
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
@@ -1259,7 +1259,7 @@
         $0.region = region
         $0.router = router
       }
-      return self.listBgpRoutes(byItem: request)
+      return self.listBgpRoutesByItems(request: request)
     }
 
     public func listNamedSets(request: RoutersClient.ListNamedSetsRequest) async throws
@@ -1274,29 +1274,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNamedSets(
-      byItem: RoutersClient.ListNamedSetsRequest
+    public func listNamedSetsByItems(
+      request: RoutersClient.ListNamedSetsRequest
     ) -> any AsyncSequence<NamedSet, Swift.Error> {
-      self.listNamedSets(byItem: byItem, options: .init())
+      self.listNamedSetsByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of router named set subresources available to the
     /// specified project.
     ///
     /// @Snippet(path: "routers_listNamedSets")
-    public func listNamedSets(
-      byItem: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
+    public func listNamedSetsByItems(
+      request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NamedSet, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RoutersListNamedSets in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNamedSets(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNamedSets(
+    public func listNamedSetsByItems(
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
@@ -1306,7 +1306,7 @@
         $0.region = region
         $0.router = router
       }
-      return self.listNamedSets(byItem: request)
+      return self.listNamedSetsByItems(request: request)
     }
 
     public func listRoutePolicies(request: RoutersClient.ListRoutePoliciesRequest) async throws
@@ -1321,29 +1321,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listRoutePolicies(
-      byItem: RoutersClient.ListRoutePoliciesRequest
+    public func listRoutePoliciesByItems(
+      request: RoutersClient.ListRoutePoliciesRequest
     ) -> any AsyncSequence<RoutePolicy, Swift.Error> {
-      self.listRoutePolicies(byItem: byItem, options: .init())
+      self.listRoutePoliciesByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of router route policy subresources available to the
     /// specified project.
     ///
     /// @Snippet(path: "routers_listRoutePolicies")
-    public func listRoutePolicies(
-      byItem: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
+    public func listRoutePoliciesByItems(
+      request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<RoutePolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RoutersListRoutePolicies in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listRoutePolicies(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listRoutePolicies(
+    public func listRoutePoliciesByItems(
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
@@ -1353,7 +1353,7 @@
         $0.region = region
         $0.router = router
       }
-      return self.listRoutePolicies(byItem: request)
+      return self.listRoutePoliciesByItems(request: request)
     }
 
     public func patch(request: RoutersClient.PatchRequest) async throws

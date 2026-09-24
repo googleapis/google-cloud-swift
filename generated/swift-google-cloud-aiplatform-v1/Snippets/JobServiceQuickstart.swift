@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.JobServiceClient()
-    let items = client.listCustomJobs(
-      byItem: ListCustomJobsRequest()
+    let items = client.listCustomJobsByItems(
+      request: ListCustomJobsRequest()
         .with {
           $0.parent = "\(parent)"
         }

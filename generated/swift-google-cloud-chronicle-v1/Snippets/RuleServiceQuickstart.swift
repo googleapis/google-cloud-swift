@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.RuleServiceClient()
-  let items = client.listRules(
-    byItem: ListRulesRequest()
+  let items = client.listRulesByItems(
+    request: ListRulesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

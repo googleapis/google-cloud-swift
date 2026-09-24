@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: ReservationServiceClient) async throws {
-  let items = client.searchAllAssignments(
-    byItem: SearchAllAssignmentsRequest()
+  let items = client.searchAllAssignmentsByItems(
+    request: SearchAllAssignmentsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

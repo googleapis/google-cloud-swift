@@ -185,10 +185,10 @@ extension Clients.TimeseriesInsightsControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataSets(
-    byItem: ListDataSetsRequest
+  public func listDataSetsByItems(
+    request: ListDataSetsRequest
   ) -> any AsyncSequence<DataSet, Swift.Error> {
-    self.listDataSets(byItem: byItem, options: .init())
+    self.listDataSetsByItems(request: request, options: .init())
   }
 
   /// Lists [DataSets][google.cloud.timeseriesinsights.v1.DataSet] under the project.
@@ -200,25 +200,25 @@ extension Clients.TimeseriesInsightsControllerProtocol {
   /// [google.cloud.timeseriesinsights.v1.DataSet]: <doc:DataSet>
   ///
   /// @Snippet(path: "TimeseriesInsightsController_ListDataSets")
-  public func listDataSets(
-    byItem: ListDataSetsRequest, options: GoogleGax.RequestOptions
+  public func listDataSetsByItems(
+    request: ListDataSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataSets(
+  public func listDataSetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataSet, Swift.Error> {
     let request = ListDataSetsRequest().with {
       $0.parent = parent
     }
-    return self.listDataSets(byItem: request)
+    return self.listDataSetsByItems(request: request)
   }
 
   public func createDataSet(request: CreateDataSetRequest) async throws

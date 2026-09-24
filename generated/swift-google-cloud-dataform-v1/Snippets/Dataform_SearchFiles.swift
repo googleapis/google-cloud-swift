@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let items = client.searchFiles(
-    byItem: SearchFilesRequest()
+  let items = client.searchFilesByItems(
+    request: SearchFilesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

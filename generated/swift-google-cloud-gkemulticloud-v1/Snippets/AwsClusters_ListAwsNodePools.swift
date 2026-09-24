@@ -27,8 +27,8 @@ import GoogleWKT
 func sample(client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String)
   async throws
 {
-  let items = client.listAwsNodePools(
-    byItem: ListAwsNodePoolsRequest()
+  let items = client.listAwsNodePoolsByItems(
+    request: ListAwsNodePoolsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/awsClusters/\(awsClusterId)"
       }

@@ -23,8 +23,8 @@ func sample(organizationId: String, locationId: String, customerId: String, work
   async throws
 {
   let client = try GoogleCloudControlsPartnerV1.CloudControlsPartnerMonitoringClient()
-  let items = client.listViolations(
-    byItem: ListViolationsRequest()
+  let items = client.listViolationsByItems(
+    request: ListViolationsRequest()
       .with {
         $0.parent =
           "organizations/\(organizationId)/locations/\(locationId)/customers/\(customerId)/workloads/\(workloadId)"

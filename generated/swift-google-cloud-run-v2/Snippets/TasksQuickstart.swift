@@ -24,8 +24,8 @@ func sample(projectId: String, locationId: String, jobId: String, executionId: S
   async throws
 {
   let client = try GoogleCloudRunV2.TasksClient()
-  let items = client.listTasks(
-    byItem: ListTasksRequest()
+  let items = client.listTasksByItems(
+    request: ListTasksRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)/executions/\(executionId)"

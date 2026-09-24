@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudVisionV1.ProductSearchClient()
-  let items = client.listProductSets(
-    byItem: ListProductSetsRequest()
+  let items = client.listProductSetsByItems(
+    request: ListProductSetsRequest()
       .with {
         $0.parent = "\(parent)"
       }

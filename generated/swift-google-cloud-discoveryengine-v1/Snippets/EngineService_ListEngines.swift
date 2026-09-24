@@ -23,8 +23,8 @@
   import GoogleWKT
 
   func sample(client: EngineServiceClient, parent: String) async throws {
-    let items = client.listEngines(
-      byItem: ListEnginesRequest()
+    let items = client.listEnginesByItems(
+      request: ListEnginesRequest()
         .with {
           $0.parent = "\(parent)"
         }

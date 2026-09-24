@@ -26,8 +26,8 @@ func sample(
   client: SecurityCenterClient, organizationId: String, simulationId: String,
   valuedResourceId: String
 ) async throws {
-  let items = client.listAttackPaths(
-    byItem: ListAttackPathsRequest()
+  let items = client.listAttackPathsByItems(
+    request: ListAttackPathsRequest()
       .with {
         $0.parent =
           "organizations/\(organizationId)/simulations/\(simulationId)/valuedResources/\(valuedResourceId)"

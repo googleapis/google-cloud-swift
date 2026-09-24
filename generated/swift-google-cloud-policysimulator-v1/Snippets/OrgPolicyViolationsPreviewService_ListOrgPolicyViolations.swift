@@ -24,8 +24,8 @@ func sample(
   client: OrgPolicyViolationsPreviewServiceClient, organizationId: String, locationId: String,
   orgPolicyViolationsPreviewId: String
 ) async throws {
-  let items = client.listOrgPolicyViolations(
-    byItem: ListOrgPolicyViolationsRequest()
+  let items = client.listOrgPolicyViolationsByItems(
+    request: ListOrgPolicyViolationsRequest()
       .with {
         $0.parent =
           "organizations/\(organizationId)/locations/\(locationId)/orgPolicyViolationsPreviews/\(orgPolicyViolationsPreviewId)"

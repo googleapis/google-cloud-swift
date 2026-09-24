@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudIAPV1.IdentityAwareProxyAdminServiceClient()
-  let items = client.listTunnelDestGroups(
-    byItem: ListTunnelDestGroupsRequest()
+  let items = client.listTunnelDestGroupsByItems(
+    request: ListTunnelDestGroupsRequest()
       .with {
         $0.parent = "\(parent)"
       }

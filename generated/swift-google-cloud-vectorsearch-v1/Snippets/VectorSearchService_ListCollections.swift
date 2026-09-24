@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VectorSearchServiceClient, projectId: String, locationId: String) async throws {
-  let items = client.listCollections(
-    byItem: ListCollectionsRequest()
+  let items = client.listCollectionsByItems(
+    request: ListCollectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

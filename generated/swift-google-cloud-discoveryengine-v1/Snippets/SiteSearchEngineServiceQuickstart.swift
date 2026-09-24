@@ -23,8 +23,8 @@
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.SiteSearchEngineServiceClient()
-    let items = client.listTargetSites(
-      byItem: ListTargetSitesRequest()
+    let items = client.listTargetSitesByItems(
+      request: ListTargetSitesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/siteSearchEngine"

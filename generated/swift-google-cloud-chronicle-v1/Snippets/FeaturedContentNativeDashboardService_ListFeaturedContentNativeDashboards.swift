@@ -24,8 +24,8 @@ func sample(
   client: FeaturedContentNativeDashboardServiceClient, projectId: String, locationId: String,
   instanceId: String
 ) async throws {
-  let items = client.listFeaturedContentNativeDashboards(
-    byItem: ListFeaturedContentNativeDashboardsRequest()
+  let items = client.listFeaturedContentNativeDashboardsByItems(
+    request: ListFeaturedContentNativeDashboardsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/contentHub"

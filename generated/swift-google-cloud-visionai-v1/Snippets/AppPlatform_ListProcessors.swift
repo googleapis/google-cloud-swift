@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppPlatformClient, projectId: String, locationId: String) async throws {
-  let items = client.listProcessors(
-    byItem: ListProcessorsRequest()
+  let items = client.listProcessorsByItems(
+    request: ListProcessorsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

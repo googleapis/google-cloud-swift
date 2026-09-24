@@ -25,8 +25,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.VertexRagDataServiceClient()
-    let items = client.listRagCorpora(
-      byItem: ListRagCorporaRequest()
+    let items = client.listRagCorporaByItems(
+      request: ListRagCorporaRequest()
         .with {
           $0.parent = "\(parent)"
         }

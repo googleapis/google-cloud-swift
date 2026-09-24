@@ -1844,29 +1844,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionInstanceGroupManagersClient.ListRequest
+    public func listByItems(
+      request: RegionInstanceGroupManagersClient.ListRequest
     ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of managed instance groups that are contained
     /// within the specified region.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_list")
-    public func list(
-      byItem: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagerList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<InstanceGroupManager, Swift.Error> {
@@ -1874,7 +1874,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listErrors(request: RegionInstanceGroupManagersClient.ListErrorsRequest)
@@ -1890,30 +1890,31 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listErrors(
-      byItem: RegionInstanceGroupManagersClient.ListErrorsRequest
+    public func listErrorsByItems(
+      request: RegionInstanceGroupManagersClient.ListErrorsRequest
     ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
-      self.listErrors(byItem: byItem, options: .init())
+      self.listErrorsByItems(request: request, options: .init())
     }
 
     /// Lists all errors thrown by actions on instances for a given regional
     /// managed instance group. The filter andorderBy query parameters are not supported.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
-    public func listErrors(
-      byItem: RegionInstanceGroupManagersClient.ListErrorsRequest, options: GoogleGax.RequestOptions
+    public func listErrorsByItems(
+      request: RegionInstanceGroupManagersClient.ListErrorsRequest,
+      options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceManagedByIgmError, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListErrorsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listErrors(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listErrors(
+    public func listErrorsByItems(
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
@@ -1923,7 +1924,7 @@
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return self.listErrors(byItem: request)
+      return self.listErrorsByItems(request: request)
     }
 
     public func listManagedInstances(
@@ -1939,10 +1940,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listManagedInstances(
-      byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
+    public func listManagedInstancesByItems(
+      request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
     ) -> any AsyncSequence<ManagedInstance, Swift.Error> {
-      self.listManagedInstances(byItem: byItem, options: .init())
+      self.listManagedInstancesByItems(request: request, options: .init())
     }
 
     /// Lists the instances in the managed instance group and instances that are
@@ -1953,21 +1954,21 @@
     /// to `PAGINATED`.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listManagedInstances")
-    public func listManagedInstances(
-      byItem: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
+    public func listManagedInstancesByItems(
+      request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ManagedInstance, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstancesResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listManagedInstances(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listManagedInstances(
+    public func listManagedInstancesByItems(
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
@@ -1977,7 +1978,7 @@
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return self.listManagedInstances(byItem: request)
+      return self.listManagedInstancesByItems(request: request)
     }
 
     public func listPerInstanceConfigs(
@@ -1993,31 +1994,31 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listPerInstanceConfigs(
-      byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
+    public func listPerInstanceConfigsByItems(
+      request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
     ) -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
-      self.listPerInstanceConfigs(byItem: byItem, options: .init())
+      self.listPerInstanceConfigsByItems(request: request, options: .init())
     }
 
     /// Lists all of the per-instance configurations defined for the managed
     /// instance group. The orderBy query parameter is not supported.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listPerInstanceConfigs")
-    public func listPerInstanceConfigs(
-      byItem: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
+    public func listPerInstanceConfigsByItems(
+      request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<PerInstanceConfig, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstanceConfigsResp in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listPerInstanceConfigs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listPerInstanceConfigs(
+    public func listPerInstanceConfigsByItems(
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
@@ -2027,7 +2028,7 @@
         $0.region = region
         $0.instanceGroupManager = instanceGroupManager
       }
-      return self.listPerInstanceConfigs(byItem: request)
+      return self.listPerInstanceConfigsByItems(request: request)
     }
 
     public func patch(request: RegionInstanceGroupManagersClient.PatchRequest) async throws

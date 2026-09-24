@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let items = client.listWasmPlugins(
-    byItem: ListWasmPluginsRequest()
+  let items = client.listWasmPluginsByItems(
+    request: ListWasmPluginsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -21,8 +21,8 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: InstancesClient, parent: String) async throws {
-  let items = client.listInstances(
-    byItem: ListInstancesRequest()
+  let items = client.listInstancesByItems(
+    request: ListInstancesRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupDRClient) async throws {
-  let items = client.fetchBackupsForResourceType(
-    byItem: FetchBackupsForResourceTypeRequest()
+  let items = client.fetchBackupsForResourceTypeByItems(
+    request: FetchBackupsForResourceTypeRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

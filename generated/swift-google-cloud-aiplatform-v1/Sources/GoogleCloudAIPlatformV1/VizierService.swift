@@ -584,34 +584,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listStudies(
-      byItem: ListStudiesRequest
+    public func listStudiesByItems(
+      request: ListStudiesRequest
     ) -> any AsyncSequence<Study, Swift.Error> {
-      self.listStudies(byItem: byItem, options: .init())
+      self.listStudiesByItems(request: request, options: .init())
     }
 
     /// Lists all the studies in a region for an associated project.
     ///
     /// @Snippet(path: "VizierService_ListStudies")
-    public func listStudies(
-      byItem: ListStudiesRequest, options: GoogleGax.RequestOptions
+    public func listStudiesByItems(
+      request: ListStudiesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Study, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listStudies(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listStudies(
+    public func listStudiesByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<Study, Swift.Error> {
       let request = ListStudiesRequest().with {
         $0.parent = parent
       }
-      return self.listStudies(byItem: request)
+      return self.listStudiesByItems(request: request)
     }
 
     public func deleteStudy(request: DeleteStudyRequest) async throws {
@@ -737,34 +737,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listTrials(
-      byItem: ListTrialsRequest
+    public func listTrialsByItems(
+      request: ListTrialsRequest
     ) -> any AsyncSequence<Trial, Swift.Error> {
-      self.listTrials(byItem: byItem, options: .init())
+      self.listTrialsByItems(request: request, options: .init())
     }
 
     /// Lists the Trials associated with a Study.
     ///
     /// @Snippet(path: "VizierService_ListTrials")
-    public func listTrials(
-      byItem: ListTrialsRequest, options: GoogleGax.RequestOptions
+    public func listTrialsByItems(
+      request: ListTrialsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Trial, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listTrials(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listTrials(
+    public func listTrialsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<Trial, Swift.Error> {
       let request = ListTrialsRequest().with {
         $0.parent = parent
       }
-      return self.listTrials(byItem: request)
+      return self.listTrialsByItems(request: request)
     }
 
     public func addTrialMeasurement(request: AddTrialMeasurementRequest) async throws
@@ -884,21 +884,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      self.listLocations(byItem: byItem, options: .init())
+      self.listLocationsByItems(request: request, options: .init())
     }
 
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "VizierService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
@@ -965,10 +965,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -976,19 +976,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "VizierService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -996,7 +996,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

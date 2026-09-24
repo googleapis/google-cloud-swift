@@ -435,33 +435,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: GlobalAddressesClient.ListRequest
+    public func listByItems(
+      request: GlobalAddressesClient.ListRequest
     ) -> any AsyncSequence<Address, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of global addresses.
     ///
     /// @Snippet(path: "globalAddresses_list")
-    public func list(
-      byItem: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Address, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<Address, Swift.Error> {
       let request = GlobalAddressesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func move(request: GlobalAddressesClient.MoveRequest) async throws

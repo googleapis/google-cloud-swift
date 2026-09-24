@@ -500,10 +500,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: InstanceGroupsClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: InstanceGroupsClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of instance groups and sorts them by zone.
@@ -512,25 +512,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instanceGroups_aggregatedList")
-    public func aggregatedList(
-      byItem: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
       let request = InstanceGroupsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: InstanceGroupsClient.DeleteRequest) async throws
@@ -654,10 +654,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: InstanceGroupsClient.ListRequest
+    public func listByItems(
+      request: InstanceGroupsClient.ListRequest
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of zonal instance group resources contained within the
@@ -668,19 +668,19 @@
     /// methods instead.
     ///
     /// @Snippet(path: "instanceGroups_list")
-    public func list(
-      byItem: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
@@ -688,7 +688,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listInstances(request: InstanceGroupsClient.ListInstancesRequest) async throws
@@ -703,10 +703,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listInstances(
-      byItem: InstanceGroupsClient.ListInstancesRequest
+    public func listInstancesByItems(
+      request: InstanceGroupsClient.ListInstancesRequest
     ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
-      self.listInstances(byItem: byItem, options: .init())
+      self.listInstancesByItems(request: request, options: .init())
     }
 
     /// Lists the instances in the specified instance group.
@@ -715,19 +715,19 @@
     /// expressions that use `eq` (equal) or `ne` (not equal) operators.
     ///
     /// @Snippet(path: "instanceGroups_listInstances")
-    public func listInstances(
-      byItem: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
+    public func listInstancesByItems(
+      request: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupsListInstances in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listInstances(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listInstances(
+    public func listInstancesByItems(
       project: Swift.String,
       zone: Swift.String,
       instanceGroup: Swift.String,
@@ -739,7 +739,7 @@
         $0.instanceGroup = instanceGroup
         $0.body = body
       }
-      return self.listInstances(byItem: request)
+      return self.listInstancesByItems(request: request)
     }
 
     public func removeInstances(request: InstanceGroupsClient.RemoveInstancesRequest) async throws

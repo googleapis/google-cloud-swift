@@ -23,8 +23,8 @@ import GoogleLongRunning
 func sample(client: SimulatorClient, projectId: String, locationId: String, replayId: String)
   async throws
 {
-  let items = client.listReplayResults(
-    byItem: ListReplayResultsRequest()
+  let items = client.listReplayResultsByItems(
+    request: ListReplayResultsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/replays/\(replayId)"
       }

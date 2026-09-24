@@ -479,22 +479,22 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func pagedExpand(
-    byItem: PagedExpandRequest
+  public func pagedExpandByItems(
+    request: PagedExpandRequest
   ) -> any AsyncSequence<EchoResponse, Swift.Error> {
-    self.pagedExpand(byItem: byItem, options: .init())
+    self.pagedExpandByItems(request: request, options: .init())
   }
 
   /// This is similar to the Expand method but instead of returning a stream of
   /// expanded words, this method returns a paged list of expanded words.
   ///
   /// @Snippet(path: "Echo_PagedExpand")
-  public func pagedExpand(
-    byItem: PagedExpandRequest, options: GoogleGax.RequestOptions
+  public func pagedExpandByItems(
+    request: PagedExpandRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EchoResponse, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.pagedExpand(request: request, options: options)
     }
@@ -513,10 +513,10 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func pagedExpandLegacy(
-    byItem: PagedExpandLegacyRequest
+  public func pagedExpandLegacyByItems(
+    request: PagedExpandLegacyRequest
   ) -> any AsyncSequence<EchoResponse, Swift.Error> {
-    self.pagedExpandLegacy(byItem: byItem, options: .init())
+    self.pagedExpandLegacyByItems(request: request, options: .init())
   }
 
   /// This is similar to the PagedExpand except that it uses
@@ -524,12 +524,12 @@ extension Clients.EchoProtocol {
   /// do. New APIs should NOT use this pattern.
   ///
   /// @Snippet(path: "Echo_PagedExpandLegacy")
-  public func pagedExpandLegacy(
-    byItem: PagedExpandLegacyRequest, options: GoogleGax.RequestOptions
+  public func pagedExpandLegacyByItems(
+    request: PagedExpandLegacyRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EchoResponse, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.pagedExpandLegacy(request: request, options: options)
     }
@@ -548,10 +548,10 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func pagedExpandLegacyMapped(
-    byItem: PagedExpandRequest
+  public func pagedExpandLegacyMappedByItems(
+    request: PagedExpandRequest
   ) -> any AsyncSequence<(Swift.String, PagedExpandResponseList), Swift.Error> {
-    self.pagedExpandLegacyMapped(byItem: byItem, options: .init())
+    self.pagedExpandLegacyMappedByItems(request: request, options: .init())
   }
 
   /// This method returns a map containing lists of words that appear in the input, keyed by their
@@ -561,12 +561,12 @@ extension Clients.EchoProtocol {
   /// APIs. New APIs should NOT use this pattern.
   ///
   /// @Snippet(path: "Echo_PagedExpandLegacyMapped")
-  public func pagedExpandLegacyMapped(
-    byItem: PagedExpandRequest, options: GoogleGax.RequestOptions
+  public func pagedExpandLegacyMappedByItems(
+    request: PagedExpandRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<(Swift.String, PagedExpandResponseList), Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandLegacyMappedResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.pagedExpandLegacyMapped(request: request, options: options)
     }
@@ -621,10 +621,10 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
@@ -632,12 +632,12 @@ extension Clients.EchoProtocol {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Echo_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -704,10 +704,10 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -715,19 +715,19 @@ extension Clients.EchoProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Echo_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -735,7 +735,7 @@ extension Clients.EchoProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

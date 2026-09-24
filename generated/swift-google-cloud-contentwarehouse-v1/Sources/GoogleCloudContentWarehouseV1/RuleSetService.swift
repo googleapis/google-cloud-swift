@@ -229,34 +229,34 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRuleSets(
-    byItem: ListRuleSetsRequest
+  public func listRuleSetsByItems(
+    request: ListRuleSetsRequest
   ) -> any AsyncSequence<RuleSet, Swift.Error> {
-    self.listRuleSets(byItem: byItem, options: .init())
+    self.listRuleSetsByItems(request: request, options: .init())
   }
 
   /// Lists rulesets.
   ///
   /// @Snippet(path: "RuleSetService_ListRuleSets")
-  public func listRuleSets(
-    byItem: ListRuleSetsRequest, options: GoogleGax.RequestOptions
+  public func listRuleSetsByItems(
+    request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RuleSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRuleSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRuleSets(
+  public func listRuleSetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RuleSet, Swift.Error> {
     let request = ListRuleSetsRequest().with {
       $0.parent = parent
     }
-    return self.listRuleSets(byItem: request)
+    return self.listRuleSetsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

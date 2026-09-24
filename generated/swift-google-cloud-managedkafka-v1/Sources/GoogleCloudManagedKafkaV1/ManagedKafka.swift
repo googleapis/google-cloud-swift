@@ -573,34 +573,34 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listClusters(
-    byItem: ListClustersRequest
+  public func listClustersByItems(
+    request: ListClustersRequest
   ) -> any AsyncSequence<Cluster, Swift.Error> {
-    self.listClusters(byItem: byItem, options: .init())
+    self.listClustersByItems(request: request, options: .init())
   }
 
   /// Lists the clusters in a given project and location.
   ///
   /// @Snippet(path: "ManagedKafka_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
+  public func listClustersByItems(
+    request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listClusters(
+  public func listClustersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
-    return self.listClusters(byItem: request)
+    return self.listClustersByItems(request: request)
   }
 
   public func getCluster(request: GetClusterRequest) async throws
@@ -753,34 +753,34 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTopics(
-    byItem: ListTopicsRequest
+  public func listTopicsByItems(
+    request: ListTopicsRequest
   ) -> any AsyncSequence<Topic, Swift.Error> {
-    self.listTopics(byItem: byItem, options: .init())
+    self.listTopicsByItems(request: request, options: .init())
   }
 
   /// Lists the topics in a given cluster.
   ///
   /// @Snippet(path: "ManagedKafka_ListTopics")
-  public func listTopics(
-    byItem: ListTopicsRequest, options: GoogleGax.RequestOptions
+  public func listTopicsByItems(
+    request: ListTopicsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Topic, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTopics(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTopics(
+  public func listTopicsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Topic, Swift.Error> {
     let request = ListTopicsRequest().with {
       $0.parent = parent
     }
-    return self.listTopics(byItem: request)
+    return self.listTopicsByItems(request: request)
   }
 
   public func getTopic(request: GetTopicRequest) async throws -> GoogleCloudManagedKafkaV1.Topic {
@@ -881,34 +881,34 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConsumerGroups(
-    byItem: ListConsumerGroupsRequest
+  public func listConsumerGroupsByItems(
+    request: ListConsumerGroupsRequest
   ) -> any AsyncSequence<ConsumerGroup, Swift.Error> {
-    self.listConsumerGroups(byItem: byItem, options: .init())
+    self.listConsumerGroupsByItems(request: request, options: .init())
   }
 
   /// Lists the consumer groups in a given cluster.
   ///
   /// @Snippet(path: "ManagedKafka_ListConsumerGroups")
-  public func listConsumerGroups(
-    byItem: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
+  public func listConsumerGroupsByItems(
+    request: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ConsumerGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConsumerGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConsumerGroups(
+  public func listConsumerGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ConsumerGroup, Swift.Error> {
     let request = ListConsumerGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listConsumerGroups(byItem: request)
+    return self.listConsumerGroupsByItems(request: request)
   }
 
   public func getConsumerGroup(request: GetConsumerGroupRequest) async throws
@@ -986,34 +986,34 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAcls(
-    byItem: ListAclsRequest
+  public func listAclsByItems(
+    request: ListAclsRequest
   ) -> any AsyncSequence<Acl, Swift.Error> {
-    self.listAcls(byItem: byItem, options: .init())
+    self.listAclsByItems(request: request, options: .init())
   }
 
   /// Lists the acls in a given cluster.
   ///
   /// @Snippet(path: "ManagedKafka_ListAcls")
-  public func listAcls(
-    byItem: ListAclsRequest, options: GoogleGax.RequestOptions
+  public func listAclsByItems(
+    request: ListAclsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Acl, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAcls(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAcls(
+  public func listAclsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Acl, Swift.Error> {
     let request = ListAclsRequest().with {
       $0.parent = parent
     }
-    return self.listAcls(byItem: request)
+    return self.listAclsByItems(request: request)
   }
 
   public func getAcl(request: GetAclRequest) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -1156,21 +1156,21 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ManagedKafka_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1201,10 +1201,10 @@ extension Clients.ManagedKafkaProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1212,19 +1212,19 @@ extension Clients.ManagedKafkaProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedKafka_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1232,7 +1232,7 @@ extension Clients.ManagedKafkaProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -28,8 +28,8 @@
     client: ModelServiceClient, projectId: String, locationId: String, modelId: String,
     evaluationId: String
   ) async throws {
-    let items = client.listModelEvaluationSlices(
-      byItem: ListModelEvaluationSlicesRequest()
+    let items = client.listModelEvaluationSlicesByItems(
+      request: ListModelEvaluationSlicesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/models/\(modelId)/evaluations/\(evaluationId)"

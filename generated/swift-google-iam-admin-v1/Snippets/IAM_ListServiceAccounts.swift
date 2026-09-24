@@ -21,8 +21,8 @@ import GoogleIAMAdminV1
 import GoogleIAMV1
 
 func sample(client: IAMClient) async throws {
-  let items = client.listServiceAccounts(
-    byItem: ListServiceAccountsRequest()
+  let items = client.listServiceAccountsByItems(
+    request: ListServiceAccountsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

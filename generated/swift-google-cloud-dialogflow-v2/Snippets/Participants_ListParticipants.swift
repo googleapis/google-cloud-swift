@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: ParticipantsClient, projectId: String, conversationId: String) async throws {
-    let items = client.listParticipants(
-      byItem: ListParticipantsRequest()
+    let items = client.listParticipantsByItems(
+      request: ListParticipantsRequest()
         .with {
           $0.parent = "projects/\(projectId)/conversations/\(conversationId)"
         }

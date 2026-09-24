@@ -1700,21 +1700,21 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listUsableSubnetworks(
-    byItem: ListUsableSubnetworksRequest
+  public func listUsableSubnetworksByItems(
+    request: ListUsableSubnetworksRequest
   ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
-    self.listUsableSubnetworks(byItem: byItem, options: .init())
+    self.listUsableSubnetworksByItems(request: request, options: .init())
   }
 
   /// Lists subnetworks that are usable for creating clusters in a project.
   ///
   /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
-  public func listUsableSubnetworks(
-    byItem: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
+  public func listUsableSubnetworksByItems(
+    request: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContainerV1.ListUsableSubnetworksResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listUsableSubnetworks(request: request, options: options)
     }

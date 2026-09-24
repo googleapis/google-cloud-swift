@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudVMwareEngineV1.VmwareEngineClient()
-  let items = client.listVmwareEngineNetworks(
-    byItem: ListVmwareEngineNetworksRequest()
+  let items = client.listVmwareEngineNetworksByItems(
+    request: ListVmwareEngineNetworksRequest()
       .with {
         $0.parent = "\(parent)"
       }

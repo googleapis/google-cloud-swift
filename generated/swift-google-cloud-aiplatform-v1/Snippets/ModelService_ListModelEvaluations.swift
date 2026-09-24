@@ -27,8 +27,8 @@
   func sample(client: ModelServiceClient, projectId: String, locationId: String, modelId: String)
     async throws
   {
-    let items = client.listModelEvaluations(
-      byItem: ListModelEvaluationsRequest()
+    let items = client.listModelEvaluationsByItems(
+      request: ListModelEvaluationsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/models/\(modelId)"
         }

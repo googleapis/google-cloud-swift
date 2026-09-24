@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.MetadataServiceClient()
-    let items = client.listMetadataStores(
-      byItem: ListMetadataStoresRequest()
+    let items = client.listMetadataStoresByItems(
+      request: ListMetadataStoresRequest()
         .with {
           $0.parent = "\(parent)"
         }

@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: AssistantServiceClient) async throws {
-    let items = client.listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest()
+    let items = client.listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

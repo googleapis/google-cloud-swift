@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LineageClient) async throws {
-  let items = client.batchSearchLinkProcesses(
-    byItem: BatchSearchLinkProcessesRequest()
+  let items = client.batchSearchLinkProcessesByItems(
+    request: BatchSearchLinkProcessesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

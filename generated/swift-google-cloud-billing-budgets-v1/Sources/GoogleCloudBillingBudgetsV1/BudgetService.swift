@@ -215,10 +215,10 @@ extension Clients.BudgetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBudgets(
-    byItem: ListBudgetsRequest
+  public func listBudgetsByItems(
+    request: ListBudgetsRequest
   ) -> any AsyncSequence<Budget, Swift.Error> {
-    self.listBudgets(byItem: byItem, options: .init())
+    self.listBudgetsByItems(request: request, options: .init())
   }
 
   /// Returns a list of budgets for a billing account.
@@ -229,25 +229,25 @@ extension Clients.BudgetServiceProtocol {
   /// in the Cloud Console.
   ///
   /// @Snippet(path: "BudgetService_ListBudgets")
-  public func listBudgets(
-    byItem: ListBudgetsRequest, options: GoogleGax.RequestOptions
+  public func listBudgetsByItems(
+    request: ListBudgetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Budget, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBudgets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBudgets(
+  public func listBudgetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Budget, Swift.Error> {
     let request = ListBudgetsRequest().with {
       $0.parent = parent
     }
-    return self.listBudgets(byItem: request)
+    return self.listBudgetsByItems(request: request)
   }
 
   public func deleteBudget(request: DeleteBudgetRequest) async throws {

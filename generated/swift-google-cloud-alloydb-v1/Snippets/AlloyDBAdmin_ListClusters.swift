@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AlloyDBAdminClient, projectId: String, locationId: String) async throws {
-  let items = client.listClusters(
-    byItem: ListClustersRequest()
+  let items = client.listClustersByItems(
+    request: ListClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CrossNetworkAutomationServiceClient, parent: String) async throws {
-  let items = client.listServiceConnectionTokens(
-    byItem: ListServiceConnectionTokensRequest()
+  let items = client.listServiceConnectionTokensByItems(
+    request: ListServiceConnectionTokensRequest()
       .with {
         $0.parent = "\(parent)"
       }

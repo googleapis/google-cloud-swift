@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: UserLicenseServiceClient) async throws {
-    let items = client.listUserLicenses(
-      byItem: ListUserLicensesRequest()
+    let items = client.listUserLicensesByItems(
+      request: ListUserLicensesRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

@@ -249,10 +249,10 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listApprovalRequests(
-    byItem: ListApprovalRequestsMessage
+  public func listApprovalRequestsByItems(
+    request: ListApprovalRequestsMessage
   ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
-    self.listApprovalRequests(byItem: byItem, options: .init())
+    self.listApprovalRequestsByItems(request: request, options: .init())
   }
 
   /// Lists approval requests associated with a project, folder, or organization.
@@ -260,26 +260,26 @@ extension Clients.AccessApprovalProtocol {
   /// The order is reverse chronological.
   ///
   /// @Snippet(path: "AccessApproval_ListApprovalRequests")
-  public func listApprovalRequests(
-    byItem: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
+  public func listApprovalRequestsByItems(
+    request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listApprovalRequests(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listApprovalRequests(
+  public func listApprovalRequestsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
     let request = ListApprovalRequestsMessage().with {
       $0.parent = parent
     }
-    return self.listApprovalRequests(byItem: request)
+    return self.listApprovalRequestsByItems(request: request)
   }
 
   public func getApprovalRequest(request: GetApprovalRequestMessage) async throws

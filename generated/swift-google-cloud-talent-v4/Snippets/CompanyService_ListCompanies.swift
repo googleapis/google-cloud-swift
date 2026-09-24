@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CompanyServiceClient, projectId: String, tenantId: String) async throws {
-  let items = client.listCompanies(
-    byItem: ListCompaniesRequest()
+  let items = client.listCompaniesByItems(
+    request: ListCompaniesRequest()
       .with {
         $0.parent = "projects/\(projectId)/tenants/\(tenantId)"
       }

@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: EnvironmentsClient) async throws {
-    let items = client.lookupEnvironmentHistory(
-      byItem: LookupEnvironmentHistoryRequest()
+    let items = client.lookupEnvironmentHistoryByItems(
+      request: LookupEnvironmentHistoryRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

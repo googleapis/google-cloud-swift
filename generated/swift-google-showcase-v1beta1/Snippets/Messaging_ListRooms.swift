@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MessagingClient) async throws {
-  let items = client.listRooms(
-    byItem: ListRoomsRequest()
+  let items = client.listRoomsByItems(
+    request: ListRoomsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

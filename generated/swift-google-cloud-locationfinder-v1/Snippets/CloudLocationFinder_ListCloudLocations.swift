@@ -21,8 +21,8 @@ import GoogleCloudLocationFinderV1
 import GoogleCloudLocation
 
 func sample(client: CloudLocationFinderClient, projectId: String, locationId: String) async throws {
-  let items = client.listCloudLocations(
-    byItem: ListCloudLocationsRequest()
+  let items = client.listCloudLocationsByItems(
+    request: ListCloudLocationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

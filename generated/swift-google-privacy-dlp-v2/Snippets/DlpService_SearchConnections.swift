@@ -21,8 +21,8 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient) async throws {
-  let items = client.searchConnections(
-    byItem: SearchConnectionsRequest()
+  let items = client.searchConnectionsByItems(
+    request: SearchConnectionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

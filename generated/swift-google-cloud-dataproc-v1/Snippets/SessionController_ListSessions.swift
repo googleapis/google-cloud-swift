@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: SessionControllerClient, projectId: String, locationId: String) async throws {
-  let items = client.listSessions(
-    byItem: ListSessionsRequest()
+  let items = client.listSessionsByItems(
+    request: ListSessionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

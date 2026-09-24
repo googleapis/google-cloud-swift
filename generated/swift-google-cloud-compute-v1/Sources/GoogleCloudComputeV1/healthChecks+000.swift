@@ -357,10 +357,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: HealthChecksClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: HealthChecksClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all HealthCheck resources, regional and global,
@@ -370,25 +370,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "healthChecks_aggregatedList")
-    public func aggregatedList(
-      byItem: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthChecksAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> {
       let request = HealthChecksClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: HealthChecksClient.DeleteRequest) async throws
@@ -506,34 +506,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: HealthChecksClient.ListRequest
+    public func listByItems(
+      request: HealthChecksClient.ListRequest
     ) -> any AsyncSequence<HealthCheck, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of HealthCheck resources available to the specified
     /// project.
     ///
     /// @Snippet(path: "healthChecks_list")
-    public func list(
-      byItem: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<HealthCheck, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<HealthCheck, Swift.Error> {
       let request = HealthChecksClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: HealthChecksClient.PatchRequest) async throws

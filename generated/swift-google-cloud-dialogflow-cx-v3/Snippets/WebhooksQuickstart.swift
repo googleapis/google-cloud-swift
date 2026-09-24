@@ -25,8 +25,8 @@
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
     let client = try GoogleCloudDialogflowCXV3.WebhooksClient()
-    let items = client.listWebhooks(
-      byItem: ListWebhooksRequest()
+    let items = client.listWebhooksByItems(
+      request: ListWebhooksRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"
         }

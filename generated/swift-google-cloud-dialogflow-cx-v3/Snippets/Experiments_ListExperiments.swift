@@ -27,8 +27,8 @@
     client: ExperimentsClient, projectId: String, locationId: String, agentId: String,
     environmentId: String
   ) async throws {
-    let items = client.listExperiments(
-      byItem: ListExperimentsRequest()
+    let items = client.listExperimentsByItems(
+      request: ListExperimentsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/environments/\(environmentId)"

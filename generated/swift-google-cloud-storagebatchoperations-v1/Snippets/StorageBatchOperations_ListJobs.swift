@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(client: StorageBatchOperationsClient, projectId: String, locationId: String)
   async throws
 {
-  let items = client.listJobs(
-    byItem: ListJobsRequest()
+  let items = client.listJobsByItems(
+    request: ListJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

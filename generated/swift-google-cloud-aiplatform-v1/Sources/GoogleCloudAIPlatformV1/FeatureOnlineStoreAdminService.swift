@@ -722,35 +722,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listFeatureOnlineStores(
-      byItem: ListFeatureOnlineStoresRequest
+    public func listFeatureOnlineStoresByItems(
+      request: ListFeatureOnlineStoresRequest
     ) -> any AsyncSequence<FeatureOnlineStore, Swift.Error> {
-      self.listFeatureOnlineStores(byItem: byItem, options: .init())
+      self.listFeatureOnlineStoresByItems(request: request, options: .init())
     }
 
     /// Lists FeatureOnlineStores in a given project and location.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListFeatureOnlineStores")
-    public func listFeatureOnlineStores(
-      byItem: ListFeatureOnlineStoresRequest, options: GoogleGax.RequestOptions
+    public func listFeatureOnlineStoresByItems(
+      request: ListFeatureOnlineStoresRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<FeatureOnlineStore, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListFeatureOnlineStoresResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listFeatureOnlineStores(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listFeatureOnlineStores(
+    public func listFeatureOnlineStoresByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<FeatureOnlineStore, Swift.Error> {
       let request = ListFeatureOnlineStoresRequest().with {
         $0.parent = parent
       }
-      return self.listFeatureOnlineStores(byItem: request)
+      return self.listFeatureOnlineStoresByItems(request: request)
     }
 
     public func updateFeatureOnlineStore(request: UpdateFeatureOnlineStoreRequest) async throws
@@ -905,34 +905,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listFeatureViews(
-      byItem: ListFeatureViewsRequest
+    public func listFeatureViewsByItems(
+      request: ListFeatureViewsRequest
     ) -> any AsyncSequence<FeatureView, Swift.Error> {
-      self.listFeatureViews(byItem: byItem, options: .init())
+      self.listFeatureViewsByItems(request: request, options: .init())
     }
 
     /// Lists FeatureViews in a given FeatureOnlineStore.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListFeatureViews")
-    public func listFeatureViews(
-      byItem: ListFeatureViewsRequest, options: GoogleGax.RequestOptions
+    public func listFeatureViewsByItems(
+      request: ListFeatureViewsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<FeatureView, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeatureViewsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listFeatureViews(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listFeatureViews(
+    public func listFeatureViewsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<FeatureView, Swift.Error> {
       let request = ListFeatureViewsRequest().with {
         $0.parent = parent
       }
-      return self.listFeatureViews(byItem: request)
+      return self.listFeatureViewsByItems(request: request)
     }
 
     public func updateFeatureView(request: UpdateFeatureViewRequest) async throws
@@ -1065,35 +1065,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listFeatureViewSyncs(
-      byItem: ListFeatureViewSyncsRequest
+    public func listFeatureViewSyncsByItems(
+      request: ListFeatureViewSyncsRequest
     ) -> any AsyncSequence<FeatureViewSync, Swift.Error> {
-      self.listFeatureViewSyncs(byItem: byItem, options: .init())
+      self.listFeatureViewSyncsByItems(request: request, options: .init())
     }
 
     /// Lists FeatureViewSyncs in a given FeatureView.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListFeatureViewSyncs")
-    public func listFeatureViewSyncs(
-      byItem: ListFeatureViewSyncsRequest, options: GoogleGax.RequestOptions
+    public func listFeatureViewSyncsByItems(
+      request: ListFeatureViewSyncsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<FeatureViewSync, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeatureViewSyncsResponse
         in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listFeatureViewSyncs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listFeatureViewSyncs(
+    public func listFeatureViewSyncsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<FeatureViewSync, Swift.Error> {
       let request = ListFeatureViewSyncsRequest().with {
         $0.parent = parent
       }
-      return self.listFeatureViewSyncs(byItem: request)
+      return self.listFeatureViewSyncsByItems(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -1108,21 +1108,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      self.listLocations(byItem: byItem, options: .init())
+      self.listLocationsByItems(request: request, options: .init())
     }
 
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
@@ -1189,10 +1189,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1200,19 +1200,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1220,7 +1220,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

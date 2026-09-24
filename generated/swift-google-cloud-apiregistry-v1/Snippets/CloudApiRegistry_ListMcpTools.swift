@@ -24,8 +24,8 @@ func sample(
   client: CloudApiRegistryClient, projectId: String, locationId: String, apiNamespaceId: String,
   mcpServerId: String
 ) async throws {
-  let items = client.listMcpTools(
-    byItem: ListMcpToolsRequest()
+  let items = client.listMcpToolsByItems(
+    request: ListMcpToolsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/apiNamespaces/\(apiNamespaceId)/mcpServers/\(mcpServerId)"

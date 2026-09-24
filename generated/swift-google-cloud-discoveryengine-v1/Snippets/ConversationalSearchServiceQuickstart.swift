@@ -24,8 +24,8 @@
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.ConversationalSearchServiceClient()
-    let items = client.listConversations(
-      byItem: ListConversationsRequest()
+    let items = client.listConversationsByItems(
+      request: ListConversationsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"
         }

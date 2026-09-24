@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudVideoTranscoderV1
 
 func sample(client: TranscoderServiceClient, parent: String) async throws {
-  let items = client.listJobTemplates(
-    byItem: ListJobTemplatesRequest()
+  let items = client.listJobTemplatesByItems(
+    request: ListJobTemplatesRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BusinessGlossaryServiceClient, parent: String) async throws {
-  let items = client.listGlossaries(
-    byItem: ListGlossariesRequest()
+  let items = client.listGlossariesByItems(
+    request: ListGlossariesRequest()
       .with {
         $0.parent = "\(parent)"
       }

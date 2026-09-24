@@ -180,28 +180,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: ZoneOperationsClient.ListRequest
+    public func listByItems(
+      request: ZoneOperationsClient.ListRequest
     ) -> any AsyncSequence<Operation, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of Operation resources contained within
     /// the specified zone.
     ///
     /// @Snippet(path: "zoneOperations_list")
-    public func list(
-      byItem: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<Operation, Swift.Error> {
@@ -209,7 +209,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func wait(request: ZoneOperationsClient.WaitRequest) async throws

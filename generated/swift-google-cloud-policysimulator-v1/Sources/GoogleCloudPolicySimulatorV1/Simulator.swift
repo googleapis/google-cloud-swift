@@ -260,10 +260,10 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listReplayResults(
-    byItem: ListReplayResultsRequest
+  public func listReplayResultsByItems(
+    request: ListReplayResultsRequest
   ) -> any AsyncSequence<ReplayResult, Swift.Error> {
-    self.listReplayResults(byItem: byItem, options: .init())
+    self.listReplayResultsByItems(request: request, options: .init())
   }
 
   /// Lists the results of running a
@@ -272,26 +272,26 @@ extension Clients.SimulatorProtocol {
   /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
   ///
   /// @Snippet(path: "Simulator_ListReplayResults")
-  public func listReplayResults(
-    byItem: ListReplayResultsRequest, options: GoogleGax.RequestOptions
+  public func listReplayResultsByItems(
+    request: ListReplayResultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ReplayResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudPolicySimulatorV1.ListReplayResultsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listReplayResults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listReplayResults(
+  public func listReplayResultsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ReplayResult, Swift.Error> {
     let request = ListReplayResultsRequest().with {
       $0.parent = parent
     }
-    return self.listReplayResults(byItem: request)
+    return self.listReplayResultsByItems(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -306,10 +306,10 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -317,19 +317,19 @@ extension Clients.SimulatorProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Simulator_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -337,7 +337,7 @@ extension Clients.SimulatorProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

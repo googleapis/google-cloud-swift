@@ -29,8 +29,8 @@ import GoogleWKT
 func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String, dataTaxonomyId: String
 ) async throws {
-  let items = client.listDataAttributes(
-    byItem: ListDataAttributesRequest()
+  let items = client.listDataAttributesByItems(
+    request: ListDataAttributesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/dataTaxonomies/\(dataTaxonomyId)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 
 func sample(sessionId: String, ) async throws {
   let client = try GoogleShowcaseV1Beta1.TestingClient()
-  let items = client.listTests(
-    byItem: ListTestsRequest()
+  let items = client.listTestsByItems(
+    request: ListTestsRequest()
       .with {
         $0.parent = "sessions/\(sessionId)"
       }

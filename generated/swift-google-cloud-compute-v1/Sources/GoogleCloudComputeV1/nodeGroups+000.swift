@@ -660,10 +660,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: NodeGroupsClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: NodeGroupsClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of node groups.
@@ -673,25 +673,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeGroups_aggregatedList")
-    public func aggregatedList(
-      byItem: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeGroupAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> {
       let request = NodeGroupsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: NodeGroupsClient.DeleteRequest) async throws
@@ -886,28 +886,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: NodeGroupsClient.ListRequest
+    public func listByItems(
+      request: NodeGroupsClient.ListRequest
     ) -> any AsyncSequence<NodeGroup, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of node groups available to the specified project.
     /// Note: use nodeGroups.listNodes for more details about each group.
     ///
     /// @Snippet(path: "nodeGroups_list")
-    public func list(
-      byItem: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NodeGroup, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeGroupList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<NodeGroup, Swift.Error> {
@@ -915,7 +915,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listNodes(request: NodeGroupsClient.ListNodesRequest) async throws
@@ -930,28 +930,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNodes(
-      byItem: NodeGroupsClient.ListNodesRequest
+    public func listNodesByItems(
+      request: NodeGroupsClient.ListNodesRequest
     ) -> any AsyncSequence<NodeGroupNode, Swift.Error> {
-      self.listNodes(byItem: byItem, options: .init())
+      self.listNodesByItems(request: request, options: .init())
     }
 
     /// Lists nodes in the node group.
     ///
     /// @Snippet(path: "nodeGroups_listNodes")
-    public func listNodes(
-      byItem: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
+    public func listNodesByItems(
+      request: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NodeGroupNode, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeGroupsListNodes in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNodes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNodes(
+    public func listNodesByItems(
       project: Swift.String,
       zone: Swift.String,
       nodeGroup: Swift.String,
@@ -961,7 +961,7 @@
         $0.zone = zone
         $0.nodeGroup = nodeGroup
       }
-      return self.listNodes(byItem: request)
+      return self.listNodesByItems(request: request)
     }
 
     public func patch(request: NodeGroupsClient.PatchRequest) async throws

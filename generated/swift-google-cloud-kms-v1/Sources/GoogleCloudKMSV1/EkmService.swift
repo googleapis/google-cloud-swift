@@ -299,10 +299,10 @@ extension Clients.EkmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEkmConnections(
-    byItem: ListEkmConnectionsRequest
+  public func listEkmConnectionsByItems(
+    request: ListEkmConnectionsRequest
   ) -> any AsyncSequence<EkmConnection, Swift.Error> {
-    self.listEkmConnections(byItem: byItem, options: .init())
+    self.listEkmConnectionsByItems(request: request, options: .init())
   }
 
   /// Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
@@ -310,25 +310,25 @@ extension Clients.EkmServiceProtocol {
   /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
   ///
   /// @Snippet(path: "EkmService_ListEkmConnections")
-  public func listEkmConnections(
-    byItem: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listEkmConnectionsByItems(
+    request: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EkmConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEkmConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEkmConnections(
+  public func listEkmConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EkmConnection, Swift.Error> {
     let request = ListEkmConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listEkmConnections(byItem: request)
+    return self.listEkmConnectionsByItems(request: request)
   }
 
   public func getEkmConnection(request: GetEkmConnectionRequest) async throws
@@ -476,10 +476,10 @@ extension Clients.EkmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -502,12 +502,12 @@ extension Clients.EkmServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "EkmService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

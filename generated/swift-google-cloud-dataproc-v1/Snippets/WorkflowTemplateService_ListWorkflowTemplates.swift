@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(client: WorkflowTemplateServiceClient, projectId: String, regionId: String) async throws
 {
-  let items = client.listWorkflowTemplates(
-    byItem: ListWorkflowTemplatesRequest()
+  let items = client.listWorkflowTemplatesByItems(
+    request: ListWorkflowTemplatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/regions/\(regionId)"
       }

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: EdgeContainerClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let items = client.listNodePools(
-    byItem: ListNodePoolsRequest()
+  let items = client.listNodePoolsByItems(
+    request: ListNodePoolsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
       }

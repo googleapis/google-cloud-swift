@@ -470,33 +470,33 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listJobs(
-    byItem: ListJobsRequest
+  public func listJobsByItems(
+    request: ListJobsRequest
   ) -> any AsyncSequence<Job, Swift.Error> {
-    self.listJobs(byItem: byItem, options: .init())
+    self.listJobsByItems(request: request, options: .init())
   }
 
   /// Lists Jobs. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "Jobs_ListJobs")
-  public func listJobs(
-    byItem: ListJobsRequest, options: GoogleGax.RequestOptions
+  public func listJobsByItems(
+    request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Job, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listJobs(
+  public func listJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Job, Swift.Error> {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
-    return self.listJobs(byItem: request)
+    return self.listJobsByItems(request: request)
   }
 
   public func updateJob(request: UpdateJobRequest) async throws -> GoogleLongRunning.Operation {
@@ -652,10 +652,10 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -663,19 +663,19 @@ extension Clients.JobsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Jobs_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -683,7 +683,7 @@ extension Clients.JobsProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

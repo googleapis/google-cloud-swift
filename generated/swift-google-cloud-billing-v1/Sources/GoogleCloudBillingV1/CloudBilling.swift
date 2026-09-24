@@ -307,10 +307,10 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBillingAccounts(
-    byItem: ListBillingAccountsRequest
+  public func listBillingAccountsByItems(
+    request: ListBillingAccountsRequest
   ) -> any AsyncSequence<BillingAccount, Swift.Error> {
-    self.listBillingAccounts(byItem: byItem, options: .init())
+    self.listBillingAccountsByItems(request: request, options: .init())
   }
 
   /// Lists the billing accounts that the current authenticated user has
@@ -318,25 +318,25 @@ extension Clients.CloudBillingProtocol {
   /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_ListBillingAccounts")
-  public func listBillingAccounts(
-    byItem: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
+  public func listBillingAccountsByItems(
+    request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BillingAccount, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBillingAccounts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBillingAccounts(
+  public func listBillingAccountsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<BillingAccount, Swift.Error> {
     let request = ListBillingAccountsRequest().with {
       $0.parent = parent
     }
-    return self.listBillingAccounts(byItem: request)
+    return self.listBillingAccountsByItems(request: request)
   }
 
   public func updateBillingAccount(request: UpdateBillingAccountRequest) async throws
@@ -406,10 +406,10 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listProjectBillingInfo(
-    byItem: ListProjectBillingInfoRequest
+  public func listProjectBillingInfoByItems(
+    request: ListProjectBillingInfoRequest
   ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
-    self.listProjectBillingInfo(byItem: byItem, options: .init())
+    self.listProjectBillingInfoByItems(request: request, options: .init())
   }
 
   /// Lists the projects associated with a billing account. The current
@@ -418,25 +418,25 @@ extension Clients.CloudBillingProtocol {
   /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
-  public func listProjectBillingInfo(
-    byItem: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
+  public func listProjectBillingInfoByItems(
+    request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listProjectBillingInfo(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listProjectBillingInfo(
+  public func listProjectBillingInfoByItems(
     name: Swift.String,
   ) -> any AsyncSequence<ProjectBillingInfo, Swift.Error> {
     let request = ListProjectBillingInfoRequest().with {
       $0.name = name
     }
-    return self.listProjectBillingInfo(byItem: request)
+    return self.listProjectBillingInfoByItems(request: request)
   }
 
   public func getProjectBillingInfo(request: GetProjectBillingInfoRequest) async throws

@@ -443,35 +443,35 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPrincipalAccessBoundaryPolicies(
-    byItem: ListPrincipalAccessBoundaryPoliciesRequest
+  public func listPrincipalAccessBoundaryPoliciesByItems(
+    request: ListPrincipalAccessBoundaryPoliciesRequest
   ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
-    self.listPrincipalAccessBoundaryPolicies(byItem: byItem, options: .init())
+    self.listPrincipalAccessBoundaryPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists principal access boundary policies.
   ///
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_ListPrincipalAccessBoundaryPolicies")
-  public func listPrincipalAccessBoundaryPolicies(
-    byItem: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listPrincipalAccessBoundaryPoliciesByItems(
+    request: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPrincipalAccessBoundaryPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPrincipalAccessBoundaryPolicies(
+  public func listPrincipalAccessBoundaryPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> {
     let request = ListPrincipalAccessBoundaryPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listPrincipalAccessBoundaryPolicies(byItem: request)
+    return self.listPrincipalAccessBoundaryPoliciesByItems(request: request)
   }
 
   public func searchPrincipalAccessBoundaryPolicyBindings(
@@ -486,23 +486,23 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchPrincipalAccessBoundaryPolicyBindings(
-    byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest
+  public func searchPrincipalAccessBoundaryPolicyBindingsByItems(
+    request: SearchPrincipalAccessBoundaryPolicyBindingsRequest
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
-    self.searchPrincipalAccessBoundaryPolicyBindings(byItem: byItem, options: .init())
+    self.searchPrincipalAccessBoundaryPolicyBindingsByItems(request: request, options: .init())
   }
 
   /// Returns all policy bindings that bind a specific policy if a user has
   /// searchPolicyBindings permission on that policy.
   ///
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_SearchPrincipalAccessBoundaryPolicyBindings")
-  public func searchPrincipalAccessBoundaryPolicyBindings(
-    byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  public func searchPrincipalAccessBoundaryPolicyBindingsByItems(
+    request: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchPrincipalAccessBoundaryPolicyBindings(
         request: request, options: options)
@@ -510,13 +510,13 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchPrincipalAccessBoundaryPolicyBindings(
+  public func searchPrincipalAccessBoundaryPolicyBindingsByItems(
     name: Swift.String,
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let request = SearchPrincipalAccessBoundaryPolicyBindingsRequest().with {
       $0.name = name
     }
-    return self.searchPrincipalAccessBoundaryPolicyBindings(byItem: request)
+    return self.searchPrincipalAccessBoundaryPolicyBindingsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

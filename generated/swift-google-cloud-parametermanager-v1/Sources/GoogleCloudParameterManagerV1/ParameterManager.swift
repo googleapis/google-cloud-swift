@@ -415,34 +415,34 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listParameters(
-    byItem: ListParametersRequest
+  public func listParametersByItems(
+    request: ListParametersRequest
   ) -> any AsyncSequence<Parameter, Swift.Error> {
-    self.listParameters(byItem: byItem, options: .init())
+    self.listParametersByItems(request: request, options: .init())
   }
 
   /// Lists Parameters in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_ListParameters")
-  public func listParameters(
-    byItem: ListParametersRequest, options: GoogleGax.RequestOptions
+  public func listParametersByItems(
+    request: ListParametersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Parameter, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudParameterManagerV1.ListParametersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listParameters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listParameters(
+  public func listParametersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Parameter, Swift.Error> {
     let request = ListParametersRequest().with {
       $0.parent = parent
     }
-    return self.listParameters(byItem: request)
+    return self.listParametersByItems(request: request)
   }
 
   public func getParameter(request: GetParameterRequest) async throws
@@ -545,35 +545,35 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listParameterVersions(
-    byItem: ListParameterVersionsRequest
+  public func listParameterVersionsByItems(
+    request: ListParameterVersionsRequest
   ) -> any AsyncSequence<ParameterVersion, Swift.Error> {
-    self.listParameterVersions(byItem: byItem, options: .init())
+    self.listParameterVersionsByItems(request: request, options: .init())
   }
 
   /// Lists ParameterVersions in a given project, location, and parameter.
   ///
   /// @Snippet(path: "ParameterManager_ListParameterVersions")
-  public func listParameterVersions(
-    byItem: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
+  public func listParameterVersionsByItems(
+    request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ParameterVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listParameterVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listParameterVersions(
+  public func listParameterVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ParameterVersion, Swift.Error> {
     let request = ListParameterVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listParameterVersions(byItem: request)
+    return self.listParameterVersionsByItems(request: request)
   }
 
   public func getParameterVersion(request: GetParameterVersionRequest) async throws
@@ -697,34 +697,34 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTemplates(
-    byItem: ListTemplatesRequest
+  public func listTemplatesByItems(
+    request: ListTemplatesRequest
   ) -> any AsyncSequence<Template, Swift.Error> {
-    self.listTemplates(byItem: byItem, options: .init())
+    self.listTemplatesByItems(request: request, options: .init())
   }
 
   /// Lists Templates in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_ListTemplates")
-  public func listTemplates(
-    byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
+  public func listTemplatesByItems(
+    request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Template, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTemplates(
+  public func listTemplatesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Template, Swift.Error> {
     let request = ListTemplatesRequest().with {
       $0.parent = parent
     }
-    return self.listTemplates(byItem: request)
+    return self.listTemplatesByItems(request: request)
   }
 
   public func getTemplate(request: GetTemplateRequest) async throws
@@ -827,35 +827,35 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTemplateVersions(
-    byItem: ListTemplateVersionsRequest
+  public func listTemplateVersionsByItems(
+    request: ListTemplateVersionsRequest
   ) -> any AsyncSequence<TemplateVersion, Swift.Error> {
-    self.listTemplateVersions(byItem: byItem, options: .init())
+    self.listTemplateVersionsByItems(request: request, options: .init())
   }
 
   /// Lists TemplateVersions in a given project, location, and template.
   ///
   /// @Snippet(path: "ParameterManager_ListTemplateVersions")
-  public func listTemplateVersions(
-    byItem: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
+  public func listTemplateVersionsByItems(
+    request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TemplateVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTemplateVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTemplateVersions(
+  public func listTemplateVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TemplateVersion, Swift.Error> {
     let request = ListTemplateVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listTemplateVersions(byItem: request)
+    return self.listTemplateVersionsByItems(request: request)
   }
 
   public func getTemplateVersion(request: GetTemplateVersionRequest) async throws
@@ -979,10 +979,10 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -1005,12 +1005,12 @@ extension Clients.ParameterManagerProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ParameterManager_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

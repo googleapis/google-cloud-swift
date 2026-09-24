@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: CloudBillingClient) async throws {
-  let items = client.listProjectBillingInfo(
-    byItem: ListProjectBillingInfoRequest()
+  let items = client.listProjectBillingInfoByItems(
+    request: ListProjectBillingInfoRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

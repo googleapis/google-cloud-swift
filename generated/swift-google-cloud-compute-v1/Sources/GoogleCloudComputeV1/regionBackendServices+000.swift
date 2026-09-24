@@ -638,29 +638,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionBackendServicesClient.ListRequest
+    public func listByItems(
+      request: RegionBackendServicesClient.ListRequest
     ) -> any AsyncSequence<BackendService, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of regional BackendService resources available to the
     /// specified project in the given region.
     ///
     /// @Snippet(path: "regionBackendServices_list")
-    public func list(
-      byItem: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackendService, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<BackendService, Swift.Error> {
@@ -668,7 +668,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listUsable(request: RegionBackendServicesClient.ListUsableRequest) async throws
@@ -683,10 +683,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listUsable(
-      byItem: RegionBackendServicesClient.ListUsableRequest
+    public func listUsableByItems(
+      request: RegionBackendServicesClient.ListUsableRequest
     ) -> any AsyncSequence<BackendService, Swift.Error> {
-      self.listUsable(byItem: byItem, options: .init())
+      self.listUsableByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of all usable backend services for Application Load
@@ -695,19 +695,19 @@
     /// Network Load Balancers are not included in the response.
     ///
     /// @Snippet(path: "regionBackendServices_listUsable")
-    public func listUsable(
-      byItem: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
+    public func listUsableByItems(
+      request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackendService, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceListUsable in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listUsable(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listUsable(
+    public func listUsableByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<BackendService, Swift.Error> {
@@ -715,7 +715,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.listUsable(byItem: request)
+      return self.listUsableByItems(request: request)
     }
 
     public func patch(request: RegionBackendServicesClient.PatchRequest) async throws

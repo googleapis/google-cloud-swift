@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProjectsClient, parent: String) async throws {
-  let items = client.listProjects(
-    byItem: ListProjectsRequest()
+  let items = client.listProjectsByItems(
+    request: ListProjectsRequest()
       .with {
         $0.parent = "\(parent)"
       }

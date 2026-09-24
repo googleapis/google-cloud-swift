@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let items = client.listMemoryLayers(
-    byItem: ListMemoryLayersRequest()
+  let items = client.listMemoryLayersByItems(
+    request: ListMemoryLayersRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
       }

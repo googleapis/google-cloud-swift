@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudContentWarehouseV1.SynonymSetServiceClient()
-  let items = client.listSynonymSets(
-    byItem: ListSynonymSetsRequest()
+  let items = client.listSynonymSetsByItems(
+    request: ListSynonymSetsRequest()
       .with {
         $0.parent = "\(parent)"
       }

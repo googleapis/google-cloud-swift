@@ -26,8 +26,8 @@
 
   func sample(projectId: String, locationId: String, reasoningEngineId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.SessionServiceClient()
-    let items = client.listSessions(
-      byItem: ListSessionsRequest()
+    let items = client.listSessionsByItems(
+      request: ListSessionsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/reasoningEngines/\(reasoningEngineId)"

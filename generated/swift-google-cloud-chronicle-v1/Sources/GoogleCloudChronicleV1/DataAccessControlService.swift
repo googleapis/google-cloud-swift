@@ -323,34 +323,34 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataAccessLabels(
-    byItem: ListDataAccessLabelsRequest
+  public func listDataAccessLabelsByItems(
+    request: ListDataAccessLabelsRequest
   ) -> any AsyncSequence<DataAccessLabel, Swift.Error> {
-    self.listDataAccessLabels(byItem: byItem, options: .init())
+    self.listDataAccessLabelsByItems(request: request, options: .init())
   }
 
   /// Lists all data access labels for the customer.
   ///
   /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
-  public func listDataAccessLabels(
-    byItem: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
+  public func listDataAccessLabelsByItems(
+    request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataAccessLabel, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataAccessLabels(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataAccessLabels(
+  public func listDataAccessLabelsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataAccessLabel, Swift.Error> {
     let request = ListDataAccessLabelsRequest().with {
       $0.parent = parent
     }
-    return self.listDataAccessLabels(byItem: request)
+    return self.listDataAccessLabelsByItems(request: request)
   }
 
   public func updateDataAccessLabel(request: UpdateDataAccessLabelRequest) async throws
@@ -453,34 +453,34 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataAccessScopes(
-    byItem: ListDataAccessScopesRequest
+  public func listDataAccessScopesByItems(
+    request: ListDataAccessScopesRequest
   ) -> any AsyncSequence<DataAccessScope, Swift.Error> {
-    self.listDataAccessScopes(byItem: byItem, options: .init())
+    self.listDataAccessScopesByItems(request: request, options: .init())
   }
 
   /// Lists all existing data access scopes for the customer.
   ///
   /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
-  public func listDataAccessScopes(
-    byItem: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
+  public func listDataAccessScopesByItems(
+    request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataAccessScope, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataAccessScopesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataAccessScopes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataAccessScopes(
+  public func listDataAccessScopesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataAccessScope, Swift.Error> {
     let request = ListDataAccessScopesRequest().with {
       $0.parent = parent
     }
-    return self.listDataAccessScopes(byItem: request)
+    return self.listDataAccessScopesByItems(request: request)
   }
 
   public func updateDataAccessScope(request: UpdateDataAccessScopeRequest) async throws
@@ -537,10 +537,10 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -548,19 +548,19 @@ extension Clients.DataAccessControlServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataAccessControlService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -568,7 +568,7 @@ extension Clients.DataAccessControlServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

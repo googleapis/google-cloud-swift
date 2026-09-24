@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworksClient) async throws {
-    let items = client.listPeeringRoutes(
-      byItem: NetworksClient.ListPeeringRoutesRequest()
+    let items = client.listPeeringRoutesByItems(
+      request: NetworksClient.ListPeeringRoutesRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

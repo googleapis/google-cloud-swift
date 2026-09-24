@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ProductSearchClient, projectId: String, locationId: String, productId: String)
   async throws
 {
-  let items = client.listReferenceImages(
-    byItem: ListReferenceImagesRequest()
+  let items = client.listReferenceImagesByItems(
+    request: ListReferenceImagesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/products/\(productId)"
       }

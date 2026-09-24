@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: IdentityMappingStoreServiceClient) async throws {
-    let items = client.listIdentityMappings(
-      byItem: ListIdentityMappingsRequest()
+    let items = client.listIdentityMappingsByItems(
+      request: ListIdentityMappingsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

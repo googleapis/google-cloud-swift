@@ -154,10 +154,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: SqlBackupRunsListRequest
+    public func listByItems(
+      request: SqlBackupRunsListRequest
     ) -> any AsyncSequence<BackupRun, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists all backup runs associated with the project or a given instance
@@ -165,12 +165,12 @@
     /// initiation time.
     ///
     /// @Snippet(path: "SqlBackupRunsService_List")
-    public func list(
-      byItem: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BackupRun, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.BackupRunsListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }

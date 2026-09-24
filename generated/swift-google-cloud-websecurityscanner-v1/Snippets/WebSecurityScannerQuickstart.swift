@@ -21,8 +21,8 @@ import GoogleCloudWebSecurityScannerV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudWebSecurityScannerV1.WebSecurityScannerClient()
-  let items = client.listFindings(
-    byItem: ListFindingsRequest()
+  let items = client.listFindingsByItems(
+    request: ListFindingsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -579,34 +579,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: InterconnectGroupsClient.ListRequest
+    public func listByItems(
+      request: InterconnectGroupsClient.ListRequest
     ) -> any AsyncSequence<InterconnectGroup, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists the InterconnectGroups for a project in the given scope.
     ///
     /// @Snippet(path: "interconnectGroups_list")
-    public func list(
-      byItem: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InterconnectGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectGroupsListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<InterconnectGroup, Swift.Error> {
       let request = InterconnectGroupsClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: InterconnectGroupsClient.PatchRequest) async throws

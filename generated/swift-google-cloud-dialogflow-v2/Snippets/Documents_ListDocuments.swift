@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: DocumentsClient, projectId: String, knowledgeBaseId: String) async throws {
-    let items = client.listDocuments(
-      byItem: ListDocumentsRequest()
+    let items = client.listDocumentsByItems(
+      request: ListDocumentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/knowledgeBases/\(knowledgeBaseId)"
         }

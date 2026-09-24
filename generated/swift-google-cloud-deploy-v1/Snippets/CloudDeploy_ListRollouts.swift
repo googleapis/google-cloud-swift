@@ -27,8 +27,8 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   releaseId: String
 ) async throws {
-  let items = client.listRollouts(
-    byItem: ListRolloutsRequest()
+  let items = client.listRolloutsByItems(
+    request: ListRolloutsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/deliveryPipelines/\(deliveryPipelineId)/releases/\(releaseId)"

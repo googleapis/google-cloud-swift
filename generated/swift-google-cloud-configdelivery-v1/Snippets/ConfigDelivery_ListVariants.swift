@@ -26,8 +26,8 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String
 ) async throws {
-  let items = client.listVariants(
-    byItem: ListVariantsRequest()
+  let items = client.listVariantsByItems(
+    request: ListVariantsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/resourceBundles/\(resourceBundleId)/releases/\(releaseId)"

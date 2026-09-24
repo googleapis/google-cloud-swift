@@ -675,10 +675,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: TargetPoolsClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: TargetPoolsClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of target pools.
@@ -687,25 +687,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetPools_aggregatedList")
-    public func aggregatedList(
-      byItem: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
       let request = TargetPoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: TargetPoolsClient.DeleteRequest) async throws
@@ -856,28 +856,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: TargetPoolsClient.ListRequest
+    public func listByItems(
+      request: TargetPoolsClient.ListRequest
     ) -> any AsyncSequence<TargetPool, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of target pools available to the specified
     /// project and region.
     ///
     /// @Snippet(path: "targetPools_list")
-    public func list(
-      byItem: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetPool, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<TargetPool, Swift.Error> {
@@ -885,7 +885,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func removeHealthCheck(request: TargetPoolsClient.RemoveHealthCheckRequest) async throws

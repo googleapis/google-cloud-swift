@@ -21,8 +21,8 @@ import GoogleCloudMaintenanceApiV1
 import GoogleCloudLocation
 
 func sample(client: MaintenanceClient, projectId: String, locationId: String) async throws {
-  let items = client.listResourceMaintenances(
-    byItem: ListResourceMaintenancesRequest()
+  let items = client.listResourceMaintenancesByItems(
+    request: ListResourceMaintenancesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

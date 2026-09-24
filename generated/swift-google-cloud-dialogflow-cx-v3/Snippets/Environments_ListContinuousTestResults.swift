@@ -27,8 +27,8 @@
     client: EnvironmentsClient, projectId: String, locationId: String, agentId: String,
     environmentId: String
   ) async throws {
-    let items = client.listContinuousTestResults(
-      byItem: ListContinuousTestResultsRequest()
+    let items = client.listContinuousTestResultsByItems(
+      request: ListContinuousTestResultsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/environments/\(environmentId)"

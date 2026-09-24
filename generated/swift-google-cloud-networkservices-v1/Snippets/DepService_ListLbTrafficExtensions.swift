@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DepServiceClient, projectId: String, locationId: String) async throws {
-  let items = client.listLbTrafficExtensions(
-    byItem: ListLbTrafficExtensionsRequest()
+  let items = client.listLbTrafficExtensionsByItems(
+    request: ListLbTrafficExtensionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

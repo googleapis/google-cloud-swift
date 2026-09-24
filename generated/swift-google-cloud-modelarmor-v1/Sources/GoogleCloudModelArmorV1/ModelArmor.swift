@@ -216,34 +216,34 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTemplates(
-    byItem: ListTemplatesRequest
+  public func listTemplatesByItems(
+    request: ListTemplatesRequest
   ) -> any AsyncSequence<Template, Swift.Error> {
-    self.listTemplates(byItem: byItem, options: .init())
+    self.listTemplatesByItems(request: request, options: .init())
   }
 
   /// Lists Templates in a given project and location.
   ///
   /// @Snippet(path: "ModelArmor_ListTemplates")
-  public func listTemplates(
-    byItem: ListTemplatesRequest, options: GoogleGax.RequestOptions
+  public func listTemplatesByItems(
+    request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Template, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTemplates(
+  public func listTemplatesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Template, Swift.Error> {
     let request = ListTemplatesRequest().with {
       $0.parent = parent
     }
-    return self.listTemplates(byItem: request)
+    return self.listTemplatesByItems(request: request)
   }
 
   public func getTemplate(request: GetTemplateRequest) async throws
@@ -414,21 +414,21 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ModelArmor_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

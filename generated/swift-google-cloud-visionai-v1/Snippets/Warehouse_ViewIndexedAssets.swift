@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient) async throws {
-  let items = client.viewIndexedAssets(
-    byItem: ViewIndexedAssetsRequest()
+  let items = client.viewIndexedAssetsByItems(
+    request: ViewIndexedAssetsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

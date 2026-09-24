@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let items = client.listEvents(
-    byItem: ListEventsRequest()
+  let items = client.listEventsByItems(
+    request: ListEventsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"
       }

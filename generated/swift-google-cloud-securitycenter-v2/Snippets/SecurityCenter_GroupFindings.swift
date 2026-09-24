@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecurityCenterClient) async throws {
-  let items = client.groupFindings(
-    byItem: GroupFindingsRequest()
+  let items = client.groupFindingsByItems(
+    request: GroupFindingsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

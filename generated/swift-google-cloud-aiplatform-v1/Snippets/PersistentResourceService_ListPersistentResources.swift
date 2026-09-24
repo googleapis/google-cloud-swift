@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: PersistentResourceServiceClient, parent: String) async throws {
-    let items = client.listPersistentResources(
-      byItem: ListPersistentResourcesRequest()
+    let items = client.listPersistentResourcesByItems(
+      request: ListPersistentResourcesRequest()
         .with {
           $0.parent = "\(parent)"
         }

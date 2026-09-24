@@ -276,10 +276,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: NetworkEdgeSecurityServicesClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all NetworkEdgeSecurityService resources available to
@@ -289,27 +289,27 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
-    public func aggregatedList(
-      byItem: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
+    public func aggregatedListByItems(
+      request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
       let request = NetworkEdgeSecurityServicesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: NetworkEdgeSecurityServicesClient.DeleteRequest) async throws

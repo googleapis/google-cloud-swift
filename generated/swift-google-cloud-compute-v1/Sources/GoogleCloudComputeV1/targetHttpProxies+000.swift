@@ -341,10 +341,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: TargetHttpProxiesClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: TargetHttpProxiesClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all TargetHttpProxy resources, regional and global,
@@ -354,25 +354,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetHttpProxies_aggregatedList")
-    public func aggregatedList(
-      byItem: TargetHttpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: TargetHttpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> {
       let request = TargetHttpProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: TargetHttpProxiesClient.DeleteRequest) async throws
@@ -490,35 +490,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: TargetHttpProxiesClient.ListRequest
+    public func listByItems(
+      request: TargetHttpProxiesClient.ListRequest
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of TargetHttpProxy resources available
     /// to the specified project.
     ///
     /// @Snippet(path: "targetHttpProxies_list")
-    public func list(
-      byItem: TargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: TargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> {
       let request = TargetHttpProxiesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: TargetHttpProxiesClient.PatchRequest) async throws

@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudLoggingV2.LoggingServiceV2Client()
-  let items = client.listLogEntries(
-    byItem: ListLogEntriesRequest()
+  let items = client.listLogEntriesByItems(
+    request: ListLogEntriesRequest()
       .with {
         $0.resourceNames = ["projects/\(projectId)"]
       }

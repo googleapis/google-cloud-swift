@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, serviceId: String, ) async throws {
   let client = try GoogleCloudRunV2.RevisionsClient()
-  let items = client.listRevisions(
-    byItem: ListRevisionsRequest()
+  let items = client.listRevisionsByItems(
+    request: ListRevisionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"
       }

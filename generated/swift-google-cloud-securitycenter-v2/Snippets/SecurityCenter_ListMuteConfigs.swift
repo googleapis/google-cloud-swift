@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecurityCenterClient, organizationId: String) async throws {
-  let items = client.listMuteConfigs(
-    byItem: ListMuteConfigsRequest()
+  let items = client.listMuteConfigsByItems(
+    request: ListMuteConfigsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"
       }

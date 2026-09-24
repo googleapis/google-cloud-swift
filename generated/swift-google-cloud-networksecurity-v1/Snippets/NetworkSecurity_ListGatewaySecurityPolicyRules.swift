@@ -27,8 +27,8 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   gatewaySecurityPolicyId: String
 ) async throws {
-  let items = client.listGatewaySecurityPolicyRules(
-    byItem: ListGatewaySecurityPolicyRulesRequest()
+  let items = client.listGatewaySecurityPolicyRulesByItems(
+    request: ListGatewaySecurityPolicyRulesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/gatewaySecurityPolicies/\(gatewaySecurityPolicyId)"

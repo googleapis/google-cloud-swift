@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: BackendBucketsClient) async throws {
-    let items = client.listUsable(
-      byItem: BackendBucketsClient.ListUsableRequest()
+    let items = client.listUsableByItems(
+      request: BackendBucketsClient.ListUsableRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: ConversationProfilesClient, projectId: String) async throws {
-    let items = client.listConversationProfiles(
-      byItem: ListConversationProfilesRequest()
+    let items = client.listConversationProfilesByItems(
+      request: ListConversationProfilesRequest()
         .with {
           $0.parent = "projects/\(projectId)"
         }

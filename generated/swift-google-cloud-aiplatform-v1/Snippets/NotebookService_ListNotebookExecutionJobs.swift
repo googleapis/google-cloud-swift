@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: NotebookServiceClient, parent: String) async throws {
-    let items = client.listNotebookExecutionJobs(
-      byItem: ListNotebookExecutionJobsRequest()
+    let items = client.listNotebookExecutionJobsByItems(
+      request: ListNotebookExecutionJobsRequest()
         .with {
           $0.parent = "\(parent)"
         }

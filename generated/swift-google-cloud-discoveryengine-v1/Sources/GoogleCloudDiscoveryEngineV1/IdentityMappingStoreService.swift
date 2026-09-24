@@ -463,22 +463,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listIdentityMappings(
-      byItem: ListIdentityMappingsRequest
+    public func listIdentityMappingsByItems(
+      request: ListIdentityMappingsRequest
     ) -> any AsyncSequence<IdentityMappingEntry, Swift.Error> {
-      self.listIdentityMappings(byItem: byItem, options: .init())
+      self.listIdentityMappingsByItems(request: request, options: .init())
     }
 
     /// Lists Identity Mappings in an Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappings")
-    public func listIdentityMappings(
-      byItem: ListIdentityMappingsRequest, options: GoogleGax.RequestOptions
+    public func listIdentityMappingsByItems(
+      request: ListIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<IdentityMappingEntry, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listIdentityMappings(request: request, options: options)
       }
@@ -497,35 +497,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listIdentityMappingStores(
-      byItem: ListIdentityMappingStoresRequest
+    public func listIdentityMappingStoresByItems(
+      request: ListIdentityMappingStoresRequest
     ) -> any AsyncSequence<IdentityMappingStore, Swift.Error> {
-      self.listIdentityMappingStores(byItem: byItem, options: .init())
+      self.listIdentityMappingStoresByItems(request: request, options: .init())
     }
 
     /// Lists all Identity Mapping Stores.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
-    public func listIdentityMappingStores(
-      byItem: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
+    public func listIdentityMappingStoresByItems(
+      request: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<IdentityMappingStore, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingStoresResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listIdentityMappingStores(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listIdentityMappingStores(
+    public func listIdentityMappingStoresByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<IdentityMappingStore, Swift.Error> {
       let request = ListIdentityMappingStoresRequest().with {
         $0.parent = parent
       }
-      return self.listIdentityMappingStores(byItem: request)
+      return self.listIdentityMappingStoresByItems(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -540,10 +540,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -551,19 +551,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -571,7 +571,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

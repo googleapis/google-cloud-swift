@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CloudFilestoreManagerClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = client.listSnapshots(
-    byItem: ListSnapshotsRequest()
+  let items = client.listSnapshotsByItems(
+    request: ListSnapshotsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String) async throws {
-  let items = client.listQueuedResources(
-    byItem: ListQueuedResourcesRequest()
+  let items = client.listQueuedResourcesByItems(
+    request: ListQueuedResourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

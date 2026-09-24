@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDomainsV1.DomainsClient()
-  let items = client.listRegistrations(
-    byItem: ListRegistrationsRequest()
+  let items = client.listRegistrationsByItems(
+    request: ListRegistrationsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -341,10 +341,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listTools(
-      byItem: ListToolsRequest
+    public func listToolsByItems(
+      request: ListToolsRequest
     ) -> any AsyncSequence<Tool, Swift.Error> {
-      self.listTools(byItem: byItem, options: .init())
+      self.listToolsByItems(request: request, options: .init())
     }
 
     /// Returns a list of [Tools][google.cloud.dialogflow.cx.v3.Tool] in the
@@ -353,25 +353,25 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_ListTools")
-    public func listTools(
-      byItem: ListToolsRequest, options: GoogleGax.RequestOptions
+    public func listToolsByItems(
+      request: ListToolsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Tool, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListToolsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listTools(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listTools(
+    public func listToolsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<Tool, Swift.Error> {
       let request = ListToolsRequest().with {
         $0.parent = parent
       }
-      return self.listTools(byItem: request)
+      return self.listToolsByItems(request: request)
     }
 
     public func getTool(request: GetToolRequest) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -447,10 +447,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listToolVersions(
-      byItem: ListToolVersionsRequest
+    public func listToolVersionsByItems(
+      request: ListToolVersionsRequest
     ) -> any AsyncSequence<ToolVersion, Swift.Error> {
-      self.listToolVersions(byItem: byItem, options: .init())
+      self.listToolVersionsByItems(request: request, options: .init())
     }
 
     /// List versions of the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
@@ -458,25 +458,25 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_ListToolVersions")
-    public func listToolVersions(
-      byItem: ListToolVersionsRequest, options: GoogleGax.RequestOptions
+    public func listToolVersionsByItems(
+      request: ListToolVersionsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ToolVersion, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListToolVersionsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listToolVersions(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listToolVersions(
+    public func listToolVersionsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<ToolVersion, Swift.Error> {
       let request = ListToolVersionsRequest().with {
         $0.parent = parent
       }
-      return self.listToolVersions(byItem: request)
+      return self.listToolVersionsByItems(request: request)
     }
 
     public func createToolVersion(request: CreateToolVersionRequest) async throws
@@ -575,10 +575,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      self.listLocations(byItem: byItem, options: .init())
+      self.listLocationsByItems(request: request, options: .init())
     }
 
     /// Lists information about the supported locations for this service.
@@ -601,12 +601,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Tools_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
@@ -637,10 +637,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -648,19 +648,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Tools_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -668,7 +668,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

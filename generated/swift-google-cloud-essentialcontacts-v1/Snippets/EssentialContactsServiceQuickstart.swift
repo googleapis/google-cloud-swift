@@ -22,8 +22,8 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudEssentialContactsV1.EssentialContactsServiceClient()
-  let items = client.listContacts(
-    byItem: ListContactsRequest()
+  let items = client.listContactsByItems(
+    request: ListContactsRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

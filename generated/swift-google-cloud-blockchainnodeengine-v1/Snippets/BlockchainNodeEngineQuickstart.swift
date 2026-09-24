@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudBlockChainNodeEngineV1.BlockchainNodeEngineClient()
-  let items = client.listBlockchainNodes(
-    byItem: ListBlockchainNodesRequest()
+  let items = client.listBlockchainNodesByItems(
+    request: ListBlockchainNodesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

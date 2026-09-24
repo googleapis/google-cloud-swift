@@ -28,8 +28,8 @@
     client: FeaturestoreServiceClient, projectId: String, locationId: String,
     featurestoreId: String, entityTypeId: String
   ) async throws {
-    let items = client.listFeatures(
-      byItem: ListFeaturesRequest()
+    let items = client.listFeaturesByItems(
+      request: ListFeaturesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)/entityTypes/\(entityTypeId)"

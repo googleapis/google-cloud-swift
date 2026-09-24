@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: VpnTunnelsClient) async throws {
-    let items = client.list(
-      byItem: VpnTunnelsClient.ListRequest()
+    let items = client.listByItems(
+      request: VpnTunnelsClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

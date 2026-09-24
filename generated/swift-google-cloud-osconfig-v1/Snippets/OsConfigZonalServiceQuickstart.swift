@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudOSConfigV1.OsConfigZonalServiceClient()
-  let items = client.listOspolicyAssignments(
-    byItem: ListOSPolicyAssignmentsRequest()
+  let items = client.listOspolicyAssignmentsByItems(
+    request: ListOSPolicyAssignmentsRequest()
       .with {
         $0.parent = "\(parent)"
       }

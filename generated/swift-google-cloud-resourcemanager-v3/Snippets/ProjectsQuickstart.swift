@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudResourceManagerV3.ProjectsClient()
-  let items = client.listProjects(
-    byItem: ListProjectsRequest()
+  let items = client.listProjectsByItems(
+    request: ListProjectsRequest()
       .with {
         $0.parent = "\(parent)"
       }

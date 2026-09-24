@@ -76,28 +76,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionZonesClient.ListRequest
+    public func listByItems(
+      request: RegionZonesClient.ListRequest
     ) -> any AsyncSequence<Zone, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of Zone resources under the specific region available to
     /// the specified project.
     ///
     /// @Snippet(path: "regionZones_list")
-    public func list(
-      byItem: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Zone, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ZoneList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<Zone, Swift.Error> {
@@ -105,7 +105,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
   }
 #else

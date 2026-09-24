@@ -23,8 +23,8 @@ import GoogleType
 import GoogleWKT
 
 func sample(client: DomainsClient, parent: String) async throws {
-  let items = client.listRegistrations(
-    byItem: ListRegistrationsRequest()
+  let items = client.listRegistrationsByItems(
+    request: ListRegistrationsRequest()
       .with {
         $0.parent = "\(parent)"
       }

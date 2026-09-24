@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataFusionClient) async throws {
-  let items = client.listAvailableVersions(
-    byItem: ListAvailableVersionsRequest()
+  let items = client.listAvailableVersionsByItems(
+    request: ListAvailableVersionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

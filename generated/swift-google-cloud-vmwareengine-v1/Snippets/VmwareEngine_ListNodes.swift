@@ -27,8 +27,8 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   clusterId: String
 ) async throws {
-  let items = client.listNodes(
-    byItem: ListNodesRequest()
+  let items = client.listNodesByItems(
+    request: ListNodesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)/clusters/\(clusterId)"

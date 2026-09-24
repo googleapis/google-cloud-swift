@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkServicesV1.NetworkServicesClient()
-  let items = client.listEndpointPolicies(
-    byItem: ListEndpointPoliciesRequest()
+  let items = client.listEndpointPoliciesByItems(
+    request: ListEndpointPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

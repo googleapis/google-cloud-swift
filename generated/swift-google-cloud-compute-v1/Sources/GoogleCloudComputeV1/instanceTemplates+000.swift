@@ -284,10 +284,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: InstanceTemplatesClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: InstanceTemplatesClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all InstanceTemplates resources, regional and global,
@@ -297,25 +297,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instanceTemplates_aggregatedList")
-    public func aggregatedList(
-      byItem: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> {
       let request = InstanceTemplatesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: InstanceTemplatesClient.DeleteRequest) async throws
@@ -456,35 +456,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: InstanceTemplatesClient.ListRequest
+    public func listByItems(
+      request: InstanceTemplatesClient.ListRequest
     ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of instance templates that are contained within
     /// the specified project.
     ///
     /// @Snippet(path: "instanceTemplates_list")
-    public func list(
-      byItem: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<InstanceTemplate, Swift.Error> {
       let request = InstanceTemplatesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setIamPolicy(request: InstanceTemplatesClient.SetIamPolicyRequest) async throws

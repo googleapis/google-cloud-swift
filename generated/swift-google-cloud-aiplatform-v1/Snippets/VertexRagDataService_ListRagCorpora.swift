@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: VertexRagDataServiceClient, parent: String) async throws {
-    let items = client.listRagCorpora(
-      byItem: ListRagCorporaRequest()
+    let items = client.listRagCorporaByItems(
+      request: ListRagCorporaRequest()
         .with {
           $0.parent = "\(parent)"
         }

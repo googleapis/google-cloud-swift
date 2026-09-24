@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let items = client.listKmsConfigs(
-    byItem: ListKmsConfigsRequest()
+  let items = client.listKmsConfigsByItems(
+    request: ListKmsConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

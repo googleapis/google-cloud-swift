@@ -24,8 +24,8 @@
 
   func sample(projectId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.ConversationsClient()
-    let items = client.listConversations(
-      byItem: ListConversationsRequest()
+    let items = client.listConversationsByItems(
+      request: ListConversationsRequest()
         .with {
           $0.parent = "projects/\(projectId)"
         }

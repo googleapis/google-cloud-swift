@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.FutureReservationsClient()
-    let items = client.aggregatedList(
-      byItem: FutureReservationsClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: FutureReservationsClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

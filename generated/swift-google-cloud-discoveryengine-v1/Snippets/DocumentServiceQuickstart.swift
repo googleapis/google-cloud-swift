@@ -24,8 +24,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.DocumentServiceClient()
-    let items = client.listDocuments(
-      byItem: ListDocumentsRequest()
+    let items = client.listDocumentsByItems(
+      request: ListDocumentsRequest()
         .with {
           $0.parent = "\(parent)"
         }

@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, appId: String, ) async throws {
   let client = try GoogleCloudCESV1.AgentServiceClient()
-  let items = client.listAgents(
-    byItem: ListAgentsRequest()
+  let items = client.listAgentsByItems(
+    request: ListAgentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/apps/\(appId)"
       }

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DatastreamClient, projectId: String, locationId: String) async throws {
-  let items = client.listPrivateConnections(
-    byItem: ListPrivateConnectionsRequest()
+  let items = client.listPrivateConnectionsByItems(
+    request: ListPrivateConnectionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

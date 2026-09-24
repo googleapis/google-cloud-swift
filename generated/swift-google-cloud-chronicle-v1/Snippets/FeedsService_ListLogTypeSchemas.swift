@@ -26,8 +26,8 @@ func sample(
   client: FeedsServiceClient, projectId: String, locationId: String, instanceId: String,
   feedSourceTypeId: String
 ) async throws {
-  let items = client.listLogTypeSchemas(
-    byItem: ListLogTypeSchemasRequest()
+  let items = client.listLogTypeSchemasByItems(
+    request: ListLogTypeSchemasRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/feedSourceTypeSchemas/\(feedSourceTypeId)"

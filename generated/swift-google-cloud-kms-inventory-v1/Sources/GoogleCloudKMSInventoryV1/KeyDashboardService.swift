@@ -78,10 +78,10 @@ extension Clients.KeyDashboardServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCryptoKeys(
-    byItem: ListCryptoKeysRequest
+  public func listCryptoKeysByItems(
+    request: ListCryptoKeysRequest
   ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> {
-    self.listCryptoKeys(byItem: byItem, options: .init())
+    self.listCryptoKeysByItems(request: request, options: .init())
   }
 
   /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
@@ -89,24 +89,24 @@ extension Clients.KeyDashboardServiceProtocol {
   /// completely reflect the actual state of key metadata at call time.
   ///
   /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
-  public func listCryptoKeys(
-    byItem: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
+  public func listCryptoKeysByItems(
+    request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCryptoKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCryptoKeys(
+  public func listCryptoKeysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> {
     let request = ListCryptoKeysRequest().with {
       $0.parent = parent
     }
-    return self.listCryptoKeys(byItem: request)
+    return self.listCryptoKeysByItems(request: request)
   }
 }

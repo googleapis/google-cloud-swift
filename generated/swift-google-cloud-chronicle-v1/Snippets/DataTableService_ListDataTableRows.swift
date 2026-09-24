@@ -25,8 +25,8 @@ func sample(
   client: DataTableServiceClient, projectId: String, locationId: String, instanceId: String,
   dataTableId: String
 ) async throws {
-  let items = client.listDataTableRows(
-    byItem: ListDataTableRowsRequest()
+  let items = client.listDataTableRowsByItems(
+    request: ListDataTableRowsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/dataTables/\(dataTableId)"

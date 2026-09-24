@@ -26,8 +26,8 @@ func sample(
   client: MemorystoreClient, projectId: String, locationId: String, instanceId: String,
   tokenAuthUserId: String
 ) async throws {
-  let items = client.listAuthTokens(
-    byItem: ListAuthTokensRequest()
+  let items = client.listAuthTokensByItems(
+    request: ListAuthTokensRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/tokenAuthUsers/\(tokenAuthUserId)"

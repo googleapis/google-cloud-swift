@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.DatasetServiceClient()
-    let items = client.listDatasets(
-      byItem: ListDatasetsRequest()
+    let items = client.listDatasetsByItems(
+      request: ListDatasetsRequest()
         .with {
           $0.parent = "\(parent)"
         }

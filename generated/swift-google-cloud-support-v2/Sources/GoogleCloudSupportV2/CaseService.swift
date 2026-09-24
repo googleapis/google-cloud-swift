@@ -215,10 +215,10 @@ extension Clients.CaseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCases(
-    byItem: ListCasesRequest
+  public func listCasesByItems(
+    request: ListCasesRequest
   ) -> any AsyncSequence<Case, Swift.Error> {
-    self.listCases(byItem: byItem, options: .init())
+    self.listCasesByItems(request: request, options: .init())
   }
 
   /// Retrieve all cases under a parent, but not its children.
@@ -228,24 +228,24 @@ extension Clients.CaseServiceProtocol {
   /// under an organization and its projects, use `cases.search`.
   ///
   /// @Snippet(path: "CaseService_ListCases")
-  public func listCases(
-    byItem: ListCasesRequest, options: GoogleGax.RequestOptions
+  public func listCasesByItems(
+    request: ListCasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Case, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCasesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCases(
+  public func listCasesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Case, Swift.Error> {
     let request = ListCasesRequest().with {
       $0.parent = parent
     }
-    return self.listCases(byItem: request)
+    return self.listCasesByItems(request: request)
   }
 
   public func searchCases(request: SearchCasesRequest) async throws
@@ -260,21 +260,21 @@ extension Clients.CaseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchCases(
-    byItem: SearchCasesRequest
+  public func searchCasesByItems(
+    request: SearchCasesRequest
   ) -> any AsyncSequence<Case, Swift.Error> {
-    self.searchCases(byItem: byItem, options: .init())
+    self.searchCasesByItems(request: request, options: .init())
   }
 
   /// Search for cases using a query.
   ///
   /// @Snippet(path: "CaseService_SearchCases")
-  public func searchCases(
-    byItem: SearchCasesRequest, options: GoogleGax.RequestOptions
+  public func searchCasesByItems(
+    request: SearchCasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Case, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.SearchCasesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchCases(request: request, options: options)
     }
@@ -355,10 +355,10 @@ extension Clients.CaseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchCaseClassifications(
-    byItem: SearchCaseClassificationsRequest
+  public func searchCaseClassificationsByItems(
+    request: SearchCaseClassificationsRequest
   ) -> any AsyncSequence<CaseClassification, Swift.Error> {
-    self.searchCaseClassifications(byItem: byItem, options: .init())
+    self.searchCaseClassificationsByItems(request: request, options: .init())
   }
 
   /// Retrieve valid classifications to use when creating a support case.
@@ -373,13 +373,13 @@ extension Clients.CaseServiceProtocol {
   /// classification will fail.
   ///
   /// @Snippet(path: "CaseService_SearchCaseClassifications")
-  public func searchCaseClassifications(
-    byItem: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
+  public func searchCaseClassificationsByItems(
+    request: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CaseClassification, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchCaseClassifications(request: request, options: options)
     }

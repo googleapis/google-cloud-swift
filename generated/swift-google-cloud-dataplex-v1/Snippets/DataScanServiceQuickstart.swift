@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDataplexV1.DataScanServiceClient()
-  let items = client.listDataScans(
-    byItem: ListDataScansRequest()
+  let items = client.listDataScansByItems(
+    request: ListDataScansRequest()
       .with {
         $0.parent = "\(parent)"
       }

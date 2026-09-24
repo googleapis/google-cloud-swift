@@ -22,8 +22,8 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudMonitoringV3.AlertPolicyServiceClient()
-  let items = client.listAlertPolicies(
-    byItem: ListAlertPoliciesRequest()
+  let items = client.listAlertPoliciesByItems(
+    request: ListAlertPoliciesRequest()
       .with {
         $0.name = "projects/\(projectId)"
       }

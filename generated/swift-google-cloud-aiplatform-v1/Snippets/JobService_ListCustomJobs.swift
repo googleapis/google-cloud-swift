@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: JobServiceClient, parent: String) async throws {
-    let items = client.listCustomJobs(
-      byItem: ListCustomJobsRequest()
+    let items = client.listCustomJobsByItems(
+      request: ListCustomJobsRequest()
         .with {
           $0.parent = "\(parent)"
         }

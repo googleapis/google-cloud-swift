@@ -26,8 +26,8 @@
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.FeatureRegistryServiceClient()
-    let items = client.listFeatureGroups(
-      byItem: ListFeatureGroupsRequest()
+    let items = client.listFeatureGroupsByItems(
+      request: ListFeatureGroupsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

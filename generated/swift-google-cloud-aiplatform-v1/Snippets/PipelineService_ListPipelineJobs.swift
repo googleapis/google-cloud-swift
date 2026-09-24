@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: PipelineServiceClient, parent: String) async throws {
-    let items = client.listPipelineJobs(
-      byItem: ListPipelineJobsRequest()
+    let items = client.listPipelineJobsByItems(
+      request: ListPipelineJobsRequest()
         .with {
           $0.parent = "\(parent)"
         }

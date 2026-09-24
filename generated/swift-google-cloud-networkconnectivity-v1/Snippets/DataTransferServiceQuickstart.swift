@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkConnectivityV1.DataTransferServiceClient()
-  let items = client.listMulticloudDataTransferConfigs(
-    byItem: ListMulticloudDataTransferConfigsRequest()
+  let items = client.listMulticloudDataTransferConfigsByItems(
+    request: ListMulticloudDataTransferConfigsRequest()
       .with {
         $0.parent = "\(parent)"
       }

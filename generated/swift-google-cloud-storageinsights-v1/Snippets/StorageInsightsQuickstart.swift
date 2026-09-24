@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudStorageInsightsV1.StorageInsightsClient()
-  let items = client.listReportConfigs(
-    byItem: ListReportConfigsRequest()
+  let items = client.listReportConfigsByItems(
+    request: ListReportConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

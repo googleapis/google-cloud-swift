@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: DataPolicyServiceClient, projectId: String, locationId: String) async throws {
-  let items = client.listDataPolicies(
-    byItem: ListDataPoliciesRequest()
+  let items = client.listDataPoliciesByItems(
+    request: ListDataPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

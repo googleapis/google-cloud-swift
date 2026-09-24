@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: MigrationCenterClient, projectId: String, locationId: String, sourceId: String)
   async throws
 {
-  let items = client.listErrorFrames(
-    byItem: ListErrorFramesRequest()
+  let items = client.listErrorFramesByItems(
+    request: ListErrorFramesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)"
       }

@@ -21,8 +21,8 @@ import GoogleCloudBillingV1
 
 func sample(serviceId: String, ) async throws {
   let client = try GoogleCloudBillingV1.CloudCatalogClient()
-  let items = client.listSkus(
-    byItem: ListSkusRequest()
+  let items = client.listSkusByItems(
+    request: ListSkusRequest()
       .with {
         $0.parent = "services/\(serviceId)"
       }

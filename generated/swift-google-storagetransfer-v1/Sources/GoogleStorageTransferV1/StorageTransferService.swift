@@ -442,21 +442,21 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTransferJobs(
-    byItem: ListTransferJobsRequest
+  public func listTransferJobsByItems(
+    request: ListTransferJobsRequest
   ) -> any AsyncSequence<TransferJob, Swift.Error> {
-    self.listTransferJobs(byItem: byItem, options: .init())
+    self.listTransferJobsByItems(request: request, options: .init())
   }
 
   /// Lists transfer jobs.
   ///
   /// @Snippet(path: "StorageTransferService_ListTransferJobs")
-  public func listTransferJobs(
-    byItem: ListTransferJobsRequest, options: GoogleGax.RequestOptions
+  public func listTransferJobsByItems(
+    request: ListTransferJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TransferJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleStorageTransferV1.ListTransferJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTransferJobs(request: request, options: options)
     }
@@ -602,34 +602,34 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAgentPools(
-    byItem: ListAgentPoolsRequest
+  public func listAgentPoolsByItems(
+    request: ListAgentPoolsRequest
   ) -> any AsyncSequence<AgentPool, Swift.Error> {
-    self.listAgentPools(byItem: byItem, options: .init())
+    self.listAgentPoolsByItems(request: request, options: .init())
   }
 
   /// Lists agent pools.
   ///
   /// @Snippet(path: "StorageTransferService_ListAgentPools")
-  public func listAgentPools(
-    byItem: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
+  public func listAgentPoolsByItems(
+    request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AgentPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAgentPools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAgentPools(
+  public func listAgentPoolsByItems(
     projectId: Swift.String,
   ) -> any AsyncSequence<AgentPool, Swift.Error> {
     let request = ListAgentPoolsRequest().with {
       $0.projectId = projectId
     }
-    return self.listAgentPools(byItem: request)
+    return self.listAgentPoolsByItems(request: request)
   }
 
   public func deleteAgentPool(request: DeleteAgentPoolRequest) async throws {
@@ -663,29 +663,29 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Lists transfer operations. Operations are ordered by their creation
   /// time in reverse chronological order.
   ///
   /// @Snippet(path: "StorageTransferService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -693,7 +693,7 @@ extension Clients.StorageTransferServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: RegistrationServiceClient, parent: String) async throws {
-  let items = client.listNamespaces(
-    byItem: ListNamespacesRequest()
+  let items = client.listNamespacesByItems(
+    request: ListNamespacesRequest()
       .with {
         $0.parent = "\(parent)"
       }

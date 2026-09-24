@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataplexServiceClient) async throws {
-  let items = client.listZoneActions(
-    byItem: ListZoneActionsRequest()
+  let items = client.listZoneActionsByItems(
+    request: ListZoneActionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

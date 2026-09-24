@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(
   client: ReferenceListServiceClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let items = client.listReferenceLists(
-    byItem: ListReferenceListsRequest()
+  let items = client.listReferenceListsByItems(
+    request: ListReferenceListsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

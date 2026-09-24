@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudBuildClient, parent: String) async throws {
-  let items = client.listWorkerPools(
-    byItem: ListWorkerPoolsRequest()
+  let items = client.listWorkerPoolsByItems(
+    request: ListWorkerPoolsRequest()
       .with {
         $0.parent = "\(parent)"
       }

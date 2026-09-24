@@ -23,8 +23,8 @@ import GoogleLongRunning
 func sample(
   client: TasksClient, projectId: String, locationId: String, jobId: String, executionId: String
 ) async throws {
-  let items = client.listTasks(
-    byItem: ListTasksRequest()
+  let items = client.listTasksByItems(
+    request: ListTasksRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)/executions/\(executionId)"

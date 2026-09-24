@@ -1082,10 +1082,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: OrganizationSecurityPoliciesClient.ListRequest
+    public func listByItems(
+      request: OrganizationSecurityPoliciesClient.ListRequest
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// List all the policies that have been configured for the specified
@@ -1096,12 +1096,12 @@
     /// disabled for most organizations. Use firewallPolicies.list instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_list")
-    public func list(
-      byItem: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }

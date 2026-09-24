@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let items = client.listBackups(
-    byItem: ListBackupsRequest()
+  let items = client.listBackupsByItems(
+    request: ListBackupsRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
       }

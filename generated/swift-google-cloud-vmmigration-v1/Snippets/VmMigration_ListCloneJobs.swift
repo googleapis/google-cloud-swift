@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let items = client.listCloneJobs(
-    byItem: ListCloneJobsRequest()
+  let items = client.listCloneJobsByItems(
+    request: ListCloneJobsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/migratingVms/\(migratingVmId)"

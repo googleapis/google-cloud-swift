@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient) async throws {
-  let items = client.analyzeOrgPolicies(
-    byItem: AnalyzeOrgPoliciesRequest()
+  let items = client.analyzeOrgPoliciesByItems(
+    request: AnalyzeOrgPoliciesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

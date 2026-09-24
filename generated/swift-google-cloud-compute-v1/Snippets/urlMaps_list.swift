@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: UrlMapsClient) async throws {
-    let items = client.list(
-      byItem: UrlMapsClient.ListRequest()
+    let items = client.listByItems(
+      request: UrlMapsClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

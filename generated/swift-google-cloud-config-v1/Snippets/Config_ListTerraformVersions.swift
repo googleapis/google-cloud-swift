@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let items = client.listTerraformVersions(
-    byItem: ListTerraformVersionsRequest()
+  let items = client.listTerraformVersionsByItems(
+    request: ListTerraformVersionsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -296,35 +296,35 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInsights(
-    byItem: ListInsightsRequest
+  public func listInsightsByItems(
+    request: ListInsightsRequest
   ) -> any AsyncSequence<Insight, Swift.Error> {
-    self.listInsights(byItem: byItem, options: .init())
+    self.listInsightsByItems(request: request, options: .init())
   }
 
   /// Lists insights for the specified Cloud Resource. Requires the
   /// recommender.*.list IAM permission for the specified insight type.
   ///
   /// @Snippet(path: "Recommender_ListInsights")
-  public func listInsights(
-    byItem: ListInsightsRequest, options: GoogleGax.RequestOptions
+  public func listInsightsByItems(
+    request: ListInsightsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Insight, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInsights(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listInsights(
+  public func listInsightsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Insight, Swift.Error> {
     let request = ListInsightsRequest().with {
       $0.parent = parent
     }
-    return self.listInsights(byItem: request)
+    return self.listInsightsByItems(request: request)
   }
 
   public func getInsight(request: GetInsightRequest) async throws
@@ -385,38 +385,38 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRecommendations(
-    byItem: ListRecommendationsRequest
+  public func listRecommendationsByItems(
+    request: ListRecommendationsRequest
   ) -> any AsyncSequence<Recommendation, Swift.Error> {
-    self.listRecommendations(byItem: byItem, options: .init())
+    self.listRecommendationsByItems(request: request, options: .init())
   }
 
   /// Lists recommendations for the specified Cloud Resource. Requires the
   /// recommender.*.list IAM permission for the specified recommender.
   ///
   /// @Snippet(path: "Recommender_ListRecommendations")
-  public func listRecommendations(
-    byItem: ListRecommendationsRequest, options: GoogleGax.RequestOptions
+  public func listRecommendationsByItems(
+    request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Recommendation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRecommendations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRecommendations(
+  public func listRecommendationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Recommendation, Swift.Error> {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
     }
-    return self.listRecommendations(byItem: request)
+    return self.listRecommendationsByItems(request: request)
   }
 
-  public func listRecommendations(
+  public func listRecommendationsByItems(
     parent: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<Recommendation, Swift.Error> {
@@ -424,7 +424,7 @@ extension Clients.RecommenderProtocol {
       $0.parent = parent
       $0.filter = filter
     }
-    return self.listRecommendations(byItem: request)
+    return self.listRecommendationsByItems(request: request)
   }
 
   public func getRecommendation(request: GetRecommendationRequest) async throws

@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataFusionClient, parent: String) async throws {
-  let items = client.listInstances(
-    byItem: ListInstancesRequest()
+  let items = client.listInstancesByItems(
+    request: ListInstancesRequest()
       .with {
         $0.parent = "\(parent)"
       }

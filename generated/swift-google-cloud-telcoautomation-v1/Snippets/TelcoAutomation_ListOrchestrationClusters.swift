@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TelcoAutomationClient, projectId: String, locationId: String) async throws {
-  let items = client.listOrchestrationClusters(
-    byItem: ListOrchestrationClustersRequest()
+  let items = client.listOrchestrationClustersByItems(
+    request: ListOrchestrationClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

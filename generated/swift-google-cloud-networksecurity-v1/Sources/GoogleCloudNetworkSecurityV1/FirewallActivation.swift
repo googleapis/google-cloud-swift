@@ -809,35 +809,35 @@ extension Clients.FirewallActivationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFirewallEndpoints(
-    byItem: ListFirewallEndpointsRequest
+  public func listFirewallEndpointsByItems(
+    request: ListFirewallEndpointsRequest
   ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> {
-    self.listFirewallEndpoints(byItem: byItem, options: .init())
+    self.listFirewallEndpointsByItems(request: request, options: .init())
   }
 
   /// Lists FirewallEndpoints in a given organization and location.
   ///
   /// @Snippet(path: "FirewallActivation_ListFirewallEndpoints")
-  public func listFirewallEndpoints(
-    byItem: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
+  public func listFirewallEndpointsByItems(
+    request: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFirewallEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFirewallEndpoints(
+  public func listFirewallEndpointsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> {
     let request = ListFirewallEndpointsRequest().with {
       $0.parent = parent
     }
-    return self.listFirewallEndpoints(byItem: request)
+    return self.listFirewallEndpointsByItems(request: request)
   }
 
   public func listProjectFirewallEndpoints(request: ListFirewallEndpointsRequest) async throws
@@ -852,35 +852,35 @@ extension Clients.FirewallActivationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listProjectFirewallEndpoints(
-    byItem: ListFirewallEndpointsRequest
+  public func listProjectFirewallEndpointsByItems(
+    request: ListFirewallEndpointsRequest
   ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> {
-    self.listProjectFirewallEndpoints(byItem: byItem, options: .init())
+    self.listProjectFirewallEndpointsByItems(request: request, options: .init())
   }
 
   /// Lists FirewallEndpoints in a given project and location.
   ///
   /// @Snippet(path: "FirewallActivation_ListProjectFirewallEndpoints")
-  public func listProjectFirewallEndpoints(
-    byItem: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
+  public func listProjectFirewallEndpointsByItems(
+    request: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listProjectFirewallEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listProjectFirewallEndpoints(
+  public func listProjectFirewallEndpointsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> {
     let request = ListFirewallEndpointsRequest().with {
       $0.parent = parent
     }
-    return self.listProjectFirewallEndpoints(byItem: request)
+    return self.listProjectFirewallEndpointsByItems(request: request)
   }
 
   public func getFirewallEndpoint(request: GetFirewallEndpointRequest) async throws
@@ -1171,35 +1171,35 @@ extension Clients.FirewallActivationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFirewallEndpointAssociations(
-    byItem: ListFirewallEndpointAssociationsRequest
+  public func listFirewallEndpointAssociationsByItems(
+    request: ListFirewallEndpointAssociationsRequest
   ) -> any AsyncSequence<FirewallEndpointAssociation, Swift.Error> {
-    self.listFirewallEndpointAssociations(byItem: byItem, options: .init())
+    self.listFirewallEndpointAssociationsByItems(request: request, options: .init())
   }
 
   /// Lists Associations in a given project and location.
   ///
   /// @Snippet(path: "FirewallActivation_ListFirewallEndpointAssociations")
-  public func listFirewallEndpointAssociations(
-    byItem: ListFirewallEndpointAssociationsRequest, options: GoogleGax.RequestOptions
+  public func listFirewallEndpointAssociationsByItems(
+    request: ListFirewallEndpointAssociationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FirewallEndpointAssociation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointAssociationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFirewallEndpointAssociations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFirewallEndpointAssociations(
+  public func listFirewallEndpointAssociationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<FirewallEndpointAssociation, Swift.Error> {
     let request = ListFirewallEndpointAssociationsRequest().with {
       $0.parent = parent
     }
-    return self.listFirewallEndpointAssociations(byItem: request)
+    return self.listFirewallEndpointAssociationsByItems(request: request)
   }
 
   public func getFirewallEndpointAssociation(request: GetFirewallEndpointAssociationRequest)
@@ -1357,10 +1357,10 @@ extension Clients.FirewallActivationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -1383,12 +1383,12 @@ extension Clients.FirewallActivationProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "FirewallActivation_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1455,10 +1455,10 @@ extension Clients.FirewallActivationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1466,19 +1466,19 @@ extension Clients.FirewallActivationProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FirewallActivation_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1486,7 +1486,7 @@ extension Clients.FirewallActivationProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

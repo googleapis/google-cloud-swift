@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudSecureSourceManagerV1.SecureSourceManagerClient()
-  let items = client.listInstances(
-    byItem: ListInstancesRequest()
+  let items = client.listInstancesByItems(
+    request: ListInstancesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

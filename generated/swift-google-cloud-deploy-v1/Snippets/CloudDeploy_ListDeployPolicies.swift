@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudDeployClient, projectId: String, locationId: String) async throws {
-  let items = client.listDeployPolicies(
-    byItem: ListDeployPoliciesRequest()
+  let items = client.listDeployPoliciesByItems(
+    request: ListDeployPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

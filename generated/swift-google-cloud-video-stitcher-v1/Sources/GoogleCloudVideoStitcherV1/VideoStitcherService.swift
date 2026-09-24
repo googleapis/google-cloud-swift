@@ -1095,34 +1095,34 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCdnKeys(
-    byItem: ListCdnKeysRequest
+  public func listCdnKeysByItems(
+    request: ListCdnKeysRequest
   ) -> any AsyncSequence<CdnKey, Swift.Error> {
-    self.listCdnKeys(byItem: byItem, options: .init())
+    self.listCdnKeysByItems(request: request, options: .init())
   }
 
   /// Lists all CDN keys in the specified project and location.
   ///
   /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
-  public func listCdnKeys(
-    byItem: ListCdnKeysRequest, options: GoogleGax.RequestOptions
+  public func listCdnKeysByItems(
+    request: ListCdnKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CdnKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListCdnKeysResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCdnKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCdnKeys(
+  public func listCdnKeysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<CdnKey, Swift.Error> {
     let request = ListCdnKeysRequest().with {
       $0.parent = parent
     }
-    return self.listCdnKeys(byItem: request)
+    return self.listCdnKeysByItems(request: request)
   }
 
   public func getCdnKey(request: GetCdnKeyRequest) async throws -> GoogleCloudVideoStitcherV1.CdnKey
@@ -1275,36 +1275,36 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVodStitchDetails(
-    byItem: ListVodStitchDetailsRequest
+  public func listVodStitchDetailsByItems(
+    request: ListVodStitchDetailsRequest
   ) -> any AsyncSequence<VodStitchDetail, Swift.Error> {
-    self.listVodStitchDetails(byItem: byItem, options: .init())
+    self.listVodStitchDetailsByItems(request: request, options: .init())
   }
 
   /// Returns a list of detailed stitching information of the specified VOD
   /// session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
-  public func listVodStitchDetails(
-    byItem: ListVodStitchDetailsRequest, options: GoogleGax.RequestOptions
+  public func listVodStitchDetailsByItems(
+    request: ListVodStitchDetailsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VodStitchDetail, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListVodStitchDetailsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVodStitchDetails(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVodStitchDetails(
+  public func listVodStitchDetailsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<VodStitchDetail, Swift.Error> {
     let request = ListVodStitchDetailsRequest().with {
       $0.parent = parent
     }
-    return self.listVodStitchDetails(byItem: request)
+    return self.listVodStitchDetailsByItems(request: request)
   }
 
   public func getVodStitchDetail(request: GetVodStitchDetailRequest) async throws
@@ -1340,35 +1340,35 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVodAdTagDetails(
-    byItem: ListVodAdTagDetailsRequest
+  public func listVodAdTagDetailsByItems(
+    request: ListVodAdTagDetailsRequest
   ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> {
-    self.listVodAdTagDetails(byItem: byItem, options: .init())
+    self.listVodAdTagDetailsByItems(request: request, options: .init())
   }
 
   /// Return the list of ad tag details for the specified VOD session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
-  public func listVodAdTagDetails(
-    byItem: ListVodAdTagDetailsRequest, options: GoogleGax.RequestOptions
+  public func listVodAdTagDetailsByItems(
+    request: ListVodAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListVodAdTagDetailsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVodAdTagDetails(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVodAdTagDetails(
+  public func listVodAdTagDetailsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> {
     let request = ListVodAdTagDetailsRequest().with {
       $0.parent = parent
     }
-    return self.listVodAdTagDetails(byItem: request)
+    return self.listVodAdTagDetailsByItems(request: request)
   }
 
   public func getVodAdTagDetail(request: GetVodAdTagDetailRequest) async throws
@@ -1404,35 +1404,35 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLiveAdTagDetails(
-    byItem: ListLiveAdTagDetailsRequest
+  public func listLiveAdTagDetailsByItems(
+    request: ListLiveAdTagDetailsRequest
   ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> {
-    self.listLiveAdTagDetails(byItem: byItem, options: .init())
+    self.listLiveAdTagDetailsByItems(request: request, options: .init())
   }
 
   /// Return the list of ad tag details for the specified live session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
-  public func listLiveAdTagDetails(
-    byItem: ListLiveAdTagDetailsRequest, options: GoogleGax.RequestOptions
+  public func listLiveAdTagDetailsByItems(
+    request: ListLiveAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListLiveAdTagDetailsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLiveAdTagDetails(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listLiveAdTagDetails(
+  public func listLiveAdTagDetailsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> {
     let request = ListLiveAdTagDetailsRequest().with {
       $0.parent = parent
     }
-    return self.listLiveAdTagDetails(byItem: request)
+    return self.listLiveAdTagDetailsByItems(request: request)
   }
 
   public func getLiveAdTagDetail(request: GetLiveAdTagDetailRequest) async throws
@@ -1507,34 +1507,34 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSlates(
-    byItem: ListSlatesRequest
+  public func listSlatesByItems(
+    request: ListSlatesRequest
   ) -> any AsyncSequence<Slate, Swift.Error> {
-    self.listSlates(byItem: byItem, options: .init())
+    self.listSlatesByItems(request: request, options: .init())
   }
 
   /// Lists all slates in the specified project and location.
   ///
   /// @Snippet(path: "VideoStitcherService_ListSlates")
-  public func listSlates(
-    byItem: ListSlatesRequest, options: GoogleGax.RequestOptions
+  public func listSlatesByItems(
+    request: ListSlatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Slate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListSlatesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSlates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSlates(
+  public func listSlatesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Slate, Swift.Error> {
     let request = ListSlatesRequest().with {
       $0.parent = parent
     }
-    return self.listSlates(byItem: request)
+    return self.listSlatesByItems(request: request)
   }
 
   public func getSlate(request: GetSlateRequest) async throws -> GoogleCloudVideoStitcherV1.Slate {
@@ -1725,35 +1725,35 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLiveConfigs(
-    byItem: ListLiveConfigsRequest
+  public func listLiveConfigsByItems(
+    request: ListLiveConfigsRequest
   ) -> any AsyncSequence<LiveConfig, Swift.Error> {
-    self.listLiveConfigs(byItem: byItem, options: .init())
+    self.listLiveConfigsByItems(request: request, options: .init())
   }
 
   /// Lists all live configs managed by the Video Stitcher that
   /// belong to the specified project and region.
   ///
   /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
-  public func listLiveConfigs(
-    byItem: ListLiveConfigsRequest, options: GoogleGax.RequestOptions
+  public func listLiveConfigsByItems(
+    request: ListLiveConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LiveConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListLiveConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLiveConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listLiveConfigs(
+  public func listLiveConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<LiveConfig, Swift.Error> {
     let request = ListLiveConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listLiveConfigs(byItem: request)
+    return self.listLiveConfigsByItems(request: request)
   }
 
   public func getLiveConfig(request: GetLiveConfigRequest) async throws
@@ -1906,35 +1906,35 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVodConfigs(
-    byItem: ListVodConfigsRequest
+  public func listVodConfigsByItems(
+    request: ListVodConfigsRequest
   ) -> any AsyncSequence<VodConfig, Swift.Error> {
-    self.listVodConfigs(byItem: byItem, options: .init())
+    self.listVodConfigsByItems(request: request, options: .init())
   }
 
   /// Lists all VOD configs managed by the Video Stitcher API that
   /// belong to the specified project and region.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
-  public func listVodConfigs(
-    byItem: ListVodConfigsRequest, options: GoogleGax.RequestOptions
+  public func listVodConfigsByItems(
+    request: ListVodConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VodConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListVodConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVodConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVodConfigs(
+  public func listVodConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<VodConfig, Swift.Error> {
     let request = ListVodConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listVodConfigs(byItem: request)
+    return self.listVodConfigsByItems(request: request)
   }
 
   public func getVodConfig(request: GetVodConfigRequest) async throws
@@ -2046,10 +2046,10 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -2057,19 +2057,19 @@ extension Clients.VideoStitcherServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VideoStitcherService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -2077,7 +2077,7 @@ extension Clients.VideoStitcherServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

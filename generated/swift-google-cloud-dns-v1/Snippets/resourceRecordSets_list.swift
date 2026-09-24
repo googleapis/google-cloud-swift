@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: ResourceRecordSetsClient) async throws {
-  let items = client.list(
-    byItem: ResourceRecordSetsClient.ListRequest()
+  let items = client.listByItems(
+    request: ResourceRecordSetsClient.ListRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

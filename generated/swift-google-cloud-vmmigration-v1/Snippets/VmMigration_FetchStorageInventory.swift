@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient) async throws {
-  let items = client.fetchStorageInventory(
-    byItem: FetchStorageInventoryRequest()
+  let items = client.fetchStorageInventoryByItems(
+    request: FetchStorageInventoryRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

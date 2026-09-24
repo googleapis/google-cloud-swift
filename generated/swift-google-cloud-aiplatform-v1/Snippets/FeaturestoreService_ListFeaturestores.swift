@@ -26,8 +26,8 @@
 
   func sample(client: FeaturestoreServiceClient, projectId: String, locationId: String) async throws
   {
-    let items = client.listFeaturestores(
-      byItem: ListFeaturestoresRequest()
+    let items = client.listFeaturestoresByItems(
+      request: ListFeaturestoresRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

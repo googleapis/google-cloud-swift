@@ -1844,33 +1844,33 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAssets(
-    byItem: ListAssetsRequest
+  public func listAssetsByItems(
+    request: ListAssetsRequest
   ) -> any AsyncSequence<Asset, Swift.Error> {
-    self.listAssets(byItem: byItem, options: .init())
+    self.listAssetsByItems(request: request, options: .init())
   }
 
   /// Lists an list of assets inside corpus.
   ///
   /// @Snippet(path: "Warehouse_ListAssets")
-  public func listAssets(
-    byItem: ListAssetsRequest, options: GoogleGax.RequestOptions
+  public func listAssetsByItems(
+    request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Asset, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAssets(
+  public func listAssetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Asset, Swift.Error> {
     let request = ListAssetsRequest().with {
       $0.parent = parent
     }
-    return self.listAssets(byItem: request)
+    return self.listAssetsByItems(request: request)
   }
 
   public func deleteAsset(request: DeleteAssetRequest) async throws -> GoogleLongRunning.Operation {
@@ -2040,34 +2040,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func viewIndexedAssets(
-    byItem: ViewIndexedAssetsRequest
+  public func viewIndexedAssetsByItems(
+    request: ViewIndexedAssetsRequest
   ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
-    self.viewIndexedAssets(byItem: byItem, options: .init())
+    self.viewIndexedAssetsByItems(request: request, options: .init())
   }
 
   /// Lists assets inside an index.
   ///
   /// @Snippet(path: "Warehouse_ViewIndexedAssets")
-  public func viewIndexedAssets(
-    byItem: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
+  public func viewIndexedAssetsByItems(
+    request: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.viewIndexedAssets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func viewIndexedAssets(
+  public func viewIndexedAssetsByItems(
     index: Swift.String,
   ) -> any AsyncSequence<IndexedAsset, Swift.Error> {
     let request = ViewIndexedAssetsRequest().with {
       $0.index = index
     }
-    return self.viewIndexedAssets(byItem: request)
+    return self.viewIndexedAssetsByItems(request: request)
   }
 
   public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -2177,34 +2177,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIndexes(
-    byItem: ListIndexesRequest
+  public func listIndexesByItems(
+    request: ListIndexesRequest
   ) -> any AsyncSequence<Index, Swift.Error> {
-    self.listIndexes(byItem: byItem, options: .init())
+    self.listIndexesByItems(request: request, options: .init())
   }
 
   /// List all Indexes in a given Corpus.
   ///
   /// @Snippet(path: "Warehouse_ListIndexes")
-  public func listIndexes(
-    byItem: ListIndexesRequest, options: GoogleGax.RequestOptions
+  public func listIndexesByItems(
+    request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Index, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIndexes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listIndexes(
+  public func listIndexesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Index, Swift.Error> {
     let request = ListIndexesRequest().with {
       $0.parent = parent
     }
-    return self.listIndexes(byItem: request)
+    return self.listIndexesByItems(request: request)
   }
 
   public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation {
@@ -2333,34 +2333,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCorpora(
-    byItem: ListCorporaRequest
+  public func listCorporaByItems(
+    request: ListCorporaRequest
   ) -> any AsyncSequence<Corpus, Swift.Error> {
-    self.listCorpora(byItem: byItem, options: .init())
+    self.listCorporaByItems(request: request, options: .init())
   }
 
   /// Lists all corpora in a project.
   ///
   /// @Snippet(path: "Warehouse_ListCorpora")
-  public func listCorpora(
-    byItem: ListCorporaRequest, options: GoogleGax.RequestOptions
+  public func listCorporaByItems(
+    request: ListCorporaRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Corpus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCorpora(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCorpora(
+  public func listCorporaByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Corpus, Swift.Error> {
     let request = ListCorporaRequest().with {
       $0.parent = parent
     }
-    return self.listCorpora(byItem: request)
+    return self.listCorporaByItems(request: request)
   }
 
   public func deleteCorpus(request: DeleteCorpusRequest) async throws {
@@ -2508,34 +2508,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataSchemas(
-    byItem: ListDataSchemasRequest
+  public func listDataSchemasByItems(
+    request: ListDataSchemasRequest
   ) -> any AsyncSequence<DataSchema, Swift.Error> {
-    self.listDataSchemas(byItem: byItem, options: .init())
+    self.listDataSchemasByItems(request: request, options: .init())
   }
 
   /// Lists a list of data schemas inside corpus.
   ///
   /// @Snippet(path: "Warehouse_ListDataSchemas")
-  public func listDataSchemas(
-    byItem: ListDataSchemasRequest, options: GoogleGax.RequestOptions
+  public func listDataSchemasByItems(
+    request: ListDataSchemasRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataSchemas(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataSchemas(
+  public func listDataSchemasByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataSchema, Swift.Error> {
     let request = ListDataSchemasRequest().with {
       $0.parent = parent
     }
-    return self.listDataSchemas(byItem: request)
+    return self.listDataSchemasByItems(request: request)
   }
 
   public func createAnnotation(request: CreateAnnotationRequest) async throws
@@ -2596,34 +2596,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAnnotations(
-    byItem: ListAnnotationsRequest
+  public func listAnnotationsByItems(
+    request: ListAnnotationsRequest
   ) -> any AsyncSequence<Annotation, Swift.Error> {
-    self.listAnnotations(byItem: byItem, options: .init())
+    self.listAnnotationsByItems(request: request, options: .init())
   }
 
   /// Lists a list of annotations inside asset.
   ///
   /// @Snippet(path: "Warehouse_ListAnnotations")
-  public func listAnnotations(
-    byItem: ListAnnotationsRequest, options: GoogleGax.RequestOptions
+  public func listAnnotationsByItems(
+    request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Annotation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAnnotations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAnnotations(
+  public func listAnnotationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Annotation, Swift.Error> {
     let request = ListAnnotationsRequest().with {
       $0.parent = parent
     }
-    return self.listAnnotations(byItem: request)
+    return self.listAnnotationsByItems(request: request)
   }
 
   public func updateAnnotation(request: UpdateAnnotationRequest) async throws
@@ -2819,34 +2819,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSearchConfigs(
-    byItem: ListSearchConfigsRequest
+  public func listSearchConfigsByItems(
+    request: ListSearchConfigsRequest
   ) -> any AsyncSequence<SearchConfig, Swift.Error> {
-    self.listSearchConfigs(byItem: byItem, options: .init())
+    self.listSearchConfigsByItems(request: request, options: .init())
   }
 
   /// Lists all search configurations inside a corpus.
   ///
   /// @Snippet(path: "Warehouse_ListSearchConfigs")
-  public func listSearchConfigs(
-    byItem: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
+  public func listSearchConfigsByItems(
+    request: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSearchConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSearchConfigs(
+  public func listSearchConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SearchConfig, Swift.Error> {
     let request = ListSearchConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listSearchConfigs(byItem: request)
+    return self.listSearchConfigsByItems(request: request)
   }
 
   public func createSearchHypernym(request: CreateSearchHypernymRequest) async throws
@@ -2949,34 +2949,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSearchHypernyms(
-    byItem: ListSearchHypernymsRequest
+  public func listSearchHypernymsByItems(
+    request: ListSearchHypernymsRequest
   ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
-    self.listSearchHypernyms(byItem: byItem, options: .init())
+    self.listSearchHypernymsByItems(request: request, options: .init())
   }
 
   /// Lists SearchHypernyms inside a corpus.
   ///
   /// @Snippet(path: "Warehouse_ListSearchHypernyms")
-  public func listSearchHypernyms(
-    byItem: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
+  public func listSearchHypernymsByItems(
+    request: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSearchHypernyms(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSearchHypernyms(
+  public func listSearchHypernymsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SearchHypernym, Swift.Error> {
     let request = ListSearchHypernymsRequest().with {
       $0.parent = parent
     }
-    return self.listSearchHypernyms(byItem: request)
+    return self.listSearchHypernymsByItems(request: request)
   }
 
   public func searchAssets(request: SearchAssetsRequest) async throws
@@ -2991,21 +2991,21 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchAssets(
-    byItem: SearchAssetsRequest
+  public func searchAssetsByItems(
+    request: SearchAssetsRequest
   ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
-    self.searchAssets(byItem: byItem, options: .init())
+    self.searchAssetsByItems(request: request, options: .init())
   }
 
   /// Search media asset.
   ///
   /// @Snippet(path: "Warehouse_SearchAssets")
-  public func searchAssets(
-    byItem: SearchAssetsRequest, options: GoogleGax.RequestOptions
+  public func searchAssetsByItems(
+    request: SearchAssetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchAssets(request: request, options: options)
     }
@@ -3024,21 +3024,21 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchIndexEndpoint(
-    byItem: SearchIndexEndpointRequest
+  public func searchIndexEndpointByItems(
+    request: SearchIndexEndpointRequest
   ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
-    self.searchIndexEndpoint(byItem: byItem, options: .init())
+    self.searchIndexEndpointByItems(request: request, options: .init())
   }
 
   /// Search a deployed index endpoint (IMAGE corpus type only).
   ///
   /// @Snippet(path: "Warehouse_SearchIndexEndpoint")
-  public func searchIndexEndpoint(
-    byItem: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
+  public func searchIndexEndpointByItems(
+    request: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchResultItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchIndexEndpoint(request: request, options: options)
     }
@@ -3119,34 +3119,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIndexEndpoints(
-    byItem: ListIndexEndpointsRequest
+  public func listIndexEndpointsByItems(
+    request: ListIndexEndpointsRequest
   ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
-    self.listIndexEndpoints(byItem: byItem, options: .init())
+    self.listIndexEndpointsByItems(request: request, options: .init())
   }
 
   /// Lists all IndexEndpoints in a project.
   ///
   /// @Snippet(path: "Warehouse_ListIndexEndpoints")
-  public func listIndexEndpoints(
-    byItem: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
+  public func listIndexEndpointsByItems(
+    request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIndexEndpoints(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listIndexEndpoints(
+  public func listIndexEndpointsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<IndexEndpoint, Swift.Error> {
     let request = ListIndexEndpointsRequest().with {
       $0.parent = parent
     }
-    return self.listIndexEndpoints(byItem: request)
+    return self.listIndexEndpointsByItems(request: request)
   }
 
   public func updateIndexEndpoint(request: UpdateIndexEndpointRequest) async throws
@@ -3413,34 +3413,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCollections(
-    byItem: ListCollectionsRequest
+  public func listCollectionsByItems(
+    request: ListCollectionsRequest
   ) -> any AsyncSequence<Collection, Swift.Error> {
-    self.listCollections(byItem: byItem, options: .init())
+    self.listCollectionsByItems(request: request, options: .init())
   }
 
   /// Lists collections inside a corpus.
   ///
   /// @Snippet(path: "Warehouse_ListCollections")
-  public func listCollections(
-    byItem: ListCollectionsRequest, options: GoogleGax.RequestOptions
+  public func listCollectionsByItems(
+    request: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Collection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCollections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCollections(
+  public func listCollectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Collection, Swift.Error> {
     let request = ListCollectionsRequest().with {
       $0.parent = parent
     }
-    return self.listCollections(byItem: request)
+    return self.listCollectionsByItems(request: request)
   }
 
   public func addCollectionItem(request: AddCollectionItemRequest) async throws
@@ -3497,34 +3497,34 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func viewCollectionItems(
-    byItem: ViewCollectionItemsRequest
+  public func viewCollectionItemsByItems(
+    request: ViewCollectionItemsRequest
   ) -> any AsyncSequence<CollectionItem, Swift.Error> {
-    self.viewCollectionItems(byItem: byItem, options: .init())
+    self.viewCollectionItemsByItems(request: request, options: .init())
   }
 
   /// View items inside a collection.
   ///
   /// @Snippet(path: "Warehouse_ViewCollectionItems")
-  public func viewCollectionItems(
-    byItem: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
+  public func viewCollectionItemsByItems(
+    request: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CollectionItem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.viewCollectionItems(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func viewCollectionItems(
+  public func viewCollectionItemsByItems(
     collection: Swift.String,
   ) -> any AsyncSequence<CollectionItem, Swift.Error> {
     let request = ViewCollectionItemsRequest().with {
       $0.collection = collection
     }
-    return self.viewCollectionItems(byItem: request)
+    return self.viewCollectionItemsByItems(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -3539,21 +3539,21 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Warehouse_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -3584,10 +3584,10 @@ extension Clients.WarehouseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -3595,19 +3595,19 @@ extension Clients.WarehouseProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Warehouse_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -3615,7 +3615,7 @@ extension Clients.WarehouseProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

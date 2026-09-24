@@ -21,8 +21,8 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient, organizationId: String) async throws {
-  let items = client.listInspectTemplates(
-    byItem: ListInspectTemplatesRequest()
+  let items = client.listInspectTemplatesByItems(
+    request: ListInspectTemplatesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"
       }

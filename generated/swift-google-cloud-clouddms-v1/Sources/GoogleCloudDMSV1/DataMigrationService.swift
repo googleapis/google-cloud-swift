@@ -1687,34 +1687,34 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMigrationJobs(
-    byItem: ListMigrationJobsRequest
+  public func listMigrationJobsByItems(
+    request: ListMigrationJobsRequest
   ) -> any AsyncSequence<MigrationJob, Swift.Error> {
-    self.listMigrationJobs(byItem: byItem, options: .init())
+    self.listMigrationJobsByItems(request: request, options: .init())
   }
 
   /// Lists migration jobs in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListMigrationJobs")
-  public func listMigrationJobs(
-    byItem: ListMigrationJobsRequest, options: GoogleGax.RequestOptions
+  public func listMigrationJobsByItems(
+    request: ListMigrationJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MigrationJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDMSV1.ListMigrationJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMigrationJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMigrationJobs(
+  public func listMigrationJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MigrationJob, Swift.Error> {
     let request = ListMigrationJobsRequest().with {
       $0.parent = parent
     }
-    return self.listMigrationJobs(byItem: request)
+    return self.listMigrationJobsByItems(request: request)
   }
 
   public func getMigrationJob(request: GetMigrationJobRequest) async throws
@@ -2059,35 +2059,35 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConnectionProfiles(
-    byItem: ListConnectionProfilesRequest
+  public func listConnectionProfilesByItems(
+    request: ListConnectionProfilesRequest
   ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
-    self.listConnectionProfiles(byItem: byItem, options: .init())
+    self.listConnectionProfilesByItems(request: request, options: .init())
   }
 
   /// Retrieves a list of all connection profiles in a given project and
   /// location.
   ///
   /// @Snippet(path: "DataMigrationService_ListConnectionProfiles")
-  public func listConnectionProfiles(
-    byItem: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
+  public func listConnectionProfilesByItems(
+    request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDMSV1.ListConnectionProfilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConnectionProfiles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConnectionProfiles(
+  public func listConnectionProfilesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ConnectionProfile, Swift.Error> {
     let request = ListConnectionProfilesRequest().with {
       $0.parent = parent
     }
-    return self.listConnectionProfiles(byItem: request)
+    return self.listConnectionProfilesByItems(request: request)
   }
 
   public func getConnectionProfile(request: GetConnectionProfileRequest) async throws
@@ -2302,34 +2302,34 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPrivateConnections(
-    byItem: ListPrivateConnectionsRequest
+  public func listPrivateConnectionsByItems(
+    request: ListPrivateConnectionsRequest
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
-    self.listPrivateConnections(byItem: byItem, options: .init())
+    self.listPrivateConnectionsByItems(request: request, options: .init())
   }
 
   /// Retrieves a list of private connections in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListPrivateConnections")
-  public func listPrivateConnections(
-    byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listPrivateConnectionsByItems(
+    request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDMSV1.ListPrivateConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPrivateConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPrivateConnections(
+  public func listPrivateConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let request = ListPrivateConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listPrivateConnections(byItem: request)
+    return self.listPrivateConnectionsByItems(request: request)
   }
 
   public func deletePrivateConnection(request: DeletePrivateConnectionRequest) async throws
@@ -2402,34 +2402,34 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listConversionWorkspaces(
-    byItem: ListConversionWorkspacesRequest
+  public func listConversionWorkspacesByItems(
+    request: ListConversionWorkspacesRequest
   ) -> any AsyncSequence<ConversionWorkspace, Swift.Error> {
-    self.listConversionWorkspaces(byItem: byItem, options: .init())
+    self.listConversionWorkspacesByItems(request: request, options: .init())
   }
 
   /// Lists conversion workspaces in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListConversionWorkspaces")
-  public func listConversionWorkspaces(
-    byItem: ListConversionWorkspacesRequest, options: GoogleGax.RequestOptions
+  public func listConversionWorkspacesByItems(
+    request: ListConversionWorkspacesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ConversionWorkspace, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDMSV1.ListConversionWorkspacesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listConversionWorkspaces(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listConversionWorkspaces(
+  public func listConversionWorkspacesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ConversionWorkspace, Swift.Error> {
     let request = ListConversionWorkspacesRequest().with {
       $0.parent = parent
     }
-    return self.listConversionWorkspaces(byItem: request)
+    return self.listConversionWorkspacesByItems(request: request)
   }
 
   public func createConversionWorkspace(request: CreateConversionWorkspaceRequest) async throws
@@ -2605,34 +2605,34 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMappingRules(
-    byItem: ListMappingRulesRequest
+  public func listMappingRulesByItems(
+    request: ListMappingRulesRequest
   ) -> any AsyncSequence<MappingRule, Swift.Error> {
-    self.listMappingRules(byItem: byItem, options: .init())
+    self.listMappingRulesByItems(request: request, options: .init())
   }
 
   /// Lists the mapping rules for a specific conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_ListMappingRules")
-  public func listMappingRules(
-    byItem: ListMappingRulesRequest, options: GoogleGax.RequestOptions
+  public func listMappingRulesByItems(
+    request: ListMappingRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MappingRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDMSV1.ListMappingRulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMappingRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMappingRules(
+  public func listMappingRulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MappingRule, Swift.Error> {
     let request = ListMappingRulesRequest().with {
       $0.parent = parent
     }
-    return self.listMappingRules(byItem: request)
+    return self.listMappingRulesByItems(request: request)
   }
 
   public func getMappingRule(request: GetMappingRuleRequest) async throws
@@ -2836,10 +2836,10 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func describeDatabaseEntities(
-    byItem: DescribeDatabaseEntitiesRequest
+  public func describeDatabaseEntitiesByItems(
+    request: DescribeDatabaseEntitiesRequest
   ) -> any AsyncSequence<DatabaseEntity, Swift.Error> {
-    self.describeDatabaseEntities(byItem: byItem, options: .init())
+    self.describeDatabaseEntitiesByItems(request: request, options: .init())
   }
 
   /// Describes the database entities tree for a specific conversion workspace
@@ -2850,12 +2850,12 @@ extension Clients.DataMigrationServiceProtocol {
   /// simple data objects describing the structure of the client database.
   ///
   /// @Snippet(path: "DataMigrationService_DescribeDatabaseEntities")
-  public func describeDatabaseEntities(
-    byItem: DescribeDatabaseEntitiesRequest, options: GoogleGax.RequestOptions
+  public func describeDatabaseEntitiesByItems(
+    request: DescribeDatabaseEntitiesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DatabaseEntity, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDMSV1.DescribeDatabaseEntitiesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.describeDatabaseEntities(request: request, options: options)
     }
@@ -2919,21 +2919,21 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DataMigrationService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -3000,10 +3000,10 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -3011,19 +3011,19 @@ extension Clients.DataMigrationServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataMigrationService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -3031,7 +3031,7 @@ extension Clients.DataMigrationServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

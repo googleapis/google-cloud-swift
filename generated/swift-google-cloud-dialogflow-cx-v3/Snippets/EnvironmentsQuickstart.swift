@@ -25,8 +25,8 @@
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
     let client = try GoogleCloudDialogflowCXV3.EnvironmentsClient()
-    let items = client.listEnvironments(
-      byItem: ListEnvironmentsRequest()
+    let items = client.listEnvironmentsByItems(
+      request: ListEnvironmentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"
         }

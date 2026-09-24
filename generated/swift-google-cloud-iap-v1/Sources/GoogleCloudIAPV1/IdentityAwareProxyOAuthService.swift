@@ -234,22 +234,22 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIdentityAwareProxyClients(
-    byItem: ListIdentityAwareProxyClientsRequest
+  public func listIdentityAwareProxyClientsByItems(
+    request: ListIdentityAwareProxyClientsRequest
   ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
-    self.listIdentityAwareProxyClients(byItem: byItem, options: .init())
+    self.listIdentityAwareProxyClientsByItems(request: request, options: .init())
   }
 
   /// Lists the existing clients for the brand.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
-  public func listIdentityAwareProxyClients(
-    byItem: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
+  public func listIdentityAwareProxyClientsByItems(
+    request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIdentityAwareProxyClients(request: request, options: options)
     }

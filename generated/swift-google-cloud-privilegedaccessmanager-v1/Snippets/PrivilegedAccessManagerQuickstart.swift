@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudPrivilegedAccessManagerV1.PrivilegedAccessManagerClient()
-  let items = client.listEntitlements(
-    byItem: ListEntitlementsRequest()
+  let items = client.listEntitlementsByItems(
+    request: ListEntitlementsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

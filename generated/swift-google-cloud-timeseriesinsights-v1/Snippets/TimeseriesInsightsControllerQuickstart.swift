@@ -21,8 +21,8 @@ import GoogleCloudTimeseriesInsightsV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudTimeseriesInsightsV1.TimeseriesInsightsControllerClient()
-  let items = client.listDataSets(
-    byItem: ListDataSetsRequest()
+  let items = client.listDataSetsByItems(
+    request: ListDataSetsRequest()
       .with {
         $0.parent = "\(parent)"
       }

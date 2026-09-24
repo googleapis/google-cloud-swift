@@ -22,8 +22,8 @@ import GoogleWKT
 
 func sample(organizationId: String, ) async throws {
   let client = try GoogleCloudSupportV2.SupportEventSubscriptionServiceClient()
-  let items = client.listSupportEventSubscriptions(
-    byItem: ListSupportEventSubscriptionsRequest()
+  let items = client.listSupportEventSubscriptionsByItems(
+    request: ListSupportEventSubscriptionsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"
       }

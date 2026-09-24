@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String)
   async throws
 {
-  let items = client.listSearchHypernyms(
-    byItem: ListSearchHypernymsRequest()
+  let items = client.listSearchHypernymsByItems(
+    request: ListSearchHypernymsRequest()
       .with {
         $0.parent = "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)"
       }

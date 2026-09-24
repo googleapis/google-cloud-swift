@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleBigQueryDataPoliciesV2.DataPolicyServiceClient()
-  let items = client.listDataPolicies(
-    byItem: ListDataPoliciesRequest()
+  let items = client.listDataPoliciesByItems(
+    request: ListDataPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

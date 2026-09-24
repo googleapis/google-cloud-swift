@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VpcFlowLogsServiceClient) async throws {
-  let items = client.showEffectiveFlowLogsConfigs(
-    byItem: ShowEffectiveFlowLogsConfigsRequest()
+  let items = client.showEffectiveFlowLogsConfigsByItems(
+    request: ShowEffectiveFlowLogsConfigsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

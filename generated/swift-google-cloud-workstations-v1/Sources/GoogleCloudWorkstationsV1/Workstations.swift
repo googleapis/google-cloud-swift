@@ -934,35 +934,35 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWorkstationClusters(
-    byItem: ListWorkstationClustersRequest
+  public func listWorkstationClustersByItems(
+    request: ListWorkstationClustersRequest
   ) -> any AsyncSequence<WorkstationCluster, Swift.Error> {
-    self.listWorkstationClusters(byItem: byItem, options: .init())
+    self.listWorkstationClustersByItems(request: request, options: .init())
   }
 
   /// Returns all workstation clusters in the specified location.
   ///
   /// @Snippet(path: "Workstations_ListWorkstationClusters")
-  public func listWorkstationClusters(
-    byItem: ListWorkstationClustersRequest, options: GoogleGax.RequestOptions
+  public func listWorkstationClustersByItems(
+    request: ListWorkstationClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WorkstationCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudWorkstationsV1.ListWorkstationClustersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWorkstationClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWorkstationClusters(
+  public func listWorkstationClustersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<WorkstationCluster, Swift.Error> {
     let request = ListWorkstationClustersRequest().with {
       $0.parent = parent
     }
-    return self.listWorkstationClusters(byItem: request)
+    return self.listWorkstationClustersByItems(request: request)
   }
 
   public func createWorkstationCluster(request: CreateWorkstationClusterRequest) async throws
@@ -1115,35 +1115,35 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWorkstationConfigs(
-    byItem: ListWorkstationConfigsRequest
+  public func listWorkstationConfigsByItems(
+    request: ListWorkstationConfigsRequest
   ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
-    self.listWorkstationConfigs(byItem: byItem, options: .init())
+    self.listWorkstationConfigsByItems(request: request, options: .init())
   }
 
   /// Returns all workstation configurations in the specified cluster.
   ///
   /// @Snippet(path: "Workstations_ListWorkstationConfigs")
-  public func listWorkstationConfigs(
-    byItem: ListWorkstationConfigsRequest, options: GoogleGax.RequestOptions
+  public func listWorkstationConfigsByItems(
+    request: ListWorkstationConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkstationsV1.ListWorkstationConfigsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWorkstationConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWorkstationConfigs(
+  public func listWorkstationConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
     let request = ListWorkstationConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listWorkstationConfigs(byItem: request)
+    return self.listWorkstationConfigsByItems(request: request)
   }
 
   public func listUsableWorkstationConfigs(request: ListUsableWorkstationConfigsRequest)
@@ -1158,36 +1158,36 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listUsableWorkstationConfigs(
-    byItem: ListUsableWorkstationConfigsRequest
+  public func listUsableWorkstationConfigsByItems(
+    request: ListUsableWorkstationConfigsRequest
   ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
-    self.listUsableWorkstationConfigs(byItem: byItem, options: .init())
+    self.listUsableWorkstationConfigsByItems(request: request, options: .init())
   }
 
   /// Returns all workstation configurations in the specified cluster on which
   /// the caller has the "workstations.workstation.create" permission.
   ///
   /// @Snippet(path: "Workstations_ListUsableWorkstationConfigs")
-  public func listUsableWorkstationConfigs(
-    byItem: ListUsableWorkstationConfigsRequest, options: GoogleGax.RequestOptions
+  public func listUsableWorkstationConfigsByItems(
+    request: ListUsableWorkstationConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudWorkstationsV1.ListUsableWorkstationConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listUsableWorkstationConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listUsableWorkstationConfigs(
+  public func listUsableWorkstationConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
     let request = ListUsableWorkstationConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listUsableWorkstationConfigs(byItem: request)
+    return self.listUsableWorkstationConfigsByItems(request: request)
   }
 
   public func createWorkstationConfig(request: CreateWorkstationConfigRequest) async throws
@@ -1340,34 +1340,34 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWorkstations(
-    byItem: ListWorkstationsRequest
+  public func listWorkstationsByItems(
+    request: ListWorkstationsRequest
   ) -> any AsyncSequence<Workstation, Swift.Error> {
-    self.listWorkstations(byItem: byItem, options: .init())
+    self.listWorkstationsByItems(request: request, options: .init())
   }
 
   /// Returns all Workstations using the specified workstation configuration.
   ///
   /// @Snippet(path: "Workstations_ListWorkstations")
-  public func listWorkstations(
-    byItem: ListWorkstationsRequest, options: GoogleGax.RequestOptions
+  public func listWorkstationsByItems(
+    request: ListWorkstationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workstation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkstationsV1.ListWorkstationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWorkstations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWorkstations(
+  public func listWorkstationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Workstation, Swift.Error> {
     let request = ListWorkstationsRequest().with {
       $0.parent = parent
     }
-    return self.listWorkstations(byItem: request)
+    return self.listWorkstationsByItems(request: request)
   }
 
   public func listUsableWorkstations(request: ListUsableWorkstationsRequest) async throws
@@ -1382,36 +1382,36 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listUsableWorkstations(
-    byItem: ListUsableWorkstationsRequest
+  public func listUsableWorkstationsByItems(
+    request: ListUsableWorkstationsRequest
   ) -> any AsyncSequence<Workstation, Swift.Error> {
-    self.listUsableWorkstations(byItem: byItem, options: .init())
+    self.listUsableWorkstationsByItems(request: request, options: .init())
   }
 
   /// Returns all workstations using the specified workstation configuration
   /// on which the caller has the "workstations.workstations.use" permission.
   ///
   /// @Snippet(path: "Workstations_ListUsableWorkstations")
-  public func listUsableWorkstations(
-    byItem: ListUsableWorkstationsRequest, options: GoogleGax.RequestOptions
+  public func listUsableWorkstationsByItems(
+    request: ListUsableWorkstationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workstation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkstationsV1.ListUsableWorkstationsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listUsableWorkstations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listUsableWorkstations(
+  public func listUsableWorkstationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Workstation, Swift.Error> {
     let request = ListUsableWorkstationsRequest().with {
       $0.parent = parent
     }
-    return self.listUsableWorkstations(byItem: request)
+    return self.listUsableWorkstationsByItems(request: request)
   }
 
   public func createWorkstation(request: CreateWorkstationRequest) async throws
@@ -1674,10 +1674,10 @@ extension Clients.WorkstationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1685,19 +1685,19 @@ extension Clients.WorkstationsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Workstations_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1705,7 +1705,7 @@ extension Clients.WorkstationsProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

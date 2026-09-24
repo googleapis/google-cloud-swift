@@ -21,8 +21,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleLongRunning.OperationsClient()
-  let items = client.listOperations(
-    byItem: ListOperationsRequest()
+  let items = client.listOperationsByItems(
+    request: ListOperationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

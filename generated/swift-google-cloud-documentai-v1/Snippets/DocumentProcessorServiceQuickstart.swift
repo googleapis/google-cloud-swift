@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDocumentAIV1.DocumentProcessorServiceClient()
-  let items = client.listProcessorTypes(
-    byItem: ListProcessorTypesRequest()
+  let items = client.listProcessorTypesByItems(
+    request: ListProcessorTypesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

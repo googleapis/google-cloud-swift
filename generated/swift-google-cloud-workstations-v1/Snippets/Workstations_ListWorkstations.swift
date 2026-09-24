@@ -26,8 +26,8 @@ func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String,
   workstationConfigId: String
 ) async throws {
-  let items = client.listWorkstations(
-    byItem: ListWorkstationsRequest()
+  let items = client.listWorkstationsByItems(
+    request: ListWorkstationsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/workstationClusters/\(workstationClusterId)/workstationConfigs/\(workstationConfigId)"

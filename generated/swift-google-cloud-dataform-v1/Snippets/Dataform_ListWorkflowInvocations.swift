@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: DataformClient, projectId: String, locationId: String, repositoryId: String)
   async throws
 {
-  let items = client.listWorkflowInvocations(
-    byItem: ListWorkflowInvocationsRequest()
+  let items = client.listWorkflowInvocationsByItems(
+    request: ListWorkflowInvocationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
       }

@@ -402,10 +402,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listEngines(
-      byItem: ListEnginesRequest
+    public func listEnginesByItems(
+      request: ListEnginesRequest
     ) -> any AsyncSequence<Engine, Swift.Error> {
-      self.listEngines(byItem: byItem, options: .init())
+      self.listEnginesByItems(request: request, options: .init())
     }
 
     /// Lists all the [Engine][google.cloud.discoveryengine.v1.Engine]s associated
@@ -414,25 +414,25 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_ListEngines")
-    public func listEngines(
-      byItem: ListEnginesRequest, options: GoogleGax.RequestOptions
+    public func listEnginesByItems(
+      request: ListEnginesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Engine, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listEngines(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listEngines(
+    public func listEnginesByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<Engine, Swift.Error> {
       let request = ListEnginesRequest().with {
         $0.parent = parent
       }
-      return self.listEngines(byItem: request)
+      return self.listEnginesByItems(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -447,10 +447,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -458,19 +458,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EngineService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -478,7 +478,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkConnectivityV1.HubServiceClient()
-  let items = client.listHubs(
-    byItem: ListHubsRequest()
+  let items = client.listHubsByItems(
+    request: ListHubsRequest()
       .with {
         $0.parent = "\(parent)"
       }

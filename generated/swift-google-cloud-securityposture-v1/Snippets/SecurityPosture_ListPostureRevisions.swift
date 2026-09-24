@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecurityPostureClient) async throws {
-  let items = client.listPostureRevisions(
-    byItem: ListPostureRevisionsRequest()
+  let items = client.listPostureRevisionsByItems(
+    request: ListPostureRevisionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

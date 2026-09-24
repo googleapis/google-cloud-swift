@@ -209,10 +209,10 @@ extension Clients.GkeInferenceQuickstartProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func fetchProfiles(
-    byItem: FetchProfilesRequest
+  public func fetchProfilesByItems(
+    request: FetchProfilesRequest
   ) -> any AsyncSequence<Profile, Swift.Error> {
-    self.fetchProfiles(byItem: byItem, options: .init())
+    self.fetchProfilesByItems(request: request, options: .init())
   }
 
   /// Fetches available profiles. A profile contains performance metrics and
@@ -228,12 +228,12 @@ extension Clients.GkeInferenceQuickstartProtocol {
   /// for details.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
-  public func fetchProfiles(
-    byItem: FetchProfilesRequest, options: GoogleGax.RequestOptions
+  public func fetchProfilesByItems(
+    request: FetchProfilesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Profile, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.fetchProfiles(request: request, options: options)
     }

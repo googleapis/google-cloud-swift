@@ -25,8 +25,8 @@ func sample(
   client: ContactCenterInsightsClient, projectId: String, locationId: String, qaScorecardId: String,
   revisionId: String
 ) async throws {
-  let items = client.listQaQuestions(
-    byItem: ListQaQuestionsRequest()
+  let items = client.listQaQuestionsByItems(
+    request: ListQaQuestionsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/qaScorecards/\(qaScorecardId)/revisions/\(revisionId)"

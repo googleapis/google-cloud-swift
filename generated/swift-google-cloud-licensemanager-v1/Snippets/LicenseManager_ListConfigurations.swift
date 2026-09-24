@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LicenseManagerClient, projectId: String, locationId: String) async throws {
-  let items = client.listConfigurations(
-    byItem: ListConfigurationsRequest()
+  let items = client.listConfigurationsByItems(
+    request: ListConfigurationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

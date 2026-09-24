@@ -469,10 +469,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: LicensesClient.ListRequest
+    public func listByItems(
+      request: LicensesClient.ListRequest
     ) -> any AsyncSequence<License, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of licenses
@@ -486,25 +486,25 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_list")
-    public func list(
-      byItem: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<License, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<License, Swift.Error> {
       let request = LicensesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setIamPolicy(request: LicensesClient.SetIamPolicyRequest) async throws

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: GlobalForwardingRulesClient) async throws {
-    let items = client.list(
-      byItem: GlobalForwardingRulesClient.ListRequest()
+    let items = client.listByItems(
+      request: GlobalForwardingRulesClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

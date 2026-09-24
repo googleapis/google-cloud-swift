@@ -649,10 +649,10 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listProjects(
-    byItem: ListProjectsRequest
+  public func listProjectsByItems(
+    request: ListProjectsRequest
   ) -> any AsyncSequence<Project, Swift.Error> {
-    self.listProjects(byItem: byItem, options: .init())
+    self.listProjectsByItems(request: request, options: .init())
   }
 
   /// Lists projects that are direct children of the specified folder or
@@ -663,25 +663,25 @@ extension Clients.ProjectsProtocol {
   /// permission on the identified parent.
   ///
   /// @Snippet(path: "Projects_ListProjects")
-  public func listProjects(
-    byItem: ListProjectsRequest, options: GoogleGax.RequestOptions
+  public func listProjectsByItems(
+    request: ListProjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listProjects(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listProjects(
+  public func listProjectsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Project, Swift.Error> {
     let request = ListProjectsRequest().with {
       $0.parent = parent
     }
-    return self.listProjects(byItem: request)
+    return self.listProjectsByItems(request: request)
   }
 
   public func searchProjects(request: SearchProjectsRequest) async throws
@@ -696,10 +696,10 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchProjects(
-    byItem: SearchProjectsRequest
+  public func searchProjectsByItems(
+    request: SearchProjectsRequest
   ) -> any AsyncSequence<Project, Swift.Error> {
-    self.searchProjects(byItem: byItem, options: .init())
+    self.searchProjectsByItems(request: request, options: .init())
   }
 
   /// Search for projects that the caller has both `resourcemanager.projects.get`
@@ -716,25 +716,25 @@ extension Clients.ProjectsProtocol {
   /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:options:)>
   ///
   /// @Snippet(path: "Projects_SearchProjects")
-  public func searchProjects(
-    byItem: SearchProjectsRequest, options: GoogleGax.RequestOptions
+  public func searchProjectsByItems(
+    request: SearchProjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Project, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchProjects(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchProjects(
+  public func searchProjectsByItems(
     query: Swift.String,
   ) -> any AsyncSequence<Project, Swift.Error> {
     let request = SearchProjectsRequest().with {
       $0.query = query
     }
-    return self.searchProjects(byItem: request)
+    return self.searchProjectsByItems(request: request)
   }
 
   public func createProject(request: CreateProjectRequest) async throws

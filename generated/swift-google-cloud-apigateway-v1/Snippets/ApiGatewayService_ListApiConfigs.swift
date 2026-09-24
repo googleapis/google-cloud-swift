@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String) async throws {
-  let items = client.listApiConfigs(
-    byItem: ListApiConfigsRequest()
+  let items = client.listApiConfigsByItems(
+    request: ListApiConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/global/apis/\(apiId)"
       }

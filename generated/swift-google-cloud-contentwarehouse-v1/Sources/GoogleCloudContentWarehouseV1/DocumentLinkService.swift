@@ -151,35 +151,35 @@ extension Clients.DocumentLinkServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLinkedSources(
-    byItem: ListLinkedSourcesRequest
+  public func listLinkedSourcesByItems(
+    request: ListLinkedSourcesRequest
   ) -> any AsyncSequence<DocumentLink, Swift.Error> {
-    self.listLinkedSources(byItem: byItem, options: .init())
+    self.listLinkedSourcesByItems(request: request, options: .init())
   }
 
   /// Return all source document-links from the document.
   ///
   /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
-  public func listLinkedSources(
-    byItem: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
+  public func listLinkedSourcesByItems(
+    request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DocumentLink, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLinkedSources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listLinkedSources(
+  public func listLinkedSourcesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DocumentLink, Swift.Error> {
     let request = ListLinkedSourcesRequest().with {
       $0.parent = parent
     }
-    return self.listLinkedSources(byItem: request)
+    return self.listLinkedSourcesByItems(request: request)
   }
 
   public func createDocumentLink(request: CreateDocumentLinkRequest) async throws

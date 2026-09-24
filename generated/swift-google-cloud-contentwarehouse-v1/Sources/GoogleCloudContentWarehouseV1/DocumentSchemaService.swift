@@ -240,35 +240,35 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDocumentSchemas(
-    byItem: ListDocumentSchemasRequest
+  public func listDocumentSchemasByItems(
+    request: ListDocumentSchemasRequest
   ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
-    self.listDocumentSchemas(byItem: byItem, options: .init())
+    self.listDocumentSchemasByItems(request: request, options: .init())
   }
 
   /// Lists document schemas.
   ///
   /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
-  public func listDocumentSchemas(
-    byItem: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
+  public func listDocumentSchemasByItems(
+    request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDocumentSchemas(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDocumentSchemas(
+  public func listDocumentSchemasByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DocumentSchema, Swift.Error> {
     let request = ListDocumentSchemasRequest().with {
       $0.parent = parent
     }
-    return self.listDocumentSchemas(byItem: request)
+    return self.listDocumentSchemasByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

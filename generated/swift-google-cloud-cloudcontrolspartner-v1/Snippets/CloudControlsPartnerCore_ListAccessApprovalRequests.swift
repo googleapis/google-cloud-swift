@@ -27,8 +27,8 @@ func sample(
   client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String,
   customerId: String, workloadId: String
 ) async throws {
-  let items = client.listAccessApprovalRequests(
-    byItem: ListAccessApprovalRequestsRequest()
+  let items = client.listAccessApprovalRequestsByItems(
+    request: ListAccessApprovalRequestsRequest()
       .with {
         $0.parent =
           "organizations/\(organizationId)/locations/\(locationId)/customers/\(customerId)/workloads/\(workloadId)"

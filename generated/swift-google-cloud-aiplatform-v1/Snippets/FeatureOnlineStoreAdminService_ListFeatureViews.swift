@@ -28,8 +28,8 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String
   ) async throws {
-    let items = client.listFeatureViews(
-      byItem: ListFeatureViewsRequest()
+    let items = client.listFeatureViewsByItems(
+      request: ListFeatureViewsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featureOnlineStores/\(featureOnlineStoreId)"

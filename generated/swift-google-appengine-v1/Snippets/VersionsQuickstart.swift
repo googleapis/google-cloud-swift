@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.VersionsClient()
-  let items = client.listVersions(
-    byItem: ListVersionsRequest()
+  let items = client.listVersionsByItems(
+    request: ListVersionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

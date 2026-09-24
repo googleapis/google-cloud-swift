@@ -2927,34 +2927,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listStoragePools(
-    byItem: ListStoragePoolsRequest
+  public func listStoragePoolsByItems(
+    request: ListStoragePoolsRequest
   ) -> any AsyncSequence<StoragePool, Swift.Error> {
-    self.listStoragePools(byItem: byItem, options: .init())
+    self.listStoragePoolsByItems(request: request, options: .init())
   }
 
   /// Returns descriptions of all storage pools owned by the caller.
   ///
   /// @Snippet(path: "NetApp_ListStoragePools")
-  public func listStoragePools(
-    byItem: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
+  public func listStoragePoolsByItems(
+    request: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<StoragePool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListStoragePoolsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listStoragePools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listStoragePools(
+  public func listStoragePoolsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<StoragePool, Swift.Error> {
     let request = ListStoragePoolsRequest().with {
       $0.parent = parent
     }
-    return self.listStoragePools(byItem: request)
+    return self.listStoragePoolsByItems(request: request)
   }
 
   public func createStoragePool(request: CreateStoragePoolRequest) async throws
@@ -3163,33 +3163,33 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVolumes(
-    byItem: ListVolumesRequest
+  public func listVolumesByItems(
+    request: ListVolumesRequest
   ) -> any AsyncSequence<Volume, Swift.Error> {
-    self.listVolumes(byItem: byItem, options: .init())
+    self.listVolumesByItems(request: request, options: .init())
   }
 
   /// Lists Volumes in a given project.
   ///
   /// @Snippet(path: "NetApp_ListVolumes")
-  public func listVolumes(
-    byItem: ListVolumesRequest, options: GoogleGax.RequestOptions
+  public func listVolumesByItems(
+    request: ListVolumesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Volume, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListVolumesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVolumes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVolumes(
+  public func listVolumesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Volume, Swift.Error> {
     let request = ListVolumesRequest().with {
       $0.parent = parent
     }
-    return self.listVolumes(byItem: request)
+    return self.listVolumesByItems(request: request)
   }
 
   public func getVolume(request: GetVolumeRequest) async throws -> GoogleCloudNetAppV1.Volume {
@@ -3392,34 +3392,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSnapshots(
-    byItem: ListSnapshotsRequest
+  public func listSnapshotsByItems(
+    request: ListSnapshotsRequest
   ) -> any AsyncSequence<Snapshot, Swift.Error> {
-    self.listSnapshots(byItem: byItem, options: .init())
+    self.listSnapshotsByItems(request: request, options: .init())
   }
 
   /// Returns descriptions of all snapshots for a volume.
   ///
   /// @Snippet(path: "NetApp_ListSnapshots")
-  public func listSnapshots(
-    byItem: ListSnapshotsRequest, options: GoogleGax.RequestOptions
+  public func listSnapshotsByItems(
+    request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListSnapshotsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSnapshots(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSnapshots(
+  public func listSnapshotsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Snapshot, Swift.Error> {
     let request = ListSnapshotsRequest().with {
       $0.parent = parent
     }
-    return self.listSnapshots(byItem: request)
+    return self.listSnapshotsByItems(request: request)
   }
 
   public func getSnapshot(request: GetSnapshotRequest) async throws -> GoogleCloudNetAppV1.Snapshot
@@ -3571,34 +3571,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listActiveDirectories(
-    byItem: ListActiveDirectoriesRequest
+  public func listActiveDirectoriesByItems(
+    request: ListActiveDirectoriesRequest
   ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
-    self.listActiveDirectories(byItem: byItem, options: .init())
+    self.listActiveDirectoriesByItems(request: request, options: .init())
   }
 
   /// Lists active directories.
   ///
   /// @Snippet(path: "NetApp_ListActiveDirectories")
-  public func listActiveDirectories(
-    byItem: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
+  public func listActiveDirectoriesByItems(
+    request: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListActiveDirectoriesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listActiveDirectories(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listActiveDirectories(
+  public func listActiveDirectoriesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ActiveDirectory, Swift.Error> {
     let request = ListActiveDirectoriesRequest().with {
       $0.parent = parent
     }
-    return self.listActiveDirectories(byItem: request)
+    return self.listActiveDirectoriesByItems(request: request)
   }
 
   public func getActiveDirectory(request: GetActiveDirectoryRequest) async throws
@@ -3751,34 +3751,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listKmsConfigs(
-    byItem: ListKmsConfigsRequest
+  public func listKmsConfigsByItems(
+    request: ListKmsConfigsRequest
   ) -> any AsyncSequence<KmsConfig, Swift.Error> {
-    self.listKmsConfigs(byItem: byItem, options: .init())
+    self.listKmsConfigsByItems(request: request, options: .init())
   }
 
   /// Returns descriptions of all KMS configs owned by the caller.
   ///
   /// @Snippet(path: "NetApp_ListKmsConfigs")
-  public func listKmsConfigs(
-    byItem: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
+  public func listKmsConfigsByItems(
+    request: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<KmsConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListKmsConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listKmsConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listKmsConfigs(
+  public func listKmsConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<KmsConfig, Swift.Error> {
     let request = ListKmsConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listKmsConfigs(byItem: request)
+    return self.listKmsConfigsByItems(request: request)
   }
 
   public func createKmsConfig(request: CreateKmsConfigRequest) async throws
@@ -3971,34 +3971,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listReplications(
-    byItem: ListReplicationsRequest
+  public func listReplicationsByItems(
+    request: ListReplicationsRequest
   ) -> any AsyncSequence<Replication, Swift.Error> {
-    self.listReplications(byItem: byItem, options: .init())
+    self.listReplicationsByItems(request: request, options: .init())
   }
 
   /// Returns descriptions of all replications for a volume.
   ///
   /// @Snippet(path: "NetApp_ListReplications")
-  public func listReplications(
-    byItem: ListReplicationsRequest, options: GoogleGax.RequestOptions
+  public func listReplicationsByItems(
+    request: ListReplicationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Replication, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListReplicationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listReplications(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listReplications(
+  public func listReplicationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Replication, Swift.Error> {
     let request = ListReplicationsRequest().with {
       $0.parent = parent
     }
-    return self.listReplications(byItem: request)
+    return self.listReplicationsByItems(request: request)
   }
 
   public func getReplication(request: GetReplicationRequest) async throws
@@ -4353,34 +4353,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBackupVaults(
-    byItem: ListBackupVaultsRequest
+  public func listBackupVaultsByItems(
+    request: ListBackupVaultsRequest
   ) -> any AsyncSequence<BackupVault, Swift.Error> {
-    self.listBackupVaults(byItem: byItem, options: .init())
+    self.listBackupVaultsByItems(request: request, options: .init())
   }
 
   /// Returns list of all available backup vaults.
   ///
   /// @Snippet(path: "NetApp_ListBackupVaults")
-  public func listBackupVaults(
-    byItem: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
+  public func listBackupVaultsByItems(
+    request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BackupVault, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupVaultsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBackupVaults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBackupVaults(
+  public func listBackupVaultsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<BackupVault, Swift.Error> {
     let request = ListBackupVaultsRequest().with {
       $0.parent = parent
     }
-    return self.listBackupVaults(byItem: request)
+    return self.listBackupVaultsByItems(request: request)
   }
 
   public func updateBackupVault(request: UpdateBackupVaultRequest) async throws
@@ -4530,33 +4530,33 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBackups(
-    byItem: ListBackupsRequest
+  public func listBackupsByItems(
+    request: ListBackupsRequest
   ) -> any AsyncSequence<Backup, Swift.Error> {
-    self.listBackups(byItem: byItem, options: .init())
+    self.listBackupsByItems(request: request, options: .init())
   }
 
   /// Returns descriptions of all backups for a backupVault.
   ///
   /// @Snippet(path: "NetApp_ListBackups")
-  public func listBackups(
-    byItem: ListBackupsRequest, options: GoogleGax.RequestOptions
+  public func listBackupsByItems(
+    request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBackups(
+  public func listBackupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Backup, Swift.Error> {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
-    return self.listBackups(byItem: request)
+    return self.listBackupsByItems(request: request)
   }
 
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -4707,34 +4707,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBackupPolicies(
-    byItem: ListBackupPoliciesRequest
+  public func listBackupPoliciesByItems(
+    request: ListBackupPoliciesRequest
   ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
-    self.listBackupPolicies(byItem: byItem, options: .init())
+    self.listBackupPoliciesByItems(request: request, options: .init())
   }
 
   /// Returns list of all available backup policies.
   ///
   /// @Snippet(path: "NetApp_ListBackupPolicies")
-  public func listBackupPolicies(
-    byItem: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listBackupPoliciesByItems(
+    request: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBackupPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBackupPolicies(
+  public func listBackupPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<BackupPolicy, Swift.Error> {
     let request = ListBackupPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listBackupPolicies(byItem: request)
+    return self.listBackupPoliciesByItems(request: request)
   }
 
   public func updateBackupPolicy(request: UpdateBackupPolicyRequest) async throws
@@ -4825,34 +4825,34 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listQuotaRules(
-    byItem: ListQuotaRulesRequest
+  public func listQuotaRulesByItems(
+    request: ListQuotaRulesRequest
   ) -> any AsyncSequence<QuotaRule, Swift.Error> {
-    self.listQuotaRules(byItem: byItem, options: .init())
+    self.listQuotaRulesByItems(request: request, options: .init())
   }
 
   /// Returns list of all quota rules in a location.
   ///
   /// @Snippet(path: "NetApp_ListQuotaRules")
-  public func listQuotaRules(
-    byItem: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
+  public func listQuotaRulesByItems(
+    request: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<QuotaRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListQuotaRulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listQuotaRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listQuotaRules(
+  public func listQuotaRulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<QuotaRule, Swift.Error> {
     let request = ListQuotaRulesRequest().with {
       $0.parent = parent
     }
-    return self.listQuotaRules(byItem: request)
+    return self.listQuotaRulesByItems(request: request)
   }
 
   public func getQuotaRule(request: GetQuotaRuleRequest) async throws
@@ -5034,35 +5034,35 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listHostGroups(
-    byItem: ListHostGroupsRequest
+  public func listHostGroupsByItems(
+    request: ListHostGroupsRequest
   ) -> any AsyncSequence<HostGroup, Swift.Error> {
-    self.listHostGroups(byItem: byItem, options: .init())
+    self.listHostGroupsByItems(request: request, options: .init())
   }
 
   /// Returns a list of host groups in a `location`. Use `-` as location to list
   /// host groups across all locations.
   ///
   /// @Snippet(path: "NetApp_ListHostGroups")
-  public func listHostGroups(
-    byItem: ListHostGroupsRequest, options: GoogleGax.RequestOptions
+  public func listHostGroupsByItems(
+    request: ListHostGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<HostGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListHostGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listHostGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listHostGroups(
+  public func listHostGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<HostGroup, Swift.Error> {
     let request = ListHostGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listHostGroups(byItem: request)
+    return self.listHostGroupsByItems(request: request)
   }
 
   public func getHostGroup(request: GetHostGroupRequest) async throws
@@ -5263,10 +5263,10 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -5289,12 +5289,12 @@ extension Clients.NetAppProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "NetApp_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -5325,10 +5325,10 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -5336,19 +5336,19 @@ extension Clients.NetAppProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetApp_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -5356,7 +5356,7 @@ extension Clients.NetAppProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

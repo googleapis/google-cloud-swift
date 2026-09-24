@@ -21,8 +21,8 @@ import GoogleCloudRetailV2
 import GoogleLongRunning
 
 func sample(client: AnalyticsServiceClient) async throws {
-  let items = client.listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest()
+  let items = client.listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

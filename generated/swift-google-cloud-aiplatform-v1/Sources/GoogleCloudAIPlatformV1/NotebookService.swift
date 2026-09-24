@@ -889,35 +889,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNotebookRuntimeTemplates(
-      byItem: ListNotebookRuntimeTemplatesRequest
+    public func listNotebookRuntimeTemplatesByItems(
+      request: ListNotebookRuntimeTemplatesRequest
     ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
-      self.listNotebookRuntimeTemplates(byItem: byItem, options: .init())
+      self.listNotebookRuntimeTemplatesByItems(request: request, options: .init())
     }
 
     /// Lists NotebookRuntimeTemplates in a Location.
     ///
     /// @Snippet(path: "NotebookService_ListNotebookRuntimeTemplates")
-    public func listNotebookRuntimeTemplates(
-      byItem: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
+    public func listNotebookRuntimeTemplatesByItems(
+      request: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListNotebookRuntimeTemplatesResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNotebookRuntimeTemplates(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNotebookRuntimeTemplates(
+    public func listNotebookRuntimeTemplatesByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<NotebookRuntimeTemplate, Swift.Error> {
       let request = ListNotebookRuntimeTemplatesRequest().with {
         $0.parent = parent
       }
-      return self.listNotebookRuntimeTemplates(byItem: request)
+      return self.listNotebookRuntimeTemplatesByItems(request: request)
     }
 
     public func deleteNotebookRuntimeTemplate(request: DeleteNotebookRuntimeTemplateRequest)
@@ -1057,35 +1057,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNotebookRuntimes(
-      byItem: ListNotebookRuntimesRequest
+    public func listNotebookRuntimesByItems(
+      request: ListNotebookRuntimesRequest
     ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
-      self.listNotebookRuntimes(byItem: byItem, options: .init())
+      self.listNotebookRuntimesByItems(request: request, options: .init())
     }
 
     /// Lists NotebookRuntimes in a Location.
     ///
     /// @Snippet(path: "NotebookService_ListNotebookRuntimes")
-    public func listNotebookRuntimes(
-      byItem: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
+    public func listNotebookRuntimesByItems(
+      request: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimesResponse
         in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNotebookRuntimes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNotebookRuntimes(
+    public func listNotebookRuntimesByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<NotebookRuntime, Swift.Error> {
       let request = ListNotebookRuntimesRequest().with {
         $0.parent = parent
       }
-      return self.listNotebookRuntimes(byItem: request)
+      return self.listNotebookRuntimesByItems(request: request)
     }
 
     public func deleteNotebookRuntime(request: DeleteNotebookRuntimeRequest) async throws
@@ -1314,35 +1314,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNotebookExecutionJobs(
-      byItem: ListNotebookExecutionJobsRequest
+    public func listNotebookExecutionJobsByItems(
+      request: ListNotebookExecutionJobsRequest
     ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
-      self.listNotebookExecutionJobs(byItem: byItem, options: .init())
+      self.listNotebookExecutionJobsByItems(request: request, options: .init())
     }
 
     /// Lists NotebookExecutionJobs in a Location.
     ///
     /// @Snippet(path: "NotebookService_ListNotebookExecutionJobs")
-    public func listNotebookExecutionJobs(
-      byItem: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
+    public func listNotebookExecutionJobsByItems(
+      request: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListNotebookExecutionJobsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNotebookExecutionJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNotebookExecutionJobs(
+    public func listNotebookExecutionJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<NotebookExecutionJob, Swift.Error> {
       let request = ListNotebookExecutionJobsRequest().with {
         $0.parent = parent
       }
-      return self.listNotebookExecutionJobs(byItem: request)
+      return self.listNotebookExecutionJobsByItems(request: request)
     }
 
     public func deleteNotebookExecutionJob(request: DeleteNotebookExecutionJobRequest) async throws
@@ -1394,21 +1394,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      self.listLocations(byItem: byItem, options: .init())
+      self.listLocationsByItems(request: request, options: .init())
     }
 
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "NotebookService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
@@ -1475,10 +1475,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1486,19 +1486,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "NotebookService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1506,7 +1506,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

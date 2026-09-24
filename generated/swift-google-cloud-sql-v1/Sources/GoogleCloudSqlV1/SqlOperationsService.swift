@@ -115,22 +115,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: SqlOperationsListRequest
+    public func listByItems(
+      request: SqlOperationsListRequest
     ) -> any AsyncSequence<Operation, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists all instance operations that have been performed on the given Cloud
     /// SQL instance in the reverse chronological order of the start time.
     ///
     /// @Snippet(path: "SqlOperationsService_List")
-    public func list(
-      byItem: SqlOperationsListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.OperationsListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }

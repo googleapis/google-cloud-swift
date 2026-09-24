@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.FindingsRefinementServiceClient()
-  let items = client.listFindingsRefinements(
-    byItem: ListFindingsRefinementsRequest()
+  let items = client.listFindingsRefinementsByItems(
+    request: ListFindingsRefinementsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

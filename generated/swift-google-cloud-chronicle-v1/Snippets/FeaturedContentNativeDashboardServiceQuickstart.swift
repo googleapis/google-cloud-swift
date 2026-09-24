@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.FeaturedContentNativeDashboardServiceClient()
-  let items = client.listFeaturedContentNativeDashboards(
-    byItem: ListFeaturedContentNativeDashboardsRequest()
+  let items = client.listFeaturedContentNativeDashboardsByItems(
+    request: ListFeaturedContentNativeDashboardsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/contentHub"

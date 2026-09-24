@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudGKERecommenderV1
 
 func sample(client: GkeInferenceQuickstartClient) async throws {
-  let items = client.fetchProfiles(
-    byItem: FetchProfilesRequest()
+  let items = client.fetchProfilesByItems(
+    request: FetchProfilesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

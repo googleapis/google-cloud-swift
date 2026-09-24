@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PrincipalAccessBoundaryPoliciesClient) async throws {
-  let items = client.searchPrincipalAccessBoundaryPolicyBindings(
-    byItem: SearchPrincipalAccessBoundaryPolicyBindingsRequest()
+  let items = client.searchPrincipalAccessBoundaryPolicyBindingsByItems(
+    request: SearchPrincipalAccessBoundaryPolicyBindingsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: LineageClient, projectId: String, locationId: String, processId: String)
   async throws
 {
-  let items = client.listRuns(
-    byItem: ListRunsRequest()
+  let items = client.listRunsByItems(
+    request: ListRunsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/processes/\(processId)"
       }

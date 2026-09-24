@@ -25,8 +25,8 @@ func sample(
   client: ApiHubDiscoveryClient, projectId: String, locationId: String,
   discoveredApiObservationId: String
 ) async throws {
-  let items = client.listDiscoveredApiOperations(
-    byItem: ListDiscoveredApiOperationsRequest()
+  let items = client.listDiscoveredApiOperationsByItems(
+    request: ListDiscoveredApiOperationsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/discoveredApiObservations/\(discoveredApiObservationId)"

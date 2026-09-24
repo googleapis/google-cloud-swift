@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudOSConfigV1.OsConfigServiceClient()
-  let items = client.listPatchJobs(
-    byItem: ListPatchJobsRequest()
+  let items = client.listPatchJobsByItems(
+    request: ListPatchJobsRequest()
       .with {
         $0.parent = "\(parent)"
       }

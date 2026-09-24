@@ -120,10 +120,10 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExecutions(
-    byItem: ListExecutionsRequest
+  public func listExecutionsByItems(
+    request: ListExecutionsRequest
   ) -> any AsyncSequence<Execution, Swift.Error> {
-    self.listExecutions(byItem: byItem, options: .init())
+    self.listExecutionsByItems(request: request, options: .init())
   }
 
   /// Returns a list of executions which belong to the workflow with
@@ -132,26 +132,26 @@ extension Clients.ExecutionsProtocol {
   /// first).
   ///
   /// @Snippet(path: "Executions_ListExecutions")
-  public func listExecutions(
-    byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
+  public func listExecutionsByItems(
+    request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExecutions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExecutions(
+  public func listExecutionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Execution, Swift.Error> {
     let request = ListExecutionsRequest().with {
       $0.parent = parent
     }
-    return self.listExecutions(byItem: request)
+    return self.listExecutionsByItems(request: request)
   }
 
   public func createExecution(request: CreateExecutionRequest) async throws

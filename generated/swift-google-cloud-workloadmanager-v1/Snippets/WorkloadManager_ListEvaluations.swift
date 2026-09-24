@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkloadManagerClient, projectId: String, locationId: String) async throws {
-  let items = client.listEvaluations(
-    byItem: ListEvaluationsRequest()
+  let items = client.listEvaluationsByItems(
+    request: ListEvaluationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -236,35 +236,35 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSupportEventSubscriptions(
-    byItem: ListSupportEventSubscriptionsRequest
+  public func listSupportEventSubscriptionsByItems(
+    request: ListSupportEventSubscriptionsRequest
   ) -> any AsyncSequence<SupportEventSubscription, Swift.Error> {
-    self.listSupportEventSubscriptions(byItem: byItem, options: .init())
+    self.listSupportEventSubscriptionsByItems(request: request, options: .init())
   }
 
   /// Lists support event subscriptions for an organization.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
-  public func listSupportEventSubscriptions(
-    byItem: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
+  public func listSupportEventSubscriptionsByItems(
+    request: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SupportEventSubscription, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSupportEventSubscriptions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSupportEventSubscriptions(
+  public func listSupportEventSubscriptionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SupportEventSubscription, Swift.Error> {
     let request = ListSupportEventSubscriptionsRequest().with {
       $0.parent = parent
     }
-    return self.listSupportEventSubscriptions(byItem: request)
+    return self.listSupportEventSubscriptionsByItems(request: request)
   }
 
   public func updateSupportEventSubscription(request: UpdateSupportEventSubscriptionRequest)

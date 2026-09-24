@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.EntityServiceClient()
-  let items = client.listWatchlists(
-    byItem: ListWatchlistsRequest()
+  let items = client.listWatchlistsByItems(
+    request: ListWatchlistsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

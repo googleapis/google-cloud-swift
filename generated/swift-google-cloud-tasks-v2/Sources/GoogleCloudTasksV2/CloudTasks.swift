@@ -470,10 +470,10 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listQueues(
-    byItem: ListQueuesRequest
+  public func listQueuesByItems(
+    request: ListQueuesRequest
   ) -> any AsyncSequence<Queue, Swift.Error> {
-    self.listQueues(byItem: byItem, options: .init())
+    self.listQueuesByItems(request: request, options: .init())
   }
 
   /// Lists queues.
@@ -481,24 +481,24 @@ extension Clients.CloudTasksProtocol {
   /// Queues are returned in lexicographical order.
   ///
   /// @Snippet(path: "CloudTasks_ListQueues")
-  public func listQueues(
-    byItem: ListQueuesRequest, options: GoogleGax.RequestOptions
+  public func listQueuesByItems(
+    request: ListQueuesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Queue, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListQueuesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listQueues(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listQueues(
+  public func listQueuesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Queue, Swift.Error> {
     let request = ListQueuesRequest().with {
       $0.parent = parent
     }
-    return self.listQueues(byItem: request)
+    return self.listQueuesByItems(request: request)
   }
 
   public func getQueue(request: GetQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
@@ -717,10 +717,10 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTasks(
-    byItem: ListTasksRequest
+  public func listTasksByItems(
+    request: ListTasksRequest
   ) -> any AsyncSequence<Task, Swift.Error> {
-    self.listTasks(byItem: byItem, options: .init())
+    self.listTasksByItems(request: request, options: .init())
   }
 
   /// Lists the tasks in a queue.
@@ -737,24 +737,24 @@ extension Clients.CloudTasksProtocol {
   /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
   ///
   /// @Snippet(path: "CloudTasks_ListTasks")
-  public func listTasks(
-    byItem: ListTasksRequest, options: GoogleGax.RequestOptions
+  public func listTasksByItems(
+    request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Task, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudTasksV2.ListTasksResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTasks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTasks(
+  public func listTasksByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Task, Swift.Error> {
     let request = ListTasksRequest().with {
       $0.parent = parent
     }
-    return self.listTasks(byItem: request)
+    return self.listTasksByItems(request: request)
   }
 
   public func getTask(request: GetTaskRequest) async throws -> GoogleCloudTasksV2.Task {
@@ -847,21 +847,21 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudTasks_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

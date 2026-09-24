@@ -22,8 +22,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.DiskTypesClient()
-    let items = client.aggregatedList(
-      byItem: DiskTypesClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: DiskTypesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

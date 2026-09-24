@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudTpuV2.TpuClient()
-  let items = client.listNodes(
-    byItem: ListNodesRequest()
+  let items = client.listNodesByItems(
+    request: ListNodesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

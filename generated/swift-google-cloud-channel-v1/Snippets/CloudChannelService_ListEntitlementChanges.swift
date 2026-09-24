@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient) async throws {
-  let items = client.listEntitlementChanges(
-    byItem: ListEntitlementChangesRequest()
+  let items = client.listEntitlementChangesByItems(
+    request: ListEntitlementChangesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

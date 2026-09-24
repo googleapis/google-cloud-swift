@@ -1764,34 +1764,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMemberships(
-    byItem: ListMembershipsRequest
+  public func listMembershipsByItems(
+    request: ListMembershipsRequest
   ) -> any AsyncSequence<Membership, Swift.Error> {
-    self.listMemberships(byItem: byItem, options: .init())
+    self.listMembershipsByItems(request: request, options: .init())
   }
 
   /// Lists Memberships in a given project and location.
   ///
   /// @Snippet(path: "GkeHub_ListMemberships")
-  public func listMemberships(
-    byItem: ListMembershipsRequest, options: GoogleGax.RequestOptions
+  public func listMembershipsByItems(
+    request: ListMembershipsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Membership, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListMembershipsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMemberships(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMemberships(
+  public func listMembershipsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Membership, Swift.Error> {
     let request = ListMembershipsRequest().with {
       $0.parent = parent
     }
-    return self.listMemberships(byItem: request)
+    return self.listMembershipsByItems(request: request)
   }
 
   public func listBoundMemberships(request: ListBoundMembershipsRequest) async throws
@@ -1806,35 +1806,35 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBoundMemberships(
-    byItem: ListBoundMembershipsRequest
+  public func listBoundMembershipsByItems(
+    request: ListBoundMembershipsRequest
   ) -> any AsyncSequence<Membership, Swift.Error> {
-    self.listBoundMemberships(byItem: byItem, options: .init())
+    self.listBoundMembershipsByItems(request: request, options: .init())
   }
 
   /// Lists Memberships bound to a Scope. The response includes relevant
   /// Memberships from all regions.
   ///
   /// @Snippet(path: "GkeHub_ListBoundMemberships")
-  public func listBoundMemberships(
-    byItem: ListBoundMembershipsRequest, options: GoogleGax.RequestOptions
+  public func listBoundMembershipsByItems(
+    request: ListBoundMembershipsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Membership, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListBoundMembershipsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBoundMemberships(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBoundMemberships(
+  public func listBoundMembershipsByItems(
     scopeName: Swift.String,
   ) -> any AsyncSequence<Membership, Swift.Error> {
     let request = ListBoundMembershipsRequest().with {
       $0.scopeName = scopeName
     }
-    return self.listBoundMemberships(byItem: request)
+    return self.listBoundMembershipsByItems(request: request)
   }
 
   public func listFeatures(request: ListFeaturesRequest) async throws
@@ -1849,34 +1849,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFeatures(
-    byItem: ListFeaturesRequest
+  public func listFeaturesByItems(
+    request: ListFeaturesRequest
   ) -> any AsyncSequence<Feature, Swift.Error> {
-    self.listFeatures(byItem: byItem, options: .init())
+    self.listFeaturesByItems(request: request, options: .init())
   }
 
   /// Lists Features in a given project and location.
   ///
   /// @Snippet(path: "GkeHub_ListFeatures")
-  public func listFeatures(
-    byItem: ListFeaturesRequest, options: GoogleGax.RequestOptions
+  public func listFeaturesByItems(
+    request: ListFeaturesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Feature, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListFeaturesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFeatures(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFeatures(
+  public func listFeaturesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Feature, Swift.Error> {
     let request = ListFeaturesRequest().with {
       $0.parent = parent
     }
-    return self.listFeatures(byItem: request)
+    return self.listFeaturesByItems(request: request)
   }
 
   public func getMembership(request: GetMembershipRequest) async throws
@@ -2309,34 +2309,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFleets(
-    byItem: ListFleetsRequest
+  public func listFleetsByItems(
+    request: ListFleetsRequest
   ) -> any AsyncSequence<Fleet, Swift.Error> {
-    self.listFleets(byItem: byItem, options: .init())
+    self.listFleetsByItems(request: request, options: .init())
   }
 
   /// Returns all fleets within an organization or a project that the caller has
   /// access to.
   ///
   /// @Snippet(path: "GkeHub_ListFleets")
-  public func listFleets(
-    byItem: ListFleetsRequest, options: GoogleGax.RequestOptions
+  public func listFleetsByItems(
+    request: ListFleetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Fleet, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListFleetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFleets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFleets(
+  public func listFleetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Fleet, Swift.Error> {
     let request = ListFleetsRequest().with {
       $0.parent = parent
     }
-    return self.listFleets(byItem: request)
+    return self.listFleetsByItems(request: request)
   }
 
   public func getScopeNamespace(request: GetScopeNamespaceRequest) async throws
@@ -2489,34 +2489,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listScopeNamespaces(
-    byItem: ListScopeNamespacesRequest
+  public func listScopeNamespacesByItems(
+    request: ListScopeNamespacesRequest
   ) -> any AsyncSequence<Namespace, Swift.Error> {
-    self.listScopeNamespaces(byItem: byItem, options: .init())
+    self.listScopeNamespacesByItems(request: request, options: .init())
   }
 
   /// Lists fleet namespaces.
   ///
   /// @Snippet(path: "GkeHub_ListScopeNamespaces")
-  public func listScopeNamespaces(
-    byItem: ListScopeNamespacesRequest, options: GoogleGax.RequestOptions
+  public func listScopeNamespacesByItems(
+    request: ListScopeNamespacesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Namespace, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListScopeNamespacesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listScopeNamespaces(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listScopeNamespaces(
+  public func listScopeNamespacesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Namespace, Swift.Error> {
     let request = ListScopeNamespacesRequest().with {
       $0.parent = parent
     }
-    return self.listScopeNamespaces(byItem: request)
+    return self.listScopeNamespacesByItems(request: request)
   }
 
   public func getScopeRbacroleBinding(request: GetScopeRBACRoleBindingRequest) async throws
@@ -2669,34 +2669,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listScopeRbacroleBindings(
-    byItem: ListScopeRBACRoleBindingsRequest
+  public func listScopeRbacroleBindingsByItems(
+    request: ListScopeRBACRoleBindingsRequest
   ) -> any AsyncSequence<RBACRoleBinding, Swift.Error> {
-    self.listScopeRbacroleBindings(byItem: byItem, options: .init())
+    self.listScopeRbacroleBindingsByItems(request: request, options: .init())
   }
 
   /// Lists all Scope RBACRoleBindings.
   ///
   /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
-  public func listScopeRbacroleBindings(
-    byItem: ListScopeRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
+  public func listScopeRbacroleBindingsByItems(
+    request: ListScopeRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RBACRoleBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListScopeRBACRoleBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listScopeRbacroleBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listScopeRbacroleBindings(
+  public func listScopeRbacroleBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RBACRoleBinding, Swift.Error> {
     let request = ListScopeRBACRoleBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listScopeRbacroleBindings(byItem: request)
+    return self.listScopeRbacroleBindingsByItems(request: request)
   }
 
   public func getScope(request: GetScopeRequest) async throws -> GoogleCloudGKEHubV1.Scope {
@@ -2841,33 +2841,33 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listScopes(
-    byItem: ListScopesRequest
+  public func listScopesByItems(
+    request: ListScopesRequest
   ) -> any AsyncSequence<Scope, Swift.Error> {
-    self.listScopes(byItem: byItem, options: .init())
+    self.listScopesByItems(request: request, options: .init())
   }
 
   /// Lists Scopes.
   ///
   /// @Snippet(path: "GkeHub_ListScopes")
-  public func listScopes(
-    byItem: ListScopesRequest, options: GoogleGax.RequestOptions
+  public func listScopesByItems(
+    request: ListScopesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Scope, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListScopesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listScopes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listScopes(
+  public func listScopesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Scope, Swift.Error> {
     let request = ListScopesRequest().with {
       $0.parent = parent
     }
-    return self.listScopes(byItem: request)
+    return self.listScopesByItems(request: request)
   }
 
   public func listPermittedScopes(request: ListPermittedScopesRequest) async throws
@@ -2882,34 +2882,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPermittedScopes(
-    byItem: ListPermittedScopesRequest
+  public func listPermittedScopesByItems(
+    request: ListPermittedScopesRequest
   ) -> any AsyncSequence<Scope, Swift.Error> {
-    self.listPermittedScopes(byItem: byItem, options: .init())
+    self.listPermittedScopesByItems(request: request, options: .init())
   }
 
   /// Lists permitted Scopes.
   ///
   /// @Snippet(path: "GkeHub_ListPermittedScopes")
-  public func listPermittedScopes(
-    byItem: ListPermittedScopesRequest, options: GoogleGax.RequestOptions
+  public func listPermittedScopesByItems(
+    request: ListPermittedScopesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Scope, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListPermittedScopesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPermittedScopes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPermittedScopes(
+  public func listPermittedScopesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Scope, Swift.Error> {
     let request = ListPermittedScopesRequest().with {
       $0.parent = parent
     }
-    return self.listPermittedScopes(byItem: request)
+    return self.listPermittedScopesByItems(request: request)
   }
 
   public func getMembershipBinding(request: GetMembershipBindingRequest) async throws
@@ -3062,34 +3062,34 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMembershipBindings(
-    byItem: ListMembershipBindingsRequest
+  public func listMembershipBindingsByItems(
+    request: ListMembershipBindingsRequest
   ) -> any AsyncSequence<MembershipBinding, Swift.Error> {
-    self.listMembershipBindings(byItem: byItem, options: .init())
+    self.listMembershipBindingsByItems(request: request, options: .init())
   }
 
   /// Lists MembershipBindings.
   ///
   /// @Snippet(path: "GkeHub_ListMembershipBindings")
-  public func listMembershipBindings(
-    byItem: ListMembershipBindingsRequest, options: GoogleGax.RequestOptions
+  public func listMembershipBindingsByItems(
+    request: ListMembershipBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MembershipBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListMembershipBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMembershipBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMembershipBindings(
+  public func listMembershipBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MembershipBinding, Swift.Error> {
     let request = ListMembershipBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listMembershipBindings(byItem: request)
+    return self.listMembershipBindingsByItems(request: request)
   }
 
   public func getMembershipRbacroleBinding(request: GetMembershipRBACRoleBindingRequest)
@@ -3245,35 +3245,35 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMembershipRbacroleBindings(
-    byItem: ListMembershipRBACRoleBindingsRequest
+  public func listMembershipRbacroleBindingsByItems(
+    request: ListMembershipRBACRoleBindingsRequest
   ) -> any AsyncSequence<RBACRoleBinding, Swift.Error> {
-    self.listMembershipRbacroleBindings(byItem: byItem, options: .init())
+    self.listMembershipRbacroleBindingsByItems(request: request, options: .init())
   }
 
   /// Lists all Membership RBACRoleBindings.
   ///
   /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
-  public func listMembershipRbacroleBindings(
-    byItem: ListMembershipRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
+  public func listMembershipRbacroleBindingsByItems(
+    request: ListMembershipRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RBACRoleBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListMembershipRBACRoleBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMembershipRbacroleBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMembershipRbacroleBindings(
+  public func listMembershipRbacroleBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RBACRoleBinding, Swift.Error> {
     let request = ListMembershipRBACRoleBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listMembershipRbacroleBindings(byItem: request)
+    return self.listMembershipRbacroleBindingsByItems(request: request)
   }
 
   public func generateMembershipRbacroleBindingYaml(
@@ -3300,10 +3300,10 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -3311,19 +3311,19 @@ extension Clients.GkeHubProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GkeHub_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -3331,7 +3331,7 @@ extension Clients.GkeHubProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

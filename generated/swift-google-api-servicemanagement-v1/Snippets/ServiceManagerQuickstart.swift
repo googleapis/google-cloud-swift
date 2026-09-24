@@ -28,8 +28,8 @@ import GoogleWKT
 #endif
 func sample() async throws {
   let client = try GoogleApiServiceManagementV1.ServiceManagerClient()
-  let items = client.listServices(
-    byItem: ListServicesRequest()
+  let items = client.listServicesByItems(
+    request: ListServicesRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

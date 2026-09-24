@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient, parent: String) async throws {
-  let items = client.listQaScorecards(
-    byItem: ListQaScorecardsRequest()
+  let items = client.listQaScorecardsByItems(
+    request: ListQaScorecardsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkServicesV1.DepServiceClient()
-  let items = client.listLbTrafficExtensions(
-    byItem: ListLbTrafficExtensionsRequest()
+  let items = client.listLbTrafficExtensionsByItems(
+    request: ListLbTrafficExtensionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

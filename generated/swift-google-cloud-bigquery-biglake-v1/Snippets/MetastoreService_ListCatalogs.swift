@@ -21,8 +21,8 @@ import GoogleBigQueryBigLakeV1
 import GoogleWKT
 
 func sample(client: MetastoreServiceClient, parent: String) async throws {
-  let items = client.listCatalogs(
-    byItem: ListCatalogsRequest()
+  let items = client.listCatalogsByItems(
+    request: ListCatalogsRequest()
       .with {
         $0.parent = "\(parent)"
       }

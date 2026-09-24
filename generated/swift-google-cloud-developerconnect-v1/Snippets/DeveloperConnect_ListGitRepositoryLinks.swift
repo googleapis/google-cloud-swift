@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: DeveloperConnectClient, projectId: String, locationId: String, connectionId: String
 ) async throws {
-  let items = client.listGitRepositoryLinks(
-    byItem: ListGitRepositoryLinksRequest()
+  let items = client.listGitRepositoryLinksByItems(
+    request: ListGitRepositoryLinksRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
       }

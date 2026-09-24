@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudTalentV4.TenantServiceClient()
-  let items = client.listTenants(
-    byItem: ListTenantsRequest()
+  let items = client.listTenantsByItems(
+    request: ListTenantsRequest()
       .with {
         $0.parent = "\(parent)"
       }

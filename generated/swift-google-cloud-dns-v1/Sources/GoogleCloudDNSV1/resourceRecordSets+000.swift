@@ -208,27 +208,27 @@ extension Clients.ResourceRecordSetsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func list(
-    byItem: ResourceRecordSetsClient.ListRequest
+  public func listByItems(
+    request: ResourceRecordSetsClient.ListRequest
   ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
-    self.list(byItem: byItem, options: .init())
+    self.listByItems(request: request, options: .init())
   }
 
   /// Enumerates ResourceRecordSets that you have created but not yet deleted.
   ///
   /// @Snippet(path: "resourceRecordSets_list")
-  public func list(
-    byItem: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
+  public func listByItems(
+    request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ResourceRecordSetsListResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.list(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func list(
+  public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,
   ) -> any AsyncSequence<ResourceRecordSet, Swift.Error> {
@@ -236,7 +236,7 @@ extension Clients.ResourceRecordSetsProtocol {
       $0.project = project
       $0.managedZone = managedZone
     }
-    return self.list(byItem: request)
+    return self.listByItems(request: request)
   }
 
   public func patch(request: ResourceRecordSetsClient.PatchRequest) async throws

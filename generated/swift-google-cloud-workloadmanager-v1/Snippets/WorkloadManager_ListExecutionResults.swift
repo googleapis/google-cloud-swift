@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkloadManagerClient) async throws {
-  let items = client.listExecutionResults(
-    byItem: ListExecutionResultsRequest()
+  let items = client.listExecutionResultsByItems(
+    request: ListExecutionResultsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

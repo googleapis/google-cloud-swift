@@ -21,8 +21,8 @@ import GoogleCloudLoggingV2
 import GoogleLongRunning
 
 func sample(client: MetricsServiceV2Client, parent: String) async throws {
-  let items = client.listLogMetrics(
-    byItem: ListLogMetricsRequest()
+  let items = client.listLogMetricsByItems(
+    request: ListLogMetricsRequest()
       .with {
         $0.parent = "\(parent)"
       }

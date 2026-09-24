@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: KeyManagementServiceClient, parent: String) async throws {
-  let items = client.listKeyRings(
-    byItem: ListKeyRingsRequest()
+  let items = client.listKeyRingsByItems(
+    request: ListKeyRingsRequest()
       .with {
         $0.parent = "\(parent)"
       }

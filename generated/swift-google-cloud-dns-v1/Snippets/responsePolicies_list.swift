@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: ResponsePoliciesClient) async throws {
-  let items = client.list(
-    byItem: ResponsePoliciesClient.ListRequest()
+  let items = client.listByItems(
+    request: ResponsePoliciesClient.ListRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

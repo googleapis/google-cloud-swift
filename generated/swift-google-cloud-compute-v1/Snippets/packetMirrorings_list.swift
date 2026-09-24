@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: PacketMirroringsClient) async throws {
-    let items = client.list(
-      byItem: PacketMirroringsClient.ListRequest()
+    let items = client.listByItems(
+      request: PacketMirroringsClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

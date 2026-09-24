@@ -288,10 +288,10 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPolicies(
-    byItem: ListPoliciesRequest
+  public func listPoliciesByItems(
+    request: ListPoliciesRequest
   ) -> any AsyncSequence<Policy, Swift.Error> {
-    self.listPolicies(byItem: byItem, options: .init())
+    self.listPoliciesByItems(request: request, options: .init())
   }
 
   /// Retrieves the policies of the specified kind that are attached to a
@@ -301,24 +301,24 @@ extension Clients.PoliciesProtocol {
   /// omitted.
   ///
   /// @Snippet(path: "Policies_ListPolicies")
-  public func listPolicies(
-    byItem: ListPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listPoliciesByItems(
+    request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Policy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPolicies(
+  public func listPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Policy, Swift.Error> {
     let request = ListPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listPolicies(byItem: request)
+    return self.listPoliciesByItems(request: request)
   }
 
   public func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy {

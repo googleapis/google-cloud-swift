@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FirewallActivationClient, projectId: String, locationId: String) async throws {
-  let items = client.listFirewallEndpointAssociations(
-    byItem: ListFirewallEndpointAssociationsRequest()
+  let items = client.listFirewallEndpointAssociationsByItems(
+    request: ListFirewallEndpointAssociationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

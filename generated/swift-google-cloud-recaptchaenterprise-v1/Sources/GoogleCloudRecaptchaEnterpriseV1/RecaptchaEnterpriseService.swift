@@ -487,34 +487,34 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listKeys(
-    byItem: ListKeysRequest
+  public func listKeysByItems(
+    request: ListKeysRequest
   ) -> any AsyncSequence<Key, Swift.Error> {
-    self.listKeys(byItem: byItem, options: .init())
+    self.listKeysByItems(request: request, options: .init())
   }
 
   /// Returns the list of all keys that belong to a project.
   ///
   /// @Snippet(path: "RecaptchaEnterpriseService_ListKeys")
-  public func listKeys(
-    byItem: ListKeysRequest, options: GoogleGax.RequestOptions
+  public func listKeysByItems(
+    request: ListKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Key, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListKeysResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listKeys(
+  public func listKeysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Key, Swift.Error> {
     let request = ListKeysRequest().with {
       $0.parent = parent
     }
-    return self.listKeys(byItem: request)
+    return self.listKeysByItems(request: request)
   }
 
   public func retrieveLegacySecretKey(request: RetrieveLegacySecretKeyRequest) async throws
@@ -669,35 +669,35 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIpOverrides(
-    byItem: ListIpOverridesRequest
+  public func listIpOverridesByItems(
+    request: ListIpOverridesRequest
   ) -> any AsyncSequence<IpOverrideData, Swift.Error> {
-    self.listIpOverrides(byItem: byItem, options: .init())
+    self.listIpOverridesByItems(request: request, options: .init())
   }
 
   /// Lists all IP overrides for a key.
   ///
   /// @Snippet(path: "RecaptchaEnterpriseService_ListIpOverrides")
-  public func listIpOverrides(
-    byItem: ListIpOverridesRequest, options: GoogleGax.RequestOptions
+  public func listIpOverridesByItems(
+    request: ListIpOverridesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IpOverrideData, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListIpOverridesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIpOverrides(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listIpOverrides(
+  public func listIpOverridesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<IpOverrideData, Swift.Error> {
     let request = ListIpOverridesRequest().with {
       $0.parent = parent
     }
-    return self.listIpOverrides(byItem: request)
+    return self.listIpOverridesByItems(request: request)
   }
 
   public func getMetrics(request: GetMetricsRequest) async throws
@@ -800,35 +800,35 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFirewallPolicies(
-    byItem: ListFirewallPoliciesRequest
+  public func listFirewallPoliciesByItems(
+    request: ListFirewallPoliciesRequest
   ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
-    self.listFirewallPolicies(byItem: byItem, options: .init())
+    self.listFirewallPoliciesByItems(request: request, options: .init())
   }
 
   /// Returns the list of all firewall policies that belong to a project.
   ///
   /// @Snippet(path: "RecaptchaEnterpriseService_ListFirewallPolicies")
-  public func listFirewallPolicies(
-    byItem: ListFirewallPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listFirewallPoliciesByItems(
+    request: ListFirewallPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListFirewallPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFirewallPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFirewallPolicies(
+  public func listFirewallPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
     let request = ListFirewallPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listFirewallPolicies(byItem: request)
+    return self.listFirewallPoliciesByItems(request: request)
   }
 
   public func getFirewallPolicy(request: GetFirewallPolicyRequest) async throws
@@ -929,35 +929,35 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRelatedAccountGroups(
-    byItem: ListRelatedAccountGroupsRequest
+  public func listRelatedAccountGroupsByItems(
+    request: ListRelatedAccountGroupsRequest
   ) -> any AsyncSequence<RelatedAccountGroup, Swift.Error> {
-    self.listRelatedAccountGroups(byItem: byItem, options: .init())
+    self.listRelatedAccountGroupsByItems(request: request, options: .init())
   }
 
   /// List groups of related accounts.
   ///
   /// @Snippet(path: "RecaptchaEnterpriseService_ListRelatedAccountGroups")
-  public func listRelatedAccountGroups(
-    byItem: ListRelatedAccountGroupsRequest, options: GoogleGax.RequestOptions
+  public func listRelatedAccountGroupsByItems(
+    request: ListRelatedAccountGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RelatedAccountGroup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRelatedAccountGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRelatedAccountGroups(
+  public func listRelatedAccountGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RelatedAccountGroup, Swift.Error> {
     let request = ListRelatedAccountGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listRelatedAccountGroups(byItem: request)
+    return self.listRelatedAccountGroupsByItems(request: request)
   }
 
   public func listRelatedAccountGroupMemberships(request: ListRelatedAccountGroupMembershipsRequest)
@@ -972,35 +972,35 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRelatedAccountGroupMemberships(
-    byItem: ListRelatedAccountGroupMembershipsRequest
+  public func listRelatedAccountGroupMembershipsByItems(
+    request: ListRelatedAccountGroupMembershipsRequest
   ) -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
-    self.listRelatedAccountGroupMemberships(byItem: byItem, options: .init())
+    self.listRelatedAccountGroupMembershipsByItems(request: request, options: .init())
   }
 
   /// Get memberships in a group of related accounts.
   ///
   /// @Snippet(path: "RecaptchaEnterpriseService_ListRelatedAccountGroupMemberships")
-  public func listRelatedAccountGroupMemberships(
-    byItem: ListRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
+  public func listRelatedAccountGroupMembershipsByItems(
+    request: ListRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupMembershipsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRelatedAccountGroupMemberships(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listRelatedAccountGroupMemberships(
+  public func listRelatedAccountGroupMembershipsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
     let request = ListRelatedAccountGroupMembershipsRequest().with {
       $0.parent = parent
     }
-    return self.listRelatedAccountGroupMemberships(byItem: request)
+    return self.listRelatedAccountGroupMembershipsByItems(request: request)
   }
 
   public func searchRelatedAccountGroupMemberships(
@@ -1015,10 +1015,10 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchRelatedAccountGroupMemberships(
-    byItem: SearchRelatedAccountGroupMembershipsRequest
+  public func searchRelatedAccountGroupMembershipsByItems(
+    request: SearchRelatedAccountGroupMembershipsRequest
   ) -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
-    self.searchRelatedAccountGroupMemberships(byItem: byItem, options: .init())
+    self.searchRelatedAccountGroupMembershipsByItems(request: request, options: .init())
   }
 
   /// Search group memberships related to a given account.
@@ -1027,13 +1027,13 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func searchRelatedAccountGroupMemberships(
-    byItem: SearchRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
+  public func searchRelatedAccountGroupMembershipsByItems(
+    request: SearchRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.SearchRelatedAccountGroupMembershipsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchRelatedAccountGroupMemberships(request: request, options: options)
     }
@@ -1043,7 +1043,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func searchRelatedAccountGroupMemberships(
+  public func searchRelatedAccountGroupMembershipsByItems(
     project: Swift.String,
     hashedAccountId: Foundation.Data,
   ) -> any AsyncSequence<RelatedAccountGroupMembership, Swift.Error> {
@@ -1051,6 +1051,6 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       $0.project = project
       $0.hashedAccountId = hashedAccountId
     }
-    return self.searchRelatedAccountGroupMemberships(byItem: request)
+    return self.searchRelatedAccountGroupMembershipsByItems(request: request)
   }
 }

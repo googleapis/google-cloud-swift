@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: JobControllerClient) async throws {
-  let items = client.listJobs(
-    byItem: ListJobsRequest()
+  let items = client.listJobsByItems(
+    request: ListJobsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

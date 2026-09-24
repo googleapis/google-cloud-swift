@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ForwardingRulesClient) async throws {
-    let items = client.aggregatedList(
-      byItem: ForwardingRulesClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: ForwardingRulesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

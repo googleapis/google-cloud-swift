@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudFinancialServicesV1.AMLClient()
-  let items = client.listInstances(
-    byItem: ListInstancesRequest()
+  let items = client.listInstancesByItems(
+    request: ListInstancesRequest()
       .with {
         $0.parent = "\(parent)"
       }

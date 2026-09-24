@@ -27,8 +27,8 @@ func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String,
   caPoolId: String, certificateAuthorityId: String
 ) async throws {
-  let items = client.listCertificateRevocationLists(
-    byItem: ListCertificateRevocationListsRequest()
+  let items = client.listCertificateRevocationListsByItems(
+    request: ListCertificateRevocationListsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/caPools/\(caPoolId)/certificateAuthorities/\(certificateAuthorityId)"

@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: ReasoningEngineServiceClient, parent: String) async throws {
-    let items = client.listReasoningEngines(
-      byItem: ListReasoningEnginesRequest()
+    let items = client.listReasoningEnginesByItems(
+      request: ListReasoningEnginesRequest()
         .with {
           $0.parent = "\(parent)"
         }

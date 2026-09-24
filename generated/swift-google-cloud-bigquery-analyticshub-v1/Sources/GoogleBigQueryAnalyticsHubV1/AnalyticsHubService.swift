@@ -628,35 +628,35 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataExchanges(
-    byItem: ListDataExchangesRequest
+  public func listDataExchangesByItems(
+    request: ListDataExchangesRequest
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
-    self.listDataExchanges(byItem: byItem, options: .init())
+    self.listDataExchangesByItems(request: request, options: .init())
   }
 
   /// Lists all data exchanges in a given project and location.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListDataExchanges")
-  public func listDataExchanges(
-    byItem: ListDataExchangesRequest, options: GoogleGax.RequestOptions
+  public func listDataExchangesByItems(
+    request: ListDataExchangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataExchanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataExchanges(
+  public func listDataExchangesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
     let request = ListDataExchangesRequest().with {
       $0.parent = parent
     }
-    return self.listDataExchanges(byItem: request)
+    return self.listDataExchangesByItems(request: request)
   }
 
   public func listOrgDataExchanges(request: ListOrgDataExchangesRequest) async throws
@@ -671,36 +671,36 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOrgDataExchanges(
-    byItem: ListOrgDataExchangesRequest
+  public func listOrgDataExchangesByItems(
+    request: ListOrgDataExchangesRequest
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
-    self.listOrgDataExchanges(byItem: byItem, options: .init())
+    self.listOrgDataExchangesByItems(request: request, options: .init())
   }
 
   /// Lists all data exchanges from projects in a given organization and
   /// location.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListOrgDataExchanges")
-  public func listOrgDataExchanges(
-    byItem: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
+  public func listOrgDataExchangesByItems(
+    request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOrgDataExchanges(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOrgDataExchanges(
+  public func listOrgDataExchangesByItems(
     organization: Swift.String,
   ) -> any AsyncSequence<DataExchange, Swift.Error> {
     let request = ListOrgDataExchangesRequest().with {
       $0.organization = organization
     }
-    return self.listOrgDataExchanges(byItem: request)
+    return self.listOrgDataExchangesByItems(request: request)
   }
 
   public func getDataExchange(request: GetDataExchangeRequest) async throws
@@ -801,34 +801,34 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listListings(
-    byItem: ListListingsRequest
+  public func listListingsByItems(
+    request: ListListingsRequest
   ) -> any AsyncSequence<Listing, Swift.Error> {
-    self.listListings(byItem: byItem, options: .init())
+    self.listListingsByItems(request: request, options: .init())
   }
 
   /// Lists all listings in a given project and location.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListListings")
-  public func listListings(
-    byItem: ListListingsRequest, options: GoogleGax.RequestOptions
+  public func listListingsByItems(
+    request: ListListingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Listing, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listListings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listListings(
+  public func listListingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Listing, Swift.Error> {
     let request = ListListingsRequest().with {
       $0.parent = parent
     }
-    return self.listListings(byItem: request)
+    return self.listListingsByItems(request: request)
   }
 
   public func getListing(request: GetListingRequest) async throws
@@ -1047,35 +1047,35 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSubscriptions(
-    byItem: ListSubscriptionsRequest
+  public func listSubscriptionsByItems(
+    request: ListSubscriptionsRequest
   ) -> any AsyncSequence<Subscription, Swift.Error> {
-    self.listSubscriptions(byItem: byItem, options: .init())
+    self.listSubscriptionsByItems(request: request, options: .init())
   }
 
   /// Lists all subscriptions in a given project and location.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListSubscriptions")
-  public func listSubscriptions(
-    byItem: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
+  public func listSubscriptionsByItems(
+    request: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Subscription, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSubscriptions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSubscriptions(
+  public func listSubscriptionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Subscription, Swift.Error> {
     let request = ListSubscriptionsRequest().with {
       $0.parent = parent
     }
-    return self.listSubscriptions(byItem: request)
+    return self.listSubscriptionsByItems(request: request)
   }
 
   public func listSharedResourceSubscriptions(request: ListSharedResourceSubscriptionsRequest)
@@ -1090,35 +1090,35 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSharedResourceSubscriptions(
-    byItem: ListSharedResourceSubscriptionsRequest
+  public func listSharedResourceSubscriptionsByItems(
+    request: ListSharedResourceSubscriptionsRequest
   ) -> any AsyncSequence<Subscription, Swift.Error> {
-    self.listSharedResourceSubscriptions(byItem: byItem, options: .init())
+    self.listSharedResourceSubscriptionsByItems(request: request, options: .init())
   }
 
   /// Lists all subscriptions on a given Data Exchange or Listing.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListSharedResourceSubscriptions")
-  public func listSharedResourceSubscriptions(
-    byItem: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
+  public func listSharedResourceSubscriptionsByItems(
+    request: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Subscription, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSharedResourceSubscriptions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSharedResourceSubscriptions(
+  public func listSharedResourceSubscriptionsByItems(
     resource: Swift.String,
   ) -> any AsyncSequence<Subscription, Swift.Error> {
     let request = ListSharedResourceSubscriptionsRequest().with {
       $0.resource = resource
     }
-    return self.listSharedResourceSubscriptions(byItem: request)
+    return self.listSharedResourceSubscriptionsByItems(request: request)
   }
 
   public func revokeSubscription(request: RevokeSubscriptionRequest) async throws
@@ -1273,35 +1273,35 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listQueryTemplates(
-    byItem: ListQueryTemplatesRequest
+  public func listQueryTemplatesByItems(
+    request: ListQueryTemplatesRequest
   ) -> any AsyncSequence<QueryTemplate, Swift.Error> {
-    self.listQueryTemplates(byItem: byItem, options: .init())
+    self.listQueryTemplatesByItems(request: request, options: .init())
   }
 
   /// Lists all QueryTemplates in a given project and location.
   ///
   /// @Snippet(path: "AnalyticsHubService_ListQueryTemplates")
-  public func listQueryTemplates(
-    byItem: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
+  public func listQueryTemplatesByItems(
+    request: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<QueryTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listQueryTemplates(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listQueryTemplates(
+  public func listQueryTemplatesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<QueryTemplate, Swift.Error> {
     let request = ListQueryTemplatesRequest().with {
       $0.parent = parent
     }
-    return self.listQueryTemplates(byItem: request)
+    return self.listQueryTemplatesByItems(request: request)
   }
 
   public func updateQueryTemplate(request: UpdateQueryTemplateRequest) async throws

@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, catalogId: String, ) async throws {
   let client = try GoogleCloudRetailV2.ServingConfigServiceClient()
-  let items = client.listServingConfigs(
-    byItem: ListServingConfigsRequest()
+  let items = client.listServingConfigsByItems(
+    request: ListServingConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"
       }

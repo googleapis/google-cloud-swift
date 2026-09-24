@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: CrossSiteNetworksClient) async throws {
-    let items = client.list(
-      byItem: CrossSiteNetworksClient.ListRequest()
+    let items = client.listByItems(
+      request: CrossSiteNetworksClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

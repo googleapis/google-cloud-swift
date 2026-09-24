@@ -26,8 +26,8 @@
 
   func sample(client: TensorboardServiceClient, projectId: String, locationId: String) async throws
   {
-    let items = client.listTensorboards(
-      byItem: ListTensorboardsRequest()
+    let items = client.listTensorboardsByItems(
+      request: ListTensorboardsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

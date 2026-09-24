@@ -643,36 +643,36 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMulticloudDataTransferConfigs(
-    byItem: ListMulticloudDataTransferConfigsRequest
+  public func listMulticloudDataTransferConfigsByItems(
+    request: ListMulticloudDataTransferConfigsRequest
   ) -> any AsyncSequence<MulticloudDataTransferConfig, Swift.Error> {
-    self.listMulticloudDataTransferConfigs(byItem: byItem, options: .init())
+    self.listMulticloudDataTransferConfigsByItems(request: request, options: .init())
   }
 
   /// Lists the `MulticloudDataTransferConfig` resources in a specified project
   /// and location.
   ///
   /// @Snippet(path: "DataTransferService_ListMulticloudDataTransferConfigs")
-  public func listMulticloudDataTransferConfigs(
-    byItem: ListMulticloudDataTransferConfigsRequest, options: GoogleGax.RequestOptions
+  public func listMulticloudDataTransferConfigsByItems(
+    request: ListMulticloudDataTransferConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MulticloudDataTransferConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListMulticloudDataTransferConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMulticloudDataTransferConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMulticloudDataTransferConfigs(
+  public func listMulticloudDataTransferConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MulticloudDataTransferConfig, Swift.Error> {
     let request = ListMulticloudDataTransferConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listMulticloudDataTransferConfigs(byItem: request)
+    return self.listMulticloudDataTransferConfigsByItems(request: request)
   }
 
   public func getMulticloudDataTransferConfig(request: GetMulticloudDataTransferConfigRequest)
@@ -830,35 +830,35 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDestinations(
-    byItem: ListDestinationsRequest
+  public func listDestinationsByItems(
+    request: ListDestinationsRequest
   ) -> any AsyncSequence<Destination, Swift.Error> {
-    self.listDestinations(byItem: byItem, options: .init())
+    self.listDestinationsByItems(request: request, options: .init())
   }
 
   /// Lists the `Destination` resources in a specified project and location.
   ///
   /// @Snippet(path: "DataTransferService_ListDestinations")
-  public func listDestinations(
-    byItem: ListDestinationsRequest, options: GoogleGax.RequestOptions
+  public func listDestinationsByItems(
+    request: ListDestinationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Destination, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListDestinationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDestinations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDestinations(
+  public func listDestinationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Destination, Swift.Error> {
     let request = ListDestinationsRequest().with {
       $0.parent = parent
     }
-    return self.listDestinations(byItem: request)
+    return self.listDestinationsByItems(request: request)
   }
 
   public func getDestination(request: GetDestinationRequest) async throws
@@ -1036,23 +1036,23 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMulticloudDataTransferSupportedServices(
-    byItem: ListMulticloudDataTransferSupportedServicesRequest
+  public func listMulticloudDataTransferSupportedServicesByItems(
+    request: ListMulticloudDataTransferSupportedServicesRequest
   ) -> any AsyncSequence<MulticloudDataTransferSupportedService, Swift.Error> {
-    self.listMulticloudDataTransferSupportedServices(byItem: byItem, options: .init())
+    self.listMulticloudDataTransferSupportedServicesByItems(request: request, options: .init())
   }
 
   /// Lists the services in the project for a region that are supported for
   /// Data Transfer Essentials.
   ///
   /// @Snippet(path: "DataTransferService_ListMulticloudDataTransferSupportedServices")
-  public func listMulticloudDataTransferSupportedServices(
-    byItem: ListMulticloudDataTransferSupportedServicesRequest, options: GoogleGax.RequestOptions
+  public func listMulticloudDataTransferSupportedServicesByItems(
+    request: ListMulticloudDataTransferSupportedServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MulticloudDataTransferSupportedService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListMulticloudDataTransferSupportedServicesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMulticloudDataTransferSupportedServices(
         request: request, options: options)
@@ -1060,13 +1060,13 @@ extension Clients.DataTransferServiceProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMulticloudDataTransferSupportedServices(
+  public func listMulticloudDataTransferSupportedServicesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MulticloudDataTransferSupportedService, Swift.Error> {
     let request = ListMulticloudDataTransferSupportedServicesRequest().with {
       $0.parent = parent
     }
-    return self.listMulticloudDataTransferSupportedServices(byItem: request)
+    return self.listMulticloudDataTransferSupportedServicesByItems(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -1081,21 +1081,21 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DataTransferService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1162,10 +1162,10 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1173,19 +1173,19 @@ extension Clients.DataTransferServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataTransferService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1193,7 +1193,7 @@ extension Clients.DataTransferServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

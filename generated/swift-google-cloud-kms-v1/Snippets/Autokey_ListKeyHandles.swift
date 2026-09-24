@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: AutokeyClient, parent: String) async throws {
-  let items = client.listKeyHandles(
-    byItem: ListKeyHandlesRequest()
+  let items = client.listKeyHandlesByItems(
+    request: ListKeyHandlesRequest()
       .with {
         $0.parent = "\(parent)"
       }

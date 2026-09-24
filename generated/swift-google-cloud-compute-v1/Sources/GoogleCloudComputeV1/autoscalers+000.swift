@@ -360,10 +360,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: AutoscalersClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: AutoscalersClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of autoscalers.
@@ -372,25 +372,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "autoscalers_aggregatedList")
-    public func aggregatedList(
-      byItem: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, AutoscalersScopedList), Swift.Error> {
       let request = AutoscalersClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: AutoscalersClient.DeleteRequest) async throws
@@ -514,28 +514,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: AutoscalersClient.ListRequest
+    public func listByItems(
+      request: AutoscalersClient.ListRequest
     ) -> any AsyncSequence<Autoscaler, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of autoscalers contained within
     /// the specified zone.
     ///
     /// @Snippet(path: "autoscalers_list")
-    public func list(
-      byItem: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Autoscaler, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.AutoscalerList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<Autoscaler, Swift.Error> {
@@ -543,7 +543,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: AutoscalersClient.PatchRequest) async throws

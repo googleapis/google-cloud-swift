@@ -28,8 +28,8 @@
     client: TensorboardServiceClient, projectId: String, locationId: String, tensorboardId: String,
     experimentId: String, runId: String
   ) async throws {
-    let items = client.listTensorboardTimeSeries(
-      byItem: ListTensorboardTimeSeriesRequest()
+    let items = client.listTensorboardTimeSeriesByItems(
+      request: ListTensorboardTimeSeriesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/tensorboards/\(tensorboardId)/experiments/\(experimentId)/runs/\(runId)"

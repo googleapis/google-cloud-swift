@@ -25,8 +25,8 @@
   import GoogleWKT
 
   func sample(client: ScheduleServiceClient, parent: String) async throws {
-    let items = client.listSchedules(
-      byItem: ListSchedulesRequest()
+    let items = client.listSchedulesByItems(
+      request: ListSchedulesRequest()
         .with {
           $0.parent = "\(parent)"
         }

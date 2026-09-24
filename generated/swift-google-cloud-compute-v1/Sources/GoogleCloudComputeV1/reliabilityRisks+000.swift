@@ -112,34 +112,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: ReliabilityRisksClient.ListRequest
+    public func listByItems(
+      request: ReliabilityRisksClient.ListRequest
     ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of reliabilityRisks available in the specified project.
     ///
     /// @Snippet(path: "reliabilityRisks_list")
-    public func list(
-      byItem: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<ReliabilityRisk, Swift.Error> {
       let request = ReliabilityRisksClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
   }
 #else

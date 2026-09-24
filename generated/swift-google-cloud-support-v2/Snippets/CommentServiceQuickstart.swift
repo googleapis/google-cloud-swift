@@ -21,8 +21,8 @@ import GoogleCloudSupportV2
 
 func sample(organizationId: String, caseId: String, ) async throws {
   let client = try GoogleCloudSupportV2.CommentServiceClient()
-  let items = client.listComments(
-    byItem: ListCommentsRequest()
+  let items = client.listCommentsByItems(
+    request: ListCommentsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/cases/\(caseId)"
       }

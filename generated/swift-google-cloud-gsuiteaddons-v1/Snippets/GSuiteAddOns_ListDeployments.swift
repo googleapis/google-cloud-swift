@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudGSuiteAddOnsV1
 
 func sample(client: GSuiteAddOnsClient, parent: String) async throws {
-  let items = client.listDeployments(
-    byItem: ListDeploymentsRequest()
+  let items = client.listDeploymentsByItems(
+    request: ListDeploymentsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -28,8 +28,8 @@ import GoogleWKT
 func sample(client: DataCatalogClient, projectId: String, locationId: String, entryGroupId: String)
   async throws
 {
-  let items = client.listEntries(
-    byItem: ListEntriesRequest()
+  let items = client.listEntriesByItems(
+    request: ListEntriesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/entryGroups/\(entryGroupId)"
       }

@@ -27,8 +27,8 @@ func sample(
   client: KeyManagementServiceClient, projectId: String, locationId: String, keyRingId: String,
   cryptoKeyId: String
 ) async throws {
-  let items = client.listCryptoKeyVersions(
-    byItem: ListCryptoKeyVersionsRequest()
+  let items = client.listCryptoKeyVersionsByItems(
+    request: ListCryptoKeyVersionsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/keyRings/\(keyRingId)/cryptoKeys/\(cryptoKeyId)"

@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudContainerV1
 
 func sample(client: ClusterManagerClient) async throws {
-  let items = client.listUsableSubnetworks(
-    byItem: ListUsableSubnetworksRequest()
+  let items = client.listUsableSubnetworksByItems(
+    request: ListUsableSubnetworksRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

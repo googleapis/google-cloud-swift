@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SpeechClient, parent: String) async throws {
-  let items = client.listCustomClasses(
-    byItem: ListCustomClassesRequest()
+  let items = client.listCustomClassesByItems(
+    request: ListCustomClassesRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -2751,35 +2751,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCloudExadataInfrastructures(
-    byItem: ListCloudExadataInfrastructuresRequest
+  public func listCloudExadataInfrastructuresByItems(
+    request: ListCloudExadataInfrastructuresRequest
   ) -> any AsyncSequence<CloudExadataInfrastructure, Swift.Error> {
-    self.listCloudExadataInfrastructures(byItem: byItem, options: .init())
+    self.listCloudExadataInfrastructuresByItems(request: request, options: .init())
   }
 
   /// Lists Exadata Infrastructures in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListCloudExadataInfrastructures")
-  public func listCloudExadataInfrastructures(
-    byItem: ListCloudExadataInfrastructuresRequest, options: GoogleGax.RequestOptions
+  public func listCloudExadataInfrastructuresByItems(
+    request: ListCloudExadataInfrastructuresRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CloudExadataInfrastructure, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListCloudExadataInfrastructuresResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCloudExadataInfrastructures(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCloudExadataInfrastructures(
+  public func listCloudExadataInfrastructuresByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<CloudExadataInfrastructure, Swift.Error> {
     let request = ListCloudExadataInfrastructuresRequest().with {
       $0.parent = parent
     }
-    return self.listCloudExadataInfrastructures(byItem: request)
+    return self.listCloudExadataInfrastructuresByItems(request: request)
   }
 
   public func getCloudExadataInfrastructure(request: GetCloudExadataInfrastructureRequest)
@@ -2938,35 +2938,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCloudVmClusters(
-    byItem: ListCloudVmClustersRequest
+  public func listCloudVmClustersByItems(
+    request: ListCloudVmClustersRequest
   ) -> any AsyncSequence<CloudVmCluster, Swift.Error> {
-    self.listCloudVmClusters(byItem: byItem, options: .init())
+    self.listCloudVmClustersByItems(request: request, options: .init())
   }
 
   /// Lists the VM Clusters in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListCloudVmClusters")
-  public func listCloudVmClusters(
-    byItem: ListCloudVmClustersRequest, options: GoogleGax.RequestOptions
+  public func listCloudVmClustersByItems(
+    request: ListCloudVmClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CloudVmCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListCloudVmClustersResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCloudVmClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCloudVmClusters(
+  public func listCloudVmClustersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<CloudVmCluster, Swift.Error> {
     let request = ListCloudVmClustersRequest().with {
       $0.parent = parent
     }
-    return self.listCloudVmClusters(byItem: request)
+    return self.listCloudVmClustersByItems(request: request)
   }
 
   public func getCloudVmCluster(request: GetCloudVmClusterRequest) async throws
@@ -3080,34 +3080,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEntitlements(
-    byItem: ListEntitlementsRequest
+  public func listEntitlementsByItems(
+    request: ListEntitlementsRequest
   ) -> any AsyncSequence<Entitlement, Swift.Error> {
-    self.listEntitlements(byItem: byItem, options: .init())
+    self.listEntitlementsByItems(request: request, options: .init())
   }
 
   /// Lists the entitlements in a given project.
   ///
   /// @Snippet(path: "OracleDatabase_ListEntitlements")
-  public func listEntitlements(
-    byItem: ListEntitlementsRequest, options: GoogleGax.RequestOptions
+  public func listEntitlementsByItems(
+    request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListEntitlementsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEntitlements(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEntitlements(
+  public func listEntitlementsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Entitlement, Swift.Error> {
     let request = ListEntitlementsRequest().with {
       $0.parent = parent
     }
-    return self.listEntitlements(byItem: request)
+    return self.listEntitlementsByItems(request: request)
   }
 
   public func listDbServers(request: ListDbServersRequest) async throws
@@ -3122,34 +3122,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDbServers(
-    byItem: ListDbServersRequest
+  public func listDbServersByItems(
+    request: ListDbServersRequest
   ) -> any AsyncSequence<DbServer, Swift.Error> {
-    self.listDbServers(byItem: byItem, options: .init())
+    self.listDbServersByItems(request: request, options: .init())
   }
 
   /// Lists the database servers of an Exadata Infrastructure instance.
   ///
   /// @Snippet(path: "OracleDatabase_ListDbServers")
-  public func listDbServers(
-    byItem: ListDbServersRequest, options: GoogleGax.RequestOptions
+  public func listDbServersByItems(
+    request: ListDbServersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DbServer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListDbServersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDbServers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDbServers(
+  public func listDbServersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DbServer, Swift.Error> {
     let request = ListDbServersRequest().with {
       $0.parent = parent
     }
-    return self.listDbServers(byItem: request)
+    return self.listDbServersByItems(request: request)
   }
 
   public func listDbNodes(request: ListDbNodesRequest) async throws
@@ -3164,34 +3164,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDbNodes(
-    byItem: ListDbNodesRequest
+  public func listDbNodesByItems(
+    request: ListDbNodesRequest
   ) -> any AsyncSequence<DbNode, Swift.Error> {
-    self.listDbNodes(byItem: byItem, options: .init())
+    self.listDbNodesByItems(request: request, options: .init())
   }
 
   /// Lists the database nodes of a VM Cluster.
   ///
   /// @Snippet(path: "OracleDatabase_ListDbNodes")
-  public func listDbNodes(
-    byItem: ListDbNodesRequest, options: GoogleGax.RequestOptions
+  public func listDbNodesByItems(
+    request: ListDbNodesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DbNode, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListDbNodesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDbNodes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDbNodes(
+  public func listDbNodesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DbNode, Swift.Error> {
     let request = ListDbNodesRequest().with {
       $0.parent = parent
     }
-    return self.listDbNodes(byItem: request)
+    return self.listDbNodesByItems(request: request)
   }
 
   public func listGiVersions(request: ListGiVersionsRequest) async throws
@@ -3206,35 +3206,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGiVersions(
-    byItem: ListGiVersionsRequest
+  public func listGiVersionsByItems(
+    request: ListGiVersionsRequest
   ) -> any AsyncSequence<GiVersion, Swift.Error> {
-    self.listGiVersions(byItem: byItem, options: .init())
+    self.listGiVersionsByItems(request: request, options: .init())
   }
 
   /// Lists all the valid Oracle Grid Infrastructure (GI) versions for the given
   /// project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGiVersions")
-  public func listGiVersions(
-    byItem: ListGiVersionsRequest, options: GoogleGax.RequestOptions
+  public func listGiVersionsByItems(
+    request: ListGiVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GiVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListGiVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGiVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGiVersions(
+  public func listGiVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GiVersion, Swift.Error> {
     let request = ListGiVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listGiVersions(byItem: request)
+    return self.listGiVersionsByItems(request: request)
   }
 
   public func listMinorVersions(request: ListMinorVersionsRequest) async throws
@@ -3249,35 +3249,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMinorVersions(
-    byItem: ListMinorVersionsRequest
+  public func listMinorVersionsByItems(
+    request: ListMinorVersionsRequest
   ) -> any AsyncSequence<MinorVersion, Swift.Error> {
-    self.listMinorVersions(byItem: byItem, options: .init())
+    self.listMinorVersionsByItems(request: request, options: .init())
   }
 
   /// Lists all the valid minor versions for the given
   /// project, location, gi version and shape family.
   ///
   /// @Snippet(path: "OracleDatabase_ListMinorVersions")
-  public func listMinorVersions(
-    byItem: ListMinorVersionsRequest, options: GoogleGax.RequestOptions
+  public func listMinorVersionsByItems(
+    request: ListMinorVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MinorVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListMinorVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMinorVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMinorVersions(
+  public func listMinorVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MinorVersion, Swift.Error> {
     let request = ListMinorVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listMinorVersions(byItem: request)
+    return self.listMinorVersionsByItems(request: request)
   }
 
   public func listDbSystemShapes(request: ListDbSystemShapesRequest) async throws
@@ -3292,35 +3292,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDbSystemShapes(
-    byItem: ListDbSystemShapesRequest
+  public func listDbSystemShapesByItems(
+    request: ListDbSystemShapesRequest
   ) -> any AsyncSequence<DbSystemShape, Swift.Error> {
-    self.listDbSystemShapes(byItem: byItem, options: .init())
+    self.listDbSystemShapesByItems(request: request, options: .init())
   }
 
   /// Lists the database system shapes available for the project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListDbSystemShapes")
-  public func listDbSystemShapes(
-    byItem: ListDbSystemShapesRequest, options: GoogleGax.RequestOptions
+  public func listDbSystemShapesByItems(
+    request: ListDbSystemShapesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DbSystemShape, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemShapesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDbSystemShapes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDbSystemShapes(
+  public func listDbSystemShapesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DbSystemShape, Swift.Error> {
     let request = ListDbSystemShapesRequest().with {
       $0.parent = parent
     }
-    return self.listDbSystemShapes(byItem: request)
+    return self.listDbSystemShapesByItems(request: request)
   }
 
   public func listAutonomousDatabases(request: ListAutonomousDatabasesRequest) async throws
@@ -3335,35 +3335,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAutonomousDatabases(
-    byItem: ListAutonomousDatabasesRequest
+  public func listAutonomousDatabasesByItems(
+    request: ListAutonomousDatabasesRequest
   ) -> any AsyncSequence<AutonomousDatabase, Swift.Error> {
-    self.listAutonomousDatabases(byItem: byItem, options: .init())
+    self.listAutonomousDatabasesByItems(request: request, options: .init())
   }
 
   /// Lists the Autonomous Databases in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListAutonomousDatabases")
-  public func listAutonomousDatabases(
-    byItem: ListAutonomousDatabasesRequest, options: GoogleGax.RequestOptions
+  public func listAutonomousDatabasesByItems(
+    request: ListAutonomousDatabasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AutonomousDatabase, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDatabasesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAutonomousDatabases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAutonomousDatabases(
+  public func listAutonomousDatabasesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AutonomousDatabase, Swift.Error> {
     let request = ListAutonomousDatabasesRequest().with {
       $0.parent = parent
     }
-    return self.listAutonomousDatabases(byItem: request)
+    return self.listAutonomousDatabasesByItems(request: request)
   }
 
   public func getAutonomousDatabase(request: GetAutonomousDatabaseRequest) async throws
@@ -3582,36 +3582,36 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAutonomousDbVersions(
-    byItem: ListAutonomousDbVersionsRequest
+  public func listAutonomousDbVersionsByItems(
+    request: ListAutonomousDbVersionsRequest
   ) -> any AsyncSequence<AutonomousDbVersion, Swift.Error> {
-    self.listAutonomousDbVersions(byItem: byItem, options: .init())
+    self.listAutonomousDbVersionsByItems(request: request, options: .init())
   }
 
   /// Lists all the available Autonomous Database versions for a project and
   /// location.
   ///
   /// @Snippet(path: "OracleDatabase_ListAutonomousDbVersions")
-  public func listAutonomousDbVersions(
-    byItem: ListAutonomousDbVersionsRequest, options: GoogleGax.RequestOptions
+  public func listAutonomousDbVersionsByItems(
+    request: ListAutonomousDbVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AutonomousDbVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDbVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAutonomousDbVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAutonomousDbVersions(
+  public func listAutonomousDbVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AutonomousDbVersion, Swift.Error> {
     let request = ListAutonomousDbVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listAutonomousDbVersions(byItem: request)
+    return self.listAutonomousDbVersionsByItems(request: request)
   }
 
   public func listAutonomousDatabaseCharacterSets(
@@ -3626,35 +3626,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAutonomousDatabaseCharacterSets(
-    byItem: ListAutonomousDatabaseCharacterSetsRequest
+  public func listAutonomousDatabaseCharacterSetsByItems(
+    request: ListAutonomousDatabaseCharacterSetsRequest
   ) -> any AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> {
-    self.listAutonomousDatabaseCharacterSets(byItem: byItem, options: .init())
+    self.listAutonomousDatabaseCharacterSetsByItems(request: request, options: .init())
   }
 
   /// Lists Autonomous Database Character Sets in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListAutonomousDatabaseCharacterSets")
-  public func listAutonomousDatabaseCharacterSets(
-    byItem: ListAutonomousDatabaseCharacterSetsRequest, options: GoogleGax.RequestOptions
+  public func listAutonomousDatabaseCharacterSetsByItems(
+    request: ListAutonomousDatabaseCharacterSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDatabaseCharacterSetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAutonomousDatabaseCharacterSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAutonomousDatabaseCharacterSets(
+  public func listAutonomousDatabaseCharacterSetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> {
     let request = ListAutonomousDatabaseCharacterSetsRequest().with {
       $0.parent = parent
     }
-    return self.listAutonomousDatabaseCharacterSets(byItem: request)
+    return self.listAutonomousDatabaseCharacterSetsByItems(request: request)
   }
 
   public func listAutonomousDatabaseBackups(request: ListAutonomousDatabaseBackupsRequest)
@@ -3669,35 +3669,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAutonomousDatabaseBackups(
-    byItem: ListAutonomousDatabaseBackupsRequest
+  public func listAutonomousDatabaseBackupsByItems(
+    request: ListAutonomousDatabaseBackupsRequest
   ) -> any AsyncSequence<AutonomousDatabaseBackup, Swift.Error> {
-    self.listAutonomousDatabaseBackups(byItem: byItem, options: .init())
+    self.listAutonomousDatabaseBackupsByItems(request: request, options: .init())
   }
 
   /// Lists the long-term and automatic backups of an Autonomous Database.
   ///
   /// @Snippet(path: "OracleDatabase_ListAutonomousDatabaseBackups")
-  public func listAutonomousDatabaseBackups(
-    byItem: ListAutonomousDatabaseBackupsRequest, options: GoogleGax.RequestOptions
+  public func listAutonomousDatabaseBackupsByItems(
+    request: ListAutonomousDatabaseBackupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AutonomousDatabaseBackup, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDatabaseBackupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAutonomousDatabaseBackups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAutonomousDatabaseBackups(
+  public func listAutonomousDatabaseBackupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AutonomousDatabaseBackup, Swift.Error> {
     let request = ListAutonomousDatabaseBackupsRequest().with {
       $0.parent = parent
     }
-    return self.listAutonomousDatabaseBackups(byItem: request)
+    return self.listAutonomousDatabaseBackupsByItems(request: request)
   }
 
   public func stopAutonomousDatabase(request: StopAutonomousDatabaseRequest) async throws
@@ -3961,34 +3961,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOdbNetworks(
-    byItem: ListOdbNetworksRequest
+  public func listOdbNetworksByItems(
+    request: ListOdbNetworksRequest
   ) -> any AsyncSequence<OdbNetwork, Swift.Error> {
-    self.listOdbNetworks(byItem: byItem, options: .init())
+    self.listOdbNetworksByItems(request: request, options: .init())
   }
 
   /// Lists the ODB Networks in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListOdbNetworks")
-  public func listOdbNetworks(
-    byItem: ListOdbNetworksRequest, options: GoogleGax.RequestOptions
+  public func listOdbNetworksByItems(
+    request: ListOdbNetworksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OdbNetwork, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOdbNetworks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOdbNetworks(
+  public func listOdbNetworksByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<OdbNetwork, Swift.Error> {
     let request = ListOdbNetworksRequest().with {
       $0.parent = parent
     }
-    return self.listOdbNetworks(byItem: request)
+    return self.listOdbNetworksByItems(request: request)
   }
 
   public func getOdbNetwork(request: GetOdbNetworkRequest) async throws
@@ -4102,34 +4102,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOdbSubnets(
-    byItem: ListOdbSubnetsRequest
+  public func listOdbSubnetsByItems(
+    request: ListOdbSubnetsRequest
   ) -> any AsyncSequence<OdbSubnet, Swift.Error> {
-    self.listOdbSubnets(byItem: byItem, options: .init())
+    self.listOdbSubnetsByItems(request: request, options: .init())
   }
 
   /// Lists all the ODB Subnets in a given ODB Network.
   ///
   /// @Snippet(path: "OracleDatabase_ListOdbSubnets")
-  public func listOdbSubnets(
-    byItem: ListOdbSubnetsRequest, options: GoogleGax.RequestOptions
+  public func listOdbSubnetsByItems(
+    request: ListOdbSubnetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OdbSubnet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListOdbSubnetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOdbSubnets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOdbSubnets(
+  public func listOdbSubnetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<OdbSubnet, Swift.Error> {
     let request = ListOdbSubnetsRequest().with {
       $0.parent = parent
     }
-    return self.listOdbSubnets(byItem: request)
+    return self.listOdbSubnetsByItems(request: request)
   }
 
   public func getOdbSubnet(request: GetOdbSubnetRequest) async throws
@@ -4243,36 +4243,36 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExadbVmClusters(
-    byItem: ListExadbVmClustersRequest
+  public func listExadbVmClustersByItems(
+    request: ListExadbVmClustersRequest
   ) -> any AsyncSequence<ExadbVmCluster, Swift.Error> {
-    self.listExadbVmClusters(byItem: byItem, options: .init())
+    self.listExadbVmClustersByItems(request: request, options: .init())
   }
 
   /// Lists all the Exadb (Exascale) VM Clusters for the given project and
   /// location.
   ///
   /// @Snippet(path: "OracleDatabase_ListExadbVmClusters")
-  public func listExadbVmClusters(
-    byItem: ListExadbVmClustersRequest, options: GoogleGax.RequestOptions
+  public func listExadbVmClustersByItems(
+    request: ListExadbVmClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ExadbVmCluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListExadbVmClustersResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExadbVmClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExadbVmClusters(
+  public func listExadbVmClustersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ExadbVmCluster, Swift.Error> {
     let request = ListExadbVmClustersRequest().with {
       $0.parent = parent
     }
-    return self.listExadbVmClusters(byItem: request)
+    return self.listExadbVmClustersByItems(request: request)
   }
 
   public func getExadbVmCluster(request: GetExadbVmClusterRequest) async throws
@@ -4465,36 +4465,36 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExascaleDbStorageVaults(
-    byItem: ListExascaleDbStorageVaultsRequest
+  public func listExascaleDbStorageVaultsByItems(
+    request: ListExascaleDbStorageVaultsRequest
   ) -> any AsyncSequence<ExascaleDbStorageVault, Swift.Error> {
-    self.listExascaleDbStorageVaults(byItem: byItem, options: .init())
+    self.listExascaleDbStorageVaultsByItems(request: request, options: .init())
   }
 
   /// Lists all the ExascaleDB Storage Vaults for the given project and
   /// location.
   ///
   /// @Snippet(path: "OracleDatabase_ListExascaleDbStorageVaults")
-  public func listExascaleDbStorageVaults(
-    byItem: ListExascaleDbStorageVaultsRequest, options: GoogleGax.RequestOptions
+  public func listExascaleDbStorageVaultsByItems(
+    request: ListExascaleDbStorageVaultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ExascaleDbStorageVault, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListExascaleDbStorageVaultsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExascaleDbStorageVaults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExascaleDbStorageVaults(
+  public func listExascaleDbStorageVaultsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ExascaleDbStorageVault, Swift.Error> {
     let request = ListExascaleDbStorageVaultsRequest().with {
       $0.parent = parent
     }
-    return self.listExascaleDbStorageVaults(byItem: request)
+    return self.listExascaleDbStorageVaultsByItems(request: request)
   }
 
   public func getExascaleDbStorageVault(request: GetExascaleDbStorageVaultRequest) async throws
@@ -4609,36 +4609,36 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDbSystemInitialStorageSizes(
-    byItem: ListDbSystemInitialStorageSizesRequest
+  public func listDbSystemInitialStorageSizesByItems(
+    request: ListDbSystemInitialStorageSizesRequest
   ) -> any AsyncSequence<DbSystemInitialStorageSize, Swift.Error> {
-    self.listDbSystemInitialStorageSizes(byItem: byItem, options: .init())
+    self.listDbSystemInitialStorageSizesByItems(request: request, options: .init())
   }
 
   /// Lists all the DbSystemInitialStorageSizes for the given project and
   /// location.
   ///
   /// @Snippet(path: "OracleDatabase_ListDbSystemInitialStorageSizes")
-  public func listDbSystemInitialStorageSizes(
-    byItem: ListDbSystemInitialStorageSizesRequest, options: GoogleGax.RequestOptions
+  public func listDbSystemInitialStorageSizesByItems(
+    request: ListDbSystemInitialStorageSizesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DbSystemInitialStorageSize, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbSystemInitialStorageSizesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDbSystemInitialStorageSizes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDbSystemInitialStorageSizes(
+  public func listDbSystemInitialStorageSizesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DbSystemInitialStorageSize, Swift.Error> {
     let request = ListDbSystemInitialStorageSizesRequest().with {
       $0.parent = parent
     }
-    return self.listDbSystemInitialStorageSizes(byItem: request)
+    return self.listDbSystemInitialStorageSizesByItems(request: request)
   }
 
   public func listDatabases(request: ListDatabasesRequest) async throws
@@ -4653,34 +4653,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDatabases(
-    byItem: ListDatabasesRequest
+  public func listDatabasesByItems(
+    request: ListDatabasesRequest
   ) -> any AsyncSequence<Database, Swift.Error> {
-    self.listDatabases(byItem: byItem, options: .init())
+    self.listDatabasesByItems(request: request, options: .init())
   }
 
   /// Lists all the Databases for the given project, location and DbSystem.
   ///
   /// @Snippet(path: "OracleDatabase_ListDatabases")
-  public func listDatabases(
-    byItem: ListDatabasesRequest, options: GoogleGax.RequestOptions
+  public func listDatabasesByItems(
+    request: ListDatabasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Database, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListDatabasesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDatabases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDatabases(
+  public func listDatabasesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Database, Swift.Error> {
     let request = ListDatabasesRequest().with {
       $0.parent = parent
     }
-    return self.listDatabases(byItem: request)
+    return self.listDatabasesByItems(request: request)
   }
 
   public func getDatabase(request: GetDatabaseRequest) async throws
@@ -4716,36 +4716,36 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPluggableDatabases(
-    byItem: ListPluggableDatabasesRequest
+  public func listPluggableDatabasesByItems(
+    request: ListPluggableDatabasesRequest
   ) -> any AsyncSequence<PluggableDatabase, Swift.Error> {
-    self.listPluggableDatabases(byItem: byItem, options: .init())
+    self.listPluggableDatabasesByItems(request: request, options: .init())
   }
 
   /// Lists all the PluggableDatabases for the given project, location and
   /// Container Database.
   ///
   /// @Snippet(path: "OracleDatabase_ListPluggableDatabases")
-  public func listPluggableDatabases(
-    byItem: ListPluggableDatabasesRequest, options: GoogleGax.RequestOptions
+  public func listPluggableDatabasesByItems(
+    request: ListPluggableDatabasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PluggableDatabase, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListPluggableDatabasesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPluggableDatabases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPluggableDatabases(
+  public func listPluggableDatabasesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PluggableDatabase, Swift.Error> {
     let request = ListPluggableDatabasesRequest().with {
       $0.parent = parent
     }
-    return self.listPluggableDatabases(byItem: request)
+    return self.listPluggableDatabasesByItems(request: request)
   }
 
   public func getPluggableDatabase(request: GetPluggableDatabaseRequest) async throws
@@ -4781,34 +4781,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDbSystems(
-    byItem: ListDbSystemsRequest
+  public func listDbSystemsByItems(
+    request: ListDbSystemsRequest
   ) -> any AsyncSequence<DbSystem, Swift.Error> {
-    self.listDbSystems(byItem: byItem, options: .init())
+    self.listDbSystemsByItems(request: request, options: .init())
   }
 
   /// Lists all the DbSystems for the given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListDbSystems")
-  public func listDbSystems(
-    byItem: ListDbSystemsRequest, options: GoogleGax.RequestOptions
+  public func listDbSystemsByItems(
+    request: ListDbSystemsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DbSystem, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDbSystems(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDbSystems(
+  public func listDbSystemsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DbSystem, Swift.Error> {
     let request = ListDbSystemsRequest().with {
       $0.parent = parent
     }
-    return self.listDbSystems(byItem: request)
+    return self.listDbSystemsByItems(request: request)
   }
 
   public func getDbSystem(request: GetDbSystemRequest) async throws
@@ -4922,35 +4922,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateDeployments(
-    byItem: ListGoldengateDeploymentsRequest
+  public func listGoldengateDeploymentsByItems(
+    request: ListGoldengateDeploymentsRequest
   ) -> any AsyncSequence<GoldengateDeployment, Swift.Error> {
-    self.listGoldengateDeployments(byItem: byItem, options: .init())
+    self.listGoldengateDeploymentsByItems(request: request, options: .init())
   }
 
   /// Lists all the GoldengateDeployments for the given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeployments")
-  public func listGoldengateDeployments(
-    byItem: ListGoldengateDeploymentsRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateDeploymentsByItems(
+    request: ListGoldengateDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateDeployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateDeployments(
+  public func listGoldengateDeploymentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateDeployment, Swift.Error> {
     let request = ListGoldengateDeploymentsRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateDeployments(byItem: request)
+    return self.listGoldengateDeploymentsByItems(request: request)
   }
 
   public func getGoldengateDeployment(request: GetGoldengateDeploymentRequest) async throws
@@ -5138,35 +5138,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateConnections(
-    byItem: ListGoldengateConnectionsRequest
+  public func listGoldengateConnectionsByItems(
+    request: ListGoldengateConnectionsRequest
   ) -> any AsyncSequence<GoldengateConnection, Swift.Error> {
-    self.listGoldengateConnections(byItem: byItem, options: .init())
+    self.listGoldengateConnectionsByItems(request: request, options: .init())
   }
 
   /// Lists all the GoldengateConnections for the given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnections")
-  public func listGoldengateConnections(
-    byItem: ListGoldengateConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateConnectionsByItems(
+    request: ListGoldengateConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateConnections(
+  public func listGoldengateConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateConnection, Swift.Error> {
     let request = ListGoldengateConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateConnections(byItem: request)
+    return self.listGoldengateConnectionsByItems(request: request)
   }
 
   public func getGoldengateConnection(request: GetGoldengateConnectionRequest) async throws
@@ -5280,35 +5280,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateDeploymentVersions(
-    byItem: ListGoldengateDeploymentVersionsRequest
+  public func listGoldengateDeploymentVersionsByItems(
+    request: ListGoldengateDeploymentVersionsRequest
   ) -> any AsyncSequence<GoldengateDeploymentVersion, Swift.Error> {
-    self.listGoldengateDeploymentVersions(byItem: byItem, options: .init())
+    self.listGoldengateDeploymentVersionsByItems(request: request, options: .init())
   }
 
   /// Lists GoldengateDeploymentVersions in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeploymentVersions")
-  public func listGoldengateDeploymentVersions(
-    byItem: ListGoldengateDeploymentVersionsRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateDeploymentVersionsByItems(
+    request: ListGoldengateDeploymentVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateDeploymentVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateDeploymentVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateDeploymentVersions(
+  public func listGoldengateDeploymentVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateDeploymentVersion, Swift.Error> {
     let request = ListGoldengateDeploymentVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateDeploymentVersions(byItem: request)
+    return self.listGoldengateDeploymentVersionsByItems(request: request)
   }
 
   public func listGoldengateDeploymentTypes(request: ListGoldengateDeploymentTypesRequest)
@@ -5323,35 +5323,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateDeploymentTypes(
-    byItem: ListGoldengateDeploymentTypesRequest
+  public func listGoldengateDeploymentTypesByItems(
+    request: ListGoldengateDeploymentTypesRequest
   ) -> any AsyncSequence<GoldengateDeploymentType, Swift.Error> {
-    self.listGoldengateDeploymentTypes(byItem: byItem, options: .init())
+    self.listGoldengateDeploymentTypesByItems(request: request, options: .init())
   }
 
   /// Lists GoldenGateDeploymentTypes in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeploymentTypes")
-  public func listGoldengateDeploymentTypes(
-    byItem: ListGoldengateDeploymentTypesRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateDeploymentTypesByItems(
+    request: ListGoldengateDeploymentTypesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateDeploymentType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentTypesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateDeploymentTypes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateDeploymentTypes(
+  public func listGoldengateDeploymentTypesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateDeploymentType, Swift.Error> {
     let request = ListGoldengateDeploymentTypesRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateDeploymentTypes(byItem: request)
+    return self.listGoldengateDeploymentTypesByItems(request: request)
   }
 
   public func listGoldengateDeploymentEnvironments(
@@ -5366,35 +5366,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateDeploymentEnvironments(
-    byItem: ListGoldengateDeploymentEnvironmentsRequest
+  public func listGoldengateDeploymentEnvironmentsByItems(
+    request: ListGoldengateDeploymentEnvironmentsRequest
   ) -> any AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> {
-    self.listGoldengateDeploymentEnvironments(byItem: byItem, options: .init())
+    self.listGoldengateDeploymentEnvironmentsByItems(request: request, options: .init())
   }
 
   /// Lists GoldengateDeploymentEnvironments in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeploymentEnvironments")
-  public func listGoldengateDeploymentEnvironments(
-    byItem: ListGoldengateDeploymentEnvironmentsRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateDeploymentEnvironmentsByItems(
+    request: ListGoldengateDeploymentEnvironmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentEnvironmentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateDeploymentEnvironments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateDeploymentEnvironments(
+  public func listGoldengateDeploymentEnvironmentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> {
     let request = ListGoldengateDeploymentEnvironmentsRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateDeploymentEnvironments(byItem: request)
+    return self.listGoldengateDeploymentEnvironmentsByItems(request: request)
   }
 
   public func listGoldengateConnectionTypes(request: ListGoldengateConnectionTypesRequest)
@@ -5409,35 +5409,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateConnectionTypes(
-    byItem: ListGoldengateConnectionTypesRequest
+  public func listGoldengateConnectionTypesByItems(
+    request: ListGoldengateConnectionTypesRequest
   ) -> any AsyncSequence<GoldengateConnectionType, Swift.Error> {
-    self.listGoldengateConnectionTypes(byItem: byItem, options: .init())
+    self.listGoldengateConnectionTypesByItems(request: request, options: .init())
   }
 
   /// Lists GoldengateConnectionTypes in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnectionTypes")
-  public func listGoldengateConnectionTypes(
-    byItem: ListGoldengateConnectionTypesRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateConnectionTypesByItems(
+    request: ListGoldengateConnectionTypesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateConnectionType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionTypesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateConnectionTypes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateConnectionTypes(
+  public func listGoldengateConnectionTypesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateConnectionType, Swift.Error> {
     let request = ListGoldengateConnectionTypesRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateConnectionTypes(byItem: request)
+    return self.listGoldengateConnectionTypesByItems(request: request)
   }
 
   public func listDbVersions(request: ListDbVersionsRequest) async throws
@@ -5452,34 +5452,34 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDbVersions(
-    byItem: ListDbVersionsRequest
+  public func listDbVersionsByItems(
+    request: ListDbVersionsRequest
   ) -> any AsyncSequence<DbVersion, Swift.Error> {
-    self.listDbVersions(byItem: byItem, options: .init())
+    self.listDbVersionsByItems(request: request, options: .init())
   }
 
   /// List DbVersions for the given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListDbVersions")
-  public func listDbVersions(
-    byItem: ListDbVersionsRequest, options: GoogleGax.RequestOptions
+  public func listDbVersionsByItems(
+    request: ListDbVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DbVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudOracleDatabaseV1.ListDbVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDbVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDbVersions(
+  public func listDbVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DbVersion, Swift.Error> {
     let request = ListDbVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listDbVersions(byItem: request)
+    return self.listDbVersionsByItems(request: request)
   }
 
   public func listDatabaseCharacterSets(request: ListDatabaseCharacterSetsRequest) async throws
@@ -5494,35 +5494,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDatabaseCharacterSets(
-    byItem: ListDatabaseCharacterSetsRequest
+  public func listDatabaseCharacterSetsByItems(
+    request: ListDatabaseCharacterSetsRequest
   ) -> any AsyncSequence<DatabaseCharacterSet, Swift.Error> {
-    self.listDatabaseCharacterSets(byItem: byItem, options: .init())
+    self.listDatabaseCharacterSetsByItems(request: request, options: .init())
   }
 
   /// List DatabaseCharacterSets for the given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListDatabaseCharacterSets")
-  public func listDatabaseCharacterSets(
-    byItem: ListDatabaseCharacterSetsRequest, options: GoogleGax.RequestOptions
+  public func listDatabaseCharacterSetsByItems(
+    request: ListDatabaseCharacterSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DatabaseCharacterSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDatabaseCharacterSetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDatabaseCharacterSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDatabaseCharacterSets(
+  public func listDatabaseCharacterSetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DatabaseCharacterSet, Swift.Error> {
     let request = ListDatabaseCharacterSetsRequest().with {
       $0.parent = parent
     }
-    return self.listDatabaseCharacterSets(byItem: request)
+    return self.listDatabaseCharacterSetsByItems(request: request)
   }
 
   public func listGoldengateConnectionAssignments(
@@ -5537,35 +5537,35 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGoldengateConnectionAssignments(
-    byItem: ListGoldengateConnectionAssignmentsRequest
+  public func listGoldengateConnectionAssignmentsByItems(
+    request: ListGoldengateConnectionAssignmentsRequest
   ) -> any AsyncSequence<GoldengateConnectionAssignment, Swift.Error> {
-    self.listGoldengateConnectionAssignments(byItem: byItem, options: .init())
+    self.listGoldengateConnectionAssignmentsByItems(request: request, options: .init())
   }
 
   /// Lists GoldengateConnectionAssignments in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnectionAssignments")
-  public func listGoldengateConnectionAssignments(
-    byItem: ListGoldengateConnectionAssignmentsRequest, options: GoogleGax.RequestOptions
+  public func listGoldengateConnectionAssignmentsByItems(
+    request: ListGoldengateConnectionAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoldengateConnectionAssignment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionAssignmentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGoldengateConnectionAssignments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGoldengateConnectionAssignments(
+  public func listGoldengateConnectionAssignmentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GoldengateConnectionAssignment, Swift.Error> {
     let request = ListGoldengateConnectionAssignmentsRequest().with {
       $0.parent = parent
     }
-    return self.listGoldengateConnectionAssignments(byItem: request)
+    return self.listGoldengateConnectionAssignmentsByItems(request: request)
   }
 
   public func getGoldengateConnectionAssignment(request: GetGoldengateConnectionAssignmentRequest)
@@ -5703,10 +5703,10 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -5729,12 +5729,12 @@ extension Clients.OracleDatabaseProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "OracleDatabase_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -5765,10 +5765,10 @@ extension Clients.OracleDatabaseProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -5776,19 +5776,19 @@ extension Clients.OracleDatabaseProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "OracleDatabase_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -5796,7 +5796,7 @@ extension Clients.OracleDatabaseProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

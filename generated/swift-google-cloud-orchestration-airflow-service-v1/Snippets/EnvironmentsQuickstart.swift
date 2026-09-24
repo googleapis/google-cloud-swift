@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudOrchestrationAirflowServiceV1.EnvironmentsClient()
-  let items = client.listEnvironments(
-    byItem: ListEnvironmentsRequest()
+  let items = client.listEnvironmentsByItems(
+    request: ListEnvironmentsRequest()
       .with {
         $0.parent = "\(parent)"
       }

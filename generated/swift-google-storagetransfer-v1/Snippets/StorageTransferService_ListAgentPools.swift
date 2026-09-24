@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StorageTransferServiceClient) async throws {
-  let items = client.listAgentPools(
-    byItem: ListAgentPoolsRequest()
+  let items = client.listAgentPoolsByItems(
+    request: ListAgentPoolsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

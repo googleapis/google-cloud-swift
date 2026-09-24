@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.NotebookServiceClient()
-    let items = client.listNotebookRuntimeTemplates(
-      byItem: ListNotebookRuntimeTemplatesRequest()
+    let items = client.listNotebookRuntimeTemplatesByItems(
+      request: ListNotebookRuntimeTemplatesRequest()
         .with {
           $0.parent = "\(parent)"
         }

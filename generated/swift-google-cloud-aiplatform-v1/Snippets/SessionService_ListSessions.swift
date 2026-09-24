@@ -27,8 +27,8 @@
   func sample(
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String
   ) async throws {
-    let items = client.listSessions(
-      byItem: ListSessionsRequest()
+    let items = client.listSessionsByItems(
+      request: ListSessionsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/reasoningEngines/\(reasoningEngineId)"

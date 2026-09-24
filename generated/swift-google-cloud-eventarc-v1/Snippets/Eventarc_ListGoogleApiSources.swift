@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: EventarcClient, projectId: String, locationId: String) async throws {
-  let items = client.listGoogleApiSources(
-    byItem: ListGoogleApiSourcesRequest()
+  let items = client.listGoogleApiSourcesByItems(
+    request: ListGoogleApiSourcesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

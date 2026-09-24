@@ -21,8 +21,8 @@ import GoogleCloudSupportV2
 
 func sample(organizationId: String, caseId: String, ) async throws {
   let client = try GoogleCloudSupportV2.CaseAttachmentServiceClient()
-  let items = client.listAttachments(
-    byItem: ListAttachmentsRequest()
+  let items = client.listAttachmentsByItems(
+    request: ListAttachmentsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/cases/\(caseId)"
       }

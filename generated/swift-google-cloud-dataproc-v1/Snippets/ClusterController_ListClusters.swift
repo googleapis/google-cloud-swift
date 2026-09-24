@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ClusterControllerClient) async throws {
-  let items = client.listClusters(
-    byItem: ListClustersRequest()
+  let items = client.listClustersByItems(
+    request: ListClustersRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -167,34 +167,34 @@ extension Clients.CloudApiRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMcpServers(
-    byItem: ListMcpServersRequest
+  public func listMcpServersByItems(
+    request: ListMcpServersRequest
   ) -> any AsyncSequence<McpServer, Swift.Error> {
-    self.listMcpServers(byItem: byItem, options: .init())
+    self.listMcpServersByItems(request: request, options: .init())
   }
 
   /// Lists McpServers in a given Project.
   ///
   /// @Snippet(path: "CloudApiRegistry_ListMcpServers")
-  public func listMcpServers(
-    byItem: ListMcpServersRequest, options: GoogleGax.RequestOptions
+  public func listMcpServersByItems(
+    request: ListMcpServersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<McpServer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiRegistryV1.ListMcpServersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMcpServers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMcpServers(
+  public func listMcpServersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<McpServer, Swift.Error> {
     let request = ListMcpServersRequest().with {
       $0.parent = parent
     }
-    return self.listMcpServers(byItem: request)
+    return self.listMcpServersByItems(request: request)
   }
 
   public func getMcpTool(request: GetMcpToolRequest) async throws
@@ -230,34 +230,34 @@ extension Clients.CloudApiRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMcpTools(
-    byItem: ListMcpToolsRequest
+  public func listMcpToolsByItems(
+    request: ListMcpToolsRequest
   ) -> any AsyncSequence<McpTool, Swift.Error> {
-    self.listMcpTools(byItem: byItem, options: .init())
+    self.listMcpToolsByItems(request: request, options: .init())
   }
 
   /// Lists McpTools in a given McpServer.
   ///
   /// @Snippet(path: "CloudApiRegistry_ListMcpTools")
-  public func listMcpTools(
-    byItem: ListMcpToolsRequest, options: GoogleGax.RequestOptions
+  public func listMcpToolsByItems(
+    request: ListMcpToolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<McpTool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudApiRegistryV1.ListMcpToolsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMcpTools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMcpTools(
+  public func listMcpToolsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<McpTool, Swift.Error> {
     let request = ListMcpToolsRequest().with {
       $0.parent = parent
     }
-    return self.listMcpTools(byItem: request)
+    return self.listMcpToolsByItems(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -272,21 +272,21 @@ extension Clients.CloudApiRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudApiRegistry_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

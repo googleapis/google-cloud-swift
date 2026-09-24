@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleBigQueryConnectionV1.ConnectionServiceClient()
-  let items = client.listConnections(
-    byItem: ListConnectionsRequest()
+  let items = client.listConnectionsByItems(
+    request: ListConnectionsRequest()
       .with {
         $0.parent = "\(parent)"
       }

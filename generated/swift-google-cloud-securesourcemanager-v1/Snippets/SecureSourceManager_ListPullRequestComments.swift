@@ -27,8 +27,8 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   pullRequestId: String
 ) async throws {
-  let items = client.listPullRequestComments(
-    byItem: ListPullRequestCommentsRequest()
+  let items = client.listPullRequestCommentsByItems(
+    request: ListPullRequestCommentsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/pullRequests/\(pullRequestId)"

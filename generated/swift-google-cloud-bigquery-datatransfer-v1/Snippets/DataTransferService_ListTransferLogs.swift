@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleWKT
 
 func sample(client: DataTransferServiceClient) async throws {
-  let items = client.listTransferLogs(
-    byItem: ListTransferLogsRequest()
+  let items = client.listTransferLogsByItems(
+    request: ListTransferLogsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

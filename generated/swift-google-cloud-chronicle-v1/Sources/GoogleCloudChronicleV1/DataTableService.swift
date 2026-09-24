@@ -356,34 +356,34 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataTables(
-    byItem: ListDataTablesRequest
+  public func listDataTablesByItems(
+    request: ListDataTablesRequest
   ) -> any AsyncSequence<DataTable, Swift.Error> {
-    self.listDataTables(byItem: byItem, options: .init())
+    self.listDataTablesByItems(request: request, options: .init())
   }
 
   /// List data tables.
   ///
   /// @Snippet(path: "DataTableService_ListDataTables")
-  public func listDataTables(
-    byItem: ListDataTablesRequest, options: GoogleGax.RequestOptions
+  public func listDataTablesByItems(
+    request: ListDataTablesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataTable, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataTables(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataTables(
+  public func listDataTablesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataTable, Swift.Error> {
     let request = ListDataTablesRequest().with {
       $0.parent = parent
     }
-    return self.listDataTables(byItem: request)
+    return self.listDataTablesByItems(request: request)
   }
 
   public func getDataTable(request: GetDataTableRequest) async throws
@@ -509,34 +509,34 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataTableRows(
-    byItem: ListDataTableRowsRequest
+  public func listDataTableRowsByItems(
+    request: ListDataTableRowsRequest
   ) -> any AsyncSequence<DataTableRow, Swift.Error> {
-    self.listDataTableRows(byItem: byItem, options: .init())
+    self.listDataTableRowsByItems(request: request, options: .init())
   }
 
   /// List data table rows.
   ///
   /// @Snippet(path: "DataTableService_ListDataTableRows")
-  public func listDataTableRows(
-    byItem: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
+  public func listDataTableRowsByItems(
+    request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataTableRow, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataTableRows(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataTableRows(
+  public func listDataTableRowsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataTableRow, Swift.Error> {
     let request = ListDataTableRowsRequest().with {
       $0.parent = parent
     }
-    return self.listDataTableRows(byItem: request)
+    return self.listDataTableRowsByItems(request: request)
   }
 
   public func getDataTableRow(request: GetDataTableRowRequest) async throws
@@ -704,10 +704,10 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -715,19 +715,19 @@ extension Clients.DataTableServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataTableService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -735,7 +735,7 @@ extension Clients.DataTableServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

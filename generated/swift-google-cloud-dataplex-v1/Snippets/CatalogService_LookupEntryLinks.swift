@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient) async throws {
-  let items = client.lookupEntryLinks(
-    byItem: LookupEntryLinksRequest()
+  let items = client.lookupEntryLinksByItems(
+    request: LookupEntryLinksRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

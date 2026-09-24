@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, instanceId: String, ) async throws {
   let client = try GoogleCloudChronicleV1.DataAccessControlServiceClient()
-  let items = client.listDataAccessLabels(
-    byItem: ListDataAccessLabelsRequest()
+  let items = client.listDataAccessLabelsByItems(
+    request: ListDataAccessLabelsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

@@ -358,10 +358,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listDataStores(
-      byItem: ListDataStoresRequest
+    public func listDataStoresByItems(
+      request: ListDataStoresRequest
     ) -> any AsyncSequence<DataStore, Swift.Error> {
-      self.listDataStores(byItem: byItem, options: .init())
+      self.listDataStoresByItems(request: request, options: .init())
     }
 
     /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
@@ -370,25 +370,25 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_ListDataStores")
-    public func listDataStores(
-      byItem: ListDataStoresRequest, options: GoogleGax.RequestOptions
+    public func listDataStoresByItems(
+      request: ListDataStoresRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<DataStore, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listDataStores(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listDataStores(
+    public func listDataStoresByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<DataStore, Swift.Error> {
       let request = ListDataStoresRequest().with {
         $0.parent = parent
       }
-      return self.listDataStores(byItem: request)
+      return self.listDataStoresByItems(request: request)
     }
 
     public func deleteDataStore(request: DeleteDataStoreRequest) async throws
@@ -463,10 +463,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -474,19 +474,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataStoreService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -494,7 +494,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

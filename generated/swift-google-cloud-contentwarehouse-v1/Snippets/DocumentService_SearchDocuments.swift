@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: DocumentServiceClient) async throws {
-  let items = client.searchDocuments(
-    byItem: SearchDocumentsRequest()
+  let items = client.searchDocumentsByItems(
+    request: SearchDocumentsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

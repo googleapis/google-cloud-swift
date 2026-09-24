@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetHttpProxiesClient) async throws {
-    let items = client.aggregatedList(
-      byItem: TargetHttpProxiesClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: TargetHttpProxiesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

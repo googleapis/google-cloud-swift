@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient, parent: String) async throws {
-  let items = client.listPhraseMatchers(
-    byItem: ListPhraseMatchersRequest()
+  let items = client.listPhraseMatchersByItems(
+    request: ListPhraseMatchersRequest()
       .with {
         $0.parent = "\(parent)"
       }

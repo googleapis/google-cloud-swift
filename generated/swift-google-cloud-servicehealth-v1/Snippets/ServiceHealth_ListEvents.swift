@@ -21,8 +21,8 @@ import GoogleCloudServiceHealthV1
 import GoogleCloudLocation
 
 func sample(client: ServiceHealthClient, projectId: String, locationId: String) async throws {
-  let items = client.listEvents(
-    byItem: ListEventsRequest()
+  let items = client.listEventsByItems(
+    request: ListEventsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

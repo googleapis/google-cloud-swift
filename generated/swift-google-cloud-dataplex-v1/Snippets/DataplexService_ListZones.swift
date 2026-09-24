@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String)
   async throws
 {
-  let items = client.listZones(
-    byItem: ListZonesRequest()
+  let items = client.listZonesByItems(
+    request: ListZonesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)"
       }

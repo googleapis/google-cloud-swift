@@ -173,35 +173,35 @@ extension Clients.DirectAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDeviceSessions(
-    byItem: ListDeviceSessionsRequest
+  public func listDeviceSessionsByItems(
+    request: ListDeviceSessionsRequest
   ) -> any AsyncSequence<DeviceSession, Swift.Error> {
-    self.listDeviceSessions(byItem: byItem, options: .init())
+    self.listDeviceSessionsByItems(request: request, options: .init())
   }
 
   /// Lists DeviceSessions owned by the project user.
   ///
   /// @Snippet(path: "DirectAccessService_ListDeviceSessions")
-  public func listDeviceSessions(
-    byItem: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
+  public func listDeviceSessionsByItems(
+    request: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DeviceSession, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDeviceSessions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDeviceSessions(
+  public func listDeviceSessionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DeviceSession, Swift.Error> {
     let request = ListDeviceSessionsRequest().with {
       $0.parent = parent
     }
-    return self.listDeviceSessions(byItem: request)
+    return self.listDeviceSessionsByItems(request: request)
   }
 
   public func getDeviceSession(request: GetDeviceSessionRequest) async throws

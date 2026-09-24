@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudParameterManagerV1.ParameterManagerClient()
-  let items = client.listParameters(
-    byItem: ListParametersRequest()
+  let items = client.listParametersByItems(
+    request: ListParametersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -26,8 +26,8 @@ func sample(
   projectId: String, locationId: String, workstationClusterId: String, workstationConfigId: String,
 ) async throws {
   let client = try GoogleCloudWorkstationsV1.WorkstationsClient()
-  let items = client.listWorkstations(
-    byItem: ListWorkstationsRequest()
+  let items = client.listWorkstationsByItems(
+    request: ListWorkstationsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/workstationClusters/\(workstationClusterId)/workstationConfigs/\(workstationConfigId)"

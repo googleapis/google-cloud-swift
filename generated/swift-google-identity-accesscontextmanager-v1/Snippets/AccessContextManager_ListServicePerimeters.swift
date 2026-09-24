@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, accessPolicyId: String) async throws {
-  let items = client.listServicePerimeters(
-    byItem: ListServicePerimetersRequest()
+  let items = client.listServicePerimetersByItems(
+    request: ListServicePerimetersRequest()
       .with {
         $0.parent = "accessPolicies/\(accessPolicyId)"
       }

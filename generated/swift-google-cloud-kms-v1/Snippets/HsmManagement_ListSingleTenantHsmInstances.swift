@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: HsmManagementClient, parent: String) async throws {
-  let items = client.listSingleTenantHsmInstances(
-    byItem: ListSingleTenantHsmInstancesRequest()
+  let items = client.listSingleTenantHsmInstancesByItems(
+    request: ListSingleTenantHsmInstancesRequest()
       .with {
         $0.parent = "\(parent)"
       }

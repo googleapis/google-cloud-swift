@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: VpnGatewaysClient) async throws {
-    let items = client.list(
-      byItem: VpnGatewaysClient.ListRequest()
+    let items = client.listByItems(
+      request: VpnGatewaysClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

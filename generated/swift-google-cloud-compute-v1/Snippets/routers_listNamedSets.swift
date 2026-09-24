@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let items = client.listNamedSets(
-      byItem: RoutersClient.ListNamedSetsRequest()
+    let items = client.listNamedSetsByItems(
+      request: RoutersClient.ListNamedSetsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

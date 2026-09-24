@@ -25,8 +25,8 @@ func sample(
   client: DocumentProcessorServiceClient, projectId: String, locationId: String,
   processorId: String, processorVersionId: String
 ) async throws {
-  let items = client.listEvaluations(
-    byItem: ListEvaluationsRequest()
+  let items = client.listEvaluationsByItems(
+    request: ListEvaluationsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/processors/\(processorId)/processorVersions/\(processorVersionId)"

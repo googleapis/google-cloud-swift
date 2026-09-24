@@ -874,21 +874,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: SqlInstancesListRequest
+    public func listByItems(
+      request: SqlInstancesListRequest
     ) -> any AsyncSequence<ApiWarning, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists instances under a given project.
     ///
     /// @Snippet(path: "SqlInstancesService_List")
-    public func list(
-      byItem: SqlInstancesListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: SqlInstancesListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ApiWarning, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudSqlV1.InstancesListResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }

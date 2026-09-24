@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstanceGroupManagersClient) async throws {
-    let items = client.listPerInstanceConfigs(
-      byItem: InstanceGroupManagersClient.ListPerInstanceConfigsRequest()
+    let items = client.listPerInstanceConfigsByItems(
+      request: InstanceGroupManagersClient.ListPerInstanceConfigsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

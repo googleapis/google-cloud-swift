@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient) async throws {
-  let items = client.searchIndexEndpoint(
-    byItem: SearchIndexEndpointRequest()
+  let items = client.searchIndexEndpointByItems(
+    request: SearchIndexEndpointRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: SslCertificatesClient) async throws {
-    let items = client.list(
-      byItem: SslCertificatesClient.ListRequest()
+    let items = client.listByItems(
+      request: SslCertificatesClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: CloudRedisClusterClient, projectId: String, locationId: String, backupCollectionId: String
 ) async throws {
-  let items = client.listBackups(
-    byItem: ListBackupsRequest()
+  let items = client.listBackupsByItems(
+    request: ListBackupsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/backupCollections/\(backupCollectionId)"

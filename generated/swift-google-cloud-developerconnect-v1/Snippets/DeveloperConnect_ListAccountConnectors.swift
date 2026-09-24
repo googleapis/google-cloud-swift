@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DeveloperConnectClient, projectId: String, locationId: String) async throws {
-  let items = client.listAccountConnectors(
-    byItem: ListAccountConnectorsRequest()
+  let items = client.listAccountConnectorsByItems(
+    request: ListAccountConnectorsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

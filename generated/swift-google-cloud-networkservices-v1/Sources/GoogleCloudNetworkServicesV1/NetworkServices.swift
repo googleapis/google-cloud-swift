@@ -2527,35 +2527,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEndpointPolicies(
-    byItem: ListEndpointPoliciesRequest
+  public func listEndpointPoliciesByItems(
+    request: ListEndpointPoliciesRequest
   ) -> any AsyncSequence<EndpointPolicy, Swift.Error> {
-    self.listEndpointPolicies(byItem: byItem, options: .init())
+    self.listEndpointPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists EndpointPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListEndpointPolicies")
-  public func listEndpointPolicies(
-    byItem: ListEndpointPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listEndpointPoliciesByItems(
+    request: ListEndpointPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EndpointPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListEndpointPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEndpointPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEndpointPolicies(
+  public func listEndpointPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EndpointPolicy, Swift.Error> {
     let request = ListEndpointPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listEndpointPolicies(byItem: request)
+    return self.listEndpointPoliciesByItems(request: request)
   }
 
   public func getEndpointPolicy(request: GetEndpointPolicyRequest) async throws
@@ -2708,36 +2708,36 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWasmPluginVersions(
-    byItem: ListWasmPluginVersionsRequest
+  public func listWasmPluginVersionsByItems(
+    request: ListWasmPluginVersionsRequest
   ) -> any AsyncSequence<WasmPluginVersion, Swift.Error> {
-    self.listWasmPluginVersions(byItem: byItem, options: .init())
+    self.listWasmPluginVersionsByItems(request: request, options: .init())
   }
 
   /// Lists `WasmPluginVersion` resources in a given project and
   /// location.
   ///
   /// @Snippet(path: "NetworkServices_ListWasmPluginVersions")
-  public func listWasmPluginVersions(
-    byItem: ListWasmPluginVersionsRequest, options: GoogleGax.RequestOptions
+  public func listWasmPluginVersionsByItems(
+    request: ListWasmPluginVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WasmPluginVersion, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListWasmPluginVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWasmPluginVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWasmPluginVersions(
+  public func listWasmPluginVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<WasmPluginVersion, Swift.Error> {
     let request = ListWasmPluginVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listWasmPluginVersions(byItem: request)
+    return self.listWasmPluginVersionsByItems(request: request)
   }
 
   public func getWasmPluginVersion(request: GetWasmPluginVersionRequest) async throws
@@ -2851,35 +2851,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWasmPlugins(
-    byItem: ListWasmPluginsRequest
+  public func listWasmPluginsByItems(
+    request: ListWasmPluginsRequest
   ) -> any AsyncSequence<WasmPlugin, Swift.Error> {
-    self.listWasmPlugins(byItem: byItem, options: .init())
+    self.listWasmPluginsByItems(request: request, options: .init())
   }
 
   /// Lists `WasmPlugin` resources in a given project and
   /// location.
   ///
   /// @Snippet(path: "NetworkServices_ListWasmPlugins")
-  public func listWasmPlugins(
-    byItem: ListWasmPluginsRequest, options: GoogleGax.RequestOptions
+  public func listWasmPluginsByItems(
+    request: ListWasmPluginsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WasmPlugin, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWasmPlugins(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWasmPlugins(
+  public func listWasmPluginsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<WasmPlugin, Swift.Error> {
     let request = ListWasmPluginsRequest().with {
       $0.parent = parent
     }
-    return self.listWasmPlugins(byItem: request)
+    return self.listWasmPluginsByItems(request: request)
   }
 
   public func getWasmPlugin(request: GetWasmPluginRequest) async throws
@@ -3032,34 +3032,34 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGateways(
-    byItem: ListGatewaysRequest
+  public func listGatewaysByItems(
+    request: ListGatewaysRequest
   ) -> any AsyncSequence<Gateway, Swift.Error> {
-    self.listGateways(byItem: byItem, options: .init())
+    self.listGatewaysByItems(request: request, options: .init())
   }
 
   /// Lists Gateways in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListGateways")
-  public func listGateways(
-    byItem: ListGatewaysRequest, options: GoogleGax.RequestOptions
+  public func listGatewaysByItems(
+    request: ListGatewaysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Gateway, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListGatewaysResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGateways(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGateways(
+  public func listGatewaysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Gateway, Swift.Error> {
     let request = ListGatewaysRequest().with {
       $0.parent = parent
     }
-    return self.listGateways(byItem: request)
+    return self.listGatewaysByItems(request: request)
   }
 
   public func getGateway(request: GetGatewayRequest) async throws
@@ -3212,34 +3212,34 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGrpcRoutes(
-    byItem: ListGrpcRoutesRequest
+  public func listGrpcRoutesByItems(
+    request: ListGrpcRoutesRequest
   ) -> any AsyncSequence<GrpcRoute, Swift.Error> {
-    self.listGrpcRoutes(byItem: byItem, options: .init())
+    self.listGrpcRoutesByItems(request: request, options: .init())
   }
 
   /// Lists GrpcRoutes in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListGrpcRoutes")
-  public func listGrpcRoutes(
-    byItem: ListGrpcRoutesRequest, options: GoogleGax.RequestOptions
+  public func listGrpcRoutesByItems(
+    request: ListGrpcRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GrpcRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListGrpcRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGrpcRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGrpcRoutes(
+  public func listGrpcRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GrpcRoute, Swift.Error> {
     let request = ListGrpcRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listGrpcRoutes(byItem: request)
+    return self.listGrpcRoutesByItems(request: request)
   }
 
   public func getGrpcRoute(request: GetGrpcRouteRequest) async throws
@@ -3392,34 +3392,34 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listHttpRoutes(
-    byItem: ListHttpRoutesRequest
+  public func listHttpRoutesByItems(
+    request: ListHttpRoutesRequest
   ) -> any AsyncSequence<HttpRoute, Swift.Error> {
-    self.listHttpRoutes(byItem: byItem, options: .init())
+    self.listHttpRoutesByItems(request: request, options: .init())
   }
 
   /// Lists HttpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListHttpRoutes")
-  public func listHttpRoutes(
-    byItem: ListHttpRoutesRequest, options: GoogleGax.RequestOptions
+  public func listHttpRoutesByItems(
+    request: ListHttpRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<HttpRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListHttpRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listHttpRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listHttpRoutes(
+  public func listHttpRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<HttpRoute, Swift.Error> {
     let request = ListHttpRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listHttpRoutes(byItem: request)
+    return self.listHttpRoutesByItems(request: request)
   }
 
   public func getHttpRoute(request: GetHttpRouteRequest) async throws
@@ -3572,34 +3572,34 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTcpRoutes(
-    byItem: ListTcpRoutesRequest
+  public func listTcpRoutesByItems(
+    request: ListTcpRoutesRequest
   ) -> any AsyncSequence<TcpRoute, Swift.Error> {
-    self.listTcpRoutes(byItem: byItem, options: .init())
+    self.listTcpRoutesByItems(request: request, options: .init())
   }
 
   /// Lists TcpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListTcpRoutes")
-  public func listTcpRoutes(
-    byItem: ListTcpRoutesRequest, options: GoogleGax.RequestOptions
+  public func listTcpRoutesByItems(
+    request: ListTcpRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TcpRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListTcpRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTcpRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTcpRoutes(
+  public func listTcpRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TcpRoute, Swift.Error> {
     let request = ListTcpRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listTcpRoutes(byItem: request)
+    return self.listTcpRoutesByItems(request: request)
   }
 
   public func getTcpRoute(request: GetTcpRouteRequest) async throws
@@ -3752,34 +3752,34 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTlsRoutes(
-    byItem: ListTlsRoutesRequest
+  public func listTlsRoutesByItems(
+    request: ListTlsRoutesRequest
   ) -> any AsyncSequence<TlsRoute, Swift.Error> {
-    self.listTlsRoutes(byItem: byItem, options: .init())
+    self.listTlsRoutesByItems(request: request, options: .init())
   }
 
   /// Lists TlsRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListTlsRoutes")
-  public func listTlsRoutes(
-    byItem: ListTlsRoutesRequest, options: GoogleGax.RequestOptions
+  public func listTlsRoutesByItems(
+    request: ListTlsRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TlsRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListTlsRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTlsRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTlsRoutes(
+  public func listTlsRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TlsRoute, Swift.Error> {
     let request = ListTlsRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listTlsRoutes(byItem: request)
+    return self.listTlsRoutesByItems(request: request)
   }
 
   public func getTlsRoute(request: GetTlsRouteRequest) async throws
@@ -3932,35 +3932,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServiceBindings(
-    byItem: ListServiceBindingsRequest
+  public func listServiceBindingsByItems(
+    request: ListServiceBindingsRequest
   ) -> any AsyncSequence<ServiceBinding, Swift.Error> {
-    self.listServiceBindings(byItem: byItem, options: .init())
+    self.listServiceBindingsByItems(request: request, options: .init())
   }
 
   /// Lists ServiceBinding in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListServiceBindings")
-  public func listServiceBindings(
-    byItem: ListServiceBindingsRequest, options: GoogleGax.RequestOptions
+  public func listServiceBindingsByItems(
+    request: ListServiceBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServiceBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListServiceBindingsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServiceBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServiceBindings(
+  public func listServiceBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ServiceBinding, Swift.Error> {
     let request = ListServiceBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listServiceBindings(byItem: request)
+    return self.listServiceBindingsByItems(request: request)
   }
 
   public func getServiceBinding(request: GetServiceBindingRequest) async throws
@@ -4113,34 +4113,34 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMeshes(
-    byItem: ListMeshesRequest
+  public func listMeshesByItems(
+    request: ListMeshesRequest
   ) -> any AsyncSequence<Mesh, Swift.Error> {
-    self.listMeshes(byItem: byItem, options: .init())
+    self.listMeshesByItems(request: request, options: .init())
   }
 
   /// Lists Meshes in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListMeshes")
-  public func listMeshes(
-    byItem: ListMeshesRequest, options: GoogleGax.RequestOptions
+  public func listMeshesByItems(
+    request: ListMeshesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Mesh, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListMeshesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMeshes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMeshes(
+  public func listMeshesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Mesh, Swift.Error> {
     let request = ListMeshesRequest().with {
       $0.parent = parent
     }
-    return self.listMeshes(byItem: request)
+    return self.listMeshesByItems(request: request)
   }
 
   public func getMesh(request: GetMeshRequest) async throws -> GoogleCloudNetworkServicesV1.Mesh {
@@ -4285,35 +4285,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServiceLbPolicies(
-    byItem: ListServiceLbPoliciesRequest
+  public func listServiceLbPoliciesByItems(
+    request: ListServiceLbPoliciesRequest
   ) -> any AsyncSequence<ServiceLbPolicy, Swift.Error> {
-    self.listServiceLbPolicies(byItem: byItem, options: .init())
+    self.listServiceLbPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists ServiceLbPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListServiceLbPolicies")
-  public func listServiceLbPolicies(
-    byItem: ListServiceLbPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listServiceLbPoliciesByItems(
+    request: ListServiceLbPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServiceLbPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListServiceLbPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServiceLbPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServiceLbPolicies(
+  public func listServiceLbPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ServiceLbPolicy, Swift.Error> {
     let request = ListServiceLbPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listServiceLbPolicies(byItem: request)
+    return self.listServiceLbPoliciesByItems(request: request)
   }
 
   public func getServiceLbPolicy(request: GetServiceLbPolicyRequest) async throws
@@ -4508,35 +4508,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGatewayRouteViews(
-    byItem: ListGatewayRouteViewsRequest
+  public func listGatewayRouteViewsByItems(
+    request: ListGatewayRouteViewsRequest
   ) -> any AsyncSequence<GatewayRouteView, Swift.Error> {
-    self.listGatewayRouteViews(byItem: byItem, options: .init())
+    self.listGatewayRouteViewsByItems(request: request, options: .init())
   }
 
   /// Lists RouteViews
   ///
   /// @Snippet(path: "NetworkServices_ListGatewayRouteViews")
-  public func listGatewayRouteViews(
-    byItem: ListGatewayRouteViewsRequest, options: GoogleGax.RequestOptions
+  public func listGatewayRouteViewsByItems(
+    request: ListGatewayRouteViewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GatewayRouteView, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListGatewayRouteViewsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGatewayRouteViews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGatewayRouteViews(
+  public func listGatewayRouteViewsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GatewayRouteView, Swift.Error> {
     let request = ListGatewayRouteViewsRequest().with {
       $0.parent = parent
     }
-    return self.listGatewayRouteViews(byItem: request)
+    return self.listGatewayRouteViewsByItems(request: request)
   }
 
   public func listMeshRouteViews(request: ListMeshRouteViewsRequest) async throws
@@ -4551,35 +4551,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMeshRouteViews(
-    byItem: ListMeshRouteViewsRequest
+  public func listMeshRouteViewsByItems(
+    request: ListMeshRouteViewsRequest
   ) -> any AsyncSequence<MeshRouteView, Swift.Error> {
-    self.listMeshRouteViews(byItem: byItem, options: .init())
+    self.listMeshRouteViewsByItems(request: request, options: .init())
   }
 
   /// Lists RouteViews
   ///
   /// @Snippet(path: "NetworkServices_ListMeshRouteViews")
-  public func listMeshRouteViews(
-    byItem: ListMeshRouteViewsRequest, options: GoogleGax.RequestOptions
+  public func listMeshRouteViewsByItems(
+    request: ListMeshRouteViewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MeshRouteView, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListMeshRouteViewsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMeshRouteViews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMeshRouteViews(
+  public func listMeshRouteViewsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MeshRouteView, Swift.Error> {
     let request = ListMeshRouteViewsRequest().with {
       $0.parent = parent
     }
-    return self.listMeshRouteViews(byItem: request)
+    return self.listMeshRouteViewsByItems(request: request)
   }
 
   public func listAgentGateways(request: ListAgentGatewaysRequest) async throws
@@ -4594,35 +4594,35 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAgentGateways(
-    byItem: ListAgentGatewaysRequest
+  public func listAgentGatewaysByItems(
+    request: ListAgentGatewaysRequest
   ) -> any AsyncSequence<AgentGateway, Swift.Error> {
-    self.listAgentGateways(byItem: byItem, options: .init())
+    self.listAgentGatewaysByItems(request: request, options: .init())
   }
 
   /// Lists AgentGateways in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListAgentGateways")
-  public func listAgentGateways(
-    byItem: ListAgentGatewaysRequest, options: GoogleGax.RequestOptions
+  public func listAgentGatewaysByItems(
+    request: ListAgentGatewaysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AgentGateway, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkServicesV1.ListAgentGatewaysResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAgentGateways(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAgentGateways(
+  public func listAgentGatewaysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AgentGateway, Swift.Error> {
     let request = ListAgentGatewaysRequest().with {
       $0.parent = parent
     }
-    return self.listAgentGateways(byItem: request)
+    return self.listAgentGatewaysByItems(request: request)
   }
 
   public func getAgentGateway(request: GetAgentGatewayRequest) async throws
@@ -4775,21 +4775,21 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "NetworkServices_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -4856,10 +4856,10 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -4867,19 +4867,19 @@ extension Clients.NetworkServicesProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkServices_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -4887,7 +4887,7 @@ extension Clients.NetworkServicesProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

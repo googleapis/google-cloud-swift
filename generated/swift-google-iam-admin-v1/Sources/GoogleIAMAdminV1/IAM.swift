@@ -719,10 +719,10 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServiceAccounts(
-    byItem: ListServiceAccountsRequest
+  public func listServiceAccountsByItems(
+    request: ListServiceAccountsRequest
   ) -> any AsyncSequence<ServiceAccount, Swift.Error> {
-    self.listServiceAccounts(byItem: byItem, options: .init())
+    self.listServiceAccountsByItems(request: request, options: .init())
   }
 
   /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
@@ -730,25 +730,25 @@ extension Clients.IAMProtocol {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_ListServiceAccounts")
-  public func listServiceAccounts(
-    byItem: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
+  public func listServiceAccountsByItems(
+    request: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServiceAccount, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServiceAccounts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServiceAccounts(
+  public func listServiceAccountsByItems(
     name: Swift.String,
   ) -> any AsyncSequence<ServiceAccount, Swift.Error> {
     let request = ListServiceAccountsRequest().with {
       $0.name = name
     }
-    return self.listServiceAccounts(byItem: request)
+    return self.listServiceAccountsByItems(request: request)
   }
 
   public func getServiceAccount(request: GetServiceAccountRequest) async throws
@@ -1139,10 +1139,10 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func queryGrantableRoles(
-    byItem: QueryGrantableRolesRequest
+  public func queryGrantableRolesByItems(
+    request: QueryGrantableRolesRequest
   ) -> any AsyncSequence<Role, Swift.Error> {
-    self.queryGrantableRoles(byItem: byItem, options: .init())
+    self.queryGrantableRolesByItems(request: request, options: .init())
   }
 
   /// Lists roles that can be granted on a Google Cloud resource. A role is
@@ -1150,25 +1150,25 @@ extension Clients.IAMProtocol {
   /// role.
   ///
   /// @Snippet(path: "IAM_QueryGrantableRoles")
-  public func queryGrantableRoles(
-    byItem: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
+  public func queryGrantableRolesByItems(
+    request: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Role, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.queryGrantableRoles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func queryGrantableRoles(
+  public func queryGrantableRolesByItems(
     fullResourceName: Swift.String,
   ) -> any AsyncSequence<Role, Swift.Error> {
     let request = QueryGrantableRolesRequest().with {
       $0.fullResourceName = fullResourceName
     }
-    return self.queryGrantableRoles(byItem: request)
+    return self.queryGrantableRolesByItems(request: request)
   }
 
   public func listRoles(request: ListRolesRequest) async throws
@@ -1183,10 +1183,10 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRoles(
-    byItem: ListRolesRequest
+  public func listRolesByItems(
+    request: ListRolesRequest
   ) -> any AsyncSequence<Role, Swift.Error> {
-    self.listRoles(byItem: byItem, options: .init())
+    self.listRolesByItems(request: request, options: .init())
   }
 
   /// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
@@ -1195,11 +1195,11 @@ extension Clients.IAMProtocol {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_ListRoles")
-  public func listRoles(
-    byItem: ListRolesRequest, options: GoogleGax.RequestOptions
+  public func listRolesByItems(
+    request: ListRolesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Role, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMAdminV1.ListRolesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRoles(request: request, options: options)
     }
@@ -1268,10 +1268,10 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func queryTestablePermissions(
-    byItem: QueryTestablePermissionsRequest
+  public func queryTestablePermissionsByItems(
+    request: QueryTestablePermissionsRequest
   ) -> any AsyncSequence<Permission, Swift.Error> {
-    self.queryTestablePermissions(byItem: byItem, options: .init())
+    self.queryTestablePermissionsByItems(request: request, options: .init())
   }
 
   /// Lists every permission that you can test on a resource. A permission is
@@ -1279,12 +1279,12 @@ extension Clients.IAMProtocol {
   /// resource.
   ///
   /// @Snippet(path: "IAM_QueryTestablePermissions")
-  public func queryTestablePermissions(
-    byItem: QueryTestablePermissionsRequest, options: GoogleGax.RequestOptions
+  public func queryTestablePermissionsByItems(
+    request: QueryTestablePermissionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Permission, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.queryTestablePermissions(request: request, options: options)
     }

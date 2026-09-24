@@ -336,10 +336,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: ServiceAttachmentsClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: ServiceAttachmentsClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, ServiceAttachmentsScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all ServiceAttachment resources,
@@ -349,26 +349,26 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "serviceAttachments_aggregatedList")
-    public func aggregatedList(
-      byItem: ServiceAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: ServiceAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, ServiceAttachmentsScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ServiceAttachmentAggregatedList
         in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, ServiceAttachmentsScopedList), Swift.Error> {
       let request = ServiceAttachmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: ServiceAttachmentsClient.DeleteRequest) async throws
@@ -517,28 +517,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: ServiceAttachmentsClient.ListRequest
+    public func listByItems(
+      request: ServiceAttachmentsClient.ListRequest
     ) -> any AsyncSequence<ServiceAttachment, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Lists the ServiceAttachments for a project in the given scope.
     ///
     /// @Snippet(path: "serviceAttachments_list")
-    public func list(
-      byItem: ServiceAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: ServiceAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ServiceAttachment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ServiceAttachmentList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<ServiceAttachment, Swift.Error> {
@@ -546,7 +546,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: ServiceAttachmentsClient.PatchRequest) async throws

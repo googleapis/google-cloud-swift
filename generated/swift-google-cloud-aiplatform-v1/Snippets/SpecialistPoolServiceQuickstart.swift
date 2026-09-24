@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.SpecialistPoolServiceClient()
-    let items = client.listSpecialistPools(
-      byItem: ListSpecialistPoolsRequest()
+    let items = client.listSpecialistPoolsByItems(
+      request: ListSpecialistPoolsRequest()
         .with {
           $0.parent = "\(parent)"
         }

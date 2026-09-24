@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: DataObjectSearchServiceClient) async throws {
-  let items = client.queryDataObjects(
-    byItem: QueryDataObjectsRequest()
+  let items = client.queryDataObjectsByItems(
+    request: QueryDataObjectsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

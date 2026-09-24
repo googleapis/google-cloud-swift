@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: AgentServiceClient, projectId: String, locationId: String, appId: String)
   async throws
 {
-  let items = client.listAgents(
-    byItem: ListAgentsRequest()
+  let items = client.listAgentsByItems(
+    request: ListAgentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/apps/\(appId)"
       }

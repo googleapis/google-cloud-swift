@@ -218,10 +218,10 @@ extension Clients.TagBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTagBindings(
-    byItem: ListTagBindingsRequest
+  public func listTagBindingsByItems(
+    request: ListTagBindingsRequest
   ) -> any AsyncSequence<TagBinding, Swift.Error> {
-    self.listTagBindings(byItem: byItem, options: .init())
+    self.listTagBindingsByItems(request: request, options: .init())
   }
 
   /// Lists the TagBindings for the given Google Cloud resource, as specified
@@ -231,25 +231,25 @@ extension Clients.TagBindingsProtocol {
   /// https://cloud.google.com/apis/design/resource_names#full_resource_name
   ///
   /// @Snippet(path: "TagBindings_ListTagBindings")
-  public func listTagBindings(
-    byItem: ListTagBindingsRequest, options: GoogleGax.RequestOptions
+  public func listTagBindingsByItems(
+    request: ListTagBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TagBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTagBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTagBindings(
+  public func listTagBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TagBinding, Swift.Error> {
     let request = ListTagBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listTagBindings(byItem: request)
+    return self.listTagBindingsByItems(request: request)
   }
 
   public func createTagBinding(request: CreateTagBindingRequest) async throws
@@ -338,36 +338,36 @@ extension Clients.TagBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEffectiveTags(
-    byItem: ListEffectiveTagsRequest
+  public func listEffectiveTagsByItems(
+    request: ListEffectiveTagsRequest
   ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
-    self.listEffectiveTags(byItem: byItem, options: .init())
+    self.listEffectiveTagsByItems(request: request, options: .init())
   }
 
   /// Return a list of effective tags for the given Google Cloud resource, as
   /// specified in `parent`.
   ///
   /// @Snippet(path: "TagBindings_ListEffectiveTags")
-  public func listEffectiveTags(
-    byItem: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
+  public func listEffectiveTagsByItems(
+    request: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListEffectiveTagsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEffectiveTags(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEffectiveTags(
+  public func listEffectiveTagsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EffectiveTag, Swift.Error> {
     let request = ListEffectiveTagsRequest().with {
       $0.parent = parent
     }
-    return self.listEffectiveTags(byItem: request)
+    return self.listEffectiveTagsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

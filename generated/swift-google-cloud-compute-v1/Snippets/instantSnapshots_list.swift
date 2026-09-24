@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstantSnapshotsClient) async throws {
-    let items = client.list(
-      byItem: InstantSnapshotsClient.ListRequest()
+    let items = client.listByItems(
+      request: InstantSnapshotsClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

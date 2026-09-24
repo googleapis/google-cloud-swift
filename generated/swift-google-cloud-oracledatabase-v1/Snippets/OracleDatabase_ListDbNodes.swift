@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, cloudVmClusterId: String
 ) async throws {
-  let items = client.listDbNodes(
-    byItem: ListDbNodesRequest()
+  let items = client.listDbNodesByItems(
+    request: ListDbNodesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/cloudVmClusters/\(cloudVmClusterId)"

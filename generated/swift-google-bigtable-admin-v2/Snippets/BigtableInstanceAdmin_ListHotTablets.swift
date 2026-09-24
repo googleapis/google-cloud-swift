@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let items = client.listHotTablets(
-    byItem: ListHotTabletsRequest()
+  let items = client.listHotTabletsByItems(
+    request: ListHotTabletsRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
       }

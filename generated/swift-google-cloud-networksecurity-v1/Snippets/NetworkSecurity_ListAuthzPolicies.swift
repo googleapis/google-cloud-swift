@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let items = client.listAuthzPolicies(
-    byItem: ListAuthzPoliciesRequest()
+  let items = client.listAuthzPoliciesByItems(
+    request: ListAuthzPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

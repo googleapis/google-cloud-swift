@@ -23,8 +23,8 @@
   import GoogleLongRunning
 
   func sample(client: ConversationModelsClient, parent: String) async throws {
-    let items = client.listConversationModels(
-      byItem: ListConversationModelsRequest()
+    let items = client.listConversationModelsByItems(
+      request: ListConversationModelsRequest()
         .with {
           $0.parent = "\(parent)"
         }

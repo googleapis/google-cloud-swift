@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(client: AutoscalingPolicyServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let items = client.listAutoscalingPolicies(
-    byItem: ListAutoscalingPoliciesRequest()
+  let items = client.listAutoscalingPoliciesByItems(
+    request: ListAutoscalingPoliciesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

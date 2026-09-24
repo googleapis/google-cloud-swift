@@ -26,8 +26,8 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let items = client.listCutoverJobs(
-    byItem: ListCutoverJobsRequest()
+  let items = client.listCutoverJobsByItems(
+    request: ListCutoverJobsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/migratingVms/\(migratingVmId)"

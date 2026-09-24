@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleWKT
 
 func sample(client: ReservationServiceClient, projectId: String, locationId: String) async throws {
-  let items = client.listReservations(
-    byItem: ListReservationsRequest()
+  let items = client.listReservationsByItems(
+    request: ListReservationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -23,8 +23,8 @@ func sample(
   client: CloudControlsPartnerMonitoringClient, organizationId: String, locationId: String,
   customerId: String, workloadId: String
 ) async throws {
-  let items = client.listViolations(
-    byItem: ListViolationsRequest()
+  let items = client.listViolationsByItems(
+    request: ListViolationsRequest()
       .with {
         $0.parent =
           "organizations/\(organizationId)/locations/\(locationId)/customers/\(customerId)/workloads/\(workloadId)"

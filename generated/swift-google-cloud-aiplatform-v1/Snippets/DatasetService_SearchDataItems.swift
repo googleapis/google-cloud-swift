@@ -28,8 +28,8 @@
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
   func sample(client: DatasetServiceClient) async throws {
-    let items = client.searchDataItems(
-      byItem: SearchDataItemsRequest()
+    let items = client.searchDataItemsByItems(
+      request: SearchDataItemsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

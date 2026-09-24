@@ -631,34 +631,34 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataScans(
-    byItem: ListDataScansRequest
+  public func listDataScansByItems(
+    request: ListDataScansRequest
   ) -> any AsyncSequence<DataScan, Swift.Error> {
-    self.listDataScans(byItem: byItem, options: .init())
+    self.listDataScansByItems(request: request, options: .init())
   }
 
   /// Lists DataScans.
   ///
   /// @Snippet(path: "DataScanService_ListDataScans")
-  public func listDataScans(
-    byItem: ListDataScansRequest, options: GoogleGax.RequestOptions
+  public func listDataScansByItems(
+    request: ListDataScansRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataScan, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataScansResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataScans(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataScans(
+  public func listDataScansByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataScan, Swift.Error> {
     let request = ListDataScansRequest().with {
       $0.parent = parent
     }
-    return self.listDataScans(byItem: request)
+    return self.listDataScansByItems(request: request)
   }
 
   public func runDataScan(request: RunDataScanRequest) async throws
@@ -715,34 +715,34 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDataScanJobs(
-    byItem: ListDataScanJobsRequest
+  public func listDataScanJobsByItems(
+    request: ListDataScanJobsRequest
   ) -> any AsyncSequence<DataScanJob, Swift.Error> {
-    self.listDataScanJobs(byItem: byItem, options: .init())
+    self.listDataScanJobsByItems(request: request, options: .init())
   }
 
   /// Lists DataScanJobs under the given DataScan.
   ///
   /// @Snippet(path: "DataScanService_ListDataScanJobs")
-  public func listDataScanJobs(
-    byItem: ListDataScanJobsRequest, options: GoogleGax.RequestOptions
+  public func listDataScanJobsByItems(
+    request: ListDataScanJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataScanJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataScanJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDataScanJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDataScanJobs(
+  public func listDataScanJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DataScanJob, Swift.Error> {
     let request = ListDataScanJobsRequest().with {
       $0.parent = parent
     }
-    return self.listDataScanJobs(byItem: request)
+    return self.listDataScanJobsByItems(request: request)
   }
 
   public func cancelDataScanJob(request: CancelDataScanJobRequest) async throws
@@ -799,10 +799,10 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -825,12 +825,12 @@ extension Clients.DataScanServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataScanService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -897,10 +897,10 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -908,19 +908,19 @@ extension Clients.DataScanServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataScanService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -928,7 +928,7 @@ extension Clients.DataScanServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

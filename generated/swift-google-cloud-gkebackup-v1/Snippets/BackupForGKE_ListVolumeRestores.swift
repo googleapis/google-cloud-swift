@@ -27,8 +27,8 @@ func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restorePlanId: String,
   restoreId: String
 ) async throws {
-  let items = client.listVolumeRestores(
-    byItem: ListVolumeRestoresRequest()
+  let items = client.listVolumeRestoresByItems(
+    request: ListVolumeRestoresRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/restorePlans/\(restorePlanId)/restores/\(restoreId)"

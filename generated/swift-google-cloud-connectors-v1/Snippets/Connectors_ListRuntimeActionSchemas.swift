@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConnectorsClient) async throws {
-  let items = client.listRuntimeActionSchemas(
-    byItem: ListRuntimeActionSchemasRequest()
+  let items = client.listRuntimeActionSchemasByItems(
+    request: ListRuntimeActionSchemasRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

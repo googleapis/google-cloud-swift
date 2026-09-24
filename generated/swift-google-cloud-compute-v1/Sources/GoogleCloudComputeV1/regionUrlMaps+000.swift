@@ -454,28 +454,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionUrlMapsClient.ListRequest
+    public func listByItems(
+      request: RegionUrlMapsClient.ListRequest
     ) -> any AsyncSequence<UrlMap, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of UrlMap resources available to the specified
     /// project in the specified region.
     ///
     /// @Snippet(path: "regionUrlMaps_list")
-    public func list(
-      byItem: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<UrlMap, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<UrlMap, Swift.Error> {
@@ -483,7 +483,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: RegionUrlMapsClient.PatchRequest) async throws

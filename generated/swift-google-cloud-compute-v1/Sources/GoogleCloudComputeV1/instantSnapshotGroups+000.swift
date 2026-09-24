@@ -392,29 +392,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: InstantSnapshotGroupsClient.ListRequest
+    public func listByItems(
+      request: InstantSnapshotGroupsClient.ListRequest
     ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// retrieves the list of InstantSnapshotGroup resources contained within
     /// the specified zone.
     ///
     /// @Snippet(path: "instantSnapshotGroups_list")
-    public func list(
-      byItem: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
@@ -422,7 +422,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func setIamPolicy(request: InstantSnapshotGroupsClient.SetIamPolicyRequest) async throws

@@ -26,8 +26,8 @@ func sample(
   client: HsmManagementClient, projectId: String, locationId: String,
   singleTenantHsmInstanceId: String
 ) async throws {
-  let items = client.listSingleTenantHsmInstanceProposals(
-    byItem: ListSingleTenantHsmInstanceProposalsRequest()
+  let items = client.listSingleTenantHsmInstanceProposalsByItems(
+    request: ListSingleTenantHsmInstanceProposalsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/singleTenantHsmInstances/\(singleTenantHsmInstanceId)"

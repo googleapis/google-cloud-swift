@@ -205,35 +205,35 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMigrationWorkflows(
-    byItem: ListMigrationWorkflowsRequest
+  public func listMigrationWorkflowsByItems(
+    request: ListMigrationWorkflowsRequest
   ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> {
-    self.listMigrationWorkflows(byItem: byItem, options: .init())
+    self.listMigrationWorkflowsByItems(request: request, options: .init())
   }
 
   /// Lists previously created migration workflow.
   ///
   /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
-  public func listMigrationWorkflows(
-    byItem: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
+  public func listMigrationWorkflowsByItems(
+    request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMigrationWorkflows(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMigrationWorkflows(
+  public func listMigrationWorkflowsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> {
     let request = ListMigrationWorkflowsRequest().with {
       $0.parent = parent
     }
-    return self.listMigrationWorkflows(byItem: request)
+    return self.listMigrationWorkflowsByItems(request: request)
   }
 
   public func deleteMigrationWorkflow(request: DeleteMigrationWorkflowRequest) async throws {
@@ -307,34 +307,34 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMigrationSubtasks(
-    byItem: ListMigrationSubtasksRequest
+  public func listMigrationSubtasksByItems(
+    request: ListMigrationSubtasksRequest
   ) -> any AsyncSequence<MigrationSubtask, Swift.Error> {
-    self.listMigrationSubtasks(byItem: byItem, options: .init())
+    self.listMigrationSubtasksByItems(request: request, options: .init())
   }
 
   /// Lists previously created migration subtasks.
   ///
   /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
-  public func listMigrationSubtasks(
-    byItem: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
+  public func listMigrationSubtasksByItems(
+    request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MigrationSubtask, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMigrationSubtasks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMigrationSubtasks(
+  public func listMigrationSubtasksByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MigrationSubtask, Swift.Error> {
     let request = ListMigrationSubtasksRequest().with {
       $0.parent = parent
     }
-    return self.listMigrationSubtasks(byItem: request)
+    return self.listMigrationSubtasksByItems(request: request)
   }
 }

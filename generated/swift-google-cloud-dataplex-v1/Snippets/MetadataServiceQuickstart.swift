@@ -24,8 +24,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, lakeId: String, zoneId: String, ) async throws {
   let client = try GoogleCloudDataplexV1.MetadataServiceClient()
-  let items = client.listEntities(
-    byItem: ListEntitiesRequest()
+  let items = client.listEntitiesByItems(
+    request: ListEntitiesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)"
       }

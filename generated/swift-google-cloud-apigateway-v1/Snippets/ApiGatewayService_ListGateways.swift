@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, parent: String) async throws {
-  let items = client.listGateways(
-    byItem: ListGatewaysRequest()
+  let items = client.listGatewaysByItems(
+    request: ListGatewaysRequest()
       .with {
         $0.parent = "\(parent)"
       }

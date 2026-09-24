@@ -224,21 +224,21 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchDataObjects(
-    byItem: SearchDataObjectsRequest
+  public func searchDataObjectsByItems(
+    request: SearchDataObjectsRequest
   ) -> any AsyncSequence<SearchResult, Swift.Error> {
-    self.searchDataObjects(byItem: byItem, options: .init())
+    self.searchDataObjectsByItems(request: request, options: .init())
   }
 
   /// Searches data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_SearchDataObjects")
-  public func searchDataObjects(
-    byItem: SearchDataObjectsRequest, options: GoogleGax.RequestOptions
+  public func searchDataObjectsByItems(
+    request: SearchDataObjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.SearchDataObjectsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchDataObjects(request: request, options: options)
     }
@@ -257,21 +257,21 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func queryDataObjects(
-    byItem: QueryDataObjectsRequest
+  public func queryDataObjectsByItems(
+    request: QueryDataObjectsRequest
   ) -> any AsyncSequence<DataObject, Swift.Error> {
-    self.queryDataObjects(byItem: byItem, options: .init())
+    self.queryDataObjectsByItems(request: request, options: .init())
   }
 
   /// Queries data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_QueryDataObjects")
-  public func queryDataObjects(
-    byItem: QueryDataObjectsRequest, options: GoogleGax.RequestOptions
+  public func queryDataObjectsByItems(
+    request: QueryDataObjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DataObject, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.QueryDataObjectsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.queryDataObjects(request: request, options: options)
     }
@@ -314,10 +314,10 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -340,12 +340,12 @@ extension Clients.DataObjectSearchServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataObjectSearchService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -376,10 +376,10 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -387,19 +387,19 @@ extension Clients.DataObjectSearchServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataObjectSearchService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -407,7 +407,7 @@ extension Clients.DataObjectSearchServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

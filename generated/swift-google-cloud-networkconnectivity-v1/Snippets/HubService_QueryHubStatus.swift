@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient) async throws {
-  let items = client.queryHubStatus(
-    byItem: QueryHubStatusRequest()
+  let items = client.queryHubStatusByItems(
+    request: QueryHubStatusRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

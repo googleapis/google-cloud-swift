@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let items = client.queryRepositoryDirectoryContents(
-    byItem: QueryRepositoryDirectoryContentsRequest()
+  let items = client.queryRepositoryDirectoryContentsByItems(
+    request: QueryRepositoryDirectoryContentsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

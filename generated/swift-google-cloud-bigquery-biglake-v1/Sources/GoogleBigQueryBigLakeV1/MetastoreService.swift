@@ -346,34 +346,34 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCatalogs(
-    byItem: ListCatalogsRequest
+  public func listCatalogsByItems(
+    request: ListCatalogsRequest
   ) -> any AsyncSequence<Catalog, Swift.Error> {
-    self.listCatalogs(byItem: byItem, options: .init())
+    self.listCatalogsByItems(request: request, options: .init())
   }
 
   /// List all catalogs in a specified project.
   ///
   /// @Snippet(path: "MetastoreService_ListCatalogs")
-  public func listCatalogs(
-    byItem: ListCatalogsRequest, options: GoogleGax.RequestOptions
+  public func listCatalogsByItems(
+    request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Catalog, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCatalogs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCatalogs(
+  public func listCatalogsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Catalog, Swift.Error> {
     let request = ListCatalogsRequest().with {
       $0.parent = parent
     }
-    return self.listCatalogs(byItem: request)
+    return self.listCatalogsByItems(request: request)
   }
 
   public func createDatabase(request: CreateDatabaseRequest) async throws
@@ -478,34 +478,34 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDatabases(
-    byItem: ListDatabasesRequest
+  public func listDatabasesByItems(
+    request: ListDatabasesRequest
   ) -> any AsyncSequence<Database, Swift.Error> {
-    self.listDatabases(byItem: byItem, options: .init())
+    self.listDatabasesByItems(request: request, options: .init())
   }
 
   /// List all databases in a specified catalog.
   ///
   /// @Snippet(path: "MetastoreService_ListDatabases")
-  public func listDatabases(
-    byItem: ListDatabasesRequest, options: GoogleGax.RequestOptions
+  public func listDatabasesByItems(
+    request: ListDatabasesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Database, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDatabases(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDatabases(
+  public func listDatabasesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Database, Swift.Error> {
     let request = ListDatabasesRequest().with {
       $0.parent = parent
     }
-    return self.listDatabases(byItem: request)
+    return self.listDatabasesByItems(request: request)
   }
 
   public func createTable(request: CreateTableRequest) async throws -> GoogleBigQueryBigLakeV1.Table
@@ -627,33 +627,33 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTables(
-    byItem: ListTablesRequest
+  public func listTablesByItems(
+    request: ListTablesRequest
   ) -> any AsyncSequence<Table, Swift.Error> {
-    self.listTables(byItem: byItem, options: .init())
+    self.listTablesByItems(request: request, options: .init())
   }
 
   /// List all tables in a specified database.
   ///
   /// @Snippet(path: "MetastoreService_ListTables")
-  public func listTables(
-    byItem: ListTablesRequest, options: GoogleGax.RequestOptions
+  public func listTablesByItems(
+    request: ListTablesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Table, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTables(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTables(
+  public func listTablesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Table, Swift.Error> {
     let request = ListTablesRequest().with {
       $0.parent = parent
     }
-    return self.listTables(byItem: request)
+    return self.listTablesByItems(request: request)
   }
 }

@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudApiHubV1.RuntimeProjectAttachmentServiceClient()
-  let items = client.listRuntimeProjectAttachments(
-    byItem: ListRuntimeProjectAttachmentsRequest()
+  let items = client.listRuntimeProjectAttachmentsByItems(
+    request: ListRuntimeProjectAttachmentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

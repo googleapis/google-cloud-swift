@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetPoolsClient) async throws {
-    let items = client.list(
-      byItem: TargetPoolsClient.ListRequest()
+    let items = client.listByItems(
+      request: TargetPoolsClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

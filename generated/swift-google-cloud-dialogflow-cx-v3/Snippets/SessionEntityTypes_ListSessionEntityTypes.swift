@@ -27,8 +27,8 @@
     client: SessionEntityTypesClient, projectId: String, locationId: String, agentId: String,
     sessionId: String
   ) async throws {
-    let items = client.listSessionEntityTypes(
-      byItem: ListSessionEntityTypesRequest()
+    let items = client.listSessionEntityTypesByItems(
+      request: ListSessionEntityTypesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/sessions/\(sessionId)"

@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ReservationSubBlocksClient) async throws {
-    let items = client.list(
-      byItem: ReservationSubBlocksClient.ListRequest()
+    let items = client.listByItems(
+      request: ReservationSubBlocksClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

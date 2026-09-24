@@ -26,8 +26,8 @@ func sample(
   client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String,
   assetId: String
 ) async throws {
-  let items = client.listAnnotations(
-    byItem: ListAnnotationsRequest()
+  let items = client.listAnnotationsByItems(
+    request: ListAnnotationsRequest()
       .with {
         $0.parent =
           "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/assets/\(assetId)"

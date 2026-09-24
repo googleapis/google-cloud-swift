@@ -1129,34 +1129,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listCustomJobs(
-      byItem: ListCustomJobsRequest
+    public func listCustomJobsByItems(
+      request: ListCustomJobsRequest
     ) -> any AsyncSequence<CustomJob, Swift.Error> {
-      self.listCustomJobs(byItem: byItem, options: .init())
+      self.listCustomJobsByItems(request: request, options: .init())
     }
 
     /// Lists CustomJobs in a Location.
     ///
     /// @Snippet(path: "JobService_ListCustomJobs")
-    public func listCustomJobs(
-      byItem: ListCustomJobsRequest, options: GoogleGax.RequestOptions
+    public func listCustomJobsByItems(
+      request: ListCustomJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<CustomJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListCustomJobsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listCustomJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listCustomJobs(
+    public func listCustomJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<CustomJob, Swift.Error> {
       let request = ListCustomJobsRequest().with {
         $0.parent = parent
       }
-      return self.listCustomJobs(byItem: request)
+      return self.listCustomJobsByItems(request: request)
     }
 
     public func deleteCustomJob(request: DeleteCustomJobRequest) async throws
@@ -1271,35 +1271,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listDataLabelingJobs(
-      byItem: ListDataLabelingJobsRequest
+    public func listDataLabelingJobsByItems(
+      request: ListDataLabelingJobsRequest
     ) -> any AsyncSequence<DataLabelingJob, Swift.Error> {
-      self.listDataLabelingJobs(byItem: byItem, options: .init())
+      self.listDataLabelingJobsByItems(request: request, options: .init())
     }
 
     /// Lists DataLabelingJobs in a Location.
     ///
     /// @Snippet(path: "JobService_ListDataLabelingJobs")
-    public func listDataLabelingJobs(
-      byItem: ListDataLabelingJobsRequest, options: GoogleGax.RequestOptions
+    public func listDataLabelingJobsByItems(
+      request: ListDataLabelingJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<DataLabelingJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListDataLabelingJobsResponse
         in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listDataLabelingJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listDataLabelingJobs(
+    public func listDataLabelingJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<DataLabelingJob, Swift.Error> {
       let request = ListDataLabelingJobsRequest().with {
         $0.parent = parent
       }
-      return self.listDataLabelingJobs(byItem: request)
+      return self.listDataLabelingJobsByItems(request: request)
     }
 
     public func deleteDataLabelingJob(request: DeleteDataLabelingJobRequest) async throws
@@ -1414,35 +1414,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listHyperparameterTuningJobs(
-      byItem: ListHyperparameterTuningJobsRequest
+    public func listHyperparameterTuningJobsByItems(
+      request: ListHyperparameterTuningJobsRequest
     ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> {
-      self.listHyperparameterTuningJobs(byItem: byItem, options: .init())
+      self.listHyperparameterTuningJobsByItems(request: request, options: .init())
     }
 
     /// Lists HyperparameterTuningJobs in a Location.
     ///
     /// @Snippet(path: "JobService_ListHyperparameterTuningJobs")
-    public func listHyperparameterTuningJobs(
-      byItem: ListHyperparameterTuningJobsRequest, options: GoogleGax.RequestOptions
+    public func listHyperparameterTuningJobsByItems(
+      request: ListHyperparameterTuningJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListHyperparameterTuningJobsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listHyperparameterTuningJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listHyperparameterTuningJobs(
+    public func listHyperparameterTuningJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> {
       let request = ListHyperparameterTuningJobsRequest().with {
         $0.parent = parent
       }
-      return self.listHyperparameterTuningJobs(byItem: request)
+      return self.listHyperparameterTuningJobsByItems(request: request)
     }
 
     public func deleteHyperparameterTuningJob(request: DeleteHyperparameterTuningJobRequest)
@@ -1559,34 +1559,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNasJobs(
-      byItem: ListNasJobsRequest
+    public func listNasJobsByItems(
+      request: ListNasJobsRequest
     ) -> any AsyncSequence<NasJob, Swift.Error> {
-      self.listNasJobs(byItem: byItem, options: .init())
+      self.listNasJobsByItems(request: request, options: .init())
     }
 
     /// Lists NasJobs in a Location.
     ///
     /// @Snippet(path: "JobService_ListNasJobs")
-    public func listNasJobs(
-      byItem: ListNasJobsRequest, options: GoogleGax.RequestOptions
+    public func listNasJobsByItems(
+      request: ListNasJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NasJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNasJobsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNasJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNasJobs(
+    public func listNasJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<NasJob, Swift.Error> {
       let request = ListNasJobsRequest().with {
         $0.parent = parent
       }
-      return self.listNasJobs(byItem: request)
+      return self.listNasJobsByItems(request: request)
     }
 
     public func deleteNasJob(request: DeleteNasJobRequest) async throws
@@ -1678,34 +1678,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNasTrialDetails(
-      byItem: ListNasTrialDetailsRequest
+    public func listNasTrialDetailsByItems(
+      request: ListNasTrialDetailsRequest
     ) -> any AsyncSequence<NasTrialDetail, Swift.Error> {
-      self.listNasTrialDetails(byItem: byItem, options: .init())
+      self.listNasTrialDetailsByItems(request: request, options: .init())
     }
 
     /// List top NasTrialDetails of a NasJob.
     ///
     /// @Snippet(path: "JobService_ListNasTrialDetails")
-    public func listNasTrialDetails(
-      byItem: ListNasTrialDetailsRequest, options: GoogleGax.RequestOptions
+    public func listNasTrialDetailsByItems(
+      request: ListNasTrialDetailsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NasTrialDetail, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNasTrialDetailsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNasTrialDetails(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNasTrialDetails(
+    public func listNasTrialDetailsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<NasTrialDetail, Swift.Error> {
       let request = ListNasTrialDetailsRequest().with {
         $0.parent = parent
       }
-      return self.listNasTrialDetails(byItem: request)
+      return self.listNasTrialDetailsByItems(request: request)
     }
 
     public func createBatchPredictionJob(request: CreateBatchPredictionJobRequest) async throws
@@ -1764,35 +1764,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listBatchPredictionJobs(
-      byItem: ListBatchPredictionJobsRequest
+    public func listBatchPredictionJobsByItems(
+      request: ListBatchPredictionJobsRequest
     ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> {
-      self.listBatchPredictionJobs(byItem: byItem, options: .init())
+      self.listBatchPredictionJobsByItems(request: request, options: .init())
     }
 
     /// Lists BatchPredictionJobs in a Location.
     ///
     /// @Snippet(path: "JobService_ListBatchPredictionJobs")
-    public func listBatchPredictionJobs(
-      byItem: ListBatchPredictionJobsRequest, options: GoogleGax.RequestOptions
+    public func listBatchPredictionJobsByItems(
+      request: ListBatchPredictionJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListBatchPredictionJobsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listBatchPredictionJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listBatchPredictionJobs(
+    public func listBatchPredictionJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> {
       let request = ListBatchPredictionJobsRequest().with {
         $0.parent = parent
       }
-      return self.listBatchPredictionJobs(byItem: request)
+      return self.listBatchPredictionJobsByItems(request: request)
     }
 
     public func deleteBatchPredictionJob(request: DeleteBatchPredictionJobRequest) async throws
@@ -1890,23 +1890,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func searchModelDeploymentMonitoringStatsAnomalies(
-      byItem: SearchModelDeploymentMonitoringStatsAnomaliesRequest
+    public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
+      request: SearchModelDeploymentMonitoringStatsAnomaliesRequest
     ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> {
-      self.searchModelDeploymentMonitoringStatsAnomalies(byItem: byItem, options: .init())
+      self.searchModelDeploymentMonitoringStatsAnomaliesByItems(request: request, options: .init())
     }
 
     /// Searches Model Monitoring Statistics generated within a given time window.
     ///
     /// @Snippet(path: "JobService_SearchModelDeploymentMonitoringStatsAnomalies")
-    public func searchModelDeploymentMonitoringStatsAnomalies(
-      byItem: SearchModelDeploymentMonitoringStatsAnomaliesRequest,
+    public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
+      request: SearchModelDeploymentMonitoringStatsAnomaliesRequest,
       options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.SearchModelDeploymentMonitoringStatsAnomaliesResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.searchModelDeploymentMonitoringStatsAnomalies(
           request: request, options: options)
@@ -1914,7 +1914,7 @@
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func searchModelDeploymentMonitoringStatsAnomalies(
+    public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
       modelDeploymentMonitoringJob: Swift.String,
       deployedModelId: Swift.String,
     ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> {
@@ -1922,7 +1922,7 @@
         $0.modelDeploymentMonitoringJob = modelDeploymentMonitoringJob
         $0.deployedModelId = deployedModelId
       }
-      return self.searchModelDeploymentMonitoringStatsAnomalies(byItem: request)
+      return self.searchModelDeploymentMonitoringStatsAnomaliesByItems(request: request)
     }
 
     public func getModelDeploymentMonitoringJob(request: GetModelDeploymentMonitoringJobRequest)
@@ -1958,35 +1958,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listModelDeploymentMonitoringJobs(
-      byItem: ListModelDeploymentMonitoringJobsRequest
+    public func listModelDeploymentMonitoringJobsByItems(
+      request: ListModelDeploymentMonitoringJobsRequest
     ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> {
-      self.listModelDeploymentMonitoringJobs(byItem: byItem, options: .init())
+      self.listModelDeploymentMonitoringJobsByItems(request: request, options: .init())
     }
 
     /// Lists ModelDeploymentMonitoringJobs in a Location.
     ///
     /// @Snippet(path: "JobService_ListModelDeploymentMonitoringJobs")
-    public func listModelDeploymentMonitoringJobs(
-      byItem: ListModelDeploymentMonitoringJobsRequest, options: GoogleGax.RequestOptions
+    public func listModelDeploymentMonitoringJobsByItems(
+      request: ListModelDeploymentMonitoringJobsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListModelDeploymentMonitoringJobsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listModelDeploymentMonitoringJobs(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listModelDeploymentMonitoringJobs(
+    public func listModelDeploymentMonitoringJobsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> {
       let request = ListModelDeploymentMonitoringJobsRequest().with {
         $0.parent = parent
       }
-      return self.listModelDeploymentMonitoringJobs(byItem: request)
+      return self.listModelDeploymentMonitoringJobsByItems(request: request)
     }
 
     public func updateModelDeploymentMonitoringJob(
@@ -2122,21 +2122,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      self.listLocations(byItem: byItem, options: .init())
+      self.listLocationsByItems(request: request, options: .init())
     }
 
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "JobService_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
@@ -2203,10 +2203,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -2214,19 +2214,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -2234,7 +2234,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

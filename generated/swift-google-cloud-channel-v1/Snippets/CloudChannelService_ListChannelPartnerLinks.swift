@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, parent: String) async throws {
-  let items = client.listChannelPartnerLinks(
-    byItem: ListChannelPartnerLinksRequest()
+  let items = client.listChannelPartnerLinksByItems(
+    request: ListChannelPartnerLinksRequest()
       .with {
         $0.parent = "\(parent)"
       }

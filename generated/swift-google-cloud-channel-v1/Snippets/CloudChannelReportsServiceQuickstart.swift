@@ -25,8 +25,8 @@ import GoogleLongRunning
 #endif
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudChannelV1.CloudChannelReportsServiceClient()
-  let items = client.listReports(
-    byItem: ListReportsRequest()
+  let items = client.listReportsByItems(
+    request: ListReportsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -23,8 +23,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: SSERealmServiceClient, projectId: String, locationId: String) async throws {
-  let items = client.listSacattachments(
-    byItem: ListSACAttachmentsRequest()
+  let items = client.listSacattachmentsByItems(
+    request: ListSACAttachmentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

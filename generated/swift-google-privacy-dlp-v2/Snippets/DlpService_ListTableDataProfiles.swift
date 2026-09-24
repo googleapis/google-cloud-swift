@@ -21,8 +21,8 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient, organizationId: String, locationId: String) async throws {
-  let items = client.listTableDataProfiles(
-    byItem: ListTableDataProfilesRequest()
+  let items = client.listTableDataProfilesByItems(
+    request: ListTableDataProfilesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

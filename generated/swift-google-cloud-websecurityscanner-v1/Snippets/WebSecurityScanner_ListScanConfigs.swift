@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudWebSecurityScannerV1
 
 func sample(client: WebSecurityScannerClient) async throws {
-  let items = client.listScanConfigs(
-    byItem: ListScanConfigsRequest()
+  let items = client.listScanConfigsByItems(
+    request: ListScanConfigsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

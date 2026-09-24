@@ -235,34 +235,34 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSynonymSets(
-    byItem: ListSynonymSetsRequest
+  public func listSynonymSetsByItems(
+    request: ListSynonymSetsRequest
   ) -> any AsyncSequence<SynonymSet, Swift.Error> {
-    self.listSynonymSets(byItem: byItem, options: .init())
+    self.listSynonymSetsByItems(request: request, options: .init())
   }
 
   /// Returns all SynonymSets (for all contexts) for the specified location.
   ///
   /// @Snippet(path: "SynonymSetService_ListSynonymSets")
-  public func listSynonymSets(
-    byItem: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
+  public func listSynonymSetsByItems(
+    request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SynonymSet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSynonymSets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSynonymSets(
+  public func listSynonymSetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SynonymSet, Swift.Error> {
     let request = ListSynonymSetsRequest().with {
       $0.parent = parent
     }
-    return self.listSynonymSets(byItem: request)
+    return self.listSynonymSetsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

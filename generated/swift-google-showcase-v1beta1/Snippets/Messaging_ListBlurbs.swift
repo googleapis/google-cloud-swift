@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MessagingClient, parent: String) async throws {
-  let items = client.listBlurbs(
-    byItem: ListBlurbsRequest()
+  let items = client.listBlurbsByItems(
+    request: ListBlurbsRequest()
       .with {
         $0.parent = "\(parent)"
       }

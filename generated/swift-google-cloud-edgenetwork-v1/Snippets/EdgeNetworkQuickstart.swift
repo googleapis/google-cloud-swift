@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, zoneId: String, ) async throws {
   let client = try GoogleCloudEdgeNetworkV1.EdgeNetworkClient()
-  let items = client.listNetworks(
-    byItem: ListNetworksRequest()
+  let items = client.listNetworksByItems(
+    request: ListNetworksRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)"
       }

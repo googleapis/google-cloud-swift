@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudDNSV1
 
 func sample(client: DnsKeysClient) async throws {
-  let items = client.list(
-    byItem: DnsKeysClient.ListRequest()
+  let items = client.listByItems(
+    request: DnsKeysClient.ListRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -563,35 +563,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: GlobalNetworkEndpointGroupsClient.ListRequest
+    public func listByItems(
+      request: GlobalNetworkEndpointGroupsClient.ListRequest
     ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of network endpoint groups that are located in the
     /// specified project.
     ///
     /// @Snippet(path: "globalNetworkEndpointGroups_list")
-    public func list(
-      byItem: GlobalNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: GlobalNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> {
       let request = GlobalNetworkEndpointGroupsClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listNetworkEndpoints(
@@ -607,30 +607,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listNetworkEndpoints(
-      byItem: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest
+    public func listNetworkEndpointsByItems(
+      request: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest
     ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> {
-      self.listNetworkEndpoints(byItem: byItem, options: .init())
+      self.listNetworkEndpointsByItems(request: request, options: .init())
     }
 
     /// Lists the network endpoints in the specified network endpoint group.
     ///
     /// @Snippet(path: "globalNetworkEndpointGroups_listNetworkEndpoints")
-    public func listNetworkEndpoints(
-      byItem: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
+    public func listNetworkEndpointsByItems(
+      request: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listNetworkEndpoints(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listNetworkEndpoints(
+    public func listNetworkEndpointsByItems(
       project: Swift.String,
       networkEndpointGroup: Swift.String,
     ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> {
@@ -638,7 +638,7 @@
         $0.project = project
         $0.networkEndpointGroup = networkEndpointGroup
       }
-      return self.listNetworkEndpoints(byItem: request)
+      return self.listNetworkEndpointsByItems(request: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

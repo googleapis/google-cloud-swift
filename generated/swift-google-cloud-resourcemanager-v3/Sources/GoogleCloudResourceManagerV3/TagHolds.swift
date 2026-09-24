@@ -280,34 +280,34 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTagHolds(
-    byItem: ListTagHoldsRequest
+  public func listTagHoldsByItems(
+    request: ListTagHoldsRequest
   ) -> any AsyncSequence<TagHold, Swift.Error> {
-    self.listTagHolds(byItem: byItem, options: .init())
+    self.listTagHoldsByItems(request: request, options: .init())
   }
 
   /// Lists TagHolds under a TagValue.
   ///
   /// @Snippet(path: "TagHolds_ListTagHolds")
-  public func listTagHolds(
-    byItem: ListTagHoldsRequest, options: GoogleGax.RequestOptions
+  public func listTagHoldsByItems(
+    request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TagHold, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTagHolds(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTagHolds(
+  public func listTagHoldsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TagHold, Swift.Error> {
     let request = ListTagHoldsRequest().with {
       $0.parent = parent
     }
-    return self.listTagHolds(byItem: request)
+    return self.listTagHoldsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

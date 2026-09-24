@@ -27,8 +27,8 @@ import GoogleWKT
 func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String
 ) async throws {
-  let items = client.listAzureNodePools(
-    byItem: ListAzureNodePoolsRequest()
+  let items = client.listAzureNodePoolsByItems(
+    request: ListAzureNodePoolsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/azureClusters/\(azureClusterId)"
       }

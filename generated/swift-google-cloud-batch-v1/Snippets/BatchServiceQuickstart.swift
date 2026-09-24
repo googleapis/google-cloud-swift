@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBatchV1.BatchServiceClient()
-  let items = client.listJobs(
-    byItem: ListJobsRequest()
+  let items = client.listJobsByItems(
+    request: ListJobsRequest()
       .with {
         $0.parent = "\(parent)"
       }

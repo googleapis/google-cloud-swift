@@ -3057,34 +3057,34 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPrivateClouds(
-    byItem: ListPrivateCloudsRequest
+  public func listPrivateCloudsByItems(
+    request: ListPrivateCloudsRequest
   ) -> any AsyncSequence<PrivateCloud, Swift.Error> {
-    self.listPrivateClouds(byItem: byItem, options: .init())
+    self.listPrivateCloudsByItems(request: request, options: .init())
   }
 
   /// Lists `PrivateCloud` resources in a given project and location.
   ///
   /// @Snippet(path: "VmwareEngine_ListPrivateClouds")
-  public func listPrivateClouds(
-    byItem: ListPrivateCloudsRequest, options: GoogleGax.RequestOptions
+  public func listPrivateCloudsByItems(
+    request: ListPrivateCloudsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PrivateCloud, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListPrivateCloudsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPrivateClouds(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPrivateClouds(
+  public func listPrivateCloudsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PrivateCloud, Swift.Error> {
     let request = ListPrivateCloudsRequest().with {
       $0.parent = parent
     }
-    return self.listPrivateClouds(byItem: request)
+    return self.listPrivateCloudsByItems(request: request)
   }
 
   public func getPrivateCloud(request: GetPrivateCloudRequest) async throws
@@ -3274,34 +3274,34 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listClusters(
-    byItem: ListClustersRequest
+  public func listClustersByItems(
+    request: ListClustersRequest
   ) -> any AsyncSequence<Cluster, Swift.Error> {
-    self.listClusters(byItem: byItem, options: .init())
+    self.listClustersByItems(request: request, options: .init())
   }
 
   /// Lists `Cluster` resources in a given private cloud.
   ///
   /// @Snippet(path: "VmwareEngine_ListClusters")
-  public func listClusters(
-    byItem: ListClustersRequest, options: GoogleGax.RequestOptions
+  public func listClustersByItems(
+    request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListClustersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listClusters(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listClusters(
+  public func listClustersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Cluster, Swift.Error> {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
-    return self.listClusters(byItem: request)
+    return self.listClustersByItems(request: request)
   }
 
   public func getCluster(request: GetClusterRequest) async throws
@@ -3454,34 +3454,34 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNodes(
-    byItem: ListNodesRequest
+  public func listNodesByItems(
+    request: ListNodesRequest
   ) -> any AsyncSequence<Node, Swift.Error> {
-    self.listNodes(byItem: byItem, options: .init())
+    self.listNodesByItems(request: request, options: .init())
   }
 
   /// Lists nodes in a given cluster.
   ///
   /// @Snippet(path: "VmwareEngine_ListNodes")
-  public func listNodes(
-    byItem: ListNodesRequest, options: GoogleGax.RequestOptions
+  public func listNodesByItems(
+    request: ListNodesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Node, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNodesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNodes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNodes(
+  public func listNodesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Node, Swift.Error> {
     let request = ListNodesRequest().with {
       $0.parent = parent
     }
-    return self.listNodes(byItem: request)
+    return self.listNodesByItems(request: request)
   }
 
   public func getNode(request: GetNodeRequest) async throws -> GoogleCloudVMwareEngineV1.Node {
@@ -3515,36 +3515,36 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExternalAddresses(
-    byItem: ListExternalAddressesRequest
+  public func listExternalAddressesByItems(
+    request: ListExternalAddressesRequest
   ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
-    self.listExternalAddresses(byItem: byItem, options: .init())
+    self.listExternalAddressesByItems(request: request, options: .init())
   }
 
   /// Lists external IP addresses assigned to VMware workload VMs in a given
   /// private cloud.
   ///
   /// @Snippet(path: "VmwareEngine_ListExternalAddresses")
-  public func listExternalAddresses(
-    byItem: ListExternalAddressesRequest, options: GoogleGax.RequestOptions
+  public func listExternalAddressesByItems(
+    request: ListExternalAddressesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListExternalAddressesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExternalAddresses(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExternalAddresses(
+  public func listExternalAddressesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
     let request = ListExternalAddressesRequest().with {
       $0.parent = parent
     }
-    return self.listExternalAddresses(byItem: request)
+    return self.listExternalAddressesByItems(request: request)
   }
 
   public func fetchNetworkPolicyExternalAddresses(
@@ -3559,36 +3559,36 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func fetchNetworkPolicyExternalAddresses(
-    byItem: FetchNetworkPolicyExternalAddressesRequest
+  public func fetchNetworkPolicyExternalAddressesByItems(
+    request: FetchNetworkPolicyExternalAddressesRequest
   ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
-    self.fetchNetworkPolicyExternalAddresses(byItem: byItem, options: .init())
+    self.fetchNetworkPolicyExternalAddressesByItems(request: request, options: .init())
   }
 
   /// Lists external IP addresses assigned to VMware workload VMs within the
   /// scope of the given network policy.
   ///
   /// @Snippet(path: "VmwareEngine_FetchNetworkPolicyExternalAddresses")
-  public func fetchNetworkPolicyExternalAddresses(
-    byItem: FetchNetworkPolicyExternalAddressesRequest, options: GoogleGax.RequestOptions
+  public func fetchNetworkPolicyExternalAddressesByItems(
+    request: FetchNetworkPolicyExternalAddressesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.FetchNetworkPolicyExternalAddressesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.fetchNetworkPolicyExternalAddresses(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func fetchNetworkPolicyExternalAddresses(
+  public func fetchNetworkPolicyExternalAddressesByItems(
     networkPolicy: Swift.String,
   ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
     let request = FetchNetworkPolicyExternalAddressesRequest().with {
       $0.networkPolicy = networkPolicy
     }
-    return self.fetchNetworkPolicyExternalAddresses(byItem: request)
+    return self.fetchNetworkPolicyExternalAddressesByItems(request: request)
   }
 
   public func getExternalAddress(request: GetExternalAddressRequest) async throws
@@ -3741,34 +3741,34 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSubnets(
-    byItem: ListSubnetsRequest
+  public func listSubnetsByItems(
+    request: ListSubnetsRequest
   ) -> any AsyncSequence<Subnet, Swift.Error> {
-    self.listSubnets(byItem: byItem, options: .init())
+    self.listSubnetsByItems(request: request, options: .init())
   }
 
   /// Lists subnets in a given private cloud.
   ///
   /// @Snippet(path: "VmwareEngine_ListSubnets")
-  public func listSubnets(
-    byItem: ListSubnetsRequest, options: GoogleGax.RequestOptions
+  public func listSubnetsByItems(
+    request: ListSubnetsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Subnet, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListSubnetsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSubnets(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSubnets(
+  public func listSubnetsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Subnet, Swift.Error> {
     let request = ListSubnetsRequest().with {
       $0.parent = parent
     }
-    return self.listSubnets(byItem: request)
+    return self.listSubnetsByItems(request: request)
   }
 
   public func getSubnet(request: GetSubnetRequest) async throws -> GoogleCloudVMwareEngineV1.Subnet
@@ -3841,35 +3841,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExternalAccessRules(
-    byItem: ListExternalAccessRulesRequest
+  public func listExternalAccessRulesByItems(
+    request: ListExternalAccessRulesRequest
   ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> {
-    self.listExternalAccessRules(byItem: byItem, options: .init())
+    self.listExternalAccessRulesByItems(request: request, options: .init())
   }
 
   /// Lists `ExternalAccessRule` resources in the specified network policy.
   ///
   /// @Snippet(path: "VmwareEngine_ListExternalAccessRules")
-  public func listExternalAccessRules(
-    byItem: ListExternalAccessRulesRequest, options: GoogleGax.RequestOptions
+  public func listExternalAccessRulesByItems(
+    request: ListExternalAccessRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListExternalAccessRulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExternalAccessRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExternalAccessRules(
+  public func listExternalAccessRulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> {
     let request = ListExternalAccessRulesRequest().with {
       $0.parent = parent
     }
-    return self.listExternalAccessRules(byItem: request)
+    return self.listExternalAccessRulesByItems(request: request)
   }
 
   public func getExternalAccessRule(request: GetExternalAccessRuleRequest) async throws
@@ -4022,35 +4022,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLoggingServers(
-    byItem: ListLoggingServersRequest
+  public func listLoggingServersByItems(
+    request: ListLoggingServersRequest
   ) -> any AsyncSequence<LoggingServer, Swift.Error> {
-    self.listLoggingServers(byItem: byItem, options: .init())
+    self.listLoggingServersByItems(request: request, options: .init())
   }
 
   /// Lists logging servers configured for a given private
   /// cloud.
   ///
   /// @Snippet(path: "VmwareEngine_ListLoggingServers")
-  public func listLoggingServers(
-    byItem: ListLoggingServersRequest, options: GoogleGax.RequestOptions
+  public func listLoggingServersByItems(
+    request: ListLoggingServersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LoggingServer, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListLoggingServersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLoggingServers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listLoggingServers(
+  public func listLoggingServersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<LoggingServer, Swift.Error> {
     let request = ListLoggingServersRequest().with {
       $0.parent = parent
     }
-    return self.listLoggingServers(byItem: request)
+    return self.listLoggingServersByItems(request: request)
   }
 
   public func getLoggingServer(request: GetLoggingServerRequest) async throws
@@ -4203,34 +4203,34 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNodeTypes(
-    byItem: ListNodeTypesRequest
+  public func listNodeTypesByItems(
+    request: ListNodeTypesRequest
   ) -> any AsyncSequence<NodeType, Swift.Error> {
-    self.listNodeTypes(byItem: byItem, options: .init())
+    self.listNodeTypesByItems(request: request, options: .init())
   }
 
   /// Lists node types
   ///
   /// @Snippet(path: "VmwareEngine_ListNodeTypes")
-  public func listNodeTypes(
-    byItem: ListNodeTypesRequest, options: GoogleGax.RequestOptions
+  public func listNodeTypesByItems(
+    request: ListNodeTypesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<NodeType, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNodeTypesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNodeTypes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNodeTypes(
+  public func listNodeTypesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<NodeType, Swift.Error> {
     let request = ListNodeTypesRequest().with {
       $0.parent = parent
     }
-    return self.listNodeTypes(byItem: request)
+    return self.listNodeTypesByItems(request: request)
   }
 
   public func getNodeType(request: GetNodeTypeRequest) async throws
@@ -4463,35 +4463,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNetworkPeerings(
-    byItem: ListNetworkPeeringsRequest
+  public func listNetworkPeeringsByItems(
+    request: ListNetworkPeeringsRequest
   ) -> any AsyncSequence<NetworkPeering, Swift.Error> {
-    self.listNetworkPeerings(byItem: byItem, options: .init())
+    self.listNetworkPeeringsByItems(request: request, options: .init())
   }
 
   /// Lists `NetworkPeering` resources in a given project. NetworkPeering is a
   /// global resource and location can only be global.
   ///
   /// @Snippet(path: "VmwareEngine_ListNetworkPeerings")
-  public func listNetworkPeerings(
-    byItem: ListNetworkPeeringsRequest, options: GoogleGax.RequestOptions
+  public func listNetworkPeeringsByItems(
+    request: ListNetworkPeeringsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<NetworkPeering, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPeeringsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNetworkPeerings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNetworkPeerings(
+  public func listNetworkPeeringsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<NetworkPeering, Swift.Error> {
     let request = ListNetworkPeeringsRequest().with {
       $0.parent = parent
     }
-    return self.listNetworkPeerings(byItem: request)
+    return self.listNetworkPeeringsByItems(request: request)
   }
 
   public func createNetworkPeering(request: CreateNetworkPeeringRequest) async throws
@@ -4623,35 +4623,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPeeringRoutes(
-    byItem: ListPeeringRoutesRequest
+  public func listPeeringRoutesByItems(
+    request: ListPeeringRoutesRequest
   ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
-    self.listPeeringRoutes(byItem: byItem, options: .init())
+    self.listPeeringRoutesByItems(request: request, options: .init())
   }
 
   /// Lists the network peering routes exchanged over a peering connection.
   /// NetworkPeering is a global resource and location can only be global.
   ///
   /// @Snippet(path: "VmwareEngine_ListPeeringRoutes")
-  public func listPeeringRoutes(
-    byItem: ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
+  public func listPeeringRoutesByItems(
+    request: ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListPeeringRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPeeringRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPeeringRoutes(
+  public func listPeeringRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
     let request = ListPeeringRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listPeeringRoutes(byItem: request)
+    return self.listPeeringRoutesByItems(request: request)
   }
 
   public func createHcxActivationKey(request: CreateHcxActivationKeyRequest) async throws
@@ -4707,35 +4707,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listHcxActivationKeys(
-    byItem: ListHcxActivationKeysRequest
+  public func listHcxActivationKeysByItems(
+    request: ListHcxActivationKeysRequest
   ) -> any AsyncSequence<HcxActivationKey, Swift.Error> {
-    self.listHcxActivationKeys(byItem: byItem, options: .init())
+    self.listHcxActivationKeysByItems(request: request, options: .init())
   }
 
   /// Lists `HcxActivationKey` resources in a given private cloud.
   ///
   /// @Snippet(path: "VmwareEngine_ListHcxActivationKeys")
-  public func listHcxActivationKeys(
-    byItem: ListHcxActivationKeysRequest, options: GoogleGax.RequestOptions
+  public func listHcxActivationKeysByItems(
+    request: ListHcxActivationKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<HcxActivationKey, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListHcxActivationKeysResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listHcxActivationKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listHcxActivationKeys(
+  public func listHcxActivationKeysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<HcxActivationKey, Swift.Error> {
     let request = ListHcxActivationKeysRequest().with {
       $0.parent = parent
     }
-    return self.listHcxActivationKeys(byItem: request)
+    return self.listHcxActivationKeysByItems(request: request)
   }
 
   public func getHcxActivationKey(request: GetHcxActivationKeyRequest) async throws
@@ -4792,34 +4792,34 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNetworkPolicies(
-    byItem: ListNetworkPoliciesRequest
+  public func listNetworkPoliciesByItems(
+    request: ListNetworkPoliciesRequest
   ) -> any AsyncSequence<NetworkPolicy, Swift.Error> {
-    self.listNetworkPolicies(byItem: byItem, options: .init())
+    self.listNetworkPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists `NetworkPolicy` resources in a specified project and location.
   ///
   /// @Snippet(path: "VmwareEngine_ListNetworkPolicies")
-  public func listNetworkPolicies(
-    byItem: ListNetworkPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listNetworkPoliciesByItems(
+    request: ListNetworkPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<NetworkPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNetworkPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNetworkPolicies(
+  public func listNetworkPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<NetworkPolicy, Swift.Error> {
     let request = ListNetworkPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listNetworkPolicies(byItem: request)
+    return self.listNetworkPoliciesByItems(request: request)
   }
 
   public func createNetworkPolicy(request: CreateNetworkPolicyRequest) async throws
@@ -4951,35 +4951,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listManagementDnsZoneBindings(
-    byItem: ListManagementDnsZoneBindingsRequest
+  public func listManagementDnsZoneBindingsByItems(
+    request: ListManagementDnsZoneBindingsRequest
   ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> {
-    self.listManagementDnsZoneBindings(byItem: byItem, options: .init())
+    self.listManagementDnsZoneBindingsByItems(request: request, options: .init())
   }
 
   /// Lists Consumer VPCs bound to Management DNS Zone of a given private cloud.
   ///
   /// @Snippet(path: "VmwareEngine_ListManagementDnsZoneBindings")
-  public func listManagementDnsZoneBindings(
-    byItem: ListManagementDnsZoneBindingsRequest, options: GoogleGax.RequestOptions
+  public func listManagementDnsZoneBindingsByItems(
+    request: ListManagementDnsZoneBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListManagementDnsZoneBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listManagementDnsZoneBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listManagementDnsZoneBindings(
+  public func listManagementDnsZoneBindingsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> {
     let request = ListManagementDnsZoneBindingsRequest().with {
       $0.parent = parent
     }
-    return self.listManagementDnsZoneBindings(byItem: request)
+    return self.listManagementDnsZoneBindingsByItems(request: request)
   }
 
   public func getManagementDnsZoneBinding(request: GetManagementDnsZoneBindingRequest) async throws
@@ -5314,35 +5314,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listVmwareEngineNetworks(
-    byItem: ListVmwareEngineNetworksRequest
+  public func listVmwareEngineNetworksByItems(
+    request: ListVmwareEngineNetworksRequest
   ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> {
-    self.listVmwareEngineNetworks(byItem: byItem, options: .init())
+    self.listVmwareEngineNetworksByItems(request: request, options: .init())
   }
 
   /// Lists `VmwareEngineNetwork` resources in a given project and location.
   ///
   /// @Snippet(path: "VmwareEngine_ListVmwareEngineNetworks")
-  public func listVmwareEngineNetworks(
-    byItem: ListVmwareEngineNetworksRequest, options: GoogleGax.RequestOptions
+  public func listVmwareEngineNetworksByItems(
+    request: ListVmwareEngineNetworksRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListVmwareEngineNetworksResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listVmwareEngineNetworks(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listVmwareEngineNetworks(
+  public func listVmwareEngineNetworksByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> {
     let request = ListVmwareEngineNetworksRequest().with {
       $0.parent = parent
     }
-    return self.listVmwareEngineNetworks(byItem: request)
+    return self.listVmwareEngineNetworksByItems(request: request)
   }
 
   public func createPrivateConnection(request: CreatePrivateConnectionRequest) async throws
@@ -5419,35 +5419,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPrivateConnections(
-    byItem: ListPrivateConnectionsRequest
+  public func listPrivateConnectionsByItems(
+    request: ListPrivateConnectionsRequest
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
-    self.listPrivateConnections(byItem: byItem, options: .init())
+    self.listPrivateConnectionsByItems(request: request, options: .init())
   }
 
   /// Lists `PrivateConnection` resources in a given project and location.
   ///
   /// @Snippet(path: "VmwareEngine_ListPrivateConnections")
-  public func listPrivateConnections(
-    byItem: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
+  public func listPrivateConnectionsByItems(
+    request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListPrivateConnectionsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPrivateConnections(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPrivateConnections(
+  public func listPrivateConnectionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
     let request = ListPrivateConnectionsRequest().with {
       $0.parent = parent
     }
-    return self.listPrivateConnections(byItem: request)
+    return self.listPrivateConnectionsByItems(request: request)
   }
 
   public func updatePrivateConnection(request: UpdatePrivateConnectionRequest) async throws
@@ -5538,35 +5538,35 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPrivateConnectionPeeringRoutes(
-    byItem: ListPrivateConnectionPeeringRoutesRequest
+  public func listPrivateConnectionPeeringRoutesByItems(
+    request: ListPrivateConnectionPeeringRoutesRequest
   ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
-    self.listPrivateConnectionPeeringRoutes(byItem: byItem, options: .init())
+    self.listPrivateConnectionPeeringRoutesByItems(request: request, options: .init())
   }
 
   /// Lists the private connection routes exchanged over a peering connection.
   ///
   /// @Snippet(path: "VmwareEngine_ListPrivateConnectionPeeringRoutes")
-  public func listPrivateConnectionPeeringRoutes(
-    byItem: ListPrivateConnectionPeeringRoutesRequest, options: GoogleGax.RequestOptions
+  public func listPrivateConnectionPeeringRoutesByItems(
+    request: ListPrivateConnectionPeeringRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListPrivateConnectionPeeringRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPrivateConnectionPeeringRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPrivateConnectionPeeringRoutes(
+  public func listPrivateConnectionPeeringRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
     let request = ListPrivateConnectionPeeringRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listPrivateConnectionPeeringRoutes(byItem: request)
+    return self.listPrivateConnectionPeeringRoutesByItems(request: request)
   }
 
   public func grantDnsBindPermission(request: GrantDnsBindPermissionRequest) async throws
@@ -5680,21 +5680,21 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "VmwareEngine_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -5761,10 +5761,10 @@ extension Clients.VmwareEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -5772,19 +5772,19 @@ extension Clients.VmwareEngineProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VmwareEngine_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -5792,7 +5792,7 @@ extension Clients.VmwareEngineProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

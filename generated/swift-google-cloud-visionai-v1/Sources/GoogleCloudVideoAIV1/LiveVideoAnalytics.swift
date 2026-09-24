@@ -818,34 +818,34 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPublicOperators(
-    byItem: ListPublicOperatorsRequest
+  public func listPublicOperatorsByItems(
+    request: ListPublicOperatorsRequest
   ) -> any AsyncSequence<Operator, Swift.Error> {
-    self.listPublicOperators(byItem: byItem, options: .init())
+    self.listPublicOperatorsByItems(request: request, options: .init())
   }
 
   /// ListPublicOperators returns all the operators in public registry.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
-  public func listPublicOperators(
-    byItem: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
+  public func listPublicOperatorsByItems(
+    request: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Operator, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPublicOperators(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPublicOperators(
+  public func listPublicOperatorsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Operator, Swift.Error> {
     let request = ListPublicOperatorsRequest().with {
       $0.parent = parent
     }
-    return self.listPublicOperators(byItem: request)
+    return self.listPublicOperatorsByItems(request: request)
   }
 
   public func resolveOperatorInfo(request: ResolveOperatorInfoRequest) async throws
@@ -883,34 +883,34 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperators(
-    byItem: ListOperatorsRequest
+  public func listOperatorsByItems(
+    request: ListOperatorsRequest
   ) -> any AsyncSequence<Operator, Swift.Error> {
-    self.listOperators(byItem: byItem, options: .init())
+    self.listOperatorsByItems(request: request, options: .init())
   }
 
   /// Lists Operators in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
-  public func listOperators(
-    byItem: ListOperatorsRequest, options: GoogleGax.RequestOptions
+  public func listOperatorsByItems(
+    request: ListOperatorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Operator, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListOperatorsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperators(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperators(
+  public func listOperatorsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Operator, Swift.Error> {
     let request = ListOperatorsRequest().with {
       $0.parent = parent
     }
-    return self.listOperators(byItem: request)
+    return self.listOperatorsByItems(request: request)
   }
 
   public func getOperator(request: GetOperatorRequest) async throws -> GoogleCloudVideoAIV1.Operator
@@ -1062,34 +1062,34 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAnalyses(
-    byItem: ListAnalysesRequest
+  public func listAnalysesByItems(
+    request: ListAnalysesRequest
   ) -> any AsyncSequence<Analysis, Swift.Error> {
-    self.listAnalyses(byItem: byItem, options: .init())
+    self.listAnalysesByItems(request: request, options: .init())
   }
 
   /// Lists Analyses in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
-  public func listAnalyses(
-    byItem: ListAnalysesRequest, options: GoogleGax.RequestOptions
+  public func listAnalysesByItems(
+    request: ListAnalysesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Analysis, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnalysesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAnalyses(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAnalyses(
+  public func listAnalysesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Analysis, Swift.Error> {
     let request = ListAnalysesRequest().with {
       $0.parent = parent
     }
-    return self.listAnalyses(byItem: request)
+    return self.listAnalysesByItems(request: request)
   }
 
   public func getAnalysis(request: GetAnalysisRequest) async throws -> GoogleCloudVideoAIV1.Analysis
@@ -1241,34 +1241,34 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listProcesses(
-    byItem: ListProcessesRequest
+  public func listProcessesByItems(
+    request: ListProcessesRequest
   ) -> any AsyncSequence<Process, Swift.Error> {
-    self.listProcesses(byItem: byItem, options: .init())
+    self.listProcessesByItems(request: request, options: .init())
   }
 
   /// Lists Processes in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
-  public func listProcesses(
-    byItem: ListProcessesRequest, options: GoogleGax.RequestOptions
+  public func listProcessesByItems(
+    request: ListProcessesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Process, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListProcessesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listProcesses(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listProcesses(
+  public func listProcessesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Process, Swift.Error> {
     let request = ListProcessesRequest().with {
       $0.parent = parent
     }
-    return self.listProcesses(byItem: request)
+    return self.listProcessesByItems(request: request)
   }
 
   public func getProcess(request: GetProcessRequest) async throws -> GoogleCloudVideoAIV1.Process {
@@ -1459,21 +1459,21 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1504,10 +1504,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1515,19 +1515,19 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1535,7 +1535,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

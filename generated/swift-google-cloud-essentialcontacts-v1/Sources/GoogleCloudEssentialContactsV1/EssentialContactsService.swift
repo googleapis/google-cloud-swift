@@ -212,34 +212,34 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listContacts(
-    byItem: ListContactsRequest
+  public func listContactsByItems(
+    request: ListContactsRequest
   ) -> any AsyncSequence<Contact, Swift.Error> {
-    self.listContacts(byItem: byItem, options: .init())
+    self.listContactsByItems(request: request, options: .init())
   }
 
   /// Lists the contacts that have been set on a resource.
   ///
   /// @Snippet(path: "EssentialContactsService_ListContacts")
-  public func listContacts(
-    byItem: ListContactsRequest, options: GoogleGax.RequestOptions
+  public func listContactsByItems(
+    request: ListContactsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Contact, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEssentialContactsV1.ListContactsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listContacts(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listContacts(
+  public func listContactsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Contact, Swift.Error> {
     let request = ListContactsRequest().with {
       $0.parent = parent
     }
-    return self.listContacts(byItem: request)
+    return self.listContactsByItems(request: request)
   }
 
   public func getContact(request: GetContactRequest) async throws
@@ -294,10 +294,10 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func computeContacts(
-    byItem: ComputeContactsRequest
+  public func computeContactsByItems(
+    request: ComputeContactsRequest
   ) -> any AsyncSequence<Contact, Swift.Error> {
-    self.computeContacts(byItem: byItem, options: .init())
+    self.computeContactsByItems(request: request, options: .init())
   }
 
   /// Lists all contacts for the resource that are subscribed to the
@@ -305,13 +305,13 @@ extension Clients.EssentialContactsServiceProtocol {
   /// any parent resources.
   ///
   /// @Snippet(path: "EssentialContactsService_ComputeContacts")
-  public func computeContacts(
-    byItem: ComputeContactsRequest, options: GoogleGax.RequestOptions
+  public func computeContactsByItems(
+    request: ComputeContactsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Contact, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudEssentialContactsV1.ComputeContactsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.computeContacts(request: request, options: options)
     }

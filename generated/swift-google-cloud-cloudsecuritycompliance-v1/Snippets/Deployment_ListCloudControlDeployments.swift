@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: DeploymentClient, organizationId: String, locationId: String) async throws {
-  let items = client.listCloudControlDeployments(
-    byItem: ListCloudControlDeploymentsRequest()
+  let items = client.listCloudControlDeploymentsByItems(
+    request: ListCloudControlDeploymentsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

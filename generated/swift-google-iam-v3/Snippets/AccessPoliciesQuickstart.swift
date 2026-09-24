@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample(organizationId: String, locationId: String, ) async throws {
   let client = try GoogleIAMV3.AccessPoliciesClient()
-  let items = client.listAccessPolicies(
-    byItem: ListAccessPoliciesRequest()
+  let items = client.listAccessPoliciesByItems(
+    request: ListAccessPoliciesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

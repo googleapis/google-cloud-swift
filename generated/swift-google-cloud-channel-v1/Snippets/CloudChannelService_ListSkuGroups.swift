@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, parent: String) async throws {
-  let items = client.listSkuGroups(
-    byItem: ListSkuGroupsRequest()
+  let items = client.listSkuGroupsByItems(
+    request: ListSkuGroupsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -1008,10 +1008,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: DisksClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: DisksClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of persistent disks.
@@ -1020,25 +1020,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "disks_aggregatedList")
-    public func aggregatedList(
-      byItem: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
       let request = DisksClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func bulkInsert(request: DisksClient.BulkInsertRequest) async throws
@@ -1312,28 +1312,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: DisksClient.ListRequest
+    public func listByItems(
+      request: DisksClient.ListRequest
     ) -> any AsyncSequence<Disk, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of persistent disks contained within
     /// the specified zone.
     ///
     /// @Snippet(path: "disks_list")
-    public func list(
-      byItem: DisksClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: DisksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Disk, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<Disk, Swift.Error> {
@@ -1341,7 +1341,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func removeResourcePolicies(request: DisksClient.RemoveResourcePoliciesRequest)

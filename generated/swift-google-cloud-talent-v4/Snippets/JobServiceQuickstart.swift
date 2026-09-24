@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, tenantId: String, ) async throws {
   let client = try GoogleCloudTalentV4.JobServiceClient()
-  let items = client.listJobs(
-    byItem: ListJobsRequest()
+  let items = client.listJobsByItems(
+    request: ListJobsRequest()
       .with {
         $0.parent = "projects/\(projectId)/tenants/\(tenantId)"
       }

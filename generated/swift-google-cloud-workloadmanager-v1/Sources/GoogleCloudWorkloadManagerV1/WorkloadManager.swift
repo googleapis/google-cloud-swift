@@ -535,34 +535,34 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEvaluations(
-    byItem: ListEvaluationsRequest
+  public func listEvaluationsByItems(
+    request: ListEvaluationsRequest
   ) -> any AsyncSequence<Evaluation, Swift.Error> {
-    self.listEvaluations(byItem: byItem, options: .init())
+    self.listEvaluationsByItems(request: request, options: .init())
   }
 
   /// Lists Evaluations in a given project and location.
   ///
   /// @Snippet(path: "WorkloadManager_ListEvaluations")
-  public func listEvaluations(
-    byItem: ListEvaluationsRequest, options: GoogleGax.RequestOptions
+  public func listEvaluationsByItems(
+    request: ListEvaluationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Evaluation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkloadManagerV1.ListEvaluationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEvaluations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEvaluations(
+  public func listEvaluationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Evaluation, Swift.Error> {
     let request = ListEvaluationsRequest().with {
       $0.parent = parent
     }
-    return self.listEvaluations(byItem: request)
+    return self.listEvaluationsByItems(request: request)
   }
 
   public func getEvaluation(request: GetEvaluationRequest) async throws
@@ -715,34 +715,34 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExecutions(
-    byItem: ListExecutionsRequest
+  public func listExecutionsByItems(
+    request: ListExecutionsRequest
   ) -> any AsyncSequence<Execution, Swift.Error> {
-    self.listExecutions(byItem: byItem, options: .init())
+    self.listExecutionsByItems(request: request, options: .init())
   }
 
   /// Lists Executions in a given project and location.
   ///
   /// @Snippet(path: "WorkloadManager_ListExecutions")
-  public func listExecutions(
-    byItem: ListExecutionsRequest, options: GoogleGax.RequestOptions
+  public func listExecutionsByItems(
+    request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Execution, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudWorkloadManagerV1.ListExecutionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExecutions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExecutions(
+  public func listExecutionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Execution, Swift.Error> {
     let request = ListExecutionsRequest().with {
       $0.parent = parent
     }
-    return self.listExecutions(byItem: request)
+    return self.listExecutionsByItems(request: request)
   }
 
   public func getExecution(request: GetExecutionRequest) async throws
@@ -856,35 +856,35 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listExecutionResults(
-    byItem: ListExecutionResultsRequest
+  public func listExecutionResultsByItems(
+    request: ListExecutionResultsRequest
   ) -> any AsyncSequence<ExecutionResult, Swift.Error> {
-    self.listExecutionResults(byItem: byItem, options: .init())
+    self.listExecutionResultsByItems(request: request, options: .init())
   }
 
   /// Lists the result of a single evaluation.
   ///
   /// @Snippet(path: "WorkloadManager_ListExecutionResults")
-  public func listExecutionResults(
-    byItem: ListExecutionResultsRequest, options: GoogleGax.RequestOptions
+  public func listExecutionResultsByItems(
+    request: ListExecutionResultsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ExecutionResult, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudWorkloadManagerV1.ListExecutionResultsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listExecutionResults(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listExecutionResults(
+  public func listExecutionResultsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ExecutionResult, Swift.Error> {
     let request = ListExecutionResultsRequest().with {
       $0.parent = parent
     }
-    return self.listExecutionResults(byItem: request)
+    return self.listExecutionResultsByItems(request: request)
   }
 
   public func listRules(request: ListRulesRequest) async throws
@@ -920,35 +920,35 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listScannedResources(
-    byItem: ListScannedResourcesRequest
+  public func listScannedResourcesByItems(
+    request: ListScannedResourcesRequest
   ) -> any AsyncSequence<ScannedResource, Swift.Error> {
-    self.listScannedResources(byItem: byItem, options: .init())
+    self.listScannedResourcesByItems(request: request, options: .init())
   }
 
   /// List all scanned resources for a single Execution.
   ///
   /// @Snippet(path: "WorkloadManager_ListScannedResources")
-  public func listScannedResources(
-    byItem: ListScannedResourcesRequest, options: GoogleGax.RequestOptions
+  public func listScannedResourcesByItems(
+    request: ListScannedResourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ScannedResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudWorkloadManagerV1.ListScannedResourcesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listScannedResources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listScannedResources(
+  public func listScannedResourcesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ScannedResource, Swift.Error> {
     let request = ListScannedResourcesRequest().with {
       $0.parent = parent
     }
-    return self.listScannedResources(byItem: request)
+    return self.listScannedResourcesByItems(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -963,10 +963,10 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -979,12 +979,12 @@ extension Clients.WorkloadManagerProtocol {
   /// to the project.
   ///
   /// @Snippet(path: "WorkloadManager_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -1015,10 +1015,10 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -1026,19 +1026,19 @@ extension Clients.WorkloadManagerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkloadManager_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -1046,7 +1046,7 @@ extension Clients.WorkloadManagerProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkSecurityV1.DnsThreatDetectorServiceClient()
-  let items = client.listDnsThreatDetectors(
-    byItem: ListDnsThreatDetectorsRequest()
+  let items = client.listDnsThreatDetectorsByItems(
+    request: ListDnsThreatDetectorsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

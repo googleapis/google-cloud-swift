@@ -26,8 +26,8 @@
   func sample(client: VizierServiceClient, projectId: String, locationId: String, studyId: String)
     async throws
   {
-    let items = client.listTrials(
-      byItem: ListTrialsRequest()
+    let items = client.listTrialsByItems(
+      request: ListTrialsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/studies/\(studyId)"
         }

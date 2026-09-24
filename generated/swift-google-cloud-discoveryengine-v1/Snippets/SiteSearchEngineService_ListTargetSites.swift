@@ -25,8 +25,8 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String
   ) async throws {
-    let items = client.listTargetSites(
-      byItem: ListTargetSitesRequest()
+    let items = client.listTargetSitesByItems(
+      request: ListTargetSitesRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/siteSearchEngine"

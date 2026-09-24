@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TenantServiceClient, parent: String) async throws {
-  let items = client.listTenants(
-    byItem: ListTenantsRequest()
+  let items = client.listTenantsByItems(
+    request: ListTenantsRequest()
       .with {
         $0.parent = "\(parent)"
       }

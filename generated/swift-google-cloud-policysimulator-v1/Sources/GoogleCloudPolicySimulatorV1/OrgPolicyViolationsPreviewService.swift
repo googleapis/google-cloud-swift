@@ -235,10 +235,10 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOrgPolicyViolationsPreviews(
-    byItem: ListOrgPolicyViolationsPreviewsRequest
+  public func listOrgPolicyViolationsPreviewsByItems(
+    request: ListOrgPolicyViolationsPreviewsRequest
   ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
-    self.listOrgPolicyViolationsPreviews(byItem: byItem, options: .init())
+    self.listOrgPolicyViolationsPreviewsByItems(request: request, options: .init())
   }
 
   /// ListOrgPolicyViolationsPreviews lists each
@@ -250,26 +250,26 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   /// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreview]: <doc:OrgPolicyViolationsPreview>
   ///
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOrgPolicyViolationsPreviews")
-  public func listOrgPolicyViolationsPreviews(
-    byItem: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
+  public func listOrgPolicyViolationsPreviewsByItems(
+    request: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOrgPolicyViolationsPreviews(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOrgPolicyViolationsPreviews(
+  public func listOrgPolicyViolationsPreviewsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> {
     let request = ListOrgPolicyViolationsPreviewsRequest().with {
       $0.parent = parent
     }
-    return self.listOrgPolicyViolationsPreviews(byItem: request)
+    return self.listOrgPolicyViolationsPreviewsByItems(request: request)
   }
 
   public func getOrgPolicyViolationsPreview(request: GetOrgPolicyViolationsPreviewRequest)
@@ -348,10 +348,10 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOrgPolicyViolations(
-    byItem: ListOrgPolicyViolationsRequest
+  public func listOrgPolicyViolationsByItems(
+    request: ListOrgPolicyViolationsRequest
   ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
-    self.listOrgPolicyViolations(byItem: byItem, options: .init())
+    self.listOrgPolicyViolationsByItems(request: request, options: .init())
   }
 
   /// ListOrgPolicyViolations lists the [OrgPolicyViolations][] that are present
@@ -359,26 +359,26 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   /// [OrgPolicyViolationsPreview][google.cloud.policysimulator.v1.OrgPolicyViolationsPreview].
   ///
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOrgPolicyViolations")
-  public func listOrgPolicyViolations(
-    byItem: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
+  public func listOrgPolicyViolationsByItems(
+    request: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOrgPolicyViolations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOrgPolicyViolations(
+  public func listOrgPolicyViolationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<OrgPolicyViolation, Swift.Error> {
     let request = ListOrgPolicyViolationsRequest().with {
       $0.parent = parent
     }
-    return self.listOrgPolicyViolations(byItem: request)
+    return self.listOrgPolicyViolationsByItems(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -393,10 +393,10 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -404,19 +404,19 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -424,7 +424,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

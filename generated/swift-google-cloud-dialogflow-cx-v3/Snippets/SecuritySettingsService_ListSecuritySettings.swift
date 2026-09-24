@@ -26,8 +26,8 @@
   func sample(client: SecuritySettingsServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let items = client.listSecuritySettings(
-      byItem: ListSecuritySettingsRequest()
+    let items = client.listSecuritySettingsByItems(
+      request: ListSecuritySettingsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
         }

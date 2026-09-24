@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionInstanceTemplatesClient) async throws {
-    let items = client.list(
-      byItem: RegionInstanceTemplatesClient.ListRequest()
+    let items = client.listByItems(
+      request: RegionInstanceTemplatesClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

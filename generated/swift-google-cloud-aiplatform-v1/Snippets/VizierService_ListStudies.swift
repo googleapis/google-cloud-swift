@@ -24,8 +24,8 @@
   import GoogleLongRunning
 
   func sample(client: VizierServiceClient, parent: String) async throws {
-    let items = client.listStudies(
-      byItem: ListStudiesRequest()
+    let items = client.listStudiesByItems(
+      request: ListStudiesRequest()
         .with {
           $0.parent = "\(parent)"
         }

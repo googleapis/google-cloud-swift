@@ -26,8 +26,8 @@ func sample(
   client: TelcoAutomationClient, projectId: String, locationId: String,
   orchestrationClusterId: String, deploymentId: String
 ) async throws {
-  let items = client.listHydratedDeployments(
-    byItem: ListHydratedDeploymentsRequest()
+  let items = client.listHydratedDeploymentsByItems(
+    request: ListHydratedDeploymentsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/orchestrationClusters/\(orchestrationClusterId)/deployments/\(deploymentId)"

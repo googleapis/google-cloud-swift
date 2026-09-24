@@ -25,8 +25,8 @@ func sample(
   client: InsightsConfigServiceClient, projectId: String, locationId: String,
   insightsConfigId: String
 ) async throws {
-  let items = client.listDeploymentEvents(
-    byItem: ListDeploymentEventsRequest()
+  let items = client.listDeploymentEventsByItems(
+    request: ListDeploymentEventsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/insightsConfigs/\(insightsConfigId)"

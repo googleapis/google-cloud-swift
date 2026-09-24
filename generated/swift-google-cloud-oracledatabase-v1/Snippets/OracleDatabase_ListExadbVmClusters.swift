@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = client.listExadbVmClusters(
-    byItem: ListExadbVmClustersRequest()
+  let items = client.listExadbVmClustersByItems(
+    request: ListExadbVmClustersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

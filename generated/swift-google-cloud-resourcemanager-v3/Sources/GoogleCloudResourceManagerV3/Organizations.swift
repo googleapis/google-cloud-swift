@@ -184,10 +184,10 @@ extension Clients.OrganizationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchOrganizations(
-    byItem: SearchOrganizationsRequest
+  public func searchOrganizationsByItems(
+    request: SearchOrganizationsRequest
   ) -> any AsyncSequence<Organization, Swift.Error> {
-    self.searchOrganizations(byItem: byItem, options: .init())
+    self.searchOrganizationsByItems(request: request, options: .init())
   }
 
   /// Searches organization resources that are visible to the user and satisfy
@@ -199,26 +199,26 @@ extension Clients.OrganizationsProtocol {
   /// `resourcemanager.organizations.get`
   ///
   /// @Snippet(path: "Organizations_SearchOrganizations")
-  public func searchOrganizations(
-    byItem: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
+  public func searchOrganizationsByItems(
+    request: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Organization, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchOrganizations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchOrganizations(
+  public func searchOrganizationsByItems(
     query: Swift.String,
   ) -> any AsyncSequence<Organization, Swift.Error> {
     let request = SearchOrganizationsRequest().with {
       $0.query = query
     }
-    return self.searchOrganizations(byItem: request)
+    return self.searchOrganizationsByItems(request: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

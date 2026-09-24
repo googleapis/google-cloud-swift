@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: GeneratorsClient, parent: String) async throws {
-    let items = client.listGenerators(
-      byItem: ListGeneratorsRequest()
+    let items = client.listGeneratorsByItems(
+      request: ListGeneratorsRequest()
         .with {
           $0.parent = "\(parent)"
         }

@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let items = client.listLoggingServers(
-    byItem: ListLoggingServersRequest()
+  let items = client.listLoggingServersByItems(
+    request: ListLoggingServersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
       }

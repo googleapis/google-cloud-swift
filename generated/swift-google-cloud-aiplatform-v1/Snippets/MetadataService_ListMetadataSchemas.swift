@@ -27,8 +27,8 @@
   func sample(
     client: MetadataServiceClient, projectId: String, locationId: String, metadataStoreId: String
   ) async throws {
-    let items = client.listMetadataSchemas(
-      byItem: ListMetadataSchemasRequest()
+    let items = client.listMetadataSchemasByItems(
+      request: ListMetadataSchemasRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/metadataStores/\(metadataStoreId)"

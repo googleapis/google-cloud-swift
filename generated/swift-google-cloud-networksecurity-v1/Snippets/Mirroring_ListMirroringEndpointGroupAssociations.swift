@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MirroringClient, projectId: String, locationId: String) async throws {
-  let items = client.listMirroringEndpointGroupAssociations(
-    byItem: ListMirroringEndpointGroupAssociationsRequest()
+  let items = client.listMirroringEndpointGroupAssociationsByItems(
+    request: ListMirroringEndpointGroupAssociationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

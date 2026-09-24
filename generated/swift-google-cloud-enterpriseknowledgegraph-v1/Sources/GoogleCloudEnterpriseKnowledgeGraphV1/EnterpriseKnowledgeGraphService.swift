@@ -237,35 +237,35 @@ extension Clients.EnterpriseKnowledgeGraphServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEntityReconciliationJobs(
-    byItem: ListEntityReconciliationJobsRequest
+  public func listEntityReconciliationJobsByItems(
+    request: ListEntityReconciliationJobsRequest
   ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
-    self.listEntityReconciliationJobs(byItem: byItem, options: .init())
+    self.listEntityReconciliationJobsByItems(request: request, options: .init())
   }
 
   /// Lists Entity Reconciliation Jobs.
   ///
   /// @Snippet(path: "EnterpriseKnowledgeGraphService_ListEntityReconciliationJobs")
-  public func listEntityReconciliationJobs(
-    byItem: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
+  public func listEntityReconciliationJobsByItems(
+    request: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEntityReconciliationJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEntityReconciliationJobs(
+  public func listEntityReconciliationJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> {
     let request = ListEntityReconciliationJobsRequest().with {
       $0.parent = parent
     }
-    return self.listEntityReconciliationJobs(byItem: request)
+    return self.listEntityReconciliationJobsByItems(request: request)
   }
 
   public func cancelEntityReconciliationJob(request: CancelEntityReconciliationJobRequest)

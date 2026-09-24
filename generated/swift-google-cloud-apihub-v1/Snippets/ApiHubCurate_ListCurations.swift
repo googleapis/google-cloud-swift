@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiHubCurateClient, projectId: String, locationId: String) async throws {
-  let items = client.listCurations(
-    byItem: ListCurationsRequest()
+  let items = client.listCurationsByItems(
+    request: ListCurationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

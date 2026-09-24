@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: EchoClient) async throws {
-  let items = client.pagedExpandLegacy(
-    byItem: PagedExpandLegacyRequest()
+  let items = client.pagedExpandLegacyByItems(
+    request: PagedExpandLegacyRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

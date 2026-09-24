@@ -22,8 +22,8 @@ import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudCommerceConsumerProcurementV1.ConsumerProcurementServiceClient()
-  let items = client.listOrders(
-    byItem: ListOrdersRequest()
+  let items = client.listOrdersByItems(
+    request: ListOrdersRequest()
       .with {
         $0.parent = "\(parent)"
       }

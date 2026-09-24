@@ -22,8 +22,8 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: BatchControllerClient, projectId: String, locationId: String) async throws {
-  let items = client.listBatches(
-    byItem: ListBatchesRequest()
+  let items = client.listBatchesByItems(
+    request: ListBatchesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

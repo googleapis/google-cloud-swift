@@ -374,10 +374,10 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAttestors(
-    byItem: ListAttestorsRequest
+  public func listAttestorsByItems(
+    request: ListAttestorsRequest
   ) -> any AsyncSequence<Attestor, Swift.Error> {
-    self.listAttestors(byItem: byItem, options: .init())
+    self.listAttestorsByItems(request: request, options: .init())
   }
 
   /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
@@ -386,26 +386,26 @@ extension Clients.BinauthzManagementServiceV1Protocol {
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
-  public func listAttestors(
-    byItem: ListAttestorsRequest, options: GoogleGax.RequestOptions
+  public func listAttestorsByItems(
+    request: ListAttestorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Attestor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAttestors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAttestors(
+  public func listAttestorsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Attestor, Swift.Error> {
     let request = ListAttestorsRequest().with {
       $0.parent = parent
     }
-    return self.listAttestors(byItem: request)
+    return self.listAttestorsByItems(request: request)
   }
 
   public func deleteAttestor(request: DeleteAttestorRequest) async throws {

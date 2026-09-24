@@ -21,8 +21,8 @@
   import GoogleCloudSqlV1
 
   func sample(client: SqlOperationsServiceClient) async throws {
-    let items = client.list(
-      byItem: SqlOperationsListRequest()
+    let items = client.listByItems(
+      request: SqlOperationsListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

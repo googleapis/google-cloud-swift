@@ -28,8 +28,8 @@ func sample(
   client: MonitoringClient, projectId: String, locationId: String,
   frameworkComplianceReportId: String
 ) async throws {
-  let items = client.listControlComplianceSummaries(
-    byItem: ListControlComplianceSummariesRequest()
+  let items = client.listControlComplianceSummariesByItems(
+    request: ListControlComplianceSummariesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/frameworkComplianceReports/\(frameworkComplianceReportId)"

@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudRedisClusterV1.CloudRedisClusterClient()
-  let items = client.listClusters(
-    byItem: ListClustersRequest()
+  let items = client.listClustersByItems(
+    request: ListClustersRequest()
       .with {
         $0.parent = "\(parent)"
       }

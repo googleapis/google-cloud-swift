@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CmekServiceClient, organizationId: String, locationId: String) async throws {
-  let items = client.listEncryptionConfigs(
-    byItem: ListEncryptionConfigsRequest()
+  let items = client.listEncryptionConfigsByItems(
+    request: ListEncryptionConfigsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

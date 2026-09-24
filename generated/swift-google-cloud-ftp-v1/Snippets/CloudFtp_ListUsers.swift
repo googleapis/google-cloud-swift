@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: CloudFtpClient, projectId: String, locationId: String, serverId: String)
   async throws
 {
-  let items = client.listUsers(
-    byItem: ListUsersRequest()
+  let items = client.listUsersByItems(
+    request: ListUsersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/servers/\(serverId)"
       }

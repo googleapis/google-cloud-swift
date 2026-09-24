@@ -175,10 +175,10 @@ extension Clients.DashboardsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDashboards(
-    byItem: ListDashboardsRequest
+  public func listDashboardsByItems(
+    request: ListDashboardsRequest
   ) -> any AsyncSequence<Dashboard, Swift.Error> {
-    self.listDashboards(byItem: byItem, options: .init())
+    self.listDashboardsByItems(request: request, options: .init())
   }
 
   /// Lists the existing dashboards.
@@ -188,26 +188,26 @@ extension Clients.DashboardsServiceProtocol {
   /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_ListDashboards")
-  public func listDashboards(
-    byItem: ListDashboardsRequest, options: GoogleGax.RequestOptions
+  public func listDashboardsByItems(
+    request: ListDashboardsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Dashboard, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDashboards(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDashboards(
+  public func listDashboardsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Dashboard, Swift.Error> {
     let request = ListDashboardsRequest().with {
       $0.parent = parent
     }
-    return self.listDashboards(byItem: request)
+    return self.listDashboardsByItems(request: request)
   }
 
   public func getDashboard(request: GetDashboardRequest) async throws

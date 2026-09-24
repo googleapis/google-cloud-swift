@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudConfigV1.ConfigClient()
-  let items = client.listDeployments(
-    byItem: ListDeploymentsRequest()
+  let items = client.listDeploymentsByItems(
+    request: ListDeploymentsRequest()
       .with {
         $0.parent = "\(parent)"
       }

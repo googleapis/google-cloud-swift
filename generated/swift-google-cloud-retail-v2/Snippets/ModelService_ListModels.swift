@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ModelServiceClient, projectId: String, locationId: String, catalogId: String)
   async throws
 {
-  let items = client.listModels(
-    byItem: ListModelsRequest()
+  let items = client.listModelsByItems(
+    request: ListModelsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"
       }

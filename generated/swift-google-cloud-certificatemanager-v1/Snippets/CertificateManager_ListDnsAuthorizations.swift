@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateManagerClient, parent: String) async throws {
-  let items = client.listDnsAuthorizations(
-    byItem: ListDnsAuthorizationsRequest()
+  let items = client.listDnsAuthorizationsByItems(
+    request: ListDnsAuthorizationsRequest()
       .with {
         $0.parent = "\(parent)"
       }

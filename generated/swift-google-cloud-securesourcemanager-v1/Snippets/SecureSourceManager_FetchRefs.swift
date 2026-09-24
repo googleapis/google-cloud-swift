@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let items = client.fetchRefs(
-    byItem: FetchRefsRequest()
+  let items = client.fetchRefsByItems(
+    request: FetchRefsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: EnvironmentsClient, projectId: String) async throws {
-    let items = client.listEnvironments(
-      byItem: ListEnvironmentsRequest()
+    let items = client.listEnvironmentsByItems(
+      request: ListEnvironmentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent"
         }

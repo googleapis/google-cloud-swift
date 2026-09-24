@@ -1066,35 +1066,35 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServiceProjectAttachments(
-    byItem: ListServiceProjectAttachmentsRequest
+  public func listServiceProjectAttachmentsByItems(
+    request: ListServiceProjectAttachmentsRequest
   ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
-    self.listServiceProjectAttachments(byItem: byItem, options: .init())
+    self.listServiceProjectAttachmentsByItems(request: request, options: .init())
   }
 
   /// Lists service projects attached to the host project.
   ///
   /// @Snippet(path: "AppHub_ListServiceProjectAttachments")
-  public func listServiceProjectAttachments(
-    byItem: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
+  public func listServiceProjectAttachmentsByItems(
+    request: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServiceProjectAttachments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServiceProjectAttachments(
+  public func listServiceProjectAttachmentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
     let request = ListServiceProjectAttachmentsRequest().with {
       $0.parent = parent
     }
-    return self.listServiceProjectAttachments(byItem: request)
+    return self.listServiceProjectAttachmentsByItems(request: request)
   }
 
   public func createServiceProjectAttachment(request: CreateServiceProjectAttachmentRequest)
@@ -1232,35 +1232,35 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDiscoveredServices(
-    byItem: ListDiscoveredServicesRequest
+  public func listDiscoveredServicesByItems(
+    request: ListDiscoveredServicesRequest
   ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
-    self.listDiscoveredServices(byItem: byItem, options: .init())
+    self.listDiscoveredServicesByItems(request: request, options: .init())
   }
 
   /// Lists Discovered Services that can be added to an Application in a host
   /// project and location.
   ///
   /// @Snippet(path: "AppHub_ListDiscoveredServices")
-  public func listDiscoveredServices(
-    byItem: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
+  public func listDiscoveredServicesByItems(
+    request: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDiscoveredServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDiscoveredServices(
+  public func listDiscoveredServicesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
     let request = ListDiscoveredServicesRequest().with {
       $0.parent = parent
     }
-    return self.listDiscoveredServices(byItem: request)
+    return self.listDiscoveredServicesByItems(request: request)
   }
 
   public func getDiscoveredService(request: GetDiscoveredServiceRequest) async throws
@@ -1319,34 +1319,34 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServices(
-    byItem: ListServicesRequest
+  public func listServicesByItems(
+    request: ListServicesRequest
   ) -> any AsyncSequence<Service, Swift.Error> {
-    self.listServices(byItem: byItem, options: .init())
+    self.listServicesByItems(request: request, options: .init())
   }
 
   /// Lists Services in an Application.
   ///
   /// @Snippet(path: "AppHub_ListServices")
-  public func listServices(
-    byItem: ListServicesRequest, options: GoogleGax.RequestOptions
+  public func listServicesByItems(
+    request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Service, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListServicesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServices(
+  public func listServicesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Service, Swift.Error> {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
-    return self.listServices(byItem: request)
+    return self.listServicesByItems(request: request)
   }
 
   public func createService(request: CreateServiceRequest) async throws
@@ -1497,35 +1497,35 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDiscoveredWorkloads(
-    byItem: ListDiscoveredWorkloadsRequest
+  public func listDiscoveredWorkloadsByItems(
+    request: ListDiscoveredWorkloadsRequest
   ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
-    self.listDiscoveredWorkloads(byItem: byItem, options: .init())
+    self.listDiscoveredWorkloadsByItems(request: request, options: .init())
   }
 
   /// Lists Discovered Workloads that can be added to an Application in a host
   /// project and location.
   ///
   /// @Snippet(path: "AppHub_ListDiscoveredWorkloads")
-  public func listDiscoveredWorkloads(
-    byItem: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
+  public func listDiscoveredWorkloadsByItems(
+    request: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDiscoveredWorkloads(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDiscoveredWorkloads(
+  public func listDiscoveredWorkloadsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
     let request = ListDiscoveredWorkloadsRequest().with {
       $0.parent = parent
     }
-    return self.listDiscoveredWorkloads(byItem: request)
+    return self.listDiscoveredWorkloadsByItems(request: request)
   }
 
   public func getDiscoveredWorkload(request: GetDiscoveredWorkloadRequest) async throws
@@ -1584,34 +1584,34 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWorkloads(
-    byItem: ListWorkloadsRequest
+  public func listWorkloadsByItems(
+    request: ListWorkloadsRequest
   ) -> any AsyncSequence<Workload, Swift.Error> {
-    self.listWorkloads(byItem: byItem, options: .init())
+    self.listWorkloadsByItems(request: request, options: .init())
   }
 
   /// Lists Workloads in an Application.
   ///
   /// @Snippet(path: "AppHub_ListWorkloads")
-  public func listWorkloads(
-    byItem: ListWorkloadsRequest, options: GoogleGax.RequestOptions
+  public func listWorkloadsByItems(
+    request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Workload, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWorkloads(
+  public func listWorkloadsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Workload, Swift.Error> {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
-    return self.listWorkloads(byItem: request)
+    return self.listWorkloadsByItems(request: request)
   }
 
   public func createWorkload(request: CreateWorkloadRequest) async throws
@@ -1763,34 +1763,34 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listApplications(
-    byItem: ListApplicationsRequest
+  public func listApplicationsByItems(
+    request: ListApplicationsRequest
   ) -> any AsyncSequence<Application, Swift.Error> {
-    self.listApplications(byItem: byItem, options: .init())
+    self.listApplicationsByItems(request: request, options: .init())
   }
 
   /// Lists Applications in a host project and location.
   ///
   /// @Snippet(path: "AppHub_ListApplications")
-  public func listApplications(
-    byItem: ListApplicationsRequest, options: GoogleGax.RequestOptions
+  public func listApplicationsByItems(
+    request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Application, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listApplications(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listApplications(
+  public func listApplicationsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Application, Swift.Error> {
     let request = ListApplicationsRequest().with {
       $0.parent = parent
     }
-    return self.listApplications(byItem: request)
+    return self.listApplicationsByItems(request: request)
   }
 
   public func createApplication(request: CreateApplicationRequest) async throws
@@ -1943,21 +1943,21 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AppHub_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -2024,10 +2024,10 @@ extension Clients.AppHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -2035,19 +2035,19 @@ extension Clients.AppHubProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppHub_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -2055,7 +2055,7 @@ extension Clients.AppHubProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

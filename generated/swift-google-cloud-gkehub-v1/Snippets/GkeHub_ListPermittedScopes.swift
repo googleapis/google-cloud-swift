@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, projectId: String, locationId: String) async throws {
-  let items = client.listPermittedScopes(
-    byItem: ListPermittedScopesRequest()
+  let items = client.listPermittedScopesByItems(
+    request: ListPermittedScopesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

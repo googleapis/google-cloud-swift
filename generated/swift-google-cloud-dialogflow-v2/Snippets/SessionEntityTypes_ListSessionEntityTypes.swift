@@ -24,8 +24,8 @@
   import GoogleWKT
 
   func sample(client: SessionEntityTypesClient, projectId: String, sessionId: String) async throws {
-    let items = client.listSessionEntityTypes(
-      byItem: ListSessionEntityTypesRequest()
+    let items = client.listSessionEntityTypesByItems(
+      request: ListSessionEntityTypesRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent/sessions/\(sessionId)"
         }

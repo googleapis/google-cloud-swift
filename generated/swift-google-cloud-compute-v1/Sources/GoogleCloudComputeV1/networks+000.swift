@@ -831,33 +831,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: NetworksClient.ListRequest
+    public func listByItems(
+      request: NetworksClient.ListRequest
     ) -> any AsyncSequence<Network, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of networks available to the specified project.
     ///
     /// @Snippet(path: "networks_list")
-    public func list(
-      byItem: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Network, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<Network, Swift.Error> {
       let request = NetworksClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listPeeringRoutes(request: NetworksClient.ListPeeringRoutesRequest) async throws
@@ -872,28 +872,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listPeeringRoutes(
-      byItem: NetworksClient.ListPeeringRoutesRequest
+    public func listPeeringRoutesByItems(
+      request: NetworksClient.ListPeeringRoutesRequest
     ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error> {
-      self.listPeeringRoutes(byItem: byItem, options: .init())
+      self.listPeeringRoutesByItems(request: request, options: .init())
     }
 
     /// Lists the peering routes exchanged over peering connection.
     ///
     /// @Snippet(path: "networks_listPeeringRoutes")
-    public func listPeeringRoutes(
-      byItem: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
+    public func listPeeringRoutesByItems(
+      request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listPeeringRoutes(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listPeeringRoutes(
+    public func listPeeringRoutesByItems(
       project: Swift.String,
       network: Swift.String,
     ) -> any AsyncSequence<ExchangedPeeringRoute, Swift.Error> {
@@ -901,7 +901,7 @@
         $0.project = project
         $0.network = network
       }
-      return self.listPeeringRoutes(byItem: request)
+      return self.listPeeringRoutesByItems(request: request)
     }
 
     public func patch(request: NetworksClient.PatchRequest) async throws

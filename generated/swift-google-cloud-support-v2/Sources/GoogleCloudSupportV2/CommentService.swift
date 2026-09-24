@@ -133,34 +133,34 @@ extension Clients.CommentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listComments(
-    byItem: ListCommentsRequest
+  public func listCommentsByItems(
+    request: ListCommentsRequest
   ) -> any AsyncSequence<Comment, Swift.Error> {
-    self.listComments(byItem: byItem, options: .init())
+    self.listCommentsByItems(request: request, options: .init())
   }
 
   /// List all the comments associated with a case.
   ///
   /// @Snippet(path: "CommentService_ListComments")
-  public func listComments(
-    byItem: ListCommentsRequest, options: GoogleGax.RequestOptions
+  public func listCommentsByItems(
+    request: ListCommentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Comment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCommentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listComments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listComments(
+  public func listCommentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Comment, Swift.Error> {
     let request = ListCommentsRequest().with {
       $0.parent = parent
     }
-    return self.listComments(byItem: request)
+    return self.listCommentsByItems(request: request)
   }
 
   public func createComment(request: CreateCommentRequest) async throws

@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: SiteSearchEngineServiceClient) async throws {
-    let items = client.fetchDomainVerificationStatus(
-      byItem: FetchDomainVerificationStatusRequest()
+    let items = client.fetchDomainVerificationStatusByItems(
+      request: FetchDomainVerificationStatusRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

@@ -249,10 +249,10 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLogEntries(
-    byItem: ListLogEntriesRequest
+  public func listLogEntriesByItems(
+    request: ListLogEntriesRequest
   ) -> any AsyncSequence<LogEntry, Swift.Error> {
-    self.listLogEntries(byItem: byItem, options: .init())
+    self.listLogEntriesByItems(request: request, options: .init())
   }
 
   /// Lists log entries.  Use this method to retrieve log entries that originated
@@ -261,19 +261,19 @@ extension Clients.LoggingServiceV2Protocol {
   /// Logs](https://cloud.google.com/logging/docs/export).
   ///
   /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
-  public func listLogEntries(
-    byItem: ListLogEntriesRequest, options: GoogleGax.RequestOptions
+  public func listLogEntriesByItems(
+    request: ListLogEntriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LogEntry, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogEntriesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLogEntries(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listLogEntries(
+  public func listLogEntriesByItems(
     resourceNames: [Swift.String],
     filter: Swift.String,
     orderBy: Swift.String,
@@ -283,7 +283,7 @@ extension Clients.LoggingServiceV2Protocol {
       $0.filter = filter
       $0.orderBy = orderBy
     }
-    return self.listLogEntries(byItem: request)
+    return self.listLogEntriesByItems(request: request)
   }
 
   public func listMonitoredResourceDescriptors(request: ListMonitoredResourceDescriptorsRequest)
@@ -298,22 +298,22 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMonitoredResourceDescriptors(
-    byItem: ListMonitoredResourceDescriptorsRequest
+  public func listMonitoredResourceDescriptorsByItems(
+    request: ListMonitoredResourceDescriptorsRequest
   ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
-    self.listMonitoredResourceDescriptors(byItem: byItem, options: .init())
+    self.listMonitoredResourceDescriptorsByItems(request: request, options: .init())
   }
 
   /// Lists the descriptors for monitored resource types used by Logging.
   ///
   /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
-  public func listMonitoredResourceDescriptors(
-    byItem: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
+  public func listMonitoredResourceDescriptorsByItems(
+    request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudLoggingV2.ListMonitoredResourceDescriptorsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMonitoredResourceDescriptors(request: request, options: options)
     }
@@ -365,10 +365,10 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -376,19 +376,19 @@ extension Clients.LoggingServiceV2Protocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -396,7 +396,7 @@ extension Clients.LoggingServiceV2Protocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkManagementV1.ReachabilityServiceClient()
-  let items = client.listConnectivityTests(
-    byItem: ListConnectivityTestsRequest()
+  let items = client.listConnectivityTestsByItems(
+    request: ListConnectivityTestsRequest()
       .with {
         $0.parent = "\(parent)"
       }

@@ -84,10 +84,10 @@ extension Clients.QueryServiceProtocol {
   }
 
   @available(*, deprecated)
-  public func queryTimeSeries(
-    byItem: QueryTimeSeriesRequest
+  public func queryTimeSeriesByItems(
+    request: QueryTimeSeriesRequest
   ) -> any AsyncSequence<TimeSeriesData, Swift.Error> {
-    self.queryTimeSeries(byItem: byItem, options: .init())
+    self.queryTimeSeriesByItems(request: request, options: .init())
   }
 
   /// Queries time series by using Monitoring Query Language (MQL). We recommend
@@ -97,12 +97,12 @@ extension Clients.QueryServiceProtocol {
   ///
   /// @Snippet(path: "QueryService_QueryTimeSeries")
   @available(*, deprecated)
-  public func queryTimeSeries(
-    byItem: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
+  public func queryTimeSeriesByItems(
+    request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TimeSeriesData, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.queryTimeSeries(request: request, options: options)
     }

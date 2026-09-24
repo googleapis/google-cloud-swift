@@ -24,8 +24,8 @@
 
   func sample() async throws {
     let client = try GoogleCloudDialogflowV2.AgentsClient()
-    let items = client.searchAgents(
-      byItem: SearchAgentsRequest()
+    let items = client.searchAgentsByItems(
+      request: SearchAgentsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

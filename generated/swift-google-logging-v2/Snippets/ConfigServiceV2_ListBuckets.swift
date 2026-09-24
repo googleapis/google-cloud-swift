@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client, projectId: String, locationId: String) async throws {
-  let items = client.listBuckets(
-    byItem: ListBucketsRequest()
+  let items = client.listBucketsByItems(
+    request: ListBucketsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

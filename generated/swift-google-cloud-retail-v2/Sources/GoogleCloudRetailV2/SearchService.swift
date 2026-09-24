@@ -106,10 +106,10 @@ extension Clients.SearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func search(
-    byItem: SearchRequest
+  public func searchByItems(
+    request: SearchRequest
   ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
-    self.search(byItem: byItem, options: .init())
+    self.searchByItems(request: request, options: .init())
   }
 
   /// Performs a search.
@@ -121,11 +121,11 @@ extension Clients.SearchServiceProtocol {
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func search(
-    byItem: SearchRequest, options: GoogleGax.RequestOptions
+  public func searchByItems(
+    request: SearchRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudRetailV2.SearchResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.search(request: request, options: options)
     }
@@ -144,10 +144,10 @@ extension Clients.SearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -155,19 +155,19 @@ extension Clients.SearchServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SearchService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -175,7 +175,7 @@ extension Clients.SearchServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

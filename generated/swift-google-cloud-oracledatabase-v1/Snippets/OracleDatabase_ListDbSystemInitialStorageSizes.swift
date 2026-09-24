@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = client.listDbSystemInitialStorageSizes(
-    byItem: ListDbSystemInitialStorageSizesRequest()
+  let items = client.listDbSystemInitialStorageSizesByItems(
+    request: ListDbSystemInitialStorageSizesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -24,8 +24,8 @@ import GoogleLongRunning
 func sample(client: RuntimeProjectAttachmentServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let items = client.listRuntimeProjectAttachments(
-    byItem: ListRuntimeProjectAttachmentsRequest()
+  let items = client.listRuntimeProjectAttachmentsByItems(
+    request: ListRuntimeProjectAttachmentsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

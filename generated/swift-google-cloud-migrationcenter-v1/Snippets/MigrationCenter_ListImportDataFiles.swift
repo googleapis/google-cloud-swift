@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, importJobId: String
 ) async throws {
-  let items = client.listImportDataFiles(
-    byItem: ListImportDataFilesRequest()
+  let items = client.listImportDataFilesByItems(
+    request: ListImportDataFilesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/importJobs/\(importJobId)"
       }

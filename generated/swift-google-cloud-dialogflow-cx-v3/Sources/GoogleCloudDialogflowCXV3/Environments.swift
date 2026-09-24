@@ -552,10 +552,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listEnvironments(
-      byItem: ListEnvironmentsRequest
+    public func listEnvironmentsByItems(
+      request: ListEnvironmentsRequest
     ) -> any AsyncSequence<Environment, Swift.Error> {
-      self.listEnvironments(byItem: byItem, options: .init())
+      self.listEnvironmentsByItems(request: request, options: .init())
     }
 
     /// Returns the list of all environments in the specified
@@ -564,25 +564,25 @@
     /// [google.cloud.dialogflow.cx.v3.Agent]: <doc:Agent>
     ///
     /// @Snippet(path: "Environments_ListEnvironments")
-    public func listEnvironments(
-      byItem: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
+    public func listEnvironmentsByItems(
+      request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Environment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListEnvironmentsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listEnvironments(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listEnvironments(
+    public func listEnvironmentsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<Environment, Swift.Error> {
       let request = ListEnvironmentsRequest().with {
         $0.parent = parent
       }
-      return self.listEnvironments(byItem: request)
+      return self.listEnvironmentsByItems(request: request)
     }
 
     public func getEnvironment(request: GetEnvironmentRequest) async throws
@@ -715,10 +715,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func lookupEnvironmentHistory(
-      byItem: LookupEnvironmentHistoryRequest
+    public func lookupEnvironmentHistoryByItems(
+      request: LookupEnvironmentHistoryRequest
     ) -> any AsyncSequence<Environment, Swift.Error> {
-      self.lookupEnvironmentHistory(byItem: byItem, options: .init())
+      self.lookupEnvironmentHistoryByItems(request: request, options: .init())
     }
 
     /// Looks up the history of the specified
@@ -727,26 +727,26 @@
     /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
     ///
     /// @Snippet(path: "Environments_LookupEnvironmentHistory")
-    public func lookupEnvironmentHistory(
-      byItem: LookupEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
+    public func lookupEnvironmentHistoryByItems(
+      request: LookupEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Environment, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.LookupEnvironmentHistoryResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.lookupEnvironmentHistory(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func lookupEnvironmentHistory(
+    public func lookupEnvironmentHistoryByItems(
       name: Swift.String,
     ) -> any AsyncSequence<Environment, Swift.Error> {
       let request = LookupEnvironmentHistoryRequest().with {
         $0.name = name
       }
-      return self.lookupEnvironmentHistory(byItem: request)
+      return self.lookupEnvironmentHistoryByItems(request: request)
     }
 
     public func runContinuousTest(request: RunContinuousTestRequest) async throws
@@ -790,35 +790,35 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listContinuousTestResults(
-      byItem: ListContinuousTestResultsRequest
+    public func listContinuousTestResultsByItems(
+      request: ListContinuousTestResultsRequest
     ) -> any AsyncSequence<ContinuousTestResult, Swift.Error> {
-      self.listContinuousTestResults(byItem: byItem, options: .init())
+      self.listContinuousTestResultsByItems(request: request, options: .init())
     }
 
     /// Fetches a list of continuous test results for a given environment.
     ///
     /// @Snippet(path: "Environments_ListContinuousTestResults")
-    public func listContinuousTestResults(
-      byItem: ListContinuousTestResultsRequest, options: GoogleGax.RequestOptions
+    public func listContinuousTestResultsByItems(
+      request: ListContinuousTestResultsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<ContinuousTestResult, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListContinuousTestResultsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listContinuousTestResults(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listContinuousTestResults(
+    public func listContinuousTestResultsByItems(
       parent: Swift.String,
     ) -> any AsyncSequence<ContinuousTestResult, Swift.Error> {
       let request = ListContinuousTestResultsRequest().with {
         $0.parent = parent
       }
-      return self.listContinuousTestResults(byItem: request)
+      return self.listContinuousTestResultsByItems(request: request)
     }
 
     public func deployFlow(request: DeployFlowRequest) async throws -> GoogleLongRunning.Operation {
@@ -859,10 +859,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-      self.listLocations(byItem: byItem, options: .init())
+      self.listLocationsByItems(request: request, options: .init())
     }
 
     /// Lists information about the supported locations for this service.
@@ -885,12 +885,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Environments_ListLocations")
-    public func listLocations(
-      byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+    public func listLocationsByItems(
+      request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
@@ -921,10 +921,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-      self.listOperations(byItem: byItem, options: .init())
+      self.listOperationsByItems(request: request, options: .init())
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -932,19 +932,19 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Environments_ListOperations")
-    public func listOperations(
-      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+    public func listOperationsByItems(
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listOperations(
+    public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
     ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -952,7 +952,7 @@
         $0.name = name
         $0.filter = filter
       }
-      return self.listOperations(byItem: request)
+      return self.listOperationsByItems(request: request)
     }
 
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

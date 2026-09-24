@@ -21,8 +21,8 @@ import GoogleCloudApiRegistryV1
 import GoogleCloudLocation
 
 func sample(client: CloudApiRegistryClient) async throws {
-  let items = client.listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest()
+  let items = client.listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

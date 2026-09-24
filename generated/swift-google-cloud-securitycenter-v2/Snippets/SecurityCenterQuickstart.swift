@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(organizationId: String, simulationId: String, valuedResourceId: String, ) async throws {
   let client = try GoogleCloudSecurityCenterV2.SecurityCenterClient()
-  let items = client.listAttackPaths(
-    byItem: ListAttackPathsRequest()
+  let items = client.listAttackPathsByItems(
+    request: ListAttackPathsRequest()
       .with {
         $0.parent =
           "organizations/\(organizationId)/simulations/\(simulationId)/valuedResources/\(valuedResourceId)"

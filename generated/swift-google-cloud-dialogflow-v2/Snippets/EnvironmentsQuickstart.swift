@@ -25,8 +25,8 @@
 
   func sample(projectId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.EnvironmentsClient()
-    let items = client.listEnvironments(
-      byItem: ListEnvironmentsRequest()
+    let items = client.listEnvironmentsByItems(
+      request: ListEnvironmentsRequest()
         .with {
           $0.parent = "projects/\(projectId)/agent"
         }

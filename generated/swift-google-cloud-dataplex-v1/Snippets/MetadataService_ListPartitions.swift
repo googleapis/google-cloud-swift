@@ -26,8 +26,8 @@ func sample(
   client: MetadataServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String, entityId: String
 ) async throws {
-  let items = client.listPartitions(
-    byItem: ListPartitionsRequest()
+  let items = client.listPartitionsByItems(
+    request: ListPartitionsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)/entities/\(entityId)"

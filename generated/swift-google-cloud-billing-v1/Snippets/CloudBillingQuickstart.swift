@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBillingV1.CloudBillingClient()
-  let items = client.listBillingAccounts(
-    byItem: ListBillingAccountsRequest()
+  let items = client.listBillingAccountsByItems(
+    request: ListBillingAccountsRequest()
       .with {
         $0.parent = "\(parent)"
       }

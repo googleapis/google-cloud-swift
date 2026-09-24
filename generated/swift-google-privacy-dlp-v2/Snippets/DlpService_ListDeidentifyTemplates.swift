@@ -21,8 +21,8 @@ import GoogleCloudDLPV2
 import GoogleWKT
 
 func sample(client: DlpServiceClient, organizationId: String) async throws {
-  let items = client.listDeidentifyTemplates(
-    byItem: ListDeidentifyTemplatesRequest()
+  let items = client.listDeidentifyTemplatesByItems(
+    request: ListDeidentifyTemplatesRequest()
       .with {
         $0.parent = "organizations/\(organizationId)"
       }

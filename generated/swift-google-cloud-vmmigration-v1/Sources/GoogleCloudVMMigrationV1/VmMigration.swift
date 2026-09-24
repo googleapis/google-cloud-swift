@@ -2526,34 +2526,34 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSources(
-    byItem: ListSourcesRequest
+  public func listSourcesByItems(
+    request: ListSourcesRequest
   ) -> any AsyncSequence<Source, Swift.Error> {
-    self.listSources(byItem: byItem, options: .init())
+    self.listSourcesByItems(request: request, options: .init())
   }
 
   /// Lists Sources in a given project and location.
   ///
   /// @Snippet(path: "VmMigration_ListSources")
-  public func listSources(
-    byItem: ListSourcesRequest, options: GoogleGax.RequestOptions
+  public func listSourcesByItems(
+    request: ListSourcesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Source, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListSourcesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSources(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSources(
+  public func listSourcesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Source, Swift.Error> {
     let request = ListSourcesRequest().with {
       $0.parent = parent
     }
-    return self.listSources(byItem: request)
+    return self.listSourcesByItems(request: request)
   }
 
   public func getSource(request: GetSourceRequest) async throws -> GoogleCloudVMMigrationV1.Source {
@@ -2722,10 +2722,10 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func fetchStorageInventory(
-    byItem: FetchStorageInventoryRequest
+  public func fetchStorageInventoryByItems(
+    request: FetchStorageInventoryRequest
   ) -> any AsyncSequence<SourceStorageResource, Swift.Error> {
-    self.fetchStorageInventory(byItem: byItem, options: .init())
+    self.fetchStorageInventoryByItems(request: request, options: .init())
   }
 
   /// List remote source's inventory of storage resources.
@@ -2736,20 +2736,20 @@ extension Clients.VmMigrationProtocol {
   /// service.
   ///
   /// @Snippet(path: "VmMigration_FetchStorageInventory")
-  public func fetchStorageInventory(
-    byItem: FetchStorageInventoryRequest, options: GoogleGax.RequestOptions
+  public func fetchStorageInventoryByItems(
+    request: FetchStorageInventoryRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SourceStorageResource, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.FetchStorageInventoryResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.fetchStorageInventory(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func fetchStorageInventory(
+  public func fetchStorageInventoryByItems(
     source: Swift.String,
     type: FetchStorageInventoryRequest.StorageType,
   ) -> any AsyncSequence<SourceStorageResource, Swift.Error> {
@@ -2757,7 +2757,7 @@ extension Clients.VmMigrationProtocol {
       $0.source = source
       $0.type = type
     }
-    return self.fetchStorageInventory(byItem: request)
+    return self.fetchStorageInventoryByItems(request: request)
   }
 
   public func listUtilizationReports(request: ListUtilizationReportsRequest) async throws
@@ -2772,35 +2772,35 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listUtilizationReports(
-    byItem: ListUtilizationReportsRequest
+  public func listUtilizationReportsByItems(
+    request: ListUtilizationReportsRequest
   ) -> any AsyncSequence<UtilizationReport, Swift.Error> {
-    self.listUtilizationReports(byItem: byItem, options: .init())
+    self.listUtilizationReportsByItems(request: request, options: .init())
   }
 
   /// Lists Utilization Reports of the given Source.
   ///
   /// @Snippet(path: "VmMigration_ListUtilizationReports")
-  public func listUtilizationReports(
-    byItem: ListUtilizationReportsRequest, options: GoogleGax.RequestOptions
+  public func listUtilizationReportsByItems(
+    request: ListUtilizationReportsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<UtilizationReport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListUtilizationReportsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listUtilizationReports(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listUtilizationReports(
+  public func listUtilizationReportsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<UtilizationReport, Swift.Error> {
     let request = ListUtilizationReportsRequest().with {
       $0.parent = parent
     }
-    return self.listUtilizationReports(byItem: request)
+    return self.listUtilizationReportsByItems(request: request)
   }
 
   public func getUtilizationReport(request: GetUtilizationReportRequest) async throws
@@ -2914,35 +2914,35 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDatacenterConnectors(
-    byItem: ListDatacenterConnectorsRequest
+  public func listDatacenterConnectorsByItems(
+    request: ListDatacenterConnectorsRequest
   ) -> any AsyncSequence<DatacenterConnector, Swift.Error> {
-    self.listDatacenterConnectors(byItem: byItem, options: .init())
+    self.listDatacenterConnectorsByItems(request: request, options: .init())
   }
 
   /// Lists DatacenterConnectors in a given Source.
   ///
   /// @Snippet(path: "VmMigration_ListDatacenterConnectors")
-  public func listDatacenterConnectors(
-    byItem: ListDatacenterConnectorsRequest, options: GoogleGax.RequestOptions
+  public func listDatacenterConnectorsByItems(
+    request: ListDatacenterConnectorsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DatacenterConnector, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudVMMigrationV1.ListDatacenterConnectorsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDatacenterConnectors(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDatacenterConnectors(
+  public func listDatacenterConnectorsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DatacenterConnector, Swift.Error> {
     let request = ListDatacenterConnectorsRequest().with {
       $0.parent = parent
     }
-    return self.listDatacenterConnectors(byItem: request)
+    return self.listDatacenterConnectorsByItems(request: request)
   }
 
   public func getDatacenterConnector(request: GetDatacenterConnectorRequest) async throws
@@ -3126,34 +3126,34 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listMigratingVms(
-    byItem: ListMigratingVmsRequest
+  public func listMigratingVmsByItems(
+    request: ListMigratingVmsRequest
   ) -> any AsyncSequence<MigratingVm, Swift.Error> {
-    self.listMigratingVms(byItem: byItem, options: .init())
+    self.listMigratingVmsByItems(request: request, options: .init())
   }
 
   /// Lists MigratingVms in a given Source.
   ///
   /// @Snippet(path: "VmMigration_ListMigratingVms")
-  public func listMigratingVms(
-    byItem: ListMigratingVmsRequest, options: GoogleGax.RequestOptions
+  public func listMigratingVmsByItems(
+    request: ListMigratingVmsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<MigratingVm, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListMigratingVmsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listMigratingVms(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listMigratingVms(
+  public func listMigratingVmsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<MigratingVm, Swift.Error> {
     let request = ListMigratingVmsRequest().with {
       $0.parent = parent
     }
-    return self.listMigratingVms(byItem: request)
+    return self.listMigratingVmsByItems(request: request)
   }
 
   public func getMigratingVm(request: GetMigratingVmRequest) async throws
@@ -3507,35 +3507,35 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCloneJobs(
-    byItem: ListCloneJobsRequest
+  public func listCloneJobsByItems(
+    request: ListCloneJobsRequest
   ) -> any AsyncSequence<CloneJob, Swift.Error> {
-    self.listCloneJobs(byItem: byItem, options: .init())
+    self.listCloneJobsByItems(request: request, options: .init())
   }
 
   /// Lists the CloneJobs of a migrating VM. Only 25 most recent CloneJobs are
   /// listed.
   ///
   /// @Snippet(path: "VmMigration_ListCloneJobs")
-  public func listCloneJobs(
-    byItem: ListCloneJobsRequest, options: GoogleGax.RequestOptions
+  public func listCloneJobsByItems(
+    request: ListCloneJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CloneJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListCloneJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCloneJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCloneJobs(
+  public func listCloneJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<CloneJob, Swift.Error> {
     let request = ListCloneJobsRequest().with {
       $0.parent = parent
     }
-    return self.listCloneJobs(byItem: request)
+    return self.listCloneJobsByItems(request: request)
   }
 
   public func getCloneJob(request: GetCloneJobRequest) async throws
@@ -3650,35 +3650,35 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listCutoverJobs(
-    byItem: ListCutoverJobsRequest
+  public func listCutoverJobsByItems(
+    request: ListCutoverJobsRequest
   ) -> any AsyncSequence<CutoverJob, Swift.Error> {
-    self.listCutoverJobs(byItem: byItem, options: .init())
+    self.listCutoverJobsByItems(request: request, options: .init())
   }
 
   /// Lists the CutoverJobs of a migrating VM. Only 25 most recent CutoverJobs
   /// are listed.
   ///
   /// @Snippet(path: "VmMigration_ListCutoverJobs")
-  public func listCutoverJobs(
-    byItem: ListCutoverJobsRequest, options: GoogleGax.RequestOptions
+  public func listCutoverJobsByItems(
+    request: ListCutoverJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<CutoverJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListCutoverJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listCutoverJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listCutoverJobs(
+  public func listCutoverJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<CutoverJob, Swift.Error> {
     let request = ListCutoverJobsRequest().with {
       $0.parent = parent
     }
-    return self.listCutoverJobs(byItem: request)
+    return self.listCutoverJobsByItems(request: request)
   }
 
   public func getCutoverJob(request: GetCutoverJobRequest) async throws
@@ -3714,34 +3714,34 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGroups(
-    byItem: ListGroupsRequest
+  public func listGroupsByItems(
+    request: ListGroupsRequest
   ) -> any AsyncSequence<Group, Swift.Error> {
-    self.listGroups(byItem: byItem, options: .init())
+    self.listGroupsByItems(request: request, options: .init())
   }
 
   /// Lists Groups in a given project and location.
   ///
   /// @Snippet(path: "VmMigration_ListGroups")
-  public func listGroups(
-    byItem: ListGroupsRequest, options: GoogleGax.RequestOptions
+  public func listGroupsByItems(
+    request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Group, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListGroupsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGroups(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGroups(
+  public func listGroupsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Group, Swift.Error> {
     let request = ListGroupsRequest().with {
       $0.parent = parent
     }
-    return self.listGroups(byItem: request)
+    return self.listGroupsByItems(request: request)
   }
 
   public func getGroup(request: GetGroupRequest) async throws -> GoogleCloudVMMigrationV1.Group {
@@ -3962,10 +3962,10 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTargetProjects(
-    byItem: ListTargetProjectsRequest
+  public func listTargetProjectsByItems(
+    request: ListTargetProjectsRequest
   ) -> any AsyncSequence<TargetProject, Swift.Error> {
-    self.listTargetProjects(byItem: byItem, options: .init())
+    self.listTargetProjectsByItems(request: request, options: .init())
   }
 
   /// Lists TargetProjects in a given project.
@@ -3974,25 +3974,25 @@ extension Clients.VmMigrationProtocol {
   /// for location is `global`.
   ///
   /// @Snippet(path: "VmMigration_ListTargetProjects")
-  public func listTargetProjects(
-    byItem: ListTargetProjectsRequest, options: GoogleGax.RequestOptions
+  public func listTargetProjectsByItems(
+    request: ListTargetProjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TargetProject, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListTargetProjectsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTargetProjects(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTargetProjects(
+  public func listTargetProjectsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TargetProject, Swift.Error> {
     let request = ListTargetProjectsRequest().with {
       $0.parent = parent
     }
-    return self.listTargetProjects(byItem: request)
+    return self.listTargetProjectsByItems(request: request)
   }
 
   public func getTargetProject(request: GetTargetProjectRequest) async throws
@@ -4145,35 +4145,35 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listReplicationCycles(
-    byItem: ListReplicationCyclesRequest
+  public func listReplicationCyclesByItems(
+    request: ListReplicationCyclesRequest
   ) -> any AsyncSequence<ReplicationCycle, Swift.Error> {
-    self.listReplicationCycles(byItem: byItem, options: .init())
+    self.listReplicationCyclesByItems(request: request, options: .init())
   }
 
   /// Lists ReplicationCycles in a given MigratingVM.
   ///
   /// @Snippet(path: "VmMigration_ListReplicationCycles")
-  public func listReplicationCycles(
-    byItem: ListReplicationCyclesRequest, options: GoogleGax.RequestOptions
+  public func listReplicationCyclesByItems(
+    request: ListReplicationCyclesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ReplicationCycle, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListReplicationCyclesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listReplicationCycles(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listReplicationCycles(
+  public func listReplicationCyclesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ReplicationCycle, Swift.Error> {
     let request = ListReplicationCyclesRequest().with {
       $0.parent = parent
     }
-    return self.listReplicationCycles(byItem: request)
+    return self.listReplicationCyclesByItems(request: request)
   }
 
   public func getReplicationCycle(request: GetReplicationCycleRequest) async throws
@@ -4209,34 +4209,34 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listImageImports(
-    byItem: ListImageImportsRequest
+  public func listImageImportsByItems(
+    request: ListImageImportsRequest
   ) -> any AsyncSequence<ImageImport, Swift.Error> {
-    self.listImageImports(byItem: byItem, options: .init())
+    self.listImageImportsByItems(request: request, options: .init())
   }
 
   /// Lists ImageImports in a given project.
   ///
   /// @Snippet(path: "VmMigration_ListImageImports")
-  public func listImageImports(
-    byItem: ListImageImportsRequest, options: GoogleGax.RequestOptions
+  public func listImageImportsByItems(
+    request: ListImageImportsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ImageImport, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListImageImportsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listImageImports(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listImageImports(
+  public func listImageImportsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ImageImport, Swift.Error> {
     let request = ListImageImportsRequest().with {
       $0.parent = parent
     }
-    return self.listImageImports(byItem: request)
+    return self.listImageImportsByItems(request: request)
   }
 
   public func getImageImport(request: GetImageImportRequest) async throws
@@ -4350,34 +4350,34 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listImageImportJobs(
-    byItem: ListImageImportJobsRequest
+  public func listImageImportJobsByItems(
+    request: ListImageImportJobsRequest
   ) -> any AsyncSequence<ImageImportJob, Swift.Error> {
-    self.listImageImportJobs(byItem: byItem, options: .init())
+    self.listImageImportJobsByItems(request: request, options: .init())
   }
 
   /// Lists ImageImportJobs in a given project.
   ///
   /// @Snippet(path: "VmMigration_ListImageImportJobs")
-  public func listImageImportJobs(
-    byItem: ListImageImportJobsRequest, options: GoogleGax.RequestOptions
+  public func listImageImportJobsByItems(
+    request: ListImageImportJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ImageImportJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListImageImportJobsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listImageImportJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listImageImportJobs(
+  public func listImageImportJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ImageImportJob, Swift.Error> {
     let request = ListImageImportJobsRequest().with {
       $0.parent = parent
     }
-    return self.listImageImportJobs(byItem: request)
+    return self.listImageImportJobsByItems(request: request)
   }
 
   public func getImageImportJob(request: GetImageImportJobRequest) async throws
@@ -4492,35 +4492,35 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDiskMigrationJobs(
-    byItem: ListDiskMigrationJobsRequest
+  public func listDiskMigrationJobsByItems(
+    request: ListDiskMigrationJobsRequest
   ) -> any AsyncSequence<DiskMigrationJob, Swift.Error> {
-    self.listDiskMigrationJobs(byItem: byItem, options: .init())
+    self.listDiskMigrationJobsByItems(request: request, options: .init())
   }
 
   /// Lists DiskMigrationJobs in a given Source.
   ///
   /// @Snippet(path: "VmMigration_ListDiskMigrationJobs")
-  public func listDiskMigrationJobs(
-    byItem: ListDiskMigrationJobsRequest, options: GoogleGax.RequestOptions
+  public func listDiskMigrationJobsByItems(
+    request: ListDiskMigrationJobsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<DiskMigrationJob, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudVMMigrationV1.ListDiskMigrationJobsResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDiskMigrationJobs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDiskMigrationJobs(
+  public func listDiskMigrationJobsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<DiskMigrationJob, Swift.Error> {
     let request = ListDiskMigrationJobsRequest().with {
       $0.parent = parent
     }
-    return self.listDiskMigrationJobs(byItem: request)
+    return self.listDiskMigrationJobsByItems(request: request)
   }
 
   public func getDiskMigrationJob(request: GetDiskMigrationJobRequest) async throws
@@ -4699,21 +4699,21 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "VmMigration_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -4744,10 +4744,10 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -4755,19 +4755,19 @@ extension Clients.VmMigrationProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VmMigration_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -4775,7 +4775,7 @@ extension Clients.VmMigrationProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

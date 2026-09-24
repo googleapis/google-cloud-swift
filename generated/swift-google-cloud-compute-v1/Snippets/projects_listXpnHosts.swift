@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: ProjectsClient) async throws {
-    let items = client.listXpnHosts(
-      byItem: ProjectsClient.ListXpnHostsRequest()
+    let items = client.listXpnHostsByItems(
+      request: ProjectsClient.ListXpnHostsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

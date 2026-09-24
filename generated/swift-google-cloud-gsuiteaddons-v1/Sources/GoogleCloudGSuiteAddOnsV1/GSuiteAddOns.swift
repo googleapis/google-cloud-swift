@@ -305,34 +305,34 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDeployments(
-    byItem: ListDeploymentsRequest
+  public func listDeploymentsByItems(
+    request: ListDeploymentsRequest
   ) -> any AsyncSequence<Deployment, Swift.Error> {
-    self.listDeployments(byItem: byItem, options: .init())
+    self.listDeploymentsByItems(request: request, options: .init())
   }
 
   /// Lists all deployments in a particular project.
   ///
   /// @Snippet(path: "GSuiteAddOns_ListDeployments")
-  public func listDeployments(
-    byItem: ListDeploymentsRequest, options: GoogleGax.RequestOptions
+  public func listDeploymentsByItems(
+    request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDeployments(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDeployments(
+  public func listDeploymentsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Deployment, Swift.Error> {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }
-    return self.listDeployments(byItem: request)
+    return self.listDeploymentsByItems(request: request)
   }
 
   public func deleteDeployment(request: DeleteDeploymentRequest) async throws {

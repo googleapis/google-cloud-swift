@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: IdentityMappingStoreServiceClient, parent: String) async throws {
-    let items = client.listIdentityMappingStores(
-      byItem: ListIdentityMappingStoresRequest()
+    let items = client.listIdentityMappingStoresByItems(
+      request: ListIdentityMappingStoresRequest()
         .with {
           $0.parent = "\(parent)"
         }

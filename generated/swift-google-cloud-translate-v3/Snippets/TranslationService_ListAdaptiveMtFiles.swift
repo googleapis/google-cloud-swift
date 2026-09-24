@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, datasetId: String
 ) async throws {
-  let items = client.listAdaptiveMtFiles(
-    byItem: ListAdaptiveMtFilesRequest()
+  let items = client.listAdaptiveMtFilesByItems(
+    request: ListAdaptiveMtFilesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/adaptiveMtDatasets/\(datasetId)"
       }

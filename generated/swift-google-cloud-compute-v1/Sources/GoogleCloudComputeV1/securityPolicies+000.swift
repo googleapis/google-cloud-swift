@@ -580,10 +580,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: SecurityPoliciesClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: SecurityPoliciesClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of all SecurityPolicy resources, regional and global,
@@ -593,25 +593,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "securityPolicies_aggregatedList")
-    public func aggregatedList(
-      byItem: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, SecurityPoliciesScopedList), Swift.Error> {
       let request = SecurityPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func delete(request: SecurityPoliciesClient.DeleteRequest) async throws
@@ -752,34 +752,34 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: SecurityPoliciesClient.ListRequest
+    public func listByItems(
+      request: SecurityPoliciesClient.ListRequest
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// List all the policies that have been configured for the specified project.
     ///
     /// @Snippet(path: "securityPolicies_list")
-    public func list(
-      byItem: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let request = SecurityPoliciesClient.ListRequest().with {
         $0.project = project
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listPreconfiguredExpressionSets(

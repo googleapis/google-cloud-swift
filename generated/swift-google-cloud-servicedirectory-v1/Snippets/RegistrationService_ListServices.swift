@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: RegistrationServiceClient, projectId: String, locationId: String, namespaceId: String
 ) async throws {
-  let items = client.listServices(
-    byItem: ListServicesRequest()
+  let items = client.listServicesByItems(
+    request: ListServicesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/namespaces/\(namespaceId)"
       }

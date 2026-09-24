@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleWKT
 
 func sample(client: ModelArmorClient, projectId: String, locationId: String) async throws {
-  let items = client.listTemplates(
-    byItem: ListTemplatesRequest()
+  let items = client.listTemplatesByItems(
+    request: ListTemplatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: ManagedIdentitiesServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let items = client.listDomains(
-    byItem: ListDomainsRequest()
+  let items = client.listDomainsByItems(
+    request: ListDomainsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

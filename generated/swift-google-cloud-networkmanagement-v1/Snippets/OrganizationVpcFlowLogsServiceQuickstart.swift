@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudNetworkManagementV1.OrganizationVpcFlowLogsServiceClient()
-  let items = client.listVpcFlowLogsConfigs(
-    byItem: ListVpcFlowLogsConfigsRequest()
+  let items = client.listVpcFlowLogsConfigsByItems(
+    request: ListVpcFlowLogsConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

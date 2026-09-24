@@ -1977,35 +1977,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAuthorizationPolicies(
-    byItem: ListAuthorizationPoliciesRequest
+  public func listAuthorizationPoliciesByItems(
+    request: ListAuthorizationPoliciesRequest
   ) -> any AsyncSequence<AuthorizationPolicy, Swift.Error> {
-    self.listAuthorizationPolicies(byItem: byItem, options: .init())
+    self.listAuthorizationPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists AuthorizationPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
-  public func listAuthorizationPolicies(
-    byItem: ListAuthorizationPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listAuthorizationPoliciesByItems(
+    request: ListAuthorizationPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AuthorizationPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListAuthorizationPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAuthorizationPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAuthorizationPolicies(
+  public func listAuthorizationPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AuthorizationPolicy, Swift.Error> {
     let request = ListAuthorizationPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listAuthorizationPolicies(byItem: request)
+    return self.listAuthorizationPoliciesByItems(request: request)
   }
 
   public func getAuthorizationPolicy(request: GetAuthorizationPolicyRequest) async throws
@@ -2158,35 +2158,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBackendAuthenticationConfigs(
-    byItem: ListBackendAuthenticationConfigsRequest
+  public func listBackendAuthenticationConfigsByItems(
+    request: ListBackendAuthenticationConfigsRequest
   ) -> any AsyncSequence<BackendAuthenticationConfig, Swift.Error> {
-    self.listBackendAuthenticationConfigs(byItem: byItem, options: .init())
+    self.listBackendAuthenticationConfigsByItems(request: request, options: .init())
   }
 
   /// Lists BackendAuthenticationConfigs in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
-  public func listBackendAuthenticationConfigs(
-    byItem: ListBackendAuthenticationConfigsRequest, options: GoogleGax.RequestOptions
+  public func listBackendAuthenticationConfigsByItems(
+    request: ListBackendAuthenticationConfigsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BackendAuthenticationConfig, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListBackendAuthenticationConfigsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBackendAuthenticationConfigs(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBackendAuthenticationConfigs(
+  public func listBackendAuthenticationConfigsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<BackendAuthenticationConfig, Swift.Error> {
     let request = ListBackendAuthenticationConfigsRequest().with {
       $0.parent = parent
     }
-    return self.listBackendAuthenticationConfigs(byItem: request)
+    return self.listBackendAuthenticationConfigsByItems(request: request)
   }
 
   public func getBackendAuthenticationConfig(request: GetBackendAuthenticationConfigRequest)
@@ -2344,35 +2344,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listServerTlsPolicies(
-    byItem: ListServerTlsPoliciesRequest
+  public func listServerTlsPoliciesByItems(
+    request: ListServerTlsPoliciesRequest
   ) -> any AsyncSequence<ServerTlsPolicy, Swift.Error> {
-    self.listServerTlsPolicies(byItem: byItem, options: .init())
+    self.listServerTlsPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists ServerTlsPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
-  public func listServerTlsPolicies(
-    byItem: ListServerTlsPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listServerTlsPoliciesByItems(
+    request: ListServerTlsPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ServerTlsPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListServerTlsPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listServerTlsPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listServerTlsPolicies(
+  public func listServerTlsPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ServerTlsPolicy, Swift.Error> {
     let request = ListServerTlsPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listServerTlsPolicies(byItem: request)
+    return self.listServerTlsPoliciesByItems(request: request)
   }
 
   public func getServerTlsPolicy(request: GetServerTlsPolicyRequest) async throws
@@ -2525,35 +2525,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listClientTlsPolicies(
-    byItem: ListClientTlsPoliciesRequest
+  public func listClientTlsPoliciesByItems(
+    request: ListClientTlsPoliciesRequest
   ) -> any AsyncSequence<ClientTlsPolicy, Swift.Error> {
-    self.listClientTlsPolicies(byItem: byItem, options: .init())
+    self.listClientTlsPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists ClientTlsPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
-  public func listClientTlsPolicies(
-    byItem: ListClientTlsPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listClientTlsPoliciesByItems(
+    request: ListClientTlsPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ClientTlsPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListClientTlsPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listClientTlsPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listClientTlsPolicies(
+  public func listClientTlsPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<ClientTlsPolicy, Swift.Error> {
     let request = ListClientTlsPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listClientTlsPolicies(byItem: request)
+    return self.listClientTlsPoliciesByItems(request: request)
   }
 
   public func getClientTlsPolicy(request: GetClientTlsPolicyRequest) async throws
@@ -2706,35 +2706,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGatewaySecurityPolicies(
-    byItem: ListGatewaySecurityPoliciesRequest
+  public func listGatewaySecurityPoliciesByItems(
+    request: ListGatewaySecurityPoliciesRequest
   ) -> any AsyncSequence<GatewaySecurityPolicy, Swift.Error> {
-    self.listGatewaySecurityPolicies(byItem: byItem, options: .init())
+    self.listGatewaySecurityPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists GatewaySecurityPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
-  public func listGatewaySecurityPolicies(
-    byItem: ListGatewaySecurityPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listGatewaySecurityPoliciesByItems(
+    request: ListGatewaySecurityPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GatewaySecurityPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGatewaySecurityPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGatewaySecurityPolicies(
+  public func listGatewaySecurityPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GatewaySecurityPolicy, Swift.Error> {
     let request = ListGatewaySecurityPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listGatewaySecurityPolicies(byItem: request)
+    return self.listGatewaySecurityPoliciesByItems(request: request)
   }
 
   public func getGatewaySecurityPolicy(request: GetGatewaySecurityPolicyRequest) async throws
@@ -2887,35 +2887,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listGatewaySecurityPolicyRules(
-    byItem: ListGatewaySecurityPolicyRulesRequest
+  public func listGatewaySecurityPolicyRulesByItems(
+    request: ListGatewaySecurityPolicyRulesRequest
   ) -> any AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> {
-    self.listGatewaySecurityPolicyRules(byItem: byItem, options: .init())
+    self.listGatewaySecurityPolicyRulesByItems(request: request, options: .init())
   }
 
   /// Lists GatewaySecurityPolicyRules in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
-  public func listGatewaySecurityPolicyRules(
-    byItem: ListGatewaySecurityPolicyRulesRequest, options: GoogleGax.RequestOptions
+  public func listGatewaySecurityPolicyRulesByItems(
+    request: ListGatewaySecurityPolicyRulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPolicyRulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listGatewaySecurityPolicyRules(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listGatewaySecurityPolicyRules(
+  public func listGatewaySecurityPolicyRulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> {
     let request = ListGatewaySecurityPolicyRulesRequest().with {
       $0.parent = parent
     }
-    return self.listGatewaySecurityPolicyRules(byItem: request)
+    return self.listGatewaySecurityPolicyRulesByItems(request: request)
   }
 
   public func getGatewaySecurityPolicyRule(request: GetGatewaySecurityPolicyRuleRequest)
@@ -3073,34 +3073,34 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listUrlLists(
-    byItem: ListUrlListsRequest
+  public func listUrlListsByItems(
+    request: ListUrlListsRequest
   ) -> any AsyncSequence<UrlList, Swift.Error> {
-    self.listUrlLists(byItem: byItem, options: .init())
+    self.listUrlListsByItems(request: request, options: .init())
   }
 
   /// Lists UrlLists in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListUrlLists")
-  public func listUrlLists(
-    byItem: ListUrlListsRequest, options: GoogleGax.RequestOptions
+  public func listUrlListsByItems(
+    request: ListUrlListsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<UrlList, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkSecurityV1.ListUrlListsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listUrlLists(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listUrlLists(
+  public func listUrlListsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<UrlList, Swift.Error> {
     let request = ListUrlListsRequest().with {
       $0.parent = parent
     }
-    return self.listUrlLists(byItem: request)
+    return self.listUrlListsByItems(request: request)
   }
 
   public func getUrlList(request: GetUrlListRequest) async throws
@@ -3253,35 +3253,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listTlsInspectionPolicies(
-    byItem: ListTlsInspectionPoliciesRequest
+  public func listTlsInspectionPoliciesByItems(
+    request: ListTlsInspectionPoliciesRequest
   ) -> any AsyncSequence<TlsInspectionPolicy, Swift.Error> {
-    self.listTlsInspectionPolicies(byItem: byItem, options: .init())
+    self.listTlsInspectionPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists TlsInspectionPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
-  public func listTlsInspectionPolicies(
-    byItem: ListTlsInspectionPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listTlsInspectionPoliciesByItems(
+    request: ListTlsInspectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<TlsInspectionPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListTlsInspectionPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listTlsInspectionPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listTlsInspectionPolicies(
+  public func listTlsInspectionPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<TlsInspectionPolicy, Swift.Error> {
     let request = ListTlsInspectionPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listTlsInspectionPolicies(byItem: request)
+    return self.listTlsInspectionPoliciesByItems(request: request)
   }
 
   public func getTlsInspectionPolicy(request: GetTlsInspectionPolicyRequest) async throws
@@ -3434,35 +3434,35 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAuthzPolicies(
-    byItem: ListAuthzPoliciesRequest
+  public func listAuthzPoliciesByItems(
+    request: ListAuthzPoliciesRequest
   ) -> any AsyncSequence<AuthzPolicy, Swift.Error> {
-    self.listAuthzPolicies(byItem: byItem, options: .init())
+    self.listAuthzPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists AuthzPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
-  public func listAuthzPolicies(
-    byItem: ListAuthzPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listAuthzPoliciesByItems(
+    request: ListAuthzPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AuthzPolicy, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudNetworkSecurityV1.ListAuthzPoliciesResponse
       in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAuthzPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAuthzPolicies(
+  public func listAuthzPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AuthzPolicy, Swift.Error> {
     let request = ListAuthzPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listAuthzPolicies(byItem: request)
+    return self.listAuthzPoliciesByItems(request: request)
   }
 
   public func getAuthzPolicy(request: GetAuthzPolicyRequest) async throws
@@ -3615,10 +3615,10 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -3641,12 +3641,12 @@ extension Clients.NetworkSecurityProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "NetworkSecurity_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -3713,10 +3713,10 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -3724,19 +3724,19 @@ extension Clients.NetworkSecurityProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkSecurity_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -3744,7 +3744,7 @@ extension Clients.NetworkSecurityProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

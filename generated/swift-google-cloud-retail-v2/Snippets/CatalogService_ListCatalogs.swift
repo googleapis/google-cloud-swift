@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient, parent: String) async throws {
-  let items = client.listCatalogs(
-    byItem: ListCatalogsRequest()
+  let items = client.listCatalogsByItems(
+    request: ListCatalogsRequest()
       .with {
         $0.parent = "\(parent)"
       }

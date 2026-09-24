@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String) async throws {
-  let items = client.listRuntimeVersions(
-    byItem: ListRuntimeVersionsRequest()
+  let items = client.listRuntimeVersionsByItems(
+    request: ListRuntimeVersionsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

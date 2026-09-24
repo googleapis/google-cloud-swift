@@ -25,8 +25,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.GeneratorsClient()
-    let items = client.listGenerators(
-      byItem: ListGeneratorsRequest()
+    let items = client.listGeneratorsByItems(
+      request: ListGeneratorsRequest()
         .with {
           $0.parent = "\(parent)"
         }

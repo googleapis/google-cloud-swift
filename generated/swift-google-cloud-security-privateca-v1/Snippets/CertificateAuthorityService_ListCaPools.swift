@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateAuthorityServiceClient, parent: String) async throws {
-  let items = client.listCaPools(
-    byItem: ListCaPoolsRequest()
+  let items = client.listCaPoolsByItems(
+    request: ListCaPoolsRequest()
       .with {
         $0.parent = "\(parent)"
       }

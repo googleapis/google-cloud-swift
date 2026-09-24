@@ -22,8 +22,8 @@ import GoogleIAMV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBinaryAuthorizationV1.BinauthzManagementServiceV1Client()
-  let items = client.listAttestors(
-    byItem: ListAttestorsRequest()
+  let items = client.listAttestorsByItems(
+    request: ListAttestorsRequest()
       .with {
         $0.parent = "\(parent)"
       }

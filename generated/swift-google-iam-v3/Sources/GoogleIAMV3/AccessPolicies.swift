@@ -405,33 +405,33 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAccessPolicies(
-    byItem: ListAccessPoliciesRequest
+  public func listAccessPoliciesByItems(
+    request: ListAccessPoliciesRequest
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
-    self.listAccessPolicies(byItem: byItem, options: .init())
+    self.listAccessPoliciesByItems(request: request, options: .init())
   }
 
   /// Lists access policies.
   ///
   /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
-  public func listAccessPolicies(
-    byItem: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
+  public func listAccessPoliciesByItems(
+    request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleIAMV3.ListAccessPoliciesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAccessPolicies(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAccessPolicies(
+  public func listAccessPoliciesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
     let request = ListAccessPoliciesRequest().with {
       $0.parent = parent
     }
-    return self.listAccessPolicies(byItem: request)
+    return self.listAccessPoliciesByItems(request: request)
   }
 
   public func searchAccessPolicyBindings(request: SearchAccessPolicyBindingsRequest) async throws
@@ -446,35 +446,35 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchAccessPolicyBindings(
-    byItem: SearchAccessPolicyBindingsRequest
+  public func searchAccessPolicyBindingsByItems(
+    request: SearchAccessPolicyBindingsRequest
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
-    self.searchAccessPolicyBindings(byItem: byItem, options: .init())
+    self.searchAccessPolicyBindingsByItems(request: request, options: .init())
   }
 
   /// Returns all policy bindings that bind a specific policy if a user has
   /// searchPolicyBindings permission on that policy.
   ///
   /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
-  public func searchAccessPolicyBindings(
-    byItem: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  public func searchAccessPolicyBindingsByItems(
+    request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchAccessPolicyBindings(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchAccessPolicyBindings(
+  public func searchAccessPolicyBindingsByItems(
     name: Swift.String,
   ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
     let request = SearchAccessPolicyBindingsRequest().with {
       $0.name = name
     }
-    return self.searchAccessPolicyBindings(byItem: request)
+    return self.searchAccessPolicyBindingsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: PolicyTagManagerClient, projectId: String, locationId: String) async throws {
-  let items = client.listTaxonomies(
-    byItem: ListTaxonomiesRequest()
+  let items = client.listTaxonomiesByItems(
+    request: ListTaxonomiesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

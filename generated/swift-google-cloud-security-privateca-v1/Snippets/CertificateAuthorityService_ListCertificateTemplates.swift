@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateAuthorityServiceClient, parent: String) async throws {
-  let items = client.listCertificateTemplates(
-    byItem: ListCertificateTemplatesRequest()
+  let items = client.listCertificateTemplatesByItems(
+    request: ListCertificateTemplatesRequest()
       .with {
         $0.parent = "\(parent)"
       }

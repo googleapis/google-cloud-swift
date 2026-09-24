@@ -24,8 +24,8 @@ import GoogleWKT
 func sample(client: RuleServiceClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let items = client.listRules(
-    byItem: ListRulesRequest()
+  let items = client.listRulesByItems(
+    request: ListRulesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }

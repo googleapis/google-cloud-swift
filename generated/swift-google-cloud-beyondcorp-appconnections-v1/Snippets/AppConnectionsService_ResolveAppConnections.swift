@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppConnectionsServiceClient) async throws {
-  let items = client.resolveAppConnections(
-    byItem: ResolveAppConnectionsRequest()
+  let items = client.resolveAppConnectionsByItems(
+    request: ResolveAppConnectionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

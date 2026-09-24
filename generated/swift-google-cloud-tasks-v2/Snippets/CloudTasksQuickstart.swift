@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudTasksV2.CloudTasksClient()
-  let items = client.listQueues(
-    byItem: ListQueuesRequest()
+  let items = client.listQueuesByItems(
+    request: ListQueuesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

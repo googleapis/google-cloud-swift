@@ -825,10 +825,10 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBuilds(
-    byItem: ListBuildsRequest
+  public func listBuildsByItems(
+    request: ListBuildsRequest
   ) -> any AsyncSequence<Build, Swift.Error> {
-    self.listBuilds(byItem: byItem, options: .init())
+    self.listBuildsByItems(request: request, options: .init())
   }
 
   /// Lists previously requested builds.
@@ -837,18 +837,18 @@ extension Clients.CloudBuildProtocol {
   /// successfully or unsuccessfully.
   ///
   /// @Snippet(path: "CloudBuild_ListBuilds")
-  public func listBuilds(
-    byItem: ListBuildsRequest, options: GoogleGax.RequestOptions
+  public func listBuildsByItems(
+    request: ListBuildsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Build, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBuilds(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBuilds(
+  public func listBuildsByItems(
     projectId: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<Build, Swift.Error> {
@@ -856,7 +856,7 @@ extension Clients.CloudBuildProtocol {
       $0.projectId = projectId
       $0.filter = filter
     }
-    return self.listBuilds(byItem: request)
+    return self.listBuildsByItems(request: request)
   }
 
   public func cancelBuild(request: CancelBuildRequest) async throws -> GoogleCloudBuildV1.Build {
@@ -1049,34 +1049,34 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBuildTriggers(
-    byItem: ListBuildTriggersRequest
+  public func listBuildTriggersByItems(
+    request: ListBuildTriggersRequest
   ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
-    self.listBuildTriggers(byItem: byItem, options: .init())
+    self.listBuildTriggersByItems(request: request, options: .init())
   }
 
   /// Lists existing `BuildTrigger`s.
   ///
   /// @Snippet(path: "CloudBuild_ListBuildTriggers")
-  public func listBuildTriggers(
-    byItem: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
+  public func listBuildTriggersByItems(
+    request: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBuildTriggers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listBuildTriggers(
+  public func listBuildTriggersByItems(
     projectId: Swift.String,
   ) -> any AsyncSequence<BuildTrigger, Swift.Error> {
     let request = ListBuildTriggersRequest().with {
       $0.projectId = projectId
     }
-    return self.listBuildTriggers(byItem: request)
+    return self.listBuildTriggersByItems(request: request)
   }
 
   public func deleteBuildTrigger(request: DeleteBuildTriggerRequest) async throws {
@@ -1337,34 +1337,34 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listWorkerPools(
-    byItem: ListWorkerPoolsRequest
+  public func listWorkerPoolsByItems(
+    request: ListWorkerPoolsRequest
   ) -> any AsyncSequence<WorkerPool, Swift.Error> {
-    self.listWorkerPools(byItem: byItem, options: .init())
+    self.listWorkerPoolsByItems(request: request, options: .init())
   }
 
   /// Lists `WorkerPool`s.
   ///
   /// @Snippet(path: "CloudBuild_ListWorkerPools")
-  public func listWorkerPools(
-    byItem: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
+  public func listWorkerPoolsByItems(
+    request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listWorkerPools(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listWorkerPools(
+  public func listWorkerPoolsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<WorkerPool, Swift.Error> {
     let request = ListWorkerPoolsRequest().with {
       $0.parent = parent
     }
-    return self.listWorkerPools(byItem: request)
+    return self.listWorkerPoolsByItems(request: request)
   }
 
   public func getDefaultServiceAccount(request: GetDefaultServiceAccountRequest) async throws

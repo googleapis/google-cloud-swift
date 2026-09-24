@@ -21,8 +21,8 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: AuthorizedDomainsClient) async throws {
-  let items = client.listAuthorizedDomains(
-    byItem: ListAuthorizedDomainsRequest()
+  let items = client.listAuthorizedDomainsByItems(
+    request: ListAuthorizedDomainsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

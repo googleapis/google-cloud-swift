@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.IndexEndpointServiceClient()
-    let items = client.listIndexEndpoints(
-      byItem: ListIndexEndpointsRequest()
+    let items = client.listIndexEndpointsByItems(
+      request: ListIndexEndpointsRequest()
         .with {
           $0.parent = "\(parent)"
         }

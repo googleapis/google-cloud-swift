@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(client: VideoStitcherServiceClient, projectId: String, locationId: String) async throws
 {
-  let items = client.listLiveConfigs(
-    byItem: ListLiveConfigsRequest()
+  let items = client.listLiveConfigsByItems(
+    request: ListLiveConfigsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

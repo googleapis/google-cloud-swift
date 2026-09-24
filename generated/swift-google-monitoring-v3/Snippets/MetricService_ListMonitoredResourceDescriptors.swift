@@ -21,8 +21,8 @@ import GoogleCloudMonitoringV3
 import GoogleApi
 
 func sample(client: MetricServiceClient) async throws {
-  let items = client.listMonitoredResourceDescriptors(
-    byItem: ListMonitoredResourceDescriptorsRequest()
+  let items = client.listMonitoredResourceDescriptorsByItems(
+    request: ListMonitoredResourceDescriptorsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -28,8 +28,8 @@
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String,
     sessionId: String
   ) async throws {
-    let items = client.listEvents(
-      byItem: ListEventsRequest()
+    let items = client.listEventsByItems(
+      request: ListEventsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/reasoningEngines/\(reasoningEngineId)/sessions/\(sessionId)"

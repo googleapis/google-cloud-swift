@@ -386,35 +386,35 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAvailableVersions(
-    byItem: ListAvailableVersionsRequest
+  public func listAvailableVersionsByItems(
+    request: ListAvailableVersionsRequest
   ) -> any AsyncSequence<Version, Swift.Error> {
-    self.listAvailableVersions(byItem: byItem, options: .init())
+    self.listAvailableVersionsByItems(request: request, options: .init())
   }
 
   /// Lists possible versions for Data Fusion instances in the specified project
   /// and location.
   ///
   /// @Snippet(path: "DataFusion_ListAvailableVersions")
-  public func listAvailableVersions(
-    byItem: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions
+  public func listAvailableVersionsByItems(
+    request: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Version, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataFusionV1.ListAvailableVersionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAvailableVersions(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listAvailableVersions(
+  public func listAvailableVersionsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Version, Swift.Error> {
     let request = ListAvailableVersionsRequest().with {
       $0.parent = parent
     }
-    return self.listAvailableVersions(byItem: request)
+    return self.listAvailableVersionsByItems(request: request)
   }
 
   public func listInstances(request: ListInstancesRequest) async throws
@@ -429,21 +429,21 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listInstances(
-    byItem: ListInstancesRequest
+  public func listInstancesByItems(
+    request: ListInstancesRequest
   ) -> any AsyncSequence<Instance, Swift.Error> {
-    self.listInstances(byItem: byItem, options: .init())
+    self.listInstancesByItems(request: request, options: .init())
   }
 
   /// Lists Data Fusion instances in the specified project and location.
   ///
   /// @Snippet(path: "DataFusion_ListInstances")
-  public func listInstances(
-    byItem: ListInstancesRequest, options: GoogleGax.RequestOptions
+  public func listInstancesByItems(
+    request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudDataFusionV1.ListInstancesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
@@ -619,10 +619,10 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -630,19 +630,19 @@ extension Clients.DataFusionProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataFusion_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -650,7 +650,7 @@ extension Clients.DataFusionProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

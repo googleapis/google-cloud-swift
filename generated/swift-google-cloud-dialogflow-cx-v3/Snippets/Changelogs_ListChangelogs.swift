@@ -25,8 +25,8 @@
   func sample(client: ChangelogsClient, projectId: String, locationId: String, agentId: String)
     async throws
   {
-    let items = client.listChangelogs(
-      byItem: ListChangelogsRequest()
+    let items = client.listChangelogsByItems(
+      request: ListChangelogsRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"
         }

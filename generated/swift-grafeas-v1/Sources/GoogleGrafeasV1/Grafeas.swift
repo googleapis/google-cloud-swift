@@ -296,27 +296,27 @@ extension Clients.GrafeasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOccurrences(
-    byItem: ListOccurrencesRequest
+  public func listOccurrencesByItems(
+    request: ListOccurrencesRequest
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
-    self.listOccurrences(byItem: byItem, options: .init())
+    self.listOccurrencesByItems(request: request, options: .init())
   }
 
   /// Lists occurrences for the specified project.
   ///
   /// @Snippet(path: "Grafeas_ListOccurrences")
-  public func listOccurrences(
-    byItem: ListOccurrencesRequest, options: GoogleGax.RequestOptions
+  public func listOccurrencesByItems(
+    request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOccurrences(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOccurrences(
+  public func listOccurrencesByItems(
     parent: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
@@ -324,7 +324,7 @@ extension Clients.GrafeasProtocol {
       $0.parent = parent
       $0.filter = filter
     }
-    return self.listOccurrences(byItem: request)
+    return self.listOccurrencesByItems(request: request)
   }
 
   public func deleteOccurrence(request: DeleteOccurrenceRequest) async throws {
@@ -468,27 +468,27 @@ extension Clients.GrafeasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNotes(
-    byItem: ListNotesRequest
+  public func listNotesByItems(
+    request: ListNotesRequest
   ) -> any AsyncSequence<Note, Swift.Error> {
-    self.listNotes(byItem: byItem, options: .init())
+    self.listNotesByItems(request: request, options: .init())
   }
 
   /// Lists notes for the specified project.
   ///
   /// @Snippet(path: "Grafeas_ListNotes")
-  public func listNotes(
-    byItem: ListNotesRequest, options: GoogleGax.RequestOptions
+  public func listNotesByItems(
+    request: ListNotesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Note, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNotes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNotes(
+  public func listNotesByItems(
     parent: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<Note, Swift.Error> {
@@ -496,7 +496,7 @@ extension Clients.GrafeasProtocol {
       $0.parent = parent
       $0.filter = filter
     }
-    return self.listNotes(byItem: request)
+    return self.listNotesByItems(request: request)
   }
 
   public func deleteNote(request: DeleteNoteRequest) async throws {
@@ -599,10 +599,10 @@ extension Clients.GrafeasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listNoteOccurrences(
-    byItem: ListNoteOccurrencesRequest
+  public func listNoteOccurrencesByItems(
+    request: ListNoteOccurrencesRequest
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
-    self.listNoteOccurrences(byItem: byItem, options: .init())
+    self.listNoteOccurrencesByItems(request: request, options: .init())
   }
 
   /// Lists occurrences referencing the specified note. Provider projects can use
@@ -610,19 +610,19 @@ extension Clients.GrafeasProtocol {
   /// specified note.
   ///
   /// @Snippet(path: "Grafeas_ListNoteOccurrences")
-  public func listNoteOccurrences(
-    byItem: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
+  public func listNoteOccurrencesByItems(
+    request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listNoteOccurrences(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listNoteOccurrences(
+  public func listNoteOccurrencesByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<Occurrence, Swift.Error> {
@@ -630,6 +630,6 @@ extension Clients.GrafeasProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listNoteOccurrences(byItem: request)
+    return self.listNoteOccurrencesByItems(request: request)
   }
 }

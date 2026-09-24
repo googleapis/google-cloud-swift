@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String, caPoolId: String
 ) async throws {
-  let items = client.listCertificates(
-    byItem: ListCertificatesRequest()
+  let items = client.listCertificatesByItems(
+    request: ListCertificatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/caPools/\(caPoolId)"
       }

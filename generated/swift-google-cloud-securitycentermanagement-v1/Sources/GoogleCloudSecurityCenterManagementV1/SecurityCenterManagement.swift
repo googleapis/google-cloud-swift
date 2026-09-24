@@ -530,10 +530,11 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEffectiveSecurityHealthAnalyticsCustomModules(
-    byItem: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
+  public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
+    request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
   ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> {
-    self.listEffectiveSecurityHealthAnalyticsCustomModules(byItem: byItem, options: .init())
+    self.listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
+      request: request, options: .init())
   }
 
   /// Returns a list of all
@@ -545,15 +546,15 @@ extension Clients.SecurityCenterManagementProtocol {
   /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
-  public func listEffectiveSecurityHealthAnalyticsCustomModules(
-    byItem: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
+  public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
+    request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListEffectiveSecurityHealthAnalyticsCustomModulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEffectiveSecurityHealthAnalyticsCustomModules(
         request: request, options: options)
@@ -561,13 +562,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEffectiveSecurityHealthAnalyticsCustomModules(
+  public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> {
     let request = ListEffectiveSecurityHealthAnalyticsCustomModulesRequest().with {
       $0.parent = parent
     }
-    return self.listEffectiveSecurityHealthAnalyticsCustomModules(byItem: request)
+    return self.listEffectiveSecurityHealthAnalyticsCustomModulesByItems(request: request)
   }
 
   public func getEffectiveSecurityHealthAnalyticsCustomModule(
@@ -615,10 +616,10 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSecurityHealthAnalyticsCustomModules(
-    byItem: ListSecurityHealthAnalyticsCustomModulesRequest
+  public func listSecurityHealthAnalyticsCustomModulesByItems(
+    request: ListSecurityHealthAnalyticsCustomModulesRequest
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
-    self.listSecurityHealthAnalyticsCustomModules(byItem: byItem, options: .init())
+    self.listSecurityHealthAnalyticsCustomModulesByItems(request: request, options: .init())
   }
 
   /// Returns a list of all
@@ -630,13 +631,13 @@ extension Clients.SecurityCenterManagementProtocol {
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
-  public func listSecurityHealthAnalyticsCustomModules(
-    byItem: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
+  public func listSecurityHealthAnalyticsCustomModulesByItems(
+    request: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSecurityHealthAnalyticsCustomModules(
         request: request, options: options)
@@ -644,13 +645,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSecurityHealthAnalyticsCustomModules(
+  public func listSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
     let request = ListSecurityHealthAnalyticsCustomModulesRequest().with {
       $0.parent = parent
     }
-    return self.listSecurityHealthAnalyticsCustomModules(byItem: request)
+    return self.listSecurityHealthAnalyticsCustomModulesByItems(request: request)
   }
 
   public func listDescendantSecurityHealthAnalyticsCustomModules(
@@ -673,10 +674,11 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDescendantSecurityHealthAnalyticsCustomModules(
-    byItem: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
+  public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
+    request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
-    self.listDescendantSecurityHealthAnalyticsCustomModules(byItem: byItem, options: .init())
+    self.listDescendantSecurityHealthAnalyticsCustomModulesByItems(
+      request: request, options: .init())
   }
 
   /// Returns a list of all resident
@@ -687,15 +689,15 @@ extension Clients.SecurityCenterManagementProtocol {
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
-  public func listDescendantSecurityHealthAnalyticsCustomModules(
-    byItem: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
+  public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
+    request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListDescendantSecurityHealthAnalyticsCustomModulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDescendantSecurityHealthAnalyticsCustomModules(
         request: request, options: options)
@@ -703,13 +705,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDescendantSecurityHealthAnalyticsCustomModules(
+  public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> {
     let request = ListDescendantSecurityHealthAnalyticsCustomModulesRequest().with {
       $0.parent = parent
     }
-    return self.listDescendantSecurityHealthAnalyticsCustomModules(byItem: request)
+    return self.listDescendantSecurityHealthAnalyticsCustomModulesByItems(request: request)
   }
 
   public func getSecurityHealthAnalyticsCustomModule(
@@ -849,10 +851,10 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEffectiveEventThreatDetectionCustomModules(
-    byItem: ListEffectiveEventThreatDetectionCustomModulesRequest
+  public func listEffectiveEventThreatDetectionCustomModulesByItems(
+    request: ListEffectiveEventThreatDetectionCustomModulesRequest
   ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> {
-    self.listEffectiveEventThreatDetectionCustomModules(byItem: byItem, options: .init())
+    self.listEffectiveEventThreatDetectionCustomModulesByItems(request: request, options: .init())
   }
 
   /// Lists all effective Event Threat Detection custom modules for the
@@ -860,14 +862,15 @@ extension Clients.SecurityCenterManagementProtocol {
   /// parent along with modules inherited from its ancestors.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
-  public func listEffectiveEventThreatDetectionCustomModules(
-    byItem: ListEffectiveEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
+  public func listEffectiveEventThreatDetectionCustomModulesByItems(
+    request: ListEffectiveEventThreatDetectionCustomModulesRequest,
+    options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListEffectiveEventThreatDetectionCustomModulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEffectiveEventThreatDetectionCustomModules(
         request: request, options: options)
@@ -875,13 +878,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEffectiveEventThreatDetectionCustomModules(
+  public func listEffectiveEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> {
     let request = ListEffectiveEventThreatDetectionCustomModulesRequest().with {
       $0.parent = parent
     }
-    return self.listEffectiveEventThreatDetectionCustomModules(byItem: request)
+    return self.listEffectiveEventThreatDetectionCustomModulesByItems(request: request)
   }
 
   public func getEffectiveEventThreatDetectionCustomModule(
@@ -924,10 +927,10 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listEventThreatDetectionCustomModules(
-    byItem: ListEventThreatDetectionCustomModulesRequest
+  public func listEventThreatDetectionCustomModulesByItems(
+    request: ListEventThreatDetectionCustomModulesRequest
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
-    self.listEventThreatDetectionCustomModules(byItem: byItem, options: .init())
+    self.listEventThreatDetectionCustomModulesByItems(request: request, options: .init())
   }
 
   /// Lists all Event Threat Detection custom modules for the given organization,
@@ -935,13 +938,13 @@ extension Clients.SecurityCenterManagementProtocol {
   /// the parent along with modules inherited from ancestors.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
-  public func listEventThreatDetectionCustomModules(
-    byItem: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
+  public func listEventThreatDetectionCustomModulesByItems(
+    request: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listEventThreatDetectionCustomModules(
         request: request, options: options)
@@ -949,13 +952,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listEventThreatDetectionCustomModules(
+  public func listEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
     let request = ListEventThreatDetectionCustomModulesRequest().with {
       $0.parent = parent
     }
-    return self.listEventThreatDetectionCustomModules(byItem: request)
+    return self.listEventThreatDetectionCustomModulesByItems(request: request)
   }
 
   public func listDescendantEventThreatDetectionCustomModules(
@@ -976,25 +979,25 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listDescendantEventThreatDetectionCustomModules(
-    byItem: ListDescendantEventThreatDetectionCustomModulesRequest
+  public func listDescendantEventThreatDetectionCustomModulesByItems(
+    request: ListDescendantEventThreatDetectionCustomModulesRequest
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
-    self.listDescendantEventThreatDetectionCustomModules(byItem: byItem, options: .init())
+    self.listDescendantEventThreatDetectionCustomModulesByItems(request: request, options: .init())
   }
 
   /// Lists all resident Event Threat Detection custom modules for the given
   /// organization, folder, or project and its descendants.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
-  public func listDescendantEventThreatDetectionCustomModules(
-    byItem: ListDescendantEventThreatDetectionCustomModulesRequest,
+  public func listDescendantEventThreatDetectionCustomModulesByItems(
+    request: ListDescendantEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
         .ListDescendantEventThreatDetectionCustomModulesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listDescendantEventThreatDetectionCustomModules(
         request: request, options: options)
@@ -1002,13 +1005,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listDescendantEventThreatDetectionCustomModules(
+  public func listDescendantEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> {
     let request = ListDescendantEventThreatDetectionCustomModulesRequest().with {
       $0.parent = parent
     }
-    return self.listDescendantEventThreatDetectionCustomModules(byItem: request)
+    return self.listDescendantEventThreatDetectionCustomModulesByItems(request: request)
   }
 
   public func getEventThreatDetectionCustomModule(
@@ -1148,36 +1151,36 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSecurityCenterServices(
-    byItem: ListSecurityCenterServicesRequest
+  public func listSecurityCenterServicesByItems(
+    request: ListSecurityCenterServicesRequest
   ) -> any AsyncSequence<SecurityCenterService, Swift.Error> {
-    self.listSecurityCenterServices(byItem: byItem, options: .init())
+    self.listSecurityCenterServicesByItems(request: request, options: .init())
   }
 
   /// Returns a list of all Security Command Center services for the given
   /// parent.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
-  public func listSecurityCenterServices(
-    byItem: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
+  public func listSecurityCenterServicesByItems(
+    request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SecurityCenterService, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSecurityCenterServices(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSecurityCenterServices(
+  public func listSecurityCenterServicesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SecurityCenterService, Swift.Error> {
     let request = ListSecurityCenterServicesRequest().with {
       $0.parent = parent
     }
-    return self.listSecurityCenterServices(byItem: request)
+    return self.listSecurityCenterServicesByItems(request: request)
   }
 
   public func updateSecurityCenterService(request: UpdateSecurityCenterServiceRequest) async throws
@@ -1215,21 +1218,21 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }

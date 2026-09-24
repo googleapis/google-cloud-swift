@@ -23,8 +23,8 @@ import GoogleWKT
 func sample(
   client: RecaptchaEnterpriseServiceClient, projectId: String, relatedaccountgroupId: String
 ) async throws {
-  let items = client.listRelatedAccountGroupMemberships(
-    byItem: ListRelatedAccountGroupMembershipsRequest()
+  let items = client.listRelatedAccountGroupMembershipsByItems(
+    request: ListRelatedAccountGroupMembershipsRequest()
       .with {
         $0.parent = "projects/\(projectId)/relatedaccountgroups/\(relatedaccountgroupId)"
       }

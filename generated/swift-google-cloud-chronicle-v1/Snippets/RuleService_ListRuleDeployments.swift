@@ -25,8 +25,8 @@ func sample(
   client: RuleServiceClient, projectId: String, locationId: String, instanceId: String,
   ruleId: String
 ) async throws {
-  let items = client.listRuleDeployments(
-    byItem: ListRuleDeploymentsRequest()
+  let items = client.listRuleDeploymentsByItems(
+    request: ListRuleDeploymentsRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/rules/\(ruleId)"

@@ -22,8 +22,8 @@
   import GoogleLongRunning
 
   func sample(client: SearchServiceClient) async throws {
-    let items = client.searchLite(
-      byItem: SearchRequest()
+    let items = client.searchLiteByItems(
+      request: SearchRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

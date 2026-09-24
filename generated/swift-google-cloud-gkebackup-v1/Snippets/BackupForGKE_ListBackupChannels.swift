@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupForGKEClient, parent: String) async throws {
-  let items = client.listBackupChannels(
-    byItem: ListBackupChannelsRequest()
+  let items = client.listBackupChannelsByItems(
+    request: ListBackupChannelsRequest()
       .with {
         $0.parent = "\(parent)"
       }

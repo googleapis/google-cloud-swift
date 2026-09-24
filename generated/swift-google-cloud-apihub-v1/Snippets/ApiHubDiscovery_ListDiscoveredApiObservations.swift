@@ -22,8 +22,8 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: ApiHubDiscoveryClient, projectId: String, locationId: String) async throws {
-  let items = client.listDiscoveredApiObservations(
-    byItem: ListDiscoveredApiObservationsRequest()
+  let items = client.listDiscoveredApiObservationsByItems(
+    request: ListDiscoveredApiObservationsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

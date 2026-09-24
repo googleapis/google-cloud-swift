@@ -27,8 +27,8 @@
     async throws
   {
     let client = try GoogleCloudDialogflowCXV3.ExperimentsClient()
-    let items = client.listExperiments(
-      byItem: ListExperimentsRequest()
+    let items = client.listExperimentsByItems(
+      request: ListExperimentsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/environments/\(environmentId)"

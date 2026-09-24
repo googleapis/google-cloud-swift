@@ -27,8 +27,8 @@
   func sample(
     client: DatasetServiceClient, projectId: String, locationId: String, datasetId: String
   ) async throws {
-    let items = client.listSavedQueries(
-      byItem: ListSavedQueriesRequest()
+    let items = client.listSavedQueriesByItems(
+      request: ListSavedQueriesRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)"
         }

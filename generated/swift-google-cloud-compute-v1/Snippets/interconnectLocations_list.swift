@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: InterconnectLocationsClient) async throws {
-    let items = client.list(
-      byItem: InterconnectLocationsClient.ListRequest()
+    let items = client.listByItems(
+      request: InterconnectLocationsClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

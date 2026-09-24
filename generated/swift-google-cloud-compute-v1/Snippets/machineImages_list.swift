@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: MachineImagesClient) async throws {
-    let items = client.list(
-      byItem: MachineImagesClient.ListRequest()
+    let items = client.listByItems(
+      request: MachineImagesClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

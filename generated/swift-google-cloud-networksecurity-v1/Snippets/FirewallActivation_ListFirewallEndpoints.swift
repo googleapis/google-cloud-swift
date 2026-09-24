@@ -26,8 +26,8 @@ import GoogleWKT
 func sample(client: FirewallActivationClient, organizationId: String, locationId: String)
   async throws
 {
-  let items = client.listFirewallEndpoints(
-    byItem: ListFirewallEndpointsRequest()
+  let items = client.listFirewallEndpointsByItems(
+    request: ListFirewallEndpointsRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
       }

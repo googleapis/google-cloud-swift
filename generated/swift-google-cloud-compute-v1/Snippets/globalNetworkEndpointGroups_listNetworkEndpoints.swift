@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: GlobalNetworkEndpointGroupsClient) async throws {
-    let items = client.listNetworkEndpoints(
-      byItem: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest()
+    let items = client.listNetworkEndpointsByItems(
+      request: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

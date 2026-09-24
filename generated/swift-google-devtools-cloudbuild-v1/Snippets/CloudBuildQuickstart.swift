@@ -23,8 +23,8 @@ import GoogleWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudBuildV1.CloudBuildClient()
-  let items = client.listBuilds(
-    byItem: ListBuildsRequest()
+  let items = client.listBuildsByItems(
+    request: ListBuildsRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

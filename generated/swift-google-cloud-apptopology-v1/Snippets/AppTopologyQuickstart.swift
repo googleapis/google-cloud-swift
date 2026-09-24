@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudAppTopologyV1.AppTopologyClient()
-  let items = client.listDomains(
-    byItem: ListDomainsRequest()
+  let items = client.listDomainsByItems(
+    request: ListDomainsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

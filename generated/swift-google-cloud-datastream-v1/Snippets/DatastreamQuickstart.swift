@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDatastreamV1.DatastreamClient()
-  let items = client.listConnectionProfiles(
-    byItem: ListConnectionProfilesRequest()
+  let items = client.listConnectionProfilesByItems(
+    request: ListConnectionProfilesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

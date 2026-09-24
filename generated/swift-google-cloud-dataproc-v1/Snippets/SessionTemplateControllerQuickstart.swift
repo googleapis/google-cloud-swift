@@ -23,8 +23,8 @@ import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataprocV1.SessionTemplateControllerClient()
-  let items = client.listSessionTemplates(
-    byItem: ListSessionTemplatesRequest()
+  let items = client.listSessionTemplatesByItems(
+    request: ListSessionTemplatesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

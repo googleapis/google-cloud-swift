@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudFTPV1.CloudFtpClient()
-  let items = client.listServers(
-    byItem: ListServersRequest()
+  let items = client.listServersByItems(
+    request: ListServersRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

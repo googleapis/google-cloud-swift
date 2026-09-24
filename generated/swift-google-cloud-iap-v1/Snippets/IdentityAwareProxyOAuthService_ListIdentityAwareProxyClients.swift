@@ -20,8 +20,8 @@ import Foundation
 import GoogleCloudIAPV1
 
 func sample(client: IdentityAwareProxyOAuthServiceClient) async throws {
-  let items = client.listIdentityAwareProxyClients(
-    byItem: ListIdentityAwareProxyClientsRequest()
+  let items = client.listIdentityAwareProxyClientsByItems(
+    request: ListIdentityAwareProxyClientsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

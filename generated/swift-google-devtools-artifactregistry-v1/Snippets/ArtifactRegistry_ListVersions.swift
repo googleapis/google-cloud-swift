@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient, parent: String) async throws {
-  let items = client.listVersions(
-    byItem: ListVersionsRequest()
+  let items = client.listVersionsByItems(
+    request: ListVersionsRequest()
       .with {
         $0.parent = "\(parent)"
       }

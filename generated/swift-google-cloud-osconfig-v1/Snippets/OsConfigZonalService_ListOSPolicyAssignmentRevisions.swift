@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OsConfigZonalServiceClient) async throws {
-  let items = client.listOspolicyAssignmentRevisions(
-    byItem: ListOSPolicyAssignmentRevisionsRequest()
+  let items = client.listOspolicyAssignmentRevisionsByItems(
+    request: ListOSPolicyAssignmentRevisionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

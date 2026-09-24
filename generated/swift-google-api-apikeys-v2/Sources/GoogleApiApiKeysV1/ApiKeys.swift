@@ -424,10 +424,10 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listKeys(
-    byItem: ListKeysRequest
+  public func listKeysByItems(
+    request: ListKeysRequest
   ) -> any AsyncSequence<Key, Swift.Error> {
-    self.listKeys(byItem: byItem, options: .init())
+    self.listKeysByItems(request: request, options: .init())
   }
 
   /// Lists the API keys owned by a project. The key string of the API key
@@ -437,24 +437,24 @@ extension Clients.ApiKeysProtocol {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_ListKeys")
-  public func listKeys(
-    byItem: ListKeysRequest, options: GoogleGax.RequestOptions
+  public func listKeysByItems(
+    request: ListKeysRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Key, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listKeys(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listKeys(
+  public func listKeysByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Key, Swift.Error> {
     let request = ListKeysRequest().with {
       $0.parent = parent
     }
-    return self.listKeys(byItem: request)
+    return self.listKeysByItems(request: request)
   }
 
   public func getKey(request: GetKeyRequest) async throws -> GoogleApiApiKeysV1.Key {

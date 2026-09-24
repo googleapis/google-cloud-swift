@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, volumeId: String)
   async throws
 {
-  let items = client.listSnapshots(
-    byItem: ListSnapshotsRequest()
+  let items = client.listSnapshotsByItems(
+    request: ListSnapshotsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"
       }

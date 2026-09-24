@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudNetworkSecurityV1.NetworkSecurityClient()
-  let items = client.listAuthorizationPolicies(
-    byItem: ListAuthorizationPoliciesRequest()
+  let items = client.listAuthorizationPoliciesByItems(
+    request: ListAuthorizationPoliciesRequest()
       .with {
         $0.parent = "\(parent)"
       }

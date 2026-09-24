@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let items = client.listTlsRoutes(
-    byItem: ListTlsRoutesRequest()
+  let items = client.listTlsRoutesByItems(
+    request: ListTlsRoutesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

@@ -21,8 +21,8 @@ import GoogleCloudOrgPolicyV2
 import GoogleWKT
 
 func sample(client: OrgPolicyClient, projectId: String) async throws {
-  let items = client.listConstraints(
-    byItem: ListConstraintsRequest()
+  let items = client.listConstraintsByItems(
+    request: ListConstraintsRequest()
       .with {
         $0.parent = "projects/\(projectId)"
       }

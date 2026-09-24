@@ -24,8 +24,8 @@ import GoogleLongRunning
 
 func sample(client: ClientGatewaysServiceClient, projectId: String, locationId: String) async throws
 {
-  let items = client.listClientGateways(
-    byItem: ListClientGatewaysRequest()
+  let items = client.listClientGatewaysByItems(
+    request: ListClientGatewaysRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

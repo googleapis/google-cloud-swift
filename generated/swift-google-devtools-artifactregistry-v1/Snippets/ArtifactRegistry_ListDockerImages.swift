@@ -24,8 +24,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient, parent: String) async throws {
-  let items = client.listDockerImages(
-    byItem: ListDockerImagesRequest()
+  let items = client.listDockerImagesByItems(
+    request: ListDockerImagesRequest()
       .with {
         $0.parent = "\(parent)"
       }

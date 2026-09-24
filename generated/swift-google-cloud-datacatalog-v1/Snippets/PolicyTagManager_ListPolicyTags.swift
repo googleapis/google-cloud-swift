@@ -25,8 +25,8 @@ import GoogleWKT
 func sample(
   client: PolicyTagManagerClient, projectId: String, locationId: String, taxonomyId: String
 ) async throws {
-  let items = client.listPolicyTags(
-    byItem: ListPolicyTagsRequest()
+  let items = client.listPolicyTagsByItems(
+    request: ListPolicyTagsRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/taxonomies/\(taxonomyId)"
       }

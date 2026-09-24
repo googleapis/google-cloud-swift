@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProjectsClient) async throws {
-  let items = client.searchProjects(
-    byItem: SearchProjectsRequest()
+  let items = client.searchProjectsByItems(
+    request: SearchProjectsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -21,8 +21,8 @@ import GoogleCloudAccessApprovalV1
 import GoogleWKT
 
 func sample(client: AccessApprovalClient) async throws {
-  let items = client.listApprovalRequests(
-    byItem: ListApprovalRequestsMessage()
+  let items = client.listApprovalRequestsByItems(
+    request: ListApprovalRequestsMessage()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

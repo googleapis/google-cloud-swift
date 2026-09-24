@@ -21,8 +21,8 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagBindingsClient, parent: String) async throws {
-  let items = client.listTagBindings(
-    byItem: ListTagBindingsRequest()
+  let items = client.listTagBindingsByItems(
+    request: ListTagBindingsRequest()
       .with {
         $0.parent = "\(parent)"
       }

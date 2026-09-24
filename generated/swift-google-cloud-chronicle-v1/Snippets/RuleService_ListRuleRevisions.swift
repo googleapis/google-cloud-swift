@@ -22,8 +22,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RuleServiceClient) async throws {
-  let items = client.listRuleRevisions(
-    byItem: ListRuleRevisionsRequest()
+  let items = client.listRuleRevisionsByItems(
+    request: ListRuleRevisionsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

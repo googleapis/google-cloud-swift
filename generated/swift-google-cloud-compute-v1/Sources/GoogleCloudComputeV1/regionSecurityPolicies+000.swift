@@ -691,29 +691,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: RegionSecurityPoliciesClient.ListRequest
+    public func listByItems(
+      request: RegionSecurityPoliciesClient.ListRequest
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// List all the policies that have been configured for the specified project
     /// and region.
     ///
     /// @Snippet(path: "regionSecurityPolicies_list")
-    public func list(
-      byItem: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       region: Swift.String,
     ) -> any AsyncSequence<SecurityPolicy, Swift.Error> {
@@ -721,7 +721,7 @@
         $0.project = project
         $0.region = region
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func patch(request: RegionSecurityPoliciesClient.PatchRequest) async throws

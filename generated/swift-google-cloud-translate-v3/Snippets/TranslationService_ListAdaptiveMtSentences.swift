@@ -26,8 +26,8 @@ func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, datasetId: String,
   fileId: String
 ) async throws {
-  let items = client.listAdaptiveMtSentences(
-    byItem: ListAdaptiveMtSentencesRequest()
+  let items = client.listAdaptiveMtSentencesByItems(
+    request: ListAdaptiveMtSentencesRequest()
       .with {
         $0.parent =
           "projects/\(projectId)/locations/\(locationId)/adaptiveMtDatasets/\(datasetId)/adaptiveMtFiles/\(fileId)"

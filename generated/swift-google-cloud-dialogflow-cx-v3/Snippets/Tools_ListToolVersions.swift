@@ -26,8 +26,8 @@
   func sample(
     client: ToolsClient, projectId: String, locationId: String, agentId: String, toolId: String
   ) async throws {
-    let items = client.listToolVersions(
-      byItem: ListToolVersionsRequest()
+    let items = client.listToolVersionsByItems(
+      request: ListToolVersionsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/tools/\(toolId)"

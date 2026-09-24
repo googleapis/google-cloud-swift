@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudRedisClusterClient, parent: String) async throws {
-  let items = client.listClusters(
-    byItem: ListClustersRequest()
+  let items = client.listClustersByItems(
+    request: ListClustersRequest()
       .with {
         $0.parent = "\(parent)"
       }

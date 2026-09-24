@@ -152,34 +152,34 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listQuotaInfos(
-    byItem: ListQuotaInfosRequest
+  public func listQuotaInfosByItems(
+    request: ListQuotaInfosRequest
   ) -> any AsyncSequence<QuotaInfo, Swift.Error> {
-    self.listQuotaInfos(byItem: byItem, options: .init())
+    self.listQuotaInfosByItems(request: request, options: .init())
   }
 
   /// Lists QuotaInfos of all quotas for a given project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
-  public func listQuotaInfos(
-    byItem: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
+  public func listQuotaInfosByItems(
+    request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<QuotaInfo, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listQuotaInfos(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listQuotaInfos(
+  public func listQuotaInfosByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<QuotaInfo, Swift.Error> {
     let request = ListQuotaInfosRequest().with {
       $0.parent = parent
     }
-    return self.listQuotaInfos(byItem: request)
+    return self.listQuotaInfosByItems(request: request)
   }
 
   public func getQuotaInfo(request: GetQuotaInfoRequest) async throws
@@ -215,34 +215,34 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listQuotaPreferences(
-    byItem: ListQuotaPreferencesRequest
+  public func listQuotaPreferencesByItems(
+    request: ListQuotaPreferencesRequest
   ) -> any AsyncSequence<QuotaPreference, Swift.Error> {
-    self.listQuotaPreferences(byItem: byItem, options: .init())
+    self.listQuotaPreferencesByItems(request: request, options: .init())
   }
 
   /// Lists QuotaPreferences in a given project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
-  public func listQuotaPreferences(
-    byItem: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
+  public func listQuotaPreferencesByItems(
+    request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<QuotaPreference, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listQuotaPreferences(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listQuotaPreferences(
+  public func listQuotaPreferencesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<QuotaPreference, Swift.Error> {
     let request = ListQuotaPreferencesRequest().with {
       $0.parent = parent
     }
-    return self.listQuotaPreferences(byItem: request)
+    return self.listQuotaPreferencesByItems(request: request)
   }
 
   public func getQuotaPreference(request: GetQuotaPreferenceRequest) async throws

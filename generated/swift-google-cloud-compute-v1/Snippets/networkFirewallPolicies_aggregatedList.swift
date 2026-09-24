@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworkFirewallPoliciesClient) async throws {
-    let items = client.aggregatedList(
-      byItem: NetworkFirewallPoliciesClient.AggregatedListRequest()
+    let items = client.aggregatedListByItems(
+      request: NetworkFirewallPoliciesClient.AggregatedListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

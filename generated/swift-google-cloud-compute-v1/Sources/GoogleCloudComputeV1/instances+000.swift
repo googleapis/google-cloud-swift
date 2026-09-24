@@ -2602,10 +2602,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func aggregatedList(
-      byItem: InstancesClient.AggregatedListRequest
+    public func aggregatedListByItems(
+      request: InstancesClient.AggregatedListRequest
     ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
-      self.aggregatedList(byItem: byItem, options: .init())
+      self.aggregatedListByItems(request: request, options: .init())
     }
 
     /// Retrieves an aggregated list of all of the instances in your project
@@ -2618,25 +2618,25 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instances_aggregatedList")
-    public func aggregatedList(
-      byItem: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
+    public func aggregatedListByItems(
+      request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func aggregatedList(
+    public func aggregatedListByItems(
       project: Swift.String,
     ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> {
       let request = InstancesClient.AggregatedListRequest().with {
         $0.project = project
       }
-      return self.aggregatedList(byItem: request)
+      return self.aggregatedListByItems(request: request)
     }
 
     public func attachDisk(request: InstancesClient.AttachDiskRequest) async throws
@@ -3132,28 +3132,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func list(
-      byItem: InstancesClient.ListRequest
+    public func listByItems(
+      request: InstancesClient.ListRequest
     ) -> any AsyncSequence<Instance, Swift.Error> {
-      self.list(byItem: byItem, options: .init())
+      self.listByItems(request: request, options: .init())
     }
 
     /// Retrieves the list of instances contained within
     /// the specified zone.
     ///
     /// @Snippet(path: "instances_list")
-    public func list(
-      byItem: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
+    public func listByItems(
+      request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Instance, Swift.Error> {
       let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func list(
+    public func listByItems(
       project: Swift.String,
       zone: Swift.String,
     ) -> any AsyncSequence<Instance, Swift.Error> {
@@ -3161,7 +3161,7 @@
         $0.project = project
         $0.zone = zone
       }
-      return self.list(byItem: request)
+      return self.listByItems(request: request)
     }
 
     public func listReferrers(request: InstancesClient.ListReferrersRequest) async throws
@@ -3176,10 +3176,10 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func listReferrers(
-      byItem: InstancesClient.ListReferrersRequest
+    public func listReferrersByItems(
+      request: InstancesClient.ListReferrersRequest
     ) -> any AsyncSequence<Reference, Swift.Error> {
-      self.listReferrers(byItem: byItem, options: .init())
+      self.listReferrersByItems(request: request, options: .init())
     }
 
     /// Retrieves a list of resources that refer to the VM instance specified in
@@ -3189,19 +3189,19 @@
     /// referrers to VM instances.
     ///
     /// @Snippet(path: "instances_listReferrers")
-    public func listReferrers(
-      byItem: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
+    public func listReferrersByItems(
+      request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
     ) -> any AsyncSequence<Reference, Swift.Error> {
       let listRpc = {
         (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listReferrers(request: request, options: options)
       }
       return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
     }
 
-    public func listReferrers(
+    public func listReferrersByItems(
       project: Swift.String,
       zone: Swift.String,
       instance: Swift.String,
@@ -3211,7 +3211,7 @@
         $0.zone = zone
         $0.instance = instance
       }
-      return self.listReferrers(byItem: request)
+      return self.listReferrersByItems(request: request)
     }
 
     public func performMaintenance(request: InstancesClient.PerformMaintenanceRequest) async throws

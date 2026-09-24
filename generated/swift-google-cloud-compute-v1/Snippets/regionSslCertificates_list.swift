@@ -21,8 +21,8 @@
   import GoogleCloudComputeV1
 
   func sample(client: RegionSslCertificatesClient) async throws {
-    let items = client.list(
-      byItem: RegionSslCertificatesClient.ListRequest()
+    let items = client.listByItems(
+      request: RegionSslCertificatesClient.ListRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

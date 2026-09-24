@@ -236,35 +236,35 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func enumerateLicensedUsers(
-    byItem: EnumerateLicensedUsersRequest
+  public func enumerateLicensedUsersByItems(
+    request: EnumerateLicensedUsersRequest
   ) -> any AsyncSequence<LicensedUser, Swift.Error> {
-    self.enumerateLicensedUsers(byItem: byItem, options: .init())
+    self.enumerateLicensedUsersByItems(request: request, options: .init())
   }
 
   /// Enumerates all users assigned a license.
   ///
   /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
-  public func enumerateLicensedUsers(
-    byItem: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
+  public func enumerateLicensedUsersByItems(
+    request: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<LicensedUser, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.enumerateLicensedUsers(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func enumerateLicensedUsers(
+  public func enumerateLicensedUsersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<LicensedUser, Swift.Error> {
     let request = EnumerateLicensedUsersRequest().with {
       $0.parent = parent
     }
-    return self.enumerateLicensedUsers(byItem: request)
+    return self.enumerateLicensedUsersByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

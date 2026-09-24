@@ -655,10 +655,10 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFolders(
-    byItem: ListFoldersRequest
+  public func listFoldersByItems(
+    request: ListFoldersRequest
   ) -> any AsyncSequence<Folder, Swift.Error> {
-    self.listFolders(byItem: byItem, options: .init())
+    self.listFoldersByItems(request: request, options: .init())
   }
 
   /// Lists the folders that are direct descendants of supplied parent resource.
@@ -670,25 +670,25 @@ extension Clients.FoldersProtocol {
   /// identified parent.
   ///
   /// @Snippet(path: "Folders_ListFolders")
-  public func listFolders(
-    byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
+  public func listFoldersByItems(
+    request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFolders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listFolders(
+  public func listFoldersByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let request = ListFoldersRequest().with {
       $0.parent = parent
     }
-    return self.listFolders(byItem: request)
+    return self.listFoldersByItems(request: request)
   }
 
   public func searchFolders(request: SearchFoldersRequest) async throws
@@ -703,10 +703,10 @@ extension Clients.FoldersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func searchFolders(
-    byItem: SearchFoldersRequest
+  public func searchFoldersByItems(
+    request: SearchFoldersRequest
   ) -> any AsyncSequence<Folder, Swift.Error> {
-    self.searchFolders(byItem: byItem, options: .init())
+    self.searchFoldersByItems(request: request, options: .init())
   }
 
   /// Search for folders that match specific filter criteria.
@@ -717,25 +717,25 @@ extension Clients.FoldersProtocol {
   /// permission `resourcemanager.folders.get`.
   ///
   /// @Snippet(path: "Folders_SearchFolders")
-  public func searchFolders(
-    byItem: SearchFoldersRequest, options: GoogleGax.RequestOptions
+  public func searchFoldersByItems(
+    request: SearchFoldersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.searchFolders(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func searchFolders(
+  public func searchFoldersByItems(
     query: Swift.String,
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let request = SearchFoldersRequest().with {
       $0.query = query
     }
-    return self.searchFolders(byItem: request)
+    return self.searchFoldersByItems(request: request)
   }
 
   public func createFolder(request: CreateFolderRequest) async throws -> GoogleLongRunning.Operation

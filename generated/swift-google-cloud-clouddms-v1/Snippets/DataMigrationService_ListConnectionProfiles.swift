@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(client: DataMigrationServiceClient, projectId: String, locationId: String) async throws
 {
-  let items = client.listConnectionProfiles(
-    byItem: ListConnectionProfilesRequest()
+  let items = client.listConnectionProfilesByItems(
+    request: ListConnectionProfilesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

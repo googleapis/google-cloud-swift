@@ -21,8 +21,8 @@ import GoogleGrafeasV1
 import GoogleWKT
 
 func sample(client: GrafeasClient, parent: String) async throws {
-  let items = client.listOccurrences(
-    byItem: ListOccurrencesRequest()
+  let items = client.listOccurrencesByItems(
+    request: ListOccurrencesRequest()
       .with {
         $0.parent = "\(parent)"
       }

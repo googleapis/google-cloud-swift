@@ -349,35 +349,35 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listPolicyBasedRoutes(
-    byItem: ListPolicyBasedRoutesRequest
+  public func listPolicyBasedRoutesByItems(
+    request: ListPolicyBasedRoutesRequest
   ) -> any AsyncSequence<PolicyBasedRoute, Swift.Error> {
-    self.listPolicyBasedRoutes(byItem: byItem, options: .init())
+    self.listPolicyBasedRoutesByItems(request: request, options: .init())
   }
 
   /// Lists policy-based routes in a given project and location.
   ///
   /// @Snippet(path: "PolicyBasedRoutingService_ListPolicyBasedRoutes")
-  public func listPolicyBasedRoutes(
-    byItem: ListPolicyBasedRoutesRequest, options: GoogleGax.RequestOptions
+  public func listPolicyBasedRoutesByItems(
+    request: ListPolicyBasedRoutesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<PolicyBasedRoute, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListPolicyBasedRoutesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listPolicyBasedRoutes(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listPolicyBasedRoutes(
+  public func listPolicyBasedRoutesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<PolicyBasedRoute, Swift.Error> {
     let request = ListPolicyBasedRoutesRequest().with {
       $0.parent = parent
     }
-    return self.listPolicyBasedRoutes(byItem: request)
+    return self.listPolicyBasedRoutesByItems(request: request)
   }
 
   public func getPolicyBasedRoute(request: GetPolicyBasedRouteRequest) async throws
@@ -491,21 +491,21 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "PolicyBasedRoutingService_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
@@ -572,10 +572,10 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
-    self.listOperations(byItem: byItem, options: .init())
+    self.listOperationsByItems(request: request, options: .init())
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -583,19 +583,19 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyBasedRoutingService_ListOperations")
-  public func listOperations(
-    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
+  public func listOperationsByItems(
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(
+  public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
@@ -603,7 +603,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
       $0.name = name
       $0.filter = filter
     }
-    return self.listOperations(byItem: request)
+    return self.listOperationsByItems(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

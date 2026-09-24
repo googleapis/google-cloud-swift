@@ -24,8 +24,8 @@
   func sample(
     client: SchemaServiceClient, projectId: String, locationId: String, dataStoreId: String
   ) async throws {
-    let items = client.listSchemas(
-      byItem: ListSchemasRequest()
+    let items = client.listSchemasByItems(
+      request: ListSchemasRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"
         }

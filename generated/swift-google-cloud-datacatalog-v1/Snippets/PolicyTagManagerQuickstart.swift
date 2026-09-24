@@ -24,8 +24,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataCatalogV1.PolicyTagManagerClient()
-  let items = client.listTaxonomies(
-    byItem: ListTaxonomiesRequest()
+  let items = client.listTaxonomiesByItems(
+    request: ListTaxonomiesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

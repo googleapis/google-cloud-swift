@@ -23,8 +23,8 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient, projectId: String, locationId: String) async throws {
-  let items = client.listDbSystemShapes(
-    byItem: ListDbSystemShapesRequest()
+  let items = client.listDbSystemShapesByItems(
+    request: ListDbSystemShapesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
       }

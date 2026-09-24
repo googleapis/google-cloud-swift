@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudArtifactRegistryV1.ArtifactRegistryClient()
-  let items = client.listDockerImages(
-    byItem: ListDockerImagesRequest()
+  let items = client.listDockerImagesByItems(
+    request: ListDockerImagesRequest()
       .with {
         $0.parent = "\(parent)"
       }

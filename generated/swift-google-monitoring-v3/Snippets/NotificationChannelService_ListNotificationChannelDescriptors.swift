@@ -21,8 +21,8 @@ import GoogleCloudMonitoringV3
 import GoogleWKT
 
 func sample(client: NotificationChannelServiceClient, projectId: String) async throws {
-  let items = client.listNotificationChannelDescriptors(
-    byItem: ListNotificationChannelDescriptorsRequest()
+  let items = client.listNotificationChannelDescriptorsByItems(
+    request: ListNotificationChannelDescriptorsRequest()
       .with {
         $0.name = "projects/\(projectId)"
       }

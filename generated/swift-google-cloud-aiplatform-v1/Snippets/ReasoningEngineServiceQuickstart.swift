@@ -26,8 +26,8 @@
 
   func sample(parent: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.ReasoningEngineServiceClient()
-    let items = client.listReasoningEngines(
-      byItem: ListReasoningEnginesRequest()
+    let items = client.listReasoningEnginesByItems(
+      request: ListReasoningEnginesRequest()
         .with {
           $0.parent = "\(parent)"
         }

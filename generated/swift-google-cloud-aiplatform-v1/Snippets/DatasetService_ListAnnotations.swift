@@ -28,8 +28,8 @@
     client: DatasetServiceClient, projectId: String, locationId: String, datasetId: String,
     dataItemId: String
   ) async throws {
-    let items = client.listAnnotations(
-      byItem: ListAnnotationsRequest()
+    let items = client.listAnnotationsByItems(
+      request: ListAnnotationsRequest()
         .with {
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/datasets/\(datasetId)/dataItems/\(dataItemId)"

@@ -520,10 +520,10 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSingleTenantHsmInstances(
-    byItem: ListSingleTenantHsmInstancesRequest
+  public func listSingleTenantHsmInstancesByItems(
+    request: ListSingleTenantHsmInstancesRequest
   ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
-    self.listSingleTenantHsmInstances(byItem: byItem, options: .init())
+    self.listSingleTenantHsmInstancesByItems(request: request, options: .init())
   }
 
   /// Lists
@@ -532,25 +532,25 @@ extension Clients.HsmManagementProtocol {
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
-  public func listSingleTenantHsmInstances(
-    byItem: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
+  public func listSingleTenantHsmInstancesByItems(
+    request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSingleTenantHsmInstances(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSingleTenantHsmInstances(
+  public func listSingleTenantHsmInstancesByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
     let request = ListSingleTenantHsmInstancesRequest().with {
       $0.parent = parent
     }
-    return self.listSingleTenantHsmInstances(byItem: request)
+    return self.listSingleTenantHsmInstancesByItems(request: request)
   }
 
   public func getSingleTenantHsmInstance(request: GetSingleTenantHsmInstanceRequest) async throws
@@ -758,10 +758,10 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listSingleTenantHsmInstanceProposals(
-    byItem: ListSingleTenantHsmInstanceProposalsRequest
+  public func listSingleTenantHsmInstanceProposalsByItems(
+    request: ListSingleTenantHsmInstanceProposalsRequest
   ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
-    self.listSingleTenantHsmInstanceProposals(byItem: byItem, options: .init())
+    self.listSingleTenantHsmInstanceProposalsByItems(request: request, options: .init())
   }
 
   /// Lists
@@ -770,26 +770,26 @@ extension Clients.HsmManagementProtocol {
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
-  public func listSingleTenantHsmInstanceProposals(
-    byItem: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
+  public func listSingleTenantHsmInstanceProposalsByItems(
+    request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
         -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listSingleTenantHsmInstanceProposals(request: request, options: options)
     }
     return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listSingleTenantHsmInstanceProposals(
+  public func listSingleTenantHsmInstanceProposalsByItems(
     parent: Swift.String,
   ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
     let request = ListSingleTenantHsmInstanceProposalsRequest().with {
       $0.parent = parent
     }
-    return self.listSingleTenantHsmInstanceProposals(byItem: request)
+    return self.listSingleTenantHsmInstanceProposalsByItems(request: request)
   }
 
   public func deleteSingleTenantHsmInstanceProposal(
@@ -825,10 +825,10 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
-    self.listLocations(byItem: byItem, options: .init())
+    self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
@@ -851,12 +851,12 @@ extension Clients.HsmManagementProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "HsmManagement_ListLocations")
-  public func listLocations(
-    byItem: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
+  public func listLocationsByItems(
+    request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
