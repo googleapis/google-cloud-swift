@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func enableService(
       request: EnableServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableService(
       request: DisableServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceUsageV1.Service {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceUsageV1.ListServicesResponse {
@@ -237,6 +241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchEnableServices(
       request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -284,6 +289,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchGetServices(
       request: BatchGetServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceUsageV1.BatchGetServicesResponse {
@@ -330,6 +336,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -367,6 +374,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

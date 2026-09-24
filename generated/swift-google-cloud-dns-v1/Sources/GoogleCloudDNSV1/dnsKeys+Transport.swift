@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func `get`(
       request: DnsKeysClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> DnsKey {
@@ -108,6 +109,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func list(
       request: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> DnsKeysListResponse {

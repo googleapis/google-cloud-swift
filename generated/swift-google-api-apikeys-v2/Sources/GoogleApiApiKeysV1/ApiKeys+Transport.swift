@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createKey(
       request: CreateKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listKeys(
       request: ListKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiApiKeysV1.ListKeysResponse {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getKey(
       request: GetKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiApiKeysV1.Key {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getKeyString(
       request: GetKeyStringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiApiKeysV1.GetKeyStringResponse {
@@ -239,6 +243,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateKey(
       request: UpdateKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -294,6 +299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteKey(
       request: DeleteKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -346,6 +352,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteKey(
       request: UndeleteKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -399,6 +406,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookupKey(
       request: LookupKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiApiKeysV1.LookupKeyResponse {
@@ -430,6 +438,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

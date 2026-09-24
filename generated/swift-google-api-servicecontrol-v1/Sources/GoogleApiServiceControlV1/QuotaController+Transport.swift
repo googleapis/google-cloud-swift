@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func allocateQuota(
       request: AllocateQuotaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.AllocateQuotaResponse {

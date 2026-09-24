@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func attachNetworkEndpoints(
         request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -112,6 +113,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RegionNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -188,6 +190,7 @@
         ).get()
       }
 
+      @concurrent
       public func detachNetworkEndpoints(
         request: RegionNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -268,6 +271,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionNetworkEndpointGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroup {
@@ -342,6 +346,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -407,6 +412,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList {
@@ -475,6 +481,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNetworkEndpoints(
         request: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -559,6 +566,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

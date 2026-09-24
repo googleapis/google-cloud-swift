@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: NetworkEndpointGroupsClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func attachNetworkEndpoints(
         request: NetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -172,6 +174,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: NetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -248,6 +251,7 @@
         ).get()
       }
 
+      @concurrent
       public func detachNetworkEndpoints(
         request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -328,6 +332,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: NetworkEndpointGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroup {
@@ -402,6 +407,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: NetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -467,6 +473,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: NetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList {
@@ -535,6 +542,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNetworkEndpoints(
         request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -622,6 +630,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: NetworkEndpointGroupsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -700,6 +709,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

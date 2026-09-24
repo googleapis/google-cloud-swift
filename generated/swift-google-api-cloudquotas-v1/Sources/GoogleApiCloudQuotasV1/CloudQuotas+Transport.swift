@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listQuotaInfos(
       request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse {
@@ -157,6 +158,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQuotaInfo(
       request: GetQuotaInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaInfo {
@@ -274,6 +276,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listQuotaPreferences(
       request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse {
@@ -400,6 +403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQuotaPreference(
       request: GetQuotaPreferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -516,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQuotaPreference(
       request: CreateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -648,6 +653,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateQuotaPreference(
       request: UpdateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {

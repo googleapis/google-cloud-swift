@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listCustomers(
       request: ListCustomersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomersResponse {
@@ -119,6 +120,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCustomer(
       request: GetCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
@@ -200,6 +202,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func checkCloudIdentityAccountsExist(
       request: CheckCloudIdentityAccountsExistRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CheckCloudIdentityAccountsExistResponse {
@@ -248,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCustomer(
       request: CreateCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
@@ -328,6 +332,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCustomer(
       request: UpdateCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
@@ -416,6 +421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCustomer(
       request: DeleteCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -497,6 +503,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importCustomer(
       request: ImportCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
@@ -577,6 +584,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func provisionCloudIdentity(
       request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -628,6 +636,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEntitlements(
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse {
@@ -679,6 +688,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTransferableSkus(
       request: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse {
@@ -726,6 +736,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTransferableOffers(
       request: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse {
@@ -773,6 +784,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEntitlement(
       request: GetEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Entitlement {
@@ -823,6 +835,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEntitlement(
       request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -874,6 +887,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func changeParameters(
       request: ChangeParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -927,6 +941,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func changeRenewalSettings(
       request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -980,6 +995,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func changeOffer(
       request: ChangeOfferRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1033,6 +1049,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startPaidService(
       request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1086,6 +1103,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func suspendEntitlement(
       request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1139,6 +1157,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelEntitlement(
       request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1192,6 +1211,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func activateEntitlement(
       request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1245,6 +1265,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func transferEntitlements(
       request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1296,6 +1317,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func transferEntitlementsToGoogle(
       request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1347,6 +1369,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listChannelPartnerLinks(
       request: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse {
@@ -1395,6 +1418,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getChannelPartnerLink(
       request: GetChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
@@ -1447,6 +1471,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createChannelPartnerLink(
       request: CreateChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
@@ -1494,6 +1519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateChannelPartnerLink(
       request: UpdateChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
@@ -1547,6 +1573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCustomerRepricingConfig(
       request: GetCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1597,6 +1624,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCustomerRepricingConfigs(
       request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse {
@@ -1650,6 +1678,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCustomerRepricingConfig(
       request: CreateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1701,6 +1730,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCustomerRepricingConfig(
       request: UpdateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1754,6 +1784,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCustomerRepricingConfig(
       request: DeleteCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1804,6 +1835,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getChannelPartnerRepricingConfig(
       request: GetChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -1854,6 +1886,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listChannelPartnerRepricingConfigs(
       request: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse {
@@ -1909,6 +1942,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createChannelPartnerRepricingConfig(
       request: CreateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -1962,6 +1996,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateChannelPartnerRepricingConfig(
       request: UpdateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -2015,6 +2050,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteChannelPartnerRepricingConfig(
       request: DeleteChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2065,6 +2101,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSkuGroups(
       request: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse {
@@ -2112,6 +2149,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSkuGroupBillableSkus(
       request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse {
@@ -2163,6 +2201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookupOffer(
       request: LookupOfferRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Offer {
@@ -2213,6 +2252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProducts(
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListProductsResponse {
@@ -2247,6 +2287,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSkus(
       request: ListSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkusResponse {
@@ -2296,6 +2337,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOffers(
       request: ListOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListOffersResponse {
@@ -2347,6 +2389,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPurchasableSkus(
       request: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse {
@@ -2411,6 +2454,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPurchasableOffers(
       request: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse {
@@ -2475,6 +2519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryEligibleBillingAccounts(
       request: QueryEligibleBillingAccountsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.QueryEligibleBillingAccountsResponse {
@@ -2526,6 +2571,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func registerSubscriber(
       request: RegisterSubscriberRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.RegisterSubscriberResponse {
@@ -2600,6 +2646,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func unregisterSubscriber(
       request: UnregisterSubscriberRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.UnregisterSubscriberResponse {
@@ -2674,6 +2721,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSubscribers(
       request: ListSubscribersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSubscribersResponse {
@@ -2753,6 +2801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEntitlementChanges(
       request: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse {
@@ -2807,6 +2856,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2858,6 +2908,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2902,6 +2953,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2946,6 +2998,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

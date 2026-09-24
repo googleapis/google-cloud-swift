@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getDataSource(
       request: GetDataSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.DataSource {
@@ -114,6 +115,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataSources(
       request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse {
@@ -195,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -290,6 +293,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -395,6 +399,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTransferConfig(
       request: DeleteTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -478,6 +483,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTransferConfig(
       request: GetTransferConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
@@ -561,6 +567,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTransferConfigs(
       request: ListTransferConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse {
@@ -647,6 +654,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func scheduleTransferRuns(
       request: ScheduleTransferRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
@@ -734,6 +742,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startManualTransferRuns(
       request: StartManualTransferRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse {
@@ -821,6 +830,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTransferRun(
       request: GetTransferRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.TransferRun {
@@ -904,6 +914,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTransferRun(
       request: DeleteTransferRunRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -987,6 +998,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTransferRuns(
       request: ListTransferRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse {
@@ -1080,6 +1092,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTransferLogs(
       request: ListTransferLogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse {
@@ -1171,6 +1184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func checkValidCreds(
       request: CheckValidCredsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse {
@@ -1255,6 +1269,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enrollDataSources(
       request: EnrollDataSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1333,6 +1348,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func unenrollDataSources(
       request: UnenrollDataSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1384,6 +1400,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1432,6 +1449,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

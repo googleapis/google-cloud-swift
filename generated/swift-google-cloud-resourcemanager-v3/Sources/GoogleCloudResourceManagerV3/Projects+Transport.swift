@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getProject(
       request: GetProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.Project {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProjects(
       request: ListProjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse {
@@ -113,6 +115,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchProjects(
       request: SearchProjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse {
@@ -146,6 +149,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createProject(
       request: CreateProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -178,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProject(
       request: UpdateProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -227,6 +232,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveProject(
       request: MoveProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -274,6 +280,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteProject(
       request: DeleteProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -318,6 +325,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteProject(
       request: UndeleteProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -365,6 +373,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -412,6 +421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -459,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -506,6 +517,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -94,6 +95,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InterconnectAttachmentGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroup {
@@ -154,6 +156,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: InterconnectAttachmentGroupsClient.GetIamPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -219,6 +222,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperationalStatus(
         request: InterconnectAttachmentGroupsClient.GetOperationalStatusRequest,
         options: GoogleGax.RequestOptions
@@ -283,6 +287,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -333,6 +338,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse {
@@ -387,6 +393,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: InterconnectAttachmentGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -453,6 +460,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: InterconnectAttachmentGroupsClient.SetIamPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -517,6 +525,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: InterconnectAttachmentGroupsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -581,6 +590,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

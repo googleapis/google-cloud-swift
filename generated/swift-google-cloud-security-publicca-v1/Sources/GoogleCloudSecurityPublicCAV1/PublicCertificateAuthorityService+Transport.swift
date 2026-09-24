@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {

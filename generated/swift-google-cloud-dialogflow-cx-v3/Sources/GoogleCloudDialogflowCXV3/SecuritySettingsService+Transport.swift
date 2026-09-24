@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createSecuritySettings(
         request: CreateSecuritySettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
@@ -87,6 +88,7 @@
         ).get()
       }
 
+      @concurrent
       public func getSecuritySettings(
         request: GetSecuritySettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
@@ -138,6 +140,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateSecuritySettings(
         request: UpdateSecuritySettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
@@ -194,6 +197,7 @@
         ).get()
       }
 
+      @concurrent
       public func listSecuritySettings(
         request: ListSecuritySettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListSecuritySettingsResponse {
@@ -247,6 +251,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteSecuritySettings(
         request: DeleteSecuritySettingsRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -298,6 +303,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -347,6 +353,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -396,6 +403,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -486,6 +494,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -568,6 +577,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

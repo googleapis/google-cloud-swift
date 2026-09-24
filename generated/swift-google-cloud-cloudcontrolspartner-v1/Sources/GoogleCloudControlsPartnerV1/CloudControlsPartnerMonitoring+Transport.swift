@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listViolations(
       request: ListViolationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getViolation(
       request: GetViolationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Violation {

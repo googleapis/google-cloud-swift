@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createPrincipalAccessBoundaryPolicy(
       request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -91,6 +92,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPrincipalAccessBoundaryPolicy(
       request: GetPrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.PrincipalAccessBoundaryPolicy {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePrincipalAccessBoundaryPolicy(
       request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -197,6 +200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePrincipalAccessBoundaryPolicy(
       request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -251,6 +255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPrincipalAccessBoundaryPolicies(
       request: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse {
@@ -304,6 +309,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchPrincipalAccessBoundaryPolicyBindings(
       request: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

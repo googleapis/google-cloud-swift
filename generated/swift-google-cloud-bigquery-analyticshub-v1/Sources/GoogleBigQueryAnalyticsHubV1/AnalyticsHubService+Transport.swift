@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOrgDataExchanges(
       request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataExchange(
       request: GetDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDataExchange(
       request: CreateDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
@@ -243,6 +247,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDataExchange(
       request: UpdateDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataExchange(
       request: DeleteDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -348,6 +354,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listListings(
       request: ListListingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse {
@@ -401,6 +408,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getListing(
       request: GetListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
@@ -452,6 +460,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createListing(
       request: CreateListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
@@ -507,6 +516,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateListing(
       request: UpdateListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
@@ -563,6 +573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteListing(
       request: DeleteListingRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -617,6 +628,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func subscribeListing(
       request: SubscribeListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse {
@@ -671,6 +683,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func subscribeDataExchange(
       request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -724,6 +737,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func refreshSubscription(
       request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -777,6 +791,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSubscription(
       request: GetSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Subscription {
@@ -827,6 +842,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSubscriptions(
       request: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse {
@@ -879,6 +895,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSharedResourceSubscriptions(
       request: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse {
@@ -976,6 +993,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func revokeSubscription(
       request: RevokeSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse {
@@ -1030,6 +1048,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSubscription(
       request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1080,6 +1099,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1200,6 +1220,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1320,6 +1341,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1407,6 +1429,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQueryTemplate(
       request: CreateQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -1463,6 +1486,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQueryTemplate(
       request: GetQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -1515,6 +1539,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listQueryTemplates(
       request: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse {
@@ -1569,6 +1594,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateQueryTemplate(
       request: UpdateQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -1626,6 +1652,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteQueryTemplate(
       request: DeleteQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1678,6 +1705,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func submitQueryTemplate(
       request: SubmitQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -1733,6 +1761,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func approveQueryTemplate(
       request: ApproveQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -1788,6 +1817,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

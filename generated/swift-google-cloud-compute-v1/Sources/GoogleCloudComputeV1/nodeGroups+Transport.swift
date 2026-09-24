@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addNodes(
         request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -111,6 +112,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeGroupAggregatedList {
@@ -169,6 +171,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -245,6 +248,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNodes(
         request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -324,6 +328,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: NodeGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeGroup {
@@ -398,6 +403,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: NodeGroupsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -476,6 +482,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -542,6 +549,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeGroupList {
@@ -609,6 +617,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNodes(
         request: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeGroupsListNodes {
@@ -691,6 +700,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -770,6 +780,7 @@
         ).get()
       }
 
+      @concurrent
       public func performMaintenance(
         request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -849,6 +860,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: NodeGroupsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -926,6 +938,7 @@
         ).get()
       }
 
+      @concurrent
       public func setNodeTemplate(
         request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1005,6 +1018,7 @@
         ).get()
       }
 
+      @concurrent
       public func simulateMaintenanceEvent(
         request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1084,6 +1098,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: NodeGroupsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -1161,6 +1176,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

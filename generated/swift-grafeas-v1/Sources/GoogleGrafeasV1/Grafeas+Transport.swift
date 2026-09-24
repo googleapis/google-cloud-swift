@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getOccurrence(
       request: GetOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence {
@@ -113,6 +114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOccurrences(
       request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListOccurrencesResponse {
@@ -202,6 +204,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOccurrence(
       request: DeleteOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -283,6 +286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createOccurrence(
       request: CreateOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence {
@@ -361,6 +365,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchCreateOccurrences(
       request: BatchCreateOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.BatchCreateOccurrencesResponse {
@@ -439,6 +444,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateOccurrence(
       request: UpdateOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence {
@@ -527,6 +533,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOccurrenceNote(
       request: GetOccurrenceNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
@@ -608,6 +615,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNote(
       request: GetNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
@@ -689,6 +697,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNotes(
       request: ListNotesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListNotesResponse {
@@ -778,6 +787,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNote(
       request: DeleteNoteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -859,6 +869,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNote(
       request: CreateNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
@@ -941,6 +952,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchCreateNotes(
       request: BatchCreateNotesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.BatchCreateNotesResponse {
@@ -1019,6 +1031,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNote(
       request: UpdateNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
@@ -1107,6 +1120,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNoteOccurrences(
       request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse {

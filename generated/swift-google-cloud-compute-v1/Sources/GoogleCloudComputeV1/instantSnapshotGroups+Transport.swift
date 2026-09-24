@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: InstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -108,6 +109,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InstantSnapshotGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstantSnapshotGroup {
@@ -182,6 +184,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: InstantSnapshotGroupsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -260,6 +263,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InstantSnapshotGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -328,6 +332,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups {
@@ -396,6 +401,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: InstantSnapshotGroupsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -473,6 +479,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: InstantSnapshotGroupsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -551,6 +558,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

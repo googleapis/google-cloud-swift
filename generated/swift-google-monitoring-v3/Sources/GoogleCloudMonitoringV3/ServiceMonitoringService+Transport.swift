@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Service {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Service {
@@ -131,6 +133,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListServicesResponse {
@@ -179,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateService(
       request: UpdateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Service {
@@ -234,6 +238,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteService(
       request: DeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -284,6 +289,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServiceLevelObjective(
       request: CreateServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
@@ -341,6 +347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServiceLevelObjective(
       request: GetServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
@@ -393,6 +400,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServiceLevelObjectives(
       request: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse {
@@ -449,6 +457,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateServiceLevelObjective(
       request: UpdateServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
@@ -504,6 +513,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteServiceLevelObjective(
       request: DeleteServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws {

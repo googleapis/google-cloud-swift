@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listUptimeCheckConfigs(
       request: ListUptimeCheckConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckConfigsResponse {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getUptimeCheckConfig(
       request: GetUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
@@ -130,6 +132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createUptimeCheckConfig(
       request: CreateUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
@@ -177,6 +180,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateUptimeCheckConfig(
       request: UpdateUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
@@ -232,6 +236,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteUptimeCheckConfig(
       request: DeleteUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -282,6 +287,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUptimeCheckIps(
       request: ListUptimeCheckIpsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckIpsResponse {

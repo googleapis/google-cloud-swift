@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func completeQuery(
       request: CompleteQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.CompleteQueryResponse {
@@ -96,6 +97,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importCompletionData(
       request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -149,6 +151,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -278,6 +281,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

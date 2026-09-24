@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func fetchModels(
       request: FetchModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
@@ -63,6 +64,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchModelServers(
       request: FetchModelServersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
@@ -96,6 +98,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchModelServerVersions(
       request: FetchModelServerVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
@@ -131,6 +134,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
@@ -161,6 +165,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateOptimizedManifest(
       request: GenerateOptimizedManifestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
@@ -192,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchBenchmarkingData(
       request: FetchBenchmarkingDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {

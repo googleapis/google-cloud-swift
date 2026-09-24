@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listComments(
       request: ListCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCommentsResponse {
@@ -116,6 +117,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createComment(
       request: CreateCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Comment {
@@ -198,6 +200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getComment(
       request: GetCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Comment {

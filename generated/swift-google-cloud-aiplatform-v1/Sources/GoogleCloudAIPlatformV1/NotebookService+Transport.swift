@@ -37,6 +37,7 @@
         )
       }
 
+      @concurrent
       public func createNotebookRuntimeTemplate(
         request: CreateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -93,6 +94,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNotebookRuntimeTemplate(
         request: GetNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate {
@@ -144,6 +146,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNotebookRuntimeTemplates(
         request: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimeTemplatesResponse {
@@ -200,6 +203,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNotebookRuntimeTemplate(
         request: DeleteNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -251,6 +255,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateNotebookRuntimeTemplate(
         request: UpdateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate {
@@ -307,6 +312,7 @@
         ).get()
       }
 
+      @concurrent
       public func assignNotebookRuntime(
         request: AssignNotebookRuntimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -359,6 +365,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNotebookRuntime(
         request: GetNotebookRuntimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntime {
@@ -410,6 +417,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNotebookRuntimes(
         request: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimesResponse {
@@ -465,6 +473,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNotebookRuntime(
         request: DeleteNotebookRuntimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -516,6 +525,7 @@
         ).get()
       }
 
+      @concurrent
       public func upgradeNotebookRuntime(
         request: UpgradeNotebookRuntimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -570,6 +580,7 @@
         ).get()
       }
 
+      @concurrent
       public func startNotebookRuntime(
         request: StartNotebookRuntimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -624,6 +635,7 @@
         ).get()
       }
 
+      @concurrent
       public func stopNotebookRuntime(
         request: StopNotebookRuntimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -678,6 +690,7 @@
         ).get()
       }
 
+      @concurrent
       public func createNotebookExecutionJob(
         request: CreateNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -734,6 +747,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNotebookExecutionJob(
         request: GetNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NotebookExecutionJob {
@@ -787,6 +801,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNotebookExecutionJobs(
         request: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListNotebookExecutionJobsResponse {
@@ -843,6 +858,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNotebookExecutionJob(
         request: DeleteNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -894,6 +910,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -974,6 +991,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -1054,6 +1072,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -1545,6 +1564,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -2096,6 +2116,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2612,6 +2633,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -6695,6 +6717,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -10236,6 +10259,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteOperation(
         request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -13668,6 +13692,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -16859,6 +16884,7 @@
         ).get()
       }
 
+      @concurrent
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

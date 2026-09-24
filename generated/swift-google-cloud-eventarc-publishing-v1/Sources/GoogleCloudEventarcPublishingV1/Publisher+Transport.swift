@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func publishChannelConnectionEvents(
       request: PublishChannelConnectionEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func publishEvents(
       request: PublishEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishEventsResponse {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func publish(
       request: PublishRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishResponse {

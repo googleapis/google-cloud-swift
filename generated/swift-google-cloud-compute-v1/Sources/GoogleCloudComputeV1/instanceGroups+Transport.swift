@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addInstances(
         request: InstanceGroupsClient.AddInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -111,6 +112,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceGroupAggregatedList {
@@ -169,6 +171,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -245,6 +248,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InstanceGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceGroup {
@@ -319,6 +323,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InstanceGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -383,6 +388,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceGroupList {
@@ -450,6 +456,7 @@
         ).get()
       }
 
+      @concurrent
       public func listInstances(
         request: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceGroupsListInstances {
@@ -535,6 +542,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeInstances(
         request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -614,6 +622,7 @@
         ).get()
       }
 
+      @concurrent
       public func setNamedPorts(
         request: InstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -693,6 +702,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: InstanceGroupsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -770,6 +780,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

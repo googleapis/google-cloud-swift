@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getFeaturedContentNativeDashboard(
       request: GetFeaturedContentNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FeaturedContentNativeDashboard {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFeaturedContentNativeDashboards(
       request: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse {
@@ -143,6 +145,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func installFeaturedContentNativeDashboard(
       request: InstallFeaturedContentNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.InstallFeaturedContentNativeDashboardResponse {
@@ -200,6 +203,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -257,6 +261,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -307,6 +312,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -357,6 +363,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

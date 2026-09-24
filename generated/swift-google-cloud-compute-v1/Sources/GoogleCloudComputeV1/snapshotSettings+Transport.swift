@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: SnapshotSettingsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SnapshotSettings {
@@ -77,6 +78,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: SnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -128,6 +130,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

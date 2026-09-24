@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func list(
         request: SqlFlagsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.FlagsListResponse {

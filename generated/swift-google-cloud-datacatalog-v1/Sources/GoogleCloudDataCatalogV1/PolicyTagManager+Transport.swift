@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createTaxonomy(
       request: CreateTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Taxonomy {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTaxonomy(
       request: DeleteTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTaxonomy(
       request: UpdateTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Taxonomy {
@@ -190,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTaxonomies(
       request: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTaxonomy(
       request: GetTaxonomyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Taxonomy {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPolicyTag(
       request: CreatePolicyTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.PolicyTag {
@@ -345,6 +351,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePolicyTag(
       request: DeletePolicyTagRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -396,6 +403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePolicyTag(
       request: UpdatePolicyTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.PolicyTag {
@@ -452,6 +460,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPolicyTags(
       request: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse {
@@ -505,6 +514,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPolicyTag(
       request: GetPolicyTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.PolicyTag {
@@ -556,6 +566,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -643,6 +654,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -730,6 +742,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -817,6 +830,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -872,6 +886,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -922,6 +937,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -972,6 +988,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

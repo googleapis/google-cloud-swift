@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createServingConfig(
       request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteServingConfig(
       request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateServingConfig(
       request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -198,6 +201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServingConfig(
       request: GetServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -250,6 +254,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServingConfigs(
       request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse {
@@ -303,6 +308,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addControl(
       request: AddControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeControl(
       request: RemoveControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -413,6 +420,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -542,6 +550,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -94,6 +95,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: CrossSiteNetworksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CrossSiteNetwork {
@@ -154,6 +156,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -206,6 +209,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList {
@@ -259,6 +263,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -327,6 +332,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

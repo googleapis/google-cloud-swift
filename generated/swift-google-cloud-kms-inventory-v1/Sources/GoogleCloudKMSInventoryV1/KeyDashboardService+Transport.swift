@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listCryptoKeys(
       request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse {

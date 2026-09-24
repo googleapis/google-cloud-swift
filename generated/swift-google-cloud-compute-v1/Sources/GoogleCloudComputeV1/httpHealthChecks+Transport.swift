@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: HttpHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -94,6 +95,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: HttpHealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HttpHealthCheck {
@@ -154,6 +156,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: HttpHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -204,6 +207,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HttpHealthCheckList {
@@ -257,6 +261,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: HttpHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -322,6 +327,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: HttpHealthChecksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -385,6 +391,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: HttpHealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -450,6 +457,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

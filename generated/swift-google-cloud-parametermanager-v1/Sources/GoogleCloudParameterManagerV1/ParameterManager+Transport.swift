@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listParameters(
       request: ListParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListParametersResponse {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getParameter(
       request: GetParameterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createParameter(
       request: CreateParameterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -190,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateParameter(
       request: UpdateParameterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -246,6 +250,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteParameter(
       request: DeleteParameterRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listParameterVersions(
       request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse {
@@ -354,6 +360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getParameterVersion(
       request: GetParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -406,6 +413,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renderParameterVersion(
       request: RenderParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.RenderParameterVersionResponse {
@@ -457,6 +465,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createParameterVersion(
       request: CreateParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -515,6 +524,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateParameterVersion(
       request: UpdateParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -571,6 +581,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteParameterVersion(
       request: DeleteParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -623,6 +634,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTemplates(
       request: ListTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
@@ -676,6 +688,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTemplate(
       request: GetTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -726,6 +739,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTemplate(
       request: CreateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -780,6 +794,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTemplate(
       request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -836,6 +851,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTemplate(
       request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -888,6 +904,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTemplateVersions(
       request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
@@ -944,6 +961,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTemplateVersion(
       request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -996,6 +1014,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTemplateVersion(
       request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -1053,6 +1072,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTemplateVersion(
       request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -1109,6 +1129,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTemplateVersion(
       request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1161,6 +1182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renderTemplateVersion(
       request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
@@ -1215,6 +1237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1263,6 +1286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

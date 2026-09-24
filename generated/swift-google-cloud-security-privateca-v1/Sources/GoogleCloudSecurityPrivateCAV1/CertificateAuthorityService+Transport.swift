@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createCertificate(
       request: CreateCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -97,6 +98,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCertificate(
       request: GetCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -147,6 +149,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCertificates(
       request: ListCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
@@ -203,6 +206,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func revokeCertificate(
       request: RevokeCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -256,6 +260,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCertificate(
       request: UpdateCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -312,6 +317,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func activateCertificateAuthority(
       request: ActivateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -367,6 +373,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCertificateAuthority(
       request: CreateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -425,6 +432,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableCertificateAuthority(
       request: DisableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -480,6 +488,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableCertificateAuthority(
       request: EnableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -535,6 +544,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchCertificateAuthorityCsr(
       request: FetchCertificateAuthorityCsrRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
@@ -588,6 +598,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
@@ -640,6 +651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCertificateAuthorities(
       request: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
@@ -696,6 +708,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteCertificateAuthority(
       request: UndeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -751,6 +764,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCertificateAuthority(
       request: DeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -813,6 +827,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCertificateAuthority(
       request: UpdateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -871,6 +886,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCaPool(
       request: CreateCaPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -925,6 +941,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCaPool(
       request: UpdateCaPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -981,6 +998,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCaPool(
       request: GetCaPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
@@ -1031,6 +1049,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCaPools(
       request: ListCaPoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
@@ -1084,6 +1103,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCaPool(
       request: DeleteCaPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1139,6 +1159,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchCaCerts(
       request: FetchCaCertsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
@@ -1192,6 +1213,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCertificateRevocationList(
       request: GetCertificateRevocationListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
@@ -1246,6 +1268,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCertificateRevocationLists(
       request: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
@@ -1304,6 +1327,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCertificateRevocationList(
       request: UpdateCertificateRevocationListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1363,6 +1387,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCertificateTemplate(
       request: CreateCertificateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1419,6 +1444,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCertificateTemplate(
       request: DeleteCertificateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1471,6 +1497,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCertificateTemplate(
       request: GetCertificateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
@@ -1521,6 +1548,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCertificateTemplates(
       request: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
@@ -1575,6 +1603,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCertificateTemplate(
       request: UpdateCertificateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1631,6 +1660,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1679,6 +1709,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1727,6 +1758,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1849,6 +1881,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1974,6 +2007,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2096,6 +2130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2151,6 +2186,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2201,6 +2237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2251,6 +2288,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

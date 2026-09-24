@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -167,6 +169,7 @@
         ).get()
       }
 
+      @concurrent
       public func expandIpCidrRange(
         request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -246,6 +249,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: SubnetworksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Subnetwork {
@@ -322,6 +326,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: SubnetworksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -400,6 +405,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -464,6 +470,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SubnetworkList {
@@ -532,6 +539,7 @@
         ).get()
       }
 
+      @concurrent
       public func listUsable(
         request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList {
@@ -587,6 +595,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -669,6 +678,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: SubnetworksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -746,6 +756,7 @@
         ).get()
       }
 
+      @concurrent
       public func setPrivateIpGoogleAccess(
         request: SubnetworksClient.SetPrivateIpGoogleAccessRequest,
         options: GoogleGax.RequestOptions
@@ -826,6 +837,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: SubnetworksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -903,6 +915,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

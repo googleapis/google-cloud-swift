@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listLbTrafficExtensions(
       request: ListLbTrafficExtensionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLbTrafficExtension(
       request: GetLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.LbTrafficExtension {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLbTrafficExtension(
       request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -196,6 +199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLbTrafficExtension(
       request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -252,6 +256,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLbTrafficExtension(
       request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -304,6 +309,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLbRouteExtensions(
       request: ListLbRouteExtensionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListLbRouteExtensionsResponse {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLbRouteExtension(
       request: GetLbRouteExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.LbRouteExtension {
@@ -408,6 +415,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLbRouteExtension(
       request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -464,6 +472,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLbRouteExtension(
       request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -520,6 +529,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLbRouteExtension(
       request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -572,6 +582,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLbEdgeExtensions(
       request: ListLbEdgeExtensionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListLbEdgeExtensionsResponse {
@@ -626,6 +637,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLbEdgeExtension(
       request: GetLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.LbEdgeExtension {
@@ -676,6 +688,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLbEdgeExtension(
       request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -731,6 +744,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLbEdgeExtension(
       request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -787,6 +801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLbEdgeExtension(
       request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -839,6 +854,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAuthzExtensions(
       request: ListAuthzExtensionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListAuthzExtensionsResponse {
@@ -893,6 +909,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAuthzExtension(
       request: GetAuthzExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.AuthzExtension {
@@ -943,6 +960,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAuthzExtension(
       request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -998,6 +1016,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAuthzExtension(
       request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1054,6 +1073,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAuthzExtension(
       request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1106,6 +1126,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1154,6 +1175,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1202,6 +1224,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1453,6 +1476,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1715,6 +1739,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1966,6 +1991,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2021,6 +2047,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2071,6 +2098,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2121,6 +2149,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

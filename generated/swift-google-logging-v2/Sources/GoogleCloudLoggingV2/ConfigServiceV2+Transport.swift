@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListBucketsResponse {
@@ -226,6 +227,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBucket(
       request: GetBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogBucket {
@@ -408,6 +410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBucketAsync(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -598,6 +601,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBucketAsync(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -793,6 +797,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBucket(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogBucket {
@@ -983,6 +988,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBucket(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogBucket {
@@ -1178,6 +1184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBucket(
       request: DeleteBucketRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1360,6 +1367,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteBucket(
       request: UndeleteBucketRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1545,6 +1553,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listViews(
       request: ListViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListViewsResponse {
@@ -1742,6 +1751,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getView(
       request: GetViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogView {
@@ -1929,6 +1939,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createView(
       request: CreateViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogView {
@@ -2124,6 +2135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateView(
       request: UpdateViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogView {
@@ -2324,6 +2336,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteView(
       request: DeleteViewRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2511,6 +2524,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSinks(
       request: ListSinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListSinksResponse {
@@ -2678,6 +2692,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSink(
       request: GetSinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -2851,6 +2866,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSink(
       request: CreateSinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -3026,6 +3042,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSink(
       request: UpdateSinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -3371,6 +3388,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSink(
       request: DeleteSinkRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3544,6 +3562,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLink(
       request: CreateLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3739,6 +3758,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLink(
       request: DeleteLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3926,6 +3946,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLinks(
       request: ListLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLinksResponse {
@@ -4123,6 +4144,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLink(
       request: GetLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.Link {
@@ -4310,6 +4332,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listExclusions(
       request: ListExclusionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse {
@@ -4477,6 +4500,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getExclusion(
       request: GetExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -4655,6 +4679,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createExclusion(
       request: CreateExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -4810,6 +4835,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateExclusion(
       request: UpdateExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -5001,6 +5027,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteExclusion(
       request: DeleteExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -5179,6 +5206,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCmekSettings(
       request: GetCmekSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.CmekSettings {
@@ -5331,6 +5359,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCmekSettings(
       request: UpdateCmekSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.CmekSettings {
@@ -5409,6 +5438,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSettings(
       request: GetSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.Settings {
@@ -5561,6 +5591,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSettings(
       request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.Settings {
@@ -5668,6 +5699,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func copyLogEntries(
       request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -5698,6 +5730,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -5910,6 +5943,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -6092,6 +6126,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

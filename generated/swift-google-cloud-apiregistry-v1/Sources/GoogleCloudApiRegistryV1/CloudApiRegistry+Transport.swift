@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getMcpServer(
       request: GetMcpServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.McpServer {
@@ -82,6 +83,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMcpServers(
       request: ListMcpServersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.ListMcpServersResponse {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMcpTool(
       request: GetMcpToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.McpTool {
@@ -185,6 +188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMcpTools(
       request: ListMcpToolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.ListMcpToolsResponse {
@@ -240,6 +244,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -288,6 +293,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

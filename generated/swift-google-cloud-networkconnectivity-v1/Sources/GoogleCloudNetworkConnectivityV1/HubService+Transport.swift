@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listHubs(
       request: ListHubsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListHubsResponse {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getHub(
       request: GetHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.Hub {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createHub(
       request: CreateHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -185,6 +188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateHub(
       request: UpdateHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -241,6 +245,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteHub(
       request: DeleteHubRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -293,6 +298,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listHubSpokes(
       request: ListHubSpokesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse {
@@ -351,6 +357,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryHubStatus(
       request: QueryHubStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse {
@@ -408,6 +415,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSpokes(
       request: ListSpokesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse {
@@ -461,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSpoke(
       request: GetSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.Spoke {
@@ -511,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSpoke(
       request: CreateSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -565,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSpoke(
       request: UpdateSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -621,6 +632,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rejectHubSpoke(
       request: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -674,6 +686,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func acceptHubSpoke(
       request: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -727,6 +740,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func acceptSpokeUpdate(
       request: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -780,6 +794,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rejectSpokeUpdate(
       request: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -833,6 +848,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSpoke(
       request: DeleteSpokeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -885,6 +901,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRouteTable(
       request: GetRouteTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.RouteTable {
@@ -935,6 +952,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRoute(
       request: GetRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.Route {
@@ -987,6 +1005,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRoutes(
       request: ListRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse {
@@ -1042,6 +1061,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRouteTables(
       request: ListRouteTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse {
@@ -1098,6 +1118,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGroup(
       request: GetGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.Group {
@@ -1148,6 +1169,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGroups(
       request: ListGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse {
@@ -1203,6 +1225,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGroup(
       request: UpdateGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1259,6 +1282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1307,6 +1331,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1355,6 +1380,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1639,6 +1665,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1936,6 +1963,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2220,6 +2248,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2275,6 +2304,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2325,6 +2355,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2375,6 +2406,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createReservation(
       request: CreateReservationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReservations(
       request: ListReservationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getReservation(
       request: GetReservationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -188,6 +191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteReservation(
       request: DeleteReservationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -238,6 +242,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateReservation(
       request: UpdateReservationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -293,6 +298,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func failoverReservation(
       request: FailoverReservationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -346,6 +352,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCapacityCommitment(
       request: CreateCapacityCommitmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -404,6 +411,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCapacityCommitments(
       request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse {
@@ -456,6 +464,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCapacityCommitment(
       request: GetCapacityCommitmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -506,6 +515,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCapacityCommitment(
       request: DeleteCapacityCommitmentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -558,6 +568,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCapacityCommitment(
       request: UpdateCapacityCommitmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -613,6 +624,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func splitCapacityCommitment(
       request: SplitCapacityCommitmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.SplitCapacityCommitmentResponse {
@@ -667,6 +679,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func mergeCapacityCommitments(
       request: MergeCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -718,6 +731,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAssignment(
       request: CreateAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -773,6 +787,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAssignments(
       request: ListAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse {
@@ -826,6 +841,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAssignment(
       request: DeleteAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -878,6 +894,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchAssignments(
       request: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.SearchAssignmentsResponse {
@@ -930,6 +947,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchAllAssignments(
       request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse {
@@ -983,6 +1001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveAssignment(
       request: MoveAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -1038,6 +1057,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAssignment(
       request: UpdateAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -1095,6 +1115,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBiReservation(
       request: GetBiReservationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -1145,6 +1166,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBiReservation(
       request: UpdateBiReservationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -1200,6 +1222,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1289,6 +1312,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1377,6 +1401,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1465,6 +1490,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createReservationGroup(
       request: CreateReservationGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -1520,6 +1546,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getReservationGroup(
       request: GetReservationGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -1570,6 +1597,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteReservationGroup(
       request: DeleteReservationGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1620,6 +1648,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReservationGroups(
       request: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListReservationGroupsResponse {
@@ -1672,6 +1701,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateReservationGroup(
       request: UpdateReservationGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {

@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func getSchema(
         request: GetSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Schema {
@@ -121,6 +122,7 @@
         ).get()
       }
 
+      @concurrent
       public func listSchemas(
         request: ListSchemasRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse {
@@ -213,6 +215,7 @@
         ).get()
       }
 
+      @concurrent
       public func createSchema(
         request: CreateSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -306,6 +309,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateSchema(
         request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -401,6 +405,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteSchema(
         request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -487,6 +492,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1146,6 +1152,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1724,6 +1731,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

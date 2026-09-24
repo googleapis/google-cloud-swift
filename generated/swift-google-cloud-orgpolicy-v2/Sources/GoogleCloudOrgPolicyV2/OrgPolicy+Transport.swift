@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listConstraints(
       request: ListConstraintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse {
@@ -139,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPolicies(
       request: ListPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse {
@@ -246,6 +248,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPolicy(
       request: GetPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -357,6 +360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEffectivePolicy(
       request: GetEffectivePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -468,6 +472,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPolicy(
       request: CreatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -569,6 +574,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePolicy(
       request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -689,6 +695,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePolicy(
       request: DeletePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -806,6 +813,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCustomConstraint(
       request: CreateCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -853,6 +861,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCustomConstraint(
       request: UpdateCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -906,6 +915,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCustomConstraint(
       request: GetCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -956,6 +966,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCustomConstraints(
       request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse {
@@ -1003,6 +1014,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCustomConstraint(
       request: DeleteCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws {

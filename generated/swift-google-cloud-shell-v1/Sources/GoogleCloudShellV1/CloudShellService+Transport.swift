@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getEnvironment(
       request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudShellV1.Environment {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startEnvironment(
       request: StartEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -132,6 +134,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func authorizeEnvironment(
       request: AuthorizeEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -183,6 +186,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addPublicKey(
       request: AddPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -234,6 +238,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removePublicKey(
       request: RemovePublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -285,6 +290,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

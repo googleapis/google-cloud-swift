@@ -33,6 +33,7 @@
         )
       }
 
+      @concurrent
       public func addAccessConfig(
         request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +115,7 @@
         ).get()
       }
 
+      @concurrent
       public func addNetworkInterface(
         request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -193,6 +195,7 @@
         ).get()
       }
 
+      @concurrent
       public func addResourcePolicies(
         request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -272,6 +275,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceAggregatedList {
@@ -330,6 +334,7 @@
         ).get()
       }
 
+      @concurrent
       public func attachDisk(
         request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -410,6 +415,7 @@
         ).get()
       }
 
+      @concurrent
       public func bulkInsert(
         request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -475,6 +481,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -554,6 +561,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteAccessConfig(
         request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -634,6 +642,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNetworkInterface(
         request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -713,6 +722,7 @@
         ).get()
       }
 
+      @concurrent
       public func detachDisk(
         request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -790,6 +800,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InstancesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Instance {
@@ -864,6 +875,7 @@
         ).get()
       }
 
+      @concurrent
       public func getEffectiveFirewalls(
         request: InstancesClient.GetEffectiveFirewallsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstancesGetEffectiveFirewallsResponse {
@@ -942,6 +954,7 @@
         ).get()
       }
 
+      @concurrent
       public func getGuestAttributes(
         request: InstancesClient.GetGuestAttributesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.GuestAttributes {
@@ -1019,6 +1032,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: InstancesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -1097,6 +1111,7 @@
         ).get()
       }
 
+      @concurrent
       public func getScreenshot(
         request: InstancesClient.GetScreenshotRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Screenshot {
@@ -1171,6 +1186,7 @@
         ).get()
       }
 
+      @concurrent
       public func getSerialPortOutput(
         request: InstancesClient.GetSerialPortOutputRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SerialPortOutput {
@@ -1248,6 +1264,7 @@
         ).get()
       }
 
+      @concurrent
       public func getShieldedInstanceIdentity(
         request: InstancesClient.GetShieldedInstanceIdentityRequest,
         options: GoogleGax.RequestOptions
@@ -1323,6 +1340,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1393,6 +1411,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceList {
@@ -1460,6 +1479,7 @@
         ).get()
       }
 
+      @concurrent
       public func listReferrers(
         request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceListReferrers {
@@ -1542,6 +1562,7 @@
         ).get()
       }
 
+      @concurrent
       public func performMaintenance(
         request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1618,6 +1639,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeResourcePolicies(
         request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1697,6 +1719,7 @@
         ).get()
       }
 
+      @concurrent
       public func reportHostAsFaulty(
         request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1776,6 +1799,7 @@
         ).get()
       }
 
+      @concurrent
       public func reset(
         request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1852,6 +1876,7 @@
         ).get()
       }
 
+      @concurrent
       public func resume(
         request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1928,6 +1953,7 @@
         ).get()
       }
 
+      @concurrent
       public func sendDiagnosticInterrupt(
         request: InstancesClient.SendDiagnosticInterruptRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -2002,6 +2028,7 @@
         ).get()
       }
 
+      @concurrent
       public func setDeletionProtection(
         request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2081,6 +2108,7 @@
         ).get()
       }
 
+      @concurrent
       public func setDiskAutoDelete(
         request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2159,6 +2187,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: InstancesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -2236,6 +2265,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2315,6 +2345,7 @@
         ).get()
       }
 
+      @concurrent
       public func setMachineResources(
         request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2394,6 +2425,7 @@
         ).get()
       }
 
+      @concurrent
       public func setMachineType(
         request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2473,6 +2505,7 @@
         ).get()
       }
 
+      @concurrent
       public func setMetadata(
         request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2552,6 +2585,7 @@
         ).get()
       }
 
+      @concurrent
       public func setMinCpuPlatform(
         request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2631,6 +2665,7 @@
         ).get()
       }
 
+      @concurrent
       public func setName(
         request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2710,6 +2745,7 @@
         ).get()
       }
 
+      @concurrent
       public func setScheduling(
         request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2789,6 +2825,7 @@
         ).get()
       }
 
+      @concurrent
       public func setSecurityPolicy(
         request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2868,6 +2905,7 @@
         ).get()
       }
 
+      @concurrent
       public func setServiceAccount(
         request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2947,6 +2985,7 @@
         ).get()
       }
 
+      @concurrent
       public func setShieldedInstanceIntegrityPolicy(
         request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -3027,6 +3066,7 @@
         ).get()
       }
 
+      @concurrent
       public func setTags(
         request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3106,6 +3146,7 @@
         ).get()
       }
 
+      @concurrent
       public func simulateMaintenanceEvent(
         request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3185,6 +3226,7 @@
         ).get()
       }
 
+      @concurrent
       public func start(
         request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3261,6 +3303,7 @@
         ).get()
       }
 
+      @concurrent
       public func startWithEncryptionKey(
         request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3340,6 +3383,7 @@
         ).get()
       }
 
+      @concurrent
       public func stop(
         request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3421,6 +3465,7 @@
         ).get()
       }
 
+      @concurrent
       public func suspend(
         request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3499,6 +3544,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: InstancesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -3576,6 +3622,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3662,6 +3709,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateAccessConfig(
         request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3743,6 +3791,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateDisplayDevice(
         request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3822,6 +3871,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateNetworkInterface(
         request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3903,6 +3953,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateShieldedInstanceConfig(
         request: InstancesClient.UpdateShieldedInstanceConfigRequest,
         options: GoogleGax.RequestOptions
@@ -3983,6 +4034,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createProductSet(
       request: CreateProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProductSets(
       request: ListProductSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListProductSetsResponse {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProductSet(
       request: GetProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -188,6 +191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProductSet(
       request: UpdateProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -243,6 +247,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteProductSet(
       request: DeleteProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -293,6 +298,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createProduct(
       request: CreateProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.Product {
@@ -346,6 +352,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProducts(
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListProductsResponse {
@@ -397,6 +404,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProduct(
       request: GetProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.Product {
@@ -447,6 +455,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProduct(
       request: UpdateProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.Product {
@@ -502,6 +511,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteProduct(
       request: DeleteProductRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -552,6 +562,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createReferenceImage(
       request: CreateReferenceImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -608,6 +619,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteReferenceImage(
       request: DeleteReferenceImageRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -660,6 +672,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReferenceImages(
       request: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListReferenceImagesResponse {
@@ -713,6 +726,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getReferenceImage(
       request: GetReferenceImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -765,6 +779,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addProductToProductSet(
       request: AddProductToProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -818,6 +833,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeProductFromProductSet(
       request: RemoveProductFromProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -871,6 +887,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProductsInProductSet(
       request: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListProductsInProductSetResponse {
@@ -924,6 +941,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importProductSets(
       request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -975,6 +993,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func purgeProducts(
       request: PurgeProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1026,6 +1045,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

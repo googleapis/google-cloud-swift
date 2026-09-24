@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listTagKeys(
       request: ListTagKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagKeysResponse {
@@ -68,6 +69,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTagKey(
       request: GetTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.TagKey {
@@ -112,6 +114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNamespacedTagKey(
       request: GetNamespacedTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.TagKey {
@@ -143,6 +146,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTagKey(
       request: CreateTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -177,6 +181,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTagKey(
       request: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -227,6 +232,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTagKey(
       request: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -274,6 +280,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -321,6 +328,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -368,6 +376,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -415,6 +424,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

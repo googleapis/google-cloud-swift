@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listMonitoredResourceDescriptors(
       request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse {
@@ -82,6 +83,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMonitoredResourceDescriptor(
       request: GetMonitoredResourceDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.MonitoredResourceDescriptor {
@@ -132,6 +134,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMetricDescriptors(
       request: ListMetricDescriptorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse {
@@ -181,6 +184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMetricDescriptor(
       request: GetMetricDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.MetricDescriptor {
@@ -231,6 +235,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMetricDescriptor(
       request: CreateMetricDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.MetricDescriptor {
@@ -278,6 +283,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMetricDescriptor(
       request: DeleteMetricDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -328,6 +334,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTimeSeries(
       request: ListTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListTimeSeriesResponse {
@@ -459,6 +466,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTimeSeries(
       request: CreateTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -506,6 +514,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServiceTimeSeries(
       request: CreateTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws {

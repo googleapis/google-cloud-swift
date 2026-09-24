@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listEvents(
       request: ListEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEvent(
       request: GetEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.Event {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOrganizationEvents(
       request: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse {
@@ -190,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOrganizationEvent(
       request: GetOrganizationEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.OrganizationEvent {
@@ -240,6 +244,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOrganizationImpacts(
       request: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse {
@@ -294,6 +299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOrganizationImpact(
       request: GetOrganizationImpactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.OrganizationImpact {
@@ -344,6 +350,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -392,6 +399,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

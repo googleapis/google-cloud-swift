@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: RolloutPlansClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -93,6 +94,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RolloutPlansClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RolloutPlan {
@@ -152,6 +154,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RolloutPlansClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -202,6 +205,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RolloutPlansListResponse {
@@ -255,6 +259,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

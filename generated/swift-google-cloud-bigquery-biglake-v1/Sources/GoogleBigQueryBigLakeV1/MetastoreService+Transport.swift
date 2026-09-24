@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createCatalog(
       request: CreateCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCatalog(
       request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCatalog(
       request: GetCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -185,6 +188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCatalogs(
       request: ListCatalogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse {
@@ -236,6 +240,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDatabase(
       request: CreateDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -291,6 +296,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDatabase(
       request: DeleteDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -341,6 +347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDatabase(
       request: UpdateDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -396,6 +403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDatabase(
       request: GetDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -446,6 +454,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDatabases(
       request: ListDatabasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse {
@@ -499,6 +508,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTable(
       request: CreateTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -554,6 +564,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTable(
       request: DeleteTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -606,6 +617,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTable(
       request: UpdateTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -663,6 +675,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameTable(
       request: RenameTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -718,6 +731,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTable(
       request: GetTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -770,6 +784,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTables(
       request: ListTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse {

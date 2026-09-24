@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListServicesResponse {
@@ -63,6 +64,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSkus(
       request: ListSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListSkusResponse {

@@ -36,6 +36,7 @@
         )
       }
 
+      @concurrent
       public func createConversationModel(
         request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -115,6 +116,7 @@
         ).get()
       }
 
+      @concurrent
       public func getConversationModel(
         request: GetConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ConversationModel {
@@ -199,6 +201,7 @@
         ).get()
       }
 
+      @concurrent
       public func listConversationModels(
         request: ListConversationModelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationModelsResponse {
@@ -282,6 +285,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteConversationModel(
         request: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -366,6 +370,7 @@
         ).get()
       }
 
+      @concurrent
       public func deployConversationModel(
         request: DeployConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -453,6 +458,7 @@
         ).get()
       }
 
+      @concurrent
       public func undeployConversationModel(
         request: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -540,6 +546,7 @@
         ).get()
       }
 
+      @concurrent
       public func getConversationModelEvaluation(
         request: GetConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ConversationModelEvaluation {
@@ -626,6 +633,7 @@
         ).get()
       }
 
+      @concurrent
       public func listConversationModelEvaluations(
         request: ListConversationModelEvaluationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationModelEvaluationsResponse {
@@ -717,6 +725,7 @@
         ).get()
       }
 
+      @concurrent
       public func createConversationModelEvaluation(
         request: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -771,6 +780,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -820,6 +830,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -869,6 +880,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -959,6 +971,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1041,6 +1054,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

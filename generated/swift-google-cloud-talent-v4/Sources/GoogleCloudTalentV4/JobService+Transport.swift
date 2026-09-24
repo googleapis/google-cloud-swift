@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchCreateJobs(
       request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJob(
       request: GetJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job {
@@ -186,6 +189,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateJob(
       request: UpdateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job {
@@ -241,6 +245,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchUpdateJobs(
       request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteJob(
       request: DeleteJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -342,6 +348,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchDeleteJobs(
       request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -393,6 +400,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListJobsResponse {
@@ -446,6 +454,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -500,6 +509,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -554,6 +564,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func exportEntities(
       request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importEntities(
       request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -128,6 +130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIndex(
       request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -175,6 +178,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIndex(
       request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -233,6 +237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIndex(
       request: GetIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastoreAdminV1.Index {
@@ -291,6 +296,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIndexes(
       request: ListIndexesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastoreAdminV1.ListIndexesResponse {
@@ -339,6 +345,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -390,6 +397,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -438,6 +446,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -486,6 +495,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

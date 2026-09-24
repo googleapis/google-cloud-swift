@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -74,6 +75,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.ManagedService {
@@ -118,6 +120,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +153,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteService(
       request: DeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -194,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteService(
       request: UndeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -238,6 +243,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServiceConfigs(
       request: ListServiceConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.ListServiceConfigsResponse {
@@ -286,6 +292,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServiceConfig(
       request: GetServiceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.Service {
@@ -376,6 +383,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServiceConfig(
       request: CreateServiceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.Service {
@@ -423,6 +431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func submitConfigSource(
       request: SubmitConfigSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -470,6 +479,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServiceRollouts(
       request: ListServiceRolloutsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.ListServiceRolloutsResponse {
@@ -519,6 +529,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServiceRollout(
       request: GetServiceRolloutRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.Rollout {
@@ -577,6 +588,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServiceRollout(
       request: CreateServiceRolloutRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -624,6 +636,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateConfigReport(
       request: GenerateConfigReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.GenerateConfigReportResponse {
@@ -655,6 +668,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -733,6 +747,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -811,6 +826,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -889,6 +905,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -926,6 +943,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

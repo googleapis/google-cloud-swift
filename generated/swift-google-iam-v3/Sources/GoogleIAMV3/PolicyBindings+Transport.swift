@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createPolicyBinding(
       request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -160,6 +161,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPolicyBinding(
       request: GetPolicyBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.PolicyBinding {
@@ -276,6 +278,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePolicyBinding(
       request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -404,6 +407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePolicyBinding(
       request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -529,6 +533,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPolicyBindings(
       request: ListPolicyBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.ListPolicyBindingsResponse {
@@ -652,6 +657,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchTargetPolicyBindings(
       request: SearchTargetPolicyBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.SearchTargetPolicyBindingsResponse {
@@ -778,6 +784,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

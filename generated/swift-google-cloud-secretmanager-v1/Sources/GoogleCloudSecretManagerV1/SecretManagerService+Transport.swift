@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listSecrets(
       request: ListSecretsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse {
@@ -117,6 +118,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSecret(
       request: CreateSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.Secret {
@@ -199,6 +201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addSecretVersion(
       request: AddSecretVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -283,6 +286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSecret(
       request: GetSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.Secret {
@@ -364,6 +368,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSecret(
       request: UpdateSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.Secret {
@@ -452,6 +457,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSecret(
       request: DeleteSecretRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -537,6 +543,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSecretVersions(
       request: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse {
@@ -626,6 +633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSecretVersion(
       request: GetSecretVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -709,6 +717,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func accessSecretVersion(
       request: AccessSecretVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse {
@@ -792,6 +801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableSecretVersion(
       request: DisableSecretVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -878,6 +888,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableSecretVersion(
       request: EnableSecretVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -964,6 +975,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func destroySecretVersion(
       request: DestroySecretVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -1050,6 +1062,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1134,6 +1147,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1219,6 +1233,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1303,6 +1318,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableManagedRotation(
       request: EnableManagedRotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -1387,6 +1403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rotateSecret(
       request: RotateSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -1471,6 +1488,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1519,6 +1537,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: ReservationSlotsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse {
@@ -120,6 +121,7 @@
         ).get()
       }
 
+      @concurrent
       public func getHealth(
         request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -210,6 +212,7 @@
         ).get()
       }
 
+      @concurrent
       public func getVersion(
         request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -303,6 +306,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationSlotsListResponse {
@@ -385,6 +389,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -478,6 +483,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

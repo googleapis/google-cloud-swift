@@ -36,6 +36,7 @@
         )
       }
 
+      @concurrent
       public func listTestCases(
         request: ListTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTestCasesResponse {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchDeleteTestCases(
         request: BatchDeleteTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -145,6 +147,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTestCase(
         request: GetTestCaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
@@ -196,6 +199,7 @@
         ).get()
       }
 
+      @concurrent
       public func createTestCase(
         request: CreateTestCaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
@@ -250,6 +254,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTestCase(
         request: UpdateTestCaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
@@ -306,6 +311,7 @@
         ).get()
       }
 
+      @concurrent
       public func runTestCase(
         request: RunTestCaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -360,6 +366,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchRunTestCases(
         request: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -414,6 +421,7 @@
         ).get()
       }
 
+      @concurrent
       public func calculateCoverage(
         request: CalculateCoverageRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.CalculateCoverageResponse {
@@ -467,6 +475,7 @@
         ).get()
       }
 
+      @concurrent
       public func importTestCases(
         request: ImportTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -521,6 +530,7 @@
         ).get()
       }
 
+      @concurrent
       public func exportTestCases(
         request: ExportTestCasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -575,6 +585,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTestCaseResults(
         request: ListTestCaseResultsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTestCaseResultsResponse {
@@ -631,6 +642,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTestCaseResult(
         request: GetTestCaseResultRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.TestCaseResult {
@@ -684,6 +696,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -733,6 +746,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -782,6 +796,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -872,6 +887,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -954,6 +970,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

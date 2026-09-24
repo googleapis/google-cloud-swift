@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createWorkload(
       request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateWorkload(
       request: UpdateWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
@@ -143,6 +145,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restrictAllowedResources(
       request: RestrictAllowedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssuredWorkloadsV1.RestrictAllowedResourcesResponse {
@@ -197,6 +200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteWorkload(
       request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -249,6 +253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getWorkload(
       request: GetWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
@@ -299,6 +304,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse {
@@ -352,6 +358,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -408,6 +415,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

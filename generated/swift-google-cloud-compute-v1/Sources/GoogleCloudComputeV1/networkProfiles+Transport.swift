@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: NetworkProfilesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkProfile {
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse {

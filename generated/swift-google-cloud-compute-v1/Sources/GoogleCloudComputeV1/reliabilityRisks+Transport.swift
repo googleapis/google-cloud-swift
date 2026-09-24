@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: ReliabilityRisksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReliabilityRisk {
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse {

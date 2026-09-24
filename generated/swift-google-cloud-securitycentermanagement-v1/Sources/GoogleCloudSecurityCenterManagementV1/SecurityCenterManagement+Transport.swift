@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listEffectiveSecurityHealthAnalyticsCustomModules(
       request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
       options: GoogleGax.RequestOptions
@@ -159,6 +160,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEffectiveSecurityHealthAnalyticsCustomModule(
       request: GetEffectiveSecurityHealthAnalyticsCustomModuleRequest,
       options: GoogleGax.RequestOptions
@@ -280,6 +282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSecurityHealthAnalyticsCustomModules(
       request: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -403,6 +406,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDescendantSecurityHealthAnalyticsCustomModules(
       request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
       options: GoogleGax.RequestOptions
@@ -529,6 +533,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSecurityHealthAnalyticsCustomModule(
       request: GetSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -647,6 +652,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSecurityHealthAnalyticsCustomModule(
       request: CreateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -768,6 +774,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSecurityHealthAnalyticsCustomModule(
       request: UpdateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -898,6 +905,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSecurityHealthAnalyticsCustomModule(
       request: DeleteSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1021,6 +1029,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func simulateSecurityHealthAnalyticsCustomModule(
       request: SimulateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -1138,6 +1147,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEffectiveEventThreatDetectionCustomModules(
       request: ListEffectiveEventThreatDetectionCustomModulesRequest,
       options: GoogleGax.RequestOptions
@@ -1263,6 +1273,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEffectiveEventThreatDetectionCustomModule(
       request: GetEffectiveEventThreatDetectionCustomModuleRequest,
       options: GoogleGax.RequestOptions
@@ -1384,6 +1395,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEventThreatDetectionCustomModules(
       request: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -1507,6 +1519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDescendantEventThreatDetectionCustomModules(
       request: ListDescendantEventThreatDetectionCustomModulesRequest,
       options: GoogleGax.RequestOptions
@@ -1633,6 +1646,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEventThreatDetectionCustomModule(
       request: GetEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -1750,6 +1764,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEventThreatDetectionCustomModule(
       request: CreateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -1871,6 +1886,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEventThreatDetectionCustomModule(
       request: UpdateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -2000,6 +2016,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEventThreatDetectionCustomModule(
       request: DeleteEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2122,6 +2139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func validateEventThreatDetectionCustomModule(
       request: ValidateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -2239,6 +2257,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSecurityCenterService(
       request: GetSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
@@ -2368,6 +2387,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSecurityCenterServices(
       request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse {
@@ -2498,6 +2518,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSecurityCenterService(
       request: UpdateSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
@@ -2627,6 +2648,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2675,6 +2697,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

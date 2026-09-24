@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createEnvironment(
       request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEnvironment(
       request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.Environment {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEnvironments(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse {
@@ -187,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEnvironment(
       request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEnvironment(
       request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func executeAirflowCommand(
       request: ExecuteAirflowCommandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ExecuteAirflowCommandResponse {
@@ -346,6 +352,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func stopAirflowCommand(
       request: StopAirflowCommandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.StopAirflowCommandResponse {
@@ -400,6 +407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pollAirflowCommand(
       request: PollAirflowCommandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.PollAirflowCommandResponse {
@@ -454,6 +462,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse {
@@ -509,6 +518,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func checkUpgrade(
       request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -562,6 +572,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createUserWorkloadsSecret(
       request: CreateUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
@@ -616,6 +627,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getUserWorkloadsSecret(
       request: GetUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
@@ -669,6 +681,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUserWorkloadsSecrets(
       request: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse {
@@ -723,6 +736,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateUserWorkloadsSecret(
       request: UpdateUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
@@ -779,6 +793,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteUserWorkloadsSecret(
       request: DeleteUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -831,6 +846,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createUserWorkloadsConfigMap(
       request: CreateUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
@@ -885,6 +901,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getUserWorkloadsConfigMap(
       request: GetUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
@@ -938,6 +955,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUserWorkloadsConfigMaps(
       request: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse {
@@ -992,6 +1010,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateUserWorkloadsConfigMap(
       request: UpdateUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
@@ -1048,6 +1067,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteUserWorkloadsConfigMap(
       request: DeleteUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1100,6 +1120,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func saveSnapshot(
       request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1153,6 +1174,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func loadSnapshot(
       request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1206,6 +1228,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func databaseFailover(
       request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1259,6 +1282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchDatabaseProperties(
       request: FetchDatabasePropertiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.FetchDatabasePropertiesResponse {
@@ -1310,6 +1334,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1365,6 +1390,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1415,6 +1441,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

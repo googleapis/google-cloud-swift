@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func advance(
         request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -97,6 +98,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancel(
         request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -159,6 +161,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -220,6 +223,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RolloutsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Rollout {
@@ -279,6 +283,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RolloutsListResponse {
@@ -332,6 +337,7 @@
         ).get()
       }
 
+      @concurrent
       public func pause(
         request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -395,6 +401,7 @@
         ).get()
       }
 
+      @concurrent
       public func resume(
         request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -458,6 +465,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

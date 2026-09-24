@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: RegionNotificationEndpointsClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +170,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionNotificationEndpointsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NotificationEndpoint {
@@ -242,6 +245,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionNotificationEndpointsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -307,6 +311,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NotificationEndpointList {
@@ -375,6 +380,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: RegionNotificationEndpointsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -453,6 +459,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

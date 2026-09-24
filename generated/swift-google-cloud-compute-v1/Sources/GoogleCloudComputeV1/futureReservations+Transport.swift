@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancel(
         request: FutureReservationsClient.CancelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -167,6 +169,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: FutureReservationsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -243,6 +246,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: FutureReservationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FutureReservation {
@@ -317,6 +321,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: FutureReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -382,6 +387,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FutureReservationsListResponse {
@@ -450,6 +456,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: FutureReservationsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -530,6 +537,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

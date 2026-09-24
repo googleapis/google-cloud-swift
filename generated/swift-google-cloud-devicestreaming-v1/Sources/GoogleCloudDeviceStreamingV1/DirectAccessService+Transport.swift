@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createDeviceSession(
       request: CreateDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
@@ -82,6 +83,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDeviceSessions(
       request: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse {
@@ -131,6 +133,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDeviceSession(
       request: GetDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
@@ -180,6 +183,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelDeviceSession(
       request: CancelDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -232,6 +236,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDeviceSession(
       request: UpdateDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {

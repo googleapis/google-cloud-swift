@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: InterconnectLocationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectLocation {
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InterconnectLocationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectLocationList {

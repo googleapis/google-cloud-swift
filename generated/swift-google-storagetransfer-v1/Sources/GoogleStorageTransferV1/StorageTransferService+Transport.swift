@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getGoogleServiceAccount(
       request: GetGoogleServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.GoogleServiceAccount {
@@ -78,6 +79,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTransferJob(
       request: CreateTransferJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.TransferJob {
@@ -110,6 +112,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTransferJob(
       request: UpdateTransferJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.TransferJob {
@@ -157,6 +160,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTransferJob(
       request: GetTransferJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.TransferJob {
@@ -203,6 +207,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTransferJobs(
       request: ListTransferJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.ListTransferJobsResponse {
@@ -236,6 +241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pauseTransferOperation(
       request: PauseTransferOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -283,6 +289,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resumeTransferOperation(
       request: ResumeTransferOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -330,6 +337,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func runTransferJob(
       request: RunTransferJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -377,6 +385,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTransferJob(
       request: DeleteTransferJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -423,6 +432,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAgentPool(
       request: CreateAgentPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -472,6 +482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAgentPool(
       request: UpdateAgentPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -525,6 +536,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAgentPool(
       request: GetAgentPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -573,6 +585,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAgentPools(
       request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse {
@@ -621,6 +634,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAgentPool(
       request: DeleteAgentPoolRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -669,6 +683,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -720,6 +735,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -764,6 +780,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

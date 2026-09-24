@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: SnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -93,6 +94,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: SnapshotsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Snapshot {
@@ -152,6 +154,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: SnapshotsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -216,6 +219,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: SnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -266,6 +270,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SnapshotList {
@@ -319,6 +324,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: SnapshotsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -382,6 +388,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: SnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -445,6 +452,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: SnapshotsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -508,6 +516,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateKmsKey(
         request: SnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -573,6 +582,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

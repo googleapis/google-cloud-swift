@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func create(
       request: ResourceRecordSetsClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSet {
@@ -95,6 +96,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func delete(
       request: ResourceRecordSetsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSetsDeleteResponse {
@@ -185,6 +187,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func `get`(
       request: ResourceRecordSetsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSet {
@@ -275,6 +278,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func list(
       request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSetsListResponse {
@@ -339,6 +343,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func patch(
       request: ResourceRecordSetsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSet {

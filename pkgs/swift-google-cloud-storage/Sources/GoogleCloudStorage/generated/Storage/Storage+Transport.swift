@@ -38,6 +38,7 @@ extension Clients {
       self.inner = inner
     }
 
+    @concurrent
     public func deleteBucket(
       request: DeleteBucketRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -63,6 +64,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getBucket(
       request: GetBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
@@ -89,6 +91,7 @@ extension Clients {
       return try Bucket(proto: protoResponse)
     }
 
+    @concurrent
     public func createBucket(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
@@ -121,6 +124,7 @@ extension Clients {
       return try Bucket(proto: protoResponse)
     }
 
+    @concurrent
     public func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListBucketsResponse {
@@ -148,6 +152,7 @@ extension Clients {
       return try ListBucketsResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func lockBucketRetentionPolicy(
       request: LockBucketRetentionPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
@@ -174,6 +179,7 @@ extension Clients {
       return try Bucket(proto: protoResponse)
     }
 
+    @concurrent
     public func updateBucket(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
@@ -200,6 +206,7 @@ extension Clients {
       return try Bucket(proto: protoResponse)
     }
 
+    @concurrent
     public func composeObject(
       request: ComposeObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
@@ -226,6 +233,7 @@ extension Clients {
       return try Object(proto: protoResponse)
     }
 
+    @concurrent
     public func deleteObject(
       request: DeleteObjectRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -251,6 +259,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func restoreObject(
       request: RestoreObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
@@ -277,6 +286,7 @@ extension Clients {
       return try Object(proto: protoResponse)
     }
 
+    @concurrent
     public func getObject(
       request: GetObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
@@ -303,6 +313,7 @@ extension Clients {
       return try Object(proto: protoResponse)
     }
 
+    @concurrent
     public func updateObject(
       request: UpdateObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
@@ -329,6 +340,7 @@ extension Clients {
       return try Object(proto: protoResponse)
     }
 
+    @concurrent
     public func listObjects(
       request: ListObjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListObjectsResponse {
@@ -356,6 +368,7 @@ extension Clients {
       return try ListObjectsResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func rewriteObject(
       request: RewriteObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> RewriteResponse {
@@ -392,6 +405,7 @@ extension Clients {
       return try RewriteResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func moveObject(
       request: MoveObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {

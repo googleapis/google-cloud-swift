@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: LicenseCodesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.LicenseCode {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: LicenseCodesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -155,6 +157,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: LicenseCodesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -218,6 +221,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: LicenseCodesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {

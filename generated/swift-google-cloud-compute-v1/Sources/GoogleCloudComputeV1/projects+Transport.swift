@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func disableXpnHost(
         request: ProjectsClient.DisableXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -79,6 +80,7 @@
         ).get()
       }
 
+      @concurrent
       public func disableXpnResource(
         request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -129,6 +131,7 @@
         ).get()
       }
 
+      @concurrent
       public func enableXpnHost(
         request: ProjectsClient.EnableXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -176,6 +179,7 @@
         ).get()
       }
 
+      @concurrent
       public func enableXpnResource(
         request: ProjectsClient.EnableXpnResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -226,6 +230,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Project {
@@ -271,6 +276,7 @@
         ).get()
       }
 
+      @concurrent
       public func getXpnHost(
         request: ProjectsClient.GetXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Project {
@@ -316,6 +322,7 @@
         ).get()
       }
 
+      @concurrent
       public func getXpnResources(
         request: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources {
@@ -369,6 +376,7 @@
         ).get()
       }
 
+      @concurrent
       public func listXpnHosts(
         request: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.XpnHostList {
@@ -425,6 +433,7 @@
         ).get()
       }
 
+      @concurrent
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
@@ -478,6 +487,7 @@
         ).get()
       }
 
+      @concurrent
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
@@ -531,6 +541,7 @@
         ).get()
       }
 
+      @concurrent
       public func setCloudArmorTier(
         request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -581,6 +592,7 @@
         ).get()
       }
 
+      @concurrent
       public func setCommonInstanceMetadata(
         request: ProjectsClient.SetCommonInstanceMetadataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -631,6 +643,7 @@
         ).get()
       }
 
+      @concurrent
       public func setDefaultNetworkTier(
         request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -681,6 +694,7 @@
         ).get()
       }
 
+      @concurrent
       public func setUsageExportBucket(
         request: ProjectsClient.SetUsageExportBucketRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -731,6 +745,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

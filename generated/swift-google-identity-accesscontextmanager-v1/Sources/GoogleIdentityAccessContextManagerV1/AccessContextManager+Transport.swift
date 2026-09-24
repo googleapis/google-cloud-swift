@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listAccessPolicies(
       request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse {
@@ -69,6 +70,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAccessPolicy(
       request: GetAccessPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.AccessPolicy {
@@ -113,6 +115,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAccessPolicy(
       request: AccessPolicy, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -143,6 +146,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAccessPolicy(
       request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -192,6 +196,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAccessPolicy(
       request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -236,6 +241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAccessLevels(
       request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse {
@@ -286,6 +292,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAccessLevel(
       request: GetAccessLevelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.AccessLevel {
@@ -339,6 +346,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAccessLevel(
       request: CreateAccessLevelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -386,6 +394,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAccessLevel(
       request: UpdateAccessLevelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -441,6 +450,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAccessLevel(
       request: DeleteAccessLevelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -491,6 +501,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func replaceAccessLevels(
       request: ReplaceAccessLevelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -538,6 +549,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServicePerimeters(
       request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse {
@@ -586,6 +598,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServicePerimeter(
       request: GetServicePerimeterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ServicePerimeter {
@@ -636,6 +649,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServicePerimeter(
       request: CreateServicePerimeterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -683,6 +697,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateServicePerimeter(
       request: UpdateServicePerimeterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -738,6 +753,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteServicePerimeter(
       request: DeleteServicePerimeterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -788,6 +804,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func replaceServicePerimeters(
       request: ReplaceServicePerimetersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -835,6 +852,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func commitServicePerimeters(
       request: CommitServicePerimetersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -882,6 +900,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGcpUserAccessBindings(
       request: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse {
@@ -930,6 +949,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGcpUserAccessBinding(
       request: GetGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.GcpUserAccessBinding {
@@ -981,6 +1001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGcpUserAccessBinding(
       request: CreateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1028,6 +1049,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGcpUserAccessBinding(
       request: UpdateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1083,6 +1105,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGcpUserAccessBinding(
       request: DeleteGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1133,6 +1156,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1180,6 +1204,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1227,6 +1252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1340,6 +1366,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

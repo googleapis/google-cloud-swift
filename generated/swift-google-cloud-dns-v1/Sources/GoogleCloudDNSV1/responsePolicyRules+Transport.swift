@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func create(
       request: ResponsePolicyRulesClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResponsePolicyRule {
@@ -96,6 +97,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func delete(
       request: ResponsePolicyRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -172,6 +174,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func `get`(
       request: ResponsePolicyRulesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResponsePolicyRule {
@@ -248,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func list(
       request: ResponsePolicyRulesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResponsePolicyRulesListResponse {
@@ -309,6 +313,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func patch(
       request: ResponsePolicyRulesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResponsePolicyRulesPatchResponse {
@@ -388,6 +393,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func update(
       request: ResponsePolicyRulesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResponsePolicyRulesUpdateResponse {

@@ -38,6 +38,7 @@ let package = Package(
       ],
       swiftSettings: [
         .enableUpcomingFeature("InternalImportsByDefault"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .strictMemorySafety(),
       ]
     )

@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func check(
       request: CheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.CheckResponse {
@@ -78,6 +79,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func report(
       request: ReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.ReportResponse {

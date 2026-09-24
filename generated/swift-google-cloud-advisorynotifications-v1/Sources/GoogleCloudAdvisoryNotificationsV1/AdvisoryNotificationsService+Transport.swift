@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listNotifications(
       request: ListNotificationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse {
@@ -122,6 +123,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNotification(
       request: GetNotificationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.Notification {
@@ -209,6 +211,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSettings(
       request: GetSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {
@@ -292,6 +295,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSettings(
       request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {

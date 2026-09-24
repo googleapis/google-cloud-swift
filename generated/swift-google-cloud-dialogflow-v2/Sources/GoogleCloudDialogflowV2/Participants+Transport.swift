@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createParticipant(
         request: CreateParticipantRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -122,6 +123,7 @@
         ).get()
       }
 
+      @concurrent
       public func getParticipant(
         request: GetParticipantRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -208,6 +210,7 @@
         ).get()
       }
 
+      @concurrent
       public func listParticipants(
         request: ListParticipantsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListParticipantsResponse {
@@ -298,6 +301,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateParticipant(
         request: UpdateParticipantRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -391,6 +395,7 @@
         ).get()
       }
 
+      @concurrent
       public func analyzeContent(
         request: AnalyzeContentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
@@ -480,6 +485,7 @@
         ).get()
       }
 
+      @concurrent
       public func suggestArticles(
         request: SuggestArticlesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestArticlesResponse {
@@ -569,6 +575,7 @@
         ).get()
       }
 
+      @concurrent
       public func suggestFaqAnswers(
         request: SuggestFaqAnswersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestFaqAnswersResponse {
@@ -658,6 +665,7 @@
         ).get()
       }
 
+      @concurrent
       public func suggestSmartReplies(
         request: SuggestSmartRepliesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestSmartRepliesResponse {
@@ -747,6 +755,7 @@
         ).get()
       }
 
+      @concurrent
       public func suggestKnowledgeAssist(
         request: SuggestKnowledgeAssistRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestKnowledgeAssistResponse {
@@ -837,6 +846,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -886,6 +896,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -935,6 +946,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1025,6 +1037,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1107,6 +1120,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createOspolicyAssignment(
       request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateOspolicyAssignment(
       request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -144,6 +146,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOspolicyAssignment(
       request: GetOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignment {
@@ -194,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOspolicyAssignments(
       request: ListOSPolicyAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentsResponse {
@@ -245,6 +249,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOspolicyAssignmentRevisions(
       request: ListOSPolicyAssignmentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentRevisionsResponse {
@@ -299,6 +304,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOspolicyAssignment(
       request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -349,6 +355,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOspolicyAssignmentReport(
       request: GetOSPolicyAssignmentReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignmentReport {
@@ -401,6 +408,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOspolicyAssignmentReports(
       request: ListOSPolicyAssignmentReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentReportsResponse {
@@ -458,6 +466,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInventory(
       request: GetInventoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.Inventory {
@@ -510,6 +519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInventories(
       request: ListInventoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListInventoriesResponse {
@@ -565,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVulnerabilityReport(
       request: GetVulnerabilityReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.VulnerabilityReport {
@@ -615,6 +626,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVulnerabilityReports(
       request: ListVulnerabilityReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListVulnerabilityReportsResponse {
@@ -669,6 +681,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -721,6 +734,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

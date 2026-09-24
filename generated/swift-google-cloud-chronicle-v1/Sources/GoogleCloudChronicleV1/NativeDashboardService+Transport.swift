@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createNativeDashboard(
       request: CreateNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNativeDashboard(
       request: GetNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNativeDashboards(
       request: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListNativeDashboardsResponse {
@@ -194,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNativeDashboard(
       request: UpdateNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -251,6 +255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func duplicateNativeDashboard(
       request: DuplicateNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -306,6 +311,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNativeDashboard(
       request: DeleteNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addChart(
       request: AddChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.AddChartResponse {
@@ -413,6 +420,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeChart(
       request: RemoveChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -468,6 +476,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func editChart(
       request: EditChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.EditChartResponse {
@@ -523,6 +532,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func duplicateChart(
       request: DuplicateChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DuplicateChartResponse {
@@ -578,6 +588,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportNativeDashboards(
       request: ExportNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ExportNativeDashboardsResponse {
@@ -631,6 +642,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importNativeDashboards(
       request: ImportNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ImportNativeDashboardsResponse {
@@ -684,6 +696,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -741,6 +754,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -791,6 +805,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -841,6 +856,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

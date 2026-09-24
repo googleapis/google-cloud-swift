@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: RegionHealthSourcesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthSourceAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RegionHealthSourcesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +168,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionHealthSourcesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthSource {
@@ -240,6 +243,7 @@
         ).get()
       }
 
+      @concurrent
       public func getHealth(
         request: RegionHealthSourcesClient.GetHealthRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthSourceHealth {
@@ -314,6 +318,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionHealthSourcesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -379,6 +384,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionHealthSourcesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthSourceList {
@@ -447,6 +453,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RegionHealthSourcesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -526,6 +533,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: RegionHealthSourcesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -604,6 +612,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

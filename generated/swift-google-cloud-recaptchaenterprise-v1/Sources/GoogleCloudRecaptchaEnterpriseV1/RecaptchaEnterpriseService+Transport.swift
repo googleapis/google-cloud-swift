@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createAssessment(
       request: CreateAssessmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Assessment {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func annotateAssessment(
       request: AnnotateAssessmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.AnnotateAssessmentResponse {
@@ -131,6 +133,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createKey(
       request: CreateKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -178,6 +181,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listKeys(
       request: ListKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListKeysResponse {
@@ -225,6 +229,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func retrieveLegacySecretKey(
       request: RetrieveLegacySecretKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.RetrieveLegacySecretKeyResponse {
@@ -274,6 +279,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getKey(
       request: GetKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -322,6 +328,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateKey(
       request: UpdateKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -375,6 +382,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteKey(
       request: DeleteKeyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -423,6 +431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func migrateKey(
       request: MigrateKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -474,6 +483,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addIpOverride(
       request: AddIpOverrideRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.AddIpOverrideResponse {
@@ -525,6 +535,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeIpOverride(
       request: RemoveIpOverrideRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.RemoveIpOverrideResponse {
@@ -577,6 +588,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIpOverrides(
       request: ListIpOverridesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListIpOverridesResponse {
@@ -629,6 +641,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMetrics(
       request: GetMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Metrics {
@@ -679,6 +692,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPolicy(
       request: GetPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
@@ -729,6 +743,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePolicy(
       request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
@@ -784,6 +799,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFirewallPolicy(
       request: CreateFirewallPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
@@ -831,6 +847,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFirewallPolicies(
       request: ListFirewallPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListFirewallPoliciesResponse {
@@ -879,6 +896,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFirewallPolicy(
       request: GetFirewallPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
@@ -929,6 +947,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFirewallPolicy(
       request: UpdateFirewallPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
@@ -984,6 +1003,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFirewallPolicy(
       request: DeleteFirewallPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1034,6 +1054,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reorderFirewallPolicies(
       request: ReorderFirewallPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ReorderFirewallPoliciesResponse {
@@ -1082,6 +1103,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRelatedAccountGroups(
       request: ListRelatedAccountGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupsResponse {
@@ -1130,6 +1152,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRelatedAccountGroupMemberships(
       request: ListRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupMembershipsResponse {
@@ -1184,6 +1207,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif

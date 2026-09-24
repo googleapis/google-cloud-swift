@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func inspectContent(
       request: InspectContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.InspectContentResponse {
@@ -110,6 +111,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func redactImage(
       request: RedactImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.RedactImageResponse {
@@ -188,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deidentifyContent(
       request: DeidentifyContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DeidentifyContentResponse {
@@ -266,6 +269,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reidentifyContent(
       request: ReidentifyContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ReidentifyContentResponse {
@@ -344,6 +348,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInfoTypes(
       request: ListInfoTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListInfoTypesResponse {
@@ -480,6 +485,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInspectTemplate(
       request: CreateInspectTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -617,6 +623,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInspectTemplate(
       request: UpdateInspectTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -769,6 +776,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInspectTemplate(
       request: GetInspectTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -918,6 +926,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInspectTemplates(
       request: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListInspectTemplatesResponse {
@@ -1072,6 +1081,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInspectTemplate(
       request: DeleteInspectTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1221,6 +1231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDeidentifyTemplate(
       request: CreateDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -1358,6 +1369,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDeidentifyTemplate(
       request: UpdateDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -1510,6 +1522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDeidentifyTemplate(
       request: GetDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -1659,6 +1672,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDeidentifyTemplates(
       request: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListDeidentifyTemplatesResponse {
@@ -1813,6 +1827,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDeidentifyTemplate(
       request: DeleteDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1962,6 +1977,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createJobTrigger(
       request: CreateJobTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -2072,6 +2088,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateJobTrigger(
       request: UpdateJobTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -2189,6 +2206,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func hybridInspectJobTrigger(
       request: HybridInspectJobTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -2242,6 +2260,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJobTrigger(
       request: GetJobTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -2356,6 +2375,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listJobTriggers(
       request: ListJobTriggersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListJobTriggersResponse {
@@ -2484,6 +2504,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteJobTrigger(
       request: DeleteJobTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2598,6 +2619,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func activateJobTrigger(
       request: ActivateJobTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -2682,6 +2704,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDiscoveryConfig(
       request: CreateDiscoveryConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -2765,6 +2788,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDiscoveryConfig(
       request: UpdateDiscoveryConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -2851,6 +2875,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDiscoveryConfig(
       request: GetDiscoveryConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -2934,6 +2959,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDiscoveryConfigs(
       request: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListDiscoveryConfigsResponse {
@@ -3022,6 +3048,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDiscoveryConfig(
       request: DeleteDiscoveryConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3105,6 +3132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDlpJob(
       request: CreateDlpJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -3183,6 +3211,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDlpJobs(
       request: ListDlpJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListDlpJobsResponse {
@@ -3311,6 +3340,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDlpJob(
       request: GetDlpJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -3392,6 +3422,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDlpJob(
       request: DeleteDlpJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3473,6 +3504,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelDlpJob(
       request: CancelDlpJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3557,6 +3589,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createStoredInfoType(
       request: CreateStoredInfoTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -3694,6 +3727,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateStoredInfoType(
       request: UpdateStoredInfoTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -3846,6 +3880,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getStoredInfoType(
       request: GetStoredInfoTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -3995,6 +4030,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listStoredInfoTypes(
       request: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListStoredInfoTypesResponse {
@@ -4149,6 +4185,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteStoredInfoType(
       request: DeleteStoredInfoTypeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -4298,6 +4335,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProjectDataProfiles(
       request: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListProjectDataProfilesResponse {
@@ -4388,6 +4426,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTableDataProfiles(
       request: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListTableDataProfilesResponse {
@@ -4478,6 +4517,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listColumnDataProfiles(
       request: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListColumnDataProfilesResponse {
@@ -4568,6 +4608,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProjectDataProfile(
       request: GetProjectDataProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ProjectDataProfile {
@@ -4651,6 +4692,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFileStoreDataProfiles(
       request: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListFileStoreDataProfilesResponse {
@@ -4741,6 +4783,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFileStoreDataProfile(
       request: GetFileStoreDataProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.FileStoreDataProfile {
@@ -4824,6 +4867,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFileStoreDataProfile(
       request: DeleteFileStoreDataProfileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -4907,6 +4951,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTableDataProfile(
       request: GetTableDataProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.TableDataProfile {
@@ -4990,6 +5035,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getColumnDataProfile(
       request: GetColumnDataProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ColumnDataProfile {
@@ -5073,6 +5119,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTableDataProfile(
       request: DeleteTableDataProfileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -5156,6 +5203,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func hybridInspectDlpJob(
       request: HybridInspectDlpJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -5209,6 +5257,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func finishDlpJob(
       request: FinishDlpJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -5262,6 +5311,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createConnection(
       request: CreateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.Connection {
@@ -5345,6 +5395,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConnection(
       request: GetConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.Connection {
@@ -5428,6 +5479,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListConnectionsResponse {
@@ -5516,6 +5568,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchConnections(
       request: SearchConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.SearchConnectionsResponse {
@@ -5604,6 +5657,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteConnection(
       request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -5687,6 +5741,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConnection(
       request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.Connection {
@@ -5773,6 +5828,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createContentPolicy(
       request: CreateContentPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -5824,6 +5880,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateContentPolicy(
       request: UpdateContentPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -5877,6 +5934,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getContentPolicy(
       request: GetContentPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -5927,6 +5985,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listContentPolicies(
       request: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
@@ -5978,6 +6037,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteContentPolicy(
       request: DeleteContentPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws {

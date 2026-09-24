@@ -37,6 +37,7 @@
         )
       }
 
+      @concurrent
       public func createCustomJob(
         request: CreateCustomJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.CustomJob {
@@ -89,6 +90,7 @@
         ).get()
       }
 
+      @concurrent
       public func getCustomJob(
         request: GetCustomJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.CustomJob {
@@ -140,6 +142,7 @@
         ).get()
       }
 
+      @concurrent
       public func listCustomJobs(
         request: ListCustomJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListCustomJobsResponse {
@@ -194,6 +197,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteCustomJob(
         request: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -245,6 +249,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelCustomJob(
         request: CancelCustomJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -299,6 +304,7 @@
         ).get()
       }
 
+      @concurrent
       public func createDataLabelingJob(
         request: CreateDataLabelingJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.DataLabelingJob {
@@ -351,6 +357,7 @@
         ).get()
       }
 
+      @concurrent
       public func getDataLabelingJob(
         request: GetDataLabelingJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.DataLabelingJob {
@@ -402,6 +409,7 @@
         ).get()
       }
 
+      @concurrent
       public func listDataLabelingJobs(
         request: ListDataLabelingJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListDataLabelingJobsResponse {
@@ -457,6 +465,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteDataLabelingJob(
         request: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -508,6 +517,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelDataLabelingJob(
         request: CancelDataLabelingJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -562,6 +572,7 @@
         ).get()
       }
 
+      @concurrent
       public func createHyperparameterTuningJob(
         request: CreateHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.HyperparameterTuningJob {
@@ -614,6 +625,7 @@
         ).get()
       }
 
+      @concurrent
       public func getHyperparameterTuningJob(
         request: GetHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.HyperparameterTuningJob {
@@ -665,6 +677,7 @@
         ).get()
       }
 
+      @concurrent
       public func listHyperparameterTuningJobs(
         request: ListHyperparameterTuningJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListHyperparameterTuningJobsResponse {
@@ -720,6 +733,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteHyperparameterTuningJob(
         request: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -771,6 +785,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelHyperparameterTuningJob(
         request: CancelHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -825,6 +840,7 @@
         ).get()
       }
 
+      @concurrent
       public func createNasJob(
         request: CreateNasJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NasJob {
@@ -877,6 +893,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNasJob(
         request: GetNasJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NasJob {
@@ -928,6 +945,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNasJobs(
         request: ListNasJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListNasJobsResponse {
@@ -982,6 +1000,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNasJob(
         request: DeleteNasJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1033,6 +1052,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelNasJob(
         request: CancelNasJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -1087,6 +1107,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNasTrialDetail(
         request: GetNasTrialDetailRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.NasTrialDetail {
@@ -1140,6 +1161,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNasTrialDetails(
         request: ListNasTrialDetailsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListNasTrialDetailsResponse {
@@ -1194,6 +1216,7 @@
         ).get()
       }
 
+      @concurrent
       public func createBatchPredictionJob(
         request: CreateBatchPredictionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchPredictionJob {
@@ -1246,6 +1269,7 @@
         ).get()
       }
 
+      @concurrent
       public func getBatchPredictionJob(
         request: GetBatchPredictionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchPredictionJob {
@@ -1297,6 +1321,7 @@
         ).get()
       }
 
+      @concurrent
       public func listBatchPredictionJobs(
         request: ListBatchPredictionJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListBatchPredictionJobsResponse {
@@ -1352,6 +1377,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteBatchPredictionJob(
         request: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1403,6 +1429,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelBatchPredictionJob(
         request: CancelBatchPredictionJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -1457,6 +1484,7 @@
         ).get()
       }
 
+      @concurrent
       public func createModelDeploymentMonitoringJob(
         request: CreateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ModelDeploymentMonitoringJob {
@@ -1509,6 +1537,7 @@
         ).get()
       }
 
+      @concurrent
       public func searchModelDeploymentMonitoringStatsAnomalies(
         request: SearchModelDeploymentMonitoringStatsAnomaliesRequest,
         options: GoogleGax.RequestOptions
@@ -1569,6 +1598,7 @@
         ).get()
       }
 
+      @concurrent
       public func getModelDeploymentMonitoringJob(
         request: GetModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ModelDeploymentMonitoringJob {
@@ -1620,6 +1650,7 @@
         ).get()
       }
 
+      @concurrent
       public func listModelDeploymentMonitoringJobs(
         request: ListModelDeploymentMonitoringJobsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListModelDeploymentMonitoringJobsResponse {
@@ -1675,6 +1706,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateModelDeploymentMonitoringJob(
         request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1731,6 +1763,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteModelDeploymentMonitoringJob(
         request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1782,6 +1815,7 @@
         ).get()
       }
 
+      @concurrent
       public func pauseModelDeploymentMonitoringJob(
         request: PauseModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -1836,6 +1870,7 @@
         ).get()
       }
 
+      @concurrent
       public func resumeModelDeploymentMonitoringJob(
         request: ResumeModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -1890,6 +1925,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1970,6 +2006,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -2050,6 +2087,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -2541,6 +2579,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -3092,6 +3131,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -3608,6 +3648,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -7691,6 +7732,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -11232,6 +11274,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteOperation(
         request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -14664,6 +14707,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -17855,6 +17899,7 @@
         ).get()
       }
 
+      @concurrent
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

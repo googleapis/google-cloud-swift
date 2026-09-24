@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getIcebergCatalogConfig(
       request: GetIcebergCatalogConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalogConfig {
@@ -64,6 +65,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIcebergNamespaces(
       request: ListIcebergNamespacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.ListIcebergNamespacesResponse {
@@ -116,6 +118,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIcebergNamespace(
       request: GetIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -166,6 +169,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIcebergNamespace(
       request: CreateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -217,6 +221,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIcebergNamespace(
       request: DeleteIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -267,6 +272,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIcebergNamespace(
       request: UpdateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.UpdateIcebergNamespaceResponse {
@@ -353,6 +359,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIcebergTableIdentifiers(
       request: ListIcebergTableIdentifiersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse {
@@ -407,6 +414,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIcebergTable(
       request: CreateIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -460,6 +468,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIcebergTable(
       request: DeleteIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -513,6 +522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIcebergTable(
       request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -565,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func loadIcebergTableCredentials(
       request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse {
@@ -618,6 +629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIcebergTable(
       request: UpdateIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -671,6 +683,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func registerIcebergTable(
       request: RegisterIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -724,6 +737,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reportIcebergTableMetrics(
       request: ReportIcebergTableMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -777,6 +791,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIcebergCatalog(
       request: GetIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -825,6 +840,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIcebergCatalogs(
       request: ListIcebergCatalogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.ListIcebergCatalogsResponse {
@@ -874,6 +890,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIcebergCatalog(
       request: DeleteIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -922,6 +939,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIcebergCatalog(
       request: UpdateIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -975,6 +993,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIcebergCatalog(
       request: CreateIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -1027,6 +1046,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func failoverIcebergCatalog(
       request: FailoverIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse {

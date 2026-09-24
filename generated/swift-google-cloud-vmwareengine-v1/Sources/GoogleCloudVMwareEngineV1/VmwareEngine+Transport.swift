@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listPrivateClouds(
       request: ListPrivateCloudsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateCloudsResponse {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPrivateCloud(
       request: GetPrivateCloudRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.PrivateCloud {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPrivateCloud(
       request: CreatePrivateCloudRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePrivateCloud(
       request: UpdatePrivateCloudRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -251,6 +255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePrivateCloud(
       request: DeletePrivateCloudRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -305,6 +310,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeletePrivateCloud(
       request: UndeletePrivateCloudRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListClustersResponse {
@@ -413,6 +420,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.Cluster {
@@ -464,6 +472,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -521,6 +530,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -579,6 +589,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -632,6 +643,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNodes(
       request: ListNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListNodesResponse {
@@ -686,6 +698,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNode(
       request: GetNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.Node {
@@ -738,6 +751,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listExternalAddresses(
       request: ListExternalAddressesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListExternalAddressesResponse {
@@ -794,6 +808,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchNetworkPolicyExternalAddresses(
       request: FetchNetworkPolicyExternalAddressesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.FetchNetworkPolicyExternalAddressesResponse {
@@ -848,6 +863,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getExternalAddress(
       request: GetExternalAddressRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ExternalAddress {
@@ -900,6 +916,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createExternalAddress(
       request: CreateExternalAddressRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -957,6 +974,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateExternalAddress(
       request: UpdateExternalAddressRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1015,6 +1033,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteExternalAddress(
       request: DeleteExternalAddressRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1069,6 +1088,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSubnets(
       request: ListSubnetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListSubnetsResponse {
@@ -1122,6 +1142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSubnet(
       request: GetSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.Subnet {
@@ -1173,6 +1194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSubnet(
       request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1229,6 +1251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listExternalAccessRules(
       request: ListExternalAccessRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListExternalAccessRulesResponse {
@@ -1285,6 +1308,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getExternalAccessRule(
       request: GetExternalAccessRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ExternalAccessRule {
@@ -1337,6 +1361,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createExternalAccessRule(
       request: CreateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1395,6 +1420,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateExternalAccessRule(
       request: UpdateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1453,6 +1479,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteExternalAccessRule(
       request: DeleteExternalAccessRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1507,6 +1534,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLoggingServers(
       request: ListLoggingServersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListLoggingServersResponse {
@@ -1562,6 +1590,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLoggingServer(
       request: GetLoggingServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.LoggingServer {
@@ -1614,6 +1643,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLoggingServer(
       request: CreateLoggingServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1671,6 +1701,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLoggingServer(
       request: UpdateLoggingServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1729,6 +1760,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLoggingServer(
       request: DeleteLoggingServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1783,6 +1815,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNodeTypes(
       request: ListNodeTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListNodeTypesResponse {
@@ -1835,6 +1868,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNodeType(
       request: GetNodeTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.NodeType {
@@ -1885,6 +1919,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func showNsxCredentials(
       request: ShowNsxCredentialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.Credentials {
@@ -1935,6 +1970,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func showVcenterCredentials(
       request: ShowVcenterCredentialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.Credentials {
@@ -1987,6 +2023,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetNsxCredentials(
       request: ResetNsxCredentialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2040,6 +2077,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetVcenterCredentials(
       request: ResetVcenterCredentialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2093,6 +2131,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDnsForwarding(
       request: GetDnsForwardingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.DnsForwarding {
@@ -2143,6 +2182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDnsForwarding(
       request: UpdateDnsForwardingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2199,6 +2239,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNetworkPeering(
       request: GetNetworkPeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.NetworkPeering {
@@ -2249,6 +2290,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNetworkPeerings(
       request: ListNetworkPeeringsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPeeringsResponse {
@@ -2302,6 +2344,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNetworkPeering(
       request: CreateNetworkPeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2357,6 +2400,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNetworkPeering(
       request: DeleteNetworkPeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2409,6 +2453,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNetworkPeering(
       request: UpdateNetworkPeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2465,6 +2510,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPeeringRoutes(
       request: ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListPeeringRoutesResponse {
@@ -2519,6 +2565,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createHcxActivationKey(
       request: CreateHcxActivationKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2577,6 +2624,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listHcxActivationKeys(
       request: ListHcxActivationKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListHcxActivationKeysResponse {
@@ -2631,6 +2679,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getHcxActivationKey(
       request: GetHcxActivationKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.HcxActivationKey {
@@ -2683,6 +2732,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNetworkPolicy(
       request: GetNetworkPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.NetworkPolicy {
@@ -2733,6 +2783,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNetworkPolicies(
       request: ListNetworkPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPoliciesResponse {
@@ -2786,6 +2837,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNetworkPolicy(
       request: CreateNetworkPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2841,6 +2893,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNetworkPolicy(
       request: UpdateNetworkPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2897,6 +2950,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNetworkPolicy(
       request: DeleteNetworkPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2949,6 +3003,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listManagementDnsZoneBindings(
       request: ListManagementDnsZoneBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListManagementDnsZoneBindingsResponse {
@@ -3005,6 +3060,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getManagementDnsZoneBinding(
       request: GetManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ManagementDnsZoneBinding {
@@ -3057,6 +3113,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createManagementDnsZoneBinding(
       request: CreateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3115,6 +3172,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateManagementDnsZoneBinding(
       request: UpdateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3173,6 +3231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteManagementDnsZoneBinding(
       request: DeleteManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3227,6 +3286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func repairManagementDnsZoneBinding(
       request: RepairManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3282,6 +3342,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createVmwareEngineNetwork(
       request: CreateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3338,6 +3399,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateVmwareEngineNetwork(
       request: UpdateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3394,6 +3456,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteVmwareEngineNetwork(
       request: DeleteVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3447,6 +3510,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVmwareEngineNetwork(
       request: GetVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.VmwareEngineNetwork {
@@ -3497,6 +3561,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVmwareEngineNetworks(
       request: ListVmwareEngineNetworksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListVmwareEngineNetworksResponse {
@@ -3551,6 +3616,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPrivateConnection(
       request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3607,6 +3673,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPrivateConnection(
       request: GetPrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.PrivateConnection {
@@ -3657,6 +3724,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPrivateConnections(
       request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateConnectionsResponse {
@@ -3711,6 +3779,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePrivateConnection(
       request: UpdatePrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3767,6 +3836,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePrivateConnection(
       request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3819,6 +3889,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPrivateConnectionPeeringRoutes(
       request: ListPrivateConnectionPeeringRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateConnectionPeeringRoutesResponse {
@@ -3873,6 +3944,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func grantDnsBindPermission(
       request: GrantDnsBindPermissionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3926,6 +3998,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDnsBindPermission(
       request: GetDnsBindPermissionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.DnsBindPermission {
@@ -3976,6 +4049,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func revokeDnsBindPermission(
       request: RevokeDnsBindPermissionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -4029,6 +4103,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -4077,6 +4152,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -4125,6 +4201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -4247,6 +4324,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -4372,6 +4450,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -4494,6 +4573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -4549,6 +4629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -4599,6 +4680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func getSiteSearchEngine(
         request: GetSiteSearchEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine {
@@ -121,6 +122,7 @@
         ).get()
       }
 
+      @concurrent
       public func createTargetSite(
         request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -210,6 +212,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchCreateTargetSites(
         request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -299,6 +302,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTargetSite(
         request: GetTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.TargetSite {
@@ -388,6 +392,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTargetSite(
         request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -480,6 +485,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteTargetSite(
         request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -569,6 +575,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTargetSites(
         request: ListTargetSitesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse {
@@ -661,6 +668,7 @@
         ).get()
       }
 
+      @concurrent
       public func createSitemap(
         request: CreateSitemapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -750,6 +758,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteSitemap(
         request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -839,6 +848,7 @@
         ).get()
       }
 
+      @concurrent
       public func fetchSitemaps(
         request: FetchSitemapsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse {
@@ -929,6 +939,7 @@
         ).get()
       }
 
+      @concurrent
       public func enableAdvancedSiteSearch(
         request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1018,6 +1029,7 @@
         ).get()
       }
 
+      @concurrent
       public func disableAdvancedSiteSearch(
         request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1107,6 +1119,7 @@
         ).get()
       }
 
+      @concurrent
       public func recrawlUris(
         request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1196,6 +1209,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchVerifyTargetSites(
         request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1252,6 +1266,7 @@
         ).get()
       }
 
+      @concurrent
       public func fetchDomainVerificationStatus(
         request: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse {
@@ -1309,6 +1324,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1968,6 +1984,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -2546,6 +2563,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

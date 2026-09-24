@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createChallenge(
       request: CreateChallengeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.Challenge {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyAttestation(
       request: VerifyAttestationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.VerifyAttestationResponse {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyConfidentialSpace(
       request: VerifyConfidentialSpaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.VerifyConfidentialSpaceResponse {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyConfidentialGke(
       request: VerifyConfidentialGkeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.VerifyConfidentialGkeResponse {
@@ -245,6 +249,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -293,6 +298,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

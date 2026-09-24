@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func create(
       request: ChangesClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Change {
@@ -95,6 +96,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func `get`(
       request: ChangesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Change {
@@ -171,6 +173,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func list(
       request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ChangesListResponse {

@@ -36,6 +36,7 @@
         )
       }
 
+      @concurrent
       public func listAgents(
         request: ListAgentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListAgentsResponse {
@@ -88,6 +89,7 @@
         ).get()
       }
 
+      @concurrent
       public func getAgent(
         request: GetAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Agent {
@@ -139,6 +141,7 @@
         ).get()
       }
 
+      @concurrent
       public func createAgent(
         request: CreateAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Agent {
@@ -191,6 +194,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateAgent(
         request: UpdateAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Agent {
@@ -247,6 +251,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteAgent(
         request: DeleteAgentRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -298,6 +303,7 @@
         ).get()
       }
 
+      @concurrent
       public func exportAgent(
         request: ExportAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -352,6 +358,7 @@
         ).get()
       }
 
+      @concurrent
       public func restoreAgent(
         request: RestoreAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -406,6 +413,7 @@
         ).get()
       }
 
+      @concurrent
       public func validateAgent(
         request: ValidateAgentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.AgentValidationResult {
@@ -460,6 +468,7 @@
         ).get()
       }
 
+      @concurrent
       public func getAgentValidationResult(
         request: GetAgentValidationResultRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.AgentValidationResult {
@@ -514,6 +523,7 @@
         ).get()
       }
 
+      @concurrent
       public func getGenerativeSettings(
         request: GetGenerativeSettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings {
@@ -568,6 +578,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateGenerativeSettings(
         request: UpdateGenerativeSettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings {
@@ -624,6 +635,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -673,6 +685,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -722,6 +735,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -812,6 +826,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -894,6 +909,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

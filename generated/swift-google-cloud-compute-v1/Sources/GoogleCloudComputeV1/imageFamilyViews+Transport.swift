@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: ImageFamilyViewsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ImageFamilyView {

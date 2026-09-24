@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listAlertPolicies(
       request: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAlertPolicy(
       request: GetAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
@@ -130,6 +132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAlertPolicy(
       request: CreateAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
@@ -177,6 +180,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAlertPolicy(
       request: DeleteAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -226,6 +230,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAlertPolicy(
       request: UpdateAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {

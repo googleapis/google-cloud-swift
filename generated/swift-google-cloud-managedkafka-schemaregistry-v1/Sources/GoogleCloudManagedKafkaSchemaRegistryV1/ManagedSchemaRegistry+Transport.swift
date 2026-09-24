@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getSchemaRegistry(
       request: GetSchemaRegistryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSchemaRegistries(
       request: ListSchemaRegistriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse {
@@ -134,6 +136,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSchemaRegistry(
       request: CreateSchemaRegistryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -185,6 +188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSchemaRegistry(
       request: DeleteSchemaRegistryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -235,6 +239,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getContext(
       request: GetContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Context {
@@ -287,6 +292,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listContexts(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -337,6 +343,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSchema(
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema {
@@ -428,6 +435,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRawSchema(
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -519,6 +527,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSchemaVersions(
       request: ListSchemaVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -612,6 +621,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSchemaTypes(
       request: ListSchemaTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -697,6 +707,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSubjects(
       request: ListSubjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -790,6 +801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSubjectsBySchemaId(
       request: ListSubjectsBySchemaIdRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -883,6 +895,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSubject(
       request: DeleteSubjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -974,6 +987,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookupVersion(
       request: LookupVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -1064,6 +1078,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -1157,6 +1172,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRawSchemaVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -1250,6 +1266,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -1341,6 +1358,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createVersion(
       request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse {
@@ -1432,6 +1450,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteVersion(
       request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -1525,6 +1544,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReferencedSchemas(
       request: ListReferencedSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -1614,6 +1634,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func checkCompatibility(
       request: CheckCompatibilityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse {
@@ -1705,6 +1726,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSchemaConfig(
       request: GetSchemaConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -1798,6 +1820,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSchemaConfig(
       request: UpdateSchemaConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -1888,6 +1911,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSchemaConfig(
       request: DeleteSchemaConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -1975,6 +1999,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSchemaMode(
       request: GetSchemaModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -2062,6 +2087,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSchemaMode(
       request: UpdateSchemaModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -2152,6 +2178,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSchemaMode(
       request: DeleteSchemaModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -2239,6 +2266,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2287,6 +2315,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2335,6 +2364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2390,6 +2420,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2440,6 +2471,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2490,6 +2522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

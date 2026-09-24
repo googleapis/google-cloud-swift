@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listAuthorizedCertificates(
       request: ListAuthorizedCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListAuthorizedCertificatesResponse {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAuthorizedCertificate(
       request: GetAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.AuthorizedCertificate {
@@ -133,6 +135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAuthorizedCertificate(
       request: CreateAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.AuthorizedCertificate {
@@ -180,6 +183,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAuthorizedCertificate(
       request: UpdateAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.AuthorizedCertificate {
@@ -235,6 +239,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAuthorizedCertificate(
       request: DeleteAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -285,6 +290,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -336,6 +342,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

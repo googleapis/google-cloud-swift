@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createProduct(
       request: CreateProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Product {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProduct(
       request: GetProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Product {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProducts(
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListProductsResponse {
@@ -196,6 +199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProduct(
       request: UpdateProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Product {
@@ -254,6 +258,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteProduct(
       request: DeleteProductRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -306,6 +311,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func purgeProducts(
       request: PurgeProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -359,6 +365,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -415,6 +422,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setInventory(
       request: SetInventoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -470,6 +478,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addFulfillmentPlaces(
       request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -525,6 +534,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeFulfillmentPlaces(
       request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -580,6 +590,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addLocalInventories(
       request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -635,6 +646,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeLocalInventories(
       request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -690,6 +702,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -819,6 +832,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

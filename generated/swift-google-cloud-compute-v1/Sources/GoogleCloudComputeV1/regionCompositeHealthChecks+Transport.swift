@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: RegionCompositeHealthChecksClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +170,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionCompositeHealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CompositeHealthCheck {
@@ -242,6 +245,7 @@
         ).get()
       }
 
+      @concurrent
       public func getHealth(
         request: RegionCompositeHealthChecksClient.GetHealthRequest,
         options: GoogleGax.RequestOptions
@@ -317,6 +321,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -382,6 +387,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CompositeHealthCheckList {
@@ -450,6 +456,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -529,6 +536,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: RegionCompositeHealthChecksClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -607,6 +615,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

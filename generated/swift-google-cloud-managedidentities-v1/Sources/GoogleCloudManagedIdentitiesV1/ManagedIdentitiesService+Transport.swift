@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createMicrosoftAdDomain(
       request: CreateMicrosoftAdDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetAdminPassword(
       request: ResetAdminPasswordRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDomains(
       request: ListDomainsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse {
@@ -186,6 +189,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDomain(
       request: GetDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedIdentitiesV1.Domain {
@@ -236,6 +240,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDomain(
       request: UpdateDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -291,6 +296,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDomain(
       request: DeleteDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -341,6 +347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func attachTrust(
       request: AttachTrustRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -394,6 +401,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reconfigureTrust(
       request: ReconfigureTrustRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -447,6 +455,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func detachTrust(
       request: DetachTrustRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -500,6 +509,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func validateTrust(
       request: ValidateTrustRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -553,6 +563,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -608,6 +619,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -658,6 +670,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -708,6 +721,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: InterconnectAttachmentsClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: InterconnectAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +170,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InterconnectAttachmentsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachment {
@@ -242,6 +245,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InterconnectAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -309,6 +313,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList {
@@ -377,6 +382,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: InterconnectAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -456,6 +462,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: InterconnectAttachmentsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -535,6 +542,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

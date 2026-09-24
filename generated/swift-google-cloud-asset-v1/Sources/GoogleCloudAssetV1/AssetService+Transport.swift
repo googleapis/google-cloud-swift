@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func exportAssets(
       request: ExportAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAssets(
       request: ListAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.ListAssetsResponse {
@@ -133,6 +135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchGetAssetsHistory(
       request: BatchGetAssetsHistoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.BatchGetAssetsHistoryResponse {
@@ -184,6 +187,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFeed(
       request: CreateFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.Feed {
@@ -231,6 +235,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFeed(
       request: GetFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.Feed {
@@ -280,6 +285,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFeeds(
       request: ListFeedsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.ListFeedsResponse {
@@ -324,6 +330,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFeed(
       request: UpdateFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.Feed {
@@ -376,6 +383,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFeed(
       request: DeleteFeedRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -425,6 +433,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchAllResources(
       request: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse {
@@ -476,6 +485,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchAllIamPolicies(
       request: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse {
@@ -526,6 +536,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeIamPolicy(
       request: AnalyzeIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeIamPolicyResponse {
@@ -578,6 +589,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeIamPolicyLongrunning(
       request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -625,6 +637,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeMove(
       request: AnalyzeMoveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeMoveResponse {
@@ -673,6 +686,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryAssets(
       request: QueryAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.QueryAssetsResponse {
@@ -720,6 +734,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSavedQuery(
       request: CreateSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -769,6 +784,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSavedQuery(
       request: GetSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -819,6 +835,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSavedQueries(
       request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse {
@@ -867,6 +884,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSavedQuery(
       request: UpdateSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -922,6 +940,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSavedQuery(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -972,6 +991,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchGetEffectiveIamPolicies(
       request: BatchGetEffectiveIamPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.BatchGetEffectiveIamPoliciesResponse {
@@ -1019,6 +1039,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeOrgPolicies(
       request: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse {
@@ -1068,6 +1089,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeOrgPolicyGovernedContainers(
       request: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse {
@@ -1118,6 +1140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeOrgPolicyGovernedAssets(
       request: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse {
@@ -1168,6 +1191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

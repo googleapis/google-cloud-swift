@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createTool(
         request: CreateToolRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -89,6 +90,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTools(
         request: ListToolsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListToolsResponse {
@@ -143,6 +145,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTool(
         request: GetToolRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -194,6 +197,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTool(
         request: UpdateToolRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -250,6 +254,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteTool(
         request: DeleteToolRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -303,6 +308,7 @@
         ).get()
       }
 
+      @concurrent
       public func listToolVersions(
         request: ListToolVersionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListToolVersionsResponse {
@@ -357,6 +363,7 @@
         ).get()
       }
 
+      @concurrent
       public func createToolVersion(
         request: CreateToolVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -411,6 +418,7 @@
         ).get()
       }
 
+      @concurrent
       public func getToolVersion(
         request: GetToolVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -464,6 +472,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteToolVersion(
         request: DeleteToolVersionRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -519,6 +528,7 @@
         ).get()
       }
 
+      @concurrent
       public func restoreToolVersion(
         request: RestoreToolVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.RestoreToolVersionResponse {
@@ -575,6 +585,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -624,6 +635,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -673,6 +685,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -763,6 +776,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -845,6 +859,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

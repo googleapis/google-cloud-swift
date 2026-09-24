@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: RegionBackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -108,6 +109,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionBackendBucketsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucket {
@@ -182,6 +184,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: RegionBackendBucketsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -260,6 +263,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionBackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -325,6 +329,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketList {
@@ -393,6 +398,7 @@
         ).get()
       }
 
+      @concurrent
       public func listUsable(
         request: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketListUsable {
@@ -461,6 +467,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RegionBackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -540,6 +547,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: RegionBackendBucketsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -617,6 +625,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: RegionBackendBucketsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -695,6 +704,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createSshPublicKey(
       request: CreateSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePosixAccount(
       request: DeletePosixAccountRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -128,6 +130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSshPublicKey(
       request: DeleteSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -176,6 +179,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLoginProfile(
       request: GetLoginProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginV1.LoginProfile {
@@ -223,6 +227,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSshPublicKey(
       request: GetSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -271,6 +276,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importSshPublicKey(
       request: ImportSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginV1.ImportSshPublicKeyResponse {
@@ -321,6 +327,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSshPublicKey(
       request: UpdateSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {

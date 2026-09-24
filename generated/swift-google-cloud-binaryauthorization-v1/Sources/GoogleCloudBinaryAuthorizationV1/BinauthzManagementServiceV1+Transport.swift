@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getPolicy(
       request: GetPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -77,6 +78,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePolicy(
       request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -124,6 +126,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAttestor(
       request: CreateAttestorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -173,6 +176,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAttestor(
       request: GetAttestorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -221,6 +225,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAttestor(
       request: UpdateAttestorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -272,6 +277,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAttestors(
       request: ListAttestorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse {
@@ -319,6 +325,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAttestor(
       request: DeleteAttestorRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -367,6 +374,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -445,6 +453,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -524,6 +533,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {

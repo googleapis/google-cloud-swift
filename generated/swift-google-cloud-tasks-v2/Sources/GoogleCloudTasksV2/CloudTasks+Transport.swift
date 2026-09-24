@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listQueues(
       request: ListQueuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListQueuesResponse {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQueue(
       request: GetQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQueue(
       request: CreateQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
@@ -187,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateQueue(
       request: UpdateQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteQueue(
       request: DeleteQueueRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func purgeQueue(
       request: PurgeQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
@@ -345,6 +351,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pauseQueue(
       request: PauseQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
@@ -398,6 +405,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resumeQueue(
       request: ResumeQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
@@ -451,6 +459,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -504,6 +513,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -557,6 +567,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -610,6 +621,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTasks(
       request: ListTasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListTasksResponse {
@@ -664,6 +676,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTask(
       request: GetTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task {
@@ -716,6 +729,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTask(
       request: CreateTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task {
@@ -769,6 +783,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTask(
       request: DeleteTaskRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -819,6 +834,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func runTask(
       request: RunTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task {
@@ -872,6 +888,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -920,6 +937,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

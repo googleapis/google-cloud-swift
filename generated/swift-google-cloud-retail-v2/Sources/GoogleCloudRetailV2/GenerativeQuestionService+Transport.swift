@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func updateGenerativeQuestionsFeatureConfig(
       request: UpdateGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGenerativeQuestionsFeatureConfig(
       request: GetGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGenerativeQuestionConfigs(
       request: ListGenerativeQuestionConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGenerativeQuestionConfig(
       request: UpdateGenerativeQuestionConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig {
@@ -244,6 +248,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchUpdateGenerativeQuestionConfigs(
       request: BatchUpdateGenerativeQuestionConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.BatchUpdateGenerativeQuestionConfigsResponse {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -427,6 +433,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

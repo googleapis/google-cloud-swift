@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: InstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -152,6 +154,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InstanceTemplatesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceTemplate {
@@ -212,6 +215,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: InstanceTemplatesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -276,6 +280,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -326,6 +331,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceTemplateList {
@@ -379,6 +385,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: InstanceTemplatesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -442,6 +449,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: InstanceTemplatesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -506,6 +514,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

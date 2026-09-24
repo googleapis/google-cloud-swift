@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Cluster {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTopics(
       request: ListTopicsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse {
@@ -353,6 +359,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTopic(
       request: GetTopicRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Topic {
@@ -403,6 +410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTopic(
       request: CreateTopicRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Topic {
@@ -458,6 +466,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTopic(
       request: UpdateTopicRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Topic {
@@ -513,6 +522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTopic(
       request: DeleteTopicRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -563,6 +573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listConsumerGroups(
       request: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse {
@@ -616,6 +627,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConsumerGroup(
       request: GetConsumerGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup {
@@ -668,6 +680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConsumerGroup(
       request: UpdateConsumerGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup {
@@ -725,6 +738,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteConsumerGroup(
       request: DeleteConsumerGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -777,6 +791,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAcls(
       request: ListAclsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse {
@@ -830,6 +845,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAcl(
       request: GetAclRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -880,6 +896,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAcl(
       request: CreateAclRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -935,6 +952,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAcl(
       request: UpdateAclRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -990,6 +1008,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAcl(
       request: DeleteAclRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1040,6 +1059,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addAclEntry(
       request: AddAclEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.AddAclEntryResponse {
@@ -1093,6 +1113,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeAclEntry(
       request: RemoveAclEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.RemoveAclEntryResponse {
@@ -1146,6 +1167,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1194,6 +1216,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1242,6 +1265,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1297,6 +1321,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1347,6 +1372,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1397,6 +1423,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

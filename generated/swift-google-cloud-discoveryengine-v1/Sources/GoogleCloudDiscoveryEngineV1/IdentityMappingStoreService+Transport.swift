@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createIdentityMappingStore(
         request: CreateIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -101,6 +102,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIdentityMappingStore(
         request: GetIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -152,6 +154,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteIdentityMappingStore(
         request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -203,6 +206,7 @@
         ).get()
       }
 
+      @concurrent
       public func importIdentityMappings(
         request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -257,6 +261,7 @@
         ).get()
       }
 
+      @concurrent
       public func purgeIdentityMappings(
         request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -311,6 +316,7 @@
         ).get()
       }
 
+      @concurrent
       public func listIdentityMappings(
         request: ListIdentityMappingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingsResponse {
@@ -366,6 +372,7 @@
         ).get()
       }
 
+      @concurrent
       public func listIdentityMappingStores(
         request: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingStoresResponse {
@@ -419,6 +426,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1078,6 +1086,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1656,6 +1665,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

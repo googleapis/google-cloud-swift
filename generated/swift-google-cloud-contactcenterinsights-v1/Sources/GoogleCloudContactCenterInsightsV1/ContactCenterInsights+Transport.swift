@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createConversation(
       request: CreateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func uploadConversation(
       request: UploadConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConversation(
       request: UpdateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
@@ -194,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConversation(
       request: GetConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
@@ -246,6 +250,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listConversations(
       request: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListConversationsResponse {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteConversation(
       request: DeleteConversationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -353,6 +359,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAnalysis(
       request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -406,6 +413,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAnalysis(
       request: GetAnalysisRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Analysis {
@@ -457,6 +465,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAnalyses(
       request: ListAnalysesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListAnalysesResponse {
@@ -512,6 +521,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAnalysis(
       request: DeleteAnalysisRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -563,6 +573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func bulkAnalyzeConversations(
       request: BulkAnalyzeConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -614,6 +625,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func bulkDeleteConversations(
       request: BulkDeleteConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -665,6 +677,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func ingestConversations(
       request: IngestConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -716,6 +729,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportInsightsData(
       request: ExportInsightsDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -767,6 +781,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIssueModel(
       request: CreateIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -818,6 +833,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIssueModel(
       request: UpdateIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.IssueModel {
@@ -873,6 +889,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIssueModel(
       request: GetIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.IssueModel {
@@ -923,6 +940,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIssueModels(
       request: ListIssueModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListIssueModelsResponse {
@@ -972,6 +990,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIssueModel(
       request: DeleteIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1022,6 +1041,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deployIssueModel(
       request: DeployIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1075,6 +1095,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeployIssueModel(
       request: UndeployIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1128,6 +1149,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportIssueModel(
       request: ExportIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1181,6 +1203,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importIssueModel(
       request: ImportIssueModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1232,6 +1255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIssue(
       request: GetIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Issue {
@@ -1282,6 +1306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIssues(
       request: ListIssuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListIssuesResponse {
@@ -1332,6 +1357,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIssue(
       request: UpdateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Issue {
@@ -1387,6 +1413,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIssue(
       request: DeleteIssueRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1437,6 +1464,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func calculateIssueModelStats(
       request: CalculateIssueModelStatsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.CalculateIssueModelStatsResponse {
@@ -1488,6 +1516,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPhraseMatcher(
       request: CreatePhraseMatcherRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
@@ -1539,6 +1568,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPhraseMatcher(
       request: GetPhraseMatcherRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
@@ -1589,6 +1619,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPhraseMatchers(
       request: ListPhraseMatchersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListPhraseMatchersResponse {
@@ -1642,6 +1673,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePhraseMatcher(
       request: DeletePhraseMatcherRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1692,6 +1724,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePhraseMatcher(
       request: UpdatePhraseMatcherRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
@@ -1747,6 +1780,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func calculateStats(
       request: CalculateStatsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.CalculateStatsResponse {
@@ -1835,6 +1869,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSettings(
       request: GetSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Settings {
@@ -1885,6 +1920,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSettings(
       request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Settings {
@@ -1940,6 +1976,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAnalysisRule(
       request: CreateAnalysisRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
@@ -1991,6 +2028,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAnalysisRule(
       request: GetAnalysisRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
@@ -2041,6 +2079,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAnalysisRules(
       request: ListAnalysisRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListAnalysisRulesResponse {
@@ -2093,6 +2132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAnalysisRule(
       request: UpdateAnalysisRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
@@ -2148,6 +2188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAnalysisRule(
       request: DeleteAnalysisRuleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2198,6 +2239,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEncryptionSpec(
       request: GetEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.EncryptionSpec {
@@ -2248,6 +2290,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func initializeEncryptionSpec(
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2301,6 +2344,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createView(
       request: CreateViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.View {
@@ -2352,6 +2396,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getView(
       request: GetViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.View {
@@ -2402,6 +2447,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listViews(
       request: ListViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListViewsResponse {
@@ -2453,6 +2499,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateView(
       request: UpdateViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.View {
@@ -2508,6 +2555,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteView(
       request: DeleteViewRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2558,6 +2606,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryMetrics(
       request: QueryMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2644,6 +2693,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQaQuestion(
       request: CreateQaQuestionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
@@ -2700,6 +2750,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQaQuestion(
       request: GetQaQuestionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
@@ -2752,6 +2803,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateQaQuestion(
       request: UpdateQaQuestionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
@@ -2809,6 +2861,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteQaQuestion(
       request: DeleteQaQuestionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2861,6 +2914,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listQaQuestions(
       request: ListQaQuestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListQaQuestionsResponse {
@@ -2916,6 +2970,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQaScorecard(
       request: CreateQaScorecardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
@@ -2970,6 +3025,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQaScorecard(
       request: GetQaScorecardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
@@ -3020,6 +3076,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateQaScorecard(
       request: UpdateQaScorecardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
@@ -3075,6 +3132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteQaScorecard(
       request: DeleteQaScorecardRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3127,6 +3185,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listQaScorecards(
       request: ListQaScorecardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListQaScorecardsResponse {
@@ -3179,6 +3238,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQaScorecardRevision(
       request: CreateQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecardRevision {
@@ -3236,6 +3296,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQaScorecardRevision(
       request: GetQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecardRevision {
@@ -3287,6 +3348,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func tuneQaScorecardRevision(
       request: TuneQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3341,6 +3403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deployQaScorecardRevision(
       request: DeployQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecardRevision {
@@ -3395,6 +3458,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeployQaScorecardRevision(
       request: UndeployQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecardRevision {
@@ -3449,6 +3513,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteQaScorecardRevision(
       request: DeleteQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3502,6 +3567,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listQaScorecardRevisions(
       request: ListQaScorecardRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListQaScorecardRevisionsResponse {
@@ -3557,6 +3623,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFeedbackLabel(
       request: CreateFeedbackLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
@@ -3613,6 +3680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFeedbackLabels(
       request: ListFeedbackLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListFeedbackLabelsResponse {
@@ -3668,6 +3736,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFeedbackLabel(
       request: GetFeedbackLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
@@ -3720,6 +3789,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFeedbackLabel(
       request: UpdateFeedbackLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
@@ -3777,6 +3847,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFeedbackLabel(
       request: DeleteFeedbackLabelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3829,6 +3900,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAllFeedbackLabels(
       request: ListAllFeedbackLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.ListAllFeedbackLabelsResponse {
@@ -3882,6 +3954,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func bulkUploadFeedbackLabels(
       request: BulkUploadFeedbackLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3933,6 +4006,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func bulkDownloadFeedbackLabels(
       request: BulkDownloadFeedbackLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3984,6 +4058,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -4039,6 +4114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -4089,6 +4165,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

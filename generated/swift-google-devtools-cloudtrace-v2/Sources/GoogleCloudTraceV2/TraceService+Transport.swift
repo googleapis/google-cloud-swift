@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func batchWriteSpans(
       request: BatchWriteSpansRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSpan(
       request: Span, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTraceV2.Span {

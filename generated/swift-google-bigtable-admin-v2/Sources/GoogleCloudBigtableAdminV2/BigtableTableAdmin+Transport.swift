@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createTable(
       request: CreateTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTableFromSnapshot(
       request: CreateTableFromSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTables(
       request: ListTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListTablesResponse {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTable(
       request: GetTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -241,6 +245,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTable(
       request: UpdateTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTable(
       request: DeleteTableRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -348,6 +354,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteTable(
       request: UndeleteTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -401,6 +408,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAuthorizedView(
       request: CreateAuthorizedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -457,6 +465,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAuthorizedViews(
       request: ListAuthorizedViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListAuthorizedViewsResponse {
@@ -511,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAuthorizedView(
       request: GetAuthorizedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AuthorizedView {
@@ -564,6 +574,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAuthorizedView(
       request: UpdateAuthorizedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -622,6 +633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAuthorizedView(
       request: DeleteAuthorizedViewRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -675,6 +687,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func modifyColumnFamilies(
       request: ModifyColumnFamiliesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -728,6 +741,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func dropRowRange(
       request: DropRowRangeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -781,6 +795,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateConsistencyToken(
       request: GenerateConsistencyTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.GenerateConsistencyTokenResponse {
@@ -835,6 +850,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func checkConsistency(
       request: CheckConsistencyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.CheckConsistencyResponse {
@@ -888,6 +904,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func snapshotTable(
       request: SnapshotTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -941,6 +958,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSnapshot(
       request: GetSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Snapshot {
@@ -991,6 +1009,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSnapshots(
       request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListSnapshotsResponse {
@@ -1044,6 +1063,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSnapshot(
       request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1094,6 +1114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackup(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1149,6 +1170,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Backup {
@@ -1199,6 +1221,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackup(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Backup {
@@ -1254,6 +1277,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackup(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1304,6 +1328,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListBackupsResponse {
@@ -1359,6 +1384,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restoreTable(
       request: RestoreTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1410,6 +1436,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func copyBackup(
       request: CopyBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1463,6 +1490,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1616,6 +1644,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1769,6 +1798,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1922,6 +1952,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSchemaBundle(
       request: CreateSchemaBundleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1978,6 +2009,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSchemaBundle(
       request: UpdateSchemaBundleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2035,6 +2067,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSchemaBundle(
       request: GetSchemaBundleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.SchemaBundle {
@@ -2085,6 +2118,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSchemaBundles(
       request: ListSchemaBundlesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListSchemaBundlesResponse {
@@ -2138,6 +2172,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSchemaBundle(
       request: DeleteSchemaBundleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2190,6 +2225,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2241,6 +2277,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2285,6 +2322,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2329,6 +2367,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

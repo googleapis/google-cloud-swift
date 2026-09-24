@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getAuthorization(
       request: GetAuthorizationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization {
@@ -76,6 +77,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDeployment(
       request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -125,6 +127,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func replaceDeployment(
       request: ReplaceDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -176,6 +179,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDeployment(
       request: GetDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -224,6 +228,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse {
@@ -271,6 +276,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDeployment(
       request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -321,6 +327,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func installDeployment(
       request: InstallDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -372,6 +379,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func uninstallDeployment(
       request: UninstallDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -423,6 +431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInstallStatus(
       request: GetInstallStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.InstallStatus {

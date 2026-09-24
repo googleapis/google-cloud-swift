@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listInterceptEndpointGroups(
       request: ListInterceptEndpointGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupsResponse {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInterceptEndpointGroup(
       request: GetInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.InterceptEndpointGroup {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInterceptEndpointGroup(
       request: CreateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -196,6 +199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInterceptEndpointGroup(
       request: UpdateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -252,6 +256,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInterceptEndpointGroup(
       request: DeleteInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -304,6 +309,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInterceptEndpointGroupAssociations(
       request: ListInterceptEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupAssociationsResponse {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInterceptEndpointGroupAssociation(
       request: GetInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.InterceptEndpointGroupAssociation {
@@ -409,6 +416,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInterceptEndpointGroupAssociation(
       request: CreateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -466,6 +474,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInterceptEndpointGroupAssociation(
       request: UpdateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -522,6 +531,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInterceptEndpointGroupAssociation(
       request: DeleteInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -574,6 +584,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInterceptDeploymentGroups(
       request: ListInterceptDeploymentGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentGroupsResponse {
@@ -628,6 +639,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInterceptDeploymentGroup(
       request: GetInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.InterceptDeploymentGroup {
@@ -678,6 +690,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInterceptDeploymentGroup(
       request: CreateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -734,6 +747,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInterceptDeploymentGroup(
       request: UpdateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -790,6 +804,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInterceptDeploymentGroup(
       request: DeleteInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -842,6 +857,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInterceptDeployments(
       request: ListInterceptDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentsResponse {
@@ -896,6 +912,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInterceptDeployment(
       request: GetInterceptDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.InterceptDeployment {
@@ -946,6 +963,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInterceptDeployment(
       request: CreateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1002,6 +1020,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInterceptDeployment(
       request: UpdateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1058,6 +1077,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInterceptDeployment(
       request: DeleteInterceptDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1110,6 +1130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1189,6 +1210,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1269,6 +1291,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1454,6 +1477,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1646,6 +1670,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1864,6 +1889,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1958,6 +1984,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2041,6 +2068,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2124,6 +2152,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

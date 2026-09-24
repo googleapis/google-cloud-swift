@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listKeyRings(
       request: ListKeyRingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCryptoKeys(
       request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListCryptoKeysResponse {
@@ -145,6 +147,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCryptoKeyVersions(
       request: ListCryptoKeyVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListCryptoKeyVersionsResponse {
@@ -201,6 +204,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listImportJobs(
       request: ListImportJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListImportJobsResponse {
@@ -256,6 +260,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRetiredResources(
       request: ListRetiredResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListRetiredResourcesResponse {
@@ -307,6 +312,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getKeyRing(
       request: GetKeyRingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.KeyRing {
@@ -357,6 +363,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCryptoKey(
       request: GetCryptoKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKey {
@@ -407,6 +414,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCryptoKeyVersion(
       request: GetCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -459,6 +467,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPublicKey(
       request: GetPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.PublicKey {
@@ -514,6 +523,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getImportJob(
       request: GetImportJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ImportJob {
@@ -567,6 +577,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRetiredResource(
       request: GetRetiredResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.RetiredResource {
@@ -617,6 +628,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createKeyRing(
       request: CreateKeyRingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.KeyRing {
@@ -670,6 +682,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCryptoKey(
       request: CreateCryptoKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKey {
@@ -731,6 +744,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCryptoKeyVersion(
       request: CreateCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -784,6 +798,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCryptoKey(
       request: DeleteCryptoKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -834,6 +849,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCryptoKeyVersion(
       request: DeleteCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -886,6 +902,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importCryptoKeyVersion(
       request: ImportCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -939,6 +956,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importTrustedKeyWrappedCryptoKeyVersion(
       request: ImportTrustedKeyWrappedCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -993,6 +1011,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportTrustedKeyWrappedCryptoKeyVersion(
       request: ExportTrustedKeyWrappedCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ExportTrustedKeyWrappedCryptoKeyVersionResponse {
@@ -1048,6 +1067,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createImportJob(
       request: CreateImportJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ImportJob {
@@ -1103,6 +1123,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCryptoKey(
       request: UpdateCryptoKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKey {
@@ -1158,6 +1179,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCryptoKeyVersion(
       request: UpdateCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -1215,6 +1237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCryptoKeyPrimaryVersion(
       request: UpdateCryptoKeyPrimaryVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKey {
@@ -1268,6 +1291,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func destroyCryptoKeyVersion(
       request: DestroyCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -1323,6 +1347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restoreCryptoKeyVersion(
       request: RestoreCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
@@ -1378,6 +1403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func encrypt(
       request: EncryptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.EncryptResponse {
@@ -1433,6 +1459,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func decrypt(
       request: DecryptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.DecryptResponse {
@@ -1486,6 +1513,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rawEncrypt(
       request: RawEncryptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.RawEncryptResponse {
@@ -1541,6 +1569,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rawDecrypt(
       request: RawDecryptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.RawDecryptResponse {
@@ -1596,6 +1625,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func asymmetricSign(
       request: AsymmetricSignRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.AsymmetricSignResponse {
@@ -1651,6 +1681,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func asymmetricDecrypt(
       request: AsymmetricDecryptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.AsymmetricDecryptResponse {
@@ -1706,6 +1737,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func macSign(
       request: MacSignRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.MacSignResponse {
@@ -1761,6 +1793,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func macVerify(
       request: MacVerifyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.MacVerifyResponse {
@@ -1816,6 +1849,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func decapsulate(
       request: DecapsulateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.DecapsulateResponse {
@@ -1871,6 +1905,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateRandomBytes(
       request: GenerateRandomBytesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.GenerateRandomBytesResponse {
@@ -1922,6 +1957,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1970,6 +2006,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2018,6 +2055,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2203,6 +2241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2395,6 +2434,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2580,6 +2620,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

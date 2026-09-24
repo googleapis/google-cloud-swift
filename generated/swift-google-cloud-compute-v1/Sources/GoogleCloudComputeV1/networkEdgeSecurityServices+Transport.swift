@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -93,6 +94,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -169,6 +171,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: NetworkEdgeSecurityServicesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkEdgeSecurityService {
@@ -243,6 +246,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -310,6 +314,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: NetworkEdgeSecurityServicesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -391,6 +396,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

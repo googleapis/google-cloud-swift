@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createSynonymSet(
       request: CreateSynonymSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSynonymSet(
       request: GetSynonymSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -134,6 +136,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSynonymSet(
       request: UpdateSynonymSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -187,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSynonymSet(
       request: DeleteSynonymSetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -237,6 +241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSynonymSets(
       request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse {
@@ -288,6 +293,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

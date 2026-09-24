@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createScanConfig(
       request: CreateScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteScanConfig(
       request: DeleteScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -127,6 +129,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getScanConfig(
       request: GetScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
@@ -175,6 +178,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listScanConfigs(
       request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse {
@@ -223,6 +227,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateScanConfig(
       request: UpdateScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
@@ -276,6 +281,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startScanRun(
       request: StartScanRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
@@ -327,6 +333,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getScanRun(
       request: GetScanRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
@@ -377,6 +384,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listScanRuns(
       request: ListScanRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse {
@@ -428,6 +436,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func stopScanRun(
       request: StopScanRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
@@ -481,6 +490,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCrawledUrls(
       request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse {
@@ -535,6 +545,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFinding(
       request: GetFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.Finding {
@@ -585,6 +596,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFindings(
       request: ListFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse {
@@ -639,6 +651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFindingTypeStats(
       request: ListFindingTypeStatsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingTypeStatsResponse {

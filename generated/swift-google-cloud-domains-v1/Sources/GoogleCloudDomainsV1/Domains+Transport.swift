@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func searchDomains(
       request: SearchDomainsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.SearchDomainsResponse {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func retrieveRegisterParameters(
       request: RetrieveRegisterParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func registerDomain(
       request: RegisterDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -187,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func retrieveTransferParameters(
       request: RetrieveTransferParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse {
@@ -238,6 +242,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func transferDomain(
       request: TransferDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -289,6 +294,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRegistrations(
       request: ListRegistrationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse {
@@ -341,6 +347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRegistration(
       request: GetRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.Registration {
@@ -391,6 +398,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRegistration(
       request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -446,6 +454,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func configureManagementSettings(
       request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -499,6 +508,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func configureDnsSettings(
       request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -552,6 +562,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func configureContactSettings(
       request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -605,6 +616,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportRegistration(
       request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -658,6 +670,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRegistration(
       request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -708,6 +721,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func retrieveAuthorizationCode(
       request: RetrieveAuthorizationCodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -758,6 +772,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetAuthorizationCode(
       request: ResetAuthorizationCodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -811,6 +826,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -866,6 +882,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

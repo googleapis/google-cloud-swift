@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listReportConfigs(
       request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ListReportConfigsResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getReportConfig(
       request: GetReportConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createReportConfig(
       request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateReportConfig(
       request: UpdateReportConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -247,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteReportConfig(
       request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReportDetails(
       request: ListReportDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ListReportDetailsResponse {
@@ -355,6 +361,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getReportDetail(
       request: GetReportDetailRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ReportDetail {
@@ -407,6 +414,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDatasetConfigs(
       request: ListDatasetConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.ListDatasetConfigsResponse {
@@ -461,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDatasetConfig(
       request: GetDatasetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudStorageInsightsV1.DatasetConfig {
@@ -511,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDatasetConfig(
       request: CreateDatasetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -566,6 +576,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDatasetConfig(
       request: UpdateDatasetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -622,6 +633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDatasetConfig(
       request: DeleteDatasetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -674,6 +686,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func linkDataset(
       request: LinkDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -727,6 +740,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func unlinkDataset(
       request: UnlinkDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -780,6 +794,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -828,6 +843,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -876,6 +892,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -931,6 +948,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -981,6 +999,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1031,6 +1050,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

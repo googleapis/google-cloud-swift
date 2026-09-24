@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RegionHealthAggregationPoliciesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -169,6 +171,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionHealthAggregationPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthAggregationPolicy {
@@ -243,6 +246,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionHealthAggregationPoliciesClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -309,6 +313,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionHealthAggregationPoliciesClient.ListRequest,
         options: GoogleGax.RequestOptions
@@ -378,6 +383,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RegionHealthAggregationPoliciesClient.PatchRequest,
         options: GoogleGax.RequestOptions
@@ -458,6 +464,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: RegionHealthAggregationPoliciesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -536,6 +543,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

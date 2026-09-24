@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listCatalogs(
       request: ListCatalogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListCatalogsResponse {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCatalog(
       request: UpdateCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Catalog {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setDefaultBranch(
       request: SetDefaultBranchRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDefaultBranch(
       request: GetDefaultBranchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.GetDefaultBranchResponse {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCompletionConfig(
       request: GetCompletionConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCompletionConfig(
       request: UpdateCompletionConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -347,6 +353,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAttributesConfig(
       request: GetAttributesConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -397,6 +404,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAttributesConfig(
       request: UpdateAttributesConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -452,6 +460,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addCatalogAttribute(
       request: AddCatalogAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -505,6 +514,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeCatalogAttribute(
       request: RemoveCatalogAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -558,6 +568,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func replaceCatalogAttribute(
       request: ReplaceCatalogAttributeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -611,6 +622,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -740,6 +752,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listManagementServers(
       request: ListManagementServersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListManagementServersResponse {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getManagementServer(
       request: GetManagementServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ManagementServer {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createManagementServer(
       request: CreateManagementServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteManagementServer(
       request: DeleteManagementServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -247,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackupVault(
       request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -303,6 +308,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackupVaults(
       request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListBackupVaultsResponse {
@@ -357,6 +363,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchUsableBackupVaults(
       request: FetchUsableBackupVaultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.FetchUsableBackupVaultsResponse {
@@ -410,6 +417,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackupVault(
       request: GetBackupVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.BackupVault {
@@ -462,6 +470,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackupVault(
       request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -523,6 +532,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackupVault(
       request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -582,6 +592,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataSources(
       request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListDataSourcesResponse {
@@ -637,6 +648,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataSource(
       request: GetDataSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.DataSource {
@@ -689,6 +701,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDataSource(
       request: UpdateDataSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -748,6 +761,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListBackupsResponse {
@@ -806,6 +820,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchBackupsForResourceType(
       request: FetchBackupsForResourceTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.FetchBackupsForResourceTypeResponse {
@@ -866,6 +881,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.Backup {
@@ -920,6 +936,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackup(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -978,6 +995,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackup(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1032,6 +1050,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restoreBackup(
       request: RestoreBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1087,6 +1106,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackupPlan(
       request: CreateBackupPlanRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1141,6 +1161,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackupPlan(
       request: UpdateBackupPlanRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1197,6 +1218,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackupPlan(
       request: GetBackupPlanRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.BackupPlan {
@@ -1247,6 +1269,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackupPlans(
       request: ListBackupPlansRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListBackupPlansResponse {
@@ -1300,6 +1323,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackupPlan(
       request: DeleteBackupPlanRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1352,6 +1376,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackupPlanRevision(
       request: GetBackupPlanRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.BackupPlanRevision {
@@ -1403,6 +1428,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackupPlanRevisions(
       request: ListBackupPlanRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListBackupPlanRevisionsResponse {
@@ -1456,6 +1482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackupPlanAssociation(
       request: CreateBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1512,6 +1539,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackupPlanAssociation(
       request: UpdateBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1568,6 +1596,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackupPlanAssociation(
       request: GetBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.BackupPlanAssociation {
@@ -1618,6 +1647,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackupPlanAssociations(
       request: ListBackupPlanAssociationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListBackupPlanAssociationsResponse {
@@ -1671,6 +1701,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchBackupPlanAssociationsForResourceType(
       request: FetchBackupPlanAssociationsForResourceTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.FetchBackupPlanAssociationsForResourceTypeResponse {
@@ -1726,6 +1757,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackupPlanAssociation(
       request: DeleteBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1778,6 +1810,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func triggerBackup(
       request: TriggerBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1831,6 +1864,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataSourceReference(
       request: GetDataSourceReferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.DataSourceReference {
@@ -1881,6 +1915,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataSourceReferences(
       request: ListDataSourceReferencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListDataSourceReferencesResponse {
@@ -1934,6 +1969,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchDataSourceReferencesForResourceType(
       request: FetchDataSourceReferencesForResourceTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.FetchDataSourceReferencesForResourceTypeResponse {
@@ -1989,6 +2025,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func initializeService(
       request: InitializeServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2042,6 +2079,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2090,6 +2128,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2138,6 +2177,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2191,6 +2231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2243,6 +2284,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2296,6 +2338,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2351,6 +2394,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2401,6 +2445,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2451,6 +2496,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

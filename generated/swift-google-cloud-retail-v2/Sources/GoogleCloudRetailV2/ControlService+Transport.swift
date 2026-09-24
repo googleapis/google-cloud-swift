@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createControl(
       request: CreateControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Control {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteControl(
       request: DeleteControlRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateControl(
       request: UpdateControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Control {
@@ -193,6 +196,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getControl(
       request: GetControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Control {
@@ -243,6 +247,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listControls(
       request: ListControlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListControlsResponse {
@@ -297,6 +302,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -426,6 +432,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

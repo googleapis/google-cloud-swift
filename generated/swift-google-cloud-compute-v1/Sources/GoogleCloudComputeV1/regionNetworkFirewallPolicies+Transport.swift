@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addAssociation(
         request: RegionNetworkFirewallPoliciesClient.AddAssociationRequest,
         options: GoogleGax.RequestOptions
@@ -115,6 +116,7 @@
         ).get()
       }
 
+      @concurrent
       public func addRule(
         request: RegionNetworkFirewallPoliciesClient.AddRuleRequest,
         options: GoogleGax.RequestOptions
@@ -197,6 +199,7 @@
         ).get()
       }
 
+      @concurrent
       public func cloneRules(
         request: RegionNetworkFirewallPoliciesClient.CloneRulesRequest,
         options: GoogleGax.RequestOptions
@@ -277,6 +280,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RegionNetworkFirewallPoliciesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -354,6 +358,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionNetworkFirewallPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
@@ -428,6 +433,7 @@
         ).get()
       }
 
+      @concurrent
       public func getAssociation(
         request: RegionNetworkFirewallPoliciesClient.GetAssociationRequest,
         options: GoogleGax.RequestOptions
@@ -505,6 +511,7 @@
         ).get()
       }
 
+      @concurrent
       public func getEffectiveFirewalls(
         request: RegionNetworkFirewallPoliciesClient.GetEffectiveFirewallsRequest,
         options: GoogleGax.RequestOptions
@@ -571,6 +578,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: RegionNetworkFirewallPoliciesClient.GetIamPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -650,6 +658,7 @@
         ).get()
       }
 
+      @concurrent
       public func getRule(
         request: RegionNetworkFirewallPoliciesClient.GetRuleRequest,
         options: GoogleGax.RequestOptions
@@ -727,6 +736,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionNetworkFirewallPoliciesClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -793,6 +803,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyList {
@@ -861,6 +872,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RegionNetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -940,6 +952,7 @@
         ).get()
       }
 
+      @concurrent
       public func patchRule(
         request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest,
         options: GoogleGax.RequestOptions
@@ -1021,6 +1034,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeAssociation(
         request: RegionNetworkFirewallPoliciesClient.RemoveAssociationRequest,
         options: GoogleGax.RequestOptions
@@ -1099,6 +1113,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeRule(
         request: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest,
         options: GoogleGax.RequestOptions
@@ -1177,6 +1192,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: RegionNetworkFirewallPoliciesClient.SetIamPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -1255,6 +1271,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: RegionNetworkFirewallPoliciesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -1333,6 +1350,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
