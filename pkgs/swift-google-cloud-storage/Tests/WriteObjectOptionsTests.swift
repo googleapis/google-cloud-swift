@@ -81,7 +81,7 @@ import Testing
       (
         options: WriteObjectOptions().with {
           $0.resumableUploadThreshold = 32 * 1024 * 1024
-          $0.resumePolicy = AlwaysResume<WriteObjectDetails>()
+          $0.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
           $0.quotaProject = "override-upload-quota"
         },
         expectedThreshold: 32 * 1024 * 1024,

@@ -51,7 +51,7 @@ import Testing
   }
 
   @Test func progressUpdatesState() {
-    let policy = AlwaysResume<Void>()
+    let policy = AlwaysResume<Void>.unbounded()
     var state = ResumeState().with {
       $0.consecutiveErrorCount = 3
     }
@@ -73,7 +73,7 @@ import Testing
     #expect(state.details.bytes == 1024)
     #expect(state.consecutiveErrorCount == 0)
 
-    let policy = AlwaysResume<CustomDetails>()
+    let policy = AlwaysResume<CustomDetails>.unbounded()
     state.consecutiveErrorCount = 4
     policy.onProgress(state: &state)
     #expect(state.consecutiveErrorCount == 0)

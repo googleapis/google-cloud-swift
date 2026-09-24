@@ -261,7 +261,7 @@ import Testing
   }
 
   @Test func alwaysResumePolicy() {
-    let policy = AlwaysResume<Void>()
+    let policy = AlwaysResume<Void>.unbounded()
     var state = ResumeState()
     let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: [:]))

@@ -191,7 +191,7 @@ import Testing
       ),
       (
         options: ReadObjectOptions().with {
-          $0.resumePolicy = AlwaysResume<ReadObjectDetails>()
+          $0.resumePolicy = AlwaysResume<ReadObjectDetails>.unbounded()
           $0.quotaProject = "override-download-quota"
         },
         expectedIsAlwaysResume: true,

@@ -19,7 +19,7 @@ import Testing
 
 @Suite struct AlwaysResumeTests {
   @Test func alwaysResume() {
-    let policy = AlwaysResume<Void>()
+    let policy = AlwaysResume<Void>.unbounded()
     var state = ResumeState()
     let error503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     let error400 = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: [:]))
@@ -34,8 +34,8 @@ import Testing
     #expect(policy.remainingTime(state: state) == nil)
   }
 
-  @Test func staticFactory() {
-    let policy: AlwaysResume<Void> = .always()
+  @Test func unboundedFactory() {
+    let policy = AlwaysResume<Void>.unbounded()
     let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     #expect(policy.onError(state: state, error: transient503) == .resume(transient503))

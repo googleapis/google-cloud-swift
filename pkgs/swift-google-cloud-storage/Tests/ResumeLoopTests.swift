@@ -35,7 +35,7 @@ private struct MockBackoff: BackoffPolicy {
 
   @Test func immediateSuccess() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(),
+      resumePolicy: AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors(),
       backoffPolicy: MockBackoff()
     )
 
@@ -49,7 +49,7 @@ private struct MockBackoff: BackoffPolicy {
 
   @Test func transientFailureThenSuccess() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(3),
+      resumePolicy: AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors(3),
       backoffPolicy: MockBackoff(delay: .milliseconds(10))
     )
 
@@ -98,7 +98,7 @@ private struct MockBackoff: BackoffPolicy {
 
   @Test func exhaustedConsecutiveErrorsThrows() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(2),
+      resumePolicy: AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors(2),
       backoffPolicy: MockBackoff()
     )
 
@@ -121,7 +121,7 @@ private struct MockBackoff: BackoffPolicy {
 
   @Test func handleErrorAndProgress() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(2),
+      resumePolicy: AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors(2),
       backoffPolicy: MockBackoff(delay: .milliseconds(10))
     )
 

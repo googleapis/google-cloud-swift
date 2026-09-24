@@ -18,19 +18,32 @@ public import GoogleGax
 /// A ``ResumePolicy`` that attempts to resume on all errors without imposing limits
 /// on consecutive or total attempts.
 ///
-/// This policy must be decorated to limit the number of consecutive errors, total resume attempts,
-/// or duration of the resume loop.
+/// Use ``unbounded()`` decorated with ``StopOnConsecutiveErrors`` and/or
+/// ``LimitedTotalResumes`` to configure bounds. For standard default Cloud Storage
+/// resume behavior, use ``StorageResumePolicy/defaultPolicy``.
+///
+/// The policy resumes on all errors regardless of idempotency. This is primarily useful in
+/// testing or specialized custom recovery pipelines.
 public struct AlwaysResume<Details: Sendable>: ResumePolicy, Sendable, Equatable {
-  public init() {}
+  init() {}
+
+  /// Creates an unconstrained resume policy that attempts to resume on all errors indefinitely.
+  ///
+  /// Decorate this policy with ``StopOnConsecutiveErrors`` and/or
+  /// ``LimitedTotalResumes`` to bound the resume loop:
+  /// ```swift
+  /// let policy = AlwaysResume<WriteObjectDetails>.unbounded()
+  ///   .stopOnConsecutiveErrors(3)
+  ///   .withTotalResumeLimit(10)
+  /// ```
+  ///
+  /// - Warning: Without `.stopOnConsecutiveErrors(_:)` or `.withTotalResumeLimit(_:)` decorators,
+  ///   this policy resumes errors indefinitely.
+  public static func unbounded() -> AlwaysResume<Details> {
+    AlwaysResume()
+  }
 
   public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
     .resume(error)
-  }
-}
-
-extension ResumePolicy {
-  /// An `AlwaysResume` policy that attempts to resume on all errors indefinitely.
-  public static func always<D: Sendable>() -> AlwaysResume<D> where Self == AlwaysResume<D> {
-    AlwaysResume<D>()
   }
 }
