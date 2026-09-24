@@ -829,7 +829,8 @@ extension StorageClient {
   ///   - uploadId: The saved GCS Upload ID (Session URI).
   ///   - options: Configuration options for the write operation.
   /// - Returns: The created `Object`.
-  public func resumeWriteObject(
+  // TODO(https://github.com/googleapis/google-cloud-swift/issues/1109) - make this public
+  func resumeWriteObject(
     _ source: some SeekableWriteObjectSource,
     uploadId: String,
     options: WriteObjectOptions = .default

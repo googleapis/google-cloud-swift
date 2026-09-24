@@ -76,9 +76,10 @@ import Testing
       try await client.writeObject(source, to: "bucket", as: "object", options: .default)
     }
 
-    await #expect(throws: GoogleGax.RequestError.self) {
-      try await client.resumeWriteObject(source, uploadId: "session-id", options: .default)
-    }
+    // TODO(https://github.com/googleapis/google-cloud-swift/issues/1109) - restore this code.
+    // await #expect(throws: GoogleGax.RequestError.self) {
+    //   try await client.resumeWriteObject(source, uploadId: "session-id", options: .default)
+    // }
 
     let tempFileURL = FileManager.default.temporaryDirectory.appendingPathComponent(
       UUID().uuidString)

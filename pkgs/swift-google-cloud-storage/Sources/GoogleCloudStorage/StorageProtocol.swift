@@ -33,13 +33,6 @@ public protocol StorageProtocol: Sendable {
     options: WriteObjectOptions
   ) async throws -> Object
 
-  /// Resumes a previously interrupted file upload using a saved upload ID (Session URI).
-  func resumeWriteObject(
-    _ source: some SeekableWriteObjectSource,
-    uploadId: String,
-    options: WriteObjectOptions
-  ) async throws -> Object
-
   /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
   func readObject(
     from bucket: String,
@@ -71,15 +64,6 @@ extension StorageProtocol {
       unseekableSource, to: bucket, as: objectName, options: options)
   }
 
-  /// Resumes a previously interrupted file upload using a saved upload ID (Session URI).
-  public func resumeWriteObject(
-    _ source: some SeekableWriteObjectSource,
-    uploadId: String,
-    options: WriteObjectOptions
-  ) async throws -> Object {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
   /// Reads (downloads) an object from Cloud Storage as an async sequence of ByteChunk chunks.
   public func readObject(
     from bucket: String,
@@ -105,14 +89,6 @@ extension StorageProtocol {
     as objectName: String
   ) async throws -> Object {
     try await self.writeObject(source, to: bucket, as: objectName, options: .default)
-  }
-
-  /// Resumes a previously interrupted file upload using a saved upload ID with default options.
-  public func resumeWriteObject(
-    _ source: some SeekableWriteObjectSource,
-    uploadId: String
-  ) async throws -> Object {
-    try await self.resumeWriteObject(source, uploadId: uploadId, options: .default)
   }
 
   /// Convenience write method for a local file URL.
