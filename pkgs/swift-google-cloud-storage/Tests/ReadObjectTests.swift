@@ -1408,7 +1408,7 @@ import Testing
     let download: ReadObjectHandle = client.readObject(from: bucket, object: objectName)
 
     let task = Task {
-      withUnsafeCurrentTask { $0?.cancel() }
+      unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
       return try await download.metadata
     }
 
@@ -1444,7 +1444,7 @@ import Testing
       var received = Data()
       for try await chunk in download.body {
         received.append(contentsOf: chunk)
-        withUnsafeCurrentTask { $0?.cancel() }
+        unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
       }
       return received
     }

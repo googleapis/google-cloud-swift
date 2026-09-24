@@ -62,7 +62,10 @@ import Testing
 
   @Test func initWithRawBufferPointer() {
     let bytes: [UInt8] = [10, 20, 30]
-    unsafe bytes.withUnsafeBytes { rawBuffer in
+    // Use `Data(bytes).withUnsafeBytes` rather than `Array.withUnsafeBytes`: `Array.withUnsafeBytes`
+    // changed from `@unsafe` in Swift 6.3 to `@safe` in Swift 6.4 (causing `#UnnecessaryUnsafe` when
+    // the closure body is safe), whereas `Data.withUnsafeBytes` is consistently `@unsafe` in both.
+    unsafe Data(bytes).withUnsafeBytes { rawBuffer in
       let storage = ByteChunk(rawBuffer)
       #expect(storage.count == 3)
       #expect(storage.byteArray == bytes)

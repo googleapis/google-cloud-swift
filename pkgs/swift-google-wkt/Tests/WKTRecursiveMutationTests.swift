@@ -115,8 +115,10 @@ import Testing
 
   @Test("The wrapper is the size of a single pointer")
   func testSize() {
-    #expect(MemoryLayout<WKTRecursive<Schema>>.size == MemoryLayout<UnsafeRawPointer>.size)
+    // Use `AnyObject` (a single class reference pointer) rather than `UnsafeRawPointer` so the
+    // assertion is memory-safe under `-strict-memory-safety` across both Swift 6.3 and Swift 6.4.
+    #expect(MemoryLayout<WKTRecursive<Schema>>.size == MemoryLayout<AnyObject>.size)
     // Optionals of the wrapper do not need extra storage either.
-    #expect(MemoryLayout<WKTRecursive<Schema>?>.size == MemoryLayout<UnsafeRawPointer>.size)
+    #expect(MemoryLayout<WKTRecursive<Schema>?>.size == MemoryLayout<AnyObject>.size)
   }
 }
